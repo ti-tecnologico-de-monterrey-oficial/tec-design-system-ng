@@ -11,6 +11,7 @@ import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.di
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-item-informative-text',
@@ -22,6 +23,7 @@ import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/b
     BmbLayoutItemDirective,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
+    TranslatePipe,
   ],
   templateUrl: './bmb-item-informative-text.component.html',
   styleUrl: './bmb-item-informative-text.component.scss',

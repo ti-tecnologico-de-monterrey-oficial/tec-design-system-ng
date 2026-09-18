@@ -6,11 +6,12 @@ import {
 } from '@angular/core';
 import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { BmbMitecLogoAnimationComponent } from '../../bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-login-onboarding-login',
   standalone: true,
-  imports: [BmbButtonDirective, BmbMitecLogoAnimationComponent],
+  imports: [BmbButtonDirective, BmbMitecLogoAnimationComponent, TranslatePipe],
   templateUrl: './bmb-login-onboarding-login.component.html',
   styleUrl: './bmb-login-onboarding-login.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -19,7 +20,7 @@ import { BmbMitecLogoAnimationComponent } from '../../bmb-mitec-logo-animation/b
 export class BmbLoginOnboardingLoginComponent {
   handleContinuePage = output();
 
-  tecLogoImage: string = '../assets/images/tec-logo.svg';
+  tecLogoImage = '../assets/images/tec-logo.svg';
 
   _handleContinuePage(): void {
     this.handleContinuePage.emit();

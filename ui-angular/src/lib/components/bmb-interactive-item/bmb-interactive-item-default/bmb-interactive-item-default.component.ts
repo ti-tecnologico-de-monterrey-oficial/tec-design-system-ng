@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   input,
   output,
   ViewEncapsulation,
@@ -12,9 +13,10 @@ import { TranslatePipe } from '../../../pipes/translations';
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  getInteractiveItemDefaultIcon,
+  getInteractiveItemDefaultSubtitle,
+} from '../../../_shared/logic/components/interactive-item-default';
 
 @Component({
   selector: 'bmb-interactive-item-default',
@@ -35,7 +37,14 @@ import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layou
 export class BmbInteractiveItemDefaultComponent {
   icon = input.required<string>();
   itemTitle = input.required<string>();
-  isActive = input<boolean>();
+  isActive = input<boolean | undefined>(false);
+
+  protected readonly trailingIcon = computed(() =>
+    getInteractiveItemDefaultIcon(this.isActive()),
+  );
+  protected readonly subtitleKey = computed(() =>
+    getInteractiveItemDefaultSubtitle(this.isActive()),
+  );
 
   getActionClick = output<MouseEvent>();
 

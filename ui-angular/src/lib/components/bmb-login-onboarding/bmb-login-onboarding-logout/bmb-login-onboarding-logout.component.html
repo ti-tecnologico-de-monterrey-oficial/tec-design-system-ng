@@ -1,11 +1,11 @@
 <section class="bmb_login-onboarding-logout">
   <section class="bmb_login-onboarding-logout-content">
     <h1 class="bmb_login-onboarding-logout-content-title">
-      ¡Se ha completado tu registro!
+      {{ 'login_onboarding.registration_complete_title' | translate }}
     </h1>
     <img
       class="bmb_login-onboarding-logout-content-img"
-      alt="Check circle"
+      [alt]="'login_onboarding.check_circle_alt' | translate"
       [src]="checkCircleImage"
     />
   </section>
@@ -16,7 +16,7 @@
       size="large"
       (click)="_handleContinuePage()"
     >
-      Finalizar
+      {{ 'login_onboarding.finish' | translate }}
     </button>
   </section>
 </section>

@@ -17,7 +17,7 @@ import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/b
 
 export const CARD_EXAMPLES = {
   'informative-media-detail-vertical': `<section aria-labelledby="informative-media-detail-vertical">
-    <h2 id="informative-media-detail-vertical">Informative Media Detail Vertical</h2>
+    <h2 id="informative-media-detail-vertical">Informative media detail vertical</h2>
 
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
       <div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
@@ -75,7 +75,7 @@ export const CARD_EXAMPLES = {
     </div>
   </section>`,
   'informative-media-detail-horizontal': `<section aria-labelledby="informative-media-detail-horizontal">
-    <h2 id="informative-media-detail-horizontal">Informative Media Detail Horizontal</h2>
+    <h2 id="informative-media-detail-horizontal">Informative media detail horizontal</h2>
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
       <div bmbLayoutItem [colSm]="4" [colLg]="6" [colXl]="6">
         <bmb-card type="normal" borderRadius="l" margin="none">
@@ -129,7 +129,7 @@ export const CARD_EXAMPLES = {
     </div>
   </section>`,
   'informative-media-simple': `<section aria-labelledby="informative-media-simple">
-    <h2 id="informative-media-simple">Informative Media Simple</h2>
+    <h2 id="informative-media-simple">Informative media simple</h2>
 
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
       <div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
@@ -181,7 +181,7 @@ export const CARD_EXAMPLES = {
     </div>
   </section>`,
   'informative-media-simple-horizontal': `<section aria-labelledby="informative-media-simple-horizontal">
-    <h2 id="informative-media-simple-horizontal">Informative Media Simple Horizontal</h2>
+    <h2 id="informative-media-simple-horizontal">Informative media simple horizontal</h2>
 
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
       <div bmbLayoutItem [colSm]="4" [colLg]="6" [colXl]="6">
@@ -269,7 +269,7 @@ export const CARD_EXAMPLES = {
     </div>
   </section>`,
   'informative-focus-element': `<section aria-labelledby="informative-focus-element">
-    <h2 id="informative-focus-element">Informative FocusElement</h2>
+    <h2 id="informative-focus-element">Informative focus element</h2>
 
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
       <div bmbLayoutItem [colSm]="4" [colLg]="3" [colXl]="3">
@@ -290,6 +290,7 @@ export const CARD_EXAMPLES = {
                 bmbVerticalLayoutItem
                 [isFullWidth]="false"
                 [number]="1"
+                [isCurrentColor]="true"
                 componentTitle="Title"
               />
             </div>
@@ -299,7 +300,7 @@ export const CARD_EXAMPLES = {
     </div>
   </section>`,
   'informative-item-list': `<section aria-labelledby="informative-item-list">
-    <h2 id="informative-item-list">Informative ItemList</h2>
+    <h2 id="informative-item-list">Informative item list</h2>
 
     <div bmbVerticalLayout margin="none" gapSize="m" alignItems="stretch" role="list">
       @for (item of informativeItems; track item.id; let last = $last) {

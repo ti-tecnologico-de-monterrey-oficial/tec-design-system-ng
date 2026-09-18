@@ -90,7 +90,7 @@
               <bmb-radial
                 inputId="target_blank"
                 name="target"
-                label="Blank"
+                [label]="'text_editor.prompt.link.target_blank' | translate"
                 value="_blank"
                 [control]="getFormControl('target')"
                 bmbLayoutItem
@@ -99,7 +99,7 @@
               <bmb-radial
                 inputId="target_self"
                 name="target"
-                label="Self"
+                [label]="'text_editor.prompt.link.target_self' | translate"
                 value="_self"
                 bmbLayoutItem
                 [control]="getFormControl('target')"
@@ -108,7 +108,7 @@
               <bmb-radial
                 inputId="target_parent"
                 name="target"
-                label="Parent"
+                [label]="'text_editor.prompt.link.target_parent' | translate"
                 value="_parent"
                 bmbLayoutItem
                 [control]="getFormControl('target')"
@@ -117,7 +117,7 @@
               <bmb-radial
                 inputId="target_top"
                 name="target"
-                label="Top"
+                [label]="'text_editor.prompt.link.target_top' | translate"
                 value="_top"
                 bmbLayoutItem
                 [control]="getFormControl('target')"
@@ -214,7 +214,7 @@
               <bmb-radial
                 inputId="alignImageFit"
                 name="alignment_type"
-                label="Fit"
+                [label]="'text_editor.prompt.image.alignment_fit' | translate"
                 value="fit"
                 bmbLayoutItem
                 [control]="getFormControl('alignment_type')"
@@ -223,7 +223,7 @@
               <bmb-radial
                 inputId="alignImageContains"
                 name="alignment_type"
-                label="Contains"
+                [label]="'text_editor.prompt.image.alignment_contains' | translate"
                 value="contains"
                 [control]="getFormControl('alignment_type')"
                 bmbLayoutItem
@@ -232,7 +232,7 @@
               <bmb-radial
                 inputId="alignImageCover"
                 name="alignment_type"
-                label="Cover"
+                [label]="'text_editor.prompt.image.alignment_cover' | translate"
                 value="cover"
                 [control]="getFormControl('alignment_type')"
                 bmbLayoutItem
@@ -241,7 +241,7 @@
               <bmb-radial
                 inputId="alignImageNone"
                 name="alignment_type"
-                label="none"
+                [label]="'text_editor.prompt.image.alignment_none' | translate"
                 value="none"
                 [control]="getFormControl('alignment_type')"
                 bmbLayoutItem

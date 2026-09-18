@@ -2,7 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   effect,
+  inject,
   input,
+  OnInit,
   signal,
   ViewEncapsulation,
 } from '@angular/core';
@@ -25,6 +27,8 @@ import { timestreamFilter } from '../../_shared/logic/timestreamFilters';
 import { CommonModule } from '@angular/common';
 import { IBmbActionHeader } from '../../_shared/types';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { TranslatePipe } from '../../pipes/translations';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -41,13 +45,16 @@ import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
     BmbCardComponent,
     BmbCardContentComponent,
     CommonModule,
+    TranslatePipe,
   ],
   templateUrl: './bmb-timestream-card.component.html',
   styleUrl: './bmb-timestream-card.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbTimestreamCardComponent {
+export class BmbTimestreamCardComponent implements OnInit {
+  private readonly translationsService = inject(BmbTranslationsService);
+
   subtitle = input<string>();
   dataLocalNav = input<IBmbDataTopBar[]>([]);
   icon = input<string>('trending_up');
@@ -78,7 +85,7 @@ export class BmbTimestreamCardComponent {
   }
 
   clamp: IBmbClamp = { min: 0, max: '100%', size: '100%' };
-  isMobile: boolean = false;
+  isMobile = false;
   actionHeaders: IBmbActionHeader[] = [
     {
       icon: 'tune',
@@ -88,57 +95,57 @@ export class BmbTimestreamCardComponent {
       },
     },
   ];
-  isFiltersEnabled: boolean = false;
+  isFiltersEnabled = false;
   filteredEvents = signal<ITimelineEvent[]>([]);
   filters: IBmbControlType[] = [
     {
-      title: 'Tipo',
+      title: this.translationsService.translate('timestream_card.filters.type'),
       control: [
         {
           name: 'pending',
           type: 'checkbox',
-          label: 'Pendiente',
+          label: this.translationsService.translate('timestream_card.filters.pending'),
           checked: false,
         },
         {
           name: 'done',
           type: 'checkbox',
-          label: 'Finalizado',
+          label: this.translationsService.translate('timestream_card.filters.done'),
           checked: false,
         },
         {
           name: 'active',
           type: 'checkbox',
-          label: 'Iniciado',
+          label: this.translationsService.translate('timestream_card.filters.active'),
           checked: false,
         },
         {
           name: 'under_review',
           type: 'checkbox',
-          label: 'En revisión',
+          label: this.translationsService.translate('timestream_card.filters.under_review'),
           checked: false,
         },
       ],
     },
     {
-      title: 'Instacias',
+      title: this.translationsService.translate('timestream_card.filters.instances'),
       control: [
         {
           name: 'instances',
           type: 'radial',
-          label: 'Todas',
+          label: this.translationsService.translate('timestream_card.filters.all'),
           checked: true,
         },
         {
           name: 'instances',
           type: 'radial',
-          label: 'Múltiple',
+          label: this.translationsService.translate('timestream_card.filters.multiple'),
           checked: false,
         },
         {
           name: 'instances',
           type: 'radial',
-          label: 'Una',
+          label: this.translationsService.translate('timestream_card.filters.one'),
           checked: false,
         },
       ],

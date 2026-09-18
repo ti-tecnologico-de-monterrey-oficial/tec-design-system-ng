@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CustomTOC } from './CustomTOC.mdx';
 
 export const ContentTab = ({ children, status, showTableOfContents, contentsSelector = '#content' }) => (
@@ -14,11 +14,70 @@ export const ContentTab = ({ children, status, showTableOfContents, contentsSele
 export const Tabs = ({ tabs = [], content = [], showTableOfContents }) => {
   const [selectedTab, setSelectedTab] = useState(0);
   const selectedContent = content[selectedTab];
+  const headerRef = useRef(null);
+  const [scrollState, setScrollState] = useState({ overflow: false, start: true, end: true });
+  const updateScrollState = () => {
+    const header = headerRef.current;
+    if (!header) return;
+    setScrollState({
+      overflow: header.scrollWidth > header.clientWidth + 1,
+      start: header.scrollLeft <= 1,
+      end: header.scrollLeft + header.clientWidth >= header.scrollWidth - 1,
+    });
+  };
+  const revealTab = (index) => {
+    const header = headerRef.current;
+    const item = header?.children[index];
+    if (!item) return;
+    const headerBounds = header.getBoundingClientRect();
+    const itemBounds = item.getBoundingClientRect();
+    if (itemBounds.left < headerBounds.left) header.scrollLeft += itemBounds.left - headerBounds.left;
+    else if (itemBounds.right > headerBounds.right) header.scrollLeft += itemBounds.right - headerBounds.right;
+  };
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+    const observer = new ResizeObserver(() => {
+      revealTab(selectedTab);
+      updateScrollState();
+    });
+    observer.observe(header);
+    updateScrollState();
+    return () => observer.disconnect();
+  }, [tabs.length, selectedTab]);
+  useEffect(() => revealTab(selectedTab), [selectedTab]);
+  const scrollTabs = (direction) => {
+    const header = headerRef.current;
+    const item = header?.firstElementChild;
+    if (!item) return;
+    const gap = parseFloat(getComputedStyle(header).columnGap) || 0;
+    header.scrollBy({
+      left: direction * (item.getBoundingClientRect().width + gap),
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+    });
+  };
+  const handleKeyDown = (event, index) => {
+    let next = index;
+    if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+    else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+    else if (event.key === 'Home') next = 0;
+    else if (event.key === 'End') next = tabs.length - 1;
+    else return;
+    event.preventDefault();
+    setSelectedTab(next);
+    headerRef.current.children[next].querySelector('button').focus({ preventScroll: true });
+  };
 
 return (
 
 <div className="bmb_doc-tabs">
-  <ul role="tablist" className="bmb_doc-tabs-header">
+  <div className="bmb_doc-tabs-navigation">
+  {scrollState.overflow && (
+    <button type="button" className="bmb_doc-tabs-arrow" aria-label="Scroll tabs left" disabled={scrollState.start} onClick={() => scrollTabs(-1)}>
+      <span aria-hidden="true">&#x2039;</span>
+    </button>
+  )}
+  <ul ref={headerRef} role="tablist" aria-label="Documentation sections" className="bmb_doc-tabs-header" onScroll={updateScrollState}>
     {tabs.map((tab, index) => (
       <li role="presentation" key={index} className="bmb_doc-tabs-item">
         <button
@@ -27,14 +86,24 @@ return (
           id={`tab_${index}`}
           aria-controls={`tabpanel_${index}`}
           aria-selected={selectedTab === index}
+          tabIndex={selectedTab === index ? 0 : -1}
+          title={tab}
           className={`bmb_doc-tabs-button ${selectedTab === index ? 'active' : ''}`}
           onClick={() => setSelectedTab(index)}
+          onKeyDown={(event) => handleKeyDown(event, index)}
+          onFocus={() => revealTab(index)}
         >
-          {tab}
+          <span className="bmb_doc-tabs-label">{tab}</span>
         </button>
       </li>
     ))}
   </ul>
+  {scrollState.overflow && (
+    <button type="button" className="bmb_doc-tabs-arrow" aria-label="Scroll tabs right" disabled={scrollState.end} onClick={() => scrollTabs(1)}>
+      <span aria-hidden="true">&#x203a;</span>
+    </button>
+  )}
+  </div>
   <section className="bmb_doc-tabs-content">
     {selectedContent && (
       <div

@@ -31,6 +31,7 @@ import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.componen
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbAiChatBubbleEditorComponent } from './bmb-ai-chat-bubble-editor/bmb-ai-chat-bubble-editor.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 export * from './types';
 
@@ -53,6 +54,7 @@ export * from './types';
     BmbUserImageComponent,
     BmbIconComponent,
     BmbBotIconComponent,
+    TranslatePipe,
     BmbAiChatBubbleEditorComponent,
   ],
   templateUrl: './bmb-ai-chat-bubble.component.html',

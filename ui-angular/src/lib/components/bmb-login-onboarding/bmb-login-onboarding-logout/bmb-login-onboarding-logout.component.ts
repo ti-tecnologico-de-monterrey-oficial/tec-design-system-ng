@@ -8,11 +8,12 @@ import {
 import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
 import { IBmbUserInfo } from '../../../_shared/types/index';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-login-onboarding-logout',
   standalone: true,
-  imports: [BmbButtonDirective],
+  imports: [BmbButtonDirective, TranslatePipe],
   templateUrl: './bmb-login-onboarding-logout.component.html',
   styleUrl: './bmb-login-onboarding-logout.component.scss',
   encapsulation: ViewEncapsulation.None,

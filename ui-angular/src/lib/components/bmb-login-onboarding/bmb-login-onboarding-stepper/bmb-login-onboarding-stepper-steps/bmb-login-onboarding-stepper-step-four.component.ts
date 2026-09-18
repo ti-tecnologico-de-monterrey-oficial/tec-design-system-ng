@@ -10,19 +10,21 @@ import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-s
 import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
 import { BmbNativeModalService } from '../../../../services/old/modal/native-modal.service';
 import { IBmbNativeModal } from '../../../bmb-modal/bmb-modal.interface';
+import { BmbTranslationsService } from '../../../../services/translations/translations.service';
+import { TranslatePipe } from '../../../../pipes/translations';
 
 @Component({
   selector: 'bmb-login-onboarding-stepper-step-four',
   standalone: true,
-  imports: [BmbLoginOnboardingStepperStepComponent],
+  imports: [BmbLoginOnboardingStepperStepComponent, TranslatePipe],
   template: `
     <bmb-login-onboarding-stepper-step
-      componentTitle="Paso 4"
-      subtitle="Activa tu entrada a Campus"
-      label="Con esta funcionalidad tu ID Digital te permitirá ingresar al campus automáticamente."
-      sublabel="(Siempre podrás utilizar tu ID Digital manualmente y podrás cambiar esta configuración)"
-      cancelBackLabel="No, gracias"
-      continueLabel="Activar"
+      [componentTitle]="'login_onboarding.stepper.step_four.title' | translate"
+      [subtitle]="'login_onboarding.stepper.step_four.subtitle' | translate"
+      [label]="'login_onboarding.stepper.step_four.label' | translate"
+      [sublabel]="'login_onboarding.stepper.step_four.sublabel' | translate"
+      [cancelBackLabel]="'login_onboarding.stepper.step_four.cancel' | translate"
+      [continueLabel]="'login_onboarding.stepper.step_four.continue' | translate"
       (handleContinue)="handleContinue()"
     >
       <section>
@@ -41,16 +43,17 @@ export class BmbLoginOnboardingStepperStepFourComponent {
 
   private loginOnboardingService: BmbLoginOnboardingService = inject(BmbLoginOnboardingService);
   private modalService: BmbNativeModalService = inject(BmbNativeModalService);
+  private readonly translationsService = inject(BmbTranslationsService);
 
   credentialExample = '../assets/images/placeholders/credential.svg';
   data: IBmbNativeModal = {
-    title: 'Entrada a campus',
-    content: 'Podrás cambiar esta configuración en cualquier momento',
+    title: this.translationsService.translate('login_onboarding.stepper.step_four.modal_title'),
+    content: this.translationsService.translate('login_onboarding.stepper.step_four.modal_content'),
     size: 'large',
     actions: [
       {
         buttonName: 'aceptar',
-        label: 'Aceptar',
+        label: this.translationsService.translate('login_onboarding.stepper.step_four.modal_accept'),
         appearance: 'primary',
         action: () => {
           this._handleContinueStep();

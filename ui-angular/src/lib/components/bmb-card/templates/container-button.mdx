@@ -1,0 +1,78 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import * as informativeStory from './bmb-card-informative.stories';
+import * as flatStory from './bmb-card-flat.stories';
+import * as actionsStory from './bmb-card-actions.stories';
+import * as homeStory from './bmb-card-home.stories';
+import * as emptyStory from './bmb-card-empty.stories';
+import * as mediaDetailVerticalStory from './bmb-card-informative-media-detail-vertical.stories';
+import * as mediaDetailHorizontalStory from './bmb-card-informative-media-detail-horizontal.stories';
+import * as mediaSimpleStory from './bmb-card-informative-media-simple.stories';
+import * as mediaSimpleHorizontalStory from './bmb-card-informative-media-simple-horizontal.stories';
+import * as focusElementStory from './bmb-card-informative-focus-element.stories';
+import * as itemListStory from './bmb-card-informative-item-list.stories';
+import { ListTemplate } from '@docs/components/ListTemplate.mdx';
+import { getFormatName } from '@docs/utils/utils';
+
+<Meta title="Templates/Generic card" />
+<ListTemplate
+  content={[
+    informativeStory,
+    flatStory,
+    actionsStory,
+    homeStory,
+    emptyStory,
+    mediaDetailVerticalStory,
+    mediaDetailHorizontalStory,
+    mediaSimpleStory,
+    mediaSimpleHorizontalStory,
+    focusElementStory,
+    itemListStory,
+  ]}
+  context={{
+    ...Object.fromEntries([mediaDetailVerticalStory, mediaDetailHorizontalStory, mediaSimpleStory, mediaSimpleHorizontalStory, focusElementStory, itemListStory].map((story) => [
+      getFormatName(story.default.title, /(\/)|( )/g, '_').toLocaleLowerCase(),
+      { showStories: true, showControls: false },
+    ])),
+    [getFormatName(
+      informativeStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: true,
+      showControls: false,
+    },
+    [getFormatName(
+      flatStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: true,
+      showControls: false,
+    },
+    [getFormatName(
+      actionsStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: true,
+      showControls: false,
+    },
+    [getFormatName(
+      homeStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: true,
+      showControls: false,
+    },
+    [getFormatName(
+      emptyStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: true,
+      showControls: false,
+    },
+  }}
+/>

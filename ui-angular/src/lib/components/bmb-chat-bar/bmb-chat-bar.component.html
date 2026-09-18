@@ -206,7 +206,7 @@
 
 <ng-template #chatBarTemplate>
   <section class="bmb_chat-bar-add-dialog">
-    <bmb-action-menu [showHeader]="false" componentTitle="Plus menu">
+    <bmb-action-menu [showHeader]="false" [componentTitle]="'chat_bar.plus_menu' | translate">
       @for (action of actionsList(); track $index) {
         <ng-template #actionMenuItem>
           <bmb-item

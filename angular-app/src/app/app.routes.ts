@@ -2,6 +2,22 @@ import { Route } from '@angular/router';
 
 export const appRoutes: Route[] = [
   {
+    path: 'pages/item-default',
+    title: 'Item default',
+    loadComponent: () =>
+      import('./pages/item-default-page/item-default-page').then(
+        (m) => m.ItemDefaultPage,
+      ),
+  },
+  {
+    path: 'pages/item-chevron',
+    title: 'Item chevron',
+    loadComponent: () =>
+      import('./pages/item-chevron-page/item-chevron-page').then(
+        (m) => m.ItemChevronPage,
+      ),
+  },
+  {
     path: 'my-page',
     title: 'My Page',
     loadComponent: () =>

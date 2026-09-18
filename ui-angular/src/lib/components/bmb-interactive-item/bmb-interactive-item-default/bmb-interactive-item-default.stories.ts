@@ -55,7 +55,7 @@ ${getActionMenuItemComponentDescription({
       controlType: 'boolean',
       defaultSummary: false,
       additionalDescription: getAlertBlockquote(
-        'The inactive state disables the item and the state value as a subtitle.',
+        'The inactive state changes the subtitle and trailing icon; the item remains clickable.',
         {
           title: RELEVANT_TITLE.important,
           blockquoteType: BlockquoteType.important,
@@ -67,6 +67,7 @@ ${getActionMenuItemComponentDescription({
   args: {
     icon: 'mobile_2',
     itemTitle: 'Title',
+    isActive: false,
     getActionClick: () => {
       console.info('Action click');
     },
