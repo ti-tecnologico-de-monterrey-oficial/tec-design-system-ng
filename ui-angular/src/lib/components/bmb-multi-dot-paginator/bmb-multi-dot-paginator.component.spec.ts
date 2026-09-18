@@ -1,13 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbMultiDotPaginatorComponent } from './bmb-multi-dot-paginator.component';
 import { BmbMultiDotPaginatorItemComponent } from './bmb-multi-dot-paginator-item/bmb-multi-dot-paginator-item.component';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   template: `
     <bmb-multi-dot-paginator
       componentTitle="Test title"
       subtitle="Test subtitle"
+      [selectedIndex]="selectedIndex()"
     >
       <bmb-multi-dot-paginator-item>Item 1</bmb-multi-dot-paginator-item>
       <bmb-multi-dot-paginator-item>Item 2</bmb-multi-dot-paginator-item>
@@ -16,7 +17,9 @@ import { Component } from '@angular/core';
   `,
   imports: [BmbMultiDotPaginatorComponent, BmbMultiDotPaginatorItemComponent],
 })
-class TestHostComponent {}
+class TestHostComponent {
+  selectedIndex = signal(0);
+}
 
 describe('BmbMultiDotPaginatorComponent', () => {
   let hostFixture: ComponentFixture<TestHostComponent>;
@@ -73,6 +76,41 @@ describe('BmbMultiDotPaginatorComponent', () => {
 
     expect(component.selectedIndex()).toBe(1);
     expect(secondDot.classList).toContain('bmb_multi-dot-paginator-dot-active');
+  });
+
+  it('should activate the item when selectedIndex changes externally', async () => {
+    hostFixture.componentInstance.selectedIndex.set(2);
+    hostFixture.detectChanges();
+    await hostFixture.whenStable();
+
+    const activeItems = hostNativeElement.querySelectorAll(
+      '.bmb_multi-dot-paginator-item-active',
+    );
+
+    expect(component.selectedIndex()).toBe(2);
+    expect(activeItems).toHaveLength(1);
+    expect(activeItems[0]).toBe(
+      hostNativeElement.querySelectorAll('bmb-multi-dot-paginator-item')[2],
+    );
+  });
+
+  it('should remove the previous active class when the external index changes again', async () => {
+    hostFixture.componentInstance.selectedIndex.set(1);
+    hostFixture.detectChanges();
+    await hostFixture.whenStable();
+
+    hostFixture.componentInstance.selectedIndex.set(2);
+    hostFixture.detectChanges();
+    await hostFixture.whenStable();
+
+    const activeItems = hostNativeElement.querySelectorAll(
+      '.bmb_multi-dot-paginator-item-active',
+    );
+
+    expect(activeItems).toHaveLength(1);
+    expect(activeItems[0]).toBe(
+      hostNativeElement.querySelectorAll('bmb-multi-dot-paginator-item')[2],
+    );
   });
 
   it('should advance to the next item when the next button is clicked', () => {

@@ -1,3 +1,6 @@
+Change the selected index using external controls.
+<button bmbButton (click)="currentIndex.set(currentIndex() + 1)">Update Index</button>
+<button bmbButton (click)="currentIndex.set(currentIndex() - 1)">Previous Index</button>
 <bmb-multi-dot-paginator
   title="Test title"
   subtitle="Test subtitle"
