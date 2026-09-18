@@ -300,145 +300,110 @@ export default {
         component: `
 ${getGeneralDescription('`bmb-alert-center` is an organism designed to centralize and display all important alerts and notifications that require users attention.', { generalDocLink: 'https://bamboo.tec.mx/latest/organismos/alert-center/descripcion-general-ws9A3oYS' })}
 ${getSpecialSpecifications(
-  `
-  > ### Alert and advertisement type description.
-  > #### Alert type description \`IBmbDataAlert\`
-  > The alert item description supports different content types to provide flexibility in displaying information. The supported types are:
-  > - **id**: A unique identifier for the alert.
-  > - **Title**: Used for main headings or titles within the alert description.
-  > - **Description**: Used for standard text content, allowing for detailed descriptions.
-  > - **date**: Represents the date associated with the alert.
-  > - **time**: Represents the time associated with the alert.
-  > - **tags**: An array of tags associated with the alert for categorization or labeling.
-  > - **type**: A string representing the type or category of the alert.
-  > - **isRead**: A boolean indicating whether the alert has been read.
-  > - **isFavorite**: A boolean indicating whether the alert is marked as a favorite.
-  > - **isArchived**: A boolean indicating whether the alert has been archived.
-  > - **customEventHandler**: A boolean indicating whether the alert uses a custom event handler for interactions.
-  >
-  > Each description item can have the following types:
-  > - **paragraph**: For standard text content.
-  > - **image**: To include images within the alert.
-  > - **video**: To embed videos.
-  > - **link**: To add hyperlinks.
-  > - **button**: To include actionable buttons.
-  > - **title**: For headings or titles.
-  > - **html**: To include custom HTML content.
-
-  > ### Alert service
-  > #### Configuration
-  > Add the \`BmbAlertCenterService\` to your App providers:
-  >
-  > \`\`\`javascript
+  `###Alert and advertisement type description.
+####Alert type description \`IBmbDataAlert\`
+The alert item description supports different content types to provide flexibility in displaying information. The supported types are:
+- **id**: A unique identifier for the alert.
+- **Title**: Used for main headings or titles within the alert description.
+- **Description**: Used for standard text content, allowing for detailed descriptions.
+- **date**: Represents the date associated with the alert.
+- **time**: Represents the time associated with the alert.
+- **tags**: An array of tags associated with the alert for categorization or labeling.
+- **type**: A string representing the type or category of the alert.
+- **isRead**: A boolean indicating whether the alert has been read.
+- **isFavorite**: A boolean indicating whether the alert is marked as a favorite.
+- **isArchived**: A boolean indicating whether the alert has been archived.
+- **customEventHandler**: A boolean indicating whether the alert uses a custom event handler for interactions.
+>
+Each description item can have the following types:
+- **paragraph**: For standard text content.
+- **image**: To include images within the alert.
+- **video**: To embed videos.
+- **link**: To add hyperlinks.
+- **button**: To include actionable buttons.
+- **title**: For headings or titles.
+- **html**: To include custom HTML content.
+>
+### Alert service
+#### Configuration
+Add the \`BmbAlertCenterService\` to your App providers:
+\`\`\`javascript
   providers: [
     provideRouter(routes),
     importProvidersFrom([BmbAlertCenterService, ...]),
   ],
-  > \`\`\`
-  >
-  > ---
-  >
-  > #### Alert center service methods
-  >
-  > #### Alerts
-  >
-  > ##### Set notifications
-  >
-  > \`\`\`typescript
+\`\`\`
+>
+---
+>
+#### Alert center service methods
+#### Alerts
+##### Set notifications
+\`\`\`typescript
   setAlerts(alerts: IBmbDataAlert[]);
-  > \`\`\`
-  >
-  > This method sets the alerts to be displayed in the alert center replacing whether existing alerts.
-  >
-  > ##### Update notifications
-  >
-  > \`\`\`typescript
+\`\`\`
+This method sets the alerts to be displayed in the alert center replacing whether existing alerts.
+##### Update notifications
+\`\`\`typescript
   updateAlerts(alertList: IBmbDataAlert[]);
-  > \`\`\`
-  >
-  > This method updates the existing alerts with the provided list. If an alert with the same ID exists, it will be updated; otherwise, it will remain unchanged.
-  >
-  > ##### Add notifications
-  >
-  > \`\`\`typescript
+\`\`\`
+This method updates the existing alerts with the provided list. If an alert with the same ID exists, it will be updated; otherwise, it will remain unchanged.
+##### Add notifications
+\`\`\`typescript
   addAlerts(alerts: IBmbDataAlert[]);
-  > \`\`\`
-  >
-  > This method adds new alerts to the existing list of alerts without replacing them.
-  >
-  > ##### Get notifications
-  >
-  > \`\`\`typescript
+\`\`\`
+This method adds new alerts to the existing list of alerts without replacing them.
+##### Get notifications
+\`\`\`typescript
   getAlerts(): IBmbDataAlert[];
-  > \`\`\`
-  >
-  > This method retrieves the current list of alerts.
-  >
-  > ---
-  >
-  > #### Advertisements
-  >
-  > ##### Set advertisements
-  >
-  > \`\`\`typescript
+\`\`\`
+This method retrieves the current list of alerts.
+>
+---
+>
+#### Advertisements
+##### Set advertisements
+\`\`\`typescript
   setAdvertisements(ads: IBmbDataAdvertisement[]);
-  > \`\`\`
-  >
-  > This method sets the advertisements to be displayed in the alert center replacing whether existing advertisements.
-  >
-  > #####Update advertisements
-  >
-  > \`\`\`typescript
+\`\`\`
+This method sets the advertisements to be displayed in the alert center replacing whether existing advertisements.
+#####Update advertisements
+\`\`\`typescript
   updateAdvertisements(adList: IBmbDataAdvertisement[]);
-  > \`\`\`
-  >
-  > This method updates the existing advertisements with the provided list. If an advertisement with the same ID exists, it will be updated; otherwise, it will remain unchanged.
-  >
-  > ##### Add advertisements
-  >
-  > \`\`\`typescript
+\`\`\`
+This method updates the existing advertisements with the provided list. If an advertisement with the same ID exists, it will be updated; otherwise, it will remain unchanged.
+##### Add advertisements
+\`\`\`typescript
   addAdvertisements(ads: IBmbDataAdvertisement[]);
-  > \`\`\`
-  >
-  > This method adds new advertisements to the existing list of advertisements without replacing them.
-  >
-  > ##### Get advertisements
-  >
-  > \`\`\`typescript
+\`\`\`
+This method adds new advertisements to the existing list of advertisements without replacing them.
+##### Get advertisements
+\`\`\`typescript
   getAdvertisements(): IBmbDataAdvertisement[];
-  > \`\`\`
-  >
-  > This method retrieves the current list of advertisements.
-  >
-  > ---
-  >
-  > #### Loading state
-  >
-  > ##### Set loading state
-  >
-  > \`\`\`typescript
+\`\`\`
+This method retrieves the current list of advertisements.
+>
+---
+>
+#### Loading state
+##### Set loading state
+\`\`\`typescript
   setLoadingState(loading: boolean = false);
-  > \`\`\`
-  >
-  > This method sets the loading state.
-  >
-  > ##### Get loading state
-  >
-  > \`\`\`typescript
+\`\`\`
+This method sets the loading state.
+##### Get loading state
+\`\`\`typescript
   getLoadingState(): boolean;
-  > \`\`\`
-  >
-  > This method retrieves the current loading state.
-  > #### Scroll
+\`\`\`
+This method retrieves the current loading state.
+#### Scroll
   If you want the component to handle the scroll, you should wrap it in a container with a defined height.
-  >
-  > \`\`\`html
+\`\`\`html
   <div style="height: 100dvh;">
    <bmb-alert-center ... />
   </div>
-  > \`\`\`
+\`\`\`
 `,
-  { showAdditionalBlockquote: true },
 )}
 ${getBasicExampleBlock('BmbAlertCenterComponent')}
 

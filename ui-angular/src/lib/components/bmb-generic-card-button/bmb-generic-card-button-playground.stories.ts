@@ -125,7 +125,7 @@ class StorybookGenericCardButtonPlayground {
 }
 
 const meta: Meta<StorybookGenericCardButtonPlayground> = {
-  title: 'Components/Containers/Generic card button/Playground',
+  title: 'Templates/Generic card button/Playground',
   component: StorybookGenericCardButtonPlayground,
   decorators: [
     moduleMetadata({
