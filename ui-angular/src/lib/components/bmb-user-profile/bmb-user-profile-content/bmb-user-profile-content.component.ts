@@ -8,10 +8,6 @@ import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.componen
 import { BmbUserSummaryComponent } from '../../bmb-user-summary/bmb-user-summary.component';
 import { IBmbTargetLink, IBmbUserInfo } from '../../../_shared/types/index';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-user-profile-content',
   standalone: true,
