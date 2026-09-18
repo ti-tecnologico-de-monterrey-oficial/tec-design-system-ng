@@ -9,7 +9,16 @@ const meta: Meta<BmbCardExampleComponent> = {
   decorators: [moduleMetadata({ imports: [BmbCardExampleComponent] })],
   parameters: {
     controls: { disable: true },
-    docs: { description: { component: 'Composición Bamboo de GenericCard. El estado de demostración y los estilos locales están en bmb-card-examples.story.ts y bmb-card-examples.story.scss.' } },
+    docs: {
+      description: {
+        component: `Composición Bamboo de GenericCard.
+
+- **Visibilidad del ID según el rol:** Implementa en la aplicación consumidora la lógica para mostrar u ocultar el texto del ID según el rol del usuario.
+- **Límite de líneas de texto:** Implementa en la aplicación consumidora la lógica que determine cuántas líneas de texto se muestran en la plantilla.
+
+Estas reglas deben definirse en la aplicación consumidora; la plantilla no las aplica automáticamente.`,
+      },
+    },
   },
 };
 export default meta;
