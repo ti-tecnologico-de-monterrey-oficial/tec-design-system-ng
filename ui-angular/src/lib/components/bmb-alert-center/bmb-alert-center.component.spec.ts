@@ -80,6 +80,18 @@ describe('BmbAlertCenterComponent', () => {
       ],
     }).compileComponents();
 
+    translationsServiceSpy.translate.and.callFake((key: string) => {
+      const translations: Record<string, string> = {
+        'alert_center.tabs.notifications': 'Notificaciones',
+        'alert_center.tabs.unread': 'No leídos',
+        'alert_center.tabs.favorites': 'Favoritos',
+        'alert_center.tabs.archived': 'Archivados',
+        'alert_center.tabs.ads': 'Anuncios',
+      };
+
+      return translations[key] ?? key;
+    });
+
     fixture = TestBed.createComponent(BmbAlertCenterComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
@@ -97,7 +109,6 @@ describe('BmbAlertCenterComponent', () => {
     mockAlertCenterService.getAlerts.and.returnValue([]);
     mockAlertCenterService.getAdvertisements.and.returnValue([]);
     mockAlertCenterService.getLoadingState.and.returnValue(false);
-    mockTranslationsService.translate.and.returnValue('Translated text');
 
     componentRef.setInput('alerts', []);
     fixture.detectChanges();
