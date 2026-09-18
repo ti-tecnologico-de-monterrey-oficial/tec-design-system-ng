@@ -93,7 +93,8 @@
     "loading": "Loading...",
     "default_bot_label": "Standard Tecbot",
     "select_bot": "Select a bot",
-    "plus_menu": "Plus menu"
+    "plus_menu": "Plus menu",
+    "no_sound": "Mute"
   },
   "digital_id": {
     "secondary_button_label": "Download ID as PDF",

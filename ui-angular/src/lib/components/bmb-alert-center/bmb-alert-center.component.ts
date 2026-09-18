@@ -37,6 +37,7 @@ import { BmbNativeModalService } from '../../services/old/modal/native-modal.ser
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { BmbAlertCenterDetailComponent } from '../utils/bmb-alert-center-detail/bmb-alert-center-detail.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 export * from './types';
 
@@ -57,6 +58,7 @@ export * from './types';
     BmbAlertCenterAdsComponent,
     BmbAlertCenterEmptyComponent,
     BmbLoaderComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-alert-center.component.html',
   styleUrl: './bmb-alert-center.component.scss',
