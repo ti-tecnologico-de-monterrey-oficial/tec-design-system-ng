@@ -31,6 +31,11 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'template',
+    redirectTo: 'templates',
+    pathMatch: 'full',
+  },
+  {
     path: 'templates',
     title: 'Generic Card Templates',
     loadComponent: () =>
