@@ -18,7 +18,7 @@ import {
 } from './bmb-generic-card-button-story-fragments';
 
 const meta: Meta<BmbGenericCardButtonComponent> = {
-  title: 'Components/Containers/Generic card button/Quick View',
+  title: 'Templates/Generic card button/Quick View',
   component: BmbGenericCardButtonComponent,
   decorators: [
     moduleMetadata({

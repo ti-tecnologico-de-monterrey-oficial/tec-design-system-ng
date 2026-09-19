@@ -3,6 +3,8 @@ import {
   TemplateRef,
   ViewChild,
   AfterViewInit,
+  inject,
+  OnInit,
 } from '@angular/core';
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbStepProgressBarComponent } from './bmb-step-progress-bar.component';
@@ -87,9 +89,9 @@ const example = `
   selector: 'storybook-step-panel-wrapper',
   standalone: true,
   imports: [BmbStepProgressBarComponent, CommonModule, ReactiveFormsModule],
-  template: `${example}`,
+  template: example,
 })
-class StorybookStepPanelWrapperComponent implements AfterViewInit {
+class StorybookStepPanelWrapperComponent implements OnInit, AfterViewInit {
   @ViewChild('step0') step0!: TemplateRef<any>;
   @ViewChild('step1') step1!: TemplateRef<any>;
   @ViewChild('step2') step2!: TemplateRef<any>;
@@ -100,7 +102,7 @@ class StorybookStepPanelWrapperComponent implements AfterViewInit {
   labelSteps = ['Paso 1', 'Paso 2', 'Paso 3'];
   forms: FormGroup[] = [];
 
-  constructor(private fb: FormBuilder) {}
+  fb = inject(FormBuilder);
 
   ngOnInit(): void {
     this.forms = this.labelSteps.map(() =>
@@ -163,7 +165,6 @@ ${getGeneralDescription(
   {
     generalDocLink:
       'https://bamboo.tec.mx/latest/components/step-progress-bar/descripcion-general-xebEHoek',
-    isSubStory: true,
   },
 )}
 ${getBasicExampleBlock(
@@ -232,7 +233,6 @@ ${getBasicExampleBlock(
     }
     console.log('¡Formulario finalizado!');
   }`,
-  true,
 )}
 \`\`\`html
 ${example}

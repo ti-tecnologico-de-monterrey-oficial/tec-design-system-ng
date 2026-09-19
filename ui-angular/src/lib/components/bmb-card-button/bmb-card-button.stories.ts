@@ -27,7 +27,7 @@ import {
 const onEvent: IBmbOnEvent = getOnEvent('small card', 'onSmallClick');
 
 export default {
-  title: 'Components/Buttons/Card button/Default',
+  title: 'Components/Buttons/Card button',
   component: BmbCardButtonComponent,
   decorators: [
     moduleMetadata({

@@ -34,8 +34,16 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'server-table' })} to display a server-driven table with pagination, loading state, and row selection capabilities.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO', isSubStory: true, subStoryChart: '=' })}
-${getBasicExampleBlock('BmbServerTableComponent', '', '', true, '', '', '', '.')}
+${getGeneralDescription(
+  `${getGeneralComponentDescription({
+    name: 'server-table',
+  })} to display a server-driven table with pagination, loading state, and row selection capabilities.`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
+  },
+)}
+${getBasicExampleBlock('BmbServerTableComponent', '', '', '', '', '')}
         `,
       },
     },

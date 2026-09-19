@@ -45,7 +45,7 @@ export default {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'dropdown-menu' })} navigation through the options displayed in the menu listing.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/dropdown-menu/descripcion-general-kEoPUKDr' })}
 ${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
-${getBasicExampleBlock('BmbDropdownMenuComponent', '', '', false, '', 'ActivatedRoute', '@angular/router')}
+${getBasicExampleBlock('BmbDropdownMenuComponent', '', '', '', 'ActivatedRoute', '@angular/router')}
         `,
       },
     },

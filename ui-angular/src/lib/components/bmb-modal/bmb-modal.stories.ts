@@ -1,5 +1,5 @@
 import { ModalDataConfig } from './bmb-modal.interface';
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import {
   Meta,
   StoryFn,
@@ -60,7 +60,7 @@ class StorybookModalWrapperComponent {
   secondaryAction = input<() => void>();
   closeAction = input<() => void>();
 
-  constructor(private matDialog: MatDialog) {}
+  matDialog = inject(MatDialog);
 
   openModalComponent() {
     const updatedData: ModalDataConfig = {
@@ -154,7 +154,6 @@ ${getGeneralDescription(
   {
     generalDocLink:
       'https://bamboo.tec.mx/latest/componentes/modal/descripcion-general-sLOq8HIt',
-    isSubStory: true,
   },
 )}
 ${getSpecialSpecifications(
@@ -236,7 +235,6 @@ Make sure you are using:
 constructor(private matDialog: MatDialog) {}
 \`\`\`
 `,
-  { isSubStory: true },
 )}
 ${getBasicExampleBlock(
   'BmbModalComponent',
@@ -258,7 +256,6 @@ ${getBasicExampleBlock(
       }
     });
   }`,
-  true,
   '',
   'MatDialog',
   '@angular/material/dialog',

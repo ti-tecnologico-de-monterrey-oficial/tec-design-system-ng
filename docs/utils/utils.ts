@@ -215,17 +215,11 @@ export const getAccordionDetail = (title: string, content: string): string => `
 export const generateLabel = (inputName: string): string =>
   getFormatName(inputName, '_', ' ');
 
-export const getEmptyStateMessage = ({
-  isSubStory = false,
-  subStoryChart = '-',
-}: {
-  isSubStory?: boolean;
-  subStoryChart?: string;
-} = {}): string => `
+export const getEmptyStateMessage = (): string => `
 ${getAlertBlockquote(
   'Please remember to use the `empty state` for the cases that apply to this. Related documentation is available [here](https://bamboo.tec.mx/latest/guia-ux-writing/mensajes-del-producto/empty-states-OQYyq6h8-OQYyq6h8).',
   {
-    title: `###${getSubStoryIdentifier(isSubStory, subStoryChart)}${RELEVANT_TITLE.important}`,
+    title: `###${RELEVANT_TITLE.important}`,
     blockquoteType: BlockquoteType.important,
   },
 )}
@@ -236,35 +230,25 @@ export const getTECParticularitiesMessage = (
   {
     isParticularity = true,
     isSpecificRestriction = false,
-    isSubStory = false,
-    subStoryChart = '-',
   }: {
     isParticularity?: boolean;
     isSpecificRestriction?: boolean;
-    isSubStory?: boolean;
-    subStoryChart?: string;
   } = {},
 ): string => `
 ${getAlertBlockquote(
   `Please remember that **${element || 'this element'}** is a ${isParticularity ? 'particularity' : 'feature'} of the ${isSpecificRestriction ? '**TEC** and **TECMI** brands' : '**TEC brand**'}, that way ***cannot be used*** by ${isSpecificRestriction ? '**GED**' : 'other'} ${isSpecificRestriction ? 'brand' : 'brands'}.`,
   {
-    title: `###${getSubStoryIdentifier(isSubStory, subStoryChart)}${RELEVANT_TITLE.warning}`,
+    title: `###${RELEVANT_TITLE.warning}`,
     blockquoteType: BlockquoteType.warning,
   },
 )}
 `;
 
-export const getOutOfModalUseMessage = ({
-  isSubStory = false,
-  subStoryChart = '-',
-}: {
-  isSubStory?: boolean;
-  subStoryChart?: string;
-} = {}): string => `
+export const getOutOfModalUseMessage = (): string => `
 ${getAlertBlockquote(
   'Please remember to implement this element or component outside of ***Modal***.',
   {
-    title: `###${getSubStoryIdentifier(isSubStory, subStoryChart)}${RELEVANT_TITLE.warning}`,
+    title: `###${RELEVANT_TITLE.warning}`,
     blockquoteType: BlockquoteType.warning,
   },
 )}
@@ -282,12 +266,10 @@ export const getAuxiliaryDescription = (
 
 export const getArchitectureSection = (
   architectureBlock: string,
-  isSubStory = false,
   bmbNameLink = '',
   documentationLink = '',
-  subStoryChart = '-',
 ): string => `
-## ${getSubStoryIdentifier(isSubStory, subStoryChart)}DOM Architecture
+## DOM Architecture
 Represents the structure of the component.
 \`\`\`html
 ${architectureBlock}
@@ -314,10 +296,8 @@ export const getDescribeTypeTextBlock = (
   additionalTitle = '',
   isLevel3 = false,
   additionalText = '',
-  isSubStory = false,
-  subStoryChart = '-',
 ): string => `
-##${isLevel3 ? '#' : ''} ${getSubStoryIdentifier(isSubStory, subStoryChart)}${typeExampleName} example ${additionalTitle}
+##${isLevel3 ? '#' : ''} ${typeExampleName} example ${additionalTitle}
 Below is a *${typeExampleName}* example with the basic code to use this component ${additionalText}:`;
 
 const getTypescriptExampleBlock = (
@@ -375,20 +355,14 @@ export const getTypescriptExampleTextBlock = (
   additionalText = '',
   additionalBlock = '',
   replaceChar = '',
-  isSubStory = false,
-  subStoryChart = '-',
 ): string =>
   `
-__${getDescribeTypeTextBlock('TypeScript', additionalTitle, isLevel3, additionalText, isSubStory, subStoryChart)}
+__${getDescribeTypeTextBlock('TypeScript', additionalTitle, isLevel3, additionalText)}
 __${getTypescriptExampleBlock(inputName, additionalAngularCommonImportName, additionalImportName, additionalImportFrom, importComments, additionalBlock, replaceChar)}
 __`.replaceAll('__', replaceChar);
 
-export const getReactiveFormTitle = (
-  bmbInputName: string,
-  isSubStory = false,
-  subStoryChart = '-',
-): string => `
-##${getSubStoryIdentifier(isSubStory, subStoryChart)}Reactive form example
+export const getReactiveFormTitle = (bmbInputName: string): string => `
+##Reactive form example
 >This example demonstrates how to use **${bmbInputName}** within an Angular reactive form, ensuring validation and handling the field and its value correctly.
 >`;
 
@@ -397,10 +371,8 @@ export const getFormExampleBlock = (
   inputName: string,
   additionalBlock = '',
   inputExample: string,
-  isSubStory = false,
-  subStoryChart = '-',
 ): string => `
-${getReactiveFormTitle(bmbInputName, isSubStory, subStoryChart)}
+${getReactiveFormTitle(bmbInputName)}
 >
 ><br/>
 >${getTypescriptExampleTextBlock(
@@ -440,18 +412,13 @@ ${getReactiveFormTitle(bmbInputName, isSubStory, subStoryChart)}
   >     return this.userForm.get(name) as FormControl;
   >   }`,
   '>',
-  isSubStory,
 )}
->${getHTMLFormExampleTextBlock(inputExample, isSubStory)}
+>${getHTMLFormExampleTextBlock(inputExample)}
 
 `;
 
-export const getHTMLFormExampleTextBlock = (
-  inputExample: string,
-  isSubStory = false,
-  subStoryChart = '-',
-): string => `>
->${getDescribeTypeTextBlock('HTML', 'for reactive form', true, 'in a reactive form', isSubStory, subStoryChart)}
+export const getHTMLFormExampleTextBlock = (inputExample: string): string => `>
+>${getDescribeTypeTextBlock('HTML', 'for reactive form', true, 'in a reactive form')}
 >\`\`\`html
 ><form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 >  ${inputExample}
@@ -460,11 +427,6 @@ export const getHTMLFormExampleTextBlock = (
 >\`\`\`
 `;
 
-export const getSubStoryIdentifier = (
-  isSubStory = false,
-  subStoryChart = '-',
-): string => (isSubStory ? subStoryChart : '');
-
 export const getAlertBlockquote = (
   content: string,
   {
@@ -472,22 +434,18 @@ export const getAlertBlockquote = (
     blockquoteType,
     isRelevantTitle = false,
     isHeader = false,
-    isSubStory,
-    subStoryChart = '-',
   }: {
     title: string;
     blockquoteType: string;
     isHeader?: boolean;
     isRelevantTitle?: boolean;
-    isSubStory?: boolean;
-    subStoryChart?: string;
   },
 ): string => {
   let _title: string = isRelevantTitle ? `<b>${title}</b>` : title;
   _title = isHeader ? '###'.concat(title) : _title;
   return `
 ${blockquoteType}
-${getSubStoryIdentifier(isSubStory, subStoryChart).concat(_title)}
+${_title}
 >${content}
 `;
 };
@@ -604,13 +562,9 @@ export const getGeneralDescription = (
   content: string,
   {
     generalDocLink,
-    isSubStory,
-    subStoryChart = '-',
     isDeprecated,
   }: {
     generalDocLink?: string;
-    isSubStory?: boolean;
-    subStoryChart?: string;
     isDeprecated?: boolean;
   } = {},
 ): string => `
@@ -621,7 +575,7 @@ ${
 `
     : '<br/><br/>'
 }
-## ${getSubStoryIdentifier(isSubStory, subStoryChart)}${DESCRIPTION_TITLE}
+## ${DESCRIPTION_TITLE}
 >${content}
 >
 ${generalDocLink ? `>${getGeneralDocDescription(generalDocLink)}` : ''}
@@ -660,16 +614,12 @@ ${getGeneralDescription(
 export const getSpecialSpecifications = (
   content: string,
   {
-    isSubStory = false,
-    subStoryChart = '-',
     showAdditionalBlockquote = false,
   }: {
-    isSubStory?: boolean;
-    subStoryChart?: string;
     showAdditionalBlockquote?: boolean;
   } = {},
 ): string => `
-## ${getSubStoryIdentifier(isSubStory, subStoryChart).concat(SPECIAL_SPECIFICATIONS_TITLE)}
+## ${SPECIAL_SPECIFICATIONS_TITLE}
 ${showAdditionalBlockquote ? content : '>'.concat(content)}
 <br/>
 `;
@@ -678,14 +628,12 @@ export const getBasicExampleBlock = (
   inputName: string,
   importComments = '',
   additionalBlock = '',
-  isSubStory = false,
   additionalAngularCommonImportName = '',
   additionalImportName = '',
   additionalImportFrom = '',
-  subStoryChart = '-',
 ): string => `
-${getTypescriptExampleTextBlock(inputName, additionalAngularCommonImportName, additionalImportName, additionalImportFrom, importComments, '', false, '', additionalBlock, '', isSubStory, subStoryChart)}
-${getDescribeTypeTextBlock('HTML', '', false, '', isSubStory, subStoryChart)}
+${getTypescriptExampleTextBlock(inputName, additionalAngularCommonImportName, additionalImportName, additionalImportFrom, importComments, '', false, '', additionalBlock, '')}
+${getDescribeTypeTextBlock('HTML', '', false, '')}
 `;
 
 export const getFoundationDescriptions = (
