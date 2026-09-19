@@ -21,14 +21,14 @@
             <bmb-user-image
               size="desktop-small"
               [image]="iconLeft()"
-              altImage="Image of icon left"
+              [altImage]="'container_button.icon_left_alt' | translate"
             />
           } @else if (iconLeft()) {
             <bmb-icon
               bmbLayoutItem
               class="bmb_container-button-left-icon"
               [icon]="iconLeft()"
-              alt="Icon left"
+              [alt]="'container_button.icon_left_alt' | translate"
             />
           }
         }
@@ -79,7 +79,7 @@
               class="bmb_container-button-right-icon"
               [icon]="iconRight()"
               [size]="24"
-              alt="Icon right"
+              [alt]="'container_button.icon_right_alt' | translate"
             />
           }
         }

@@ -11,6 +11,7 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 import { BmbLogoComponent } from '../bmb-logo/bmb-logo.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { IBmbTargetLink } from '../../_shared/types';
+import { TranslatePipe } from '../../pipes/translations';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -25,6 +26,7 @@ import { IBmbTargetLink } from '../../_shared/types';
     BmbLogoComponent,
     BmbContainerComponent,
     BmbUserImageComponent,
+    TranslatePipe,
   ],
   styleUrl: './bmb-header-mobile.component.scss',
   templateUrl: './bmb-header-mobile.component.html',

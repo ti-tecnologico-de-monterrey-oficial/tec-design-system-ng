@@ -2,7 +2,7 @@
   <section
     class="bmb_ai-chat-bubble"
     role="article"
-    aria-label="Chat"
+    [attr.aria-label]="'ai_chat_bubble.aria_label' | translate"
     [attr.data-automation-id]="testId()"
   >
     <div class="bmb_ai-chat-bubble-wrapper" [ngClass]="bubbleClasses()">
@@ -19,7 +19,7 @@
           <bmb-icon
             class="bmb_ai-chat-bubble-profile-bot"
             [size]="20"
-            alt="bot"
+            [alt]="'ai_chat_bubble.bot_alt' | translate"
             [isSVGTemplate]="true"
           >
             <ng-template #customIcon>

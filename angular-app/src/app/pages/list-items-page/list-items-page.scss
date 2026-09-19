@@ -1,0 +1,9 @@
+@use '../../styles/playground';
+
+@include playground.page(18rem, 24rem, 20rem);
+
+.preview {
+  align-items: safe start;
+  display: flex;
+  justify-content: safe center;
+}

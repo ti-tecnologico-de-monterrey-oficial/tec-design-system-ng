@@ -4,6 +4,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { BmbTitleComponent } from '../../../../../ui-angular/src/lib/components/bmb-title/bmb-title.component';
 import {
+  BmbProgressCircleComponent,
   BmbBadgeComponent,
   BmbBoxIconComponent,
   BmbButtonDirective,
@@ -25,6 +26,7 @@ import {
   selector: 'app-generic-card',
   standalone: true,
   imports: [
+    BmbProgressCircleComponent,
     BmbBadgeComponent,
     BmbBoxIconComponent,
     BmbButtonDirective,

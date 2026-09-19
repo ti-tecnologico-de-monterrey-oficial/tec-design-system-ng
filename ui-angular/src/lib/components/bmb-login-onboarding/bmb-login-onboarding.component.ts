@@ -15,6 +15,7 @@ import { BmbLoginOnboardingLoggedComponent } from './bmb-login-onboarding-logged
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { IBmbLinkConfiguration } from '../../_shared/types';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { TranslatePipe } from '../../pipes/translations';
 
 export * from './types';
 
@@ -36,6 +37,7 @@ export interface IBmbLoginOnBoardingCustomization {
     BmbLoginOnboardingLogoutComponent,
     BmbLoginOnboardingLoggedComponent,
     BmbIconComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-login-onboarding.component.html',
   styleUrl: './bmb-login-onboarding.component.scss',

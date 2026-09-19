@@ -59,6 +59,8 @@ export type IBmbAIChatCardMode = (typeof BMB_AI_CHAT_CARD_MODE_LIST)[number];
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
+  private readonly translationService = inject(BmbTranslationsService);
+
   bgIconAppearance = input<IBmbColor>('gray-charade-500');
   componentTitle = input<string>('');
   subtitle = input<string>();
@@ -66,7 +68,7 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
   testId = input<string>(`ai_chat_card_test_${getUUID()}`);
   currentBot = model<IBotType>({
     name: 'TecBot',
-    label: 'Tecbot Standard',
+    label: this.translationService.translate('chat_bar.default_bot_label'),
     icon: 'bot_tecStandar',
   });
 
@@ -75,7 +77,6 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
   private contentProjected: BmbProjectionContentService = inject(
     BmbProjectionContentService,
   );
-  private readonly translationService = inject(BmbTranslationsService);
 
   private aiChatContent = viewChild<TemplateRef<any>>('aiChatContent');
   private aiChatBubblesContainer = viewChild<ElementRef<HTMLElement>>(

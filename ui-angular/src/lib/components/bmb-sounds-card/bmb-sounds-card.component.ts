@@ -13,10 +13,7 @@ import {
 import { BmbMediaCardComponent } from '../bmb-media-card/bmb-media-card.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { getSoundsCardTrackBackground } from '../../_shared/logic/components/sounds-card';
 
 @Component({
   selector: 'bmb-sounds-card',
@@ -63,14 +60,18 @@ export class BmbSoundsCardComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.trackInput = this.rangeVolume?.nativeElement;
     this.percentage = this.internalVolume / 100;
-    this.trackInput!.style.background = `linear-gradient(to right, rgb(var( --blue-mariner-700)) ${this.percentage * 100}%, rgb(var(--gray-charade-50)) ${this.percentage * 100}%)`;
+    this.trackInput!.style.background = getSoundsCardTrackBackground(
+      this.internalVolume,
+    );
   }
 
   onVolumeChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     this.internalVolume = +inputElement.value;
     this.percentage = this.internalVolume / 100;
-    this.trackInput!.style.background = `linear-gradient(to right, rgb(var(--blue-mariner-700)) ${this.percentage * 100}%, rgb(var(--gray-charade-50)) ${this.percentage * 100}%)`;
+    this.trackInput!.style.background = getSoundsCardTrackBackground(
+      this.internalVolume,
+    );
     this.handlevolume.emit(this.internalVolume);
   }
 
@@ -85,11 +86,15 @@ export class BmbSoundsCardComponent implements AfterViewInit {
       this.saveVolume = this.internalVolume;
       this.internalVolume = 0;
       this.percentage = this.internalVolume / 100;
-      this.trackInput!.style.background = `linear-gradient(to right, rgb(var(--blue-mariner-700)) ${this.percentage * 100}%, rgb(var(--gray-charade-50)) ${this.percentage * 100}%)`;
+      this.trackInput!.style.background = getSoundsCardTrackBackground(
+        this.internalVolume,
+      );
     } else {
       this.internalVolume = this.saveVolume;
       this.percentage = this.internalVolume / 100;
-      this.trackInput!.style.background = `linear-gradient(to right, rgb(var(--blue-mariner-700)) ${this.percentage * 100}%, rgb(var(--gray-charade-50)) ${this.percentage * 100}%)`;
+      this.trackInput!.style.background = getSoundsCardTrackBackground(
+        this.internalVolume,
+      );
     }
     this.handleMute.emit(this.isMuted);
   }

@@ -2,14 +2,14 @@
   <bmb-image
     class="bmb_digital-id-top-image"
     [mobileSrc]="imgBackground()"
-    alt="Background Img"
+    [alt]="'digital_id.background_alt' | translate"
     borderRadius="none"
   />
   <div class="bmb_digital-id-top">
     <bmb-image
       class="bmb_digital-id-top-logo"
       [mobileSrc]="logoSrc()"
-      alt="Tec de Monterrey"
+      [alt]="'digital_id.logo_alt' | translate"
       borderRadius="none"
       objectFit="contain"
     />

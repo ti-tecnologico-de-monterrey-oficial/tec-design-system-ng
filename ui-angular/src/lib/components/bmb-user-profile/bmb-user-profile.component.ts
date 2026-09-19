@@ -14,10 +14,6 @@ import {
 import { BmbUserProfileContentComponent } from './bmb-user-profile-content/bmb-user-profile-content.component';
 import { TranslatePipe } from '../../pipes/translations';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-user-profile',
   standalone: true,

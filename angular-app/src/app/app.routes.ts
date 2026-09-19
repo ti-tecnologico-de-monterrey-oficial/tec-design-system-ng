@@ -2,6 +2,22 @@ import { Route } from '@angular/router';
 
 export const appRoutes: Route[] = [
   {
+    path: 'pages/item-default',
+    title: 'Item default',
+    loadComponent: () =>
+      import('./pages/item-default-page/item-default-page').then(
+        (m) => m.ItemDefaultPage,
+      ),
+  },
+  {
+    path: 'pages/item-chevron',
+    title: 'Item chevron',
+    loadComponent: () =>
+      import('./pages/item-chevron-page/item-chevron-page').then(
+        (m) => m.ItemChevronPage,
+      ),
+  },
+  {
     path: 'my-page',
     title: 'My Page',
     loadComponent: () =>
@@ -29,6 +45,11 @@ export const appRoutes: Route[] = [
       import('./pages/templates/generic-card.component').then(
         (component) => component.GenericCard,
       ),
+  },
+  {
+    path: 'template',
+    redirectTo: 'templates',
+    pathMatch: 'full',
   },
   {
     path: 'templates',
@@ -659,6 +680,20 @@ export const appRoutes: Route[] = [
     loadComponent: () =>
       import('./pages/search-input-page/search-input-page').then(
         ({ SearchInputPage }) => SearchInputPage,
+      ),
+  },
+  {
+    path: 'pages/tabs',
+    title: 'BmbTabs | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/tabs-page/tabs-page').then(({ TabsPage }) => TabsPage),
+  },
+  {
+    path: 'pages/list-items',
+    title: 'BmbListItems | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/list-items-page/list-items-page').then(
+        ({ ListItemsPage }) => ListItemsPage,
       ),
   },
   { path: '**', redirectTo: 'home' },

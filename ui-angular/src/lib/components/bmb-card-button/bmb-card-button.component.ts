@@ -23,6 +23,7 @@ import {
 } from '../../_shared/types';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 export interface ICardButton {
   title: string;
@@ -53,6 +54,7 @@ export interface ICardButton {
     BmbBadgeComponent,
     BmbDropdownMenuComponent,
     BmbTextLinkComponent,
+    TranslatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

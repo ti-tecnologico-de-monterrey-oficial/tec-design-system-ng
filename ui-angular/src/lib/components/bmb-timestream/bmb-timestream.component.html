@@ -108,7 +108,7 @@
                 }
                 @if (selectedEvent.related_to) {
                   <h3 class="bmb_timestream-dialog-container-tab-title">
-                    Relacionado a
+                    {{ 'timestream.related_to' | translate }}
                   </h3>
                   @for (related of selectedEvent.related_to; track $index) {
                     <bmb-hito-card

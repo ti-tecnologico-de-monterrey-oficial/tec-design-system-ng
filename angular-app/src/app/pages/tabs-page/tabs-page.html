@@ -1,0 +1,36 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbTabs</h1>
+  <p>Valida el contraste, la tab seleccionada y el evento de selección.</p>
+</header>
+
+<section class="playground" aria-labelledby="tabs-properties">
+  <aside class="controls">
+    <h2 id="tabs-properties">Propiedades</h2>
+
+    <label for="tabs-contrast">appearanceContrast</label>
+    <select
+      id="tabs-contrast"
+      [value]="appearanceContrast()"
+      (change)="appearanceContrast.set($any($event.target).value)"
+    >
+      @for (option of appearanceContrasts; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <p>Último evento: {{ lastEvent() }}</p>
+  </aside>
+
+  <div class="preview">
+    <bmb-tabs
+      [appearanceContrast]="appearanceContrast()"
+      [tabs]="tabs()"
+      [selectedTabId]="selectedTabId()"
+      (selectedTabIdChange)="selectedTabId.set($event)"
+      (selected)="handleSelected($event)"
+    >
+      Contenido de la tab seleccionada
+    </bmb-tabs>
+  </div>
+</section>

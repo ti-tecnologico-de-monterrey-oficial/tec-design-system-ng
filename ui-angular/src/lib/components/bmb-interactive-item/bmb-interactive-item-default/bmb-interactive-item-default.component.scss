@@ -1,17 +1,1 @@
-@use './../../bmb-item/mixins.scss' as mixins;
-
-.bmb_interactive-item-default {
-  @include mixins.action-item();
-
-  &-title {
-    &.active {
-      .bmb_title-wrapper-subtitle {
-        opacity: 1;
-      }
-    }
-  }
-}
-
-:host {
-  display: flex;
-}
+@use '../../../../../../shared/assets/styles/components/interactive-item-default';

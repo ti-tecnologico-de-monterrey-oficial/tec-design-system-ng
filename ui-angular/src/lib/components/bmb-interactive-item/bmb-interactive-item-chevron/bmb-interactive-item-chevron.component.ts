@@ -10,10 +10,6 @@ import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layou
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-interactive-item-chevron',
   standalone: true,

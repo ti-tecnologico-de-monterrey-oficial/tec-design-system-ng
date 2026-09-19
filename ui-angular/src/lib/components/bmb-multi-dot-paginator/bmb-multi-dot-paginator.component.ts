@@ -1,5 +1,4 @@
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
   Component,
   contentChildren,
@@ -7,6 +6,7 @@ import {
   input,
   model,
   signal,
+  untracked,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbMultiDotPaginatorItemComponent } from './bmb-multi-dot-paginator-item/bmb-multi-dot-paginator-item.component';
@@ -47,6 +47,7 @@ export class BmbMultiDotPaginatorComponent {
   );
 
   numberOfElements = signal<number[]>([]);
+  private previousSelectedIndex = 0;
 
   constructor() {
     effect(() => {
@@ -66,7 +67,13 @@ export class BmbMultiDotPaginatorComponent {
       }
 
       this.numberOfElements.set(Array(childrenItems?.length ?? 0).fill(0));
-      this.setClassActive(activeChildren);
+      untracked(() =>
+        this.setClassActive(
+          activeChildren,
+          this.previousSelectedIndex,
+          false,
+        ),
+      );
     });
   }
 
@@ -74,7 +81,11 @@ export class BmbMultiDotPaginatorComponent {
     this.setClassActive(index, this.selectedIndex());
   }
 
-  protected setClassActive(newIndex: number, oldIndex = 0) {
+  protected setClassActive(
+    newIndex: number,
+    oldIndex = 0,
+    updateSelectedIndex = true,
+  ) {
     const activeItem = this.childrenItems()[
       newIndex === this.numberOfElements().length
         ? this.numberOfElements().length - 1
@@ -107,9 +118,14 @@ export class BmbMultiDotPaginatorComponent {
       }, 500);
     }
 
-    this.selectedIndex.set(
-      newIndex === this.numberOfElements().length ? newIndex - 1 : newIndex,
-    );
+    const selectedIndex =
+      newIndex === this.numberOfElements().length ? newIndex - 1 : newIndex;
+
+    if (updateSelectedIndex) {
+      this.selectedIndex.set(selectedIndex);
+    }
+
+    this.previousSelectedIndex = selectedIndex;
   }
 
   protected setNextItem() {

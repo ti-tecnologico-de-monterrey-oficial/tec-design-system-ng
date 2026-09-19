@@ -20,19 +20,10 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { IBmbContrast } from '../../_shared/types/colors';
 import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb-notification-counter.component';
 import { TranslatePipe } from '../../pipes/translations';
+import { IBmbTab } from '../../_shared/types/components/tabs';
+import { getBmbTabsClasses } from '../../_shared/logic/components/tabs';
 
-export interface IBmbTab {
-  id: number;
-  title: string;
-  isActive?: boolean;
-  badge?: number;
-  isMobile?: boolean;
-  isDesktop?: boolean;
-}
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+export type { IBmbTab };
 
 @Component({
   selector: 'bmb-tabs',
@@ -183,16 +174,6 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getTabsClasses(): string[] {
-    const classes: string[] = ['bmb_tabs'];
-
-    if (this.appearanceContrast() === 'primary') {
-      classes.push('bmb_tabs-primary');
-    }
-
-    if (this.appearanceContrast() === 'alternative') {
-      classes.push('bmb_tabs-alternative');
-    }
-
-    return classes;
+    return getBmbTabsClasses(this.appearanceContrast());
   }
 }

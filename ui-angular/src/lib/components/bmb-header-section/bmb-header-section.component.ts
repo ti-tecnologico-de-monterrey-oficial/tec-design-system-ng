@@ -16,6 +16,7 @@ import { IBmbActionHeader } from '../../_shared/types';
 import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';
 import { getClassNameByConditional } from '../../_shared/logic/getClassName';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -31,6 +32,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
     BmbBreadcrumbComponent,
     BmbActionIconComponent,
     BmbNavigationBarComponent,
+    TranslatePipe,
   ],
   styleUrl: './bmb-header-section.component.scss',
   templateUrl: './bmb-header-section.component.html',
@@ -56,7 +58,7 @@ export class BmbHeaderSectionComponent {
     if (this.isImage(this.icon())) {
       return { 'background-color': 'transparent' };
     }
-    if (!!this.bgIconAppearance()) {
+    if (this.bgIconAppearance()) {
       return getRGBColorKeyValue(this.bgIconAppearance() as string);
     }
     return {};

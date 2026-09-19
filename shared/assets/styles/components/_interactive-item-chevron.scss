@@ -1,0 +1,9 @@
+@use './item-mixins' as mixins;
+
+.bmb_interactive-item-chevron {
+  @include mixins.action-item();
+}
+
+bmb-interactive-item-chevron {
+  display: flex;
+}

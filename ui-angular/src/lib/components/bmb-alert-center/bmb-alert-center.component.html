@@ -8,11 +8,9 @@
   >
     @if (isLoading()) {
       <bmb-loader
-        [componentTitle]="
-          translationsService.translate('alert_center.loader.loading')
-        "
+        [componentTitle]="'alert_center.loader.loading' | translate"
         [subtitle]="
-          translationsService.translate('alert_center.loader.subtitle')
+          'alert_center.loader.subtitle' | translate
         "
         [overlay]="false"
         [isVisible]="true"
@@ -21,10 +19,10 @@
         icon="wifi_off"
         [actions]="false"
         [buttonPrimary]="
-          translationsService.translate('alert_center.loader.primary_button')
+          'alert_center.loader.primary_button' | translate
         "
         [buttonSecondary]="
-          translationsService.translate('alert_center.loader.secondary_button')
+          'alert_center.loader.secondary_button' | translate
         "
         [showInline]="true"
       />

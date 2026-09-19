@@ -7,7 +7,7 @@
             class="bmb_hito-card-content-icon"
             [ngClass]="'bmb_hito-card-content-icon-' + getHitoIconClass()"
           >
-            <bmb-icon [icon]="icon() ?? ''" alt="Hito card icon" />
+            <bmb-icon [icon]="icon() ?? ''" [alt]="'hito_card.icon_alt' | translate" />
           </section>
         }
         <div class="bmb_hito-card-content-center">

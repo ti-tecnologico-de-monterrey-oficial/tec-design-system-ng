@@ -18,20 +18,21 @@
       <button type="button" (click)="handleTrailingIconClick($event)">
         <bmb-icon
           [icon]="trailingIcon()"
-          alt="Trailing icon"
+          [alt]="'header_mobile.trailing_icon_alt' | translate"
           [dotNotification]="trailingIconNotifications()"
         />
       </button>
-      <bmb-user-image
-        size="mobile-small"
-        [image]="userImage()"
-        [altImage]="userAltImage()"
-        [link]="userLink()"
-        [target]="userTarget()"
-        (click)="handleUserImageClick($event)"
-        *ngIf="userImage()"
-        (buttonClick)="handleUserImageClick($event)"
-      />
+      @if (userImage()) {
+        <bmb-user-image
+          size="mobile-small"
+          [image]="userImage()"
+          [altImage]="userAltImage()"
+          [link]="userLink()"
+          [target]="userTarget()"
+          (click)="handleUserImageClick($event)"
+          (buttonClick)="handleUserImageClick($event)"
+        />
+      }
     </div>
     <section class="bmb_header_mobile-content">
       <ng-content />

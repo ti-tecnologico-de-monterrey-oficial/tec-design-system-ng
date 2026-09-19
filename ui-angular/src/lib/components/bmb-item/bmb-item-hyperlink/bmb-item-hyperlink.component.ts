@@ -9,6 +9,7 @@ import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-item-hyperlink',
@@ -18,6 +19,7 @@ import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.componen
     BmbTextLinkComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
+    TranslatePipe,
   ],
   templateUrl: './bmb-item-hyperlink.component.html',
   styleUrl: './bmb-item-hyperlink.component.scss',

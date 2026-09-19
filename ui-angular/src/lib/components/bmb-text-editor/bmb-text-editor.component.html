@@ -181,16 +181,16 @@
 <!-- Diálogo para definir filas y columnas -->
 <dialog class="dialog-overlay" [open]="showTableDialog">
   <div class="dialog">
-    <h3>Insertar tabla</h3>
-    <label for="rows">Filas:</label>
+    <h3>{{ 'text_editor.prompt.table.insert_table' | translate }}</h3>
+    <label for="rows">{{ 'text_editor.prompt.table.rows' | translate }}:</label>
     <input type="number" id="rows" min="1" max="10" />
 
-    <label for="columns">Columnas:</label>
+    <label for="columns">{{ 'text_editor.prompt.table.columns' | translate }}:</label>
     <input type="number" id="columns" min="1" max="10" />
 
     <div class="dialog-buttons">
-      <button type="button" (click)="insertTable()">Insertar</button>
-      <button type="button" (click)="closeTableDialog()">Cancelar</button>
+      <button type="button" (click)="insertTable()">{{ 'text_editor.prompt.table.insert' | translate }}</button>
+      <button type="button" (click)="closeTableDialog()">{{ 'text_editor.prompt.table.cancel' | translate }}</button>
     </div>
   </div>
 </dialog>

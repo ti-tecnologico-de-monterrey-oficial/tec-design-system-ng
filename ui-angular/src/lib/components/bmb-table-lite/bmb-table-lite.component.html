@@ -165,7 +165,7 @@
               <button
                 type="button"
                 class="bmb_btn-icon"
-                aria-label="expand row"
+                [attr.aria-label]="'table.expand_row' | translate"
                 (click)="
                   expandedElement = expandedElement === row ? null : row;
                   $event.stopPropagation()

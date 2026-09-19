@@ -1,0 +1,45 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbListItems</h1>
+  <p>Valida el agrupado por fecha y el evento del botón de agregar.</p>
+</header>
+
+<section class="playground" aria-labelledby="list-items-properties">
+  <aside class="controls">
+    <h2 id="list-items-properties">Propiedades</h2>
+
+    <label for="li-title">componentTitle</label>
+    <input
+      id="li-title"
+      [value]="componentTitle()"
+      (input)="componentTitle.set($any($event.target).value)"
+    />
+
+    <label for="li-add-icon">addButtonIcon</label>
+    <input
+      id="li-add-icon"
+      [value]="addButtonIcon()"
+      (input)="addButtonIcon.set($any($event.target).value)"
+    />
+
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="showAddButton()"
+        (change)="showAddButton.set($any($event.target).checked)"
+      />showAddButton</label
+    >
+
+    <p>Último evento: {{ lastEvent() }}</p>
+  </aside>
+
+  <div class="preview">
+    <bmb-list-items
+      [componentTitle]="componentTitle()"
+      [addButtonIcon]="addButtonIcon()"
+      [showAddButton]="showAddButton()"
+      [items]="items()"
+      (addButtonAction)="handleAddButtonClick()"
+    />
+  </div>
+</section>

@@ -12,6 +12,7 @@ import {
   IBmbAlertCenterDetailTextStyle,
 } from '../../../_shared/types/components/alert-center-detail';
 import { getAlertCenterDetailClass } from '../../../_shared/logic/components/alert-center-detail';
+import { TranslatePipe } from '../../../pipes/translations';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -20,7 +21,7 @@ import { getAlertCenterDetailClass } from '../../../_shared/logic/components/ale
 @Component({
   selector: 'bmb-alert-center-detail',
   standalone: true,
-  imports: [CommonModule, BmbImageComponent, BmbButtonDirective],
+  imports: [CommonModule, BmbImageComponent, BmbButtonDirective, TranslatePipe],
   templateUrl: './bmb-alert-center-detail.component.html',
   styleUrl: './bmb-alert-center-detail.component.scss',
 })
