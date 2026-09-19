@@ -269,6 +269,49 @@ describe('BmbTextEditorComponent', () => {
 
       expect(component.execCommand).not.toHaveBeenCalled();
     });
+
+    it('should synchronize the completed link with the form control', () => {
+      const control = new FormControl('<p>Selected text</p>');
+      fixture.componentRef.setInput('control', control);
+      fixture.detectChanges();
+
+      const editor = fixture.nativeElement.querySelector(
+        '.bmb_text-editor-content',
+      ) as HTMLDivElement;
+      editor.innerHTML = '<p>Selected text</p>';
+      component.editor = { nativeElement: editor } as ElementRef<
+        HTMLDivElement
+      >;
+
+      const text = editor.querySelector('p')!.firstChild!;
+      const range = document.createRange();
+      range.selectNodeContents(text);
+      const selection = {
+        removeAllRanges: jest.fn(),
+        addRange: jest.fn(),
+        getRangeAt: jest.fn().mockReturnValue(range),
+      };
+      jest.spyOn(window, 'getSelection').mockReturnValue(selection as any);
+      component.userSelection = range;
+
+      jest.spyOn(document, 'execCommand').mockImplementation(() => {
+        const link = document.createElement('a');
+        link.href = 'https://example.com';
+        link.textContent = 'Selected text';
+        text.parentNode?.replaceChild(link, text);
+        return true;
+      });
+
+      component.insertLink({
+        prompt_url: 'https://example.com',
+        target: '_blank',
+        rel: 'nofollow',
+      });
+
+      expect(control.value).toContain('href="https://example.com"');
+      expect(control.value).toContain('target="_blank"');
+      expect(control.value).toContain('rel="noopener noreferrer"');
+    });
   });
 
   describe('Image Validation', () => {

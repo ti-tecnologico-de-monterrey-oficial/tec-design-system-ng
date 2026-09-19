@@ -5,6 +5,8 @@ import * as flatStory from './bmb-card-flat.stories';
 import * as actionsStory from './bmb-card-actions.stories';
 import * as homeStory from './bmb-card-home.stories';
 import * as emptyStory from './bmb-card-empty.stories';
+import * as balanceStory from './bmb-card-informative-balance.stories';
+import * as mediaExpandedVerticalStory from './bmb-card-informative-media-expanded-vertical.stories';
 import * as mediaDetailVerticalStory from './bmb-card-informative-media-detail-vertical.stories';
 import * as mediaDetailHorizontalStory from './bmb-card-informative-media-detail-horizontal.stories';
 import * as mediaSimpleStory from './bmb-card-informative-media-simple.stories';
@@ -22,6 +24,8 @@ import { getFormatName } from '@docs/utils/utils';
     actionsStory,
     homeStory,
     emptyStory,
+    balanceStory,
+    mediaExpandedVerticalStory,
     mediaDetailVerticalStory,
     mediaDetailHorizontalStory,
     mediaSimpleStory,
@@ -29,4 +33,50 @@ import { getFormatName } from '@docs/utils/utils';
     focusElementStory,
     itemListStory,
   ]}
+  context={{
+    ...Object.fromEntries([balanceStory, mediaExpandedVerticalStory, mediaDetailVerticalStory, mediaDetailHorizontalStory, mediaSimpleStory, mediaSimpleHorizontalStory, focusElementStory, itemListStory].map((story) => [
+      getFormatName(story.default.title, /(\/)|( )/g, '_').toLocaleLowerCase(),
+      { showStories: true, showControls: false },
+    ])),
+    [getFormatName(
+      informativeStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: true,
+      showControls: false,
+    },
+    [getFormatName(
+      flatStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: true,
+      showControls: false,
+    },
+    [getFormatName(
+      actionsStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: true,
+      showControls: false,
+    },
+    [getFormatName(
+      homeStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: true,
+      showControls: false,
+    },
+    [getFormatName(
+      emptyStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: true,
+      showControls: false,
+    },
+  }}
 />

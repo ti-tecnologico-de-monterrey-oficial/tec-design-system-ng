@@ -47,6 +47,11 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'template',
+    redirectTo: 'templates',
+    pathMatch: 'full',
+  },
+  {
     path: 'templates',
     title: 'Generic Card Templates',
     loadComponent: () =>
@@ -675,6 +680,20 @@ export const appRoutes: Route[] = [
     loadComponent: () =>
       import('./pages/search-input-page/search-input-page').then(
         ({ SearchInputPage }) => SearchInputPage,
+      ),
+  },
+  {
+    path: 'pages/tabs',
+    title: 'BmbTabs | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/tabs-page/tabs-page').then(({ TabsPage }) => TabsPage),
+  },
+  {
+    path: 'pages/list-items',
+    title: 'BmbListItems | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/list-items-page/list-items-page').then(
+        ({ ListItemsPage }) => ListItemsPage,
       ),
   },
   { path: '**', redirectTo: 'home' },

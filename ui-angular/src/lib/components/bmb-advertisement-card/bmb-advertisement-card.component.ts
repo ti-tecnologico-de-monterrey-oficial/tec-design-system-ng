@@ -3,10 +3,12 @@ import { handleImageNotFoundError } from '../../_shared/logic/utils';
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   inject,
   input,
   model,
   output,
+  signal,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
@@ -50,11 +52,17 @@ export class BmbAdvertisementCardComponent {
 
   expanded = false;
   selectedTabId = 0;
-  tabsData: IBmbTab[] = [
-    { id: 1, title: this.translationsService.translate('advertisement_card.tabs.promotions'), isActive: true },
-    { id: 2, title: this.translationsService.translate('advertisement_card.tabs.announcements') },
-    { id: 3, title: this.translationsService.translate('advertisement_card.tabs.information') },
-  ];
+  tabsData = signal<IBmbTab[]>([]);
+
+  constructor() {
+    effect(() => {
+      this.tabsData.set([
+        { id: 1, title: this.translationsService.translate('advertisement_card.tabs.promotions'), isActive: true },
+        { id: 2, title: this.translationsService.translate('advertisement_card.tabs.announcements') },
+        { id: 3, title: this.translationsService.translate('advertisement_card.tabs.information') },
+      ]);
+    });
+  }
 
   handleImageNotFoundError(imageName: string, event: Event): void {
     handleImageNotFoundError(imageName, event);
