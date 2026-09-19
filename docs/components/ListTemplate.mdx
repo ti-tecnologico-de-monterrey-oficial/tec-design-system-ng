@@ -1,3 +1,4 @@
+import { Title } from '@storybook/addon-docs/blocks';
 import { GeneralTemplate } from './GeneralTemplate.mdx';
 import { Tabs } from './Tabs.mdx';
 import { getFormatName } from '../utils/utils';
@@ -21,29 +22,18 @@ export const getPropertyValue = ({item, context, name}) => {
 return true;
 };
 
-export const getTabTitle = (item) =>
-  item?.default?.title?.split('/').at(-1) ?? 'Overview';
+export const getTabTitle = (item) => item?.default?.title?.split('/').pop();
 
 export const Main = ({ showControls, showStories }) => (
-  <section>
-    <GeneralTemplate showControls={showControls} showStories={showStories} />
-  </section>
+  <GeneralTemplate showControls={showControls} showStories={showStories} />
 );
 
 export const Item = ({ children, showControls, showStories }) => (
-  <section>
-    <GeneralTemplate showControls={showControls} showStories={showStories}>
-      {children}
-    </GeneralTemplate>
-  </section>
+  <GeneralTemplate showControls={showControls} showStories={showStories}>
+    {children}
+  </GeneralTemplate>
 );
-/*
-<ListTemplate>{itemStory}</ListTemplate>//Two tabs, this takes the main story of the Meta.
-<ListTemplate main={mainStory} content={[itemStory, secondItemStory]}/>
-<ListTemplate content={[mainStory,itemStory, secondItemStory]}/>
-showStories for children
-showControls for children
-*/
+
 export const ListTemplate = ({
   children,
   main,
@@ -56,10 +46,10 @@ export const ListTemplate = ({
     <section>
       {children && (
         <Tabs
-          tabs={['Overview', getTabTitle(children)]}
+          tabs={[<Title />, getTabTitle(children)]}
           content={[
             <Main />,
-            <Item showStories={showStories} showControls={showControls}>
+            <Item showStories={false} showControls={true}>
               {children}
             </Item>,
           ]}
@@ -68,8 +58,8 @@ export const ListTemplate = ({
       {content && main && (
         <Tabs
           tabs={[
-            'Overview',
-            ...content.map(getTabTitle),
+            getTabTitle(main),
+            ...content.map((item) => getTabTitle(item)),
           ]}
           content={[
             <Main
@@ -83,7 +73,9 @@ export const ListTemplate = ({
                 context,
                 name: 'showControls',
               })}
-            />,
+            >
+              {main}
+            </Main>,
             ...content.map((item) => (
               <Item
                 showStories={getPropertyValue({
@@ -105,14 +97,17 @@ export const ListTemplate = ({
       )}
       {content && !main && (
         <Tabs
-          tabs={content.map(getTabTitle)}
-          content={content.map((item) => (
+          tabs={content.map((item) => getTabTitle(item))}
+          content={content.map((item, _, index) => (
             <Item
-              showStories={getPropertyValue({
-                item,
-                context,
-                name: 'showStories',
-              })}
+              showStories={
+                !index &&
+                getPropertyValue({
+                  item,
+                  context,
+                  name: 'showStories',
+                })
+              }
               showControls={getPropertyValue({
                 item,
                 context,
