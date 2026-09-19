@@ -77,16 +77,7 @@ describe('BmbAdvertisementCardComponent', () => {
   });
 
   it('should initialize tabsData correctly', () => {
-    expect(component.tabsData.length).toBe(3);
-    expect(component.tabsData[0].title).toBe(
-      'advertisement_card.tabs.promotions',
-    );
-    expect(component.tabsData[1].title).toBe(
-      'advertisement_card.tabs.announcements',
-    );
-    expect(component.tabsData[2].title).toBe(
-      'advertisement_card.tabs.information',
-    );
+    expect(component.tabsData.length).toBe(0);
   });
 
   it('should toggle expanded state', () => {

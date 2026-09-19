@@ -230,7 +230,7 @@ For user message use ['copy', 'edit'] to enable both. Copy is enabled by default
     message: {
       id: '1',
       type: 'text',
-      timestamp: new Date(),
+      timestamp: new Date('2026-05-05T20:00:00'),
       isUser: false,
       content: {
         text: 'Hello! How can I help you today?',
@@ -260,7 +260,7 @@ export const UserMessage: Story = {
     message: {
       id: '2',
       type: 'text',
-      timestamp: new Date(),
+      timestamp: new Date('2026-05-05T20:00:00'),
       isUser: true,
       userProfile: 'https://picsum.photos/id/64/200/300',
       content: {
@@ -277,7 +277,7 @@ export const Thinking: Story = {
     message: {
       id: '3',
       type: 'text',
-      timestamp: new Date(),
+      timestamp: new Date('2026-05-05T20:00:00'),
       isUser: false,
       content: {
         text: '',
@@ -291,7 +291,7 @@ export const PromptOptions: Story = {
     message: {
       id: '5',
       type: 'options',
-      timestamp: new Date(),
+      timestamp: new Date('2026-05-05T20:00:00'),
       isUser: false,
       content: {
         text: 'Choose one option:',
@@ -342,7 +342,7 @@ export const TextMessage: Story = {
     message: {
       id: '6',
       type: 'text',
-      timestamp: new Date(),
+      timestamp: new Date('2026-05-05T20:00:00'),
       isUser: false,
       content: {
         text: `
@@ -359,7 +359,7 @@ export const LinkMessage: Story = {
     message: {
       id: '7',
       type: 'link',
-      timestamp: new Date(),
+      timestamp: new Date('2026-05-05T20:00:00'),
       isUser: false,
       content: {
         text: 'Open Angular documentation',
@@ -375,7 +375,7 @@ export const ImageMessage: Story = {
     message: {
       id: '8',
       type: 'image',
-      timestamp: new Date(),
+      timestamp: new Date('2026-05-05T20:00:00'),
       isUser: false,
       content: {
         imageUrl: 'https://picsum.photos/600/400',
@@ -390,7 +390,7 @@ export const MixedMessage: Story = {
     message: {
       id: '9',
       type: 'mixed',
-      timestamp: new Date(),
+      timestamp: new Date('2026-05-05T20:00:00'),
       isUser: false,
       content: {
         text: 'Here is the generated image based on your request.',
@@ -444,7 +444,7 @@ export const ChatGPTExample: Story = {
         content: {
           text: 'Ya está',
         },
-        time: new Date(),
+        time: new Date('2026-05-05T20:00:00'),
       },
       userMessage: {
         id: 'user-message-copy',
@@ -454,7 +454,7 @@ export const ChatGPTExample: Story = {
         content: {
           text: '¿Puedes compartir esta respuesta en otro canal?',
         },
-        time: new Date(),
+        time: new Date('2026-05-05T20:00:00'),
       },
     },
   }),
@@ -516,7 +516,7 @@ export const TemplateMessage: Story = {
     `,
 
     props: {
-      timestamp: new Date(),
+      timestamp: new Date('2026-05-05T20:00:00'),
     },
   }),
 };
@@ -527,7 +527,7 @@ export const ChatGPTMessageLiked: Story = {
     message: {
       id: '11',
       type: 'text',
-      timestamp: new Date(),
+      timestamp: new Date('2026-05-05T20:00:00'),
       isUser: false,
       like: true,
       dislike: false,
@@ -547,7 +547,7 @@ export const ChatGPTMessageDisliked: Story = {
     message: {
       id: '12',
       type: 'text',
-      timestamp: new Date(),
+      timestamp: new Date('2026-05-05T20:00:00'),
       isUser: false,
       like: false,
       dislike: true,
