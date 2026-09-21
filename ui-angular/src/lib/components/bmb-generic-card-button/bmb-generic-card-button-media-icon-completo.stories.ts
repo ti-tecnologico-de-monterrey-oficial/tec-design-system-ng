@@ -18,7 +18,7 @@ import {
 } from './bmb-generic-card-button-story-fragments';
 
 const meta: Meta<BmbGenericCardButtonComponent> = {
-  title: 'Components/Containers/Generic card button/Media e Icon completo',
+  title: 'Templates/Generic card button/Media e Icon completo',
   component: BmbGenericCardButtonComponent,
   decorators: [
     moduleMetadata({

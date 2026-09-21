@@ -79,7 +79,6 @@ ${getArchitectureSection(
   </section>
 </div>
 `,
-  false,
   'input',
   'components-inputs-text-input',
 )}

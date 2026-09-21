@@ -1,13 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import { CustomTOC } from './CustomTOC.mdx';
 
-export const ContentTab = ({ children, status, showTableOfContents, contentsSelector = '#content' }) => (
+export const ContentTab = ({
+  children,
+  status,
+  showTableOfContents,
+  contentsSelector = '#content',
+}) => (
   <CustomTOC
     showTableOfContents={showTableOfContents}
     contentsSelector={contentsSelector}
     status={status}
   >
-    <div id={contentsSelector.replace('#','')}>{children}</div>
+    <div id={contentsSelector.replace('#', '')}>{children}</div>
   </CustomTOC>
 );
 
@@ -72,37 +77,56 @@ return (
 
 <div className="bmb_doc-tabs">
   <div className="bmb_doc-tabs-navigation">
-  {scrollState.overflow && (
-    <button type="button" className="bmb_doc-tabs-arrow" aria-label="Scroll tabs left" disabled={scrollState.start} onClick={() => scrollTabs(-1)}>
-      <span aria-hidden="true">&#x2039;</span>
-    </button>
-  )}
-  <ul ref={headerRef} role="tablist" aria-label="Documentation sections" className="bmb_doc-tabs-header" onScroll={updateScrollState}>
-    {tabs.map((tab, index) => (
-      <li role="presentation" key={index} className="bmb_doc-tabs-item">
-        <button
-          type="button"
-          role="tab"
-          id={`tab_${index}`}
-          aria-controls={`tabpanel_${index}`}
-          aria-selected={selectedTab === index}
-          tabIndex={selectedTab === index ? 0 : -1}
-          title={tab}
-          className={`bmb_doc-tabs-button ${selectedTab === index ? 'active' : ''}`}
-          onClick={() => setSelectedTab(index)}
-          onKeyDown={(event) => handleKeyDown(event, index)}
-          onFocus={() => revealTab(index)}
-        >
-          <span className="bmb_doc-tabs-label">{tab}</span>
-        </button>
-      </li>
+    {scrollState.overflow && (
+      <button
+        type="button"
+        className="bmb_doc-tabs-arrow"
+        aria-label="Scroll tabs left"
+        disabled={scrollState.start}
+        onClick={() => scrollTabs(-1)}
+      >
+        <span aria-hidden="true">&#x2039;</span>
+      </button>
+    )}
+    <ul
+      ref={headerRef}
+      role="tablist"
+      aria-label="Documentation sections"
+      className="bmb_doc-tabs-header"
+      onScroll={updateScrollState}
+    >
+      {tabs.map((tab, index) => (
+        <li role="presentation" key={index} className="bmb_doc-tabs-item">
+          <button
+            type="button"
+            role="tab"
+            id={`tab_${index}`}
+            aria-controls={`tabpanel_${index}`}
+            aria-selected={selectedTab === index}
+            tabIndex={selectedTab === index ? 0 : -1}
+            title={tab}
+            className={`bmb_doc-tabs-button ${selectedTab === index ? 'active' : ''}`}
+            onClick={() => setSelectedTab(index)}
+            onKeyDown={(event) => handleKeyDown(event, index)}
+            onFocus={() => revealTab(index)}
+          >
+            <span className="bmb_doc-tabs-label">{tab}</span>
+          </button>
+        </li>
     ))}
-  </ul>
-  {scrollState.overflow && (
-    <button type="button" className="bmb_doc-tabs-arrow" aria-label="Scroll tabs right" disabled={scrollState.end} onClick={() => scrollTabs(1)}>
-      <span aria-hidden="true">&#x203a;</span>
-    </button>
-  )}
+    </ul>
+    {scrollState.overflow && (
+      <button
+        type="button"
+        className="bmb_doc-tabs-arrow"
+        aria-label="Scroll tabs right"
+        disabled={scrollState.end}
+        onClick={() => scrollTabs(1)}
+      >
+        <span aria-hidden="true">&#x203a;</span>
+      </button>
+    )}
+
   </div>
   <section className="bmb_doc-tabs-content">
     {selectedContent && (

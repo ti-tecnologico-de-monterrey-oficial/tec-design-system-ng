@@ -19,7 +19,7 @@ import {
 } from './bmb-generic-card-button-story-fragments';
 
 const meta: Meta<BmbGenericCardButtonComponent> = {
-  title: 'Components/Containers/Generic card button/Small',
+  title: 'Templates/Generic card button/Small',
   component: BmbGenericCardButtonComponent,
   decorators: [
     moduleMetadata({
