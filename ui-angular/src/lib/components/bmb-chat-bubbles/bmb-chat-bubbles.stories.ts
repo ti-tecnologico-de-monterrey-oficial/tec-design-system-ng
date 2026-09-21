@@ -63,10 +63,9 @@ It supports [AI icons](https://bamboo.tec.mx/latest/componentes/ai-chat-bar/ai-i
   {
     generalDocLink:
       'https://bamboo.tec.mx/latest/componentes/ai-chat-bubble/descripcion-general-kum7HyJA',
-    isSubStory: true,
   },
 )}
-${getSpecialSpecifications(`### ${IMPORTANT_DESCRIPTION}`, { isSubStory: true })}
+${getSpecialSpecifications(`### ${IMPORTANT_DESCRIPTION}`)}
         `,
       },
     },
@@ -202,7 +201,7 @@ ${DEPRECATED_DESC}`,
       content: {
         text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo.',
       },
-      time: new Date(),
+      time: new Date('2026-05-05T20:00:00'),
     },
     gptIcons: false,
   },
@@ -222,7 +221,7 @@ export const UserMessageWithCopy: Story = {
       content: {
         text: '¿Puedes compartir esta pregunta en otro canal?',
       },
-      time: new Date(),
+      time: new Date('2026-05-05T20:00:00'),
     },
     userActiveIcons: { copy: { visible: true } },
   },
@@ -261,7 +260,7 @@ export const UserMsg: Story = {
       content: {
         text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo.',
       },
-      time: new Date(),
+      time: new Date('2026-05-05T20:00:00'),
     },
   },
   ...Default,
@@ -288,7 +287,7 @@ export const ChatGpt: Story = {
       content: {
         text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo.',
       },
-      time: new Date(),
+      time: new Date('2026-05-05T20:00:00'),
     },
     gptIcons: true,
     gptBot: true,
@@ -317,7 +316,7 @@ export const LinkResponse: Story = {
         text: 'Link de prueba',
         link: 'https://www.youtube.com',
       },
-      time: new Date(),
+      time: new Date('2026-05-05T20:00:00'),
     },
     gptIcons: true,
     gptBot: true,
@@ -346,7 +345,7 @@ export const TextAndImage: Story = {
         text: 'Lorem insup',
         imageUrl: 'https://picsum.photos/id/64/200/300',
       },
-      time: new Date(),
+      time: new Date('2026-05-05T20:00:00'),
     },
   },
   ...Default,
@@ -374,7 +373,7 @@ export const Thinking: Story = {
         text: 'Lorem insup',
         imageUrl: 'https://picsum.photos/id/64/200/300',
       },
-      time: new Date(),
+      time: new Date('2026-05-05T20:00:00'),
     },
     gptIcons: false,
     isThinking: true,
@@ -422,7 +421,7 @@ export const OptionsTemplate: Story = {
           },
         ],
       },
-      time: new Date(),
+      time: new Date('2026-05-05T20:00:00'),
     },
     gptIcons: true,
     // 👇 deprecated handlers
@@ -449,7 +448,7 @@ export const ChatUsingGetAction: Story = {
       content: {
         text: 'Lorem ipsum...',
       },
-      time: new Date(),
+      time: new Date('2026-05-05T20:00:00'),
     },
     gptIcons: true,
     gptBot: true,

@@ -39,8 +39,17 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(getAuxiliaryDescription('Vertical layout container', 'Vertical layout container item'), { generalDocLink: 'https://bamboo.tec.mx/latest/foundations/vertical-layout-container/descripcion-general-Crf8ymYZ', isSubStory: true })}
-${getBasicExampleBlock('BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirective', '', '', true)}
+${getGeneralDescription(
+  getAuxiliaryDescription(
+    'Vertical layout container',
+    'Vertical layout container item',
+  ),
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/foundations/vertical-layout-container/descripcion-general-Crf8ymYZ',
+  },
+)}
+${getBasicExampleBlock('BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirective', '', '')}
         `,
       },
     },

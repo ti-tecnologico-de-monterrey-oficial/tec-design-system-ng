@@ -12,7 +12,7 @@ import {
 } from '../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
 
 const meta: Meta<BmbGenericCardButtonComponent> = {
-  title: 'Components/Containers/Generic card button',
+  title: 'Templates/Generic card button',
   component: BmbGenericCardButtonComponent,
   decorators: [
     moduleMetadata({

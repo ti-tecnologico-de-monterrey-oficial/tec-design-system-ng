@@ -62,10 +62,9 @@ It helps to group information in a coherent and accessible way.`,
   {
     generalDocLink:
       'https://bamboo.tec.mx/latest/components/list-group/descripcion-general-ieYN5a5C',
-    isSubStory: true,
   },
 )}
-${getBasicExampleBlock('BmbListGroupComponent, BmbListGroupItemComponent', '', '', true)}
+${getBasicExampleBlock('BmbListGroupComponent, BmbListGroupItemComponent', '', '')}
         `,
       },
     },

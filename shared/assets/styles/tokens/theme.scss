@@ -229,7 +229,10 @@ html.storybook-light-theme {
         min-width: 0;
         flex: 0 0
           calc(
-            (100% - (var(--bmb-doc-visible-tabs) - 1) * var(--bmb-doc-tab-gap)) /
+            (
+                100% - (var(--bmb-doc-visible-tabs) - 1) *
+                  var(--bmb-doc-tab-gap)
+              ) /
               var(--bmb-doc-visible-tabs)
           );
         scroll-snap-align: start;
@@ -264,6 +267,13 @@ html.storybook-light-theme {
         -webkit-line-clamp: 2;
         overflow: hidden;
         overflow-wrap: anywhere;
+        &,
+        .sbdocs-title:not([class^='bmb']),
+        h1:not([class^='bmb']) {
+          font-size: 18px;
+          line-height: inherit;
+          font-weight: inherit;
+        }
       }
 
       &-arrow {
@@ -281,8 +291,8 @@ html.storybook-light-theme {
         cursor: pointer;
 
         > span {
-          font-size: 2.25rem;
-          font-weight: 700;
+          font-size: 2.5rem;
+          font-weight: inherit;
           line-height: 1;
         }
 

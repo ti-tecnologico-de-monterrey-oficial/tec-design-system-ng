@@ -16,7 +16,7 @@ import {
 } from './bmb-generic-card-button-story-fragments';
 
 const meta: Meta<BmbGenericCardButtonComponent> = {
-  title: 'Components/Containers/Generic card button/Editorial completo vertical',
+  title: 'Templates/Generic card button/Editorial completo vertical',
   component: BmbGenericCardButtonComponent,
   decorators: [
     moduleMetadata({

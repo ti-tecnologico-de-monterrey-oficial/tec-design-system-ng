@@ -103,7 +103,6 @@ ${getFormControlDescription('>').replace('<br/>', '')}
   {
     generalDocLink:
       'https://bamboo.tec.mx/latest/patterns/forms/descripcion-general-FDqTdYSy',
-    isSubStory: true,
   },
 )}
 ${getArchitectureSection(
@@ -112,15 +111,13 @@ ${getArchitectureSection(
   <!-- Custom-content -->
 </form>
 `,
-  true,
 )}
 ${getSpecialSpecifications(
   `
   ${getFormControlConsiderations('>')}
 `,
-  { isSubStory: true },
 )}
-${getReactiveFormTitle('BmbFormValidatorComponent', true)}
+${getReactiveFormTitle('BmbFormValidatorComponent')}
 ><br/>
 >${getTypescriptExampleTextBlock(
           'BmbButtonDirective, BmbFormValidatorComponent',
@@ -136,9 +133,8 @@ ${getReactiveFormTitle('BmbFormValidatorComponent', true)}
     //Add your code
   }`,
           '>',
-          true,
         ).replace('in with', 'with')}
->${getDescribeTypeTextBlock('HTML', 'for reactive form', true, 'with status handle function', true)}
+>${getDescribeTypeTextBlock('HTML', 'for reactive form', true, 'with status handle function')}
 \`\`\`html
 <bmb-form-validator (formGroupState)="handleFormGroupState($event)">
   <!--Add your Bamboo inputs-->
@@ -147,7 +143,7 @@ ${getReactiveFormTitle('BmbFormValidatorComponent', true)}
   </button>
 </bmb-form-validator>
 \`\`\`
-${getBasicExampleBlock('BmbButtonDirective, BmbFormValidatorComponent', '', 'formGroup:FormGroup = new FormGroup({});', true)}
+${getBasicExampleBlock('BmbButtonDirective, BmbFormValidatorComponent', '', 'formGroup:FormGroup = new FormGroup({});')}
 \`\`\`html
 <bmb-form-validator [(formGroup)]="formGroup">
 <!--Add your Bamboo inputs-->

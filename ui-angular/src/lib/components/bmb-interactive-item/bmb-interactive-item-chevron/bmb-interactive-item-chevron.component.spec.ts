@@ -1,6 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbInteractiveItemChevronComponent } from './bmb-interactive-item-chevron.component';
 
 describe('BmbInteractiveItemChevronComponent', () => {
@@ -39,7 +37,7 @@ describe('BmbInteractiveItemChevronComponent', () => {
     expect(
       fixture.nativeElement
         .querySelector('button')
-        .classList.contains('bmb_interactive-item-chevron'),
+        .classList.contains('bmb_interactive-item-default'),
     ).toBe(true);
   });
   it('emits clicks only while the native button is enabled', async () => {

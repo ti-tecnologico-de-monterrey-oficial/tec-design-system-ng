@@ -37,13 +37,13 @@ El archivo importa:
 
 ## Tipos e interfaces
 
-| Nombre | Tipo | Descripción |
-|---|---|---|
+| Nombre             | Tipo        | Descripción                                                                                           |
+| ------------------ | ----------- | ----------------------------------------------------------------------------------------------------- |
 | `IBmbVariableDesc` | `interface` | Describe una variable de diseño con `element` (nombre del elemento) y `name` (nombre de la variable). |
-| `IBmbOnEvent` | `interface` | Describe un evento documentado: `name`, `handleExample`, `propertyValue`, `type`, `event_type`. |
-| `IBmbStoryLink` | `interface` | Referencia a otra historia/página: `title` y, opcionalmente, `showFullLinkName`. |
-| `IBmbStoryType` | `type` | Tipo de historia: `'element' \| 'component' \| 'organism' \| 'directive' \| 'service'`. |
-| `IBmbOnEventType` | `type` | Tipo de evento: `'change' \| 'keyDown' \| 'other'`. |
+| `IBmbOnEvent`      | `interface` | Describe un evento documentado: `name`, `handleExample`, `propertyValue`, `type`, `event_type`.       |
+| `IBmbStoryLink`    | `interface` | Referencia a otra historia/página: `title` y, opcionalmente, `showFullLinkName`.                      |
+| `IBmbStoryType`    | `type`      | Tipo de historia: `'element' \| 'component' \| 'organism' \| 'directive' \| 'service'`.               |
+| `IBmbOnEventType`  | `type`      | Tipo de evento: `'change' \| 'keyDown' \| 'other'`.                                                   |
 
 ---
 
@@ -62,9 +62,11 @@ El archivo importa:
 ## Estructura de página
 
 ### `getPageStructureForFoundationStories(): unknown[]`
+
 Devuelve el arreglo de elementos React (`Title`, `Description`, `Heading` con `PREVIEW_TITLE`, `Primary`, `Controls`) usado como plantilla de página para historias de tipo **foundation** (fundamentos de diseño).
 
 ### `getPageStructureForTemplateStories(): unknown[]`
+
 Igual que la anterior, pero **sin** el bloque `Controls` — pensado para historias de tipo **template**.
 
 ---
@@ -72,16 +74,18 @@ Igual que la anterior, pero **sin** el bloque `Controls` — pensado para histor
 ## Utilidades de formato de atributos
 
 ### `attributes(object): string`
+
 Convierte un objeto de propiedades en una cadena de atributos HTML/Angular, excluyendo la clave `test_text`. Usa `[prop]='valor'` para funciones/objetos y `prop="valor"` para strings (mediante los helpers internos `getKeyFormat` y `getValue`).
 
 ### `attributesText(object): string`
+
 Extrae únicamente el valor de la clave `test_text` del objeto, para usarlo como contenido de texto del elemento de ejemplo.
 
 ---
 
 ## Utilidades de nombres y enlaces
 
-- **`getLandingGeneralDesc(name)`** / **`getStandaloneGeneralDesc(name)`**: generan la descripción general para plantillas de *Landing* y de *Stand alone sites*, respectivamente, incluyendo su enlace a documentación general.
+- **`getLandingGeneralDesc(name)`** / **`getStandaloneGeneralDesc(name)`**: generan la descripción general para plantillas de _Landing_ y de _Stand alone sites_, respectivamente, incluyendo su enlace a documentación general.
 - **`getFormatName(name, separator?, replace?)`**: capitaliza la primera letra de un nombre; si se indica un separador, capitaliza cada palabra separada y las concatena, o bien reemplaza el separador por otro carácter.
 - **`getStoryTitle(fullTitle)`**: obtiene solo el último segmento del título completo de una historia (después del último `/`).
 - **`getStoryLink({ title, showFullLinkName, isPreURL })`**: construye un enlace Markdown hacia la página `/docs/...--documentation` de otra historia.
@@ -91,7 +95,9 @@ Extrae únicamente el valor de la clave `test_text` del objeto, para usarlo como
 ## Eventos
 
 ### `getOnEvent(name, paramName, type?, isHandle?, additionalBlock?): IBmbOnEvent`
+
 Genera la descripción de un evento de un componente/directiva:
+
 - `name`: nombre del evento.
 - `type`: tipo del parámetro del evento (por defecto `'MouseEvent'`; si es `'void'` se omite el parámetro).
 - `handleExample`: fragmento de código de ejemplo del método manejador (`handleX(event) {...}`).
@@ -102,23 +108,25 @@ Genera la descripción de un evento de un componente/directiva:
 ## Alertas y bloques destacados
 
 ### `getAlertBlockquote(content, options): string`
+
 Función base para construir bloques de tipo `blockquote` (GFM `> [!WARNING]`, `> [!NOTE]`, `> [!CALLOUT]`) con un título y contenido. Soporta títulos en negritas (`isRelevantTitle`), títulos como encabezado (`isHeader`) e identificadores de sub-historia.
 
 Construidas sobre `getAlertBlockquote`:
 
-| Función | Propósito |
-|---|---|
-| `getEmptyStateMessage(...)` | Recuerda usar el *empty state* correspondiente, con enlace a la guía de UX writing. |
-| `getTECParticularitiesMessage(element, ...)` | Advierte que un elemento es particularidad exclusiva de las marcas TEC/TECMI y no debe usarse en otras marcas. |
-| `getOutOfModalUseMessage(...)` | Advierte que el elemento debe implementarse fuera de un `Modal`. |
-| `getReferenceRecommendationForVariable(element)` | Recomienda revisar la documentación de *Variables* para implementar el elemento vía CSS. |
-| `getFullScreenDesc()` | Nota sobre la visualización incorrecta en modo pantalla completa dentro de Storybook. |
-| `getElementUsesDesc(name, isOther?)` | Indica qué variante (`bmb-{name}`) usa el ejemplo actual. |
-| `getActionMenuAlert()` | Recuerda añadir la etiqueta `#actionMenuItem` a las plantillas de *Action menu*. |
-| `getDeprecatedDesc({ type, isHeaderL2, isBlockquote })` | Genera el aviso de elemento/propiedad **obsoleta**, opcionalmente como blockquote con encabezado. |
+| Función                                                 | Propósito                                                                                                      |
+| ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `getEmptyStateMessage(...)`                             | Recuerda usar el _empty state_ correspondiente, con enlace a la guía de UX writing.                            |
+| `getTECParticularitiesMessage(element, ...)`            | Advierte que un elemento es particularidad exclusiva de las marcas TEC/TECMI y no debe usarse en otras marcas. |
+| `getOutOfModalUseMessage(...)`                          | Advierte que el elemento debe implementarse fuera de un `Modal`.                                               |
+| `getReferenceRecommendationForVariable(element)`        | Recomienda revisar la documentación de _Variables_ para implementar el elemento vía CSS.                       |
+| `getFullScreenDesc()`                                   | Nota sobre la visualización incorrecta en modo pantalla completa dentro de Storybook.                          |
+| `getElementUsesDesc(name, isOther?)`                    | Indica qué variante (`bmb-{name}`) usa el ejemplo actual.                                                      |
+| `getActionMenuAlert()`                                  | Recuerda añadir la etiqueta `#actionMenuItem` a las plantillas de _Action menu_.                               |
+| `getDeprecatedDesc({ type, isHeaderL2, isBlockquote })` | Genera el aviso de elemento/propiedad **obsoleta**, opcionalmente como blockquote con encabezado.              |
 
 Otras utilidades relacionadas:
-- **`getGridGeneratorLink()`**: enlace fijo a la herramienta *Grid generator*.
+
+- **`getGridGeneratorLink()`**: enlace fijo a la herramienta _Grid generator_.
 - **`getAuxiliaryDescription(principal, auxiliary)`**: describe la relación entre un componente principal y su auxiliar.
 - **`getTechnicalDocReferences({ references, isFullScreenDesc })`**: construye la sección "🛠️ Documentación técnica" con una lista de enlaces (`IBmbStoryLink[]`).
 - **`getTechnicalOneReference(title)`**: atajo de `getTechnicalDocReferences` para una sola referencia.
@@ -127,27 +135,29 @@ Otras utilidades relacionadas:
 
 ## Secciones de arquitectura DOM
 
-### `getArchitectureSection(architectureBlock, isSubStory?, bmbNameLink?, documentationLink?, subStoryChart?): string`
+### `getArchitectureSection(architectureBlock, bmbNameLink?, documentationLink?): string`
+
 Genera la sección **"DOM Architecture"** con un bloque de código HTML y, opcionalmente, un enlace a la arquitectura DOM de otro componente relacionado (`getDOMArchitectureLink`).
 
 ### `getCheckboxOrRadialArchitecture(type): string`
+
 Atajo de `getArchitectureSection` con la estructura DOM predefinida para componentes de tipo `checkbox` o `radial` (contenedor, `input`, caja de marca y etiqueta opcional).
 
 ### `getDOMArchitectureLink(bmbNameLink?, documentationLink?): string`
+
 Genera el enlace Markdown hacia la sección de arquitectura DOM de otro componente Bamboo.
 
 ---
 
 ## Ejemplos de código (TypeScript / HTML / Formularios reactivos)
 
-- **`getDescribeTypeTextBlock(typeExampleName, additionalTitle?, isLevel3?, additionalText?, isSubStory?, subStoryChart?)`**: encabezado descriptivo genérico para un bloque de ejemplo (p. ej. "TypeScript example", "HTML example").
-- **`getTypescriptExampleBlock(...)`** *(interna)*: arma el bloque de código TypeScript con imports de Angular (`CommonModule`, `Component`), el import del componente Bamboo y la definición de la clase del componente standalone.
+- **`getDescribeTypeTextBlock(typeExampleName, additionalTitle?, isLevel3?, additionalText?)`**: encabezado descriptivo genérico para un bloque de ejemplo (p. ej. "TypeScript example", "HTML example").
+- **`getTypescriptExampleBlock(...)`** _(interna)_: arma el bloque de código TypeScript con imports de Angular (`CommonModule`, `Component`), el import del componente Bamboo y la definición de la clase del componente standalone.
 - **`getTypescriptExampleTextBlock(...)`**: combina el encabezado (`getDescribeTypeTextBlock`) con el bloque de código (`getTypescriptExampleBlock`).
 - **`getReactiveFormTitle(bmbInputName, ...)`**: título y descripción para la sección de ejemplo de **formulario reactivo**.
 - **`getFormExampleBlock(bmbInputName, inputName, additionalBlock, inputExample, ...)`**: genera el ejemplo completo de formulario reactivo, incluyendo el ejemplo TypeScript (con `FormGroup`/`FormControl`, `onSubmit`, validación de errores) y el ejemplo HTML correspondiente.
 - **`getHTMLFormExampleTextBlock(inputExample, ...)`**: bloque de código HTML de un formulario (`<form [formGroup]="userForm" ...>`) con el campo de ejemplo y un botón de envío.
 - **`getBasicExampleBlock(inputName, ...)`**: combina el ejemplo TypeScript y el encabezado del ejemplo HTML básico (sin formulario reactivo) para un componente.
-- **`getSubStoryIdentifier(isSubStory?, subStoryChart?)`**: devuelve el prefijo/identificador usado en encabezados cuando el contenido pertenece a una **sub-historia**.
 
 ---
 
@@ -164,18 +174,19 @@ Genera el enlace Markdown hacia la sección de arquitectura DOM de otro componen
 
 ## Tipografía y variables de diseño (foundations)
 
-- **`getFoundationDescriptions(element, additionalDescription?)`**: descripción genérica para una colección de variables de *foundation* (p. ej. espaciado, tipografía).
+- **`getFoundationDescriptions(element, additionalDescription?)`**: descripción genérica para una colección de variables de _foundation_ (p. ej. espaciado, tipografía).
 - **`getHelpDescriptionForGeneratingVariables(element, isControl?)`**: texto de ayuda que invita a usar la herramienta interactiva o los controles para generar variables de un elemento.
 - **`getTypographyDetail(isCompleteDetail?)`**: sección detallada de **tipografía**: familias de fuente (`font-light`, `font-regular`, `font-bold`), escala de tamaños (1–12) y su mapeo a tags HTML (`h1`–`h4`, `p`, `a`, `blockquote`).
 - **`getVariableDetail(element, classes, list, definitionClass, size, style?, isInherit?, variableDescription?, stylesVar?)`**: describe el nombre de clase o variable CSS de un elemento, con ejemplo de uso y, si `isInherit` es verdadero, un segundo ejemplo mostrando la herencia del valor en elementos hijos.
 - **`getVariableAndClassesSizes(element)`**: tabla de valores disponibles para un tipo de tamaño (`none`, `xxs`…`xxl`, `auto`, y escala numérica `1`–`10`) en unidades REM aproximadas en píxeles.
-- **`getSandboxConsiderationsDocumentation(element, introductionContent?, content?, isWarning?, implementationDetails?, style?, isClassNameVar?, isInherit?, isOmitImportant?)`**: función más compleja del módulo; arma la documentación completa de una *foundation* de tipo sandbox (p. ej. espaciados), incluyendo:
+- **`getSandboxConsiderationsDocumentation(element, introductionContent?, content?, isWarning?, implementationDetails?, style?, isClassNameVar?, isInherit?, isOmitImportant?)`**: función más compleja del módulo; arma la documentación completa de una _foundation_ de tipo sandbox (p. ej. espaciados), incluyendo:
   - Recomendación de uso de variables (opcional, `isOmitImportant`).
   - Advertencia sobre posibles sobreescrituras por componentes (`isWarning`).
   - Secciones **"Class Name"** y **"CSS Variable"** generadas a partir de `implementationDetails` (lista de `IBmbVariableDesc` o `string[]`), apoyándose en las funciones internas `getSubList` y `getMergeList` para construir los nombres de clase/variable y sus valores combinados.
   - Cierre con la sección **"Sandbox"**.
 
 Funciones internas de apoyo (no exportadas fuera del flujo de `getSandboxConsiderationsDocumentation`):
+
 - **`getSubList(list, elementName, template?)`**: mapea una lista de strings o de `IBmbVariableDesc` a una lista de strings, aplicando opcionalmente una plantilla con marcador `[__]`.
 - **`getMergeList(list, definition, splitChar)`**: combina una lista de propiedades con una definición de estilos separada por `splitChar`, generando declaraciones CSS del tipo `propiedad: var(--variable);`.
 
@@ -184,7 +195,7 @@ Funciones internas de apoyo (no exportadas fuera del flujo de `getSandboxConside
 ## Providers de Angular
 
 - **`getProviderBlockExample(bambooProviderName)`**: bloque de código del arreglo `providers` con `provideRouter` y `importProvidersFrom([...])`.
-- **`getProviderExample(bambooProviderName)`**: envuelve el bloque anterior en una frase de instrucción ("Add the *** X *** to your App providers").
+- **`getProviderExample(bambooProviderName)`**: envuelve el bloque anterior en una frase de instrucción ("Add the **_ X _** to your App providers").
 - **`getProviderTypescriptExample(bambooProviderName, additionalDetail?)`**: sección completa **"⚙️ Configuration"** con el ejemplo de `app.config.ts` mostrando cómo registrar el provider de Bamboo en `ApplicationConfig`.
 
 ---
@@ -192,6 +203,7 @@ Funciones internas de apoyo (no exportadas fuera del flujo de `getSandboxConside
 ## Lista de colores
 
 ### `colorList: (color)[]`
+
 Arreglo que concatena todas las listas de colores del sistema:
 `BMB_BASE_COLOR_LIST`, `BMB_MITEC_BASE_COLOR_LIST`, `BMB_CREATIVE_BASE_COLOR_LIST`, `BMB_SEMANTIC_COLOR_LIST`, `BMB_SEMANTIC_BASE_COLOR_LIST`, `BMB_MITEC_COLOR_LIST`, `BMB_CREATIVE_COLOR_LIST` y `BMB_ALERT_COLOR_LIST`.
 
