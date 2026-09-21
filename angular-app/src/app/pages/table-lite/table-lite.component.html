@@ -24,7 +24,6 @@
 
 <ng-template #lastNameTemplate let-row="row">
   <bmb-icon icon="face" [size]="20"></bmb-icon>
-  {{ row | json }}
   <span> {{ row.lastName }} </span>
   <button (click)="clickButton($event)" size="small">
     <bmb-icon icon="edit" [size]="20" color="white" />
@@ -57,7 +56,6 @@
 
 <ng-template #detailTemplate let-row="row">
   @if (row.detail) {
-    {{ row | json }}
     <div>{{ row.detail }}</div>
   }
 
