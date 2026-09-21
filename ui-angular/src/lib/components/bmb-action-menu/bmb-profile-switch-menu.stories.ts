@@ -31,7 +31,6 @@ ${getGeneralDescription(
   {
     generalDocLink:
       'https://bamboo.tec.mx/latest/componentes/action-menu/descripcion-general-gXdipbgD',
-    isSubStory: true,
   },
 )}
 ${getSpecialSpecifications(
@@ -41,9 +40,9 @@ ${getActionMenuAlert()}
 ${getElementUsesDesc('interactive-item-default', false)}
 ${getTechnicalOneReference('Dev tools/Interactive item')}
   `,
-  { showAdditionalBlockquote: true, isSubStory: true },
+  { showAdditionalBlockquote: true },
 )}
-${getBasicExampleBlock('BmbActionMenuComponent', '', '', true)}
+${getBasicExampleBlock('BmbActionMenuComponent', '', '')}
         `,
       },
     },

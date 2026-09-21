@@ -35,7 +35,6 @@ ${getGeneralDescription(
   {
     generalDocLink:
       'https://bamboo.tec.mx/latest/foundations/icon/notification-counter-iKqGw1Ww-iKqGw1Ww',
-    isSubStory: true,
   },
 )}
 ${getSpecialSpecifications(
@@ -50,9 +49,8 @@ in this way there will be visual harmony between the elements.
       blockquoteType: BlockquoteType.important,
     },
   )}`,
-  { isSubStory: true, showAdditionalBlockquote: true },
 )}
-${getBasicExampleBlock('BmbIconComponent', '', '', true)}
+${getBasicExampleBlock('BmbIconComponent', '', '')}
         `,
       },
     },

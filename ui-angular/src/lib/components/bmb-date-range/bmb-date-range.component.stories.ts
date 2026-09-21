@@ -62,7 +62,6 @@ ${getArchitectureSection(
   <bmb-datepicker/>
 </section>
 `,
-  false,
   'datepicker',
   'components-inputs-calendar-date-picker',
 )}
