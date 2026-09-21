@@ -33,4 +33,20 @@ describe('BmbBoxIconComponent', () => {
 
     expect(boxIcon.classList).toContain('circle');
   });
+
+  it('should default colorName to transparent when boxColor is not set', () => {
+    componentRef.setInput('boxColor', undefined);
+    fixture.detectChanges();
+
+    expect(component.colorName).toBe('transparent');
+  });
+
+  it('should emit imageNotFoundError when handleImageNotFoundError is called', () => {
+    const emitSpy = jest.fn();
+    component.imageNotFoundError.subscribe(emitSpy);
+
+    component.handleImageNotFoundError();
+
+    expect(emitSpy).toHaveBeenCalled();
+  });
 });

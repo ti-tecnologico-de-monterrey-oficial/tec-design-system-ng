@@ -9,7 +9,7 @@ export const componentTestNavigation: ComponentTestCategory[] = [
     items: [
       {
         label: 'Box icon',
-        url: '/pages/dev-tools/box-icon',
+        url: '/pages/box-icon',
         icon: 'widgets',
       },
       {
@@ -24,7 +24,7 @@ export const componentTestNavigation: ComponentTestCategory[] = [
     items: [
       {
         label: 'Button icon',
-        url: '/pages/buttons/button-icon',
+        url: '/pages/button-icon',
         icon: 'widgets',
       },
       {
