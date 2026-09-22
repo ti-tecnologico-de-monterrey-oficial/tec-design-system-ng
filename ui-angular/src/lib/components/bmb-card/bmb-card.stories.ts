@@ -16,6 +16,7 @@ import {
   getGeneralDescription,
   getSpecialSpecifications,
 } from '@docs/utils/utils';
+import { BMB_SIZE_NAME_LIST } from '@shared/types';
 
 const templateVariants = [
   'Informative',
@@ -116,7 +117,7 @@ ${getBasicExampleBlock('BmbCardComponent')}
       control: {
         type: 'select',
       },
-      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
+      options: BMB_SIZE_NAME_LIST,
       table: {
         type: { summary: 'string' },
         category: 'Properties',
