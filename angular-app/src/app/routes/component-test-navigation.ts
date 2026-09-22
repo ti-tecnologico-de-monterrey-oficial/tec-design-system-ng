@@ -134,7 +134,7 @@ export const componentTestNavigation: ComponentTestCategory[] = [
     items: [
       {
         label: 'Status icon',
-        url: '/pages/status-indicators/status-icon',
+        url: '/pages/icon-status',
         icon: 'widgets',
       },
       {
