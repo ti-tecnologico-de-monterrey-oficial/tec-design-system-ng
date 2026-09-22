@@ -2,6 +2,7 @@ import {
   Canvas,
   Controls,
   Description,
+  Heading,
   Meta,
   Primary,
   Stories,
@@ -16,6 +17,8 @@ export const GeneralTemplate = ({
   children,
   showStories = true,
   showControls = true,
+  isMultiStory = false,
+  isTemplate = false,
 }) => (
   <section>
     {children && <Meta of={children} />}
@@ -23,17 +26,32 @@ export const GeneralTemplate = ({
     {(children && <Description of={children}>{children}</Description>) || (
       <Description />
     )}
-    <PreviewTitle />
-    {(children && (
+    {!isTemplate && <PreviewTitle />}
+    {(!isTemplate && children && (
       <Canvas meta={children} of={children.Default}>
         <Story meta={children} of={children.Default} />
       </Canvas>
-    )) || <Primary />}
-    {showControls && <TitleOfControls />}
-    {(children && showControls && (
+    )) ||
+      (!isTemplate && <Primary />)}
+    {!isTemplate && showControls && <TitleOfControls />}
+    {(!isTemplate && children && showControls && (
       <Controls meta={children} of={children.Default} />
     )) ||
-      (showControls && <Controls />)}
-    {showStories && <Stories title={STORIES_TITLE} includePrimary={false} />}
+      (!isTemplate && showControls && <Controls />)}
+    {(showStories &&
+      isMultiStory &&
+      Object.entries(children)
+        .filter(
+          ([name]) => name !== 'default' && name !== '__namedExportsOrder',
+        )
+        .map(([name, story]) => (
+          <div key={name}>
+            <Heading>{story.name || name}</Heading>
+            <Canvas meta={children} of={story}>
+              <Story meta={children} of={story} />
+            </Canvas>
+          </div>
+        ))) ||
+      (showStories && <Stories title={STORIES_TITLE} includePrimary={false} />)}
   </section>
 );
