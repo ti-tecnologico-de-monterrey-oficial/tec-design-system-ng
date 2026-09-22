@@ -1,16 +1,13 @@
 import { StoryObj } from '@storybook/angular';
+import { getViewportStoryParameters } from '@docs/components/viewport.decorator';
 import { BmbCardComponent } from '../bmb-card.component';
 
 export type CardTemplateStory = StoryObj<BmbCardComponent>;
 
 export const staticCardStory = (
   template: string,
-  mobile = false,
+  isMobile = false,
 ): CardTemplateStory => ({
   render: () => ({ template }),
-  parameters: {
-    layout: 'padded',
-    ...(mobile ? { viewport: { defaultViewport: 'mobile1' } } : {}),
-    docs: { source: { code: template, language: 'html' } },
-  },
+  ...getViewportStoryParameters(isMobile, template),
 });
