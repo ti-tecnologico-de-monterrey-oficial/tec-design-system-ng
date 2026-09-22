@@ -2,6 +2,8 @@ import type { IBmbInteractiveIconAppearance } from './components/interactive-ico
 import type { IBbmBgAppearance } from './components/advertisement-card';
 
 // components
+export * from './components/header-mitec';
+export * from './components/academic-progress';
 export * from './components/action-icon';
 export * from './components/advertisement-card';
 export * from './components/badge';

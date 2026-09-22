@@ -1,0 +1,46 @@
+<h1>Progreso académico</h1>
+<section
+  bmbLayout
+  margin="m"
+  alignItems="end"
+  aria-label="Controles del progreso académico"
+>
+  <label
+    >Créditos acreditados<br />
+    <input
+      #accreditedInput
+      type="number"
+      [value]="accredited().value"
+      (input)="setMetric('accredited', accreditedInput.value)"
+    />
+  </label>
+  <label
+    >Promedio<br />
+    <input
+      #averageInput
+      type="number"
+      step="0.1"
+      [value]="average().value"
+      (input)="setMetric('average', averageInput.value)"
+    />
+  </label>
+  <label
+    >Créditos del plan<br />
+    <input
+      #summaryInput
+      type="number"
+      [value]="summary().value"
+      (input)="setMetric('summary', summaryInput.value)"
+    />
+  </label>
+  <button bmbButton type="button" (click)="showZero()">Mostrar ceros</button>
+  <button bmbButton type="button" (click)="showLegacyValues()">
+    Probar texto y booleano
+  </button>
+  <button bmbButton type="button" (click)="reset()">Restablecer</button>
+</section>
+<bmb-academic-progress
+  [accredited]="accredited()"
+  [average]="average()"
+  [summary]="summary()"
+/>

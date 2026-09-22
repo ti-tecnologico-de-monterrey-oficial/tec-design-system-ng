@@ -133,6 +133,7 @@ export * from './lib/components/bmb-iframe/bmb-iframe.component';
 export * from './lib/components/bmb-login/bmb-login.component';
 export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
 export * from './lib/components/bmb-academic-progress/bmb-academic-progress.component';
+export * from './lib/components/bmb-header-mitec/bmb-header-mitec.component';
 export * from './lib/components/bmb-list-group/bmb-list-group.component';
 export * from './lib/components/bmb-list-group/bmb-list-group-item/bmb-list-group-item.component';
 export * from './lib/components/bmb-simple-header/bmb-simple-header.component';
