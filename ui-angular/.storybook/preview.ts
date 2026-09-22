@@ -132,9 +132,6 @@ const preview: Preview = {
       defaultValue: 'tec',
     },
   },
-  initialGlobals: {
-    viewport: { value: 'large', isRotated: false },
-  },
   decorators: [
     (StoryFn: any, context) => {
       const [{ brandingThemes }] = useGlobals();
