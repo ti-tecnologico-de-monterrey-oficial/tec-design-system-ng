@@ -25,10 +25,6 @@ import {
 } from '../../_shared/types/components/box-icon';
 import { getBoxIconClasses } from '../../_shared/logic/components/box-icon';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-box-icon',
   standalone: true,
