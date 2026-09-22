@@ -8,11 +8,11 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormControl, ValidatorFn } from '@angular/forms';
+import type { FormControl, ValidatorFn } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { CommonModule } from '@angular/common';
-import { IBmbInputError } from '../../_shared/types/input';
+import type { IBmbInputError } from '../../_shared/types/input';
 import {
   assignNewFormControl,
   newFormControlByType,
@@ -20,12 +20,9 @@ import {
 import { getUUID } from '../../_shared/logic/utils';
 import {
   getDateRangeClasses,
+  getDisableDateAfter,
   getDisableDateBefore,
 } from '../../_shared/logic/components/date-range';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-date-range',
@@ -98,9 +95,10 @@ export class BmbDateRangeComponent implements OnInit {
 
     const controlEndSubscription = this.controlEnd()?.valueChanges.subscribe(
       (value) => {
-        if (value) {
-          this.disableDatesAfterCurrent = value;
-        }
+        this.disableDatesAfterCurrent = getDisableDateAfter(
+          value,
+          this.disableDatesAfterCurrent,
+        );
       },
     );
 
