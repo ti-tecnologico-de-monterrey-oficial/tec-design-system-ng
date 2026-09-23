@@ -14,10 +14,10 @@ describe('BmbDateRangeComponent', () => {
 
     fixture = TestBed.createComponent(BmbDateRangeComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
@@ -28,7 +28,6 @@ describe('BmbDateRangeComponent', () => {
     fixture.componentRef.setInput('controlStart', controlStart);
     fixture.componentRef.setInput('controlEnd', controlEnd);
     fixture.detectChanges();
-    component.ngOnInit();
 
     component.disableDatesBeforeCurrent = 'existing-date';
 
@@ -44,7 +43,6 @@ describe('BmbDateRangeComponent', () => {
     fixture.componentRef.setInput('controlStart', controlStart);
     fixture.componentRef.setInput('controlEnd', controlEnd);
     fixture.detectChanges();
-    component.ngOnInit();
 
     controlStart.setValue('15/06/2024');
 
@@ -58,7 +56,6 @@ describe('BmbDateRangeComponent', () => {
     fixture.componentRef.setInput('controlStart', controlStart);
     fixture.componentRef.setInput('controlEnd', controlEnd);
     fixture.detectChanges();
-    component.ngOnInit();
 
     controlEnd.setValue('20/06/2024');
 
@@ -87,5 +84,52 @@ describe('BmbDateRangeComponent', () => {
     fixture.detectChanges();
 
     expect(component.getClassList()).not.toContain('bmb_date-range-column');
+  });
+
+  it('retains boundaries when both date controls are cleared', () => {
+    fixture.detectChanges();
+    component.controlStart().setValue('15/06/2024');
+    component.controlEnd().setValue('20/06/2024');
+    component.controlStart().reset('');
+    component.controlEnd().reset('');
+
+    expect(component.disableDatesBeforeCurrent).toBe('14/06/2024');
+    expect(component.disableDatesAfterCurrent).toBe('20/06/2024');
+  });
+
+  it('unsubscribes from supplied controls on destruction', () => {
+    const start = new FormControl('');
+    const end = new FormControl('');
+    fixture.componentRef.setInput('controlStart', start);
+    fixture.componentRef.setInput('controlEnd', end);
+    fixture.detectChanges();
+    start.setValue('15/06/2024');
+    end.setValue('20/06/2024');
+
+    fixture.destroy();
+    start.setValue('16/06/2024');
+    end.setValue('21/06/2024');
+
+    expect(component.disableDatesBeforeCurrent).toBe('14/06/2024');
+    expect(component.disableDatesAfterCurrent).toBe('20/06/2024');
+  });
+
+  it('emits replacement controls through the existing model outputs', () => {
+    const startChanges = jest.fn();
+    const endChanges = jest.fn();
+    component.controlStart.subscribe(startChanges);
+    component.controlEnd.subscribe(endChanges);
+    fixture.componentRef.setInput('controlStart', null);
+    fixture.componentRef.setInput('controlEnd', null);
+    fixture.detectChanges();
+
+    expect(startChanges).toHaveBeenCalledWith(component.controlStart());
+    expect(endChanges).toHaveBeenCalledWith(component.controlEnd());
+    startChanges.mockClear();
+    endChanges.mockClear();
+    component.controlStart().setValue('15/06/2024');
+    component.controlEnd().setValue('20/06/2024');
+    expect(startChanges).not.toHaveBeenCalled();
+    expect(endChanges).not.toHaveBeenCalled();
   });
 });

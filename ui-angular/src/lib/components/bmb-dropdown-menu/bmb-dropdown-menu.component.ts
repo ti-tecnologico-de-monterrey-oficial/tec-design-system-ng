@@ -18,10 +18,6 @@ import { handleDropdownItemSelection } from '../../_shared/logic/components/drop
 
 export type IBmbDropdownMenuIcon = 'more_vert' | 'more_horiz';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-dropdown-menu',
   standalone: true,

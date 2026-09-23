@@ -153,15 +153,7 @@ jobs:
           sed -i "s/{angularVersion}/${{ env.ANGULAR_VERSION }}/g" $VERSION_FILE
 
       - name: Publish to NPM
-        run: npm publish ./dist/ui-angular --tag latest --access public
+        run: |
+          npm publish ./dist/ui-angular --tag a${{ env.ANGULAR_VERSION }} --access public
         env:
           NPM_CONFIG_PROVENANCE: false
-
-      - name: Add Angular 22 dist-tag
-        run: |
-          PACKAGE_NAME=$(node -p "require('./dist/ui-angular/package.json').name")
-          PACKAGE_VERSION=$(node -p "require('./dist/ui-angular/package.json').version")
-          npm dist-tag add "${PACKAGE_NAME}@${PACKAGE_VERSION}" a22
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
