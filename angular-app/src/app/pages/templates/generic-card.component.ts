@@ -6,6 +6,7 @@ import { BmbTitleComponent } from '../../../../../ui-angular/src/lib/components/
 import {
   BmbProgressCircleComponent,
   BmbBadgeComponent,
+  BmbCheckboxComponent,
   BmbBoxIconComponent,
   BmbButtonDirective,
   BmbCardComponent,
@@ -28,6 +29,7 @@ import {
   imports: [
     BmbProgressCircleComponent,
     BmbBadgeComponent,
+    BmbCheckboxComponent,
     BmbBoxIconComponent,
     BmbButtonDirective,
     BmbCardComponent,
