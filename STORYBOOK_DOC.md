@@ -22,6 +22,28 @@ Este módulo contiene un conjunto de **constantes, tipos y funciones utilitarias
 14. [Generadores de descripción para variantes de componentes](#generadores-de-descripción-para-variantes-de-componentes)
 15. [Lista de colores](#lista-de-colores)
 16. [Checklist de documentación (comentario interno)](#checklist-de-documentación-comentario-interno)
+----
+
+Checklist:
+
+ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add parameters: { docs: { toc: TOC_OBJ...]
+
+- Tabs (optional) [Create MDX]
+- Name [Done, is is .stories]
+- Description [Add ${getGeneralDescription('')}  to parameters: { docs: { description: { component: ``...]
+  General documentation [is in getGeneralDescription]
+  getGeneralComponentDescription('') General documentation helper
+- DOM Architecture (optional) [Add ${getArchitectureSection(``)}  to parameters: { docs: { description: { component: ``...]
+- Considerations / Restrictions (optional) [Add ${getSpecialSpecifications(` ### []:`)} to parameters: { docs: { description: { component: ``...]
+- Reactive form example (optional) [Add ${getFormExampleBlock('', '', '', '')} to parameters: { docs: { description: { component: ``...]
+  TypeScript example for reactive form [is in getFormExampleBlock]
+  HTML example for reactive form [is in getFormExampleBlock]
+- TypeScript example [Add ${getBasicExampleBlock('')} to parameters: { docs: { description: { component: ``...]
+- HTML example [is in getBasicExampleBlock]
+- PROPERTIES AND EVENTS [Done, is in preview]
+  PROPERTIES [Clear in parameters: { controls: { exclude: ['']}, ...]
+  EVENTS [Clear in parameters: { controls: { exclude: [''] ...]
+- VARIANT TEMPLATES (optional) [Done, is in preview or in GeneralTemplate.mdx]
 
 ---
 
