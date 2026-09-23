@@ -52,6 +52,7 @@ export * from './lib/components/bmb-user-image/bmb-user-image.component';
 export * from './lib/components/bmb-header-mobile/bmb-header-mobile.component';
 export * from './lib/components/bmb-dot-paginator/bmb-dot-paginator.component';
 export * from './lib/components/bmb-container-button/bmb-container-button.component';
+export * from './lib/components/bmb-container-button/bmb-container-button-base/bmb-container-button-base.component';
 export * from './lib/components/bmb-container-button/bmb-container-button-default/bmb-container-button-default.component';
 export * from './lib/components/bmb-container-button/bmb-container-button-grade/bmb-container-button-grade.component';
 export * from './lib/components/bmb-container-button/bmb-container-button-badge/bmb-container-button-badge.component';
