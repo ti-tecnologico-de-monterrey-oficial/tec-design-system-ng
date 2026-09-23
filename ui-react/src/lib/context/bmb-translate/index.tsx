@@ -32,10 +32,10 @@ export interface BmbTranslateContextValue {
 }
 
 export interface BmbTranslateProviderProps {
-	children: ReactNode;
-	defaultLanguage?: string;
-	basePath?: string;
-	dictionaries?: Record<string, BmbDictionaries>;
+	readonly children: ReactNode;
+	readonly defaultLanguage?: string;
+	readonly basePath?: string;
+	readonly dictionaries?: Record<string, BmbDictionaries>;
 }
 
 const DEFAULT_LANGUAGE = 'es';

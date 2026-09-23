@@ -2,6 +2,7 @@ import {
   createContext,
   useContext,
   useEffect,
+  useMemo,
   useState,
   type ReactNode,
 } from 'react';
@@ -16,8 +17,8 @@ interface ThemeContextValue {
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 interface ThemeProviderProps {
-  children: ReactNode;
-  defaultTheme?: Theme;
+  readonly children: ReactNode;
+  readonly defaultTheme?: Theme;
 }
 
 export function ThemeProvider({
@@ -30,8 +31,13 @@ export function ThemeProvider({
     document.documentElement.dataset.theme = theme;
   }, [theme]);
 
+  const contextValue = useMemo(
+    () => ({ theme, setTheme }),
+    [theme],
+  );
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={contextValue}>
       {children}
     </ThemeContext.Provider>
   );
