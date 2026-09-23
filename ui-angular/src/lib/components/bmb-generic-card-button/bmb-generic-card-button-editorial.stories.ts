@@ -8,22 +8,33 @@ import {
   menuAction,
   actionsCluster,
   headerRow,
+  rightAlign,
   titleWithAuthor,
   body,
-  mutedLabel,
+  secondaryCaption,
   badges,
   footerLink,
+  footerLinkUnderlined,
   cardWrap,
+  technicalReferences,
 } from './bmb-generic-card-button-story-fragments';
 
 const meta: Meta<BmbGenericCardButtonComponent> = {
   title: 'Templates/Generic card button/Editorial',
   component: BmbGenericCardButtonComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [BmbGenericCardButtonComponent, ...storyFragmentImports],
     }),
   ],
+  parameters: {
+    docs: {
+      description: {
+        component: technicalReferences,
+      },
+    },
+  },
 };
 export default meta;
 
@@ -50,7 +61,7 @@ export const Editorial: Story = {
   }),
 };
 
-export const EditorialConTextLink: Story = {
+export const EditorialWithTextLink: Story = {
   render: () => ({
     template: cardWrap(
       328,
@@ -69,7 +80,7 @@ export const EditorialConTextLink: Story = {
   }),
 };
 
-export const EditorialConActions: Story = {
+export const EditorialWithActions: Story = {
   render: () => ({
     template: cardWrap(
       328,
@@ -85,33 +96,36 @@ export const EditorialConActions: Story = {
   }),
 };
 
-export const EditorialCompleto: Story = {
+export const EditorialComplete: Story = {
   render: () => ({
     template: cardWrap(
       328,
       300,
       stack([
-        headerRow(iconMedia(), menuAction),
-        badges([{ text: 'Info', appearance: 'info' }]),
+        headerRow(
+          `<div style="display: flex; align-items: center; gap: 8px">${iconMedia()}${badges([{ text: 'Info', appearance: 'info' }])}</div>`,
+          menuAction,
+        ),
         titleWithAuthor(
           'Texto principal largo (máximo 2 líneas o 3 sin contenido complementario)',
           '5',
           '700',
+          'Contenido complementario',
         ),
-        mutedLabel('Contenido complementario'),
         body(bodyText),
-        footerLink,
+        secondaryCaption('Contenido complementario'),
+        footerLinkUnderlined,
       ]),
     ),
     props,
   }),
 };
 
-export const EditorialCompletoSinMedia: Story = {
+export const EditorialCompleteWithoutMedia: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      300,
+      280,
       stack([
         headerRow(
           badges([{ text: 'Info', appearance: 'info' }]),
@@ -121,33 +135,36 @@ export const EditorialCompletoSinMedia: Story = {
           'Texto principal largo (máximo 3 líneas con contenido inferior complementario)',
           '5',
           '700',
+          'Contenido complementario',
         ),
-        mutedLabel('Contenido complementario'),
         body(bodyText),
-        footerLink,
+        secondaryCaption('Contenido complementario'),
+        footerLinkUnderlined,
       ]),
     ),
     props,
   }),
 };
 
-export const ResponsiveVerticalCompletoMedia: Story = {
+export const ResponsiveVerticalCompleteMedia: Story = {
   render: () => ({
     template: cardWrap(
       368,
-      460,
+      480,
       stack([
         imageMedia(),
-        headerRow(titleWithAuthor('Resumen de Texto', '6', '700'), menuAction),
+        rightAlign(menuAction),
+        titleWithAuthor('Resumen de Texto', '6', '700'),
         body(
           'Resumen de texto en diferentes idiomas con las consideraciones especificadas de hasta 4 líneas de texto.',
         ),
+        secondaryCaption('Contenido complementario'),
         headerRow(
           badges([
             { text: 'Info', appearance: 'info' },
             { text: 'Success', appearance: 'success' },
           ]),
-          footerLink,
+          footerLinkUnderlined,
         ),
       ]),
     ),
@@ -155,23 +172,24 @@ export const ResponsiveVerticalCompletoMedia: Story = {
   }),
 };
 
-export const ResponsiveVerticalCompletoIcono: Story = {
+export const ResponsiveVerticalCompleteIcon: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      360,
+      380,
       stack([
         headerRow(iconMedia(), menuAction),
         titleWithAuthor('Resumen de Texto', '6', '700'),
         body(
           'Resumen de texto en diferentes idiomas con las consideraciones especificadas de hasta 4 líneas de texto',
         ),
+        secondaryCaption('Contenido complementario'),
         headerRow(
           badges([
             { text: 'Info', appearance: 'info' },
             { text: 'Success', appearance: 'success' },
           ]),
-          footerLink,
+          footerLinkUnderlined,
         ),
       ]),
     ),

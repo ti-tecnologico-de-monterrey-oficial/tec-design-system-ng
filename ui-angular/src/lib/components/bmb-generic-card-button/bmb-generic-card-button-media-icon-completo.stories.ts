@@ -10,21 +10,30 @@ import {
   rightAlign,
   headerRow,
   titleWithAuthor,
-  mutedLabel,
   body,
+  secondaryCaption,
   badges,
-  footerLink,
+  footerLinkUnderlined,
   cardWrap,
+  technicalReferences,
 } from './bmb-generic-card-button-story-fragments';
 
 const meta: Meta<BmbGenericCardButtonComponent> = {
-  title: 'Templates/Generic card button/Media e Icon completo',
+  title: 'Templates/Generic card button/Media and icon complete',
   component: BmbGenericCardButtonComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [BmbGenericCardButtonComponent, ...storyFragmentImports],
     }),
   ],
+  parameters: {
+    docs: {
+      description: {
+        component: technicalReferences,
+      },
+    },
+  },
 };
 export default meta;
 
@@ -41,26 +50,24 @@ const footerRow = () =>
       { text: 'Info', appearance: 'info' },
       { text: 'Success', appearance: 'success' },
     ]),
-    footerLink,
+    footerLinkUnderlined,
   );
 
-export const MediaCompleto: Story = {
+export const MediaComplete: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      520,
+      510,
       stack([
         imageMedia(),
-        headerRow(
-          titleWithAuthor(
-            'Texto principal largo (máximo 2 líneas o 3 sin contenido complementario)',
-            '5',
-            '700',
-          ),
-          menuAction,
+        rightAlign(menuAction),
+        titleWithAuthor(
+          'Texto principal largo (máximo 2 líneas o 3 sin contenido complementario)',
+          '5',
+          '700',
         ),
-        mutedLabel('Contenido complementario'),
         body(bodyText),
+        secondaryCaption('Contenido complementario'),
         footerRow(),
       ]),
     ),
@@ -68,21 +75,21 @@ export const MediaCompleto: Story = {
   }),
 };
 
-export const MediaCompletoConSeleccion: Story = {
+export const MediaCompleteSelected: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      540,
+      530,
       stack([
         imageMedia(),
-        rightAlign(actionsCluster({ selection: true, selected: true })),
+        actionsCluster({ selection: true, selected: true }),
         titleWithAuthor(
           'Texto principal largo (máximo 2 líneas o 3 sin contenido complementario)',
           '5',
           '700',
         ),
-        mutedLabel('Contenido complementario'),
         body(bodyText),
+        secondaryCaption('Contenido complementario'),
         footerRow(),
       ]),
       { selected: true },
@@ -91,7 +98,7 @@ export const MediaCompletoConSeleccion: Story = {
   }),
 };
 
-export const IconCompleto: Story = {
+export const IconComplete: Story = {
   render: () => ({
     template: cardWrap(
       328,
@@ -102,9 +109,10 @@ export const IconCompleto: Story = {
           'Texto principal largo (máximo 3 líneas de texto con contenido inferior complementario)',
           '5',
           '700',
+          'Contenido complementario',
         ),
-        mutedLabel('Contenido complementario'),
         body(bodyText),
+        secondaryCaption('Contenido complementario'),
         footerRow(),
       ]),
     ),
@@ -112,21 +120,22 @@ export const IconCompleto: Story = {
   }),
 };
 
-export const IconCompletoConSeleccion: Story = {
+export const IconCompleteSelected: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      460,
+      360,
       stack([
-        rightAlign(actionsCluster({ selection: true, selected: true })),
+        actionsCluster({ selection: true, selected: true }),
         iconMedia(),
         titleWithAuthor(
           'Texto principal largo (máximo 3 líneas de texto con contenido inferior complementario)',
           '5',
           '700',
+          'Contenido complementario',
         ),
-        mutedLabel('Contenido complementario'),
         body(bodyText),
+        secondaryCaption('Contenido complementario'),
         footerRow(),
       ]),
       { selected: true },
