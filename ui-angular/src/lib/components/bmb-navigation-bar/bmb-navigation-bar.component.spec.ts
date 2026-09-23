@@ -73,4 +73,19 @@ describe('BmbNavigationBarComponent', () => {
       fixture.nativeElement.querySelectorAll('bmb-action-icon'),
     ).toHaveLength(2);
   });
+  it.each([false, true])(
+    'forwards links and targets with isMitecHeader=%s',
+    (isMitecHeader) => {
+      fixture.componentRef.setInput('isMitecHeader', isMitecHeader);
+      fixture.componentRef.setInput('actionHeaders', [
+        { icon: 'home', link: 'https://example.com/profile', target: '_self' },
+      ] satisfies IBmbActionHeader[]);
+      fixture.detectChanges();
+      const anchor = fixture.nativeElement.querySelector(
+        'a',
+      ) as HTMLAnchorElement;
+      expect(anchor.href).toBe('https://example.com/profile');
+      expect(anchor.target).toBe('_self');
+    },
+  );
 });

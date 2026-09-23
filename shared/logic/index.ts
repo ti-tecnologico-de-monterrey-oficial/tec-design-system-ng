@@ -1,4 +1,6 @@
 export * from './ui-content';
+export * from './components/header-mitec';
+export * from './components/academic-progress';
 export * from './components/interactive-item-default';
 export * from './components/badge';
 export * from './components/carousel';

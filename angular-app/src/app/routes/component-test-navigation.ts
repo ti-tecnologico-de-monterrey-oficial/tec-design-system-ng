@@ -183,7 +183,7 @@ export const componentTestNavigation: ComponentTestCategory[] = [
     label: 'Visual labels',
     items: [
       {
-        label: 'Academic progress (*old)',
+        label: 'Academic progress',
         url: '/pages/visual-labels/academic-progress',
         icon: 'widgets',
       },
@@ -248,7 +248,7 @@ export const componentTestNavigation: ComponentTestCategory[] = [
     label: 'Internals',
     items: [
       {
-        label: 'Header mitec (*old)',
+        label: 'Header mitec',
         url: '/pages/internals/header-mitec',
         icon: 'widgets',
       },
