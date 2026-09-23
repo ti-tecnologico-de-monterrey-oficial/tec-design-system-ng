@@ -1,3 +1,14 @@
-export * from './lib/ui-react';
-export * from './lib/example-badge';
-export * from './lib/material-rounded-icon';
+export const BAMBOO_VERSION = '0.0.1';
+
+export {
+	BmbTranslateProvider,
+	useBmbTranslate,
+} from './lib/context/bmb-translate';
+export type {
+	BmbDictionaries,
+	BmbTranslateContextValue,
+	BmbTranslateProviderProps,
+	BmbTranslationValue,
+} from './lib/context/bmb-translate';
+
+

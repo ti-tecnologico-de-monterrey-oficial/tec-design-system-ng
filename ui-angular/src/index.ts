@@ -1,6 +1,7 @@
 /*
  * Public API Surface of ds-ng
  */
+export const BAMBOO_VERSION = '1.6.4';
 
 // Services
 export * from './lib/services/old/notification/notification.service';
