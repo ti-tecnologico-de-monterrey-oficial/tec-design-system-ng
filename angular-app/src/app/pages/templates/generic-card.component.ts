@@ -6,6 +6,8 @@ import { BmbTitleComponent } from '../../../../../ui-angular/src/lib/components/
 import {
   BmbProgressCircleComponent,
   BmbBadgeComponent,
+  BmbCheckboxComponent,
+  BmbContainerButtonComponent,
   BmbBoxIconComponent,
   BmbButtonDirective,
   BmbCardComponent,
@@ -28,6 +30,8 @@ import {
   imports: [
     BmbProgressCircleComponent,
     BmbBadgeComponent,
+    BmbCheckboxComponent,
+    BmbContainerButtonComponent,
     BmbBoxIconComponent,
     BmbButtonDirective,
     BmbCardComponent,
@@ -66,7 +70,7 @@ export class GenericCard {
   ];
 
   readonly informativeImage =
-    'https://conecta.tec.mx/sites/default/files/inline-images/tec-de-monterrey.webp';
+    'https://studio-assets.supernova.io/design-systems/74407/a2f82e86-1d59-4c28-8212-6e724b560249.png';
 
   handleButtonClick(event: MouseEvent): void {
     event.stopPropagation();

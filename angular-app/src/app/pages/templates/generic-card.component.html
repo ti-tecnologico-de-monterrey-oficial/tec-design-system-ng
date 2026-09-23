@@ -51,7 +51,7 @@
                   <bmb-badge
                     bmbLayoutItem
                     text="Badge"
-                    appearance="creative-violet"
+                    appearance="creative-use-violet"
                   />
                 </div>
               </div>
@@ -219,115 +219,116 @@
 
   <h2>Home</h2>
 
-  <section>
-    <div bmbLayout margin="none" gapSize="m" alignItems="stretch">
-      <div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
-        <bmb-card
-          type="normal"
-          borderRadius="l"
-          margin="none"
-          boxShadowStyle="box-shadow-3"
-        >
-          <bmb-card-header padding="l">Title</bmb-card-header>
-          <bmb-card-content padding="l">
+  <section
+    aria-label="Home document card"
+    bmbLayout
+    margin="none"
+    gapSize="none"
+    alignItems="start"
+  >
+    <div bmbLayoutItem [colSm]="4" [colLg]="8" [colXl]="6">
+      <bmb-card type="normal" borderRadius="l" margin="none"
+        ><bmb-card-content padding="l">
+          <div>
             <div
               bmbVerticalLayout
               margin="none"
-              gapSize="l"
+              gapSize="m"
               alignItems="stretch"
-              layoutHeight="34rem"
+              layoutHeight="30rem"
             >
-              <div bmbVerticalLayoutItem>
-                <div
-                  bmbLayout
-                  margin="none"
-                  gapSize="m"
-                  justify="spaceBetween"
-                  alignItems="center"
-                  [avoidRowWrap]="true"
-                >
-                  <span bmbLayoutItem>Lorem ipsum</span>
-                  <span bmbLayoutItem>0 / 00</span>
-                </div>
-              </div>
-
-              <div bmbVerticalLayoutItem [rowGrow]="1">
+              <bmb-title
+                bmbVerticalLayoutItem
+                componentTitle="Title"
+                titleSize="5"
+                titleFontWeight="400"
+              />
+              <bmb-title
+                bmbVerticalLayoutItem
+                componentTitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat rhoncus leo vel pharetra. Donec feugiat enim"
+                titleSize="4"
+                titleFontWeight="400"
+              />
+              <bmb-divider bmbVerticalLayoutItem [removeMargin]="true" />
+              <div
+                bmbVerticalLayoutItem
+                [rowGrow]="1"
+                role="group"
+                aria-label="Documentos"
+                tabindex="0"
+              >
                 <div
                   bmbVerticalLayout
                   margin="none"
                   gapSize="l"
                   alignItems="stretch"
                 >
-                  @for (file of [1, 2, 3, 4, 5]; track file) {
+                  @for (file of [1, 2, 3]; track file) {
                     <div bmbVerticalLayoutItem>
-                      <bmb-card type="normal" borderRadius="m" margin="none">
-                        <bmb-card-content padding="l">
-                          <div
-                            bmbLayout
-                            margin="none"
-                            gapSize="m"
-                            alignItems="center"
-                            [avoidRowWrap]="true"
-                          >
-                            <bmb-icon
-                              bmbLayoutItem
-                              icon="image"
-                              [size]="24"
-                              alt="Archivo de imagen"
-                            />
-
-                            <bmb-title
-                              bmbLayoutItem
-                              [isDynamicItem]="true"
-                              [colGrow]="1"
-                              componentTitle="Nombre_Archivo.png"
-                              titleSize="5"
-                              titleFontWeight="500"
-                              subtitle="Descripción del documento agregado"
-                              subtitleSize="4"
-                              subtitleFontWeight="400"
-                            />
-
-                            <bmb-icon
-                              bmbLayoutItem
-                              icon="file_open"
-                              [size]="24"
-                              alt="Abrir archivo"
-                            />
-                          </div>
-                        </bmb-card-content>
-                      </bmb-card>
+                      <div
+                        bmbLayout
+                        margin="none"
+                        gapSize="m"
+                        alignItems="center"
+                        [avoidRowWrap]="true"
+                      >
+                        <bmb-checkbox
+                          bmbLayoutItem
+                          [checked]="file !== 2"
+                          [ariaLabel]="
+                            'Seleccionar documento ' +
+                            file +
+                            ': Nombre_Archivo.doc'
+                          "
+                        />
+                        <bmb-container-button
+                          bmbLayoutItem
+                          [colSm]="3"
+                          [colLg]="11"
+                          [colXl]="11"
+                          componentTitle="Nombre_Archivo.doc"
+                          subtitle="Descripción del documento agregado"
+                          iconLeft="file_present"
+                          iconRight="file_open"
+                        />
+                      </div>
                     </div>
                   }
                 </div>
               </div>
             </div>
-          </bmb-card-content>
-        </bmb-card>
-      </div>
+          </div> </bmb-card-content
+      ></bmb-card>
     </div>
   </section>
 
   <h2>Empty</h2>
 
-  <section>
-    <div bmbLayout margin="none" gapSize="m" alignItems="stretch">
-      <div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
-        <bmb-card
-          type="normal"
-          borderRadius="l"
-          margin="none"
-          boxShadowStyle="box-shadow-3"
-        >
-          <bmb-card-header padding="l">Title</bmb-card-header>
-
-          <bmb-card-content padding="l">
+  <section
+    aria-label="Empty card"
+    bmbLayout
+    margin="none"
+    gapSize="none"
+    alignItems="start"
+  >
+    <div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
+      <bmb-card
+        type="transparent"
+        borderRadius="l"
+        margin="none"
+        boxShadowStyle="box-shadow-3"
+      >
+        <bmb-card-header [padding]="['m', 'l']" colorBackground="contrasts-5"
+          ><bmb-title componentTitle="Title" titleSize="6" titleFontWeight="500"
+        /></bmb-card-header>
+        <bmb-card-content padding="l"
+          ><div>
             <div
               bmbVerticalLayout
               margin="none"
               gapSize="l"
               alignItems="stretch"
-              layoutHeight="36rem"
+              layoutHeight="32.75rem"
             >
               <div bmbVerticalLayoutItem>
                 <div
@@ -338,11 +339,10 @@
                   alignItems="center"
                   [avoidRowWrap]="true"
                 >
-                  <span bmbLayoutItem>Lorem ipsum</span>
-                  <span bmbLayoutItem>0 / 10</span>
+                  <span bmbLayoutItem>Lorem ipsum</span
+                  ><span bmbLayoutItem>0 / <small>10</small></span>
                 </div>
               </div>
-
               <div bmbVerticalLayoutItem [rowGrow]="1" [disableScroll]="true">
                 <div
                   bmbVerticalLayout
@@ -354,27 +354,32 @@
                 >
                   <bmb-icon
                     bmbVerticalLayoutItem
+                    [isFullWidth]="false"
                     icon="thumb_up"
                     [size]="80"
                     alt="Sin elementos"
                   />
-
                   <bmb-title
                     bmbVerticalLayoutItem
                     componentTitle="Title"
                     titleSize="8"
                     titleFontWeight="700"
+                    [isCenterContent]="true"
+                  />
+                  <bmb-title
+                    bmbVerticalLayoutItem
+                    componentTitle=""
                     subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
                     subtitleSize="4"
                     subtitleFontWeight="400"
+                    [isCenterContent]="true"
                   />
-
                   <div bmbVerticalLayoutItem [isFullWidth]="false">
                     <button
                       bmbButton
+                      type="button"
                       appearance="primary"
-                      size="large"
-                      (click)="handleButtonClick($event)"
+                      size="small"
                     >
                       Button
                     </button>
@@ -382,9 +387,9 @@
                 </div>
               </div>
             </div>
-          </bmb-card-content>
-        </bmb-card>
-      </div>
+          </div></bmb-card-content
+        ></bmb-card
+      >
     </div>
   </section>
   <br />
