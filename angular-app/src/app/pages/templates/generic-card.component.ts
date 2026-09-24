@@ -49,6 +49,13 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GenericCard {
+  readonly isInformativeMobile = toSignal(
+    inject(BreakpointObserver)
+      .observe('(width < 1001px)')
+      .pipe(map((state) => state.matches)),
+    { initialValue: false },
+  );
+
   readonly isItemListMobile = toSignal(
     inject(BreakpointObserver)
       .observe('(width < 1001px)')
