@@ -10,7 +10,6 @@ import {
 } from '@docs/utils/utils';
 import {
   DBmbDropdownMenuParamDesc,
-  DBmbGenericParamDesc,
   getOnEventParam,
 } from '@docs/utils/parameterDescriptions';
 import { provideHttpClient } from '@angular/common/http';
@@ -52,7 +51,7 @@ ${getBasicExampleBlock('BmbDropdownMenuComponent', '', '', '', 'ActivatedRoute',
   },
   argTypes: {
     items: DBmbDropdownMenuParamDesc.items,
-    icon: DBmbGenericParamDesc.deprecated,
+    icon: DBmbDropdownMenuParamDesc.icon,
     clickedItem: getOnEventParam(
       {
         name: 'clickedItem',
@@ -65,6 +64,7 @@ ${getBasicExampleBlock('BmbDropdownMenuComponent', '', '', '', 'ActivatedRoute',
     ),
   },
   args: {
+    icon: 'more_vert',
     items: [
       {
         icon: 'link',
