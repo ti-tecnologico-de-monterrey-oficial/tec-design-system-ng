@@ -28,8 +28,19 @@ export const Main = ({ showControls, showStories }) => (
   <GeneralTemplate showControls={showControls} showStories={showStories} />
 );
 
-export const Item = ({ children, showControls, showStories }) => (
-  <GeneralTemplate showControls={showControls} showStories={showStories}>
+export const Item = ({
+  children,
+  showControls,
+  showStories,
+  isMultiStory,
+  isTemplate,
+}) => (
+  <GeneralTemplate
+    showControls={showControls}
+    showStories={showStories}
+    isMultiStory={isMultiStory}
+    isTemplate={isTemplate}
+  >
     {children}
   </GeneralTemplate>
 );
@@ -41,6 +52,9 @@ export const ListTemplate = ({
   context = {},
   showStories,
   showControls,
+  isMultiStory,
+  isTemplate,
+  isSpecialStory,
 }) => {
   return (
     <section>
@@ -63,31 +77,43 @@ export const ListTemplate = ({
           ]}
           content={[
             <Main
-              showStories={getPropertyValue({
-                item: main,
-                context,
-                name: 'showStories',
-              })}
-              showControls={getPropertyValue({
-                item: main,
-                context,
-                name: 'showControls',
-              })}
+              showStories={
+                showStories ||
+                getPropertyValue({
+                  item: main,
+                  context,
+                  name: 'showStories',
+                })
+              }
+              showControls={
+                showControls ||
+                getPropertyValue({
+                  item: main,
+                  context,
+                  name: 'showControls',
+                })
+              }
             >
               {main}
             </Main>,
             ...content.map((item) => (
               <Item
-                showStories={getPropertyValue({
-                  item,
-                  context,
-                  name: 'showStories',
-                })}
-                showControls={getPropertyValue({
-                  item,
-                  context,
-                  name: 'showControls',
-                })}
+                showStories={
+                  showStories ||
+                  getPropertyValue({
+                    item,
+                    context,
+                    name: 'showStories',
+                  })
+                }
+                showControls={
+                  showControls ||
+                  getPropertyValue({
+                    item,
+                    context,
+                    name: 'showControls',
+                  })
+                }
               >
                 {item}
               </Item>
@@ -95,7 +121,22 @@ export const ListTemplate = ({
           ]}
         />
       )}
-      {content && !main && (
+      {isTemplate && content && !main && (
+        <Tabs
+          tabs={content.map((item) => getTabTitle(item))}
+          content={content.map((item) => (
+            <Item
+              showStories={true}
+              showControls={false}
+              isMultiStory={isMultiStory}
+              isTemplate={isTemplate}
+            >
+              {item}
+            </Item>
+          ))}
+        />
+      )}
+      {content && !main && !isTemplate && isSpecialStory && (
         <Tabs
           tabs={content.map((item) => getTabTitle(item))}
           content={content.map((item, _, index) => (
@@ -113,6 +154,29 @@ export const ListTemplate = ({
                 context,
                 name: 'showControls',
               })}
+              isMultiStory={isMultiStory}
+            >
+              {item}
+            </Item>
+          ))}
+        />
+      )}
+      {content && !main && !isTemplate && !isSpecialStory && (
+        <Tabs
+          tabs={content.map((item) => getTabTitle(item))}
+          content={content.map((item) => (
+            <Item
+              showStories={getPropertyValue({
+                item,
+                context,
+                name: 'showStories',
+              })}
+              showControls={getPropertyValue({
+                item,
+                context,
+                name: 'showControls',
+              })}
+              isMultiStory={isMultiStory}
             >
               {item}
             </Item>

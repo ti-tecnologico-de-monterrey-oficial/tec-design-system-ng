@@ -19,6 +19,8 @@
         [iconSize]="iconSize() || actionHeader.iconSize"
         icon=""
         [isSVGTemplate]="true"
+        [link]="actionHeader.link"
+        [target]="actionHeader.target"
         (buttonClick)="handleClick(actionHeader)"
       >
       </bmb-action-icon>

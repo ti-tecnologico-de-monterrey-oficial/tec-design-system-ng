@@ -1,6 +1,7 @@
 /*
  * Public API Surface of ds-ng
  */
+export const BAMBOO_VERSION = '1.6.4';
 
 // Services
 export * from './lib/services/old/notification/notification.service';
@@ -52,6 +53,7 @@ export * from './lib/components/bmb-user-image/bmb-user-image.component';
 export * from './lib/components/bmb-header-mobile/bmb-header-mobile.component';
 export * from './lib/components/bmb-dot-paginator/bmb-dot-paginator.component';
 export * from './lib/components/bmb-container-button/bmb-container-button.component';
+export * from './lib/components/bmb-container-button/bmb-container-button-base/bmb-container-button-base.component';
 export * from './lib/components/bmb-container-button/bmb-container-button-default/bmb-container-button-default.component';
 export * from './lib/components/bmb-container-button/bmb-container-button-grade/bmb-container-button-grade.component';
 export * from './lib/components/bmb-container-button/bmb-container-button-badge/bmb-container-button-badge.component';
@@ -133,6 +135,7 @@ export * from './lib/components/bmb-iframe/bmb-iframe.component';
 export * from './lib/components/bmb-login/bmb-login.component';
 export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
 export * from './lib/components/bmb-academic-progress/bmb-academic-progress.component';
+export * from './lib/components/bmb-header-mitec/bmb-header-mitec.component';
 export * from './lib/components/bmb-list-group/bmb-list-group.component';
 export * from './lib/components/bmb-list-group/bmb-list-group-item/bmb-list-group-item.component';
 export * from './lib/components/bmb-simple-header/bmb-simple-header.component';

@@ -37,15 +37,30 @@
     />
 
     <p><strong>Total de páginas:</strong> {{ totalPages() }}</p>
-    <p><strong>Último evento:</strong> {{ lastEvent() }}</p>
+    <p aria-live="polite"><strong>Último evento:</strong> {{ lastEvent() }}</p>
+
+    <h2>Escenarios</h2>
+    <button type="button" (click)="setTotalItems(0)">Sin resultados</button>
+    <button
+      type="button"
+      (click)="setTotalItems(1); setItemsPerPage(5); setCurrentPage(1)"
+    >
+      Una página
+    </button>
+    <button
+      type="button"
+      (click)="setTotalItems(12); setItemsPerPage(5); setCurrentPage(3)"
+    >
+      Última página incompleta
+    </button>
   </aside>
 
   <div class="preview">
     <div class="items" aria-live="polite">
       @for (item of visibleItems(); track item) {
-        <div>{{ item }}</div>
+      <div>{{ item }}</div>
       } @empty {
-        <p>No hay elementos para mostrar.</p>
+      <p>No hay elementos para mostrar.</p>
       }
     </div>
 

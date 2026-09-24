@@ -1,6 +1,8 @@
+import { componentTestRoutes } from './routes/component-tests.routes';
 import { Route } from '@angular/router';
 
 export const appRoutes: Route[] = [
+  ...componentTestRoutes,
   {
     path: 'pages/item-default',
     title: 'Item default',
@@ -611,7 +613,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-  path: 'pages/student-activity-card',
+    path: 'pages/student-activity-card',
     title: 'BmbStudentActivityCard | Bamboo migration dashboard',
     loadComponent: () =>
       import(

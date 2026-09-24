@@ -162,7 +162,7 @@ Nx corre primero `ui-angular:sync-shared` y luego el target solicitado.
 
 ## Comando: `nx run ui-react:sync-shared`
 
-Sincroniza los assets compartidos hacia la salida de compilacion de la libreria React.
+Sincroniza los tipos compartidos hacia la libreria React y los assets hacia su salida de compilacion.
 
 ```bash
 nx run ui-react:sync-shared
@@ -170,7 +170,9 @@ nx run ui-react:sync-shared
 
 ### Que hace
 
-- Borra `dist/ui-react/assets/shared`.
+- Borra `ui-react/src/lib/_shared` y `dist/ui-react/assets/shared`.
+- Copia `shared/logic` a `ui-react/src/lib/_shared/logic`.
+- Copia `shared/types` a `ui-react/src/lib/_shared/types`.
 - Recrea la ruta destino en `dist/ui-react/assets`.
 - Copia `shared/assets` a `dist/ui-react/assets/shared`.
 
@@ -188,4 +190,4 @@ En `ui-react/project.json`, este target usa el executor `nx:run-commands` y decl
 ### Diferencia contra Angular
 
 - `ui-angular:sync-shared` sincroniza `shared/logic` y `shared/types` a `ui-angular/src/lib/_shared` y se ejecuta automaticamente antes de `build` y `test`.
-- `ui-react:sync-shared` sincroniza `shared/assets` hacia `dist/ui-react/assets/shared` como paso dedicado manual.
+- `ui-react:sync-shared` sincroniza `shared/logic` y `shared/types` hacia `ui-react/src/lib/_shared`, y `shared/assets` hacia `dist/ui-react/assets/shared` como paso dedicado manual.

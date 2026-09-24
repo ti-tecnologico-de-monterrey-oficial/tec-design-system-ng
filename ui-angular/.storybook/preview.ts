@@ -1,5 +1,4 @@
 import type { Preview } from '@storybook/angular';
-// import '../src/lib/_shared/assets/styles/storybook-theme.scss';
 import {
   Controls,
   Description,
@@ -19,6 +18,7 @@ import {
 import { useEffect, useGlobals } from 'storybook/internal/preview-api';
 import { themes } from 'storybook/theming';
 import { withThemeByClassName } from '@storybook/addon-themes';
+import { withDocsViewport } from '@docs/components/viewport.decorator';
 
 const preview: Preview = {
   parameters: {
@@ -132,10 +132,6 @@ const preview: Preview = {
       defaultValue: 'tec',
     },
   },
-  initialGlobals: {
-    layout: 'vertical',
-    viewport: { value: 'tablet', isRotated: false },
-  },
   decorators: [
     (StoryFn: any, context) => {
       const [{ brandingThemes }] = useGlobals();
@@ -165,6 +161,7 @@ const preview: Preview = {
 
       return story;
     },
+    withDocsViewport,
     withThemeByClassName({
       themes: {
         light: 'storybook-light-theme',

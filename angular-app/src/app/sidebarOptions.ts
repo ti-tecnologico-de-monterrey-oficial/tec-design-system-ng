@@ -247,6 +247,12 @@ export const sidebarOptions: SidebarElement[][] = [
           link: '/pages/button-icon',
         },
         {
+          id: 48,
+          icon: 'crop_square',
+          title: 'Box icon',
+          link: '/pages/box-icon',
+        },
+        {
           id: 30,
           icon: 'date_range',
           title: 'Date range',

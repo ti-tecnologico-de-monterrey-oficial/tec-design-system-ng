@@ -4,6 +4,7 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "lib": ["es2022", "dom"],
     "types": ["vite/client", "node"]
   },
   "files": [],

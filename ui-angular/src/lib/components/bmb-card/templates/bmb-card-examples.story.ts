@@ -1,11 +1,20 @@
 import { BmbProgressCircleComponent } from '../../bmb-progress-cirlce/bmb-progress-circle.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+} from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import type { StoryObj } from '@storybook/angular';
-import { BmbCardComponent, BmbCardContentComponent } from '../bmb-card.component';
+import { getViewportStoryParameters } from '@docs/components/viewport.decorator';
+import {
+  BmbCardComponent,
+  BmbCardContentComponent,
+} from '../bmb-card.component';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
 import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
@@ -484,20 +493,48 @@ export type CardExampleVariant = keyof typeof CARD_EXAMPLES;
 @Component({
   selector: 'bmb-card-example',
   standalone: true,
-  imports: [BmbProgressCircleComponent, BmbIconComponent, BmbCardComponent, BmbCardContentComponent, BmbBadgeComponent,
-    BmbImageComponent, BmbTitleComponent, BmbFocusElementComponent,
-    BmbDividerComponent, BmbButtonDirective, BmbLayoutDirective,
-    BmbLayoutItemDirective, BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirective],
+  imports: [
+    BmbProgressCircleComponent,
+    BmbIconComponent,
+    BmbCardComponent,
+    BmbCardContentComponent,
+    BmbBadgeComponent,
+    BmbImageComponent,
+    BmbTitleComponent,
+    BmbFocusElementComponent,
+    BmbDividerComponent,
+    BmbButtonDirective,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
+  ],
   template: `@switch (variant()) {
-  @case ('informative-balance') { ${CARD_EXAMPLES['informative-balance']} }
-  @case ('informative-media-expanded-vertical') { ${CARD_EXAMPLES['informative-media-expanded-vertical']} }
-  @case ('informative-media-detail-vertical') { ${CARD_EXAMPLES['informative-media-detail-vertical']} }
-  @case ('informative-media-detail-horizontal') { ${CARD_EXAMPLES['informative-media-detail-horizontal']} }
-  @case ('informative-media-simple') { ${CARD_EXAMPLES['informative-media-simple']} }
-  @case ('informative-media-simple-horizontal') { ${CARD_EXAMPLES['informative-media-simple-horizontal']} }
-  @case ('informative-focus-element') { ${CARD_EXAMPLES['informative-focus-element']} }
-  @case ('informative-item-list') { ${CARD_EXAMPLES['informative-item-list']} }
-}`,
+    @case ('informative-balance') {
+      ${CARD_EXAMPLES['informative-balance']}
+    }
+    @case ('informative-media-expanded-vertical') {
+      ${CARD_EXAMPLES['informative-media-expanded-vertical']}
+    }
+    @case ('informative-media-detail-vertical') {
+      ${CARD_EXAMPLES['informative-media-detail-vertical']}
+    }
+    @case ('informative-media-detail-horizontal') {
+      ${CARD_EXAMPLES['informative-media-detail-horizontal']}
+    }
+    @case ('informative-media-simple') {
+      ${CARD_EXAMPLES['informative-media-simple']}
+    }
+    @case ('informative-media-simple-horizontal') {
+      ${CARD_EXAMPLES['informative-media-simple-horizontal']}
+    }
+    @case ('informative-focus-element') {
+      ${CARD_EXAMPLES['informative-focus-element']}
+    }
+    @case ('informative-item-list') {
+      ${CARD_EXAMPLES['informative-item-list']}
+    }
+  }`,
   styleUrl: './bmb-card-examples.story.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -511,12 +548,42 @@ export class BmbCardExampleComponent {
   );
 
   readonly informativeItems = [
-    { id: 1, stackedMobileActions: true, showSubtitle: true, showComplement: true },
-    { id: 2, stackedMobileActions: true, showSubtitle: true, showComplement: true },
-    { id: 3, stackedMobileActions: false, showSubtitle: true, showComplement: true },
-    { id: 4, stackedMobileActions: false, showSubtitle: true, showComplement: true },
-    { id: 5, stackedMobileActions: false, showSubtitle: true, showComplement: true },
-    { id: 6, stackedMobileActions: false, showSubtitle: false, showComplement: false },
+    {
+      id: 1,
+      stackedMobileActions: true,
+      showSubtitle: true,
+      showComplement: true,
+    },
+    {
+      id: 2,
+      stackedMobileActions: true,
+      showSubtitle: true,
+      showComplement: true,
+    },
+    {
+      id: 3,
+      stackedMobileActions: false,
+      showSubtitle: true,
+      showComplement: true,
+    },
+    {
+      id: 4,
+      stackedMobileActions: false,
+      showSubtitle: true,
+      showComplement: true,
+    },
+    {
+      id: 5,
+      stackedMobileActions: false,
+      showSubtitle: true,
+      showComplement: true,
+    },
+    {
+      id: 6,
+      stackedMobileActions: false,
+      showSubtitle: false,
+      showComplement: false,
+    },
   ];
 
   readonly informativeImage =
@@ -527,14 +594,16 @@ export class BmbCardExampleComponent {
   }
 }
 
-export function cardExampleStory(variant: CardExampleVariant, mobile = false): StoryObj<BmbCardExampleComponent> {
+export function cardExampleStory(
+  variant: CardExampleVariant,
+  isMobile = false,
+): StoryObj<BmbCardExampleComponent> {
   return {
     args: { variant },
-    render: (args) => ({ props: args, template: '<bmb-card-example [variant]="variant" />' }),
-    globals: { viewport: { value: mobile ? 'small' : 'extra', isRotated: false } },
-    parameters: {
-      layout: 'padded',
-      docs: { source: { code: CARD_EXAMPLES[variant], language: 'html' } },
-    },
+    render: (args) => ({
+      props: args,
+      template: '<bmb-card-example [variant]="variant" />',
+    }),
+    ...getViewportStoryParameters(isMobile, CARD_EXAMPLES[variant]),
   };
 }

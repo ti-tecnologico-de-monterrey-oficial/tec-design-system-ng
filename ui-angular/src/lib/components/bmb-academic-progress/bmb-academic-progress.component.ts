@@ -12,13 +12,16 @@ import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { IBmbNameValuePair } from '../../_shared/types/index';
+import type { IBmbNameValuePair } from '../../_shared/types/utils';
+import type { IBmbAcademicProgressMetric } from '../../_shared/types/components/academic-progress';
+import {
+  copyAcademicProgressMetrics,
+  getAcademicProgressMetrics,
+  getMissingAcademicProgressInputs,
+  shouldShowAcademicProgressMetric,
+} from '../../_shared/logic/components/academic-progress';
 import { buildErrorMessage } from '../../_shared/logic/utils';
 import { CommonModule } from '@angular/common';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-academic-progress',
@@ -40,13 +43,14 @@ export class BmbAcademicProgressComponent implements OnInit, OnChanges {
   average = input.required<IBmbNameValuePair>();
   summary = input.required<IBmbNameValuePair>();
 
-  metrics = signal<{ name: string; value: number }[]>([]);
+  metrics = signal<IBmbAcademicProgressMetric[]>([]);
 
   ngOnInit() {
-    const inputs: string[] = [];
-    if (!this.accredited()) inputs.push('accredited');
-    if (!this.average()) inputs.push('average');
-    if (!this.summary()) inputs.push('summary');
+    const inputs = getMissingAcademicProgressInputs(
+      this.accredited(),
+      this.average(),
+      this.summary(),
+    );
 
     if (inputs.length) {
       throw new Error(
@@ -56,20 +60,13 @@ export class BmbAcademicProgressComponent implements OnInit, OnChanges {
       );
     }
 
-    this.updateMetrics([
-      {
-        name: this.accredited().name,
-        value: this.accredited().value as number,
-      },
-      {
-        name: this.average().name,
-        value: this.average().value as number,
-      },
-      {
-        name: this.summary().name,
-        value: this.summary().value as number,
-      },
-    ]);
+    this.updateMetrics(
+      getAcademicProgressMetrics(
+        this.accredited(),
+        this.average(),
+        this.summary(),
+      ),
+    );
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -78,34 +75,16 @@ export class BmbAcademicProgressComponent implements OnInit, OnChanges {
     const averageValue = changes['average']?.currentValue || this.average();
     const summaryValue = changes['summary']?.currentValue || this.summary();
 
-    this.updateMetrics([
-      {
-        name: accreditedValue.name,
-        value: accreditedValue.value as number,
-      },
-      {
-        name: averageValue.name,
-        value: averageValue.value as number,
-      },
-      {
-        name: summaryValue.name,
-        value: summaryValue.value as number,
-      },
-    ]);
-  }
-
-  updateMetrics(newMetrics: { name: string; value: number }[]): void {
-    this.metrics.set(
-      newMetrics.map((metric) => {
-        return {
-          name: metric.name,
-          value: metric.value,
-        };
-      }),
+    this.updateMetrics(
+      getAcademicProgressMetrics(accreditedValue, averageValue, summaryValue),
     );
   }
 
+  updateMetrics(newMetrics: IBmbAcademicProgressMetric[]): void {
+    this.metrics.set(copyAcademicProgressMetrics(newMetrics));
+  }
+
   shouldShowMetric(metric: IBmbNameValuePair): boolean {
-    return typeof metric.value === 'number';
+    return shouldShowAcademicProgressMetric(metric);
   }
 }

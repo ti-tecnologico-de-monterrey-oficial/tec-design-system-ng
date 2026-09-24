@@ -11,10 +11,6 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { IBmbContrast } from '../../_shared/types/colors';
 import { getButtonIconClasses } from '../../_shared/logic/components/button-icon';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-button-icon',
   standalone: true,

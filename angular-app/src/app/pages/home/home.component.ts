@@ -1,3 +1,4 @@
+import { componentTestNavigation } from '../../routes/component-test-navigation';
 // eslint-disable @typescript-eslint/no-inferrable-types
 import { CommonModule } from '@angular/common';
 import {
@@ -59,6 +60,7 @@ import { FormControl } from '@angular/forms';
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent {
+  readonly componentTestNavigation = componentTestNavigation;
   @Input() id_grado_logro!: number | string | null | undefined;
   @Input() nombre_grado_logro = '';
 
