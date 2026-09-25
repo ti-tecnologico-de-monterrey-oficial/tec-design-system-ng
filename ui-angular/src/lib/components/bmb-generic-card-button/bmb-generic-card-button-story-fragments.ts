@@ -152,7 +152,7 @@ export const cardWrap = (
   content: string,
   opts: { selected?: boolean; disabled?: boolean } = {},
 ) =>
-  `<div style="padding: 1.5rem"><div style="width: ${width}px; height: ${height}px">
+  `<div style="padding: 1.5rem"><div style="width: ${width}px">
     <bmb-generic-card-button ${opts.selected ? '[selected]="true" ' : ''}${opts.disabled ? '[disabled]="true" ' : ''}(cardClick)="log('card clicked')">
       ${content}
     </bmb-generic-card-button>
