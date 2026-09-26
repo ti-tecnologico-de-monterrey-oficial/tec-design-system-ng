@@ -5,56 +5,72 @@
 <div class="bmb_template-margin-for-sidebar">
   <section bmbLayout margin="none" gapSize="m">
     <section bmbLayoutItem [colSm]="4" [colLg]="6">
-      <bmb-accordion
-        #accordionComponents
-        [expanded]="true"
-        borderRadius="m"
-        margin="none"
-        paddingHeader="m"
-        paddingContent="m"
-        icon="keyboard_arrow_down"
-      >
-        <ng-template #bmbAccordionHeader>
-          <h2>COMPONENTS</h2>
-        </ng-template>
-        <ng-template #bmbAccordionContent>
-          <p>(*old): Pending migration.</p>
-          <section bmbVerticalLayout>
-            @for (category of componentTestNavigation; track category.label) {
-              <bmb-accordion
-                borderRadius="m"
-                margin="none"
-                paddingHeader="m"
-                paddingContent="m"
-                icon="keyboard_arrow_down"
-                bmbVerticalLayoutItem
-                [rowGrow]="1"
-              >
-                <ng-template #bmbAccordionHeader
-                  ><h2>{{ category.label }}</h2></ng-template
-                >
-                <ng-template #bmbAccordionContent>
-                  <bmb-action-menu
-                    [componentTitle]="category.label"
-                    [showHeader]="false"
+      @for (category of navigationTest; track category.label) {
+        <bmb-accordion
+          #accordionComponents
+          [expanded]="true"
+          borderRadius="m"
+          margin="none"
+          paddingHeader="m"
+          paddingContent="m"
+          icon="keyboard_arrow_down"
+        >
+          <ng-template #bmbAccordionHeader>
+            <h2>{{ category.label }}</h2>
+          </ng-template>
+          <ng-template #bmbAccordionContent>
+            <p>(*old): Pending migration.</p>
+            <section bmbVerticalLayout>
+              @for (subCategory of category.items; track subCategory.label) {
+                @if ($any(subCategory).items) {
+                  <bmb-accordion
+                    borderRadius="m"
+                    margin="none"
+                    paddingHeader="m"
+                    paddingContent="m"
+                    icon="keyboard_arrow_down"
+                    bmbVerticalLayoutItem
+                    [rowGrow]="1"
                   >
-                    <ng-template #actionMenuItem>
-                      @for (item of category.items; track item.url) {
-                        <bmb-item-hyperlink
-                          [icon]="item.icon"
-                          [label]="item.label"
-                          value="page"
-                          [valueLink]="item.url"
-                        />
-                      }
+                    <ng-template #bmbAccordionHeader>
+                      <h2>{{ subCategory.label }}</h2>
                     </ng-template>
-                  </bmb-action-menu>
-                </ng-template>
-              </bmb-accordion>
-            }
-          </section>
-        </ng-template>
-      </bmb-accordion>
+                    <ng-template #bmbAccordionContent>
+                      <bmb-action-menu
+                        [componentTitle]="category.label"
+                        [showHeader]="false"
+                      >
+                        <ng-template #actionMenuItem>
+                          @for (
+                            item of $any(subCategory).items;
+                            track item.url
+                          ) {
+                            <bmb-item-hyperlink
+                              [icon]="item.icon"
+                              [label]="item.label"
+                              value="page"
+                              [valueLink]="item.url"
+                            />
+                          }
+                        </ng-template>
+                      </bmb-action-menu>
+                    </ng-template>
+                  </bmb-accordion>
+                } @else {
+                  <bmb-item-hyperlink
+                    [icon]="$any(subCategory).icon"
+                    [label]="subCategory.label"
+                    value="page"
+                    [valueLink]="$any(subCategory).url"
+                    bmbVerticalLayoutItem
+                    [rowGrow]="1"
+                  />
+                }
+              }
+            </section>
+          </ng-template>
+        </bmb-accordion>
+      }
     </section>
     <section bmbLayoutItem [colSm]="4" [colLg]="6">
       <section bmbVerticalLayout>

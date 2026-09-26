@@ -3,7 +3,7 @@ import { BmbTitleComponent } from './bmb-title.component';
 import { getBasicExampleBlock } from '@docs/utils/utils';
 
 export default {
-  title: 'Dev tools/Title template',
+  title: 'Dev tools/Title',
   component: BmbTitleComponent,
   parameters: {
     docs: {

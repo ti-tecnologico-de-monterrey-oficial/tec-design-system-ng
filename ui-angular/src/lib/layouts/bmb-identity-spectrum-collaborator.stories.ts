@@ -704,7 +704,7 @@ export class StorybookIdentitySpectrumCollaborator {
 }
 
 export default {
-  title: 'Organisms/Identity spectrum/Collaborator',
+  title: 'Particularities/mitec web//Collaborator',
   component: StorybookIdentitySpectrumCollaborator,
   tags: ['!autodocs'],
   decorators: [
