@@ -13,7 +13,7 @@ import {
 import { BmbBoxIconComponent } from './bmb-box-icon.component';
 
 export default {
-  title: 'Dev tools/Box icon',
+  title: 'Components/Visual labels/Box icon',
   component: BmbBoxIconComponent,
   parameters: {
     docs: {

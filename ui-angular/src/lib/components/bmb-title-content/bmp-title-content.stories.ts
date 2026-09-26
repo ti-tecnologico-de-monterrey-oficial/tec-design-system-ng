@@ -4,7 +4,7 @@ import { RELEVANT_TITLE } from '@docs/utils/utils';
 import { DBmbIconParamDesc } from '@docs/utils/parameterDescriptions';
 
 export default {
-  title: 'Internals/Title content template',
+  title: 'Dev tools/Title content',
   component: BmbTitleContentComponent,
   parameters: {
     docs: {

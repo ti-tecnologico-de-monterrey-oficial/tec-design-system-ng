@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbSearchCardComponent } from './bmb-search-card.component';
 
 export default {
-  title: 'Components/Containers/Search card',
+  title: 'Particularities/mitec web/Search card',
   component: BmbSearchCardComponent,
   parameters: {
     docs: {

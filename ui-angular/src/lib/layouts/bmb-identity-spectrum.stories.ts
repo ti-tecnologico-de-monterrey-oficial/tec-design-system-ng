@@ -1,5 +1,5 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { BmbTopBarComponent } from '../components/bmb-top-bar/bmb-top-bar.component';
@@ -56,7 +56,7 @@ import {
 import { BmbActionMenuComponent } from '../components/bmb-action-menu/bmb-action-menu.component';
 import { BmbItemComponent } from '../components/bmb-item/bmb-item.component';
 
-const HTML_TEMPLATE: string = `
+const HTML_TEMPLATE = `
 <div class="bmb_organism-identity-spectrum">
   <bmb-top-bar
     [userInformation]="{
@@ -583,11 +583,11 @@ export class StorybookIdentitySpectrumStudent {
     this.modalService.openModal(dataModal);
   }
 
-  constructor(private modalService: BmbNativeModalService) {}
+  modalService = inject(BmbNativeModalService);
 }
 
 export default {
-  title: 'Organisms/Identity spectrum/Student',
+  title: 'Particularities/Identity spectrum/Student',
   component: StorybookIdentitySpectrumStudent,
   tags: ['!autodocs'],
   decorators: [
