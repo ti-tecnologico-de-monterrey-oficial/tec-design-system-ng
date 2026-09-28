@@ -15,22 +15,22 @@
           bmbLayout
           margin="none"
           [class.bmb_margin-none]="false"
-          [gapSize]="isInformativeMobile() ? 'm' : 'xl'"
+          gapSize="s"
           alignItems="stretch"
           [flow]="{ m: 'row', l: 'reverse', xl: 'reverse' }"
         >
           <bmb-image
             bmbLayoutItem
             [colSm]="4"
-            [colLg]="5"
+            [colLg]="4"
             [src]="informativeImage"
             alt="Edificio de Rectoría del Tecnológico de Monterrey"
             [borderRadius]="isInformativeMobile() ? 'none' : 'm'"
             objectFit="cover"
-            [minHeight]="{ s: '14rem', l: '18rem' }"
+            [minHeight]="{ s: '12rem', l: '16rem' }"
           />
 
-          <div bmbLayoutItem [colSm]="4" [colLg]="7">
+          <div bmbLayoutItem [colSm]="4" [colLg]="8">
             <div
               bmbVerticalLayout
               margin="none"
