@@ -360,6 +360,12 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'List items',
           link: '/pages/list-items',
         },
+        {
+          id: 49,
+          icon: 'sell',
+          title: 'Input tags',
+          link: '/pages/input-tags',
+        },
       ],
     },
   ],

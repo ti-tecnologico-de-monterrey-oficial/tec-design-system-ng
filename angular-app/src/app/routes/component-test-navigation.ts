@@ -1,4 +1,4 @@
-interface ComponentItem {
+﻿interface ComponentItem {
   label: string;
   url: string;
   icon: string;
@@ -216,8 +216,8 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Text input with tags (*old)',
-            url: '/pages/inputs/text-input-with-tags',
+            label: 'Text input with tags',
+            url: '/pages/input-tags',
             icon: 'widgets',
           },
           {
@@ -318,7 +318,7 @@ export const navigationTest: ComponentGroupTest[] = [
           },
           {
             label: 'Multi dot paginator',
-            url: '/pages/status-indicators/multi-dot-paginator',
+            url: '/multi-dot-paginator',
             icon: 'widgets',
           },
           {
