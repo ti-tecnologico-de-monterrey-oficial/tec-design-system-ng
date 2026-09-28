@@ -20,7 +20,6 @@ export type IBmbGenericCardButtonAppearance = 'default' | 'alternative';
 })
 export class BmbGenericCardButtonComponent {
   disabled = input<boolean>(false);
-  selected = input<boolean>(false);
   appearance = input<IBmbGenericCardButtonAppearance>('default');
 
   cardClick = output<MouseEvent | KeyboardEvent>();
