@@ -1,3 +1,4 @@
+import { BmbHomeCardComponent } from '../../bmb-home-card/bmb-home-card.component';
 import { BmbProgressCircleComponent } from '../../bmb-progress-cirlce/bmb-progress-circle.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import {
@@ -10,7 +11,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import type { StoryObj } from '@storybook/angular';
-import { getViewportStoryParameters } from '@docs/components/viewport.decorator';
+import { getCardViewportStoryParameters } from './bmb-card-template-story.utils';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
@@ -28,6 +29,76 @@ import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-v
 import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 
 export const CARD_EXAMPLES = {
+  empty: `<bmb-home-card
+    data-empty-card
+    componentTitle="Title"
+    [showRightButton]="false"
+    contentPadding="l"
+  >
+    <div
+      bmbVerticalLayout
+      margin="none"
+      gapSize="l"
+      alignItems="stretch"
+      layoutHeight="100%"
+    >
+      <div bmbVerticalLayoutItem>
+        <div
+          bmbLayout
+          margin="none"
+          gapSize="m"
+          justify="spaceBetween"
+          alignItems="center"
+          [avoidRowWrap]="true"
+        >
+          <span bmbLayoutItem>Lorem ipsum</span>
+          <span bmbLayoutItem>0 / <small>10</small></span>
+        </div>
+      </div>
+
+      <div bmbVerticalLayoutItem [rowGrow]="1" [disableScroll]="true">
+        <div
+          bmbVerticalLayout
+          margin="none"
+          gapSize="xl"
+          justify="center"
+          alignItems="center"
+          layoutHeight="100%"
+        >
+          <bmb-icon
+            bmbVerticalLayoutItem
+            [isFullWidth]="false"
+            icon="thumb_up"
+            [size]="80"
+            alt="Sin elementos"
+          />
+
+          <bmb-title
+            bmbVerticalLayoutItem
+            componentTitle="Title"
+            titleSize="8"
+            titleFontWeight="700"
+            subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
+            subtitleSize="4"
+            subtitleFontWeight="400"
+            [isCenterContent]="true"
+          />
+
+          <div bmbVerticalLayoutItem [isFullWidth]="false">
+            <button
+              BmbButtonDirective
+              bmbButton
+              appearance="primary"
+              size="large"
+              (click)="handleButtonClick($event)"
+            >
+              Button
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </bmb-home-card>`,
   informative: `<section
     bmbVerticalLayout
     margin="none"
@@ -151,41 +222,97 @@ export const CARD_EXAMPLES = {
   </section>`,
   'informative-balance': `<section aria-labelledby="informative-balance">
     <h2 id="informative-balance">Informative balance</h2>
-    <div bmbLayout margin="none" gapSize="none" alignItems="start">
-      <div bmbLayoutItem [colSm]="4" [colLg]="3" [colXl]="3">
-        <bmb-card type="transparent" borderRadius="l" margin="none">
-          <bmb-card-content padding="l">
-            <div bmbVerticalLayout margin="none" gapSize="l" alignItems="stretch">
+    <bmb-card type="secondary" bmbLayout margin="none" gapSize="none" alignItems="start" bmbLayoutItem [colSm]="4" [colLg]="3" [colXl]="3" borderRadius="m">
+      <bmb-card-content padding="none">
+        <div
+          bmbVerticalLayout
+          margin="none"
+          gapSize="m"
+          alignItems="center"
+        >
+          <div bmbVerticalLayoutItem>
+            <div
+              bmbVerticalLayout
+              margin="none"
+              gapSize="s"
+              alignItems="stretch"
+            >
               <div bmbVerticalLayoutItem>
-                <div bmbVerticalLayout margin="none" gapSize="s" alignItems="stretch">
-                  <div bmbVerticalLayoutItem>
-                    <div bmbLayout margin="none" gapSize="s" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true">
-                      <bmb-title bmbLayoutItem componentTitle="Título corto" titleSize="5" titleFontWeight="400" />
-                      <button bmbLayoutItem bmbButton type="button" appearance="transparent" size="small" icon="fullscreen" [iconSize]="20" iconAlt="Ampliar balance" aria-label="Ampliar balance" (click)="handleButtonClick($event)"></button>
-                    </div>
-                  </div>
-                  <bmb-divider bmbVerticalLayoutItem [removeMargin]="true" />
+                <div
+                  bmbLayout
+                  margin="none"
+                  gapSize="s"
+                  justify="spaceBetween"
+                  alignItems="center"
+                  [avoidRowWrap]="true"
+                >
+                  <bmb-title
+                    bmbLayoutItem
+                    componentTitle="Título corto"
+                    titleSize="5"
+                    titleFontWeight="400"
+                  />
+                  <button
+                    bmbLayoutItem
+                    bmbButton
+                    type="button"
+                    appearance="transparent"
+                    size="small"
+                    icon="zoom_out_map"
+                    [iconSize]="18"
+                    iconAlt="Ampliar balance"
+                    aria-label="Ampliar balance"
+                    (click)="handleButtonClick($event)"
+                  ></button>
                 </div>
               </div>
-              <div bmbVerticalLayoutItem>
-                <div bmbVerticalLayout margin="none" gapSize="m" alignItems="center">
-                  <bmb-progress-circle bmbVerticalLayoutItem [isFullWidth]="false" size="small" [percent]="75" valueLabel="0000" [showValueLabel]="true" [showBackground]="true" aria-label="Balance: 0000, progreso 75 por ciento" />
-                  <bmb-title bmbVerticalLayoutItem componentTitle="Text" titleSize="3" titleFontWeight="400" [isCenterContent]="true" />
-                </div>
-              </div>
+              <bmb-divider bmbVerticalLayoutItem [removeMargin]="true" />
             </div>
-          </bmb-card-content>
-        </bmb-card>
-      </div>
-    </div>
+          </div>
+          <div bmbVerticalLayoutItem>
+            <div
+              bmbVerticalLayout
+              margin="none"
+              gapSize="m"
+              alignItems="center"
+            >
+              <bmb-progress-circle
+                bmbVerticalLayoutItem
+                [isFullWidth]="false"
+                size="small"
+                [percent]="75"
+                valueLabel="0000"
+                [showValueLabel]="true"
+                [showBackground]="true"
+                aria-label="Balance: 0000, progreso 75 por ciento"
+              />
+              <bmb-title
+                bmbVerticalLayoutItem
+                componentTitle="Text"
+                titleSize="3"
+                titleFontWeight="400"
+                [isCenterContent]="true"
+              />
+            </div>
+          </div>
+        </div>
+      </bmb-card-content>
+    </bmb-card>
   </section>`,
   'informative-media-expanded-vertical': `<section aria-labelledby="informative-media-expanded-vertical">
-    <h2 id="informative-media-expanded-vertical">Informative media expanded vertical</h2>
+    <h2 id="informative-media-expanded-vertical">
+      Informative media expanded vertical
+    </h2>
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
       <div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
-        <bmb-card type="normal" borderRadius="l" margin="none">
-          <bmb-card-content padding="l">
-            <div bmbVerticalLayout margin="none" gapSize="m" alignItems="stretch">
+        <bmb-card type="primary" borderRadius="m" margin="none">
+          <bmb-card-content padding="none">
+            <div
+              bmbVerticalLayout
+              margin="none"
+              gapSize="m"
+              alignItems="stretch"
+            >
               <bmb-image
                 bmbVerticalLayoutItem
                 [src]="informativeImage"
@@ -195,31 +322,70 @@ export const CARD_EXAMPLES = {
                 objectFit="cover"
               />
               <div bmbVerticalLayoutItem>
-                <div bmbVerticalLayout margin="none" gapSize="s" alignItems="stretch">
+                <div
+                  bmbVerticalLayout
+                  margin="none"
+                  gapSize="s"
+                  alignItems="stretch"
+                >
                   <bmb-title
                     bmbVerticalLayoutItem
                     componentTitle="Texto principal largo (máximo 2 líneas o 3 sin contenido complementario)"
-                    titleSize="4"
+                    titleSize="7"
                     titleFontWeight="400"
                   />
                   <div bmbVerticalLayoutItem>
-                    <div bmbLayout margin="none" gapSize="s" alignItems="center" [avoidRowWrap]="true" role="group" aria-label="Etiquetas">
-                      <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-violet" />
-                      <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-emerald" />
+                    <div
+                      bmbLayout
+                      margin="none"
+                      gapSize="s"
+                      alignItems="center"
+                      [avoidRowWrap]="true"
+                      role="group"
+                      aria-label="Etiquetas"
+                    >
+                      <bmb-badge
+                        bmbLayoutItem
+                        text="Badge"
+                        appearance="creative-use-violet"
+                      />
+                      <bmb-badge
+                        bmbLayoutItem
+                        text="Badge"
+                        appearance="creative-use-emerald"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
-              <p bmbVerticalLayoutItem>
+              <p bmbVerticalLayoutItem class="font-regular-3">
                 Resumen de texto en diferentes idiomas con las consideraciones
-                especificadas para más contenido el cual puede ir hasta en 4 líneas
-                de texto largo lorem ipsum lorem ipsum lore...
+                especificadas para más contenido el cual puede ir hasta en 4
+                líneas de texto largo lorem ipsum lorem ipsum lore...
               </p>
               <div bmbVerticalLayoutItem>
-                <div bmbLayout margin="none" gapSize="s" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true">
+                <div
+                  bmbLayout
+                  margin="none"
+                  gapSize="s"
+                  justify="spaceBetween"
+                  alignItems="center"
+                  [avoidRowWrap]="true"
+                >
                   <div bmbLayoutItem>
-                    <div bmbLayout margin="none" gapSize="xs" alignItems="center" [avoidRowWrap]="true">
-                      <bmb-icon bmbLayoutItem icon="thumb_up" [size]="16" alt="Votos" />
+                    <div
+                      bmbLayout
+                      margin="none"
+                      gapSize="xs"
+                      alignItems="center"
+                      [avoidRowWrap]="true"
+                    >
+                      <bmb-icon
+                        bmbLayoutItem
+                        icon="thumb_up"
+                        [size]="16"
+                        alt="Votos"
+                      />
                       <small bmbLayoutItem>100 votos</small>
                     </div>
                   </div>
@@ -233,13 +399,20 @@ export const CARD_EXAMPLES = {
     </div>
   </section>`,
   'informative-media-detail-vertical': `<section aria-labelledby="informative-media-detail-vertical">
-    <h2 id="informative-media-detail-vertical">Informative media detail vertical</h2>
+    <h2 id="informative-media-detail-vertical">
+      Informative media detail vertical
+    </h2>
 
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
       <div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
         <bmb-card type="normal" borderRadius="l" margin="none">
           <bmb-card-content padding="l">
-            <div bmbVerticalLayout margin="none" gapSize="m" alignItems="stretch">
+            <div
+              bmbVerticalLayout
+              margin="none"
+              gapSize="m"
+              alignItems="stretch"
+            >
               <bmb-image
                 bmbVerticalLayoutItem
                 [src]="informativeImage"
@@ -250,27 +423,50 @@ export const CARD_EXAMPLES = {
               />
 
               <div bmbVerticalLayoutItem>
-                <div bmbLayout margin="none" gapSize="s" alignItems="center" [horizontalScroll]="true" role="group" aria-label="Etiquetas" tabindex="0">
-                  <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-violet" />
-                  <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-hibiscus" />
+                <div
+                  bmbLayout
+                  margin="none"
+                  gapSize="s"
+                  alignItems="center"
+                  [horizontalScroll]="true"
+                  role="group"
+                  aria-label="Etiquetas"
+                  tabindex="0"
+                >
+                  <bmb-badge
+                    bmbLayoutItem
+                    text="Badge"
+                    appearance="creative-use-violet"
+                  />
+                  <bmb-badge
+                    bmbLayoutItem
+                    text="Badge"
+                    appearance="creative-use-hibiscus"
+                  />
                 </div>
               </div>
 
               <bmb-title
                 bmbVerticalLayoutItem
                 componentTitle="Title"
-                titleSize="6"
+                titleSize="7"
                 titleFontWeight="400"
               />
 
-              <p bmbVerticalLayoutItem>
+              <p bmbVerticalLayoutItem class="font-regular-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
                 volutpat rhoncus leo vel pharetra. Donec feugiat enim pharetra
                 ipsum euismod, sed.
               </p>
 
               <div bmbVerticalLayoutItem>
-                <div bmbLayout margin="none" gapSize="none" justify="end" alignItems="center">
+                <div
+                  bmbLayout
+                  margin="none"
+                  gapSize="none"
+                  justify="end"
+                  alignItems="center"
+                >
                   <button
                     bmbButton
                     type="button"
@@ -291,13 +487,27 @@ export const CARD_EXAMPLES = {
     </div>
   </section>`,
   'informative-media-detail-horizontal': `<section aria-labelledby="informative-media-detail-horizontal">
-    <h2 id="informative-media-detail-horizontal">Informative media detail horizontal</h2>
+    <h2 id="informative-media-detail-horizontal">
+      Informative media detail horizontal
+    </h2>
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
       <div bmbLayoutItem [colSm]="4" [colLg]="6" [colXl]="6">
         <bmb-card type="normal" borderRadius="l" margin="none">
           <bmb-card-content padding="none">
-            <div bmbLayout margin="none" gapSize="none" alignItems="stretch" [avoidRowWrap]="true">
-              <div bmbLayoutItem [isDynamicItem]="true" [colGrow]="1" [colLg]="4" [colXl]="4">
+            <div
+              bmbLayout
+              margin="none"
+              gapSize="none"
+              alignItems="stretch"
+              [avoidRowWrap]="true"
+            >
+              <div
+                bmbLayoutItem
+                [isDynamicItem]="true"
+                [colGrow]="1"
+                [colLg]="4"
+                [colXl]="4"
+              >
                 <bmb-image
                   [src]="informativeImage"
                   alt="Edificio del Tecnológico de Monterrey"
@@ -305,23 +515,68 @@ export const CARD_EXAMPLES = {
                   objectFit="cover"
                 />
               </div>
-              <div bmbLayoutItem [isDynamicItem]="true" [colGrow]="2" [colLg]="8" [colXl]="8">
+              <div
+                bmbLayoutItem
+                [isDynamicItem]="true"
+                [colGrow]="2"
+                [colLg]="8"
+                [colXl]="8"
+              >
                 <bmb-card-content padding="m">
-                  <div bmbVerticalLayout margin="none" gapSize="m" alignItems="stretch" layoutHeight="100%">
+                  <div
+                    bmbVerticalLayout
+                    margin="none"
+                    gapSize="m"
+                    alignItems="stretch"
+                    layoutHeight="100%"
+                  >
                     <div bmbVerticalLayoutItem>
-                      <div bmbLayout margin="none" gapSize="s" alignItems="center" [horizontalScroll]="true" role="group" aria-label="Etiquetas" tabindex="0">
-                        <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-violet" />
-                        <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-hibiscus" />
+                      <div
+                        bmbLayout
+                        margin="none"
+                        gapSize="s"
+                        alignItems="center"
+                        [horizontalScroll]="true"
+                        role="group"
+                        aria-label="Etiquetas"
+                        tabindex="0"
+                      >
+                        <bmb-badge
+                          bmbLayoutItem
+                          text="Badge"
+                          appearance="creative-use-violet"
+                        />
+                        <bmb-badge
+                          bmbLayoutItem
+                          text="Badge"
+                          appearance="creative-use-hibiscus"
+                        />
                       </div>
                     </div>
-                    <bmb-title bmbVerticalLayoutItem componentTitle="Title" titleSize="6" titleFontWeight="400" />
-                    <p bmbVerticalLayoutItem [rowGrow]="1" [disableScroll]="true">
+                    <bmb-title
+                      bmbVerticalLayoutItem
+                      componentTitle="Title"
+                      titleSize="7"
+                      titleFontWeight="400"
+                    />
+                    <p
+                      bmbVerticalLayoutItem
+                      class="font-regular-3"
+                      [rowGrow]="1"
+                      [disableScroll]="true"
+                    >
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Fusce volutpat rhoncus leo vel pharetra. Donec feugiat enim
-                      pharetra ipsum euismod, sed.
+                      Fusce volutpat rhoncus leo vel pharetra. Donec feugiat
+                      enim pharetra ipsum euismod, sed.
                     </p>
                     <div bmbVerticalLayoutItem>
-                      <div bmbLayout margin="none" gapSize="none" justify="end" alignItems="center">
+                      <div
+                        bmbLayout
+                        margin="none"
+                        gapSize="none"
+                        justify="end"
+                        alignItems="center"
+                      >
                         <button
                           bmbButton
                           type="button"
@@ -349,9 +604,14 @@ export const CARD_EXAMPLES = {
 
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
       <div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
-        <bmb-card type="transparent" borderRadius="l" margin="none">
-          <bmb-card-content padding="l">
-            <div bmbVerticalLayout margin="none" gapSize="xl" alignItems="stretch">
+        <bmb-card type="secondary" borderRadius="m" margin="none">
+          <bmb-card-content padding="none">
+            <div
+              bmbVerticalLayout
+              margin="none"
+              gapSize="m"
+              alignItems="stretch"
+            >
               <bmb-image
                 bmbVerticalLayoutItem
                 [src]="informativeImage"
@@ -361,20 +621,44 @@ export const CARD_EXAMPLES = {
                 objectFit="cover"
               />
 
-              <p bmbVerticalLayoutItem>
+              <p bmbVerticalLayoutItem class="font-regular-4">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.
               </p>
 
-              <p bmbVerticalLayoutItem>Lorem ipsum dolor</p>
+              <p bmbVerticalLayoutItem class="font-regular-4">Lorem ipsum dolor</p>
 
-              <p bmbVerticalLayoutItem>Lorem ipsum dolor</p>
+              <p bmbVerticalLayoutItem class="font-regular-4">Lorem ipsum dolor</p>
 
               <div bmbVerticalLayoutItem>
-                <div bmbLayout margin="none" gapSize="s" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true">
+                <div
+                  bmbLayout
+                  margin="none"
+                  gapSize="s"
+                  justify="spaceBetween"
+                  alignItems="center"
+                  [avoidRowWrap]="true"
+                >
                   <div bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
-                    <div bmbLayout margin="none" gapSize="s" alignItems="center" [horizontalScroll]="true" role="group" aria-label="Etiquetas" tabindex="0">
-                      <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-violet" />
-                      <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-hibiscus" />
+                    <div
+                      bmbLayout
+                      margin="none"
+                      gapSize="s"
+                      alignItems="center"
+                      [horizontalScroll]="true"
+                      role="group"
+                      aria-label="Etiquetas"
+                      tabindex="0"
+                    >
+                      <bmb-badge
+                        bmbLayoutItem
+                        text="Badge"
+                        appearance="creative-use-violet"
+                      />
+                      <bmb-badge
+                        bmbLayoutItem
+                        text="Badge"
+                        appearance="creative-use-hibiscus"
+                      />
                     </div>
                   </div>
                   <button
@@ -397,17 +681,35 @@ export const CARD_EXAMPLES = {
     </div>
   </section>`,
   'informative-media-simple-horizontal': `<section aria-labelledby="informative-media-simple-horizontal">
-    <h2 id="informative-media-simple-horizontal">Informative media simple horizontal</h2>
+    <h2 id="informative-media-simple-horizontal">
+      Informative media simple horizontal
+    </h2>
 
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
       <div bmbLayoutItem [colSm]="4" [colLg]="6" [colXl]="6">
         <bmb-card type="transparent" borderRadius="l" margin="none">
           <bmb-card-content padding="l">
-            <div bmbVerticalLayout margin="none" gapSize="l" alignItems="stretch">
+            <div
+              bmbVerticalLayout
+              margin="none"
+              gapSize="l"
+              alignItems="stretch"
+            >
               <div bmbVerticalLayoutItem>
-                <div bmbLayout margin="none" gapSize="m" alignItems="stretch" [avoidRowWrap]="true">
+                <div
+                  bmbLayout
+                  margin="none"
+                  gapSize="m"
+                  alignItems="stretch"
+                  [avoidRowWrap]="true"
+                >
                   <div bmbLayoutItem>
-                    <div bmbVerticalLayout margin="none" gapSize="none" layoutHeight="100%">
+                    <div
+                      bmbVerticalLayout
+                      margin="none"
+                      gapSize="none"
+                      layoutHeight="100%"
+                    >
                       <bmb-image
                         [src]="informativeImage"
                         alt="Edificio del Tecnológico de Monterrey"
@@ -419,9 +721,22 @@ export const CARD_EXAMPLES = {
                     </div>
                   </div>
                   <div bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
-                    <div bmbVerticalLayout margin="none" gapSize="s" justify="spaceBetween" alignItems="stretch" layoutHeight="100%">
+                    <div
+                      bmbVerticalLayout
+                      margin="none"
+                      gapSize="s"
+                      justify="spaceBetween"
+                      alignItems="stretch"
+                      layoutHeight="100%"
+                    >
                       <div bmbVerticalLayoutItem>
-                        <div bmbLayout margin="none" gapSize="none" justify="end" alignItems="center">
+                        <div
+                          bmbLayout
+                          margin="none"
+                          gapSize="none"
+                          justify="end"
+                          alignItems="center"
+                        >
                           <button
                             bmbButton
                             type="button"
@@ -436,9 +751,27 @@ export const CARD_EXAMPLES = {
                         </div>
                       </div>
                       <div bmbVerticalLayoutItem>
-                        <div bmbLayout margin="none" gapSize="s" alignItems="center" [avoidRowWrap]="true" [horizontalScroll]="true" role="group" aria-label="Etiquetas" tabindex="0">
-                          <bmb-badge bmbLayoutItem text="semantic-info-event" appearance="semantic-info-event" />
-                          <bmb-badge bmbLayoutItem text="semantic-success" appearance="semantic-success" />
+                        <div
+                          bmbLayout
+                          margin="none"
+                          gapSize="s"
+                          alignItems="center"
+                          [avoidRowWrap]="true"
+                          [horizontalScroll]="true"
+                          role="group"
+                          aria-label="Etiquetas"
+                          tabindex="0"
+                        >
+                          <bmb-badge
+                            bmbLayoutItem
+                            text="semantic-info-event"
+                            appearance="semantic-info-event"
+                          />
+                          <bmb-badge
+                            bmbLayoutItem
+                            text="semantic-success"
+                            appearance="semantic-success"
+                          />
                         </div>
                       </div>
                     </div>
@@ -462,7 +795,13 @@ export const CARD_EXAMPLES = {
               </p>
 
               <div bmbVerticalLayoutItem>
-                <div bmbLayout margin="none" gapSize="none" justify="end" alignItems="center">
+                <div
+                  bmbLayout
+                  margin="none"
+                  gapSize="none"
+                  justify="end"
+                  alignItems="center"
+                >
                   <div bmbLayoutItem>
                     <button
                       bmbButton
@@ -489,16 +828,21 @@ export const CARD_EXAMPLES = {
 
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
       <div bmbLayoutItem [colSm]="4" [colLg]="3" [colXl]="3">
-        <bmb-card type="normal" borderRadius="l" margin="none">
-          <bmb-card-content padding="l">
-            <div bmbVerticalLayout margin="none" gapSize="m" alignItems="center">
+        <bmb-card type="normal" borderRadius="m" margin="none">
+          <bmb-card-content padding="m">
+            <div
+              bmbVerticalLayout
+              margin="none"
+              gapSize="s"
+              alignItems="center"
+            >
               <bmb-title
                 bmbVerticalLayoutItem
                 componentTitle="Title"
-                titleSize="8"
+                titleSize="6"
                 titleFontWeight="400"
                 subtitle="Subtitle"
-                subtitleSize="6"
+                subtitleSize="5"
                 subtitleFontWeight="400"
                 [isCenterContent]="true"
               />
@@ -507,6 +851,7 @@ export const CARD_EXAMPLES = {
                 [isFullWidth]="false"
                 [number]="1"
                 [isCurrentColor]="true"
+                [isInheritedBg]="false"
                 componentTitle="Title"
               />
             </div>
@@ -518,14 +863,24 @@ export const CARD_EXAMPLES = {
   'informative-item-list': `<section aria-labelledby="informative-item-list">
     <h2 id="informative-item-list">Informative item list</h2>
 
-    <div bmbVerticalLayout margin="none" gapSize="m" alignItems="stretch" role="list">
+    <div
+      bmbVerticalLayout
+      margin="none"
+      gapSize="m"
+      alignItems="stretch"
+      role="list"
+    >
       @for (item of informativeItems; track item.id; let last = $last) {
         <div bmbVerticalLayoutItem role="listitem">
           <div
             bmbLayout
             margin="s"
             gapSize="s"
-            [alignItems]="isItemListMobile() && item.stackedMobileActions ? 'stretch' : 'center'"
+            [alignItems]="
+              isItemListMobile() && item.stackedMobileActions
+                ? 'stretch'
+                : 'center'
+            "
             [avoidRowWrap]="true"
           >
             <div bmbLayoutItem>
@@ -542,7 +897,12 @@ export const CARD_EXAMPLES = {
             </div>
 
             <div bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
-              <div bmbVerticalLayout margin="none" gapSize="xs" alignItems="stretch">
+              <div
+                bmbVerticalLayout
+                margin="none"
+                gapSize="xs"
+                alignItems="stretch"
+              >
                 <bmb-title
                   bmbVerticalLayoutItem
                   componentTitle="Título de noticia del nombre de el recurso y una segunda línea"
@@ -560,7 +920,14 @@ export const CARD_EXAMPLES = {
 
             @if (isItemListMobile() && item.stackedMobileActions) {
               <div bmbLayoutItem>
-                <div bmbVerticalLayout margin="none" gapSize="s" justify="spaceBetween" alignItems="end" layoutHeight="100%">
+                <div
+                  bmbVerticalLayout
+                  margin="none"
+                  gapSize="s"
+                  justify="spaceBetween"
+                  alignItems="end"
+                  layoutHeight="100%"
+                >
                   <div bmbVerticalLayoutItem [isFullWidth]="false">
                     <bmb-badge text="Badge" appearance="semantic-success" />
                   </div>
@@ -581,8 +948,18 @@ export const CARD_EXAMPLES = {
               </div>
             } @else {
               <div bmbLayoutItem>
-                <div bmbLayout margin="none" gapSize="s" alignItems="center" [avoidRowWrap]="true">
-                  <bmb-badge bmbLayoutItem text="Badge" appearance="semantic-success" />
+                <div
+                  bmbLayout
+                  margin="none"
+                  gapSize="s"
+                  alignItems="center"
+                  [avoidRowWrap]="true"
+                >
+                  <bmb-badge
+                    bmbLayoutItem
+                    text="Badge"
+                    appearance="semantic-success"
+                  />
                   <div bmbLayoutItem>
                     <button
                       bmbButton
@@ -616,6 +993,7 @@ export type CardExampleVariant = keyof typeof CARD_EXAMPLES;
   selector: 'bmb-card-example',
   standalone: true,
   imports: [
+    BmbHomeCardComponent,
     BmbProgressCircleComponent,
     BmbIconComponent,
     BmbCardComponent,
@@ -633,6 +1011,9 @@ export type CardExampleVariant = keyof typeof CARD_EXAMPLES;
     BmbVerticalLayoutItemDirective,
   ],
   template: `@switch (variant()) {
+    @case ('empty') {
+      ${CARD_EXAMPLES.empty}
+    }
     @case ('informative') {
       ${CARD_EXAMPLES.informative}
     }
@@ -727,6 +1108,14 @@ export class BmbCardExampleComponent {
   }
 }
 
+const getCardTemplateSource = (sourceCode: string): string => {
+  const docsSection = sourceCode.match(
+    /^<section aria-labelledby="[^\"]+">\s*<h2[^>]*>[\s\S]*?<\/h2>([\s\S]*)<\/section>$/,
+  );
+
+  return docsSection ? docsSection[1].trim() : sourceCode;
+};
+
 export function cardExampleStory(
   variant: CardExampleVariant,
   isMobile = false,
@@ -737,6 +1126,9 @@ export function cardExampleStory(
       props: args,
       template: '<bmb-card-example [variant]="variant" />',
     }),
-    ...getViewportStoryParameters(isMobile, CARD_EXAMPLES[variant]),
+    ...getCardViewportStoryParameters(
+      isMobile,
+      getCardTemplateSource(CARD_EXAMPLES[variant]),
+    ),
   };
 }
