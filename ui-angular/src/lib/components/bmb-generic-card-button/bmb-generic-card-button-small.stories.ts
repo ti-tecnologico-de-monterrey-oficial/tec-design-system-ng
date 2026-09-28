@@ -16,16 +16,25 @@ import {
   badges,
   footerLink,
   cardWrap,
+  technicalReferences,
 } from './bmb-generic-card-button-story-fragments';
 
 const meta: Meta<BmbGenericCardButtonComponent> = {
   title: 'Templates/Generic card button/Small',
   component: BmbGenericCardButtonComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [BmbGenericCardButtonComponent, ...storyFragmentImports],
     }),
   ],
+  parameters: {
+    docs: {
+      description: {
+        component: technicalReferences,
+      },
+    },
+  },
 };
 export default meta;
 
@@ -33,7 +42,7 @@ type Story = StoryObj<BmbGenericCardButtonComponent>;
 
 const props = { log: (message: string) => console.log(message) };
 
-export const Compacto: Story = {
+export const Compact: Story = {
   render: () => ({
     template: cardWrap(
       328,
@@ -48,7 +57,7 @@ export const Compacto: Story = {
   }),
 };
 
-export const Acciones: Story = {
+export const Actions: Story = {
   render: () => ({
     template: cardWrap(
       328,
@@ -63,7 +72,7 @@ export const Acciones: Story = {
   }),
 };
 
-export const ConTextLink: Story = {
+export const WithTextLink: Story = {
   render: () => ({
     template: cardWrap(
       328,
@@ -81,7 +90,7 @@ export const ConTextLink: Story = {
   }),
 };
 
-export const Seleccion: Story = {
+export const Selected: Story = {
   render: () => ({
     template: cardWrap(
       328,
@@ -97,7 +106,7 @@ export const Seleccion: Story = {
   }),
 };
 
-export const ResponsiveVerticalCompletoIcon: Story = {
+export const ResponsiveVerticalCompleteIcon: Story = {
   render: () => ({
     template: cardWrap(
       328,
@@ -121,7 +130,7 @@ export const ResponsiveVerticalCompletoIcon: Story = {
   }),
 };
 
-export const ResponsiveVerticalCompletoImage: Story = {
+export const ResponsiveVerticalCompleteImage: Story = {
   render: () => ({
     template: cardWrap(
       328,

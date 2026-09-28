@@ -17,6 +17,7 @@ import {
 } from '../bmb-card.component';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
 import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
+import { BmbTooltipComponent } from '../../bmb-tooltip/bmb-tooltip.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
 import { BmbFocusElementComponent } from '../../bmb-focus-element/bmb-focus-element.component';
 import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
@@ -27,6 +28,127 @@ import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-v
 import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 
 export const CARD_EXAMPLES = {
+  informative: `<section
+    bmbVerticalLayout
+    margin="none"
+    [class.bmb_margin-none]="false"
+    gapSize="none"
+    [alignItems]="isInformativeMobile() ? 'center' : 'start'"
+    [style.display]="isInformativeMobile() ? 'flex' : 'inline-flex'"
+  >
+    <bmb-card type="normal" borderRadius="l" [margin]="[]">
+      <bmb-card-content padding="m">
+        <div
+          bmbLayout
+          margin="none"
+          [class.bmb_margin-none]="false"
+          [gapSize]="isInformativeMobile() ? 'm' : 'xl'"
+          alignItems="stretch"
+          [flow]="{ m: 'row', l: 'reverse', xl: 'reverse' }"
+        >
+          <bmb-image
+            bmbLayoutItem
+            [colSm]="4"
+            [colLg]="5"
+            [src]="informativeImage"
+            alt="Edificio de Rectoría del Tecnológico de Monterrey"
+            [borderRadius]="isInformativeMobile() ? 'none' : 'm'"
+            objectFit="cover"
+            [minHeight]="{ s: '14rem', l: '18rem' }"
+          />
+
+          <div bmbLayoutItem [colSm]="4" [colLg]="7">
+            <div
+              bmbVerticalLayout
+              margin="none"
+              [class.bmb_margin-none]="false"
+              gapSize="l"
+              justify="start"
+              alignItems="stretch"
+            >
+              <div bmbVerticalLayoutItem>
+                <div
+                  bmbLayout
+                  margin="none"
+                  [class.bmb_margin-none]="false"
+                  gapSize="s"
+                  alignItems="center"
+                  [avoidRowWrap]="true"
+                >
+                  <bmb-tooltip
+                    bmbLayoutItem
+                    icon="info"
+                    text="Additional information"
+                    componentTitle="Information"
+                    [size]="20"
+                  />
+                  <bmb-badge
+                    bmbLayoutItem
+                    text="Badge"
+                    appearance="creative-use-violet"
+                    [container]="true"
+                  />
+                </div>
+              </div>
+
+              <bmb-title
+                bmbVerticalLayoutItem
+                componentTitle="Title"
+                titleSize="9"
+                titleFontWeight="700"
+                subtitle="Complementary text"
+                subtitleSize="5"
+                subtitleFontWeight="400"
+              />
+
+              <hr bmbVerticalLayoutItem />
+
+              <p
+                bmbVerticalLayoutItem
+                [class.font-regular-3]="isInformativeMobile()"
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem
+                ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                volutpat rhoncus leo vel pharetra. Donec feugiat enim pharetra
+                ipsum euismod, sed maximus justo pharetra.
+              </p>
+
+              <div bmbVerticalLayoutItem>
+                <div
+                  bmbLayout
+                  margin="none"
+                  [class.bmb_margin-none]="false"
+                  gapSize="l"
+                  alignItems="center"
+                >
+                  <div bmbLayoutItem [isDynamicItem]="true">
+                    <button
+                      bmbButton
+                      appearance="primary"
+                      size="large"
+                      (click)="handleButtonClick($event)"
+                    >
+                      Button
+                    </button>
+                  </div>
+                  <div bmbLayoutItem [isDynamicItem]="true">
+                    <button
+                      bmbButton
+                      appearance="secondary-outlined"
+                      size="small"
+                      (click)="handleButtonClick($event)"
+                    >
+                      Secondary button
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </bmb-card-content>
+    </bmb-card>
+  </section>`,
   'informative-balance': `<section aria-labelledby="informative-balance">
     <h2 id="informative-balance">Informative balance</h2>
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
@@ -501,6 +623,7 @@ export type CardExampleVariant = keyof typeof CARD_EXAMPLES;
     BmbBadgeComponent,
     BmbImageComponent,
     BmbTitleComponent,
+    BmbTooltipComponent,
     BmbFocusElementComponent,
     BmbDividerComponent,
     BmbButtonDirective,
@@ -510,6 +633,9 @@ export type CardExampleVariant = keyof typeof CARD_EXAMPLES;
     BmbVerticalLayoutItemDirective,
   ],
   template: `@switch (variant()) {
+    @case ('informative') {
+      ${CARD_EXAMPLES.informative}
+    }
     @case ('informative-balance') {
       ${CARD_EXAMPLES['informative-balance']}
     }
@@ -540,6 +666,13 @@ export type CardExampleVariant = keyof typeof CARD_EXAMPLES;
 })
 export class BmbCardExampleComponent {
   variant = input<CardExampleVariant>('informative-media-detail-vertical');
+  readonly isInformativeMobile = toSignal(
+    inject(BreakpointObserver)
+      .observe('(width < 1001px)')
+      .pipe(map((state) => state.matches)),
+    { initialValue: false },
+  );
+
   readonly isItemListMobile = toSignal(
     inject(BreakpointObserver)
       .observe('(width < 1001px)')
