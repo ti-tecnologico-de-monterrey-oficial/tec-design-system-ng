@@ -78,8 +78,8 @@ export const componentTestNavigation: ComponentTestCategory[] = [
         icon: 'widgets',
       },
       {
-        label: 'Text input with tags (*old)',
-        url: '/pages/inputs/text-input-with-tags',
+        label: 'Text input with tags',
+        url: '/pages/input-tags',
         icon: 'widgets',
       },
       {
@@ -144,7 +144,7 @@ export const componentTestNavigation: ComponentTestCategory[] = [
       },
       {
         label: 'Multi dot paginator',
-        url: '/pages/status-indicators/multi-dot-paginator',
+        url: '/multi-dot-paginator',
         icon: 'widgets',
       },
       {
