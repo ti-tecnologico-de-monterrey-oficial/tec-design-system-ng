@@ -6,23 +6,31 @@ import {
   iconMedia,
   imageAvatar,
   actionsCluster,
-  rightAlign,
   titleWithAuthor,
   body,
-  headerRow,
+  secondaryCaption,
   badges,
-  footerLink,
+  footerLinkUnderlined,
   cardWrap,
+  technicalReferences,
 } from './bmb-generic-card-button-story-fragments';
 
 const meta: Meta<BmbGenericCardButtonComponent> = {
-  title: 'Templates/Generic card button/Editorial completo vertical',
+  title: 'Templates/Generic card button/Editorial complete vertical',
   component: BmbGenericCardButtonComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [BmbGenericCardButtonComponent, ...storyFragmentImports],
     }),
   ],
+  parameters: {
+    docs: {
+      description: {
+        component: technicalReferences,
+      },
+    },
+  },
 };
 export default meta;
 
@@ -36,45 +44,46 @@ const longBody =
 const build = (media: string, selection: boolean, selected: boolean) =>
   cardWrap(
     328,
-    420,
-    stack([
-      rightAlign(actionsCluster({ selection, selected })),
-      media,
-      titleWithAuthor(),
-      body(longBody),
-      headerRow(
-        badges([
+    440,
+    stack(
+      [
+        actionsCluster({ selection, selected }),
+        `<div style="display: flex; justify-content: center">${media}</div>`,
+        `<div style="text-align: center; display: flex; flex-direction: column; align-items: center">${titleWithAuthor('Resumen de Texto', '5', '500', undefined, '3', '400', false)}</div>`,
+        `<div style="text-align: center">${body(longBody)}${secondaryCaption('Contenido complementario')}</div>`,
+        `<div style="display: flex; flex-direction: column; gap: 4px; align-items: center">${badges([
           { text: 'Info', appearance: 'info' },
           { text: 'Success', appearance: 'success' },
-        ]),
-        footerLink,
-      ),
-    ]),
+        ])}</div>`,
+        `<div style="display: flex; justify-content: flex-end">${footerLinkUnderlined}</div>`,
+      ],
+      'xs',
+    ),
     { selected: selection && selected },
   );
 
-export const EditorialCompletoConSeleccionVerticalIcon: Story = {
+export const EditorialCompleteSelectedVerticalIcon: Story = {
   render: () => ({
     template: build(iconMedia(), true, true),
     props,
   }),
 };
 
-export const EditorialCompletoVerticalIcon: Story = {
+export const EditorialCompleteVerticalIcon: Story = {
   render: () => ({
     template: build(iconMedia(), false, false),
     props,
   }),
 };
 
-export const EditorialCompletoConSeleccionVerticalImagen: Story = {
+export const EditorialCompleteSelectedVerticalImage: Story = {
   render: () => ({
     template: build(imageAvatar(), true, true),
     props,
   }),
 };
 
-export const EditorialCompletoVerticalImagen: Story = {
+export const EditorialCompleteVerticalImage: Story = {
   render: () => ({
     template: build(imageAvatar(), false, false),
     props,

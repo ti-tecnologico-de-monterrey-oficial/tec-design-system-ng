@@ -12,8 +12,9 @@ import {
 } from '../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
 
 const meta: Meta<BmbGenericCardButtonComponent> = {
-  title: 'Templates/Generic card button',
+  title: 'Components/Containers/Generic card button',
   component: BmbGenericCardButtonComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [
@@ -140,7 +141,6 @@ export const Disabled: Story = wrap(328, 208, defaultLayout, {
   disabled: true,
 });
 
-// appearance="alternative": #313649 at rest, #3F4965 on hover, #617196 selected.
 export const AlternativeContainerColor: Story = wrap(328, 208, defaultLayout, {
   appearance: 'alternative',
 });
@@ -151,8 +151,6 @@ export const AlternativeContainerColorSelected: Story = wrap(
   defaultLayout,
   { appearance: 'alternative', selected: true },
 );
-
-// Custom responsiveness: a different declared layout per bucket
 
 const mediumOnlyItems = [
   gridItem(
