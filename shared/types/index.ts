@@ -16,6 +16,7 @@ export * from './components/grade-value';
 export * from './components/hito-list';
 export * from './components/icon';
 export * from './components/iframe';
+export * from './components/input-phone-number';
 export * from './components/interactive-icon';
 export * from './components/invoice';
 export * from './components/icon-status';

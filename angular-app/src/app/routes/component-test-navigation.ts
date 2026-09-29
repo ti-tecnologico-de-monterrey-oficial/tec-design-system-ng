@@ -61,7 +61,7 @@ export const navigationTest: ComponentGroupTest[] = [
         label: 'Containers',
         items: [
           {
-            label: 'Home section (*old)',
+            label: 'Home section',
             url: '/pages/containers/home-section',
             icon: 'widgets',
           },
@@ -211,7 +211,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Phone number (*old)',
+            label: 'Phone number',
             url: '/pages/inputs/phone-number',
             icon: 'widgets',
           },
