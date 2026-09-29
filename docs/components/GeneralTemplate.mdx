@@ -21,6 +21,13 @@ export const GeneralTemplate = ({
   isTemplate = false,
 }) => (
   <section>
+    <style>{`
+      [data-docs-preview-width] [data-story-block='true'] {
+        width: var(--docs-preview-width);
+        max-width: 100%;
+        margin: 0 auto;
+      }
+    `}</style>
     {children && <Meta of={children} />}
     {(children && <Title of={children}>{children?.title}</Title>) || <Title />}
     {(children && <Description of={children}>{children}</Description>) || (
@@ -45,11 +52,19 @@ export const GeneralTemplate = ({
           ([name]) => name !== 'default' && name !== '__namedExportsOrder',
         )
         .map(([name, story]) => (
-          <div key={name}>
+          <div key={children.default?.title?.startsWith('Templates/Generic card/') ? children.default.title + '/' + name : name}>
             <Heading>{story.name || name}</Heading>
-            <Canvas meta={children} of={story}>
-              <Story meta={children} of={story} />
-            </Canvas>
+            <div
+              data-docs-preview-width={story.parameters?.docs?.previewWidth || undefined}
+              style={story.parameters?.docs?.previewWidth ? { '--docs-preview-width': story.parameters.docs.previewWidth } : undefined}
+            >
+              <Canvas
+                meta={children}
+                of={story}
+                layout={story.parameters?.docs?.previewWidth ? 'fullscreen' : undefined}
+                story={story.parameters?.docs?.story}
+              />
+            </div>
           </div>
         ))) ||
       (showStories && <Stories title={STORIES_TITLE} includePrimary={false} />)}
