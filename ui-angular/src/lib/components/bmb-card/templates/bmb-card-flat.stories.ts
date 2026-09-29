@@ -33,12 +33,22 @@ const template = (isMobile: boolean) => `<div bmbLayout margin="none" gapSize="m
     <bmb-card type="normal" borderRadius="m" margin="none">
       <bmb-card-content padding="m">
         <div bmbLayout margin="none" gapSize="m" justify="center" alignItems="center">
-          <div bmbLayoutItem [colSm]="1" [colLg]="12" [colXl]="12">
+          <div bmbLayoutItem [isDynamicItem]="${isMobile}" [colLg]="${!isMobile} ? 12 : null">
             <div bmbLayout margin="none" gapSize="none" justify="center" alignItems="center">
               <bmb-box-icon iconName="send" boxSize="small" boxShape="circle" boxColor="black-primary" />
             </div>
           </div>
-          <bmb-title bmbLayoutItem [colSm]="3" [colLg]="12" [colXl]="12" componentTitle="Text" [isCenterContent]="${!isMobile}" titleSize="5" titleFontWeight="500" subtitle="Complementary text" subtitleSize="1" subtitleFontWeight="400" />
+          <section bmbLayoutItem [isDynamicItem]="${isMobile}" [colGrow]="${1}" [colLg]="${!isMobile} ? 12 : null">
+            <bmb-title
+              componentTitle="Text"
+              [isCenterContent]="${!isMobile}"
+              titleSize="5"
+              titleFontWeight="500"
+              subtitle="Complementary text"
+              subtitleSize="1"
+              subtitleFontWeight="400"
+            />
+          </section>
         </div>
       </bmb-card-content>
     </bmb-card>
