@@ -1,6 +1,25 @@
 <section bmbVerticalLayout gapSize="none" alignItems="stretch" aria-labelledby="informative-grade-title">
 	<h1 id="informative-grade-title">Informative Grade</h1>
 
+	@if (isMobile()) {
+		<bmb-container-button-base>
+			<ng-template #bmbContainerMain>
+				<div bmbVerticalLayout gapSize="s" alignItems="stretch">
+					<div bmbLayout margin="none" gapSize="m" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true">
+						<bmb-grade-value type="main-grade" appearanceContrast="default" score="Cu" />
+						<bmb-badge appearance="semantic-info-event" text="Cursando" [container]="false" />
+					</div>
+					<div bmbVerticalLayout gapSize="m" alignItems="start">
+						<span class="font-regular-5">Op. de humanidades y bellas a. (INGL)</span>
+					</div>
+					<div bmbLayout margin="none" gapSize="m" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true">
+						<span class="font-regular-3">Crédito: 1</span>
+						<span class="font-regular-3">Semana: 5</span>
+					</div>
+				</div>
+			</ng-template>
+		</bmb-container-button-base>
+	} @else {
 	<bmb-container-button-base>
 		<ng-template #bmbContainerLeft>
 			<bmb-grade-value
@@ -30,4 +49,5 @@
 			</div>
 		</ng-template>
 	</bmb-container-button-base>
+	}
 </section>

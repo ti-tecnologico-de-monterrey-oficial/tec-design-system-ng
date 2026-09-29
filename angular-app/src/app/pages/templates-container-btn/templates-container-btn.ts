@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 import {
   BmbBadgeComponent,
   BmbContainerButtonBaseComponent,
   BmbGradeValueComponent,
+  BmbLayoutDirective,
   BmbVerticalLayoutDirective,
 } from 'ui-angular';
 
@@ -12,8 +16,16 @@ import {
     BmbBadgeComponent,
     BmbContainerButtonBaseComponent,
     BmbGradeValueComponent,
+    BmbLayoutDirective,
     BmbVerticalLayoutDirective,
   ],
   templateUrl: './templates-container-btn.html',
 })
-export class TemplatesContainerBtn {}
+export class TemplatesContainerBtn {
+  readonly isMobile = toSignal(
+    inject(BreakpointObserver)
+      .observe('(width < 1001px)')
+      .pipe(map(({ matches }) => matches)),
+    { initialValue: false },
+  );
+}
