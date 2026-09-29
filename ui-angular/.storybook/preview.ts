@@ -161,7 +161,6 @@ const preview: Preview = {
 
       return story;
     },
-    withDocsViewport,
     withThemeByClassName({
       themes: {
         light: 'storybook-light-theme',

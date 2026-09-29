@@ -9,7 +9,7 @@ const meta: Meta<BmbCardExampleComponent> = {
   decorators: [moduleMetadata({ imports: [BmbCardExampleComponent] })],
   parameters: {
     controls: { disable: true },
-    docs: { description: { component: 'Tarjeta de balance compuesta con elementos Bamboo, sin estilos personalizados. El botón de ampliar es demostrativo.' } },
+    docs: { description: { component: 'Composición Bamboo de GenericCard. El estado de demostración y los estilos locales están en bmb-card-examples.story.ts y bmb-card-examples.story.scss.' } },
   },
 };
 export default meta;

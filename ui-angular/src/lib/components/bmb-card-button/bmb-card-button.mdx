@@ -1,0 +1,10 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import * as ltsStory from './bmb-card-button.stories';
+import * as baseStory from '../bmb-generic-card-button/bmb-generic-card-button.stories';
+import { ListTemplate } from '@docs/components/ListTemplate.mdx';
+
+<Meta of={ltsStory} />
+<ListTemplate showControls={true} showStories={true}>
+  {baseStory}
+</ListTemplate>
