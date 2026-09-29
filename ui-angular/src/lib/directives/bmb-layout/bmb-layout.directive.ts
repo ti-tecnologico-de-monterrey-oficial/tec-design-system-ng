@@ -3,14 +3,12 @@ import { SizeNames } from '../../_shared/types';
 import {
   IAlignItemsOptions,
   IJustifyOptions,
+  ILayoutFlowResponsive,
+  ILayoutFlow,
+  IAlignItemsOptionsResponsive,
+  IJustifyOptionsResponsive,
 } from '../../_shared/types/components/layout';
-
-export type ILayoutFlow = 'row' | 'reverse';
-export interface ILayoutFlowResponsive {
-  m: ILayoutFlow;
-  l: ILayoutFlow;
-  xl: ILayoutFlow;
-}
+import { getResponsiveClasses } from '../../_shared/logic/components/layout';
 
 @Directive({
   selector: '[bmbLayout]',
@@ -20,8 +18,8 @@ export class BmbLayoutDirective {
   gapSize = input<SizeNames>('m');
   margin = input<SizeNames>('m');
   dynamicCols = input<boolean>(false);
-  justify = input<IJustifyOptions>('start');
-  alignItems = input<IAlignItemsOptions>('start');
+  justify = input<IJustifyOptions | IJustifyOptionsResponsive>('start');
+  alignItems = input<IAlignItemsOptions | IAlignItemsOptionsResponsive>('start');
   isContainerQuery = input<boolean>();
   avoidRowWrap = input<boolean>(false);
   horizontalScroll = input<boolean>(false);
@@ -33,19 +31,29 @@ export class BmbLayoutDirective {
       `bmb_gap-${this.gapSize()}`,
       `bmb_margin-${this.margin()}`,
       `bmb_justify-${this.justify()}`,
-      `bmb_align-items-${this.alignItems()}`,
     ];
 
     const flow = this.flow();
     if (typeof flow === 'string') {
       classes.push(`${baseClassName}-flow-${flow}`);
     } else {
-      (Object.keys(flow) as (keyof ILayoutFlowResponsive)[]).forEach(
-        (device) => {
-          classes.push(`${baseClassName}-flow-${device}-${flow[device]}`);
-        },
-      );
+      classes.push(...getResponsiveClasses(flow, baseClassName));
     }
+
+    const alignItems = this.alignItems();
+    if (typeof alignItems === 'string') {
+      classes.push(`bmb_align-items-${alignItems}`);
+    } else {
+      classes.push(...getResponsiveClasses(alignItems, baseClassName));
+    }
+
+    const justify = this.justify();
+    if (typeof justify === 'string') {
+      classes.push(`bmb_justify-${justify}`);
+    } else {
+      classes.push(...getResponsiveClasses(justify, baseClassName));
+    }
+
     if (this.dynamicCols()) classes.push(`${baseClassName}-smart`);
     if (this.isContainerQuery()) classes.push(`${baseClassName}-container`);
     else classes.push(baseClassName);
