@@ -70,3 +70,7 @@ ui-react/src/assets
 ui-react/src/assets/*
 ui-react/src/lib/_shared
 ui-react/src/lib/_shared/*
+
+# Next.js
+.next
+out
