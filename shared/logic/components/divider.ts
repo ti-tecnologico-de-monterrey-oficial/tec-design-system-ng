@@ -1,15 +1,24 @@
-import type { BmbDividerType } from '../../types/components/divider';
+import type {
+  BmbDividerOrientationType,
+  BmbDividerType,
+} from '../../types/components/divider';
 
 export const getDividerClasses = ({
   type,
+  orientation,
   removeMargin,
 }: {
   type: BmbDividerType;
+  orientation: BmbDividerOrientationType;
   removeMargin: boolean;
 }): string[] => {
-  return [
+  const classes = [
     'bmb_divider',
     `bmb_divider-${type}`,
-    ...(removeMargin ? ['bmb_divider-no-margin'] : []),
+    `bmb_divider-${orientation}`,
   ];
+
+  if (removeMargin) classes.push('bmb_divider-no-margin');
+
+  return classes;
 };

@@ -27,4 +27,12 @@ describe('BmbDividerComponent', () => {
     expect(divider.classList).toContain('bmb_divider-dotted');
     expect(divider.classList).toContain('bmb_divider-no-margin');
   });
+
+  it('should render the vertical orientation class', () => {
+    componentRef.setInput('orientation', 'vertical');
+    fixture.detectChanges();
+
+    const divider = fixture.nativeElement.querySelector('div');
+    expect(divider.classList).toContain('bmb_divider-vertical');
+  });
 });

@@ -1,11 +1,15 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbDividerComponent } from './bmb-divider.component';
 import {
+  BlockquoteType,
+  getAlertBlockquote,
   getArchitectureSection,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
+  RELEVANT_TITLE,
 } from '@docs/utils/utils';
+import { BMB_DIVIDER_LIST, BMB_DIVIDER_ORIENTATION_LIST } from '@shared/types';
 
 export default {
   title: 'Components/Containers/Divider',
@@ -29,13 +33,26 @@ ${getBasicExampleBlock('BmbDividerComponent')}
       control: {
         type: 'radio',
       },
-      options: ['simple', 'dashed', 'dotted'],
+      options: BMB_DIVIDER_LIST,
       description:
         'Sets the type of the divider, affecting its visual view. Is not necessary to add the "simple" style.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'simple' },
         type: { summary: 'BmbDividerType' },
+      },
+    },
+    orientation: {
+      control: {
+        type: 'radio',
+      },
+      options: BMB_DIVIDER_ORIENTATION_LIST,
+      description: `Sets the orientation of the divider.
+${getAlertBlockquote('`Vertical` orientation corresponds to small vertical variant', { title: RELEVANT_TITLE.configuration, blockquoteType: BlockquoteType.important })}`,
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'horizontal' },
+        type: { summary: 'BmbDividerOrientation' },
       },
     },
     removeMargin: {
@@ -53,6 +70,7 @@ ${getBasicExampleBlock('BmbDividerComponent')}
   },
   args: {
     type: 'simple',
+    orientation: 'horizontal',
     removeMargin: false,
   },
 } as Meta<typeof BmbDividerComponent>;
