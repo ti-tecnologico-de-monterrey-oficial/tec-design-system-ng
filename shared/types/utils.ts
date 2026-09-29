@@ -1,32 +1,35 @@
 import { IBmbInteractiveIconAppearance } from './components/interactive-icon';
 export type { IBmbActionHeader } from './components/navigation-bar';
 
-export type SizeNames =
-  | 'none'
-  | 'xxs'
-  | 'xs'
-  | 's'
-  | 'm'
-  | 'l'
-  | 'xl'
-  | 'xxl'
-  | 'auto'
-  | 'full'
-  | '0'
-  | '1'
-  | '2'
-  | '3'
-  | '4'
-  | '5'
-  | '6'
-  | '7'
-  | '8'
-  | '9'
-  | '10'
-  | '12'
-  | '16'
-  | '20'
-  | '24';
+export const BMB_SIZE_NAME_LIST: string[] = [
+  'none',
+  'xxs',
+  'xs',
+  's',
+  'm',
+  'l',
+  'xl',
+  'xxl',
+  'auto',
+  'full',
+  '0',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '10',
+  '12',
+  '16',
+  '20',
+  '24',
+] as const;
+export type SizeNames = (typeof BMB_SIZE_NAME_LIST)[number];
+
 export type IButtonAppearance =
   | 'primary'
   | 'secondary-filled'

@@ -44,4 +44,35 @@ describe('BmbPaginatorComponent', () => {
   it('should describe the empty state', () => {
     expect(component.getPaginationText()).toBe('0 de 0');
   });
+
+  it('emits requests without mutating the currentPage input', () => {
+    fixture.componentRef.setInput('totalItems', 12);
+    fixture.componentRef.setInput('currentPage', 2);
+    fixture.detectChanges();
+    const emitSpy = jest.spyOn(component.pageChange, 'emit');
+    const buttons = fixture.nativeElement.querySelectorAll('button');
+    buttons[0].click();
+    buttons[1].click();
+    buttons[2].click();
+    buttons[3].click();
+    expect(emitSpy.mock.calls).toEqual([[1], [1], [3], [3]]);
+    expect(component.currentPage()).toBe(2);
+  });
+
+  it('disables navigation at the first and last page', () => {
+    fixture.componentRef.setInput('totalItems', 12);
+    fixture.detectChanges();
+    const buttons = fixture.nativeElement.querySelectorAll('button');
+    expect(buttons[0].disabled).toBe(true);
+    expect(buttons[1].disabled).toBe(true);
+    expect(buttons[2].disabled).toBe(false);
+    expect(buttons[3].disabled).toBe(false);
+
+    fixture.componentRef.setInput('currentPage', 3);
+    fixture.detectChanges();
+    expect(buttons[0].disabled).toBe(false);
+    expect(buttons[1].disabled).toBe(false);
+    expect(buttons[2].disabled).toBe(true);
+    expect(buttons[3].disabled).toBe(true);
+  });
 });

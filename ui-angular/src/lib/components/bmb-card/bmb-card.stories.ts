@@ -16,35 +16,7 @@ import {
   getGeneralDescription,
   getSpecialSpecifications,
 } from '@docs/utils/utils';
-
-const templateVariants = [
-  'Informative',
-  'Flat',
-  'Actions',
-  'Home',
-  'Empty',
-  'Informative balance',
-  'Informative media expanded vertical',
-  'Informative media detail vertical',
-  'Informative media detail horizontal',
-  'Informative media simple',
-  'Informative media simple horizontal',
-  'Informative focus element',
-  'Informative item list',
-];
-
-const getTemplateVariantsSection = (): string => `
-<h2>Template variants</h2>
-<p>
-  Reusable examples are available in
-  <a href="?path=/docs/templates-generic-card--documentation">Templates / Generic card</a>, built with
-  <code>BmbCardComponent</code>, Bamboo components and Bamboo layout directives.
-  Typography is configured through Bamboo component inputs.
-  Every template provides Desktop and Mobile previews with copy-ready HTML.
-</p>
-<ul>
-  ${templateVariants.map((template) => `<li>${template}</li>`).join('')}
-</ul>`;
+import { BMB_SIZE_NAME_LIST } from '@shared/types';
 
 const meta: Meta<BmbCardComponent> = {
   title: 'Components/Containers/Generic card',
@@ -92,7 +64,6 @@ ${getArchitectureSection(`<section class="bmb_card" <!-- conditional class bmb_r
     <ng-content></ng-content>
   </footer>
 </section>`)}
-${getTemplateVariantsSection()}
 ${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock('BmbCardComponent')}
         `,
@@ -116,7 +87,7 @@ ${getBasicExampleBlock('BmbCardComponent')}
       control: {
         type: 'select',
       },
-      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
+      options: BMB_SIZE_NAME_LIST,
       table: {
         type: { summary: 'string' },
         category: 'Properties',

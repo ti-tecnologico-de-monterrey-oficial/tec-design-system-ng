@@ -229,12 +229,6 @@ export const sidebarOptions: SidebarElement[][] = [
           link: '/pages/navigation-bar',
         },
         {
-          id: 27,
-          icon: 'view_list',
-          title: 'Top bar item',
-          link: '/pages/top-bar-item',
-        },
-        {
           id: 28,
           icon: 'touch_app',
           title: 'Interactive item text button',
@@ -245,6 +239,12 @@ export const sidebarOptions: SidebarElement[][] = [
           icon: 'radio_button_checked',
           title: 'Button icon',
           link: '/pages/button-icon',
+        },
+        {
+          id: 48,
+          icon: 'crop_square',
+          title: 'Box icon',
+          link: '/pages/box-icon',
         },
         {
           id: 30,
@@ -353,6 +353,12 @@ export const sidebarOptions: SidebarElement[][] = [
           icon: 'list',
           title: 'List items',
           link: '/pages/list-items',
+        },
+        {
+          id: 49,
+          icon: 'sell',
+          title: 'Input tags',
+          link: '/pages/input-tags',
         },
       ],
     },

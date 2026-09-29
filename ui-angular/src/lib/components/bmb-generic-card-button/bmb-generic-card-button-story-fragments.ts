@@ -10,6 +10,35 @@ import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
 } from '../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
+import {
+  getSpecialSpecifications,
+  getTechnicalDocReferences,
+} from '@docs/utils/utils';
+import * as cardButtonStory from './bmb-generic-card-button.stories';
+import * as badgeStory from '../bmb-badge/bmb-badge.stories';
+import * as boxIconStory from '../bmb-box-icon/bmb-box-icon.stories';
+import * as buttonIconStory from '../bmb-button-icon/bmp-button-icon.stories';
+import * as iconStory from '../bmb-icon/bmb-icon.stories';
+import * as imageStory from '../bmb-image/bmb-image.stories';
+import * as textLinkStory from '../bmb-text-link/bmb-text-link.stories';
+import * as titleStory from '../bmb-title/bmp-title.stories';
+import * as layoutGridStory from '../../directives/old/bmb-layout-grid/bmb-layout-grid.stories';
+
+export const technicalReferences = getSpecialSpecifications(
+  getTechnicalDocReferences({
+    references: [
+      { title: cardButtonStory.default.title! },
+      { title: badgeStory.default.title! },
+      { title: boxIconStory.default.title! },
+      { title: buttonIconStory.default.title! },
+      { title: iconStory.default.title! },
+      { title: imageStory.default.title! },
+      { title: textLinkStory.default.title! },
+      { title: titleStory.default.title! },
+      { title: layoutGridStory.default.title! },
+    ],
+  }),
+);
 
 export const storyFragmentImports = [
   BmbBadgeComponent,
@@ -37,11 +66,21 @@ export const gridItem = (
 ) =>
   `<div bmbLayoutGridItem [colStart]="${colStart}" [rowStart]="${rowStart}" [numberOfColumns]="${numberOfColumns}" [numberOfRows]="${numberOfRows}">${content}</div>`;
 
-export const grid = (items: string, columns: number, rows: number) =>
-  `<div bmbLayoutGrid [columns]="${columns}" [rows]="${rows}" height="100%">${items}</div>`;
+export const grid = (
+  items: string,
+  columns: number,
+  rows: number,
+  gapSize: 'xs' | 's' = 's',
+) =>
+  `<div bmbLayoutGrid [columns]="${columns}" [rows]="${rows}" colGapSize="${gapSize}" rowGapSize="${gapSize}" height="100%">${items}</div>`;
 
-export const stack = (rows: string[]) =>
-  grid(rows.map((r, i) => gridItem(r, 1, i + 1)).join('\n'), 1, rows.length);
+export const stack = (rows: string[], gapSize: 'xs' | 's' = 's') =>
+  grid(
+    rows.map((r, i) => gridItem(r, 1, i + 1)).join('\n'),
+    1,
+    rows.length,
+    gapSize,
+  );
 
 export const iconMedia = (icon = 'description') =>
   `<bmb-box-icon iconName="${icon}" boxSize="small" boxShape="circle" boxColor="black-primary" />`;
@@ -65,13 +104,19 @@ export const actionsCluster = (opts: {
   selection?: boolean;
   selected?: boolean;
 } = {}) =>
-  `<div style="display: flex; align-items: center; gap: 10px">${likeCount}${bookmarkAction}${menuAction}${opts.selection ? selectionIcon(!!opts.selected) : ''}</div>`;
+  `<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+    <div class="bmb-social-icon" style="display: flex; align-items: center; gap: 8px; color: var(--general-contrasts-50)">${likeCount}${bookmarkAction}</div>
+    <div style="display: flex; align-items: center; gap: 8px">${menuAction}${opts.selection ? selectionIcon(!!opts.selected) : ''}</div>
+  </div>`;
 
 export const headerRow = (media: string, actions: string) =>
   `<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">${media}${actions}</div>`;
 
 export const rightAlign = (content: string) =>
-  `<div style="display: flex; align-items: center; justify-content: flex-end; gap: 10px">${content}</div>`;
+  `<div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px">${content}</div>`;
+
+export const leftAlign = (content: string) =>
+  `<div style="display: flex; align-items: center; justify-content: flex-start; gap: 8px">${content}</div>`;
 
 export const titleWithAuthor = (
   title = 'Resumen de Texto',
@@ -80,13 +125,17 @@ export const titleWithAuthor = (
   subtitle?: string,
   subtitleSize = '3',
   subtitleFontWeight = '400',
+  showAuthorIcon = true,
 ) =>
-  `<div style="display: flex; align-items: center; gap: 6px"><bmb-title componentTitle="${title}" titleSize="${titleSize}" titleFontWeight="${titleFontWeight}"${subtitle ? ` subtitle="${subtitle}" subtitleSize="${subtitleSize}" subtitleFontWeight="${subtitleFontWeight}"` : ''} style="flex: 1; min-width: 0" /><bmb-icon icon="person" [size]="16" alt="Autor" /></div>`;
+  `<div style="display: flex; align-items: center; gap: 4px; min-width: 0"><bmb-title componentTitle="${title}" titleSize="${titleSize}" titleFontWeight="${titleFontWeight}"${subtitle ? ` subtitle="${subtitle}" subtitleSize="${subtitleSize}" subtitleFontWeight="${subtitleFontWeight}"` : ''} style="min-width: 0" />${showAuthorIcon ? `<bmb-icon icon="person" [size]="16" alt="Autor" style="color: var(--general-contrasts-100)" />` : ''}</div>`;
 
-export const body = (text: string) => `<p style="margin: 0">${text}</p>`;
+export const body = (text: string) =>
+  `<p style="margin: 0; color: var(--general-contrasts-75)">${text}</p>`;
 
-export const mutedLabel = (text: string) =>
-  `<span style="color: var(--general-contrasts-75); font-size: 0.8rem">${text}</span>`;
+export const secondaryCaption = (text: string) =>
+  `<p style="margin: 8px 0 0; font-size: 12px; color: var(--general-contrasts-50)">${text}</p>`;
+
+export const footerLinkUnderlined = `<bmb-text-link textLink="Ver más" link="#" target="_self" textLinkStyle="underlined" (click)="$event.stopPropagation()" />`;
 
 export const badges = (
   items: { text: string; appearance: IBmbBadgeAppearance }[],
@@ -103,7 +152,7 @@ export const cardWrap = (
   content: string,
   opts: { selected?: boolean; disabled?: boolean } = {},
 ) =>
-  `<div style="padding: 1.5rem"><div style="width: ${width}px; height: ${height}px">
+  `<div style="padding: 1.5rem"><div style="width: ${width}px">
     <bmb-generic-card-button ${opts.selected ? '[selected]="true" ' : ''}${opts.disabled ? '[disabled]="true" ' : ''}(cardClick)="log('card clicked')">
       ${content}
     </bmb-generic-card-button>

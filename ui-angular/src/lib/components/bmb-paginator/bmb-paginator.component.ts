@@ -15,10 +15,6 @@ import {
   isPaginatorPageValid,
 } from '../../_shared/logic/components/paginator';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-paginator',
   standalone: true,

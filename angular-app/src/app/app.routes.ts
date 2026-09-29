@@ -1,6 +1,8 @@
+import { componentTestRoutes } from './routes/component-tests.routes';
 import { Route } from '@angular/router';
 
 export const appRoutes: Route[] = [
+  ...componentTestRoutes,
   {
     path: 'pages/item-default',
     title: 'Item default',
@@ -481,14 +483,6 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'pages/top-bar-item',
-    title: 'BmbTopBarItem | Bamboo migration dashboard',
-    loadComponent: () =>
-      import('./pages/top-bar-item-page/top-bar-item-page').then(
-        ({ TopBarItemPage }) => TopBarItemPage,
-      ),
-  },
-  {
     path: 'pages/interactive-item-text-button',
     title: 'BmbInteractiveItemTextButton | Bamboo migration dashboard',
     loadComponent: () =>
@@ -611,7 +605,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-  path: 'pages/student-activity-card',
+    path: 'pages/student-activity-card',
     title: 'BmbStudentActivityCard | Bamboo migration dashboard',
     loadComponent: () =>
       import(
@@ -694,6 +688,14 @@ export const appRoutes: Route[] = [
     loadComponent: () =>
       import('./pages/list-items-page/list-items-page').then(
         ({ ListItemsPage }) => ListItemsPage,
+      ),
+  },
+  {
+    path: 'pages/input-tags',
+    title: 'BmbInputTags | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/input-tags-page/input-tags-page').then(
+        ({ InputTagsPage }) => InputTagsPage,
       ),
   },
   { path: '**', redirectTo: 'home' },

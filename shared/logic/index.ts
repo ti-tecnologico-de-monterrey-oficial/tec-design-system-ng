@@ -1,4 +1,6 @@
 export * from './ui-content';
+export * from './components/header-mitec';
+export * from './components/academic-progress';
 export * from './components/interactive-item-default';
 export * from './components/badge';
 export * from './components/carousel';
@@ -8,6 +10,7 @@ export * from './components/dot-paginator';
 export * from './components/fab';
 export * from './components/icon-status';
 export * from './components/paginator';
+export * from './components/date-range';
 export * from './components/pull-wedge';
 export * from './components/server-table';
 export * from './components/card';

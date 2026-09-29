@@ -13,6 +13,7 @@ describe('ModalWDropdownComponent', () => {
 
     fixture = TestBed.createComponent(ModalWDropdownComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('isFilterable', false);
     fixture.detectChanges();
   });
 

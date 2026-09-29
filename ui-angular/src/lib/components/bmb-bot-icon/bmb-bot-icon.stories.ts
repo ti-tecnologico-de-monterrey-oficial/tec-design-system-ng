@@ -9,6 +9,7 @@ interface BotIconStoryArgs {
 const meta = {
   title: 'Components/Icons/Bot icon',
   component: BmbBotIconComponent,
+  tags: ['!autodocs'],
   parameters: {
     docs: {
       description: {

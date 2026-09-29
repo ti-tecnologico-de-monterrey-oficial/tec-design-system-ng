@@ -127,6 +127,68 @@
     <label class="toggle">
       <input
         type="checkbox"
+        [checked]="useStructuredErrors()"
+        (change)="useStructuredErrors.set($any($event.target).checked)"
+      />
+      errorMessage como objeto
+    </label>
+    @if (useStructuredErrors()) {
+    <label for="date-range-required-error">errorMessage.required</label>
+    <input
+      id="date-range-required-error"
+      type="text"
+      [value]="requiredError()"
+      (input)="requiredError.set($any($event.target).value)"
+    />
+    <label for="date-range-custom-error">errorMessage.customValidation</label>
+    <input
+      id="date-range-custom-error"
+      type="text"
+      [value]="customError()"
+      (input)="customError.set($any($event.target).value)"
+    />
+    }
+    <label class="toggle">
+      <input
+        id="date-range-custom-validation"
+        type="checkbox"
+        [checked]="customValidationEnabled()"
+        (change)="customValidationEnabled.set($any($event.target).checked); validateControls()"
+      />
+      customValidation: rechazar fechas no vacías
+    </label>
+
+    <label for="date-range-control-start">Valor de controlStart</label>
+    <input
+      id="date-range-control-start"
+      type="text"
+      [value]="controlStartState().value"
+      (input)="setControlStartValue($any($event.target).value)"
+    />
+    <label for="date-range-control-end">Valor de controlEnd</label>
+    <input
+      id="date-range-control-end"
+      type="text"
+      [value]="controlEndState().value"
+      (input)="setControlEndValue($any($event.target).value)"
+    />
+    <button type="button" (click)="validateControls()">Validar fechas</button>
+    <button type="button" (click)="clearControls()">Limpiar formulario</button>
+    <p><strong>controlStart:</strong></p>
+    <pre aria-live="polite">{{ controlStartState() | json }}</pre>
+    <p><strong>controlEnd:</strong></p>
+    <pre aria-live="polite">{{ controlEndState() | json }}</pre>
+    <p aria-live="polite">
+      <strong>Último evento model:</strong> {{ lastModelEvent() }}
+    </p>
+    <p>
+      Los eventos model notifican cambios de instancia del control. Los valores
+      se muestran arriba.
+    </p>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
         [checked]="multipleRow()"
         (change)="setMultipleRow($any($event.target).checked)"
       />
@@ -176,9 +238,12 @@
       [disableDatesAfter]="disableDatesAfter()"
       [invalidFormatErrorMessage]="invalidFormatErrorMessage()"
       [requiredFieldErrorMessage]="requiredFieldErrorMessage()"
-      [errorMessage]="errorMessage()"
+      [errorMessage]="resolvedErrorMessage()"
+      [customValidation]="customValidation"
       [controlStart]="controlStart"
       [controlEnd]="controlEnd"
+      (controlStartChange)="handleControlStartChange($event)"
+      (controlEndChange)="handleControlEndChange($event)"
       [multipleRow]="multipleRow()"
       [isRequired]="isRequired()"
       [isClearable]="isClearable()"

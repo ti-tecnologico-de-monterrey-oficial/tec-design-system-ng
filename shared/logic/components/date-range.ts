@@ -22,3 +22,10 @@ export function getDisableDateBefore(
 
   return parsedDate.minus({ day: 1 }).toFormat(dateFormat);
 }
+
+export function getDisableDateAfter(
+  value: string,
+  currentValue: string,
+): string {
+  return value || currentValue;
+}

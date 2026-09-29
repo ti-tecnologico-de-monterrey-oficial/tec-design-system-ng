@@ -2,6 +2,7 @@ import {
   Canvas,
   Controls,
   Description,
+  Heading,
   Meta,
   Primary,
   Stories,
@@ -16,24 +17,56 @@ export const GeneralTemplate = ({
   children,
   showStories = true,
   showControls = true,
+  isMultiStory = false,
+  isTemplate = false,
 }) => (
   <section>
+    <style>{`
+      [data-docs-preview-width] [data-story-block='true'] {
+        width: var(--docs-preview-width);
+        max-width: 100%;
+        margin: 0 auto;
+      }
+    `}</style>
     {children && <Meta of={children} />}
     {(children && <Title of={children}>{children?.title}</Title>) || <Title />}
     {(children && <Description of={children}>{children}</Description>) || (
       <Description />
     )}
-    <PreviewTitle />
-    {(children && (
+    {!isTemplate && <PreviewTitle />}
+    {(!isTemplate && children && (
       <Canvas meta={children} of={children.Default}>
         <Story meta={children} of={children.Default} />
       </Canvas>
-    )) || <Primary />}
-    {showControls && <TitleOfControls />}
-    {(children && showControls && (
+    )) ||
+      (!isTemplate && <Primary />)}
+    {!isTemplate && showControls && <TitleOfControls />}
+    {(!isTemplate && children && showControls && (
       <Controls meta={children} of={children.Default} />
     )) ||
-      (showControls && <Controls />)}
-    {showStories && <Stories title={STORIES_TITLE} includePrimary={false} />}
+      (!isTemplate && showControls && <Controls />)}
+    {(showStories &&
+      isMultiStory &&
+      Object.entries(children)
+        .filter(
+          ([name]) => name !== 'default' && name !== '__namedExportsOrder',
+        )
+        .map(([name, story]) => (
+          <div key={children.default?.title?.startsWith('Templates/Generic card/') ? children.default.title + '/' + name : name}>
+            <Heading>{story.name || name}</Heading>
+            <div
+              data-docs-preview-width={story.parameters?.docs?.previewWidth || undefined}
+              style={story.parameters?.docs?.previewWidth ? { '--docs-preview-width': story.parameters.docs.previewWidth } : undefined}
+            >
+              <Canvas
+                meta={children}
+                of={story}
+                layout={story.parameters?.docs?.previewWidth ? 'fullscreen' : undefined}
+                story={story.parameters?.docs?.story}
+              />
+            </div>
+          </div>
+        ))) ||
+      (showStories && <Stories title={STORIES_TITLE} includePrimary={false} />)}
   </section>
 );

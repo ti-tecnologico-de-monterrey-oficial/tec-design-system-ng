@@ -6,16 +6,4 @@ import { ListTemplate } from '@docs/components/ListTemplate.mdx';
 import { getFormatName } from '@docs/utils/utils';
 
 <Meta of={mainStory} />
-<ListTemplate
-  content={[mainStory, editorStory]}
-  context={{
-    [getFormatName(
-      editorStory.default.title,
-      /(\/)|( )/g,
-      '_',
-    ).toLocaleLowerCase()]: {
-      showStories: true,
-      showControls: true,
-    },
-  }}
-/>
+<ListTemplate isMultiStory={true} content={[mainStory, editorStory]} />

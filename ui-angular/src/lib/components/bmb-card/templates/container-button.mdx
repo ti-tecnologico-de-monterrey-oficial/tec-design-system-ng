@@ -18,6 +18,8 @@ import { getFormatName } from '@docs/utils/utils';
 
 <Meta title="Templates/Generic card" />
 <ListTemplate
+  isMultiStory={true}
+  isTemplate={true}
   content={[
     informativeStory,
     flatStory,
@@ -33,50 +35,4 @@ import { getFormatName } from '@docs/utils/utils';
     focusElementStory,
     itemListStory,
   ]}
-  context={{
-    ...Object.fromEntries([balanceStory, mediaExpandedVerticalStory, mediaDetailVerticalStory, mediaDetailHorizontalStory, mediaSimpleStory, mediaSimpleHorizontalStory, focusElementStory, itemListStory].map((story) => [
-      getFormatName(story.default.title, /(\/)|( )/g, '_').toLocaleLowerCase(),
-      { showStories: true, showControls: false },
-    ])),
-    [getFormatName(
-      informativeStory.default.title,
-      /(\/)|( )/g,
-      '_',
-    ).toLocaleLowerCase()]: {
-      showStories: true,
-      showControls: false,
-    },
-    [getFormatName(
-      flatStory.default.title,
-      /(\/)|( )/g,
-      '_',
-    ).toLocaleLowerCase()]: {
-      showStories: true,
-      showControls: false,
-    },
-    [getFormatName(
-      actionsStory.default.title,
-      /(\/)|( )/g,
-      '_',
-    ).toLocaleLowerCase()]: {
-      showStories: true,
-      showControls: false,
-    },
-    [getFormatName(
-      homeStory.default.title,
-      /(\/)|( )/g,
-      '_',
-    ).toLocaleLowerCase()]: {
-      showStories: true,
-      showControls: false,
-    },
-    [getFormatName(
-      emptyStory.default.title,
-      /(\/)|( )/g,
-      '_',
-    ).toLocaleLowerCase()]: {
-      showStories: true,
-      showControls: false,
-    },
-  }}
 />

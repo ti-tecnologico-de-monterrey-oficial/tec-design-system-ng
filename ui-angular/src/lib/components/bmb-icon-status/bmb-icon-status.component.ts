@@ -21,10 +21,6 @@ export type {
 } from '../../_shared/types/components/icon-status';
 import { TranslatePipe } from '../../pipes/translations';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-icon-status',
   standalone: true,
