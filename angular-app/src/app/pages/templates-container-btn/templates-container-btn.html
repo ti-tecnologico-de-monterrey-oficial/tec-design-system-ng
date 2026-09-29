@@ -1,0 +1,33 @@
+<section bmbVerticalLayout gapSize="none" alignItems="stretch" aria-labelledby="informative-grade-title">
+	<h1 id="informative-grade-title">Informative Grade</h1>
+
+	<bmb-container-button-base>
+		<ng-template #bmbContainerLeft>
+			<bmb-grade-value
+				type="main-grade"
+				appearanceContrast="default"
+				score="Cu"
+			/>
+		</ng-template>
+
+		<ng-template #bmbContainerMain>
+			<div bmbVerticalLayout gapSize="m" justify="center" alignItems="start">
+				<span class="font-regular-5">
+					Op. de humanidades y bellas a. (INGL)
+				</span>
+				<span class="font-regular-3">Crédito: 1</span>
+			</div>
+		</ng-template>
+
+		<ng-template #bmbContainerRight>
+			<div bmbVerticalLayout gapSize="none" alignItems="end">
+				<bmb-badge
+					appearance=""
+					text="Cursando"
+					[container]="false"
+				/>
+				<span class="font-regular-3">Semana: 5</span>
+			</div>
+		</ng-template>
+	</bmb-container-button-base>
+</section>
