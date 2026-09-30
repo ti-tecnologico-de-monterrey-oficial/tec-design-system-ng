@@ -48,7 +48,15 @@ ${getBasicExampleBlock('BmbDividerComponent')}
       },
       options: BMB_DIVIDER_ORIENTATION_LIST,
       description: `Sets the orientation of the divider.
-${getAlertBlockquote('`Vertical` orientation corresponds to small vertical variant', { title: RELEVANT_TITLE.configuration, blockquoteType: BlockquoteType.important })}`,
+${getAlertBlockquote(
+  `\`vertical\` orientation corresponds to small vertical variant.<br/><br/>
+\`removeMargin\` does not affect any way to this variant.`,
+  {
+    title: RELEVANT_TITLE.configuration,
+    blockquoteType: BlockquoteType.important,
+  },
+)}
+`,
       table: {
         category: 'Properties',
         defaultValue: { summary: 'horizontal' },
