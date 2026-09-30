@@ -6,10 +6,26 @@ import { BmbGradeValueComponent } from '../../bmb-grade-value/bmb-grade-value.co
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 import {
+  BlockquoteType,
+  getAlertBlockquote,
   getGeneralDescription,
   getSpecialSpecifications,
+  getStoryLink,
   getTypescriptExampleTextBlock,
+  RELEVANT_TITLE,
+  getTechnicalDocReferences,
 } from '@docs/utils/utils';
+
+import * as bmbContainerButtonBaseStory from '../../bmb-container-button/bmb-container-button.stories';
+import * as bmbGradeValueStory from '../../bmb-grade-value/bmb-grade-value.stories';
+import * as bmbBadgeStory from '../../bmb-badge/bmb-badge.stories';
+import * as bmbLayoutDirectiveStory from '../../../directives/bmb-layout/bmb-layout.stories';
+import * as bmbVerticalLayoutDirectiveStory from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.stories';
+
+import * as iconStory from '../../bmb-icon/bmb-icon.stories';
+import * as boxIconStory from '../../bmb-box-icon/bmb-box-icon.stories';
+import * as userImageStory from '../../bmb-user-image/bmb-user-images.stories';
+import * as imageStory from '../../bmb-image/bmb-image.stories';
 
 const meta: Meta<BmbContainerButtonBaseComponent> = {
   title: 'Templates/Container Button/Informative Grade',
@@ -31,22 +47,39 @@ const meta: Meta<BmbContainerButtonBaseComponent> = {
       description: {
         component: `
 ${getGeneralDescription('The Container Button component is used to take advantage of its built-in states, behaviors, and features. The Desktop and Mobile stories provide separate compositions and copyable HTML.', { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/container-button/descripcion-general-dzTxNX36' })}
-${getSpecialSpecifications(`The left content in the desktop composition accepts other Bamboo elements in place of the grade value:
->
-> > - [BmbIconComponent](?path=/docs/components-visual-labels-icon-item--documentation)
-> > - [BmbBoxIconComponent](?path=/docs/components-visual-labels-box-icon--documentation)
-> > - [BmbUserImageComponent](?path=/docs/components-images-user-image--documentation)
-> > - [BmbImageComponent](?path=/docs/components-images-image--documentation)
->
-> Components used in this composition:
-> - [BmbContainerButtonBaseComponent](?path=/docs/templates-container-button--documentation)
-> - [BmbGradeValueComponent](?path=/docs/organisms-grades--documentation)
-> - [BmbBadgeComponent](?path=/docs/components-visual-labels-badge--documentation)
-> - [BmbLayoutDirective](?path=/docs/foundations-layouts-layout--documentation)
-> - [BmbVerticalLayoutDirective](?path=/docs/foundations-layouts-vertical-layout-container--documentation)
->
-> Please remember to refer to the [resolutions foundation](https://bamboo.tec.mx/latest/foundations/resoluciones-A1nepmXF) for more information.`)}
-<div style="height: 24px;"></div>
+${getSpecialSpecifications(`
+  ${getTechnicalDocReferences({
+    references: [
+      { title: bmbContainerButtonBaseStory.default.title! },
+      { title: bmbGradeValueStory.default.title! },
+      { title: bmbBadgeStory.default.title! },
+      { title: bmbLayoutDirectiveStory.default.title! },
+      { title: bmbVerticalLayoutDirectiveStory.default.title! },
+    ],
+  })},
+
+${getAlertBlockquote(
+    `
+    Configuration - Elements allowed on the left side of the template.
+    Please use only the components included in the following list on the left side of the template, in accordance with the established guidelines.
+    >
+    - ${getStoryLink({ title: iconStory.default.title! })}
+    - ${getStoryLink({ title: boxIconStory.default.title! })}
+    - ${getStoryLink({ title: userImageStory.default.title! })}
+    - ${getStoryLink({ title: imageStory.default.title! })}
+    `,
+    {
+      title: RELEVANT_TITLE.configuration.replace(
+        '<br/>',
+        ' - Switching languages<br/>',
+      ),
+      blockquoteType: BlockquoteType.important,
+      isRelevantTitle: true,
+      isHeader: true,
+    },
+  )}
+
+`)}
 ${getTypescriptExampleTextBlock(
   'BmbContainerButtonBaseComponent, BmbGradeValueComponent, BmbBadgeComponent, BmbLayoutDirective, BmbVerticalLayoutDirective',
   '',
@@ -90,7 +123,7 @@ const desktopTemplate = `<bmb-container-button-base>
   <ng-template #bmbContainerRight>
     <div bmbVerticalLayout gapSize="none" alignItems="end">
       <bmb-badge
-        appearance="semantic-info-event"
+        appearance="semantic-brand"
         text="Cursando"
         [container]="false"
       />
@@ -103,7 +136,7 @@ const mobileTemplate = `<bmb-container-button-base>
     <div bmbVerticalLayout gapSize="s" alignItems="stretch">
       <div bmbLayout margin="none" gapSize="m" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true">
         <bmb-grade-value type="main-grade" appearanceContrast="default" score="Cu" />
-        <bmb-badge appearance="semantic-info-event" text="Cursando" [container]="false" />
+        <bmb-badge appearance="creative-use-strong" text="Cursando" [container]="false" />
       </div>
       <div bmbVerticalLayout gapSize="m" alignItems="start">
         <span class="font-regular-5">Op. de humanidades y bellas a. (INGL)</span>
