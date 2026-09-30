@@ -7,7 +7,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbSimpleTextSizes } from '../../_shared/types/components/simple-text';
 import type { IBmbSimpleTextElementType, IBmbSimpleTextSize, IBmbSimpleTextWeight } from '../../_shared/types/components/simple-text';
-import type { IBmbBaseGeneralContrastColors } from '../../_shared/types/foundations/colors/color-type';
+import type { IBmbBaseGeneralContrastColors, IBmbSemanticBaseColors } from '../../_shared/types/foundations/colors/color-type';
 
 @Component({
   selector: 'bmb-simple-text',
@@ -21,7 +21,7 @@ import type { IBmbBaseGeneralContrastColors } from '../../_shared/types/foundati
 export class BmbSimpleTextComponent {
   size = input<IBmbSimpleTextSize>(4);
   weight = input<IBmbSimpleTextWeight>('regular');
-  color = input<IBmbBaseGeneralContrastColors>('general-contrasts-100');
+  color = input<IBmbBaseGeneralContrastColors | IBmbSemanticBaseColors | 'inherit'>('inherit');
   elementType = input<IBmbSimpleTextElementType>('p');
 
   get styles(): Record<string, string> {
