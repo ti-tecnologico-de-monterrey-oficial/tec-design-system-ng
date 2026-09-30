@@ -155,13 +155,6 @@ export * from './lib/components/bmb-sounds-card/bmb-sounds-card.component';
 export * from './lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 export * from './lib/components/bmb-overlay/bmb-overlay.component';
 export * from './lib/components/bmb-icon-item/bmb-icon-item.component';
-export type {
-  IBmbHitoListDay,
-  IBmbHitoListEventIndicator,
-  IBmbHitoListEvents,
-  IBmbHitoListMonth,
-  ISelectedDate,
-} from './lib/_shared/types/components/hito-list';
 export * from './lib/components/bmb-carousel/bmb-carousel.component';
 export * from './lib/components/bmb-action-menu/bmb-action-menu.component';
 export * from './lib/components/bmb-button-icon/bmb-button-icon.component';
@@ -181,6 +174,7 @@ export * from './lib/directives/old/bmb-selector/bmb-selector.directive';
 export * from './lib/components/bmb-table-lite/bmb-table-lite.component';
 export * from './lib/components/bmb-search-card/bmb-search-card.component';
 export * from './lib/components/bmb-ai-chat-card/bmb-ai-chat-card.component';
+export * from './lib/components/bmb-simple-text/bmb-simple-text.component';
 
 // types
 export * from './lib/_shared/types';
