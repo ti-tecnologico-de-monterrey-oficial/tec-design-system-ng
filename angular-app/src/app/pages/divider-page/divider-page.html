@@ -13,7 +13,17 @@
       [value]="type()"
       (change)="selectType($any($event.target).value)"
     >
-      @for (option of types; track option) {
+      @for (option of getDividerTypes(); track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label for="divider-orientation">orientation</label>
+    <select
+      id="divider-orientation"
+      [value]="orientation()"
+      (change)="selectType($any($event.target).value)"
+    >
+      @for (option of getDividerOrientationTypes(); track orientation) {
       <option [value]="option">{{ option }}</option>
       }
     </select>

@@ -11,10 +11,6 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../pipes/translations';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-home-section',
   standalone: true,

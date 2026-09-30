@@ -1,4 +1,4 @@
-﻿interface ComponentItem {
+interface ComponentItem {
   label: string;
   url: string;
   icon: string;
@@ -15,7 +15,9 @@ interface ComponentGroupTest {
 
 export const navigationTest: ComponentGroupTest[] = [
   {
+    // COMPONENTS
     label: 'COMPONENTS',
+    // Buttons
     items: [
       {
         label: 'Buttons',
@@ -26,8 +28,13 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Interactive icon (*old)',
-            url: '/pages/buttons/interactive-icon',
+            label: 'Bookmark',
+            url: '/pages/bookmark',
+            icon: 'bookmark',
+          },
+          {
+            label: 'Button icon',
+            url: '/pages/button-icon',
             icon: 'widgets',
           },
           {
@@ -41,27 +48,28 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Bookmark test',
-            url: '/pages/bookmark',
-            icon: 'bookmark',
+            label: 'Interactive icon (*old)',
+            url: '/pages/buttons/interactive-icon',
+            icon: 'widgets',
           },
           {
-            label: 'Generic card templates',
-            url: '/card-button',
-            icon: 'smart_button',
-          },
-          {
-            label: 'Fab test',
+            label: 'Fab',
             url: '/pages/fab',
             icon: 'mode_standby',
           },
+          {
+            label: 'Text link',
+            url: '/pages/text-link',
+            icon: 'arrow_forward',
+          },
         ],
       },
+      //Containers
       {
         label: 'Containers',
         items: [
           {
-            label: 'Home section (*old)',
+            label: 'Home section',
             url: '/pages/containers/home-section',
             icon: 'widgets',
           },
@@ -71,13 +79,8 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Hito card (*old)',
-            url: '/pages/containers/hito-card',
-            icon: 'widgets',
-          },
-          {
-            label: 'ToTP prompt (*old)',
-            url: '/pages/containers/totp-prompt',
+            label: 'AI Chat Bubble',
+            url: '/pages/containers/ai-chat-bubble',
             icon: 'widgets',
           },
           {
@@ -86,33 +89,13 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Header mobile (*old)',
-            url: '/pages/containers/header-mobile',
-            icon: 'widgets',
+            label: 'Divider',
+            url: '/pages/divider',
+            icon: 'horizontal_rule',
           },
           {
-            label: 'Header section (*old)',
-            url: '/pages/containers/header-section',
-            icon: 'widgets',
-          },
-          {
-            label: 'Modal',
-            url: '/pages/containers/modal',
-            icon: 'widgets',
-          },
-          {
-            label: 'Table lite',
-            url: '/pages/containers/table-lite',
-            icon: 'widgets',
-          },
-          {
-            label: 'Tables (*old)',
-            url: '/pages/containers/tables',
-            icon: 'widgets',
-          },
-          {
-            label: 'AI Chat Bubble',
-            url: '/pages/containers/ai-chat-bubble',
+            label: 'Evaluation rubric (*old)',
+            url: '/pages/containers/evaluation-rubric',
             icon: 'widgets',
           },
           {
@@ -121,34 +104,19 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Search card (*old)',
-            url: '/pages/containers/search-card',
-            icon: 'widgets',
-          },
-          {
-            label: 'Evaluation rubric (*old)',
-            url: '/pages/containers/evaluation-rubric',
-            icon: 'widgets',
-          },
-          {
-            label: 'Profile card (*old)',
-            url: '/pages/containers/profile-card',
-            icon: 'widgets',
-          },
-          {
-            label: 'Item default',
-            url: '/pages/item-default',
-            icon: 'person',
-          },
-          {
-            label: 'Item chevron',
-            url: '/pages/item-chevron',
-            icon: 'chevron_right',
-          },
-          {
             label: 'Generic card',
             url: '/pages/card',
             icon: 'badge',
+          },
+          {
+            label: 'Header mobile (*old)',
+            url: '/pages/containers/header-mobile',
+            icon: 'widgets',
+          },
+          {
+            label: 'Hito card (*old)',
+            url: '/pages/containers/hito-card',
+            icon: 'widgets',
           },
           {
             label: 'Home card',
@@ -161,24 +129,24 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'image',
           },
           {
+            label: 'Modal',
+            url: '/pages/containers/modal',
+            icon: 'widgets',
+          },
+          {
             label: 'Notification card',
             url: '/pages/notification-card',
             icon: 'notifications',
           },
           {
-            label: 'Simple header',
-            url: '/pages/simple-header',
-            icon: 'title',
+            label: 'Profile card (*old)',
+            url: '/pages/containers/profile-card',
+            icon: 'widgets',
           },
           {
-            label: 'Push notification',
-            url: '/pages/push-notification',
-            icon: 'notification_important',
-          },
-          {
-            label: 'Drag y Drop',
-            url: '/page/drag-drop',
-            icon: 'swap_vert',
+            label: 'Search card (*old)',
+            url: '/pages/containers/search-card',
+            icon: 'widgets',
           },
           {
             label: 'Student activity card',
@@ -186,19 +154,19 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'school',
           },
           {
-            label: '# Dropdown menu',
-            url: '/page/dropdown-menu',
-            icon: 'more_vert',
+            label: 'Table lite',
+            url: '/pages/containers/table-lite',
+            icon: 'widgets',
           },
           {
-            label: 'Timestamp detail',
-            url: '/pages/timestamp-detail',
-            icon: 'timeline',
+            label: 'Tables (*old)',
+            url: '/pages/containers/tables',
+            icon: 'widgets',
           },
           {
-            label: 'List items',
-            url: '/pages/list-items',
-            icon: 'list',
+            label: 'ToTP prompt (*old)',
+            url: '/pages/containers/totp-prompt',
+            icon: 'widgets',
           },
         ],
       },
@@ -211,13 +179,13 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Phone number (*old)',
+            label: 'Phone number',
             url: '/pages/inputs/phone-number',
             icon: 'widgets',
           },
           {
-            label: 'Text input with tags',
-            url: '/pages/input-tags',
+            label: 'Text input with tags (*old)',
+            url: '/pages/inputs/text-input-with-tags',
             icon: 'widgets',
           },
           {
@@ -267,10 +235,15 @@ export const navigationTest: ComponentGroupTest[] = [
           },
         ],
       },
-
+      // Menus
       {
         label: 'Menus',
         items: [
+          {
+            label: '# Dropdown menu',
+            url: '/page/dropdown-menu',
+            icon: 'more_vert',
+          },
           {
             label: 'Bottom navigation bar (*old)',
             url: '/pages/menus/bottom-navigation-bar',
@@ -318,7 +291,7 @@ export const navigationTest: ComponentGroupTest[] = [
           },
           {
             label: 'Multi dot paginator',
-            url: '/multi-dot-paginator',
+            url: '/pages/status-indicators/multi-dot-paginator',
             icon: 'widgets',
           },
           {
@@ -367,11 +340,6 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'steppers',
           },
           {
-            label: 'Text link',
-            url: '/pages/text-link',
-            icon: 'arrow_forward',
-          },
-          {
             label: 'Tooltip',
             url: '/pages/tooltip',
             icon: 'help',
@@ -403,11 +371,6 @@ export const navigationTest: ComponentGroupTest[] = [
   {
     label: 'Internals',
     items: [
-      {
-        label: 'Button icon',
-        url: '/pages/button-icon',
-        icon: 'widgets',
-      },
       {
         label: 'Header mitec',
         url: '/pages/internals/header-mitec',
@@ -513,23 +476,84 @@ export const navigationTest: ComponentGroupTest[] = [
 ];
 
 /**Possible INTERNALS */
-//   {
-//     label: 'Mitec app',
-//     items: [
-//       {
-//         label: 'Digital ID (*old)',
-//         url: '/pages/mitec-app/digital-id',
-//         icon: 'widgets',
-//       },
-//     ],
-//   },
-//   {
-//     label: 'Mitec card',
-//     items: [
-//       {
-//         label: 'Notice card (*old)',
-//         url: '/pages/mitec-card/notice-card',
-//         icon: 'widgets',
-//       },
-//     ],
-//   },
+/*
+  {
+    label: 'Mitec app',
+    items: [
+      {
+        label: 'Digital ID (*old)',
+        url: '/pages/mitec-app/digital-id',
+        icon: 'widgets',
+      },
+    ],
+  },
+  {
+    label: 'Mitec card',
+    items: [
+      {
+        label: 'Notice card (*old)',
+        url: '/pages/mitec-card/notice-card',
+        icon: 'widgets',
+      },
+    ],
+  },
+*/
+/*
+
+          {
+            label: 'Generic card templates',
+            url: '/card-button',
+            icon: 'smart_button',
+          },
+
+
+          {
+            label: 'Home section (*old)',
+            url: '/pages/containers/home-section',
+            icon: 'widgets',
+          },
+
+          {
+            label: 'Header section (*old)',
+            url: '/pages/containers/header-section',
+            icon: 'widgets',
+          },
+
+          {
+            label: 'Item default',
+            url: '/pages/item-default',
+            icon: 'person',
+          },
+          {
+            label: 'Item chevron',
+            url: '/pages/item-chevron',
+            icon: 'chevron_right',
+          },
+
+          {
+            label: 'Simple header',
+            url: '/pages/simple-header',
+            icon: 'title',
+          },
+
+          {
+            label: 'Push notification',
+            url: '/pages/push-notification',
+            icon: 'notification_important',
+          },
+          {
+            label: 'Drag y Drop',
+            url: '/page/drag-drop',
+            icon: 'swap_vert',
+          },
+          {
+            label: 'Timestamp detail',
+            url: '/pages/timestamp-detail',
+            icon: 'timeline',
+          },
+          {
+            label: 'List items',
+            url: '/pages/list-items',
+            icon: 'list',
+          },
+*/

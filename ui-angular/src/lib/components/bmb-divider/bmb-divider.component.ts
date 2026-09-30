@@ -6,9 +6,10 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { getDividerClasses } from '../../_shared/logic/components/divider';
-import type { BmbDividerType } from '../../_shared/types/components/divider';
-
-export type { BmbDividerType } from '../../_shared/types/components/divider';
+import type {
+  BmbDividerOrientationType,
+  BmbDividerType,
+} from '../../_shared/types/components/divider';
 
 @Component({
   selector: 'bmb-divider',
@@ -21,11 +22,13 @@ export type { BmbDividerType } from '../../_shared/types/components/divider';
 })
 export class BmbDividerComponent {
   type = input<BmbDividerType>('simple');
+  orientation = input<BmbDividerOrientationType>('horizontal');
   removeMargin = input<boolean>(false);
 
   getClasses(): string[] {
     return getDividerClasses({
       type: this.type(),
+      orientation: this.orientation(),
       removeMargin: this.removeMargin(),
     });
   }
