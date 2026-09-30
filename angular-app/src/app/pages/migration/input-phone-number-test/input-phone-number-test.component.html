@@ -1,0 +1,68 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbInputPhoneNumber</h1>
+  <p>Ingreso de numero de telefono con validacion automatica segun la lada.</p>
+</header>
+
+<section class="playground" aria-labelledby="input-phone-number-properties">
+  <aside class="controls">
+    <h2 id="input-phone-number-properties">Propiedades</h2>
+
+    <label for="ipn-label">label</label>
+    <input
+      id="ipn-label"
+      [value]="label()"
+      (input)="label.set($any($event.target).value)"
+    />
+
+    <label for="ipn-helper-message">helperMessage</label>
+    <input
+      id="ipn-helper-message"
+      [value]="helperMessage()"
+      (input)="helperMessage.set($any($event.target).value)"
+    />
+
+    <label for="ipn-placeholder">placeholder</label>
+    <input
+      id="ipn-placeholder"
+      [value]="placeholder()"
+      (input)="placeholder.set($any($event.target).value)"
+    />
+
+    <label for="ipn-default-country-code">defaultCountryCode</label>
+    <input
+      id="ipn-default-country-code"
+      [value]="defaultCountryCode()"
+      (input)="defaultCountryCode.set($any($event.target).value)"
+    />
+
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="isRequired()"
+        (change)="isRequired.set($any($event.target).checked)"
+      />isRequired</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="disabled()"
+        (change)="disabled.set($any($event.target).checked)"
+      />disabled</label
+    >
+
+    <p>Ultimo evento: {{ lastEvent() }}</p>
+  </aside>
+
+  <div class="preview">
+    <bmb-input-phone-number
+      [label]="label()"
+      [helperMessage]="helperMessage()"
+      [placeholder]="placeholder()"
+      [defaultCountryCode]="defaultCountryCode()"
+      [isRequired]="isRequired()"
+      [disabled]="disabled()"
+      [control]="control"
+    />
+  </div>
+</section>
