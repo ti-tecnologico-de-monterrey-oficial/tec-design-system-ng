@@ -4,13 +4,13 @@ import type {
 } from '../../types/components/divider';
 
 export const getDividerClasses = ({
-  type,
-  orientation,
-  removeMargin,
+  type = 'simple',
+  orientation = 'horizontal',
+  removeMargin = false,
 }: {
-  type: BmbDividerType;
-  orientation: BmbDividerOrientationType;
-  removeMargin: boolean;
+  type?: BmbDividerType;
+  orientation?: BmbDividerOrientationType;
+  removeMargin?: boolean;
 }): string[] => {
   const classes = [
     'bmb_divider',
