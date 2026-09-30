@@ -43,20 +43,15 @@ export * from './components/tooltip';
 export * from './components/user-summary';
 export * from './components/value-counter';
 export * from './components/action-icon';
-export type { IBmbDataTopBar } from './components/breadcrumb';
+export * from './components/hito-list';
+export * from './components/breadcrumb';
 export * from './components/skeleton';
 export * from './colors';
-export type { IBmbNotificationCounterType } from './components/notification-counter';
-export type { BmbSkeletonType } from './components/skeleton';
-export type {
-  BmbValueCounterFormatter,
-  BmbValueCounterParts,
-} from './components/value-counter';
-export type {
-  BmbIframeAttributes,
-  BmbIframeLoading,
-  BmbIframeReferrerPolicy,
-} from './components/iframe';
+export * from './components/notification-counter';
+export * from './components/skeleton';
+export * from './components/value-counter';
+export * from './components/iframe';
+export * from './components/simple-text';
 
 export * from './input';
 export * from './utils';
