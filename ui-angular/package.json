@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@material-symbols/svg-400": "0.39.1",
-    "dompurify": "3.4.1",
+    "dompurify": "3.4.13",
     "luxon": "3.7.2",
     "tslib": "*"
   },
