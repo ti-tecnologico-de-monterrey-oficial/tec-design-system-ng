@@ -52,7 +52,30 @@
 
 <!-- Informative Grade Template -->
 
-<!-- Informative Complex Template -->
+<section bmbVerticalLayout gapSize="none" alignItems="stretch" aria-labelledby="informative-complex-title">
+	<h2 id="informative-complex-title">Informative Complex</h2>
+
+	<bmb-container-button-base>
+		<ng-template #bmbContainerMain>
+			<div bmbVerticalLayout gapSize="s" alignItems="stretch">
+				<div bmbLayout margin="none" justify="start" alignItems="start">
+          <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'" >Título<br />(2 líneas máx)</bmb-simple-text>
+				</div>
+		<div bmbLayout margin="none" gapSize="s" justify="start" alignItems="center">
+          <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >Texto 1 | Texto 2 | Texto 3 |</bmb-simple-text>
+					<bmb-badge appearance="semantic-brand" text="Badge" [container]="false" />
+				</div>
+			</div>
+		</ng-template>
+
+		<ng-template #bmbContainerRight>
+			<div bmbLayout margin="none" gapSize="s" justify="end" alignItems="center" [avoidRowWrap]="true">
+				<bmb-badge appearance="semantic-brand" text="Badge" [container]="false" />
+				<bmb-icon icon="chevron_right" [size]="24" alt="Ver detalles" />
+			</div>
+		</ng-template>
+	</bmb-container-button-base>
+</section>
 
 <!-- Informative Complex Template -->
 
