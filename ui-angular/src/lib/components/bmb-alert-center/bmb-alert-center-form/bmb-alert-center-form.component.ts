@@ -65,11 +65,13 @@ export class BmbAlertCenterFormComponent {
     favorites: true,
     archive: true,
   });
+  enableSwipe = input<boolean>(false);
   selectionState = model<Record<string, boolean>>({});
 
   showAlertDetail = output<IBmbDataAlertsParsed>();
   changeAlertStatus = output<IBmbDataAlertsOutput>();
   navigationBarEvents = output<IBmbAlertCenterProtoEventFooter>();
+  getDeleteClick = output<IBmbDataAlertsParsed>();
   filteredEvents = computed<IBmbAlertCenterCategories>(() => {
     if (this.filterBy() === 'unread') {
       return {
@@ -201,6 +203,10 @@ export class BmbAlertCenterFormComponent {
 
   alertSelected(item: IBmbDataAlertsParsed) {
     this.showAlertDetail.emit(item);
+  }
+
+  handleDelete(item: IBmbDataAlertsParsed): void {
+    this.getDeleteClick.emit(item);
   }
 
   handleNavigationBarEvents(event: IBmbDataAlertsEventType): void {

@@ -18,10 +18,12 @@
     [hideTabs]="false"
     [enableMultipleSelection]="true"
     [showMobileVersion]="false"
+    [enableSwipe]="true"
     (onChangeAlertStatus)="handleOnChangeAlertStatus($event)"
     (alertEvent)="handleAlertEvent($event)"
     (showAlertDetail)="handleShowAlertDetail($event)"
     (closeAlertDetail)="handleCloseAlertDetail($event)"
     (navigationBarEvents)="handleNavigationBarEvents($event)"
+    (getDeleteClick)="handleDelete($event)"
   ></bmb-alert-center>
 </div>
