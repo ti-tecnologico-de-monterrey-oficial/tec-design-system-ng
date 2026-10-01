@@ -1,0 +1,32 @@
+.bmb_swipe {
+  position: relative;
+  overflow: hidden;
+
+  &-content {
+    position: relative;
+    z-index: 1;
+    background-color: inherit;
+    will-change: transform;
+  }
+
+  &-actions {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--bmb-spacing-s, 8px);
+    padding: 0 var(--bmb-spacing-m, 16px);
+    z-index: 0;
+
+    &-left {
+      left: 0;
+      justify-content: flex-start;
+    }
+
+    &-right {
+      right: 0;
+      justify-content: flex-end;
+    }
+  }
+}

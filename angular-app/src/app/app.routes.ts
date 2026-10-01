@@ -483,14 +483,6 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'pages/top-bar-item',
-    title: 'BmbTopBarItem | Bamboo migration dashboard',
-    loadComponent: () =>
-      import('./pages/top-bar-item-page/top-bar-item-page').then(
-        ({ TopBarItemPage }) => TopBarItemPage,
-      ),
-  },
-  {
     path: 'pages/interactive-item-text-button',
     title: 'BmbInteractiveItemTextButton | Bamboo migration dashboard',
     loadComponent: () =>
@@ -689,6 +681,14 @@ export const appRoutes: Route[] = [
     title: 'BmbTabs | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/tabs-page/tabs-page').then(({ TabsPage }) => TabsPage),
+  },
+  {
+    path: 'pages/swipe',
+    title: 'Swipe',
+    loadComponent: () =>
+      import('./pages/swipe-page/swipe-page').then(
+        ({ SwipePage }) => SwipePage,
+      ),
   },
   {
     path: 'pages/list-items',
