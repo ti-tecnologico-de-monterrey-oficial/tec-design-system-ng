@@ -39,10 +39,11 @@ import {
   newFormControlByType,
   showError,
 } from '../../_shared/logic/formControl';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  buildInputTagsOptions,
+  getSelectedInputTags,
+  parseInputTagsValue,
+} from '../../_shared/logic/components/input-tags';
 
 @Component({
   selector: 'bmb-input-tags',
@@ -169,9 +170,7 @@ export class BmbInputTagsComponent implements OnInit, OnChanges {
   }
 
   setSelectedTags(controlValue: string[]): void {
-    this.selectedTags = this.items.filter(({ value }) =>
-      controlValue.includes(value!),
-    );
+    this.selectedTags = getSelectedInputTags(this.items, controlValue);
   }
 
   removeTag(tag: IDropdownItem) {
@@ -190,9 +189,7 @@ export class BmbInputTagsComponent implements OnInit, OnChanges {
   selectOptionWithKey(value: string): void {
     if (value) {
       const selectedLength: number = this.filteredOptions.length;
-      const listOfValues: string[] = value
-        .split(',')
-        .map((item) => item.trim());
+      const listOfValues: string[] = parseInputTagsValue(value);
 
       listOfValues.forEach((val) => {
         if (selectedLength) {
@@ -208,25 +205,9 @@ export class BmbInputTagsComponent implements OnInit, OnChanges {
   }
 
   addOption(value: string): void {
-    if (typeof this.tagOptions()[0] === 'string') {
-      const newTagOptions: string[] = [
-        ...(this.tagOptions() as string[]),
-        value,
-      ];
-      this.tagOptions.set([...new Set(newTagOptions)]);
-    } else {
-      const newOption: IBmbDropdownItem = {
-        name: value,
-        value,
-        selectedText: value,
-        id: getUUID(),
-      };
-      const newList: IBmbDropdownItem[] = [
-        ...(this.tagOptions() as IBmbDropdownItem[]),
-        newOption,
-      ];
-      this.tagOptions.set([...new Set(newList)]);
-    }
+    this.tagOptions.set(
+      buildInputTagsOptions(this.tagOptions(), value, getUUID()),
+    );
 
     this.initOptions(this.tagOptions());
   }

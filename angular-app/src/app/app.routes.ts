@@ -698,5 +698,13 @@ export const appRoutes: Route[] = [
         ({ ListItemsPage }) => ListItemsPage,
       ),
   },
+  {
+    path: 'pages/input-tags',
+    title: 'BmbInputTags | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/input-tags-page/input-tags-page').then(
+        ({ InputTagsPage }) => InputTagsPage,
+      ),
+  },
   { path: '**', redirectTo: 'home' },
 ];

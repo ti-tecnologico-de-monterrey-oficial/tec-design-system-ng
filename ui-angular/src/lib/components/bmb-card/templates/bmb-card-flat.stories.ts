@@ -28,19 +28,32 @@ const meta: Meta<BmbCardComponent> = {
 };
 export default meta;
 
-const template =
-  () => `<div bmbLayout margin="none" gapSize="m" alignItems="stretch">
+const template = (isMobile: boolean) => `<div bmbLayout margin="none" gapSize="m" alignItems="stretch">
   <div bmbLayoutItem [colSm]="4" [colLg]="2" [colXl]="2">
-    <bmb-card type="normal" borderRadius="m" margin="none"><bmb-card-content padding="l">
-      <div bmbLayout margin="none" gapSize="m" justify="center" alignItems="center">
-        <div bmbLayoutItem [colSm]="1" [colLg]="12" [colXl]="12"><div bmbLayout margin="none" gapSize="none" justify="center" alignItems="center">
-          <bmb-box-icon iconName="crop_16_9" boxSize="regular" boxShape="circle" boxColor="black-primary" />
-        </div></div>
-        <bmb-title bmbLayoutItem [colSm]="3" [colLg]="12" [colXl]="12" componentTitle="Title" titleSize="5" titleFontWeight="500" subtitle="Complementary text" subtitleSize="4" subtitleFontWeight="400" [isCenterContent]="true" />
-      </div>
-    </bmb-card-content></bmb-card>
+    <bmb-card type="normal" borderRadius="m" margin="none">
+      <bmb-card-content padding="m">
+        <div bmbLayout margin="none" gapSize="m" justify="center" alignItems="center">
+          <div bmbLayoutItem [isDynamicItem]="${isMobile}" [colLg]="${!isMobile} ? 12 : null">
+            <div bmbLayout margin="none" gapSize="none" justify="center" alignItems="center">
+              <bmb-box-icon iconName="send" boxSize="small" boxShape="circle" boxColor="black-primary" />
+            </div>
+          </div>
+          <section bmbLayoutItem [isDynamicItem]="${isMobile}" [colGrow]="${1}" [colLg]="${!isMobile} ? 12 : null">
+            <bmb-title
+              componentTitle="Text"
+              [isCenterContent]="${!isMobile}"
+              titleSize="5"
+              titleFontWeight="500"
+              subtitle="Complementary text"
+              subtitleSize="1"
+              subtitleFontWeight="400"
+            />
+          </section>
+        </div>
+      </bmb-card-content>
+    </bmb-card>
   </div>
 </div>`;
 
-export const Desktop = staticCardStory(template());
-export const Mobile = staticCardStory(template(), true);
+export const Desktop = staticCardStory(template(false));
+export const Mobile = staticCardStory(template(true), true);

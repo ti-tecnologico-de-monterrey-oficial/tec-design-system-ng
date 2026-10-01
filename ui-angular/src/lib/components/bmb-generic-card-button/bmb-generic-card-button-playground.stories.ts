@@ -7,6 +7,7 @@ import {
   BmbLayoutGridItemDirective,
 } from '../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
 import { SizeNames } from '../../_shared/types';
+import { getSpecialSpecifications } from '@docs/utils/utils';
 
 const colors = [
   'var(--violet-tint)',
@@ -127,6 +128,7 @@ class StorybookGenericCardButtonPlayground {
 const meta: Meta<StorybookGenericCardButtonPlayground> = {
   title: 'Templates/Generic card button/Playground',
   component: StorybookGenericCardButtonPlayground,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [StorybookGenericCardButtonPlayground],
@@ -135,14 +137,14 @@ const meta: Meta<StorybookGenericCardButtonPlayground> = {
   parameters: {
     docs: {
       description: {
-        component: `
+        component: `${getSpecialSpecifications(`
 Drive the card's grid inputs live from the Controls panel — one placeholder cell is
 generated per (row, column) so you can see the grid reflow as you change columns, rows,
 column/row sizing, gaps, or the card's own width/height. This exercises the same
 \`[bmbLayoutGrid]\`/\`[bmbLayoutGridItem]\` inputs a real consumer would use with their own
 content (image, badge, icon, text link, etc.) — swap the generated placeholders for real
 projected content when wiring this into an app.
-        `,
+`)}`,
       },
     },
   },
@@ -179,11 +181,13 @@ projected content when wiring this into an app.
     selected: { control: { type: 'boolean' } },
     width: {
       control: { type: 'number', min: 200, step: 4 },
-      description: "The card wrapper's width in px (no upper bound on the card itself).",
+      description:
+        "The card wrapper's width in px (no upper bound on the card itself).",
     },
     height: {
       control: { type: 'number', min: 152, step: 4 },
-      description: "The card wrapper's height in px (no upper bound on the card itself).",
+      description:
+        "The card wrapper's height in px (no upper bound on the card itself).",
     },
   },
   args: {

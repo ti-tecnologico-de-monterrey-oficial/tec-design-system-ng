@@ -2,21 +2,23 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
-import { BmbTitleComponent } from '../../../../../ui-angular/src/lib/components/bmb-title/bmb-title.component';
 import {
   BmbProgressCircleComponent,
   BmbBadgeComponent,
   BmbBoxIconComponent,
   BmbButtonDirective,
+  BmbCheckboxComponent,
+  BmbContainerButtonComponent,
   BmbCardComponent,
   BmbCardContentComponent,
-  BmbCardHeaderComponent,
   BmbDividerComponent,
   BmbFocusElementComponent,
+  BmbHomeCardComponent,
   BmbIconComponent,
   BmbImageComponent,
   BmbLayoutDirective,
   BmbLayoutItemDirective,
+  BmbTitleComponent,
   BmbTooltipComponent,
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
@@ -30,17 +32,19 @@ import {
     BmbBadgeComponent,
     BmbBoxIconComponent,
     BmbButtonDirective,
+    BmbCheckboxComponent,
+    BmbContainerButtonComponent,
     BmbCardComponent,
     BmbCardContentComponent,
-    BmbCardHeaderComponent,
     BmbDividerComponent,
     BmbFocusElementComponent,
+    BmbHomeCardComponent,
     BmbIconComponent,
     BmbImageComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-    BmbTooltipComponent,
     BmbTitleComponent,
+    BmbTooltipComponent,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
   ],
@@ -49,6 +53,20 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GenericCard {
+  readonly isActionsMobile = toSignal(
+    inject(BreakpointObserver)
+      .observe('(width < 1001px)')
+      .pipe(map((state) => state.matches)),
+    { initialValue: false },
+  );
+
+  readonly isInformativeMobile = toSignal(
+    inject(BreakpointObserver)
+      .observe('(width < 1001px)')
+      .pipe(map((state) => state.matches)),
+    { initialValue: false },
+  );
+
   readonly isItemListMobile = toSignal(
     inject(BreakpointObserver)
       .observe('(width < 1001px)')

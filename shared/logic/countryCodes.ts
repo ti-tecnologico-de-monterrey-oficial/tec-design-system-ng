@@ -1,9 +1,4 @@
-export interface IBmbCountryCode {
-  country: string;
-  country_code: string;
-  lada: string;
-  length: number;
-}
+import { IBmbCountryCode } from '../types/components/input-phone-number';
 
 export const IBmbCountryCodes: IBmbCountryCode[] = [
   {
