@@ -1,6 +1,1 @@
-.bmb_navigation-bar {
-  &-social {
-    display: inline-flex;
-    margin: 0;
-  }
-}
+@use '../../../../../shared/assets/styles/components/navigation-bar';

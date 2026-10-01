@@ -1,7 +1,1 @@
-.bmb_icon-item {
-  &.no_divider {
-    .bmb_item-divider {
-      display: none;
-    }
-  }
-}
+@use '../../../../../shared/assets/styles/components/icon-item';
