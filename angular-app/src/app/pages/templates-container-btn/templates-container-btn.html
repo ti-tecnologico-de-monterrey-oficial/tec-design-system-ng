@@ -1,0 +1,69 @@
+<section bmbVerticalLayout gapSize="none" alignItems="stretch" aria-labelledby="informative-grade-title">
+	<h1 id="informative-grade-title">Informative Grade</h1>
+
+	@if (isMobile()) {
+		<bmb-container-button-base>
+			<ng-template #bmbContainerMain>
+				<div bmbVerticalLayout gapSize="s" alignItems="stretch">
+					<div bmbLayout margin="none" gapSize="m" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true">
+						<bmb-grade-value type="main-grade" appearanceContrast="default" score="Cu" />
+						<bmb-badge appearance="creative-use-strong" text="Cursando" [container]="false" />
+					</div>
+					<div bmbVerticalLayout gapSize="m" alignItems="start">
+            <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'" >Op. de humanidades y bellas a. (INGL)</bmb-simple-text>
+					</div>
+					<div bmbLayout margin="none" gapSize="m" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true">
+            <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-75'" >Crédito: 1</bmb-simple-text>
+            <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'" >Semana: 5</bmb-simple-text>
+					</div>
+				</div>
+			</ng-template>
+		</bmb-container-button-base>
+	} @else {
+	<bmb-container-button-base>
+		<ng-template #bmbContainerLeft>
+			<bmb-grade-value
+				type="main-grade"
+				appearanceContrast="default"
+				score="Cu"
+			/>
+		</ng-template>
+
+		<ng-template #bmbContainerMain>
+			<div bmbVerticalLayout gapSize="m" justify="center" alignItems="start">
+        <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'" >Op. de humanidades y bellas a. (INGL)</bmb-simple-text>
+        <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-75'" >Crédito: 1</bmb-simple-text>
+			</div>
+		</ng-template>
+
+		<ng-template #bmbContainerRight>
+			<div bmbVerticalLayout gapSize="none" alignItems="end">
+				<bmb-badge
+					appearance="semantic-brand"
+					text="Cursando"
+					[container]="false"
+        />
+        <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'" >Semana: 5</bmb-simple-text>
+			</div>
+		</ng-template>
+	</bmb-container-button-base>
+	}
+</section>
+
+<!-- Informative Grade Template -->
+
+<!-- Informative Complex Template -->
+
+<!-- Informative Complex Template -->
+
+<!-- Informative User Image Template -->
+
+<!-- Informative User Image Template -->
+
+<!-- Informative Icon Template -->
+
+<!-- Informative Icon Template -->
+
+<!-- Informative Actions Template -->
+
+<!-- Informative Actions Template -->

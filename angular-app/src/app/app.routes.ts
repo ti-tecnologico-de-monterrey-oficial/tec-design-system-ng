@@ -1,8 +1,13 @@
 import { componentTestRoutes } from './routes/component-tests.routes';
 import { Route } from '@angular/router';
+import { TemplatesContainerBtn } from './pages/templates-container-btn/templates-container-btn';
 
 export const appRoutes: Route[] = [
   ...componentTestRoutes,
+  {
+    path: 'template-container-btn',
+    component: TemplatesContainerBtn,
+  },
   {
     path: 'pages/item-default',
     title: 'Item default',
