@@ -45,7 +45,7 @@ ${getSpecialSpecifications(
       blockquoteType: BlockquoteType.important,
     },
   )}
-
+>
 Please remember that the content allowed in the uncovered areas is only a \`bmb-action-icon\` with the delete icon.${getTechnicalDocReferences(
     {
       references: [{ title: actionIconStory.default.title! }],
