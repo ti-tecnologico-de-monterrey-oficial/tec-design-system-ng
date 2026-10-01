@@ -48,11 +48,11 @@ const meta: Meta<BmbContainerButtonBaseComponent> = {
     docs: {
       description: {
         component: `
-${getGeneralDescription('The Container Button component is used to take advantage of its built-in states, behaviors, and features. The Desktop and Mobile stories provide separate compositions and copyable HTML.', { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/container-button/descripcion-general-dzTxNX36' })}
+${getGeneralDescription('The **Container Button** component is used to take advantage of its **built-in states**, **behaviors**, and **features**. The Desktop and Mobile stories provide separate compositions and copyable HTML.', { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/container-button/descripcion-general-dzTxNX36' })}
 ${getSpecialSpecifications(`
 
   ${getAlertBlockquote(
-    `Configuration - Elements allowed on the left side of the template.
+    `Others components allowed on the left side of the template.
 > Please use only the components included in the following list on the left side of the template, in accordance with the established guidelines:
 >
 ${[
@@ -66,6 +66,7 @@ ${[
     {
       title: RELEVANT_TITLE.configuration,
       blockquoteType: BlockquoteType.important,
+      isHeader: true,
     },
   )}
   ${getTechnicalDocReferences({
