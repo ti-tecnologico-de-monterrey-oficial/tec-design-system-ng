@@ -1,4 +1,4 @@
-// Offline integration check: exercises screenshots, diff, annotated evidence and PDF.
+// Offline integration check: exercises screenshots, annotated evidence and PDF.
 import assert from 'node:assert/strict';
 import { mkdtemp, readFile, readdir } from 'node:fs/promises';
 import { chromium } from '@playwright/test';
@@ -12,14 +12,14 @@ const browser = await chromium.launch(
 try {
   const page = await browser.newPage();
   await page.setContent(
-    '<button style="width:180px;height:48px;background:blue">Continuar</button>',
+    '<div style="width:180px;height:48px;background:blue">Continuar</div>',
   );
-  const expectedImage = await page.locator('button').screenshot();
-  await page.locator('button').evaluate((el) => {
+  const expectedImage = await page.locator('div').screenshot();
+  await page.locator('div').evaluate((el) => {
     el.style.background = 'red';
     el.style.width = '200px';
   });
-  const actualImage = await page.locator('button').screenshot();
+  const actualImage = await page.locator('div').screenshot();
   const featurePage = await browser.newPage();
   const feature = await fingerprint(featurePage, expectedImage);
   assert.equal(feature.width, 180);
@@ -44,13 +44,11 @@ try {
       actualImage,
       findings: [
         {
-          layer: 'Botón',
+          layer: 'Texto',
           property: 'fontSize',
           expected: 16,
           actual: 12,
           recommendation: 'Cambiar fontSize de 12 a 16 px.',
-          severity: 'media',
-          confidence: 'alta (fixture)',
           box: { x: 0, y: 0, width: 200, height: 48 },
         },
       ],
@@ -61,39 +59,16 @@ try {
     out,
     { fragment: true },
   );
-  assert.ok(r.ratio > 0.1);
+  assert.match(r.annotated, /^data:image\/png;base64,/);
+  assert.deepEqual(r.sizes, [[180,48],[200,48]]);
+  assert.ok(!r.html.includes('Severidad:'));
+  assert.ok(!r.html.includes('Confianza:'));
   assert.ok(!r.html.includes('Revisar las zonas rosas'));
   assert.ok(!r.html.includes('Apariencia visual'));
-  const cases = [
-    {
-      entry: { title: 'Fixture', name: 'Default' },
-      status: 'diferencias',
-      storyUrl: 'http://localhost',
-      variant: { node: { id: '1' }, label: 'Default' },
-    },
-    {
-      entry: { title: 'Fixture', name: 'Missing' },
-      status: 'sin asociación',
-      reason: 'Sin diseño equivalente',
-      storyUrl: 'http://localhost',
-    },
-    {
-      entry: { title: 'Fixture', name: 'Broken' },
-      status: 'error',
-      reason: 'Error de render',
-      storyUrl: 'http://localhost',
-    },
-  ];
   const reportPage = await browser.newPage();
   await makeBatchReport(
     reportPage,
-    {
-      cases,
-      unused: [{ node: { id: '2' }, label: 'Sin story' }],
-      sections: [r.html],
-      figmaUrl: 'https://www.figma.com/design/demo?node-id=1',
-      version: 'demo',
-    },
+    { sections: [r.html] },
     out,
   );
   assert.deepEqual(await readdir(out), ['reporte.pdf']);
@@ -117,7 +92,7 @@ try {
     (await readFile(`${out}/reporte.pdf`)).subarray(0, 4).toString(),
     '%PDF',
   );
-  console.log('OK: diferencia visual, imágenes y PDF.');
+  console.log('OK: capturas, hallazgos numerados y PDF.');
 } finally {
   await browser.close();
 }

@@ -4,7 +4,7 @@ const uri = (b) => `data:image/png;base64,${b.toString('base64')}`;
 
 export async function makeReport(page, report, out, options = {}) {
   const visual = await page.evaluate(
-    async ({ a, b, threshold, boxes }) => {
+    async ({ a, b, boxes }) => {
       const load = (src) =>
         new Promise((resolve, reject) => {
           const i = new Image();
@@ -23,37 +23,6 @@ export async function makeReport(page, report, out, options = {}) {
       canvas.width = width;
       canvas.height = height;
       const ctx = canvas.getContext('2d');
-      const pixels = (image) => {
-        ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, width, height);
-        ctx.drawImage(image, 0, 0);
-        return ctx.getImageData(0, 0, width, height);
-      };
-      const x = pixels(left),
-        y = pixels(right),
-        diff = ctx.createImageData(width, height);
-      let changed = 0;
-      for (let i = 0; i < x.data.length; i += 4) {
-        const different = [0, 1, 2].some(
-          (k) => Math.abs(x.data[i + k] - y.data[i + k]) > threshold,
-        );
-        if (different) changed++;
-        diff.data.set(
-          different
-            ? [235, 0, 90, 255]
-            : [y.data[i], y.data[i + 1], y.data[i + 2], 100],
-          i,
-        );
-      }
-      ctx.putImageData(diff, 0, 0);
-      const difference = canvas.toDataURL();
-      ctx.fillStyle = 'white';
-      ctx.fillRect(0, 0, width, height);
-      ctx.globalAlpha = 0.5;
-      ctx.drawImage(left, 0, 0);
-      ctx.drawImage(right, 0, 0);
-      ctx.globalAlpha = 1;
-      const overlay = canvas.toDataURL();
       ctx.fillStyle = 'white';
       ctx.fillRect(0, 0, width, height);
       ctx.drawImage(right, 0, 0);
@@ -71,9 +40,6 @@ export async function makeReport(page, report, out, options = {}) {
         ctx.fillText(String(i + 1), box.x + 4, box.y + 16);
       });
       return {
-        ratio: changed / (width * height),
-        difference,
-        overlay,
         annotated: canvas.toDataURL(),
         sizes: [
           [left.width, left.height],
@@ -84,7 +50,6 @@ export async function makeReport(page, report, out, options = {}) {
     {
       a: uri(report.expectedImage),
       b: uri(report.actualImage),
-      threshold: report.tolerance.channel,
       boxes: report.findings.map((f) => f.box),
     },
   );
@@ -98,13 +63,7 @@ export async function makeReport(page, report, out, options = {}) {
   <table><thead><tr><th># / capa / propiedad</th><th>Esperado</th><th>Encontrado</th><th>Ajuste recomendado</th></tr></thead><tbody>${report.findings.map((f, i) => `<tr><td>${i + 1}. ${e(f.layer)}<br>${e(f.property)}</td><td>${e(f.expected)}</td><td>${e(f.actual)}</td><td>${e(f.recommendation)}</td></tr>`).join('')}</tbody></table>
   <p>Tolerancias: ${report.tolerance.numeric} unidades numéricas.</p></html>`;
   if (options.fragment) return { ...visual, html };
-  await page.setContent(html, { waitUntil: 'load' });
-  await page.pdf({
-    path: join(out, 'reporte.pdf'),
-    format: 'A4',
-    printBackground: true,
-    margin: { top: '12mm', bottom: '12mm', left: '12mm', right: '12mm' },
-  });
+  await writePdf(page, html, out);
   return visual;
 }
 
@@ -117,6 +76,10 @@ export async function makeBatchReport(page, batch, out) {
   const html = `<!doctype html><html lang="es"><meta charset="utf-8"><title>Auditoría de variantes</title><style>${css} section{break-before:page}td{overflow-wrap:anywhere}</style>
   <h1>Diferencias entre Figma y HTML</h1><p>${sections.length} variantes con diferencias detectadas.</p>
   ${sections.map((html) => `<section>${html.slice(html.indexOf('<h1>')).replace(/<\/html>\s*$/, '')}</section>`).join('')}</html>`;
+  await writePdf(page, html, out);
+}
+
+async function writePdf(page, html, out) {
   await page.setContent(html, { waitUntil: 'load' });
   await page.pdf({
     path: join(out, 'reporte.pdf'),

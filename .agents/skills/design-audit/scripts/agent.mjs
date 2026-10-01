@@ -93,6 +93,14 @@ const numeric = (name, fallback, max) => {
   return value;
 };
 
+function storyFrame(story, id) {
+  const url = new URL('iframe.html', story.base);
+  for (const [key, value] of Object.entries({ id, viewMode: 'story', args: story.args, globals: story.globals })) {
+    if (value) url.searchParams.set(key, value);
+  }
+  return url;
+}
+
 async function main() {
   console.log('\nAuditor de diseño · Figma ↔ Storybook\n');
   const design = await link('Enlace de Figma:', figmaLink);
@@ -299,11 +307,7 @@ async function main() {
           }
         }
         for (const item of cases.filter((c) => !c.variant)) {
-          const url = new URL('iframe.html', story.base);
-          url.searchParams.set('id', item.entry.id);
-          url.searchParams.set('viewMode', 'story');
-          for (const key of ['args', 'globals'])
-            if (story[key]) url.searchParams.set(key, story[key]);
+          const url = storyFrame(story, item.entry.id);
           try {
             await page.setViewportSize({ width: 1280, height: 800 });
             const capture = await captureForMatching(page, url.href);
@@ -312,7 +316,6 @@ async function main() {
               text: capture.text,
               theme: capture.theme,
             });
-            item.image = `data:image/png;base64,${capture.image.toString('base64')}`;
           } catch {
             item.reason =
               'No pude cargar esta historia para buscar su diseño correspondiente.';
@@ -323,9 +326,7 @@ async function main() {
 
       for (const item of cases) {
         const { entry } = item;
-        const url = new URL('iframe.html', story.base);
-        url.searchParams.set('id', entry.id);
-        url.searchParams.set('viewMode', 'story');
+        const url = storyFrame(story, entry.id);
         item.storyUrl = url.href;
         if (!item.variant) {
           console.log(`${entry.title} / ${entry.name}: ${item.reason}`);
@@ -349,10 +350,6 @@ async function main() {
             height: Math.max(600, Math.ceil(bounds.height)),
           });
           const expectedImage = await getRender(node);
-          url.searchParams.set('id', entry.id);
-          url.searchParams.set('viewMode', 'story');
-          for (const key of ['args', 'globals'])
-            if (story[key]) url.searchParams.set(key, story[key]);
           console.log(
             `Comparando ${node.name} con ${entry.title} / ${entry.name}…`,
           );

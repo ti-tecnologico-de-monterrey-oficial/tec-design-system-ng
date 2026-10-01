@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "audit:design": "node scripts/design-audit/agent.mjs",
+    "audit:design": "node .agents/skills/design-audit/scripts/agent.mjs",
     "audit:design:test": "nx run design-audit:test",
     "dev:react": "npm run json2sass && nx dev react-app",
     "dev:angular": "npm run json2sass && nx run ui-react:sync-shared && nx serve angular-app",

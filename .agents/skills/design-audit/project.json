@@ -5,13 +5,13 @@
       "executor": "nx:run-commands",
       "cache": false,
       "options": {
-        "command": "node --test scripts/design-audit/compare.test.mjs"
+        "command": "node --test .agents/skills/design-audit/scripts/compare.test.mjs"
       }
     },
     "smoke": {
       "executor": "nx:run-commands",
       "cache": false,
-      "options": { "command": "node scripts/design-audit/smoke.mjs" }
+      "options": { "command": "node .agents/skills/design-audit/scripts/smoke.mjs" }
     }
   }
 }

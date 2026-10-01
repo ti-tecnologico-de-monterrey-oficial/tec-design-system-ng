@@ -2,7 +2,7 @@
 
 Para revisar diseño contra implementación ejecuta `npm run audit:design`.
 El asistente pide los enlaces y el token que falte, y genera un PDF.
-[Guía del auditor](scripts/design-audit/README.md).
+[Guía del auditor](.agents/skills/design-audit/references/uso.md).
 
 Monorepo Nx con:
 
