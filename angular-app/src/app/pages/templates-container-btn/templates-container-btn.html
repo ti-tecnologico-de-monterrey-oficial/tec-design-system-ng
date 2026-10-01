@@ -57,34 +57,39 @@
 
 	<bmb-container-button-base>
 		<ng-template #bmbContainerMain>
-			<div bmbVerticalLayout gapSize="s" alignItems="stretch">
-				<div bmbLayout margin="none" justify="start" alignItems="start">
-          <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'" >Título<br />(2 líneas máx)</bmb-simple-text>
-				</div>
-				@if (isMobile()) {
+			@if (isMobile()) {
+				<div bmbVerticalLayout gapSize="s" alignItems="stretch">
+					<div bmbLayout margin="none" justify="start" alignItems="start">
+            <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'">Título<br />(3 líneas máx) -<br />Truncate (...)</bmb-simple-text>
+					</div>
 					<div bmbVerticalLayout gapSize="s" alignItems="start">
 						<div bmbLayout margin="none" gapSize="s" justify="start" alignItems="center" [avoidRowWrap]="true">
-              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >Texto 1</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'">Texto 1</bmb-simple-text>
               <bmb-divider [type]="'simple'" [orientation]="'vertical'" [removeMargin]="true"></bmb-divider>
-              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >Texto 2</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'">Texto 2</bmb-simple-text>
               <bmb-divider [type]="'simple'" [orientation]="'vertical'" [removeMargin]="true"></bmb-divider>
-              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >Texto 3</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'">Texto 3</bmb-simple-text>
               <bmb-divider [type]="'simple'" [orientation]="'vertical'" [removeMargin]="true"></bmb-divider>
 						</div>
 						<bmb-badge appearance="semantic-brand" text="Badge" [container]="false" />
 					</div>
-				} @else {
+				</div>
+			} @else {
+				<div bmbVerticalLayout gapSize="s" alignItems="stretch">
+					<div bmbLayout margin="none" justify="start" alignItems="start">
+            <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'">Título<br />(2 líneas máx)</bmb-simple-text>
+					</div>
 					<div bmbLayout margin="none" gapSize="s" justify="start" alignItems="center" [avoidRowWrap]="true">
-              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >Texto 1</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'">Texto 1</bmb-simple-text>
               <bmb-divider [type]="'simple'" [orientation]="'vertical'" [removeMargin]="true"></bmb-divider>
-              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >Texto 2</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'">Texto 2</bmb-simple-text>
               <bmb-divider [type]="'simple'" [orientation]="'vertical'" [removeMargin]="true"></bmb-divider>
-              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >Texto 3</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'">Texto 3</bmb-simple-text>
               <bmb-divider [type]="'simple'" [orientation]="'vertical'" [removeMargin]="true"></bmb-divider>
 						<bmb-badge appearance="semantic-brand" text="Badge" [container]="false" />
 					</div>
-				}
-			</div>
+				</div>
+			}
 		</ng-template>
 
 		<ng-template #bmbContainerRight>

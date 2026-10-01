@@ -50,7 +50,7 @@ const meta: Meta<BmbContainerButtonBaseComponent> = {
 ${getGeneralDescription('The template **Informative Complex** template combines a title, supporting text, and badges in a responsive Container Button.', { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/container-button/descripcion-general-dzTxNX36' })}
 ${getSpecialSpecifications(`
 ${getAlertBlockquote(
-  'Use the listed Bamboo elements to build the Informative Complex template. On mobile, metadata stays on one line and the badge appears below it; on desktop, metadata and badge share a line.',
+  'Use the listed Bamboo elements to build the Informative Complex template. For the desktop version, content must be limited to a maximum of **two lines**, in accordance with the established guidelines. For the responsive version, content must be limited to a maximum of **three lines**, in accordance with the established guidelines.',
   {
     title: RELEVANT_TITLE.configuration,
     blockquoteType: BlockquoteType.important,
