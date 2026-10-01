@@ -11,15 +11,6 @@
       [swipeDisabled]="!enableSwipe()"
       (getSwipeOpenChange)="handleSwipe($event)"
     >
-      <ng-template bmbSwipeLeftActions>
-        <bmb-action-icon
-          class="bmb_alert-center-list-item-delete"
-          icon="delete"
-          [iconSize]="24"
-          [tooltipText]="'alert_center.list.delete' | translate"
-          (buttonClick)="handleDelete(item)"
-        />
-      </ng-template>
       <ng-template bmbSwipeRightActions>
         <bmb-action-icon
           class="bmb_alert-center-list-item-delete"
@@ -118,6 +109,9 @@
           [numberOfColumns]="1"
           [numberOfRows]="1"
           class="bmb_alert-center-list-item-date"
+          [ngClass]="{
+            hidden: lastEvent() !== null,
+          }"
         >
           {{ getTextFromDate(item.pDate) }} - {{ item.type }}
         </p>
@@ -130,6 +124,7 @@
           class="bmb_alert-center-list-item-time"
           [ngClass]="{
             'no-lowercase': getTimeVariant(item.pDate) === 'today',
+            hidden: lastEvent() !== null,
           }"
         >
           {{ getFormattedTime(item.time, item.pDate) }}

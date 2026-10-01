@@ -76,6 +76,10 @@
       &.no-lowercase {
         text-transform: lowercase;
       }
+
+      &.hidden {
+        visibility: hidden;
+      }
     }
 
     &-delete {
