@@ -23,8 +23,8 @@
       [value]="orientation()"
       (change)="selectType($any($event.target).value)"
     >
-      @for (option of getDividerOrientationTypes(); track orientation) {
-      <option [value]="option">{{ option }}</option>
+      @for (orientation of getDividerOrientationTypes(); track orientation) {
+      <option [value]="orientation">{{ orientation }}</option>
       }
     </select>
     <label class="toggle">
