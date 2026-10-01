@@ -15,8 +15,8 @@
     bottom: 0;
     display: flex;
     align-items: center;
-    gap: var(--bmb-spacing-s, 8px);
-    padding: 0 var(--bmb-spacing-m, 16px);
+    gap: var(--bmb-spacing-s);
+    padding: 0 var(--bmb-spacing-m);
     z-index: 0;
 
     &-left {
