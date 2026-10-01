@@ -1,0 +1,40 @@
+<h1>Header Mitec</h1>
+<section
+  bmbLayout
+  margin="m"
+  alignItems="end"
+  aria-label="Controles del encabezado"
+>
+  <label>
+    Etiqueta del encabezado<br />
+    <input
+      #labelInput
+      [value]="headerLabel()"
+      (input)="headerLabel.set(labelInput.value)"
+    />
+  </label>
+  <button bmbButton type="button" (click)="headerLabel.set('')">
+    Usar etiqueta predeterminada
+  </button>
+  <button bmbButton type="button" (click)="updateLinks()">
+    Actualizar enlaces
+  </button>
+  <button bmbButton type="button" (click)="actionHeaderLinks.set(undefined)">
+    Quitar enlaces
+  </button>
+  <p aria-live="polite">
+    @if (actionHeaderLinks()) {
+      Enlaces de ejemplo: versión {{ linksVersion() }}.
+    } @else {
+      Sin enlaces configurados.
+    }
+  </p>
+</section>
+<bmb-header-mitec
+  [headerLabel]="headerLabel()"
+  [actionHeaderLinks]="actionHeaderLinks()"
+>
+  <h2>Bienvenido a MiTec</h2>
+  <p>Contenido proyectado dentro del encabezado.</p>
+  <p>Los iconos sociales se muestran en pantallas de al menos 630 px.</p>
+</bmb-header-mitec>

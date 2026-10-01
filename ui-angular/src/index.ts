@@ -1,6 +1,7 @@
 /*
  * Public API Surface of ds-ng
  */
+export const BAMBOO_VERSION = '1.6.4';
 
 // Services
 export * from './lib/services/old/notification/notification.service';
@@ -52,6 +53,7 @@ export * from './lib/components/bmb-user-image/bmb-user-image.component';
 export * from './lib/components/bmb-header-mobile/bmb-header-mobile.component';
 export * from './lib/components/bmb-dot-paginator/bmb-dot-paginator.component';
 export * from './lib/components/bmb-container-button/bmb-container-button.component';
+export * from './lib/components/bmb-container-button/bmb-container-button-base/bmb-container-button-base.component';
 export * from './lib/components/bmb-container-button/bmb-container-button-default/bmb-container-button-default.component';
 export * from './lib/components/bmb-container-button/bmb-container-button-grade/bmb-container-button-grade.component';
 export * from './lib/components/bmb-container-button/bmb-container-button-badge/bmb-container-button-badge.component';
@@ -79,7 +81,6 @@ export * from './lib/components/bmb-sidebar/bmb-sidebar.component';
 export * from './lib/components/bmb-checkbox/bmb-checkbox.component';
 export * from './lib/components/bmb-calendar/bmb-calendar.component';
 export * from './lib/components/bmb-top-bar/bmb-top-bar.component';
-export * from './lib/components/bmb-top-bar/bmb-top-bar-item/bmb-top-bar-item.component';
 export * from './lib/components/bmb-radial/bmb-radial.component';
 export * from './lib/components/bmb-totp/bmb-totp.component';
 export * from './lib/components/bmb-search-input/bmb-search-input.component';
@@ -133,6 +134,7 @@ export * from './lib/components/bmb-iframe/bmb-iframe.component';
 export * from './lib/components/bmb-login/bmb-login.component';
 export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
 export * from './lib/components/bmb-academic-progress/bmb-academic-progress.component';
+export * from './lib/components/bmb-header-mitec/bmb-header-mitec.component';
 export * from './lib/components/bmb-list-group/bmb-list-group.component';
 export * from './lib/components/bmb-list-group/bmb-list-group-item/bmb-list-group-item.component';
 export * from './lib/components/bmb-simple-header/bmb-simple-header.component';
@@ -153,13 +155,6 @@ export * from './lib/components/bmb-sounds-card/bmb-sounds-card.component';
 export * from './lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 export * from './lib/components/bmb-overlay/bmb-overlay.component';
 export * from './lib/components/bmb-icon-item/bmb-icon-item.component';
-export type {
-  IBmbHitoListDay,
-  IBmbHitoListEventIndicator,
-  IBmbHitoListEvents,
-  IBmbHitoListMonth,
-  ISelectedDate,
-} from './lib/_shared/types/components/hito-list';
 export * from './lib/components/bmb-carousel/bmb-carousel.component';
 export * from './lib/components/bmb-action-menu/bmb-action-menu.component';
 export * from './lib/components/bmb-button-icon/bmb-button-icon.component';
@@ -168,6 +163,7 @@ export * from './lib/components/bmb-action-icon/bmb-action-icon.component';
 export * from './lib/components/bmb-form-validator/bmb-form-validator.component';
 export * from './lib/components/bmb-three-cols/bmb-three-cols.component';
 export * from './lib/components/bmb-title-content/bmb-title-content.component';
+export * from './lib/components/bmb-title/bmb-title.component';
 export * from './lib/components/bmb-item/bmb-item.component';
 export * from './lib/components/bmb-item/children';
 export * from './lib/components/bmb-interactive-item/children';
@@ -178,6 +174,7 @@ export * from './lib/directives/old/bmb-selector/bmb-selector.directive';
 export * from './lib/components/bmb-table-lite/bmb-table-lite.component';
 export * from './lib/components/bmb-search-card/bmb-search-card.component';
 export * from './lib/components/bmb-ai-chat-card/bmb-ai-chat-card.component';
+export * from './lib/components/bmb-simple-text/bmb-simple-text.component';
 
 // types
 export * from './lib/_shared/types';

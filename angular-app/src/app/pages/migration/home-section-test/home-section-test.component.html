@@ -1,0 +1,50 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbHomeSection</h1>
+  <p>Encabezado de seccion con icono, link y titulo.</p>
+</header>
+
+<section class="playground" aria-labelledby="home-section-properties">
+  <aside class="controls">
+    <h2 id="home-section-properties">Propiedades</h2>
+
+    <label for="hs-component-title">componentTitle</label>
+    <input
+      id="hs-component-title"
+      [value]="componentTitle()"
+      (input)="componentTitle.set($any($event.target).value)"
+    />
+
+    <label for="hs-icon">icon</label>
+    <input
+      id="hs-icon"
+      [value]="icon()"
+      (input)="icon.set($any($event.target).value)"
+    />
+
+    <label for="hs-link">link</label>
+    <input
+      id="hs-link"
+      [value]="link()"
+      (input)="link.set($any($event.target).value)"
+    />
+
+    <label for="hs-target">target</label>
+    <input
+      id="hs-target"
+      [value]="target()"
+      (input)="target.set($any($event.target).value)"
+    />
+  </aside>
+
+  <div class="preview">
+    <bmb-home-section
+      [componentTitle]="componentTitle()"
+      [icon]="icon()"
+      [link]="link()"
+      [target]="target()"
+    >
+      <p>Contenido de la seccion</p>
+    </bmb-home-section>
+  </div>
+</section>

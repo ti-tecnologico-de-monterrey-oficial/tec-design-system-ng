@@ -15,10 +15,13 @@ import { BmbFabComponent } from '../bmb-fab/bmb-fab.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../pipes/translations';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  getMultiDotPaginatorActiveIndex,
+  getMultiDotPaginatorNextIndex,
+  getMultiDotPaginatorPreviousIndex,
+  getMultiDotPaginatorSelectedIndex,
+  getMultiDotPaginatorWrappedNextIndex,
+} from '../../_shared/logic/components/multi-dot-paginator';
 
 @Component({
   selector: 'bmb-multi-dot-paginator',
@@ -87,9 +90,7 @@ export class BmbMultiDotPaginatorComponent {
     updateSelectedIndex = true,
   ) {
     const activeItem = this.childrenItems()[
-      newIndex === this.numberOfElements().length
-        ? this.numberOfElements().length - 1
-        : newIndex
+      getMultiDotPaginatorActiveIndex(newIndex, this.numberOfElements().length)
     ] as any;
     const oldItem = this.childrenItems()[oldIndex] as any;
 
@@ -118,8 +119,10 @@ export class BmbMultiDotPaginatorComponent {
       }, 500);
     }
 
-    const selectedIndex =
-      newIndex === this.numberOfElements().length ? newIndex - 1 : newIndex;
+    const selectedIndex = getMultiDotPaginatorSelectedIndex(
+      newIndex,
+      this.numberOfElements().length,
+    );
 
     if (updateSelectedIndex) {
       this.selectedIndex.set(selectedIndex);
@@ -129,22 +132,29 @@ export class BmbMultiDotPaginatorComponent {
   }
 
   protected setNextItem() {
-    if (this.selectedIndex() + 1 === this.numberOfElements().length) {
-      this.setClassActive(0, this.selectedIndex());
-    } else {
-      this.setClassActive(this.selectedIndex() + 1, this.selectedIndex());
-    }
+    const nextIndex = getMultiDotPaginatorWrappedNextIndex(
+      this.selectedIndex(),
+      this.numberOfElements().length,
+    );
+    this.setClassActive(nextIndex, this.selectedIndex());
   }
 
   protected prevItem() {
-    if (this.selectedIndex() > 0) {
-      this.setClassActive(this.selectedIndex() - 1, this.selectedIndex());
-    }
+    const previousIndex = getMultiDotPaginatorPreviousIndex(
+      this.selectedIndex(),
+    );
+    if (previousIndex === this.selectedIndex()) return;
+
+    this.setClassActive(previousIndex, this.selectedIndex());
   }
 
   protected nextItem() {
-    if (this.selectedIndex() < this.numberOfElements().length) {
-      this.setClassActive(this.selectedIndex() + 1, this.selectedIndex());
-    }
+    const nextIndex = getMultiDotPaginatorNextIndex(
+      this.selectedIndex(),
+      this.numberOfElements().length,
+    );
+    if (nextIndex === this.selectedIndex()) return;
+
+    this.setClassActive(nextIndex, this.selectedIndex());
   }
 }

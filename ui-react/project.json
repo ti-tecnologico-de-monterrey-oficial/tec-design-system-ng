@@ -8,7 +8,10 @@
   "targets": {
     "sync-shared": {
       "executor": "nx:run-commands",
-      "outputs": ["{workspaceRoot}/dist/ui-react/assets/shared"],
+      "outputs": [
+        "{projectRoot}/src/lib/_shared",
+        "{workspaceRoot}/dist/ui-react/assets/shared"
+      ],
       "options": {
         "command": "node scripts/sync-react-shared.mjs"
       }

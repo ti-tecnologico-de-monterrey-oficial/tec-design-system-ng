@@ -30,7 +30,7 @@ export type IBmbDropdownMenuIcon = 'more_vert' | 'more_horiz';
 export class BmbDropdownMenuComponent {
   items = input<IDropdownItem[]>([]);
 
-  icon = input<IBmbDropdownMenuIcon>('more_vert'); //Deprecated
+  icon = input<IBmbDropdownMenuIcon>('more_vert');
 
   clickedItem = output<IDropdownItem>();
   contentID = signal<string>('');

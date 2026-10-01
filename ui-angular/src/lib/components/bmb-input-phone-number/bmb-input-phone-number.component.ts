@@ -22,32 +22,32 @@ import { Subscription } from 'rxjs';
 import {
   BmbDropdownComponent,
 } from '../bmb-dropdown/bmb-dropdown.component';
-import {
-  IBmbCountryCode,
-  IBmbCountryCodes,
-} from '../../_shared/logic/countryCodes';
+import { IBmbCountryCodes } from '../../_shared/logic/countryCodes';
 import {
   IBmbInputError,
   IBmbInputTooltipPosition,
   IBmbDropdownItem,
+  IBmbCountryCode,
 } from '../../_shared/types';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
-import {
-  buildErrorMessage,
-  getCustomValidation,
-  getCustomValidationMessage,
-  getUUID,
-} from '../../_shared/logic/utils';
+import { buildErrorMessage, getUUID } from '../../_shared/logic/utils';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import {
   assignNewFormControl,
   handleValidity,
   showError,
 } from '../../_shared/logic/formControl';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  buildPhoneNumberControlValue,
+  buildPhoneNumberErrorMessage,
+  findPhoneNumberCountry,
+  getPhoneNumberCountryCode,
+  getPhoneNumberCountryLada,
+  getPhoneNumberCountryLength,
+  getPhoneNumberCountryOptions,
+  getPhoneNumberValidationResult,
+  getPhoneNumberWithoutLada,
+} from '../../_shared/logic/components/input-phone-number';
 
 @Component({
   selector: 'bmb-input-phone-number',
@@ -175,37 +175,23 @@ export class BmbInputPhoneNumberComponent implements OnInit {
     return (control: AbstractControl): ValidationErrors | null => {
       const { value } = control;
 
-      if (!value) return null;
-      if (this.phoneControl.hasError('pattern')) return { pattern: true };
-      if (
+      const { errors, message } = getPhoneNumberValidationResult(
+        value,
+        this.phoneControl.hasError('pattern'),
         this.phoneControl.hasError('maxlength') ||
-        this.phoneControl.hasError('minlength')
-      ) {
-        return { minlength: true };
-      }
-
-      const regExp = new RegExp(
-        `^\\${this.getSelectedCountryLada(
-          this.ladaControl.value,
-        )}\\d{${this.getSelectedCountryLength(this.ladaControl.value)}}$`,
-      );
-
-      if (!regExp.test(control.value)) {
-        this.customValidationMessage =
-          'Por favor ingresa un número de teléfono válido, verifica si la lada es correcta.';
-        return { customValidation: true };
-      }
-
-      const result = getCustomValidation(
-        this.customValidation()!,
+          this.phoneControl.hasError('minlength'),
+        this.getSelectedCountryLada(this.ladaControl.value),
+        this.getSelectedCountryLength(this.ladaControl.value),
+        this.customValidation(),
         this.control(),
-      );
-      this.customValidationMessage = getCustomValidationMessage(
-        result,
         this.errorMessage(),
       );
 
-      return result;
+      if (message !== undefined) {
+        this.customValidationMessage = message;
+      }
+
+      return errors;
     };
   }
 
@@ -214,8 +200,10 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   }
 
   setControlValue(lada: string, phoneNumber: string): void {
-    if (!!lada && !!phoneNumber) {
-      this.control().setValue(lada + phoneNumber);
+    const value = buildPhoneNumberControlValue(lada, phoneNumber);
+
+    if (value !== null) {
+      this.control().setValue(value);
     } else {
       this.control().reset('');
     }
@@ -224,47 +212,27 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   }
 
   getNumberValue(): string {
-    const value = this.control().value || this.value();
-    return value.replace(
+    return getPhoneNumberWithoutLada(
+      this.control().value,
+      this.value(),
       this.getSelectedCountryLada(this.ladaControl.value),
-      '',
-    )!;
+    );
   }
 
   getSelectedCountry(value: string): IBmbCountryCode {
-    return this.allCountryCodes.find(
-      ({ country_code }) => country_code.toLocaleLowerCase() === value,
-    )!;
+    return findPhoneNumberCountry(this.allCountryCodes, value)!;
   }
 
   getSelectedCountryCode(value: string): string {
-    const selectedCountry = this.getSelectedCountry(value);
-
-    if (selectedCountry) {
-      return selectedCountry.country_code.toLocaleLowerCase();
-    }
-
-    return '';
+    return getPhoneNumberCountryCode(this.allCountryCodes, value);
   }
 
   getSelectedCountryLada(value: string): string {
-    const selectedCountry = this.getSelectedCountry(value);
-
-    if (selectedCountry) {
-      return selectedCountry.lada;
-    }
-
-    return '';
+    return getPhoneNumberCountryLada(this.allCountryCodes, value);
   }
 
   getSelectedCountryLength(value: string): number {
-    const selectedCountry = this.getSelectedCountry(value);
-
-    if (selectedCountry) {
-      return selectedCountry.length;
-    }
-
-    return 0;
+    return getPhoneNumberCountryLength(this.allCountryCodes, value);
   }
 
   onValueChange(value: string) {
@@ -277,60 +245,18 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   }
 
   getOptions(): IBmbDropdownItem[] {
-    if (this.onlyCountries().length) {
-      const lowerCaseCountries = this.onlyCountries().map((country) =>
-        country.toLocaleLowerCase(),
-      );
-
-      const filteredOptions = this.allCountryCodes.filter(
-        ({ country_code }) => {
-          return lowerCaseCountries.includes(country_code.toLocaleLowerCase());
-        },
-      );
-
-      return filteredOptions.map(({ country, lada, country_code }) => ({
-        name: `${country} (${lada})`,
-        value: country_code.toLocaleLowerCase(),
-        selectedText: lada,
-        icon: 'flag',
-      }));
-    }
-
-    return this.allCountryCodes.map(({ country, lada, country_code }) => ({
-      name: `${country} (${lada})`,
-      value: country_code.toLocaleLowerCase(),
-      selectedText: lada,
-      icon: 'flag',
-    }));
+    return getPhoneNumberCountryOptions(
+      this.allCountryCodes,
+      this.onlyCountries(),
+    );
   }
 
   getErrorMessage(): IBmbInputError {
-    const pattern = 'Por favor ingresa sólo caracteres numéricos';
-    const minLength = `Por favor ingresa ${this.getSelectedCountryLength(
-      this.ladaControl.value,
-    )} caracteres numéricos`;
-    if (this.errorMessage()) {
-      if (typeof this.errorMessage() === 'string')
-        return {
-          required: this.errorMessage().toString(),
-          pattern,
-          minLength,
-          customValidation: this.customValidationMessage,
-        };
-
-      return {
-        pattern,
-        minLength,
-        ...(this.errorMessage() as IBmbInputError),
-        customValidation: this.customValidationMessage,
-      };
-    }
-
-    return {
-      pattern,
-      minLength,
-      customValidation: this.customValidationMessage,
-    };
+    return buildPhoneNumberErrorMessage(
+      this.errorMessage(),
+      this.getSelectedCountryLength(this.ladaControl.value),
+      this.customValidationMessage,
+    );
   }
 
   handleValidity(): void {

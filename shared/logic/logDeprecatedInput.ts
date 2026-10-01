@@ -1,4 +1,4 @@
-export interface ILogDeprecatedInput {
+interface ILogDeprecatedInput {
   name: string;
   hasValue: boolean;
 }
