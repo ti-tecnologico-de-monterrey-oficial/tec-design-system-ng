@@ -523,14 +523,12 @@ export const getElementUsesDesc = (name: string, isOther = true) =>
 export const getTechnicalDocReferences = ({
   references,
   isFullScreenDesc,
-  headingLevel = 3,
 }: {
   references: IBmbStoryLink[];
   isFullScreenDesc?: boolean;
-  headingLevel?: 3 | 4;
 }): string => `${isFullScreenDesc ? getFullScreenDesc() : ''}
 >
-${'#'.repeat(headingLevel)}🛠️${TECHNICAL_DOC_TITLE}
+###🛠️${TECHNICAL_DOC_TITLE}
 >
 ${TECHNICAL_DOC_REFERENCES}<br/>
 <ul>${references
