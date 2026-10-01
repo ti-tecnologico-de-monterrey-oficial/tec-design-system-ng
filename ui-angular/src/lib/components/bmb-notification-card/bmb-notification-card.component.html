@@ -25,7 +25,9 @@
               [alerts]="parsedData()"
               [enableMultipleSelection]="false"
               [enableRowClick]="enableRowClick()"
+              [enableSwipe]="enableSwipe()"
               (alertSelected)="handleAlertSelected($event)"
+              (getDeleteClick)="handleDelete($event)"
             />
           }
           @case (2) {
@@ -43,7 +45,9 @@
           [alerts]="parsedData()"
           [enableMultipleSelection]="false"
           [enableRowClick]="enableRowClick()"
+          [enableSwipe]="enableSwipe()"
           (alertSelected)="handleAlertSelected($event)"
+          (getDeleteClick)="handleDelete($event)"
         />
       }
     </div>

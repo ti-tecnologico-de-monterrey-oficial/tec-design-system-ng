@@ -1,7 +1,5 @@
 @use '../../styles/playground';
 
-@include playground.page(18rem, 23rem, 38rem);
-
 .preview {
   display: grid;
   gap: 2rem;
