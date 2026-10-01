@@ -45,7 +45,7 @@ const meta: Meta<BmbContainerButtonBaseComponent> = {
       toc: TOC_OBJ,
       description: {
         component: `
-${getGeneralDescription('The Informative Complex template combines a title, supporting text, and badges in a responsive Container Button.', { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/container-button/descripcion-general-dzTxNX36' })}
+${getGeneralDescription('The template **Informative Complex** template combines a title, supporting text, and badges in a responsive Container Button.', { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/container-button/descripcion-general-dzTxNX36' })}
 ${getSpecialSpecifications(`
 ${getAlertBlockquote(
   'Use the listed Bamboo elements to build the Informative Complex template. The metadata row wraps to fit narrower container widths.',
@@ -58,7 +58,6 @@ ${getTechnicalDocReferences({
   references: [
     { title: bmbContainerButtonBaseStory.default.title! },
     { title: bmbBadgeStory.default.title! },
-    { title: bmbIconStory.default.title! },
     { title: bmbSimpleTextStory.default.title! },
     { title: bmbLayoutDirectiveStory.default.title! },
     { title: bmbVerticalLayoutDirectiveStory.default.title! },

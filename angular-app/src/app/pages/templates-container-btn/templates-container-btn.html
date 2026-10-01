@@ -13,7 +13,7 @@
             <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'" >Op. de humanidades y bellas a. (INGL)</bmb-simple-text>
 					</div>
 					<div bmbLayout margin="none" gapSize="m" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true">
-            <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'" >Crédito: 1</bmb-simple-text>
+            <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-75'" >Crédito: 1</bmb-simple-text>
             <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'" >Semana: 5</bmb-simple-text>
 					</div>
 				</div>
@@ -32,7 +32,7 @@
 		<ng-template #bmbContainerMain>
 			<div bmbVerticalLayout gapSize="m" justify="center" alignItems="start">
         <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'" >Op. de humanidades y bellas a. (INGL)</bmb-simple-text>
-        <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'" >Crédito: 1</bmb-simple-text>
+        <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-75'" >Crédito: 1</bmb-simple-text>
 			</div>
 		</ng-template>
 
@@ -61,10 +61,29 @@
 				<div bmbLayout margin="none" justify="start" alignItems="start">
           <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'" >Título<br />(2 líneas máx)</bmb-simple-text>
 				</div>
-		<div bmbLayout margin="none" gapSize="s" justify="start" alignItems="center">
-          <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >Texto 1 | Texto 2 | Texto 3 |</bmb-simple-text>
-					<bmb-badge appearance="semantic-brand" text="Badge" [container]="false" />
-				</div>
+				@if (isMobile()) {
+					<div bmbVerticalLayout gapSize="s" alignItems="start">
+						<div bmbLayout margin="none" gapSize="s" justify="start" alignItems="center" [avoidRowWrap]="true">
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >Texto 1 |</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >|</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >Texto 2</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >|</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >Texto 3</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >|</bmb-simple-text>
+						</div>
+						<bmb-badge appearance="semantic-brand" text="Badge" [container]="false" />
+					</div>
+				} @else {
+					<div bmbLayout margin="none" gapSize="s" justify="start" alignItems="center" [avoidRowWrap]="true">
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >Texto 1</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >|</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >Texto 2</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >|</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >Texto 3</bmb-simple-text>
+              <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'" >|</bmb-simple-text>
+						<bmb-badge appearance="semantic-brand" text="Badge" [container]="false" />
+					</div>
+				}
 			</div>
 		</ng-template>
 

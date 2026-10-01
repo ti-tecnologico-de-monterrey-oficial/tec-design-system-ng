@@ -113,7 +113,7 @@ const desktopTemplate = `<bmb-container-button-base>
   <ng-template #bmbContainerMain>
     <div bmbVerticalLayout gapSize="m" justify="center" alignItems="start">
       <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'">Op. de humanidades y bellas a. (INGL)</bmb-simple-text>
-      <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'">Crédito: 1</bmb-simple-text>
+      <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-75'">Crédito: 1</bmb-simple-text>
     </div>
   </ng-template>
 
@@ -139,7 +139,7 @@ const mobileTemplate = `<bmb-container-button-base>
         <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'">Op. de humanidades y bellas a. (INGL)</bmb-simple-text>
       </div>
       <div bmbLayout margin="none" gapSize="m" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true">
-        <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'">Crédito: 1</bmb-simple-text>
+        <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-75'">Crédito: 1</bmb-simple-text>
         <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'">Semana: 5</bmb-simple-text>
       </div>
     </div>
