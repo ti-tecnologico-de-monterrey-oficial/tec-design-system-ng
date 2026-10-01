@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { BmbContainerButtonBaseComponent } from '../bmb-container-button-base/bmb-container-button-base.component';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
+import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbSimpleTextComponent } from '../../bmb-simple-text/bmb-simple-text.component';
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
@@ -19,7 +20,7 @@ import {
 
 import * as bmbContainerButtonBaseStory from '../../bmb-container-button/bmb-container-button.stories';
 import * as bmbBadgeStory from '../../bmb-badge/bmb-badge.stories';
-import * as bmbIconStory from '../../bmb-icon/bmb-icon.stories';
+import * as bmbDividerStory from '../../bmb-divider/bmb-divider.stories';
 import * as bmbSimpleTextStory from '../../bmb-simple-text/bmb-simple-text.stories';
 import * as bmbLayoutDirectiveStory from '../../../directives/bmb-layout/bmb-layout.stories';
 import * as bmbVerticalLayoutDirectiveStory from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.stories';
@@ -33,6 +34,7 @@ const meta: Meta<BmbContainerButtonBaseComponent> = {
       imports: [
         BmbContainerButtonBaseComponent,
         BmbBadgeComponent,
+        BmbDividerComponent,
         BmbIconComponent,
         BmbSimpleTextComponent,
         BmbLayoutDirective,
@@ -48,7 +50,7 @@ const meta: Meta<BmbContainerButtonBaseComponent> = {
 ${getGeneralDescription('The template **Informative Complex** template combines a title, supporting text, and badges in a responsive Container Button.', { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/container-button/descripcion-general-dzTxNX36' })}
 ${getSpecialSpecifications(`
 ${getAlertBlockquote(
-  'Use the listed Bamboo elements to build the Informative Complex template. The metadata row wraps to fit narrower container widths.',
+  'Use the listed Bamboo elements to build the Informative Complex template. On mobile, metadata stays on one line and the badge appears below it; on desktop, metadata and badge share a line.',
   {
     title: RELEVANT_TITLE.configuration,
     blockquoteType: BlockquoteType.important,
@@ -58,6 +60,7 @@ ${getTechnicalDocReferences({
   references: [
     { title: bmbContainerButtonBaseStory.default.title! },
     { title: bmbBadgeStory.default.title! },
+    { title: bmbDividerStory.default.title ?? 'Components/Containers/Divider' },
     { title: bmbSimpleTextStory.default.title! },
     { title: bmbLayoutDirectiveStory.default.title! },
     { title: bmbVerticalLayoutDirectiveStory.default.title! },
@@ -65,7 +68,7 @@ ${getTechnicalDocReferences({
 })}
 `)}
 ${getTypescriptExampleTextBlock(
-  'BmbContainerButtonBaseComponent, BmbBadgeComponent, BmbIconComponent, BmbSimpleTextComponent, BmbLayoutDirective, BmbVerticalLayoutDirective',
+  'BmbContainerButtonBaseComponent, BmbBadgeComponent, BmbDividerComponent, BmbIconComponent, BmbSimpleTextComponent, BmbLayoutDirective, BmbVerticalLayoutDirective',
   '',
   '',
   '',
@@ -92,8 +95,13 @@ const containerButtonTemplate = `<bmb-container-button-base>
       <div bmbLayout margin="none" justify="start" alignItems="start">
         <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'">Título<br />(2 líneas máx)</bmb-simple-text>
       </div>
-      <div bmbLayout margin="none" gapSize="s" justify="start" alignItems="center">
-        <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'">Texto 1 | Texto 2 | Texto 3 |</bmb-simple-text>
+      <div bmbLayout margin="none" gapSize="s" justify="start" alignItems="center" [avoidRowWrap]="true">
+        <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'">Texto 1</bmb-simple-text>
+        <bmb-divider [type]="'simple'" [orientation]="'vertical'" [removeMargin]="true"></bmb-divider>
+        <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'">Texto 2</bmb-simple-text>
+        <bmb-divider [type]="'simple'" [orientation]="'vertical'" [removeMargin]="true"></bmb-divider>
+        <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'">Texto 3</bmb-simple-text>
+        <bmb-divider [type]="'simple'" [orientation]="'vertical'" [removeMargin]="true"></bmb-divider>
         <bmb-badge appearance="semantic-brand" text="Badge" [container]="false" />
       </div>
     </div>
@@ -115,7 +123,14 @@ const mobileTemplate = `<bmb-container-button-base>
         <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'">Título<br />(3 líneas máx) -<br />Truncate (...)</bmb-simple-text>
       </div>
       <div bmbVerticalLayout gapSize="s" alignItems="start">
-        <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'">Texto 1 | Texto 2 | Texto 3 |</bmb-simple-text>
+        <div bmbLayout margin="none" gapSize="s" justify="start" alignItems="center" [avoidRowWrap]="true">
+          <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'">Texto 1</bmb-simple-text>
+          <bmb-divider [type]="'simple'" [orientation]="'vertical'" [removeMargin]="true"></bmb-divider>
+          <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'">Texto 2</bmb-simple-text>
+          <bmb-divider [type]="'simple'" [orientation]="'vertical'" [removeMargin]="true"></bmb-divider>
+          <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'">Texto 3</bmb-simple-text>
+          <bmb-divider [type]="'simple'" [orientation]="'vertical'" [removeMargin]="true"></bmb-divider>
+        </div>
         <bmb-badge appearance="semantic-brand" text="Badge" [container]="false" />
       </div>
     </div>

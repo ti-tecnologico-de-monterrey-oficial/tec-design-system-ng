@@ -10,6 +10,7 @@ import {
   BmbLayoutDirective,
   BmbVerticalLayoutDirective,
   BmbSimpleTextComponent,
+  BmbDividerComponent,
 } from 'ui-angular';
 
 @Component({
@@ -22,6 +23,7 @@ import {
     BmbLayoutDirective,
     BmbVerticalLayoutDirective,
     BmbSimpleTextComponent,
+    BmbDividerComponent,
   ],
   templateUrl: './templates-container-btn.html',
 })
