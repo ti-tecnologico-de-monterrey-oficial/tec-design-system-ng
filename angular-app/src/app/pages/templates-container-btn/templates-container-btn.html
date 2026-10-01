@@ -10,11 +10,11 @@
 						<bmb-badge appearance="creative-use-strong" text="Cursando" [container]="false" />
 					</div>
 					<div bmbVerticalLayout gapSize="m" alignItems="start">
-						<span class="font-regular-5">Op. de humanidades y bellas a. (INGL)</span>
+            <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'" >Op. de humanidades y bellas a. (INGL)</bmb-simple-text>
 					</div>
 					<div bmbLayout margin="none" gapSize="m" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true">
-						<span class="font-regular-3">Crédito: 1</span>
-						<span class="font-regular-3">Semana: 5</span>
+            <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'" >Crédito: 1</bmb-simple-text>
+            <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'" >Semana: 5</bmb-simple-text>
 					</div>
 				</div>
 			</ng-template>
@@ -31,10 +31,8 @@
 
 		<ng-template #bmbContainerMain>
 			<div bmbVerticalLayout gapSize="m" justify="center" alignItems="start">
-				<span class="font-regular-5">
-					Op. de humanidades y bellas a. (INGL)
-				</span>
-				<span class="font-regular-3">Crédito: 1</span>
+        <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'" >Op. de humanidades y bellas a. (INGL)</bmb-simple-text>
+        <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'" >Crédito: 1</bmb-simple-text>
 			</div>
 		</ng-template>
 
@@ -44,8 +42,8 @@
 					appearance="semantic-brand"
 					text="Cursando"
 					[container]="false"
-				/>
-				<span class="font-regular-3">Semana: 5</span>
+        />
+        <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'" >Semana: 5</bmb-simple-text>
 			</div>
 		</ng-template>
 	</bmb-container-button-base>

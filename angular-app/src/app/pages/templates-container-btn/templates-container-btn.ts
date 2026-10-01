@@ -8,6 +8,7 @@ import {
   BmbGradeValueComponent,
   BmbLayoutDirective,
   BmbVerticalLayoutDirective,
+  BmbSimpleTextComponent,
 } from 'ui-angular';
 
 @Component({
@@ -18,6 +19,7 @@ import {
     BmbGradeValueComponent,
     BmbLayoutDirective,
     BmbVerticalLayoutDirective,
+    BmbSimpleTextComponent,
   ],
   templateUrl: './templates-container-btn.html',
 })

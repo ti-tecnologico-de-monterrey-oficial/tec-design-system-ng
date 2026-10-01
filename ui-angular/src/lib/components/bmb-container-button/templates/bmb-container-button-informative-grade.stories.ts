@@ -4,6 +4,7 @@ import { BmbContainerButtonBaseComponent } from '../bmb-container-button-base/bm
 import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbGradeValueComponent } from '../../bmb-grade-value/bmb-grade-value.component';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
+import { BmbSimpleTextComponent } from '../../bmb-simple-text/bmb-simple-text.component';
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 import {
   BlockquoteType,
@@ -11,9 +12,9 @@ import {
   getGeneralDescription,
   getSpecialSpecifications,
   getStoryLink,
+  getTechnicalDocReferences,
   getTypescriptExampleTextBlock,
   RELEVANT_TITLE,
-  getTechnicalDocReferences,
 } from '@docs/utils/utils';
 
 import * as bmbContainerButtonBaseStory from '../../bmb-container-button/bmb-container-button.stories';
@@ -37,6 +38,7 @@ const meta: Meta<BmbContainerButtonBaseComponent> = {
         BmbContainerButtonBaseComponent,
         BmbGradeValueComponent,
         BmbBadgeComponent,
+        BmbSimpleTextComponent,
         BmbLayoutDirective,
         BmbVerticalLayoutDirective,
       ],
@@ -48,6 +50,24 @@ const meta: Meta<BmbContainerButtonBaseComponent> = {
         component: `
 ${getGeneralDescription('The Container Button component is used to take advantage of its built-in states, behaviors, and features. The Desktop and Mobile stories provide separate compositions and copyable HTML.', { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/container-button/descripcion-general-dzTxNX36' })}
 ${getSpecialSpecifications(`
+
+  ${getAlertBlockquote(
+    `Configuration - Elements allowed on the left side of the template.
+> Please use only the components included in the following list on the left side of the template, in accordance with the established guidelines:
+>
+${[
+  { title: iconStory.default.title! },
+  { title: boxIconStory.default.title! },
+  { title: userImageStory.default.title! },
+  { title: imageStory.default.title! },
+]
+  .map((reference) => `> - ${getStoryLink(reference)}`)
+  .join('\n')}`,
+    {
+      title: RELEVANT_TITLE.configuration,
+      blockquoteType: BlockquoteType.important,
+    },
+  )}
   ${getTechnicalDocReferences({
     references: [
       { title: bmbContainerButtonBaseStory.default.title! },
@@ -56,29 +76,7 @@ ${getSpecialSpecifications(`
       { title: bmbLayoutDirectiveStory.default.title! },
       { title: bmbVerticalLayoutDirectiveStory.default.title! },
     ],
-  })},
-
-${getAlertBlockquote(
-    `
-    Configuration - Elements allowed on the left side of the template.
-    Please use only the components included in the following list on the left side of the template, in accordance with the established guidelines.
-    >
-    - ${getStoryLink({ title: iconStory.default.title! })}
-    - ${getStoryLink({ title: boxIconStory.default.title! })}
-    - ${getStoryLink({ title: userImageStory.default.title! })}
-    - ${getStoryLink({ title: imageStory.default.title! })}
-    `,
-    {
-      title: RELEVANT_TITLE.configuration.replace(
-        '<br/>',
-        ' - Switching languages<br/>',
-      ),
-      blockquoteType: BlockquoteType.important,
-      isRelevantTitle: true,
-      isHeader: true,
-    },
-  )}
-
+  })}
 `)}
 ${getTypescriptExampleTextBlock(
   'BmbContainerButtonBaseComponent, BmbGradeValueComponent, BmbBadgeComponent, BmbLayoutDirective, BmbVerticalLayoutDirective',
@@ -113,10 +111,8 @@ const desktopTemplate = `<bmb-container-button-base>
 
   <ng-template #bmbContainerMain>
     <div bmbVerticalLayout gapSize="m" justify="center" alignItems="start">
-      <span class="font-regular-5">
-        Op. de humanidades y bellas a. (INGL)
-      </span>
-      <span class="font-regular-3">Crédito: 1</span>
+      <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'">Op. de humanidades y bellas a. (INGL)</bmb-simple-text>
+      <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'">Crédito: 1</bmb-simple-text>
     </div>
   </ng-template>
 
@@ -127,7 +123,7 @@ const desktopTemplate = `<bmb-container-button-base>
         text="Cursando"
         [container]="false"
       />
-      <span class="font-regular-3">Semana: 5</span>
+      <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'">Semana: 5</bmb-simple-text>
     </div>
   </ng-template>
 </bmb-container-button-base>`;
@@ -139,11 +135,11 @@ const mobileTemplate = `<bmb-container-button-base>
         <bmb-badge appearance="creative-use-strong" text="Cursando" [container]="false" />
       </div>
       <div bmbVerticalLayout gapSize="m" alignItems="start">
-        <span class="font-regular-5">Op. de humanidades y bellas a. (INGL)</span>
+        <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'">Op. de humanidades y bellas a. (INGL)</bmb-simple-text>
       </div>
       <div bmbLayout margin="none" gapSize="m" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true">
-        <span class="font-regular-3">Crédito: 1</span>
-        <span class="font-regular-3">Semana: 5</span>
+        <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'">Crédito: 1</bmb-simple-text>
+        <bmb-simple-text [size]="3" [weight]="'light'" [color]="'general-contrasts-100'">Semana: 5</bmb-simple-text>
       </div>
     </div>
   </ng-template>
