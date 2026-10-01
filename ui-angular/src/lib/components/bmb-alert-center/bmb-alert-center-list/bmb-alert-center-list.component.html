@@ -8,6 +8,7 @@
       bmbSwipe
       [swipeThreshold]="threshold()"
       [swipeCloseOnAction]="closeOnAction()"
+      [swipeDisabled]="!enableSwipe()"
       (getSwipeOpenChange)="handleSwipe($event)"
     >
       <ng-template bmbSwipeLeftActions>
@@ -16,6 +17,7 @@
           icon="delete"
           [iconSize]="24"
           [tooltipText]="'alert_center.list.delete' | translate"
+          (buttonClick)="handleDelete(item)"
         />
       </ng-template>
       <ng-template bmbSwipeRightActions>
@@ -24,6 +26,7 @@
           icon="delete"
           [iconSize]="24"
           [tooltipText]="'alert_center.list.delete' | translate"
+          (buttonClick)="handleDelete(item)"
         />
       </ng-template>
       @if (enableMultipleSelection()) {

@@ -58,9 +58,12 @@ export class BmbAlertCenterListComponent {
   enableMultipleSelection = input<boolean>(true);
   selectionState = model<Record<string, boolean>>({});
   enableRowClick = input<boolean>(true);
+  enableSwipe = input<boolean>(false);
 
   alertSelected = output<IBmbDataAlertsParsed>();
   selectedAlert = output<{ event: Event; item: IBmbDataAlertsParsed }>();
+  getDeleteClick = output<IBmbDataAlertsParsed>();
+
   isSomeAlertSelected = computed(() => {
     const state = this.selectionState();
     return Object.values(state).some((isSelected) => isSelected);
@@ -130,5 +133,9 @@ export class BmbAlertCenterListComponent {
 
   handleSwipe(side: IBmbSwipeSide | null): void {
     this.lastEvent.set(side);
+  }
+
+  handleDelete(item: IBmbDataAlertsParsed): void {
+    this.getDeleteClick.emit(item);
   }
 }
