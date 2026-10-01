@@ -134,6 +134,9 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
       this.renderer.appendChild(container, node),
     );
 
+    this.renderer.setStyle(container, 'visibility', 'hidden');
+    this.renderer.setStyle(container, 'pointer-events', 'none');
+
     if (side === 'left') {
       this.leftView = view;
     } else {
@@ -281,6 +284,29 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
       this.contentWrapper,
       'transform',
       `translateX(${x}px)`,
+    );
+    this.updateActionsVisibility(x);
+  }
+
+  private updateActionsVisibility(x: number): void {
+    this.setContainerVisibility(this.leftContainer, x > 0);
+    this.setContainerVisibility(this.rightContainer, x < 0);
+  }
+
+  private setContainerVisibility(
+    container: HTMLElement | undefined,
+    visible: boolean,
+  ): void {
+    if (!container) return;
+    this.renderer.setStyle(
+      container,
+      'visibility',
+      visible ? 'visible' : 'hidden',
+    );
+    this.renderer.setStyle(
+      container,
+      'pointer-events',
+      visible ? 'auto' : 'none',
     );
   }
 

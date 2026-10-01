@@ -1,6 +1,31 @@
 <ul class="bmb_alert-center-list">
   @for (item of alerts(); track $index) {
-    <li class="bmb_alert-center-list-item" bmbLayout margin="none" gapSize="s">
+    <li
+      class="bmb_alert-center-list-item"
+      bmbLayout
+      margin="none"
+      gapSize="s"
+      bmbSwipe
+      [swipeThreshold]="threshold()"
+      [swipeCloseOnAction]="closeOnAction()"
+      (getSwipeOpenChange)="handleSwipe($event)"
+    >
+      <ng-template bmbSwipeLeftActions>
+        <bmb-action-icon
+          class="bmb_alert-center-list-item-delete"
+          icon="delete"
+          [iconSize]="24"
+          [tooltipText]="'alert_center.list.delete' | translate"
+        />
+      </ng-template>
+      <ng-template bmbSwipeRightActions>
+        <bmb-action-icon
+          class="bmb_alert-center-list-item-delete"
+          icon="delete"
+          [iconSize]="24"
+          [tooltipText]="'alert_center.list.delete' | translate"
+        />
+      </ng-template>
       @if (enableMultipleSelection()) {
         <section
           class="bmb_alert-center-list-item-selection"
@@ -101,7 +126,7 @@
           [numberOfRows]="3"
           class="bmb_alert-center-list-item-time"
           [ngClass]="{
-            'no-lowercase': getTimeVariant(item.pDate) === 'today'
+            'no-lowercase': getTimeVariant(item.pDate) === 'today',
           }"
         >
           {{ getFormattedTime(item.time, item.pDate) }}
