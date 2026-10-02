@@ -50,7 +50,7 @@ const meta: Meta<BmbContainerButtonBaseComponent> = {
 ${getGeneralDescription('The template **Informative Complex** template combines a title, supporting text, and badges in a responsive Container Button.', { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/container-button/descripcion-general-dzTxNX36' })}
 ${getSpecialSpecifications(`
 ${getAlertBlockquote(
-  'Use the listed Bamboo elements to build the Informative Complex template. For the desktop version, content must be limited to a maximum of **two lines**, in accordance with the established guidelines. For the responsive version, content must be limited to a maximum of **three lines**, in accordance with the established guidelines.',
+  'Use the listed Bamboo elements to build the Informative Complex template. For the desktop version, content must be limited to a maximum of **two lines**, responsive version, content must be limited to a maximum of **three lines**, in accordance with the established guidelines.',
   {
     title: RELEVANT_TITLE.configuration,
     blockquoteType: BlockquoteType.important,
@@ -93,7 +93,10 @@ const containerButtonTemplate = `<bmb-container-button-base>
   <ng-template #bmbContainerMain>
     <div bmbVerticalLayout gapSize="s" alignItems="stretch">
       <div bmbLayout margin="none" justify="start" alignItems="start">
-        <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'">Título<br />(2 líneas máx)</bmb-simple-text>
+        <div bmbVerticalLayout gapSize="none" alignItems="start">
+          <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'">Título</bmb-simple-text>
+          <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'">(2 líneas máx)</bmb-simple-text>
+        </div>
       </div>
       <div bmbLayout margin="none" gapSize="s" justify="start" alignItems="center" [avoidRowWrap]="true">
         <bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-75'">Texto 1</bmb-simple-text>
@@ -120,7 +123,11 @@ const mobileTemplate = `<bmb-container-button-base>
   <ng-template #bmbContainerMain>
     <div bmbVerticalLayout gapSize="s" alignItems="stretch">
       <div bmbLayout margin="none" justify="start" alignItems="start">
-        <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'">Título<br />(3 líneas máx) -<br />Truncate (...)</bmb-simple-text>
+        <div bmbVerticalLayout gapSize="none" alignItems="start">
+          <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'">Título</bmb-simple-text>
+          <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'">(3 líneas máx) -</bmb-simple-text>
+          <bmb-simple-text [size]="5" [weight]="'regular'" [color]="'general-contrasts-100'">Truncate (...)</bmb-simple-text>
+        </div>
       </div>
       <div bmbVerticalLayout gapSize="s" alignItems="start">
         <div bmbLayout margin="none" gapSize="s" justify="start" alignItems="center" [avoidRowWrap]="true">
