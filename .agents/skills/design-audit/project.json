@@ -1,0 +1,17 @@
+{
+  "name": "design-audit",
+  "targets": {
+    "test": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "options": {
+        "command": "node --test .agents/skills/design-audit/scripts/compare.test.mjs"
+      }
+    },
+    "smoke": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "options": { "command": "node .agents/skills/design-audit/scripts/smoke.mjs" }
+    }
+  }
+}
