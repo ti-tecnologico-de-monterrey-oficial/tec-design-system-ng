@@ -1,0 +1,83 @@
+<section class="swipe-page">
+  <header class="page-header">
+    <p class="eyebrow">Dev tools</p>
+    <h1>Swipe directive</h1>
+    <p class="description">
+      Arrastra una fila horizontalmente para revelar sus acciones. En móvil
+      puedes deslizar con el dedo y en escritorio usar el puntero.
+    </p>
+  </header>
+
+  <div class="controls" aria-label="Configuración de swipe">
+    <label>
+      <span>Umbral: {{ threshold() }}</span>
+      <input
+        type="range"
+        min="0"
+        max="1"
+        step="0.05"
+        [value]="threshold()"
+        (input)="setThreshold($event)"
+      />
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="closeOnAction()"
+        (change)="closeOnAction.set($any($event.target).checked)"
+      />
+      Cerrar al pulsar una acción
+    </label>
+  </div>
+
+  <div class="event-status" aria-live="polite">
+    <span>Último evento</span>
+    <strong>{{ lastEvent() ?? 'cerrado' }}</strong>
+  </div>
+
+  <div class="swipe-list">
+    @for (item of items(); track item.id) {
+    <div
+      class="swipe-row"
+      bmbSwipe
+      [swipeThreshold]="threshold()"
+      [swipeCloseOnAction]="closeOnAction()"
+      (getSwipeOpenChange)="handleSwipe($event)"
+    >
+      <ng-template bmbSwipeLeftActions>
+        <bmb-action-icon
+          icon="star"
+          alt="Marcar como favorito"
+          tooltipText="Favorito"
+          (buttonClick)="handleAction('Favorito', item)"
+        />
+      </ng-template>
+
+      <ng-template bmbSwipeRightActions>
+        <bmb-action-icon
+          icon="archive"
+          alt="Archivar"
+          tooltipText="Archivar"
+          (buttonClick)="handleAction('Archivar', item)"
+        />
+        <bmb-action-icon
+          icon="trash-can"
+          alt="Eliminar"
+          tooltipText="Eliminar"
+          (buttonClick)="handleAction('Eliminar', item)"
+        />
+      </ng-template>
+
+      <div class="row-content">
+        <span class="row-icon" aria-hidden="true">{{ item.icon }}</span>
+        <span class="row-copy">
+          <strong>{{ item.title }}</strong>
+          <small>{{ item.subtitle }}</small>
+        </span>
+        <span class="row-hint" aria-hidden="true">&#8596;</span>
+      </div>
+    </div>
+    }
+  </div>
+</section>

@@ -457,6 +457,25 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
         `<br/><br/>${RELEVANT_TITLE.note}Use bmbAlertCenterService.getAlerts() instead.`,
       ),
     },
+    enableSwipe: {
+      control: { type: 'boolean' },
+      description:
+        'Enables swipe gestures on each alert row to reveal a delete action.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
+    getDeleteClick: {
+      control: false,
+      description:
+        'Emits the alert when its delete action is triggered via swipe',
+      table: {
+        category: 'Events',
+        type: { summary: 'getDeleteClick($event)' },
+      },
+    },
     onChangeAlertStatus: getOnEventParam(
       getOnEvent(
         'the status of an alert',

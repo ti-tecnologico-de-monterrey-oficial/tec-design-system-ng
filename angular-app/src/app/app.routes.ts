@@ -688,6 +688,14 @@ export const appRoutes: Route[] = [
       import('./pages/tabs-page/tabs-page').then(({ TabsPage }) => TabsPage),
   },
   {
+    path: 'pages/swipe',
+    title: 'Swipe',
+    loadComponent: () =>
+      import('./pages/swipe-page/swipe-page').then(
+        ({ SwipePage }) => SwipePage,
+      ),
+  },
+  {
     path: 'pages/list-items',
     title: 'BmbListItems | Bamboo migration dashboard',
     loadComponent: () =>
