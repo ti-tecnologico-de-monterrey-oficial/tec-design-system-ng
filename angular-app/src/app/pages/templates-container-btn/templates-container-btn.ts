@@ -6,9 +6,11 @@ import {
   BmbBadgeComponent,
   BmbContainerButtonBaseComponent,
   BmbGradeValueComponent,
+  BmbIconComponent,
   BmbLayoutDirective,
   BmbVerticalLayoutDirective,
   BmbSimpleTextComponent,
+  BmbDividerComponent,
 } from 'ui-angular';
 
 @Component({
@@ -17,9 +19,11 @@ import {
     BmbBadgeComponent,
     BmbContainerButtonBaseComponent,
     BmbGradeValueComponent,
+    BmbIconComponent,
     BmbLayoutDirective,
     BmbVerticalLayoutDirective,
     BmbSimpleTextComponent,
+    BmbDividerComponent,
   ],
   templateUrl: './templates-container-btn.html',
 })
