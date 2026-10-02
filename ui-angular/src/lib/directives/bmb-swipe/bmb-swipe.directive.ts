@@ -206,6 +206,7 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
   }
 
   private onPointerMove(event: PointerEvent): void {
+    if (event.pointerType === 'mouse') return;
     if (!this.dragging) return;
 
     const deltaX = event.clientX - this.startX;

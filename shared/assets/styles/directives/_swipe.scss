@@ -2,16 +2,18 @@
 @use '../base/rem' as rem;
 
 @mixin show-swipe-content {
-  visibility: visible !important;
-  pointer-events: auto !important;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 @mixin swipe {
   visibility: hidden;
   pointer-events: none;
 
-  &.visible {
-    @include show-swipe-content;
+  @include mixins.check-for-mobile {
+    &.visible {
+      @include show-swipe-content;
+    }
   }
 }
 
@@ -23,8 +25,11 @@
     position: relative;
     z-index: 1;
     background-color: inherit;
-    will-change: transform;
     width: 100%;
+
+    @include mixins.check-for-mobile {
+      will-change: transform;
+    }
   }
 
   &-actions {
