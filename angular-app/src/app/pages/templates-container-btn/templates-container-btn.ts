@@ -4,9 +4,12 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import {
   BmbBadgeComponent,
+  BmbBoxIconComponent,
   BmbContainerButtonBaseComponent,
   BmbGradeValueComponent,
   BmbLayoutDirective,
+  BmbLayoutItemDirective,
+  BmbTitleComponent,
   BmbVerticalLayoutDirective,
   BmbSimpleTextComponent,
 } from 'ui-angular';
@@ -15,9 +18,12 @@ import {
   selector: 'app-templates-container-btn',
   imports: [
     BmbBadgeComponent,
+    BmbBoxIconComponent,
     BmbContainerButtonBaseComponent,
     BmbGradeValueComponent,
     BmbLayoutDirective,
+    BmbLayoutItemDirective,
+    BmbTitleComponent,
     BmbVerticalLayoutDirective,
     BmbSimpleTextComponent,
   ],

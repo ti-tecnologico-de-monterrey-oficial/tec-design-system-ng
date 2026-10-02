@@ -67,3 +67,32 @@
 <!-- Informative Actions Template -->
 
 <!-- Informative Actions Template -->
+
+<!-- Informative Icon Template -->
+ <section bmbVerticalLayout gapSize="none" alignItems="stretch" aria-labelledby="informative-icon-title">
+	<h2 id="informative-icon-title">Informative Icon</h2>
+
+	<div bmbLayout margin="none" gapSize="none" alignItems="stretch">
+		<div bmbLayoutItem [colSm]="4" [colLg]="2">
+			<bmb-container-button-base>
+				<ng-template #bmbContainerMain>
+					<div bmbVerticalLayout gapSize="m" alignItems="stretch">
+						<div bmbLayout margin="none" gapSize="m" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true">
+							<bmb-box-icon iconName="send" boxSize="small" boxShape="square" boxColor="black-primary"></bmb-box-icon>
+							<bmb-simple-text [size]="3" [weight]="'regular'" [color]="'general-contrasts-100'">50</bmb-simple-text>
+						</div>
+						<div bmbVerticalLayout gapSize="1" alignItems="stretch">
+							<bmb-title componentTitle="Title" titleSize="4" titleFontWeight="500" [isCenterContent]="false" />
+							<div bmbVerticalLayout gapSize="none" alignItems="start">
+								<bmb-title componentTitle="" subtitle="Subtitle" subtitleSize="1" subtitleFontWeight="400" [isCenterContent]="false" />
+								<bmb-title componentTitle="" subtitle="Complimentary" subtitleSize="1" subtitleFontWeight="400" [isCenterContent]="false" />
+							</div>
+						</div>
+					</div>
+				</ng-template>
+			</bmb-container-button-base>
+		</div>
+	</div>
+</section>
+<!-- Informative Icon Template -->
+
