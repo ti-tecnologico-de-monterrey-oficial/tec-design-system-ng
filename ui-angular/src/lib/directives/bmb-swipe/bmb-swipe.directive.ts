@@ -78,6 +78,7 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
   private dragStartOffset = 0;
   private currentX = 0;
   private openSide: IBmbSwipeSide | null = null;
+  private className = 'bmb_swipe';
 
   ngAfterContentInit(): void {
     this.buildStructure();
@@ -97,12 +98,10 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
 
   private buildStructure(): void {
     const host = this.el.nativeElement;
-    this.renderer.addClass(host, 'bmb_swipe');
-    this.renderer.setStyle(host, 'position', 'relative');
-    this.renderer.setStyle(host, 'overflow', 'hidden');
+    this.renderer.addClass(host, this.className);
 
     const wrapper = this.renderer.createElement('div') as HTMLElement;
-    this.renderer.addClass(wrapper, 'bmb_swipe-content');
+    this.renderer.addClass(wrapper, `${this.className}-content`);
 
     Array.from(host.childNodes).forEach((child) => {
       this.renderer.appendChild(wrapper, child);
@@ -131,8 +130,9 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
   ): HTMLElement {
     const host = this.el.nativeElement;
     const container = this.renderer.createElement('div') as HTMLElement;
-    this.renderer.addClass(container, 'bmb_swipe-actions');
-    this.renderer.addClass(container, `bmb_swipe-actions-${side}`);
+    const actionsClassName = `${this.className}-actions`;
+    this.renderer.addClass(container, actionsClassName);
+    this.renderer.addClass(container, `${actionsClassName}-${side}`);
 
     const view = this.viewContainerRef.createEmbeddedView(template);
     view.detectChanges();

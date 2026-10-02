@@ -1,4 +1,5 @@
 @use '../base/mixins' as mixins;
+@use '../base/rem' as rem;
 
 @mixin show-swipe-content {
   visibility: visible !important;
@@ -34,7 +35,8 @@
     align-items: center;
     gap: var(--bmb-spacing-s);
     padding: 0 var(--bmb-spacing-m);
-    z-index: 0;
+    z-index: 1;
+    height: 100%;
 
     &-left {
       left: 0;
@@ -50,17 +52,16 @@
   }
 
   @include mixins.check-for-desktop {
-    &:not(.bmb_swipe-disabled):hover &-actions {
-      &-right {
-        @include show-swipe-content;
+    &:not(.bmb_swipe-disabled):hover {
+      > .bmb_swipe-actions-right.bmb_swipe-actions {
+        &-right {
+          @include show-swipe-content;
+        }
       }
 
-      &-actions {
-        z-index: 99;
+      > .bmb_swipe-content {
+        width: calc(100% - rem.rem_calc(56));
       }
     }
-  }
-
-  @mixin check-for-mobile() {
   }
 }

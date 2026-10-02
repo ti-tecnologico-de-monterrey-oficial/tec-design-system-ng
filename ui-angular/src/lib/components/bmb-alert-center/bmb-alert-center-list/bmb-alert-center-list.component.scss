@@ -88,15 +88,17 @@
   .bmb_swipe-actions-right.visible ~ .bmb_swipe-content {
     .bmb_alert-center-list-item-time {
       display: none;
+      visibility: hidden;
     }
   }
 
   @include mixins.check-for-desktop {
-    :not(.bmb_swipe-disabled) .bmb_swipe-actions-right ~ .bmb_swipe-content {
-      :hover {
-        .bmb_alert-center-list-item-time {
-          display: none;
-        }
+    :not(.bmb_swipe-disabled):hover
+      .bmb_swipe-actions-right
+      ~ .bmb_swipe-content {
+      .bmb_alert-center-list-item-time {
+        display: none;
+        visibility: hidden;
       }
     }
   }
