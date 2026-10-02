@@ -56,7 +56,7 @@ export async function makeReport(page, report, out, options = {}) {
   const image = (src, label) =>
     `<figure><figcaption>${e(label)}</figcaption><img src="${src}"></figure>`;
   const html = `<!doctype html><html lang="es"><meta charset="utf-8"><title>Auditoría de diseño</title><style>body{font:12px Arial;color:#16263d;line-height:1.5}h1{font-size:28px}h2{font-size:18px}.pair{display:flex;gap:12px}.pair figure{width:48%}figure{margin:10px 0;break-inside:avoid}img{max-width:100%;max-height:420px;object-fit:contain;border:1px solid #ddd}figcaption{font-weight:bold}table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:10px}td,th{padding:7px;border:1px solid #ccc;overflow-wrap:anywhere}tr{break-inside:avoid}a{color:#005a9c}.page{break-before:page}</style>
-  <h1>${e(report.entry.title)} / ${e(report.entry.name)}</h1><p>Figma: ${e(report.node.name)} · ${report.findings.length} diferencias detectadas.</p>
+  <h1>${e(report.entry.title)} / ${e(report.entry.name)}</h1>${report.partialContent?.length ? '<p>Alcance parcial: ajustes del contenido común. El contenido personalizado adicional no está validado.</p>' : ''}<p>Figma: ${e(report.node.name)} · ${report.findings.length} diferencias detectadas.</p>
   <p><a href="${e(report.figmaUrl)}">Abrir Figma</a> · <a href="${e(report.storyUrl)}">Abrir Storybook / Chromatic</a></p><p>Versión Figma: ${e(report.version)} · ${new Date().toISOString()} · viewport ${report.viewport.width} × ${report.viewport.height}</p>
   <div class="pair">${image(uri(report.expectedImage), 'Figma · esperado')}${image(uri(report.actualImage), 'Storybook · encontrado')}</div>
   <h2 class="page">Ajustes recomendados</h2>${image(visual.annotated, 'Ubicación de los hallazgos estructurales (números de tabla)')}

@@ -1,4 +1,6 @@
-import { componentHandle } from './capture.mjs';
+import { associateByContent, associateByProperties, contentFeatures } from './content-matching.mjs';
+import { auditMode } from './scope.mjs';
+import { componentHandle, waitForStoryReady, renderedComponents, readDom } from './capture.mjs';
 import { requestFigma } from './figma-client.mjs';
 import {
   fingerprint,
@@ -130,7 +132,7 @@ async function main() {
   console.log(
     `Alcance Figma: “${selectedName}” (${design.nodeId}). Solo se revisará este nodo y su contenido.`,
   );
-  const variants = collapseIdenticalVariants(
+  let variants = collapseIdenticalVariants(
     discoverScopeVariants(selectedNode, selectedName),
   );
   if (!variants.length)
@@ -186,9 +188,10 @@ async function main() {
       docsUrl.searchParams.set('viewMode', 'docs');
       try {
         await page.goto(docsUrl.href, {
-          waitUntil: 'networkidle',
+          waitUntil: 'domcontentloaded',
           timeout: 30000,
         });
+        await page.locator('#storybook-docs').waitFor({ state: 'visible' });
         referencedIds.push(
           ...(await page.evaluate(() => {
             const ids = [
@@ -218,14 +221,33 @@ async function main() {
       throw new Error(
         'No se encontraron historias asociadas a esta documentación.',
       );
-    if (variants.length > Math.max(200, entries.length * 10)) {
-      throw new Error(
-        `La selección contiene ${variants.length} candidatos, demasiados para ${entries.length} historias. No se exportó ninguna imagen. Selecciona en Figma el contenedor específico de las tarjetas y copia su enlace.`,
-      );
+    const cases = [], features = new Map();
+    for (const source of entries) {
+      const entry = { ...source, auditMode: auditMode(source, selectedNode) };
+      console.log(`Cargando ${entry.title} / ${entry.name} (${entry.auditMode})…`);
+      try {
+        await page.goto(storyFrame(story, entry.id).href, { waitUntil: 'domcontentloaded' });
+        await waitForStoryReady(page);
+        const roots = await renderedComponents(page, entry);
+        if (!roots.length) throw new Error('No se encontraron instancias visibles.');
+        for (let i = 0; i < roots.length; i++) {
+          const unit = { ...entry, unitIndex: i, caseId: entry.id + ':' + i,
+            name: roots.length > 1 ? `${entry.name} / instancia ${i + 1}` : entry.name };
+          features.set(unit.caseId, await contentFeatures(page, unit, componentHandle));
+          const uniqueRequestedPair = entries.length === 1 && roots.length === 1;
+          cases.push(...(variants.length === 1 && !uniqueRequestedPair
+            ? [{entry:unit,reason:'Falta confirmar las propiedades de esta instancia.'}]
+            : associateVariants(variants, [unit])).map((c) => ({...c,entry:unit})));
+          await roots[i].dispose();
+        }
+      } catch (error) {
+        cases.push({entry, loadError:true, semanticOnly:true, reason:'No se pudo leer la historia: '+error.message.split('\n')[0]});
+      }
     }
-    const cases = associateVariants(variants, entries);
+    associateByProperties(cases, variants, features, selectedName);
+    associateByContent(cases, variants, features, selectedName);
     console.log(
-      `Encontradas ${entries.length} historias y ${variants.length} plantillas candidatas dentro del nodo Figma seleccionado. No se requieren enlaces individuales.`,
+      `Encontradas ${entries.length} historias y ${variants.length} referencias candidatas dentro del nodo Figma seleccionado. No se requieren enlaces individuales.`,
     );
     const out = resolve(
       'dist/design-audit',
@@ -236,7 +258,7 @@ async function main() {
     const reportPage = await printer.newPage();
     const sections = [];
     const neededIds = new Set(cases.filter((c) => c.variant).map((c) => c.variant.node.id));
-    for (const item of cases.filter((c) => !c.variant)) {
+    for (const item of cases.filter((c) => !c.variant && !c.semanticOnly)) {
       for (const id of item.candidateIds?.length ? item.candidateIds : variants.map((v) => v.node.id)) neededIds.add(id);
     }
     const renderVariants = variants.filter((v) => neededIds.has(v.node.id));
@@ -283,7 +305,7 @@ async function main() {
         console.log(
           'El enlace de Figma contiene una sola pieza. Para revisar la familia completa, usa el enlace del conjunto o sección que la contiene.',
         );
-      if (cases.some((c) => !c.variant)) {
+      if (cases.some((c) => !c.variant && !c.semanticOnly)) {
         console.log(
           'Buscando correspondencias por imagen, texto y dimensiones, aunque los nombres sean distintos…',
         );
@@ -306,12 +328,12 @@ async function main() {
             );
           }
         }
-        for (const item of cases.filter((c) => !c.variant)) {
+        for (const item of cases.filter((c) => !c.variant && !c.semanticOnly)) {
           const url = storyFrame(story, item.entry.id);
           try {
             await page.setViewportSize({ width: 1280, height: 800 });
-            const capture = await captureForMatching(page, url.href);
-            storyFeatures.set(item.entry.id, {
+            const capture = await captureForMatching(page, url.href, item.entry);
+            storyFeatures.set(item.entry.caseId ?? item.entry.id, {
               ...(await fingerprint(reportPage, capture.image)),
               text: capture.text,
               theme: capture.theme,
@@ -344,7 +366,7 @@ async function main() {
           )
             throw new Error('Dimensiones de Figma no soportadas.');
           await page.setViewportSize({
-            width: isSharedReference(node, entry)
+            width: entry.auditMode === 'component' ? 1280 : isSharedReference(node, entry)
               ? (entry.name.toLowerCase() === 'desktop' ? 1280 : 390)
               : Math.max(320, Math.ceil(bounds.width)),
             height: Math.max(600, Math.ceil(bounds.height)),
@@ -358,79 +380,14 @@ async function main() {
             .locator('#storybook-root > *')
             .first()
             .waitFor({ state: 'visible' });
-          await page.evaluate(async () => {
-            await document.fonts.ready;
-            await Promise.all([...document.images].map((i) => i.decode()));
-          });
+          await waitForStoryReady(page);
           await page.addStyleTag({
             content:
               '*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}',
           });
-          // Descend unambiguous wrappers, preferring an explicit component host.
-          const rootHandle = await componentHandle(page);
-          const root = rootHandle.asElement();
-          if (!root)
-            throw new Error('No pude identificar el componente renderizado.');
+          const root = await componentHandle(page, entry);
           await root.scrollIntoViewIfNeeded();
-          const dom = await root.evaluate((root) => {
-            const origin = root.getBoundingClientRect();
-            return [root, ...root.querySelectorAll('*')]
-              .map((el, index) => {
-                const box = el.getBoundingClientRect(),
-                  s = getComputedStyle(el);
-                const props = {
-                  width: box.width,
-                  height: box.height,
-                  text: el.textContent,
-                  fontFamily: s.fontFamily
-                    .split(',')[0]
-                    .replace(/["']/g, '')
-                    .trim(),
-                  color: s.color,
-                  backgroundColor: s.backgroundColor,
-                };
-                for (const k of [
-                  'fontSize',
-                  'fontWeight',
-                  'lineHeight',
-                  'paddingTop',
-                  'paddingRight',
-                  'paddingBottom',
-                  'paddingLeft',
-                  'gap',
-                  'borderRadius',
-                ])
-                  props[k] = Number.isFinite(parseFloat(s[k]))
-                    ? parseFloat(s[k])
-                    : s[k];
-                return {
-                  index,
-                  figmaNodeId: el.getAttribute('data-figma-node-id'),
-                  selector:
-                    el.tagName.toLowerCase() +
-                    (el.id ? '#' + el.id : '') +
-                    (typeof el.className === 'string'
-                      ? '.' +
-                        el.className
-                          .trim()
-                          .split(/\s+/)
-                          .filter(Boolean)
-                          .join('.')
-                      : ''),
-                  tag: el.tagName,
-                  inButton: !!el.closest('button, [role="button"], bmb-button, .bmb_button, input[type="button"], input[type="submit"]'),
-                  leaf: !el.children.length,
-                  props,
-                  box: {
-                    x: box.x - origin.x,
-                    y: box.y - origin.y,
-                    width: box.width,
-                    height: box.height,
-                  },
-                };
-              })
-              .filter((el) => el.box.width > 0 && el.box.height > 0);
-          });
+          const dom = await readDom(root, entry.auditMode);
           const actualImage = await root.screenshot({ animations: 'disabled' });
           const tolerance = {
             numeric: numeric('AUDIT_TOLERANCE_PX', 1, 100),
@@ -441,17 +398,20 @@ async function main() {
             node,
             dom,
             tolerance.numeric,
+            { mode: entry.auditMode },
           );
           if (!checkedProperties) {
             item.status = 'sin mediciones';
             console.log(`${entry.name}: pareja identificada, pero no se pudieron medir propiedades internas.`);
             continue;
           }
+          if (item.partialContent?.length) console.log(`${entry.name}: ${item.partialContent.length} textos personalizados sin referencia; solo se evalúa la parte común.`);
           if (pending.length) console.log(`${entry.name}: comparación parcial; ${pending.length} capas sin asociar.`);
           const result = await makeReport(
             reportPage,
             {
               matchMethod: item.matchMethod,
+              partialContent: item.partialContent,
               node,
               version: data.version,
               entry,
@@ -481,7 +441,7 @@ async function main() {
         }
       }
       const unused = variants.filter(
-        (v) => !cases.some((c) => c.variant?.node.id === v.node.id),
+        (v) => !cases.some((c) => c.variant?.node.id === v.node.id || c.referenceIds?.includes(v.node.id)),
       );
       const compared = cases.filter((c) =>
         ['diferencias', 'sin diferencias detectadas'].includes(c.status),
@@ -493,7 +453,9 @@ async function main() {
         console.log(
           compared
             ? 'No se detectaron diferencias en las propiedades internas que se pudieron medir. Esto no valida las historias ni las capas pendientes. No se generó PDF.'
-            : 'No se pudo comparar ninguna pareja con seguridad. No se generó PDF de resultados.',
+            : cases.every((item) => item.loadError)
+              ? 'No se pudieron cargar las historias de Storybook. No se llegó a comparar con Figma; revisa los errores de carga anteriores. No se generó PDF.'
+              : 'No se pudo comparar ninguna pareja con seguridad. No se generó PDF de resultados.',
         );
         return;
       }

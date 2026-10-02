@@ -87,6 +87,8 @@ export function discoverScopeVariants(root, selectedName) {
   };
   collect(root);
   return selected.map((v) => {
+    const contextTokens = normalize(v.label).split(' ');
+    const contextTheme = [...contextTokens].reverse().find((value) => ['dark','light'].includes(value));
     const box = v.node.absoluteBoundingBox;
     if (!box) return v;
     const above = labels.filter((label) => {
@@ -103,6 +105,7 @@ export function discoverScopeVariants(root, selectedName) {
     const nameLabel = nearest((n) => template(n.characters.trim()));
     const annotation = {
       name: nameLabel?.characters.trim(),
+      theme: contextTheme,
       devices: deviceLabel ? canonical(deviceLabel.characters).split(' ').filter((w) => ['desktop','mobile'].includes(w)) : [],
       labelIds: [nameLabel?.id, deviceLabel?.id].filter(Boolean),
     };
@@ -162,29 +165,11 @@ export function collapseIdenticalVariants(variants) {
   return [...groups.values()];
 }
 
-// Equivalences from user input and inspection of the published stories' content.
-const confirmedAliases = new Map([
-  ['template generic card informative simple', 'flat'],
-  ['template generic card informative button simple', 'actions'],
-  ['template generic card informative media', 'informative'],
-  ['template generic card informative document', 'home'],
-  ['template home card container button empty state', 'empty'],
-]);
-const canonical = (value) =>
-  normalize(value).replace(/\bresponsive\b/g, 'mobile');
-// Confirmed by the user's Figma screenshots labelled “Responsive / Desktop”.
-const sharedReferences = new Map([
-  ['template home card container button empty state', 'empty'],
-  ['template generic card informative balance', 'informative balance'],
-  ['template generic card informative media expanded vertical', 'informative media expanded vertical'],
-  ['template generic card informative media detail vertical', 'informative media detail vertical'],
-]);
+const canonical = (value) => normalize(value).replace(/\bresponsive\b/g, 'mobile');
 export function isSharedReference(node, entry) {
   if (node.auditAnnotation?.devices.includes('desktop') && node.auditAnnotation.devices.includes('mobile'))
     return ['desktop', 'mobile'].includes(canonical(entry.name));
-  return !variantDevice(node) &&
-    sharedReferences.get(canonical(node.name)) === canonical(entry.title?.split('/').at(-1)) &&
-    ['desktop', 'mobile'].includes(canonical(entry.name));
+  return false;
 }
 export function variantDevice(node) {
   if (node.auditAnnotation?.devices.length === 1) return node.auditAnnotation.devices[0];
@@ -194,18 +179,24 @@ export function variantDevice(node) {
   return values.find((v) => ['desktop', 'mobile'].includes(v));
 }
 export function associateVariants(variants, stories) {
+  if (variants.length === 1 && stories.length === 1) {
+    return [{
+      entry: stories[0],
+      variant: variants[0],
+      status: 'asociada',
+      matchMethod: 'Par único indicado por los enlaces de Figma y Chromatic',
+    }];
+  }
   const candidates = stories.map((entry) => {
     const family = canonical(entry.title?.split('/').at(-1));
     const state = canonical(entry.name);
     const device = ['mobile', 'desktop'].includes(state) ? state : undefined;
     let possible = variants.filter((v) => {
       const name = canonical(v.node.auditAnnotation?.name ?? v.node.name);
-      const mapped =
-        confirmedAliases.get(name) ??
-        name.replace(/^templates? generic card /, '');
+      const mapped = name.replace(/^templates? /, '');
       const foundDevice = variantDevice(v.node);
       if (device && foundDevice && device !== foundDevice) return false;
-      const literal = name.replace(/^templates? generic card /, '');
+      const literal = name.replace(/^templates? /, '');
       if ([mapped, literal].some((value) => value === family || value === state)) return true;
       // Preserve support for Figma component-set names such as Size=Small.
       if (v.node.name.includes('=')) {

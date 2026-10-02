@@ -1,3 +1,4 @@
+import { scopedLayers } from './scope.mjs';
 export function parseLink(value) {
   let text = String(value).trim();
   const markdown = text.match(/^\[[\s\S]*?\]\((https?:\/\/[\s\S]+)\)$/);
@@ -90,6 +91,13 @@ export function expected(n) {
     'paddingLeft',
   ])
     if (n[k] !== undefined) p[k] = n[k];
+  if (typeof n.opacity === 'number') p.opacity = n.opacity;
+  if (typeof n.strokeWeight === 'number' && n.strokes?.some((f) => f.visible !== false)) p.borderWidth = n.strokeWeight;
+  const stroke = n.strokes?.filter((f) => f.visible !== false);
+  if (stroke?.length === 1 && stroke[0].type === 'SOLID' && (stroke[0].opacity ?? 1) === 1) {
+    const {r,g,b,a=1} = stroke[0].color;
+    if (a === 1) p.borderColor = `rgb(${Math.round(r*255)}, ${Math.round(g*255)}, ${Math.round(b*255)})`;
+  }
   if (typeof n.cornerRadius === 'number') p.borderRadius = n.cornerRadius;
   if (['HORIZONTAL', 'VERTICAL'].includes(n.layoutMode) && n.itemSpacing >= 0)
     p.gap = n.itemSpacing;
@@ -142,23 +150,20 @@ export function compare(node, dom, tolerance, { image = false, properties } = {}
   });
 }
 
-export function compareInterior(node, dom, tolerance) {
-  const visibleLayers = (n) => {
-    const name = String(n.name ?? '').replace(/([a-z])([A-Z])/g, '$1 $2');
-    if (n.visible === false || (n !== node && !/^templates?[_ ]/i.test(n.name ?? '') && /(?:^|[\s_/-])(buttons?|bot[oó]n)(?:$|[\s_/-])/i.test(name))) return [];
-    return [n, ...(n.children ?? []).flatMap(visibleLayers)];
+export function compareInterior(node, dom, tolerance, { mode = 'component' } = {}) {
+  const layers = scopedLayers(node, mode);
+  const boundaries = new Set(mode === 'template' ? layers.filter((n) => n !== node && ['INSTANCE','COMPONENT'].includes(n.type)) : []);
+  const properties = (layer) => {
+    if (boundaries.has(layer)) return []; // geometry only, never internal styles
+    if (mode === 'component') return Object.keys(expected(layer)).filter((key) => key !== 'text');
+    return layer.type === 'TEXT' ? ['text','fontSize','fontWeight','color'] :
+      ['backgroundColor','paddingTop','paddingRight','paddingBottom','paddingLeft'];
   };
-  dom = dom.filter((d) => !d.inButton && d.tag !== 'BUTTON');
-  const properties = (layer) => [
-    ...(layer.type === 'TEXT' ? ['fontSize', 'fontWeight', 'color'] : ['backgroundColor']),
-    ...(layer === node ? ['paddingTop','paddingRight','paddingBottom','paddingLeft'] : []),
-  ];
   const measured = (layer, element) => Object.entries(expected(layer)).filter(([key, value]) =>
     properties(layer).includes(key) && element.props[key] !== undefined &&
     (typeof value !== 'number' || (typeof element.props[key] === 'number' && Number.isFinite(element.props[key])))
   ).length;
-  const layers = visibleLayers(node),
-    findings = [],
+  const findings = [],
     pending = [],
     pairs = new Map();
   const normalized = (value) =>
@@ -189,7 +194,7 @@ export function compareInterior(node, dom, tolerance) {
         const elements = dom.filter((d) => d.leaf && normalized(d.props.text) === value);
         if (elements.length && siblings.every((n) => signature(n) === signature(layer))) {
           for (const element of elements) {
-            findings.push(...compare(layer, element, tolerance, { properties: properties(layer) }));
+            findings.push(...compare(layer, element, tolerance, { properties: properties(layer), image: mode === 'component' }));
             checkedProperties += measured(layer, element);
           }
           continue;
@@ -197,8 +202,15 @@ export function compareInterior(node, dom, tolerance) {
       }
     }
     let matches = dom.filter((d) => d.figmaNodeId === layer.id);
-    if (!matches.length && layer === node && ['SECTION', 'ARTICLE'].includes(dom[0]?.tag)) matches = [dom[0]];
+    if (!matches.length && layer === node && (dom[0]?.isComponentRoot || ['SECTION', 'ARTICLE'].includes(dom[0]?.tag) )) matches = [dom[0]];
     const isImage = images.includes(layer);
+    // Unique textual role in an already associated component, regardless of tag.
+    if (!matches.length && layer.type === 'TEXT' &&
+        layers.filter((n) => n.type === 'TEXT').length === 1) {
+      matches = dom.filter((d) => d.ownText).map((d) => ({
+        ...d, props:{...d.props,text:d.ownText}, box:d.textBox ?? d.box,
+      }));
+    }
     if (!matches.length && layer.type === 'TEXT') {
       const value = normalized(layer.characters);
       if (
@@ -230,11 +242,11 @@ export function compareInterior(node, dom, tolerance) {
     const actual = matches[0];
     pairs.set(layer.id, actual);
     checkedProperties += measured(layer, actual);
-    findings.push(...compare(layer, actual, tolerance, { properties: properties(layer) }));
+    findings.push(...compare(layer, actual, tolerance, { properties: properties(layer), image: mode === 'component' }));
   }
   // Figma expresses spacing through layout geometry, not CSS margin ownership.
   for (const container of layers.filter((n) =>
-    ['HORIZONTAL', 'VERTICAL'].includes(n.layoutMode),
+    ['HORIZONTAL', 'VERTICAL'].includes(n.layoutMode) && !boundaries.has(n),
   )) {
     const children = (container.children ?? []).filter(
       (n) => n.visible !== false && n.layoutPositioning !== 'ABSOLUTE',
@@ -254,6 +266,7 @@ export function compareInterior(node, dom, tolerance) {
         prev.absoluteBoundingBox[axis] -
         prev.absoluteBoundingBox[size];
       const actual = b.box[axis] - a.box[axis] - a.box[size];
+      if (expected >= 0 && actual >= 0) checkedProperties++;
       if (
         expected < 0 ||
         actual < 0 ||

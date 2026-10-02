@@ -12,7 +12,7 @@ Desde la raíz del repositorio:
 npm run audit:design
 ```
 
-Introduce el enlace de Figma (con `node-id`) y la URL de documentación o historia de Storybook. El script carga `FIGMA_ACCESS_TOKEN` del entorno o `.env`; si falta o es rechazado, pide un token en entrada oculta. No pegues secretos en el chat. No hay JSON ni IDs que escribir por separado.
+Introduce el enlace del componente o sección de Figma (con `node-id`) y el enlace de documentación o historia publicada de Storybook/Chromatic. El auditor es independiente de la familia del componente. Si cada enlace resuelve a una sola plantilla y una sola historia, las compara como el par explícito aunque los nombres no coincidan; si hay varias historias o plantillas, usa las asociaciones por nombre y evidencia visual, y mantiene sin evaluar las parejas ambiguas. El script carga `FIGMA_ACCESS_TOKEN` del entorno o `.env`; si falta o es rechazado, pide un token en entrada oculta. No pegues secretos en el chat. No hay JSON ni IDs que escribir por separado.
 
 En un cliente que cargue las skills del repositorio puedes solicitar:
 
@@ -33,7 +33,13 @@ Si la nueva skill no aparece en la sesión actual, vuelve a abrir una sesión de
 
 Solo se revisan el nodo seleccionado y sus descendientes. El descubrimiento usa nombres, equivalencias conocidas, propiedades y etiquetas externas cercanas de Desktop/Responsive dentro del alcance. Una referencia Responsive / Desktop puede servir para ambas historias. Se prefieren especificaciones etiquetadas frente a copias de la galería; las parejas ambiguas pueden requerir revisión. No garantiza asociaciones universales fuera de las familias verificadas.
 
-El reporte mide font size, font weight, colores, padding del contenedor principal y separaciones entre elementos asociados. Excluye botones reconocidos y sus descendientes, contenido del texto, familia tipográfica, line height, radios, sombras, tamaños generales y de imágenes y padding interno. Las reglas de exclusión se basan en nombres y selectores; nuevos componentes pueden requerir ampliarlas.
+Para la familia Button, se recorre cada botón renderizado en cada historia, incluidas las galerías de varias apariencias. Se asocian tipo, estado, posición del icono y tema mediante propiedades y etiquetas del nodo Figma. También lee los atributos Type/State/Icon/Transition del nombre de las variantes maestras de un COMPONENT_SET. Distingue Dark/Light por los contenedores del nodo y prefiere el componente maestro del tema correspondiente. Para capturas estables usa Transition=False. Las equivalencias documentadas son Alternative → secondary-filled y Secondary → secondary-outlined; Primary y Destructive mantienen su nombre. No se limita a Primary. Las referencias repetidas solo se reutilizan si sus especificaciones medidas coinciden. El texto de muestra puede ser diferente: la etiqueta del botón se identifica por su función.
+
+Esto cubre las variantes que las historias realmente muestran. No crea combinaciones nuevas de controles ni activa hover/pressed automáticamente. Una apariencia sin referencia identificable (aunque exista en otro archivo o nodo) queda pendiente en consola, sin inventar una pareja ni declararla aprobada.
+
+Antes de recurrir a similitud de imágenes, el auditor intenta asociar la familia seleccionada por su contenido visible, excluyendo textos de iconos. Puede reutilizar referencias repetidas si coinciden sus estados y especificaciones medibles, aunque sus nombres internos difieran. Los metadatos de Storybook ayudan a localizar el contenedor visual real. El texto personalizado adicional se declara fuera del alcance; una coincidencia parcial no valida toda la historia. Referencias con especificaciones distintas siguen pendientes.
+
+El reporte mide font size, font weight, colores, padding del contenedor principal y separaciones entre elementos asociados. Evalúa los botones cuando son el componente principal. Excluye los botones reconocidos anidados en otros componentes/templates y sus descendientes, contenido del texto, familia tipográfica, line height, radios, sombras, tamaños generales y de imágenes y padding interno. Las reglas de exclusión se basan en nombres y selectores; nuevos componentes pueden requerir ampliarlas.
 
 El PDF contiene capturas de Figma y Storybook, ubicaciones numeradas, propiedad, esperado, encontrado, ajuste y enlaces. No contiene severidad, confianza ni recomendaciones genéricas por diferencias de píxeles. El único resultado persistente de cada auditoría es:
 
@@ -63,6 +69,8 @@ Todos se encuentran en `.agents/skills/design-audit/`:
 | `scripts/agent.mjs` | Prompts, token, navegador, lectura DOM, coordinación y salida. |
 | `scripts/figma-client.mjs` | API REST, errores y reintentos transitorios de Figma. |
 | `scripts/discovery.mjs` | Alcance, historias, etiquetas, copias y asociación de nombres/dispositivos. |
+| `scripts/button-audit.mjs` | Descubre botones individuales y asocia sus propiedades con las referencias Figma. |
+| `scripts/content-matching.mjs` | Asociación general por contenido visible y referencias con especificaciones equivalentes; detecta alcance parcial. |
 | `scripts/matching.mjs` | Búsqueda heurística de parejas pendientes por imagen, texto, geometría y tema. |
 | `scripts/capture.mjs` | Identifica el componente real dentro de Storybook. |
 | `scripts/compare.mjs` | Propiedades esperadas, asociaciones internas, exclusiones y diferencias permitidas. |
@@ -82,6 +90,8 @@ npm exec nx run design-audit:smoke
 ```
 
 La prueba smoke necesita Chromium o `DESIGN_AUDIT_CHROME_PATH`. El CLI conserva el modo interactivo y los módulos conservan imports relativos. Una migración de archivos no debe cambiar reglas de comparación. Las pruebas locales no equivalen a auditar nuevamente las 26 historias en vivo.
+
+La carga espera contenido visible y estilos estables, con fuentes e imágenes del componente disponibles. No espera silencio de red: las solicitudes de telemetría o polling de Storybook pueden permanecer abiertas. Si el componente no llega a estabilizarse, se informa un error de carga; eso no implica que falte el diseño en Figma.
 
 ## Solución de problemas
 

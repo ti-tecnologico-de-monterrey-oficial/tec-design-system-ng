@@ -1,50 +1,15 @@
 import { selectedFigmaNode, discoverScopeVariants } from './discovery.mjs';
+
 import test from 'node:test';
+
 import assert from 'node:assert/strict';
+
 import { compareInterior } from './compare.mjs';
-test('informe interno limita propiedades y omite padding anidado y tamaños de imágenes', () => {
-  const node = {
-    id: 'root',
-    name: 'Card',
-    absoluteBoundingBox: { width: 100, height: 100 },
-    children: [
-      {
-        id: 'text',
-        name: 'Título',
-        type: 'TEXT',
-        characters: 'Hola',
-        style: { fontSize: 16 },
-      },
-      { id: 'container', name: 'Contenido', type: 'FRAME', paddingLeft: 24 },
-      {
-        id: 'photo',
-        name: 'Foto',
-        type: 'RECTANGLE',
-        fills: [{ type: 'IMAGE' }],
-        absoluteBoundingBox: { width: 80, height: 40 },
-      },
-    ],
-  };
-  const dom = [
-    { figmaNodeId: 'root', props: { width: 300, height: 300 } },
-    {
-      leaf: true,
-      tag: 'SPAN',
-      selector: '.title',
-      props: { text: 'Hola', fontSize: 12 },
-    },
-    { figmaNodeId: 'container', props: { paddingLeft: 8 } },
-    { tag: 'IMG', props: { width: 70, height: 40 } },
-  ];
-  const { findings } = compareInterior(node, dom, 1);
-  assert.deepEqual(
-    findings.map((f) => f.property),
-    ['fontSize'],
-  );
-  assert.match(findings[0].recommendation, /Título.*12 a 16 px/);
-});
+
 import { collapseIdenticalVariants } from './discovery.mjs';
+
 import { figmaTheme } from './matching.mjs';
+
 test('copias idénticas no crean ambigüedad y colores distintos no se colapsan', () => {
   const n = {
     id: 'a',
@@ -69,6 +34,7 @@ test('copias idénticas no crean ambigüedad y colores distintos no se colapsan'
     2,
   );
 });
+
 test('tema predominante separa variantes de la misma familia sin exigir estilos idénticos', () => {
   const text = (characters, c) => ({
     type: 'TEXT',
@@ -112,87 +78,7 @@ test('tema predominante separa variantes de la misma familia sin exigir estilos 
   );
   assert.equal(cases[0].variant.node.id, 'dark');
 });
-test('equivalencias confirmadas y Responsive/Mobile sin confundir otras familias', () => {
-  const variants = [
-    {
-      node: {
-        id: 'd',
-        name: 'Template_GenericCard_Informative_Simple',
-        componentProperties: { Device: { value: 'Desktop' } },
-      },
-    },
-    {
-      node: {
-        id: 'm',
-        name: 'Template_GenericCard_Informative_Simple',
-        componentProperties: { Device: { value: 'Responsive' } },
-      },
-    },
-    {
-      node: {
-        id: 'i',
-        name: 'Template_GenericCard_Informative_ItemList',
-        componentProperties: { Device: { value: 'Mobile' } },
-      },
-    },
-    {
-      node: {
-        id: 'home',
-        name: 'Template_HomeCard_ContainerButton_ActionIcon',
-      },
-    },
-  ];
-  const cases = associateVariants(variants, [
-    {
-      title: 'Templates/Generic card/Flat',
-      name: 'Desktop',
-    },
-    {
-      title: 'Templates/Generic card/Flat',
-      name: 'Mobile',
-    },
-    { title: 'Templates/Generic card/Informative item list', name: 'Mobile' },
-    { title: 'Templates/Generic card/Home', name: 'Desktop' },
-  ]);
-  assert.deepEqual(
-    cases.map((c) => c.variant?.node.id),
-    ['d', 'm', 'i', undefined],
-  );
-  const duplicated = associateVariants(
-    [variants[0], { node: { ...variants[0].node, id: 'copy' } }],
-    [
-      {
-        title: 'Templates/Generic card/Flat',
-        name: 'Desktop',
-      },
-    ],
-  );
-  assert.equal(duplicated[0].variant, undefined);
-  assert.deepEqual(duplicated[0].candidateIds, ['d', 'copy']);
-});
-test('filtra anotaciones aunque el enlace seleccione una sección sin prefijo Template_', () => {
-  const root = {
-    id: 'section',
-    name: 'Templates - Generic Card',
-    type: 'SECTION',
-    children: [
-      {
-        id: 'card',
-        name: 'Template_GenericCard_Informative',
-        type: 'INSTANCE',
-      },
-      ...Array.from({ length: 3000 }, (_, i) => ({
-        id: `note-${i}`,
-        name: 'bubble',
-        type: 'INSTANCE',
-      })),
-    ],
-  };
-  assert.deepEqual(
-    discoverScopeVariants(root, root.name).map((v) => v.node.id),
-    ['card'],
-  );
-});
+
 test('Figma espera sin timeout explícito ni mensajes rutinarios por defecto', async () => {
   let init;
   await requestFigma('files/test/nodes', {}, 'token', {
@@ -203,7 +89,9 @@ test('Figma espera sin timeout explícito ni mensajes rutinarios por defecto', a
   });
   assert.equal(init.signal, undefined);
 });
+
 import { requestFigma } from './figma-client.mjs';
+
 test('Figma reintenta timeouts y describe la etapa sin exponer secretos', async () => {
   let calls = 0;
   const logs = [];
@@ -237,6 +125,7 @@ test('Figma reintenta timeouts y describe la etapa sin exponer secretos', async 
     /localizar la sección.*2 intentos/,
   );
 });
+
 test('Figma no reintenta credenciales rechazadas', async () => {
   let calls = 0;
   await assert.rejects(
@@ -255,7 +144,9 @@ test('Figma no reintenta credenciales rechazadas', async () => {
   );
   assert.equal(calls, 1);
 });
+
 import { matchByAppearance } from './matching.mjs';
+
 test('asocia nombres diferentes por contenido y rechaza parejas visualmente ambiguas', () => {
   const v = { node: { id: '1', name: 'Diseño X' }, label: 'Diseño X' };
   const feature = {
@@ -293,36 +184,37 @@ test('asocia nombres diferentes por contenido y rechaza parejas visualmente ambi
   );
   assert.ok(!blank[0].variant);
 });
+
 import {
   discoverStories,
   discoverVariants,
   associateVariants,
 } from './discovery.mjs';
 
-test('descubre documentación completa sin confundir Generic card button ni requerir Desktop/Mobile', () => {
+test('descubre documentación completa sin confundir Composite sample ni requerir Desktop/Mobile', () => {
   const entries = [
     {
       id: 'docs',
       type: 'docs',
-      title: 'Templates/Generic card',
+      title: 'Templates/Sample family',
       storiesImports: ['./external.ts'],
     },
     {
       id: 'flat',
       type: 'story',
-      title: 'Templates/Generic card/Flat',
+      title: 'Templates/Sample family/Flat',
       name: 'Default',
     },
     {
       id: 'actions',
       type: 'story',
-      title: 'Templates/Generic card/Actions',
+      title: 'Templates/Sample family/Actions',
       name: 'Selected',
     },
     {
       id: 'button',
       type: 'story',
-      title: 'Templates/Generic card button',
+      title: 'Templates/Composite sample',
       name: 'Default',
     },
     {
@@ -339,6 +231,7 @@ test('descubre documentación completa sin confundir Generic card button ni requ
   );
   assert.throws(() => discoverStories(index, { id: 'missing' }));
 });
+
 test('enumera conjuntos y no convierte componentes anidados en variantes independientes', () => {
   const variants = discoverVariants({
     name: 'Cards',
@@ -379,6 +272,17 @@ test('enumera conjuntos y no convierte componentes anidados en variantes indepen
     ]).every((c) => !c.variant),
   );
 });
+
+test('asocia el único nodo Figma con la única story indicada aunque los nombres difieran', () => {
+  const [result] = associateVariants(
+    [{ node: { id: 'figma-node', name: 'Referencia' } }],
+    [{ id: 'chromatic-story', title: 'Components/Standalone specimen', name: 'Default' }],
+  );
+  assert.equal(result.variant.node.id, 'figma-node');
+  assert.equal(result.entry.id, 'chromatic-story');
+  assert.match(result.matchMethod, /Par único indicado/);
+});
+
 import {
   figmaLink,
   storyLink,
@@ -388,23 +292,26 @@ import {
   escape,
   figmaError,
 } from './compare.mjs';
+
 test('acepta enlaces Markdown y escapes copiados del chat', () => {
   const u =
     'https://www.figma.com/design/LYk8AJb5RjQhRfPmRIdEQ9/Bamboo?node-id=53658-66150';
   assert.equal(figmaLink(`[${u}](${u}\\&t=abc)`).nodeId, '53658:66150');
   assert.equal(
     storyLink(
-      '[Storybook](http://localhost:4400/?path=/docs/templates-generic-card--documentation)',
+      '[Storybook](http://localhost:4400/?path=/docs/templates-sample-family--documentation)',
     ).id,
-    'templates-generic-card--documentation',
+    'templates-sample-family--documentation',
   );
   assert.throws(() => figmaLink(''), /Enlace inválido/);
 });
+
 test('explica los rechazos sin imprimir respuestas arbitrarias ni secretos', () => {
   assert.match(figmaError(403, { err: 'Token expired' }), /venció/);
   assert.match(figmaError(403, { err: 'Invalid scope' }), /file_content:read/);
   assert.ok(!figmaError(403, { err: 'secret-value' }).includes('secret-value'));
 });
+
 test('extrae Figma y elimina parámetros de sesión', () => {
   assert.deepEqual(
     figmaLink('https://www.figma.com/design/ABC/Test?node-id=12-34&t=secret'),
@@ -419,20 +326,27 @@ test('extrae Figma y elimina parámetros de sesión', () => {
   );
   assert.throws(() => figmaLink('https://figma.com/design/ABC'));
 });
-test('distingue documentación y conserva args de la story', () => {
+
+test('acepta documentación en Chromatic y conserva parámetros de una story individual', () => {
   assert.equal(
     storyLink('http://localhost:4400/?path=/docs/templates-card--documentation')
       .docs,
     true,
   );
   const s = storyLink(
-    'https://example.chromatic.com/iframe.html?id=card--default&args=disabled:true',
+    'https://65c3b4d1f966b98bb1f4e774-apfeqbzlva.chromatic.com/?path=/docs/templates-sample-family--documentation',
   );
-  assert.equal(s.id, 'card--default');
-  assert.equal(s.args, 'disabled:true');
-  assert.equal(s.base, 'https://example.chromatic.com/');
+  assert.equal(s.id, 'templates-sample-family--documentation');
+  assert.equal(s.docs, true);
+  assert.equal(s.base, 'https://65c3b4d1f966b98bb1f4e774-apfeqbzlva.chromatic.com/');
+  const story = storyLink(
+    'https://example.chromatic.com/iframe.html?id=feature-card--default&args=disabled:true',
+  );
+  assert.equal(story.id, 'feature-card--default');
+  assert.equal(story.args, 'disabled:true');
   assert.throws(() => storyLink('https://user:password@example.com'));
 });
+
 test('tolerancias, valores faltantes y rellenos no soportados', () => {
   const n = { name: 'Card', absoluteBoundingBox: { width: 100, height: 40 } };
   assert.equal(
@@ -486,7 +400,6 @@ test('el enlace limita el alcance aunque la API devuelva padres y hermanos', () 
   );
 });
 
-
 test('textos repetidos con estilo uniforme se miden sin inventar posiciones', () => {
   const layer = {type:'TEXT', characters:'Subtitle', style:{fontSize:16}};
   const node = {id:'root', children:[{...layer,id:'a'},{...layer,id:'b'}]};
@@ -497,33 +410,7 @@ test('textos repetidos con estilo uniforme se miden sin inventar posiciones', ()
   assert.equal(compareInterior({id:'none'},dom,1).checkedProperties,0);
 });
 
-
-test('referencia Responsive / Desktop confirmada admite ambas historias, sin generalizar otros estados', () => {
-  const variants = [{node:{id:'balance',name:'Template_GenericCard_Informative_Balance'}}];
-  const stories = ['Desktop','Mobile'].map(name=>({id:name,title:'Templates/Generic card/Informative balance',name}));
-  const cases = associateVariants(variants,stories);
-  assert.deepEqual(cases.map(c=>c.variant?.node.id), ['balance','balance']);
-  assert.match(cases[0].matchMethod,/confirmada/);
-  const unknown = [{node:{id:'focus',name:'Template_GenericCard_Informative_FocusElement'}}];
-  assert.ok(associateVariants(unknown,stories.map(s=>({...s,title:'Templates/Generic card/Informative focus element'}))).every(c=>!c.variant));
-});
-
-test('lee etiquetas externas del nodo para nombre y dispositivo compartido', () => {
-  const box = (x,y,width=200,height=100) => ({x,y,width,height});
-  const root = {id:'scope',type:'SECTION',children:[
-    {id:'name',type:'TEXT',characters:'Template_GenericCard_Informative_Media_Simple_Horizontal',absoluteBoundingBox:box(0,0,200,16)},
-    {id:'devices',type:'TEXT',characters:'Responsive / Desktop',absoluteBoundingBox:box(30,30,140,16)},
-    {id:'card',name:'Template_GenericCard_Informative_Media_Simple',type:'INSTANCE',absoluteBoundingBox:box(0,70)},
-    {id:'gallery',name:'Template_GenericCard_Informative_Media_Simple',type:'INSTANCE',absoluteBoundingBox:box(700,700)},
-  ]};
-  const variants=discoverScopeVariants(root,'Cards');
-  const stories=['Desktop','Mobile'].map(name=>({title:'Templates/Generic card/Informative media simple horizontal',name}));
-  assert.deepEqual(associateVariants(variants,stories).map(c=>c.variant?.node.id),['card','card']);
-  assert.deepEqual(variants.find(v=>v.node.id==='gallery').node.auditAnnotation.devices,[]);
-  assert.equal(root.children[2].auditAnnotation,undefined);
-});
-
-test('encuentra plantillas dentro de envoltorios sin contar sus botones internos', () => {
+test('encuentra plantillas dentro de envoltorios sin contar sus instancias internas', () => {
   const root={id:'scope',type:'SECTION',children:[{id:'wrapper',name:'Documentation',type:'INSTANCE',children:[
     {id:'card',name:'Template_GenericCard_Informative_Balance',type:'FRAME',children:[{id:'button',name:'Button',type:'INSTANCE'}]},
   ]}]};
@@ -534,18 +421,80 @@ test('el frame plural Templates no se confunde con una plantilla individual', ()
   const root={id:'scope',type:'SECTION',children:[{id:'gallery',name:'Templates_Genericcard_1_(Dark)',type:'FRAME',children:[
     {id:'card',name:'Template_GenericCard_Informative_Balance',type:'INSTANCE'},
   ]}]};
-  assert.deepEqual(discoverScopeVariants(root,'Templates - Generic Card').map(v=>v.node.id),['card']);
+  assert.deepEqual(discoverScopeVariants(root,'Templates - Sample Family').map(v=>v.node.id),['card']);
 });
 
+import { associateByContent } from './content-matching.mjs';
 
-test('excluye botones y descendientes; solo padding principal y tipografía permitida', () => {
-  const text={id:'text',name:'Texto',type:'TEXT',characters:'Hola',style:{fontSize:16,fontWeight:500,fontFamily:'A'}};
-  const root={id:'root',name:'Template_GenericCard_Informative_ButtonSimple',type:'FRAME',paddingLeft:24,cornerRadius:8,children:[text,
-    {id:'button',name:'BmbButton',type:'INSTANCE',children:[{...text,id:'button-text'}]},
+test('asocia familias nuevas por contenido y reutiliza copias equivalentes sin depender del nombre interno', () => {
+  const node = { id:'a',type:'INSTANCE',name:'Opaque_123',paddingLeft:16,
+    componentProperties:{Type:{type:'VARIANT',value:'Base'}},
+    children:[{id:'t',type:'TEXT',characters:'Panel title',style:{fontSize:18}}]};
+  const variants = [node,{...node,id:'b'}].map(node=>({node}));
+  const cases = ['Default','Responsive','Custom'].map((name,i)=>({entry:{id:String(i),name,title:'Components/New Panel'}}));
+  const features = new Map(cases.map(c=>[c.entry.id,{texts:['Panel title',...(c.entry.name==='Custom'?['Extra']:[])]}]));
+  associateByContent(cases,variants,features,'New Panel');
+  assert.ok(cases.every(c=>c.variant?.node.id==='a'));
+  assert.deepEqual(cases[2].partialContent,['extra']);
+  assert.deepEqual(cases[0].referenceIds,['a','b']);
+  variants[1].node={...variants[1].node,paddingLeft:32};
+  const ambiguous=[{entry:cases[0].entry}];
+  associateByContent(ambiguous,variants,features,'New Panel');
+  assert.equal(ambiguous[0].variant,undefined);
+  const other=[{entry:{...cases[0].entry,title:'Components/Other'}}];
+  associateByContent(other,[variants[0]],features,'New Panel');
+  assert.equal(other[0].variant,undefined);
+});
+
+test('no confunde variantes de estado ni cantidades diferentes de texto', () => {
+  const base={type:'INSTANCE',name:'Opaque',children:[{type:'TEXT',characters:'Label'}]};
+  const variants=['Enabled','Disabled'].map((value,i)=>({node:{...base,id:String(i),componentProperties:{State:{type:'VARIANT',value}}}}));
+  const cases=[{entry:{id:'a',title:'Components/Panel',name:'Default'}}], features=new Map([['a',{texts:['Label']}]]);
+  associateByContent(cases,variants,features,'Panel');
+  assert.equal(cases[0].variant,undefined);
+  associateByContent(cases,[{node:{...base,children:[...base.children,...base.children]}}],features,'Panel');
+  assert.equal(cases[0].variant,undefined);
+});
+import { auditMode, scopedLayers, variantProperties } from './scope.mjs';
+test('modo de auditoría depende de la categoría, no de la familia', () => {
+  for (const name of ['Alpha','Beta','Gamma']) {
+    assert.equal(auditMode({title:'Components/'+name}),'component');
+    assert.equal(auditMode({title:'Templates/'+name}),'template');
+  }
+});
+test('el componente individual revisa dimensiones, radios, padding y tipografía sin exclusiones por nombre', () => {
+  const root={id:'root',name:'Specimen',type:'INSTANCE',paddingLeft:16,cornerRadius:8,absoluteBoundingBox:{width:40,height:40},
+    children:[{id:'text',type:'TEXT',name:'Label',characters:'Demo',style:{fontSize:16,fontWeight:600}}]};
+  const dom=[{isComponentRoot:true,props:{width:24,height:24,paddingLeft:4,borderRadius:2}},
+    {figmaNodeId:'text',leaf:true,props:{text:'Demo',fontSize:12,fontWeight:400}}];
+  assert.deepEqual(compareInterior(root,dom,1,{mode:'component'}).findings.map(f=>f.property),
+    ['width','height','paddingLeft','borderRadius','fontSize','fontWeight']);
+});
+test('template trata todas las instancias anidadas como límites y mide su separación sin sus estilos internos', () => {
+  const nested=(id,x)=>({id,name:id,type:'INSTANCE',paddingLeft:999,absoluteBoundingBox:{x,y:0,width:20,height:20},
+    children:[{id:id+'-label',type:'TEXT',characters:'Internal',style:{fontSize:99}}]});
+  const root={id:'root',name:'Composition',type:'FRAME',layoutMode:'HORIZONTAL',paddingLeft:16,
+    children:[nested('one',0),nested('two',30)]};
+  const dom=[{isComponentRoot:true,props:{paddingLeft:8}},
+    {figmaNodeId:'one',componentBoundary:true,props:{paddingLeft:1},box:{x:0,y:0,width:20,height:20}},
+    {figmaNodeId:'two',componentBoundary:true,props:{paddingLeft:1},box:{x:40,y:0,width:20,height:20}}];
+  assert.deepEqual(scopedLayers(root,'template').map(n=>n.id),['root','one','two']);
+  const result=compareInterior(root,dom,1,{mode:'template'});
+  assert.equal(result.findings.length,2);
+  assert.equal(result.findings[0].property,'paddingLeft');
+  assert.match(result.findings[1].property,/Separación horizontal/);
+  assert.equal(result.findings[1].expected,'10.0 px');
+});
+test('template mide padding de sus contenedores y textos propios, sin dimensiones ni radios', () => {
+  const root={id:'r',name:'Composition',children:[
+    {id:'c',type:'FRAME',paddingLeft:16,cornerRadius:10},
+    {id:'t',type:'TEXT',characters:'Expected',style:{fontSize:18,fontWeight:500}},
   ]};
-  const dom=[{figmaNodeId:'root',props:{paddingLeft:8,borderRadius:0}},
-    {leaf:true,props:{text:'Hola',fontSize:12,fontWeight:400,fontFamily:'B'}},
-    {leaf:true,inButton:true,props:{text:'Hola',fontSize:8,fontWeight:200}},
-  ];
-  assert.deepEqual(compareInterior(root,dom,1).findings.map(f=>f.property),['paddingLeft','fontSize','fontWeight']);
+  const dom=[{isComponentRoot:true,props:{}},{figmaNodeId:'c',props:{paddingLeft:8,borderRadius:0}},
+    {figmaNodeId:'t',props:{text:'Actual',fontSize:12,fontWeight:400}}];
+  assert.deepEqual(compareInterior(root,dom,1,{mode:'template'}).findings.map(f=>f.property),['paddingLeft','text','fontSize','fontWeight']);
+});
+test('propiedades se leen igual de variantes maestras e instancias sin conocer la familia', () => {
+  assert.deepEqual(variantProperties({name:'Tone=Muted, State=Enabled'}),{tone:'Muted',state:'Enabled'});
+  assert.deepEqual(variantProperties({componentProperties:{'Tone#1':{type:'VARIANT',value:'Muted'}}}),{tone:'Muted'});
 });

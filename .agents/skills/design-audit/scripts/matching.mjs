@@ -1,4 +1,4 @@
-import { componentHandle } from './capture.mjs';
+import { componentHandle, waitForStoryReady } from './capture.mjs';
 import { variantDevice, isSharedReference } from './discovery.mjs';
 // These thumbnails are only for candidate selection. Audit images are never resized.
 export async function fingerprint(page, image) {
@@ -87,7 +87,7 @@ export function matchByAppearance(
     (v) => !cases.some((c) => c.variant?.node.id === v.node.id),
   );
   const ranked = cases
-    .filter((c) => !c.variant && storyFeatures.has(c.entry.id))
+    .filter((c) => !c.variant && storyFeatures.has(c.entry.caseId ?? c.entry.id))
     .map((item) => ({
       item,
       candidates: available
@@ -99,7 +99,7 @@ export function matchByAppearance(
           )
             return false;
           const theme = figmaTheme(v.node),
-            storyTheme = storyFeatures.get(item.entry.id)?.theme;
+            storyTheme = storyFeatures.get(item.entry.caseId ?? item.entry.id)?.theme;
           if (theme && storyTheme && theme !== storyTheme) return false;
           const device = variantDevice(v.node);
           const storyDevice = item.entry.name
@@ -114,7 +114,7 @@ export function matchByAppearance(
         .map((variant) => ({
           variant,
           ...similarity(
-            storyFeatures.get(item.entry.id),
+            storyFeatures.get(item.entry.caseId ?? item.entry.id),
             figmaFeatures.get(variant.node.id),
           ),
         }))
@@ -139,7 +139,7 @@ export function matchByAppearance(
       (variantDevice(best.variant.node) === device || isSharedReference(best.variant.node, item.entry)) &&
       ['desktop', 'mobile'].includes(device) &&
       figmaTheme(best.variant.node) ===
-        storyFeatures.get(item.entry.id)?.theme &&
+        storyFeatures.get(item.entry.caseId ?? item.entry.id)?.theme &&
       !!figmaTheme(best.variant.node);
     const rivals = ranked
       .filter((r) => r.item !== item)
@@ -172,17 +172,14 @@ export function matchByAppearance(
   }
 }
 
-export async function captureForMatching(page, url) {
+export async function captureForMatching(page, url, entry = {}) {
   await page.goto(url, { waitUntil: 'domcontentloaded' });
   await page
     .locator('#storybook-root > *')
     .first()
     .waitFor({ state: 'visible' });
-  await page.evaluate(async () => {
-    await document.fonts.ready;
-    await Promise.all([...document.images].map((i) => i.decode()));
-  });
-  const handle = await componentHandle(page);
+  await waitForStoryReady(page);
+  const handle = await componentHandle(page, entry);
   const element = handle.asElement();
   if (!element) throw new Error('Componente no encontrado');
   const text = await element.textContent();

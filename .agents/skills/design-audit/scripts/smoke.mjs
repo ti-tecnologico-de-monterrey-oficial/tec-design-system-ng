@@ -1,3 +1,4 @@
+import { waitForStoryReady, componentHandle, renderedComponents, readDom } from './capture.mjs';
 // Offline integration check: exercises screenshots, annotated evidence and PDF.
 import assert from 'node:assert/strict';
 import { mkdtemp, readFile, readdir } from 'node:fs/promises';
@@ -92,7 +93,58 @@ try {
     (await readFile(`${out}/reporte.pdf`)).subarray(0, 4).toString(),
     '%PDF',
   );
-  console.log('OK: capturas, hallazgos numerados y PDF.');
+  await page.setContent('<div id="storybook-root"><demo-unit style="display:block">First</demo-unit><demo-unit style="display:block">Second</demo-unit></div>');
+  const units = await renderedComponents(page,{componentPath:'demo-unit.component.ts'});
+  assert.equal(units.length,2);
+  for (const unit of units) await unit.dispose();
+  await page.setContent('<div id="storybook-root"><article style="padding:16px"><h2>Own title</h2><demo-child style="display:block"><span>Internal label</span></demo-child></article></div>');
+  const composition = await componentHandle(page,{auditMode:'template'});
+  const templateDom = await readDom(composition,'template'), componentDom = await readDom(composition,'component');
+  assert.equal(templateDom.filter(n=>n.props.text==='Internal label' && n.tag==='SPAN').length,0);
+  assert.equal(componentDom.filter(n=>n.props.text==='Internal label' && n.tag==='SPAN').length,1);
+  await composition.dispose();
+  // Two open requests reproduce Storybook telemetry/polling that never reaches networkidle.
+  let releaseRequests;
+  const held = new Promise((resolve) => { releaseRequests = resolve; });
+  let requests = 0;
+  await page.route('https://audit.test/**', async (route) => {
+    if (route.request().url().includes('/poll')) {
+      requests++;
+      await held;
+      await route.fulfill({ body: 'done' });
+    } else await route.fulfill({ contentType: 'text/html', body: `
+      <div id="storybook-root" style="background:white"><demo-unit style="display:block">Label</demo-unit></div>
+      <script>
+        fetch('/poll1'); fetch('/poll2');
+        setTimeout(() => document.querySelector('#storybook-root').style.background = 'rgb(31,34,46)', 200);
+      </script>` });
+  });
+  try {
+    await page.goto('https://audit.test/story', { waitUntil: 'domcontentloaded' });
+    await waitForStoryReady(page);
+    const openUnits = await renderedComponents(page,{componentPath:'demo-unit.component.ts'});
+    assert.equal(requests, 2);
+    assert.equal(openUnits.length,1);
+    await openUnits[0].dispose();
+    // The readiness check is independent of the rendered family.
+    await page.locator('#storybook-root').evaluate((root) => {
+      root.innerHTML = '<article><h2>Card</h2><p>Content</p></article>';
+    });
+    await waitForStoryReady(page);
+    assert.equal(await page.locator('h2').textContent(), 'Card');
+    await page.locator('#storybook-root').evaluate((root) => {
+      root.innerHTML = '<demo-panel><header><div class="visual" style="padding:16px;background:gray"><h2>Title</h2><span>Body</span></div></header></demo-panel>';
+    });
+    const component = await componentHandle(page, {componentPath:'src/demo-panel.component.ts'});
+    assert.equal(await component.evaluate((el) => el.className), 'visual');
+    await component.dispose();
+  } finally {
+    const responses = [page.waitForResponse('**/poll1'), page.waitForResponse('**/poll2')];
+    releaseRequests();
+    await Promise.all(responses);
+    await page.unroute('https://audit.test/**');
+  }
+  console.log('OK: red abierta, estilos estables, componentes, templates, capturas y PDF.');
 } finally {
   await browser.close();
 }
