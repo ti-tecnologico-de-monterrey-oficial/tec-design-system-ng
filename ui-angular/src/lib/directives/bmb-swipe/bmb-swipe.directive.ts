@@ -4,6 +4,7 @@ import {
   Directive,
   ElementRef,
   EmbeddedViewRef,
+  HostBinding,
   OnDestroy,
   Renderer2,
   TemplateRef,
@@ -42,6 +43,11 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
   swipeThreshold = input<number>(DEFAULT_SNAP_THRESHOLD);
   swipeCloseOnAction = input<boolean>(true);
   swipeDisabled = input<boolean>(false);
+
+  @HostBinding('class.bmb_swipe-disabled')
+  get isSwipeDisabled(): boolean {
+    return this.swipeDisabled();
+  }
 
   getSwipeOpenChange = output<IBmbSwipeSide | null>();
 
@@ -133,9 +139,6 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
     view.rootNodes.forEach((node) =>
       this.renderer.appendChild(container, node),
     );
-
-    this.renderer.setStyle(container, 'visibility', 'hidden');
-    this.renderer.setStyle(container, 'pointer-events', 'none');
 
     if (side === 'left') {
       this.leftView = view;
@@ -298,16 +301,12 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
     visible: boolean,
   ): void {
     if (!container) return;
-    this.renderer.setStyle(
-      container,
-      'visibility',
-      visible ? 'visible' : 'hidden',
-    );
-    this.renderer.setStyle(
-      container,
-      'pointer-events',
-      visible ? 'auto' : 'none',
-    );
+
+    if (visible) {
+      this.renderer.addClass(container, 'visible');
+    } else {
+      this.renderer.removeClass(container, 'visible');
+    }
   }
 
   private setTransition(enabled: boolean): void {

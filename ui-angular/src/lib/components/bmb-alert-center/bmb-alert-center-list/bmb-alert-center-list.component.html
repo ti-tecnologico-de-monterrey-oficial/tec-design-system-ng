@@ -37,7 +37,9 @@
       }
       <div
         class="bmb_alert-center-list-item-content"
-        [class.clickable]="enableRowClick()"
+        [ngClass]="{
+          clickable: enableRowClick(),
+        }"
         bmbLayoutGrid
         colGapSize="s"
         rowGapSize="s"
@@ -109,9 +111,6 @@
           [numberOfColumns]="1"
           [numberOfRows]="1"
           class="bmb_alert-center-list-item-date"
-          [ngClass]="{
-            hidden: lastEvent() !== null,
-          }"
         >
           {{ getTextFromDate(item.pDate) }} - {{ item.type }}
         </p>
