@@ -1,0 +1,11 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ListTemplate } from '@docs/components/ListTemplate.mdx';
+import * as informativeGradeStory from './bmb-container-button-informative-grade.stories';
+import * as informativeComplexStory from './bmb-container-button-informative-complex.stories';
+
+<Meta title="Templates/Container Button" />
+<ListTemplate
+  isMultiStory={true}
+  isTemplate={true}
+  content={[informativeComplexStory, informativeGradeStory]}
+/>
