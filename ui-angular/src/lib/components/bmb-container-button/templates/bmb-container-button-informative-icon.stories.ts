@@ -8,12 +8,10 @@ import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.di
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import {
-  BlockquoteType,
-  getAlertBlockquote,
   getGeneralDescription,
   getSpecialSpecifications,
   getTechnicalDocReferences,
-  RELEVANT_TITLE,
+  getTypescriptExampleTextBlock,
 } from '@docs/utils/utils';
 
 import * as bmbBoxIconStory from '../../bmb-box-icon/bmb-box-icon.stories';
@@ -49,16 +47,31 @@ ${getGeneralDescription('The Informative Icon template combines a Bamboo box ico
 ${getSpecialSpecifications(`
 ${getTechnicalDocReferences({
   references: [
-    { title: bmbContainerButtonBaseStory.default.title! },
-    { title: bmbBoxIconStory.default.title! },
-    { title: bmbTitleStory.default.title! },
-    { title: bmbSimpleTextStory.default.title! },
-    { title: bmbLayoutStory.default.title! },
-    { title: bmbLayoutItemStory.default.title! },
-    { title: bmbVerticalLayoutStory.default.title! },
+    { title: bmbContainerButtonBaseStory.default.title ?? 'Components/Buttons/Container button' },
+    { title: bmbBoxIconStory.default.title ?? 'Components/Visual labels/Box icon' },
+    { title: bmbTitleStory.default.title ?? 'Components/Texts/Title' },
+    { title: bmbSimpleTextStory.default.title ?? 'Dev tools/Simple text' },
+    { title: bmbLayoutStory.default.title ?? 'Foundations/Layouts/Layout' },
+    { title: bmbLayoutItemStory.default.title ?? 'Foundations/Layouts/Layout item' },
+    { title: bmbVerticalLayoutStory.default.title ?? 'Foundations/Layouts/Vertical layout container' },
   ],
 })}
-`)}`,
+`)}
+${getTypescriptExampleTextBlock(
+  'BmbBoxIconComponent, BmbContainerButtonBaseComponent, BmbLayoutDirective, BmbLayoutItemDirective, BmbSimpleTextComponent, BmbTitleComponent, BmbVerticalLayoutDirective',
+  '',
+  '',
+  '',
+  "import { BreakpointObserver } from '@angular/cdk/layout';\nimport { inject } from '@angular/core';\nimport { map } from 'rxjs';",
+  'for responsive composition',
+  false,
+  'with the Desktop and Mobile story markup',
+  `readonly isMobile$ = inject(BreakpointObserver)
+    .observe('(max-width: 1000px)')
+    .pipe(map(({ matches }) => matches));`,
+)}
+Use \`isMobile$ | async\` in the application template to render the Mobile story markup when true and the Desktop story markup otherwise.
+        `,
       },
     },
   },

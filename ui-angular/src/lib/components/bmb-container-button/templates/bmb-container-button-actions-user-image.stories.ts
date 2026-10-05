@@ -14,6 +14,7 @@ import {
   getGeneralDescription,
   getSpecialSpecifications,
   getTechnicalDocReferences,
+  getTypescriptExampleTextBlock,
   RELEVANT_TITLE,
   TOC_OBJ,
 } from '@docs/utils/utils';
@@ -69,6 +70,20 @@ ${getTechnicalDocReferences({
   ],
 })}
 `)}
+${getTypescriptExampleTextBlock(
+  'BmbContainerButtonBaseComponent, BmbBookmarkComponent, BmbBoxIconComponent, BmbCheckboxComponent, BmbDividerComponent, BmbLayoutDirective, BmbSimpleTextComponent, BmbUserImageComponent, BmbVerticalLayoutDirective',
+  '',
+  '',
+  '',
+  "import { BreakpointObserver } from '@angular/cdk/layout';\nimport { inject } from '@angular/core';\nimport { map } from 'rxjs';",
+  'for responsive composition',
+  false,
+  'with the Desktop and Mobile story markup',
+  `readonly isMobile$ = inject(BreakpointObserver)
+    .observe('(max-width: 1000px)')
+    .pipe(map(({ matches }) => matches));`,
+)}
+Use \`isMobile$ | async\` in the application template to render the Mobile story markup when true and the Desktop story markup otherwise.
         `,
       },
     },
