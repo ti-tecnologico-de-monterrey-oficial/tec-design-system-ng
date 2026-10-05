@@ -52,7 +52,7 @@ export const GeneralTemplate = ({
           ([name]) => name !== 'default' && name !== '__namedExportsOrder',
         )
         .map(([name, story]) => (
-          <div key={children.default?.title?.startsWith('Templates/Generic card/') ? children.default.title + '/' + name : name}>
+          <div key={`${children.default?.title}/${name}`}>
             <Heading>{story.name || name}</Heading>
             <div
               data-docs-preview-width={story.parameters?.docs?.previewWidth || undefined}

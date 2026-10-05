@@ -114,6 +114,30 @@
 
 <!-- Informative User Image Template -->
 
+<section bmbVerticalLayout gapSize="none" alignItems="stretch" aria-labelledby="informative-user-image-title">
+	<h2 id="informative-user-image-title">Informative User Image</h2>
+
+	<bmb-container-button-base>
+		<ng-template #bmbContainerLeft>
+			<bmb-checkbox
+				[checked]="false"
+				[indeterminate]="false"
+				[disabled]="false"
+			/>
+		</ng-template>
+
+		<ng-template #bmbContainerMain>
+			<div bmbLayout margin="none" gapSize="m" justify="start" alignItems="center">
+				<bmb-user-image size="mobile-small" image="https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/assets/logo.png" />
+				<div bmbVerticalLayout gapSize="none" alignItems="start">
+					<bmb-simple-text [size]="4" color="general-contrasts-100" weight="bold">Title</bmb-simple-text>
+					<bmb-simple-text [size]="4" color="general-contrasts-100" weight="light">Subtitle (optional)</bmb-simple-text>
+				</div>
+			</div>
+		</ng-template>
+	</bmb-container-button-base>
+</section>
+
 <!-- Informative Icon Template -->
 
 <!-- Informative Icon Template -->
