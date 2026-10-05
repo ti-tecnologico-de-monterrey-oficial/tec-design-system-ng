@@ -2,11 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   input,
   model,
   output,
-  untracked,
+  signal,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
@@ -21,6 +20,13 @@ import {
 } from '../../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { CommonModule } from '@angular/common';
+import {
+  BmbSwipeDirective,
+  BmbSwipeRightActionsDirective,
+  IBmbSwipeSide,
+} from '../../../directives/bmb-swipe/bmb-swipe.directive';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-alert-center-list',
@@ -34,6 +40,10 @@ import { CommonModule } from '@angular/common';
     BmbLayoutGridItemDirective,
     BmbIconComponent,
     CommonModule,
+    BmbSwipeDirective,
+    BmbSwipeRightActionsDirective,
+    BmbActionIconComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-alert-center-list.component.html',
   styleUrl: './bmb-alert-center-list.component.scss',
@@ -46,13 +56,20 @@ export class BmbAlertCenterListComponent {
   enableMultipleSelection = input<boolean>(true);
   selectionState = model<Record<string, boolean>>({});
   enableRowClick = input<boolean>(true);
+  enableSwipe = input<boolean>(false);
 
   alertSelected = output<IBmbDataAlertsParsed>();
   selectedAlert = output<{ event: Event; item: IBmbDataAlertsParsed }>();
+  getDeleteClick = output<IBmbDataAlertsParsed>();
+
   isSomeAlertSelected = computed(() => {
     const state = this.selectionState();
     return Object.values(state).some((isSelected) => isSelected);
   });
+
+  readonly threshold = signal(0.4);
+  readonly closeOnAction = signal(true);
+  readonly lastEvent = signal<IBmbSwipeSide | null>(null);
 
   handleSelection(event: Event, item: IBmbDataAlertsParsed): void {
     this.selectionState.update((state) => {
@@ -110,5 +127,13 @@ export class BmbAlertCenterListComponent {
     }
 
     return pDate.toFormat('dd/MM/yyyy');
+  }
+
+  handleSwipe(side: IBmbSwipeSide | null): void {
+    this.lastEvent.set(side);
+  }
+
+  handleDelete(item: IBmbDataAlertsParsed): void {
+    this.getDeleteClick.emit(item);
   }
 }

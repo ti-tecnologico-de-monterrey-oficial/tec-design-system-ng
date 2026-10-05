@@ -1,0 +1,151 @@
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
+
+$small_variant: rem.rem_calc(32);
+$normal_varian: rem.rem_calc(48);
+$medium_variant: rem.rem_calc(42);
+
+.bmb_step-progress-bar {
+  &-horizontal {
+    width: 100%;
+  }
+
+  &-vertical {
+    width: fit-content;
+  }
+
+  &-wizard {
+    position: relative;
+    left: $small_variant;
+    margin: var(--bmb-spacing-s) 0;
+  }
+
+  &-text {
+    @include fonts.font(4, regular);
+    word-break: break-word;
+
+    &-title {
+      color: var(--general-contrasts-100);
+
+      &-wizard {
+        @include fonts.font(6, regular);
+      }
+
+      &.pending {
+        color: var(--buttons-inactive-step);
+      }
+    }
+
+    &-subtitle {
+      color: var(--general-contrasts-75);
+    }
+  }
+
+  &-wrapper {
+    &-horizontal {
+      width: 100%;
+    }
+
+    &-vertical {
+      gap: rem.rem_calc(2);
+    }
+  }
+
+  &-line {
+    border-style: solid;
+    border-width: 0;
+    border-color: var(--buttons-inactive-step);
+
+    &-horizontal {
+      flex: 1 0 0%;
+      border-top-width: rem.rem_calc(2);
+    }
+
+    &-vertical {
+      border-left-width: rem.rem_calc(2);
+      position: relative;
+      left: calc($small_variant / 2);
+      height: fit-content;
+      min-height: rem.rem_calc(20);
+    }
+
+    &.completed {
+      border-color: var(--buttons-primary-normal);
+    }
+  }
+
+  &-step {
+    background-color: var(--buttons-inactive-step);
+    border-radius: var(--bmb-radius-full);
+
+    &-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    &-number {
+      &:not(.active) {
+        color: rgb(var(--gray-charade-950));
+      }
+
+      .bmb_focus-element-number {
+        @include fonts.font(6, regular);
+      }
+    }
+
+    &-small {
+      height: $small_variant;
+      width: $small_variant;
+
+      &.active {
+        @include fonts.font(4, regular);
+      }
+    }
+
+    &-normal {
+      height: $normal_varian;
+      width: $normal_varian;
+
+      &.active {
+        height: fit-content;
+        width: fit-content;
+
+        .bmb_focus-element-number {
+          font-weight: normal;
+        }
+      }
+    }
+
+    &-medium {
+      height: $medium_variant;
+      width: $medium_variant;
+    }
+
+    &.active {
+      color: var(--general-contrasts-input-outline);
+      background-color: var(--containers-background);
+    }
+
+    &.completed {
+      background-color: var(--buttons-primary-normal);
+      color: rgb(var(--gray-charade-50));
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+
+    &:focus:not(:disabled),
+    &:focus-visible:not(:disabled),
+    &:hover:not(:disabled) {
+      outline-width: rem.rem_calc(1);
+      outline-color: var(--buttons-stroke-primary-selected);
+      outline-offset: rem.rem_calc(-4);
+      box-shadow: 0 0 rem.rem_calc(5) rgb(var(--blue-mariner-500));
+    }
+  }
+}

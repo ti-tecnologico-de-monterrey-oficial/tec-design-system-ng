@@ -40,7 +40,8 @@
       }
     },
     "list": {
-      "select_all_button": "Select All"
+      "select_all_button": "Select All",
+      "delete": "Delete"
     },
     "tabs": {
       "notifications": "Notifications",

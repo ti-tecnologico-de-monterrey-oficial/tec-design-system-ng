@@ -542,8 +542,11 @@ export const getTechnicalOneReference = (title: string): string =>
     references: [{ title }],
   });
 
-export const getGeneralDocDescription = (generalDocLink: string): string =>
-  `Please remember to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.`;
+export const getGeneralDocDescription = (
+  generalDocLink: string,
+  generalDescription = 'Bamboo - General documentation',
+): string =>
+  `Please remember to refer to the [${generalDescription}](${generalDocLink}) for more details about it.`;
 
 export const getGeneralComponentDescription = ({
   name,
