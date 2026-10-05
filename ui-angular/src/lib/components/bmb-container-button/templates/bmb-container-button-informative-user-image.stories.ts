@@ -1,4 +1,3 @@
-import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
 import { BmbSimpleTextComponent } from '../../bmb-simple-text/bmb-simple-text.component';
@@ -24,7 +23,7 @@ import * as bmbSimpleTextStory from '../../bmb-simple-text/bmb-simple-text.stori
 import * as bmbLayoutDirectiveStory from '../../../directives/bmb-layout/bmb-layout.stories';
 import * as bmbVerticalLayoutDirectiveStory from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.stories';
 
-const meta: Meta<BmbContainerButtonBaseComponent> = {
+const meta = {
   title: 'Templates/Container Button/Informative User Image',
   component: BmbContainerButtonBaseComponent,
   tags: ['!autodocs'],
@@ -78,7 +77,6 @@ Use \`isMobile$ | async\` in the application template to render the Mobile story
   },
 };
 export default meta;
-type Story = StoryObj<BmbContainerButtonBaseComponent>;
 
 const desktopTemplate = `<bmb-container-button-base>
   <ng-template #bmbContainerLeft>
@@ -125,7 +123,7 @@ const mobileTemplate = `<bmb-container-button-base>
   </ng-template>
 </bmb-container-button-base>`;
 
-export const Desktop: Story = {
+export const Desktop = {
   render: () => ({ template: desktopTemplate }),
   parameters: {
     docs: {
@@ -134,7 +132,7 @@ export const Desktop: Story = {
   },
 };
 
-export const Mobile: Story = {
+export const Mobile = {
   render: () => ({ template: mobileTemplate }),
   globals: { viewport: { value: 'small', isRotated: false } },
   parameters: {

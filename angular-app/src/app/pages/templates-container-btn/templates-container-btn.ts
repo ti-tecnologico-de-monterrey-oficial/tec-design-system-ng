@@ -4,6 +4,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import {
   BmbBadgeComponent,
+  BmbBookmarkComponent,
+  BmbBoxIconComponent,
   BmbCheckboxComponent,
   BmbContainerButtonBaseComponent,
   BmbGradeValueComponent,
@@ -19,6 +21,8 @@ import {
   selector: 'app-templates-container-btn',
   imports: [
     BmbBadgeComponent,
+    BmbBookmarkComponent,
+    BmbBoxIconComponent,
     BmbCheckboxComponent,
     BmbContainerButtonBaseComponent,
     BmbGradeValueComponent,
