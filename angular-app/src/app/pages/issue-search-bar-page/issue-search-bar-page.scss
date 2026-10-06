@@ -1,0 +1,25 @@
+@use '../../styles/playground';
+
+@include playground.page(18rem, 22rem, 12rem);
+
+.preview {
+  align-items: safe center;
+  display: flex;
+  flex-direction: column;
+  justify-content: safe center;
+}
+.preview bmb-search-input {
+  display: block;
+  flex: 0 0 auto;
+  width: min(100%, 24rem);
+}
+
+.note {
+  color: var(--color-warning, #b45309);
+  font-size: 0.85rem;
+}
+
+.explanation {
+  margin-top: 2rem;
+  max-width: 48rem;
+}
