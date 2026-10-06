@@ -1,0 +1,167 @@
+<header>
+  <h1>Padding playground</h1>
+  <p>
+    Replica del home de miTec usando únicamente componentes Bamboo:
+    <code>bmb-container</code>, <code>bmb-multi-dot-paginator</code>,
+    <code>bmb-home-card</code>, <code>bmb-media-card</code>,
+    <code>bmb-interactive-icon</code>, <code>bmb-container-button</code> y
+    <code>bmb-sounds-card</code>.
+  </p>
+</header>
+
+<bmb-multi-dot-paginator
+  componentTitle="Mi dashboard"
+  subtitle="Accesos rápidos"
+>
+  <bmb-multi-dot-paginator-item>
+    <bmb-home-card
+      bmbVerticalLayoutItem
+      [rowGrow]="1"
+      componentTitle="Mis anuncios"
+      [showRightButton]="false"
+      contentPadding="none"
+    >
+      <bmb-media-card
+        [src]="announcementImage"
+        alt="Mis anuncios"
+        borderRadius="none"
+      />
+    </bmb-home-card>
+  </bmb-multi-dot-paginator-item>
+
+  <bmb-multi-dot-paginator-item>
+    <div bmbVerticalLayout layoutHeight="100%" alignItems="stretch" gapSize="m">
+      <bmb-home-card
+        bmbVerticalLayoutItem
+        [rowGrow]="1"
+        componentTitle="work@tec"
+        [showRightButton]="true"
+        contentPadding="m"
+      >
+        <div
+          bmbVerticalLayout
+          layoutHeight="100%"
+          justify="center"
+          alignItems="stretch"
+        >
+          <div
+            bmbLayout
+            margin="none"
+            gapSize="m"
+            justify="center"
+            alignItems="center"
+          >
+            @for (item of workShortcuts; track item.label) {
+            <bmb-interactive-icon
+              [icon]="item.icon"
+              [componentTitle]="item.label"
+              appearance="white_primary"
+            />
+            }
+          </div>
+        </div>
+      </bmb-home-card>
+
+      <bmb-home-card
+        bmbVerticalLayoutItem
+        [rowGrow]="1"
+        componentTitle="Mis Servicios"
+        [showRightButton]="true"
+        contentPadding="m"
+      >
+        <div
+          bmbVerticalLayout
+          layoutHeight="100%"
+          justify="center"
+          alignItems="stretch"
+        >
+          <div
+            bmbLayout
+            margin="none"
+            gapSize="m"
+            justify="center"
+            alignItems="center"
+          >
+            @for (item of serviceShortcuts; track item.label) {
+            <bmb-interactive-icon
+              [icon]="item.icon"
+              [componentTitle]="item.label"
+              [appearance]="item.appearance"
+            />
+            }
+          </div>
+        </div>
+      </bmb-home-card>
+    </div>
+  </bmb-multi-dot-paginator-item>
+
+  <bmb-multi-dot-paginator-item>
+    <div bmbVerticalLayout layoutHeight="100%" alignItems="stretch" gapSize="m">
+      <bmb-home-card
+        bmbVerticalLayoutItem
+        [rowGrow]="1"
+        componentTitle="Reservación de Espacios"
+        [showRightButton]="true"
+        contentPadding="m"
+      >
+        <div
+          bmbVerticalLayout
+          layoutHeight="100%"
+          justify="center"
+          alignItems="stretch"
+        >
+          <div
+            bmbLayout
+            margin="none"
+            gapSize="m"
+            justify="center"
+            alignItems="center"
+          >
+            @for (item of reservationShortcuts; track item.label) {
+            <bmb-container-button
+              [componentTitle]="item.label"
+              [iconLeft]="item.icon"
+              [square]="true"
+              [small]="true"
+            />
+            }
+          </div>
+        </div>
+      </bmb-home-card>
+
+      <div
+        bmbLayout
+        margin="none"
+        gapSize="m"
+        alignItems="stretch"
+        [dynamicCols]="true"
+        bmbVerticalLayoutItem
+        [rowGrow]="1"
+      >
+        <bmb-sounds-card
+          bmbLayoutItem
+          [isDynamicItem]="true"
+          [colGrow]="1"
+          componentTitle="Tec Sounds Radio"
+          subtitle="98.76 FM"
+          ratio="8/9"
+        />
+        <bmb-media-card
+          bmbLayoutItem
+          [isDynamicItem]="true"
+          [colGrow]="1"
+          [src]="conectaImage"
+          ratio="8/9"
+          alt="Comunicados"
+          borderRadius="m"
+        >
+          <label
+            >Por octavo año, el Tec de Monterrey es #1 en México: ranking
+            QS</label
+          >
+          <label>1 de octubre de 2026</label>
+        </bmb-media-card>
+      </div>
+    </div>
+  </bmb-multi-dot-paginator-item>
+</bmb-multi-dot-paginator>

@@ -230,6 +230,14 @@ export const appRoutes: Route[] = [
   },
   { path: 'pages', pathMatch: 'full', redirectTo: 'pages/carousel' },
   {
+    path: 'issue/padding',
+    title: 'Padding playground | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/issue-padding-page/issue-padding-page').then(
+        ({ IssuePaddingPage }) => IssuePaddingPage,
+      ),
+  },
+  {
     path: 'pages/carousel',
     title: 'BmbCarousel | Bamboo migration dashboard',
     loadComponent: () =>
