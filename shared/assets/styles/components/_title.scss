@@ -1,0 +1,53 @@
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+
+$font-sizes: 1, 2, 3, 4, 4_5, 5, 6, 7, 8, 9, 10, 11, 12;
+$font-weights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
+
+@mixin font-sizes() {
+  @each $size in $font-sizes {
+    &-#{$size} {
+      @include fonts.font($size, regular);
+    }
+  }
+}
+
+@mixin font-weights() {
+  @each $font-weight in $font-weights {
+    &-#{$font-weight} {
+      font-weight: $font-weight;
+    }
+  }
+}
+
+@mixin centered() {
+  &-centered {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.bmb_title {
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--bmb-spacing-xs);
+
+    &-title {
+      color: var(--general-contrasts-100);
+      text-align: start;
+      @include font-sizes();
+      @include font-weights();
+      @include centered();
+    }
+
+    &-subtitle {
+      color: var(--general-contrasts-75);
+      text-align: start;
+      @include font-sizes();
+      @include font-weights();
+      @include centered();
+    }
+  }
+}
