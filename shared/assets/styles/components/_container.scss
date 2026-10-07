@@ -1,4 +1,5 @@
 @use '../../../assets/styles/base/rem' as rem;
+@use '../base/mixins' as mixins;
 
 .bmb_container {
   align-items: flex-start;
@@ -57,5 +58,24 @@
     align-items: center;
     margin: rem.rem-calc(16);
     padding: rem.rem_calc(24);
+  }
+
+  // Apply after appearance padding so every container adapts automatically.
+  @include mixins.mobile-styles {
+    padding: var(--bmb-padding-s);
+  }
+
+  @include mixins.desktop-styles {
+    padding: var(--bmb-padding-m);
+
+    // Compact desktops: 1280x720, 1440x900, 1470x956 and 1536x864.
+    @media (width <= #{rem.rem_calc(1536)}) or (height <= #{rem.rem_calc(900)}) {
+      padding: var(--bmb-padding-s);
+    }
+
+    // Large desktops, including 1920x1080.
+    @media (width >= #{rem.rem_calc(1800)}) and (height >= #{rem.rem_calc(1000)}) {
+      padding: var(--bmb-padding-l);
+    }
   }
 }

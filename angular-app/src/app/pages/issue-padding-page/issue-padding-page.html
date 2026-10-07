@@ -1,39 +1,50 @@
-<header>
-  <h1>Padding playground</h1>
-  <p>
-    Replica del home de miTec usando únicamente componentes Bamboo:
-    <code>bmb-container</code>, <code>bmb-multi-dot-paginator</code>,
-    <code>bmb-home-card</code>, <code>bmb-media-card</code>,
-    <code>bmb-interactive-icon</code>, <code>bmb-container-button</code> y
-    <code>bmb-sounds-card</code>.
-  </p>
-</header>
-
 <bmb-multi-dot-paginator
   componentTitle="Mi dashboard"
   subtitle="Accesos rápidos"
 >
   <bmb-multi-dot-paginator-item>
-    <bmb-home-card
-      bmbVerticalLayoutItem
-      [rowGrow]="1"
-      componentTitle="Mis anuncios"
-      [showRightButton]="false"
-      contentPadding="none"
+    <div
+      bmbLayoutGrid
+      height="max(160px, calc(100dvh - 202px))"
+      rowSize="minmax(0, 1fr)"
     >
-      <bmb-media-card
-        [src]="announcementImage"
-        alt="Mis anuncios"
-        borderRadius="none"
-      />
-    </bmb-home-card>
+      <bmb-home-card
+        bmbLayoutGridItem
+        [colStart]="1"
+        [rowStart]="1"
+        componentTitle="Mis anuncios"
+        [showRightButton]="false"
+        contentPadding="none"
+      >
+        <!-- <bmb-media-card
+          [src]="announcementImage"
+          alt="Mis anuncios"
+          borderRadius="none"
+        /> -->
+        <bmb-image [src]="'https://mitecpprd.tec.mx/api/images/mitec/colaboradores/Avisos/2022/mar/CentroIdiomas.png'" [ratio]="'1/1'" [borderRadius]="'none'"
+          [mobileSrc]="'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg'" [alt]="'Fruits'"
+          [width]="'clamp(200px, 100%, calc(50dvw - 3rem))'" [ratio]="'1/1'" [loading]="'lazy'" [enableZoom]="false" [isBlurredBackdrop]="false"
+            [images]="[{src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
+            mobileSrc: 'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg', alt: 'Image 1'},
+            {src: 'https://mitecpprd.tec.mx/api/images/mitec/colaboradores/Avisos/2022/mar/CentroIdiomas.png', mobileSrc: 'https://mitecpprd.tec.mx/api/images/mitec/colaboradores/Avisos/2022/mar/CentroIdiomas.png', alt: 'Image 2'},
+            {src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22', alt: 'Image 3'}]"
+          [objectFit]="'cover'" [avoidEncoding]="false" [enableCursorPointer]="false"></bmb-image>
+      </bmb-home-card>
+    </div>
   </bmb-multi-dot-paginator-item>
 
   <bmb-multi-dot-paginator-item>
-    <div bmbVerticalLayout layoutHeight="100%" alignItems="stretch" gapSize="m">
+    <div
+      bmbLayoutGrid
+      [rows]="2"
+      rowSize="minmax(0, 1fr)"
+      height="max(160px, calc(100dvh - 202px))"
+      rowGapSize="m"
+    >
       <bmb-home-card
-        bmbVerticalLayoutItem
-        [rowGrow]="1"
+        bmbLayoutGridItem
+        [colStart]="1"
+        [rowStart]="1"
         componentTitle="work@tec"
         [showRightButton]="true"
         contentPadding="m"
@@ -41,18 +52,23 @@
         <div
           bmbVerticalLayout
           layoutHeight="100%"
-          justify="center"
+          justify="start"
           alignItems="stretch"
         >
           <div
             bmbLayout
             margin="none"
             gapSize="m"
-            justify="center"
-            alignItems="center"
+            justify="spaceAround"
+            alignItems="start"
+            [dynamicCols]="true"
+            [avoidRowWrap]="true"
           >
             @for (item of workShortcuts; track item.label) {
             <bmb-interactive-icon
+              bmbLayoutItem
+              [isDynamicItem]="true"
+              [colGrow]="1"
               [icon]="item.icon"
               [componentTitle]="item.label"
               appearance="white_primary"
@@ -63,8 +79,9 @@
       </bmb-home-card>
 
       <bmb-home-card
-        bmbVerticalLayoutItem
-        [rowGrow]="1"
+        bmbLayoutGridItem
+        [colStart]="1"
+        [rowStart]="2"
         componentTitle="Mis Servicios"
         [showRightButton]="true"
         contentPadding="m"
@@ -79,7 +96,7 @@
             bmbLayout
             margin="none"
             gapSize="m"
-            justify="center"
+            justify="spaceEvenly"
             alignItems="center"
           >
             @for (item of serviceShortcuts; track item.label) {
@@ -96,10 +113,17 @@
   </bmb-multi-dot-paginator-item>
 
   <bmb-multi-dot-paginator-item>
-    <div bmbVerticalLayout layoutHeight="100%" alignItems="stretch" gapSize="m">
+    <div
+      bmbLayoutGrid
+      [rows]="2"
+      rowSize="minmax(0, 1fr)"
+      height="max(160px, calc(100dvh - 202px))"
+      rowGapSize="m"
+    >
       <bmb-home-card
-        bmbVerticalLayoutItem
-        [rowGrow]="1"
+        bmbLayoutGridItem
+        [colStart]="1"
+        [rowStart]="1"
         componentTitle="Reservación de Espacios"
         [showRightButton]="true"
         contentPadding="m"
@@ -107,22 +131,21 @@
         <div
           bmbVerticalLayout
           layoutHeight="100%"
-          justify="center"
+          justify="start"
           alignItems="stretch"
         >
           <div
             bmbLayout
             margin="none"
             gapSize="m"
-            justify="center"
+            justify="start"
             alignItems="center"
           >
             @for (item of reservationShortcuts; track item.label) {
-            <bmb-container-button
+            <bmb-interactive-icon
               [componentTitle]="item.label"
-              [iconLeft]="item.icon"
-              [square]="true"
-              [small]="true"
+              [icon]="item.icon"
+              appearance="white_primary"
             />
             }
           </div>
@@ -135,8 +158,9 @@
         gapSize="m"
         alignItems="stretch"
         [dynamicCols]="true"
-        bmbVerticalLayoutItem
-        [rowGrow]="1"
+        bmbLayoutGridItem
+        [colStart]="1"
+        [rowStart]="2"
       >
         <bmb-sounds-card
           bmbLayoutItem

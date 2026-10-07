@@ -1,22 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {
-  BmbContainerButtonComponent,
-  BmbHomeCardComponent,
-  BmbInteractiveIconComponent,
-  BmbMediaCardComponent,
-  BmbMultiDotPaginatorComponent,
-  BmbMultiDotPaginatorItemComponent,
-  BmbSoundsCardComponent,
-  BmbLayoutDirective,
-  BmbLayoutItemDirective,
-  BmbVerticalLayoutDirective,
-  BmbVerticalLayoutItemDirective,
-} from 'ui-angular';
+import { BmbHomeCardComponent, BmbInteractiveIconComponent, BmbMediaCardComponent, BmbMultiDotPaginatorComponent, BmbMultiDotPaginatorItemComponent, BmbSoundsCardComponent, BmbLayoutDirective, BmbLayoutItemDirective, BmbLayoutGridDirective, BmbLayoutGridItemDirective, BmbVerticalLayoutDirective, BmbImageComponent } from 'ui-angular';
 
 @Component({
   selector: 'app-issue-padding-page',
   imports: [
-    BmbContainerButtonComponent,
     BmbHomeCardComponent,
     BmbInteractiveIconComponent,
     BmbMediaCardComponent,
@@ -25,10 +12,11 @@ import {
     BmbSoundsCardComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
+    BmbLayoutGridDirective,
+    BmbLayoutGridItemDirective,
     BmbVerticalLayoutDirective,
-
-    BmbVerticalLayoutItemDirective,
-  ],
+    BmbImageComponent
+],
   templateUrl: './issue-padding-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
