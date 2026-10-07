@@ -41,6 +41,24 @@ describe('BmbImageComponent', () => {
     expect(classes).toContain('bmb_image-figure-zoom');
   });
 
+  it('should apply an individual radius to each corner', () => {
+    componentRef.setInput('borderRadius', {
+      topLeft: '0',
+      topRight: 's',
+      bottomRight: 'l',
+      bottomLeft: 'xl',
+    });
+    fixture.detectChanges();
+
+    expect(component.getClasses()).not.toContain('bmb_radius-0');
+    expect(component.getImageContainerStyle()).toEqual({
+      'border-top-left-radius': 'var(--bmb-radius-0)',
+      'border-top-right-radius': 'var(--bmb-radius-s)',
+      'border-bottom-right-radius': 'var(--bmb-radius-l)',
+      'border-bottom-left-radius': 'var(--bmb-radius-xl)',
+    });
+  });
+
   it('should return correct classes when zoom is disabled', () => {
     componentRef.setInput('borderRadius', 's');
     componentRef.setInput('enableZoom', false);
