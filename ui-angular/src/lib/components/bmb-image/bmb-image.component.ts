@@ -13,28 +13,11 @@ import { CommonModule } from '@angular/common';
 import { SizeNames } from '../../_shared/types';
 import { handleImageNotFoundError } from '../../_shared/logic/utils';
 import type { IBmbMediaCardLoading } from '../../_shared/types';
-import { BmbImageItem } from './types';
+import { BmbImageHeight, BmbImageItem, IBmbImageBorderRadius, IBmbImageObjectFit } from './types';
 import { BmbButtonIconComponent } from '../bmb-button-icon/bmb-button-icon.component';
 import { TranslatePipe } from '../../pipes/translations';
 
-export interface BmbImageHeight {
-  s: string;
-  l: string;
-}
 
-export interface IBmbImageBorderRadius {
-  topLeft?: SizeNames;
-  topRight?: SizeNames;
-  bottomRight?: SizeNames;
-  bottomLeft?: SizeNames;
-}
-
-export type IBmbImageObjectFit =
-  | 'cover'
-  | 'contain'
-  | 'fill'
-  | 'none'
-  | 'scale-down';
 
 export * from './types';
 

@@ -98,7 +98,7 @@
             tabindex="0"
             (click)="handleImageClick(img, $index)"
             (keydown)="handleImageKeyDown($event, img, $index)"
-            [style]="{ 'object-fit': objectFit() }"
+            [style]="{ 'object-fit': img.objectFit || objectFit() }"
             (error)="handleImageNotFoundError(img.src, $event)"
           />
         </picture>
