@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IBmbTab } from '../../../components/bmb-tabs/bmb-tabs.component';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class TabsService {
   private tabsSubject = new BehaviorSubject<IBmbTab[]>([]);
   private selectedTabSubject = new BehaviorSubject<IBmbTab | null>(null);
