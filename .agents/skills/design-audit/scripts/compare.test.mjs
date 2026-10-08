@@ -462,13 +462,13 @@ test('modo de auditoría depende de la categoría, no de la familia', () => {
     assert.equal(auditMode({title:'Templates/'+name}),'template');
   }
 });
-test('el componente individual revisa dimensiones, radios, padding y tipografía sin exclusiones por nombre', () => {
+test('el componente individual solo revisa las propiedades autorizadas', () => {
   const root={id:'root',name:'Specimen',type:'INSTANCE',paddingLeft:16,cornerRadius:8,absoluteBoundingBox:{width:40,height:40},
     children:[{id:'text',type:'TEXT',name:'Label',characters:'Demo',style:{fontSize:16,fontWeight:600}}]};
   const dom=[{isComponentRoot:true,props:{width:24,height:24,paddingLeft:4,borderRadius:2}},
     {figmaNodeId:'text',leaf:true,props:{text:'Demo',fontSize:12,fontWeight:400}}];
   assert.deepEqual(compareInterior(root,dom,1,{mode:'component'}).findings.map(f=>f.property),
-    ['width','height','paddingLeft','borderRadius','fontSize','fontWeight']);
+    ['paddingLeft','fontSize','fontWeight']);
 });
 test('template trata todas las instancias anidadas como límites y mide su separación sin sus estilos internos', () => {
   const nested=(id,x)=>({id,name:id,type:'INSTANCE',paddingLeft:999,absoluteBoundingBox:{x,y:0,width:20,height:20},
@@ -492,9 +492,19 @@ test('template mide padding de sus contenedores y textos propios, sin dimensione
   ]};
   const dom=[{isComponentRoot:true,props:{}},{figmaNodeId:'c',props:{paddingLeft:8,borderRadius:0}},
     {figmaNodeId:'t',props:{text:'Actual',fontSize:12,fontWeight:400}}];
-  assert.deepEqual(compareInterior(root,dom,1,{mode:'template'}).findings.map(f=>f.property),['paddingLeft','text','fontSize','fontWeight']);
+  assert.deepEqual(compareInterior(root,dom,1,{mode:'template'}).findings.map(f=>f.property),['paddingLeft','fontSize','fontWeight']);
 });
 test('propiedades se leen igual de variantes maestras e instancias sin conocer la familia', () => {
   assert.deepEqual(variantProperties({name:'Tone=Muted, State=Enabled'}),{tone:'Muted',state:'Enabled'});
   assert.deepEqual(variantProperties({componentProperties:{'Tone#1':{type:'VARIANT',value:'Muted'}}}),{tone:'Muted'});
+});
+
+test('las opciones de imagen y properties no permiten propiedades excluidas', () => {
+  const node = {type:'TEXT',name:'Label',characters:'Expected',opacity:0.5,cornerRadius:8,
+    absoluteBoundingBox:{width:100,height:40},
+    style:{fontFamily:'Poppins-Regular',fontSize:16,fontWeight:600,lineHeightUnit:'PIXELS',lineHeightPx:24}};
+  const props = {width:20,height:10,fontFamily:'Arial',fontSize:12,fontWeight:400,
+    text:'Different',opacity:1,borderRadius:0,lineHeight:12};
+  assert.deepEqual(compare(node,{props},1,{image:true,properties:Object.keys(props)}).map(f=>f.property),
+    ['fontSize','fontWeight']);
 });

@@ -1,8 +1,9 @@
 import { join } from 'node:path';
-import { escape as e } from './compare.mjs';
+import { escape as e, isAuditProperty } from './compare.mjs';
 const uri = (b) => `data:image/png;base64,${b.toString('base64')}`;
 
 export async function makeReport(page, report, out, options = {}) {
+  report = { ...report, findings: report.findings.filter((f) => isAuditProperty(f.property)) };
   const visual = await page.evaluate(
     async ({ a, b, boxes }) => {
       const load = (src) =>
@@ -59,6 +60,7 @@ export async function makeReport(page, report, out, options = {}) {
   <h1>${e(report.entry.title)} / ${e(report.entry.name)}</h1>${report.partialContent?.length ? '<p>Alcance parcial: ajustes del contenido común. El contenido personalizado adicional no está validado.</p>' : ''}<p>Figma: ${e(report.node.name)} · ${report.findings.length} diferencias detectadas.</p>
   <p><a href="${e(report.figmaUrl)}">Abrir Figma</a> · <a href="${e(report.storyUrl)}">Abrir Storybook / Chromatic</a></p><p>Versión Figma: ${e(report.version)} · ${new Date().toISOString()} · viewport ${report.viewport.width} × ${report.viewport.height}</p>
   <div class="pair">${image(uri(report.expectedImage), 'Figma · esperado')}${image(uri(report.actualImage), 'Storybook · encontrado')}</div>
+  <p>Alcance: colores, padding, márgenes y separaciones entre elementos, font-weight y font-size. No se revisan font-family, width ni height. Los márgenes se evalúan mediante las separaciones medidas.</p>
   <h2 class="page">Ajustes recomendados</h2>${image(visual.annotated, 'Ubicación de los hallazgos estructurales (números de tabla)')}
   <table><thead><tr><th># / capa / propiedad</th><th>Esperado</th><th>Encontrado</th><th>Ajuste recomendado</th></tr></thead><tbody>${report.findings.map((f, i) => `<tr><td>${i + 1}. ${e(f.layer)}<br>${e(f.property)}</td><td>${e(f.expected)}</td><td>${e(f.actual)}</td><td>${e(f.recommendation)}</td></tr>`).join('')}</tbody></table>
   <p>Tolerancias: ${report.tolerance.numeric} unidades numéricas.</p></html>`;

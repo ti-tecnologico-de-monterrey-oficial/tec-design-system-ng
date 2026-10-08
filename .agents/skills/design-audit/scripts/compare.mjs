@@ -77,6 +77,14 @@ export const escape = (s) =>
         c
       ],
   );
+export const auditProperties = new Set([
+  'fontSize', 'fontWeight', 'color', 'backgroundColor', 'borderColor',
+  'paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft',
+  'marginTop', 'marginRight', 'marginBottom', 'marginLeft', 'gap',
+]);
+export const isAuditProperty = (property) => auditProperties.has(property) ||
+  /^Separación (horizontal|vertical): /.test(property);
+
 export function expected(n) {
   const p = {};
   if (n.absoluteBoundingBox)
@@ -124,6 +132,7 @@ export function expected(n) {
 }
 export function compare(node, dom, tolerance, { image = false, properties } = {}) {
   return Object.entries(expected(node)).flatMap(([property, value]) => {
+    if (!auditProperties.has(property)) return [];
     if (properties && !properties.includes(property)) return [];
     if (['width', 'height'].includes(property) && !image) return [];
     const actual = dom.props[property];
@@ -155,9 +164,9 @@ export function compareInterior(node, dom, tolerance, { mode = 'component' } = {
   const boundaries = new Set(mode === 'template' ? layers.filter((n) => n !== node && ['INSTANCE','COMPONENT'].includes(n.type)) : []);
   const properties = (layer) => {
     if (boundaries.has(layer)) return []; // geometry only, never internal styles
-    if (mode === 'component') return Object.keys(expected(layer)).filter((key) => key !== 'text');
-    return layer.type === 'TEXT' ? ['text','fontSize','fontWeight','color'] :
-      ['backgroundColor','paddingTop','paddingRight','paddingBottom','paddingLeft'];
+    if (mode === 'component') return Object.keys(expected(layer)).filter((key) => auditProperties.has(key));
+    return layer.type === 'TEXT' ? ['fontSize','fontWeight','color'] :
+      ['backgroundColor','borderColor','paddingTop','paddingRight','paddingBottom','paddingLeft','gap'];
   };
   const measured = (layer, element) => Object.entries(expected(layer)).filter(([key, value]) =>
     properties(layer).includes(key) && element.props[key] !== undefined &&
