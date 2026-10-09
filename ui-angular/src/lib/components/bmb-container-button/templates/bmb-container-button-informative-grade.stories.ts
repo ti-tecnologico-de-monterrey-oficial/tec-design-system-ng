@@ -56,10 +56,10 @@ ${getSpecialSpecifications(`
 > Please use only the components included in the following list on the left side of the template, in accordance with the established guidelines:
 >
 ${[
-  { title: iconStory.default.title! },
-  { title: boxIconStory.default.title! },
-  { title: userImageStory.default.title! },
-  { title: imageStory.default.title! },
+  { title: iconStory.default.title ?? 'Foundations/Icon' },
+  { title: boxIconStory.default.title ?? 'Components/Visual labels/Box icon' },
+  { title: userImageStory.default.title ?? 'Components/Images/User Image' },
+  { title: imageStory.default.title ?? 'Components/Images/Image' },
 ]
   .map((reference) => `> - ${getStoryLink(reference)}`)
   .join('\n')}`,
@@ -71,11 +71,11 @@ ${[
   )}
   ${getTechnicalDocReferences({
     references: [
-      { title: bmbContainerButtonBaseStory.default.title! },
-      { title: bmbGradeValueStory.default.title! },
-      { title: bmbBadgeStory.default.title! },
-      { title: bmbLayoutDirectiveStory.default.title! },
-      { title: bmbVerticalLayoutDirectiveStory.default.title! },
+      { title: bmbContainerButtonBaseStory.default.title ?? 'Components/Buttons/Container button' },
+      { title: bmbGradeValueStory.default.title ?? 'Components/Visual labels/Grade value' },
+      { title: bmbBadgeStory.default.title ?? 'Components/Visual labels/Badge' },
+      { title: bmbLayoutDirectiveStory.default.title ?? 'Foundations/Layouts/Layout' },
+      { title: bmbVerticalLayoutDirectiveStory.default.title ?? 'Foundations/Layouts/Vertical layout container' },
     ],
   })}
 `)}

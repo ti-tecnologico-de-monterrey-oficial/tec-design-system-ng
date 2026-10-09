@@ -4,32 +4,37 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import {
   BmbBadgeComponent,
+  BmbBookmarkComponent,
   BmbBoxIconComponent,
+  BmbCheckboxComponent,
   BmbContainerButtonBaseComponent,
   BmbGradeValueComponent,
   BmbIconComponent,
   BmbLayoutDirective,
   BmbLayoutItemDirective,
-  BmbTitleComponent,
   BmbVerticalLayoutDirective,
   BmbSimpleTextComponent,
   BmbDividerComponent,
+  BmbUserImageComponent,
 } from 'ui-angular';
 
 @Component({
   selector: 'app-templates-container-btn',
   imports: [
     BmbBadgeComponent,
+    BmbBookmarkComponent,
+    BmbBoxIconComponent,
+    BmbCheckboxComponent,
     BmbBoxIconComponent,
     BmbContainerButtonBaseComponent,
     BmbGradeValueComponent,
     BmbIconComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-    BmbTitleComponent,
     BmbVerticalLayoutDirective,
     BmbSimpleTextComponent,
     BmbDividerComponent,
+    BmbUserImageComponent,
   ],
   templateUrl: './templates-container-btn.html',
 })

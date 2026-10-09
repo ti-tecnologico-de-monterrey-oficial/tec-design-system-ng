@@ -22,7 +22,6 @@ import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { CommonModule } from '@angular/common';
 import {
   BmbSwipeDirective,
-  BmbSwipeLeftActionsDirective,
   BmbSwipeRightActionsDirective,
   IBmbSwipeSide,
 } from '../../../directives/bmb-swipe/bmb-swipe.directive';
@@ -42,7 +41,6 @@ import { TranslatePipe } from '../../../pipes/translations';
     BmbIconComponent,
     CommonModule,
     BmbSwipeDirective,
-    BmbSwipeLeftActionsDirective,
     BmbSwipeRightActionsDirective,
     BmbActionIconComponent,
     TranslatePipe,
