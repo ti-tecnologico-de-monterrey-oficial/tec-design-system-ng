@@ -19,10 +19,6 @@ import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vert
 import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 import { TranslatePipe } from '../../pipes/translations';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-item',
   standalone: true,
