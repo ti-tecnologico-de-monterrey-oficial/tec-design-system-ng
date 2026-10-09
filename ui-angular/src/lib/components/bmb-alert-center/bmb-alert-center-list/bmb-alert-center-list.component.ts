@@ -22,9 +22,9 @@ import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { CommonModule } from '@angular/common';
 import {
   BmbSwipeDirective,
-  BmbSwipeLeftActionsDirective,
   BmbSwipeRightActionsDirective,
   IBmbSwipeSide,
+  BmbSwipeLeftActionsDirective,
 } from '../../../directives/bmb-swipe/bmb-swipe.directive';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../../pipes/translations';
@@ -42,10 +42,10 @@ import { TranslatePipe } from '../../../pipes/translations';
     BmbIconComponent,
     CommonModule,
     BmbSwipeDirective,
-    BmbSwipeLeftActionsDirective,
     BmbSwipeRightActionsDirective,
     BmbActionIconComponent,
     TranslatePipe,
+    BmbSwipeLeftActionsDirective,
   ],
   templateUrl: './bmb-alert-center-list.component.html',
   styleUrl: './bmb-alert-center-list.component.scss',
