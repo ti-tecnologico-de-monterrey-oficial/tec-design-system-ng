@@ -21,7 +21,10 @@ import {
 import { IBmbContrast } from '../../_shared/types/colors';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
-import { IBmbTargetLink, IBmbInteractiveIconAppearance } from '../../_shared/types';
+import {
+  IBmbTargetLink,
+  IBmbInteractiveIconAppearance,
+} from '../../_shared/types';
 import { BmbTooltipBaseComponent } from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
 
 export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
@@ -83,7 +86,7 @@ export class BmbInteractiveIconComponent {
   }
 
   getClasses(): string[] {
-    const principalClassName: string = 'bmb_interactive_icon';
+    const principalClassName = 'bmb_interactive_icon';
     const classes: string[] = [
       principalClassName,
       `${principalClassName}-${this.layout()}`,

@@ -1,0 +1,204 @@
+ <bmb-multi-dot-paginator
+  componentTitle="Mi dashboard"
+  subtitle="Accesos rápidos"
+>
+  <bmb-multi-dot-paginator-item>
+    <div
+      bmbLayoutGrid
+      height="max(160px, calc(100dvh - 202px))"
+      rowSize="minmax(0, 1fr)"
+      [style.width.px]="carouselWidth"
+      style="max-width: 100%"
+    >
+      <bmb-home-card
+        class="announcement-card"
+        bmbLayoutGridItem
+        [colStart]="1"
+        [rowStart]="1"
+        componentTitle="Mis anuncios"
+        [showRightButton]="false"
+        contentPadding="none"
+      >
+        <!-- <bmb-media-card
+          [src]="announcementImage"
+          alt="Mis anuncios"
+          borderRadius="none"
+        /> -->
+        <bmb-image
+          style="height: 100%"
+          [minHeight]="{ s: '0px', l: '0px' }"
+          [src]="'https://saprodtecportal.blob.core.windows.net/mitec/colaboradores/PublishingImages/Avisos/2026/oct/TEC_EMDL_2_Ep5_HGarza_Ban_1280x1024.png'"
+          [borderRadius]="'none'"
+          [mobileSrc]="'https://saprodtecportal.blob.core.windows.net/mitec/colaboradores/PublishingImages/Avisos/2026/oct/TEC_EMDL_2_Ep5_HGarza_Ban_1280x1024.png'"
+          [alt]="'Fruits'"
+          [loading]="'lazy'"
+          [objectFit]="'contain'"
+          [enableZoom]="false"
+          [isBlurredBackdrop]="false"
+          [images]="[{src: 'https://saprodtecportal.blob.core.windows.net/mitec/colaboradores/PublishingImages/Avisos/2026/oct/TEC_EMDL_2_Ep5_HGarza_Ban_1280x1024.png', mobileSrc: 'https://saprodtecportal.blob.core.windows.net/mitec/colaboradores/PublishingImages/Avisos/2026/oct/TEC_EMDL_2_Ep5_HGarza_Ban_1280x1024.png', alt: 'Image 1'},
+            {src: 'https://mitecpprd.tec.mx/api/images/mitec/colaboradores/Avisos/2022/mar/CentroIdiomas.png', mobileSrc: 'https://mitecpprd.tec.mx/api/images/mitec/colaboradores/Avisos/2022/mar/CentroIdiomas.png', alt: 'Image 2'},
+            {src: 'https://fastly.picsum.photos/id/1018/2100/900.jpg?hmac=a14kKXuLT-V8VbKWUOWVvKIjv4Oc0e3CqMw9k-a11io', mobileSrc: 'https://fastly.picsum.photos/id/1018/2100/900.jpg?hmac=a14kKXuLT-V8VbKWUOWVvKIjv4Oc0e3CqMw9k-a11io', alt: 'Image 2'},
+            {src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22', mobileSrc: 'https://images.unsplash.com/photo-1507149833265-60c372daea22', alt: 'Image 3'}]"
+          [avoidEncoding]="false"
+          [enableCursorPointer]="false"
+        ></bmb-image>
+      </bmb-home-card>
+    </div>
+  </bmb-multi-dot-paginator-item>
+
+  <bmb-multi-dot-paginator-item>
+    <div
+      bmbLayoutGrid
+      [rows]="2"
+      rowSize="minmax(0, 1fr)"
+      height="max(160px, calc(100dvh - 202px))"
+      rowGapSize="m"
+    >
+      <bmb-home-card
+        bmbLayoutGridItem
+        [colStart]="1"
+        [rowStart]="1"
+        componentTitle="work@tec"
+        [showRightButton]="true"
+        contentPadding="m"
+      >
+        <div
+          bmbVerticalLayout
+          layoutHeight="100%"
+          justify="start"
+          alignItems="stretch"
+        >
+          <div
+            bmbLayout
+            margin="none"
+            gapSize="m"
+            justify="spaceAround"
+            alignItems="start"
+            [dynamicCols]="true"
+            [avoidRowWrap]="true"
+          >
+            @for (item of workShortcuts; track item.label) {
+            <bmb-interactive-icon
+              bmbLayoutItem
+              [isDynamicItem]="true"
+              [colGrow]="1"
+              [icon]="item.icon"
+              [componentTitle]="item.label"
+              appearance="white_primary"
+            />
+            }
+          </div>
+        </div>
+      </bmb-home-card>
+
+      <bmb-home-card
+        bmbLayoutGridItem
+        [colStart]="1"
+        [rowStart]="2"
+        componentTitle="Mis Servicios"
+        [showRightButton]="true"
+        contentPadding="m"
+      >
+        <div
+          bmbVerticalLayout
+          layoutHeight="100%"
+          justify="center"
+          alignItems="stretch"
+        >
+          <div
+            bmbLayout
+            margin="none"
+            gapSize="m"
+            justify="spaceEvenly"
+            alignItems="center"
+          >
+            @for (item of serviceShortcuts; track item.label) {
+            <bmb-interactive-icon
+              [icon]="item.icon"
+              [componentTitle]="item.label"
+              [appearance]="item.appearance"
+            />
+            }
+          </div>
+        </div>
+      </bmb-home-card>
+    </div>
+  </bmb-multi-dot-paginator-item>
+
+  <bmb-multi-dot-paginator-item>
+    <div
+      bmbLayoutGrid
+      [rows]="2"
+      rowSize="minmax(0, 1fr)"
+      height="max(160px, calc(100dvh - 202px))"
+      rowGapSize="m"
+    >
+      <bmb-home-card
+        bmbLayoutGridItem
+        [colStart]="1"
+        [rowStart]="1"
+        componentTitle="Reservación de Espacios"
+        [showRightButton]="true"
+        contentPadding="m"
+      >
+        <div
+          bmbVerticalLayout
+          layoutHeight="100%"
+          justify="start"
+          alignItems="stretch"
+        >
+          <div
+            bmbLayout
+            margin="none"
+            gapSize="m"
+            justify="start"
+            alignItems="center"
+          >
+            @for (item of reservationShortcuts; track item.label) {
+            <bmb-interactive-icon
+              [componentTitle]="item.label"
+              [icon]="item.icon"
+              appearance="white_primary"
+            />
+            }
+          </div>
+        </div>
+      </bmb-home-card>
+
+      <div
+        bmbLayout
+        margin="none"
+        gapSize="m"
+        alignItems="stretch"
+        [dynamicCols]="true"
+        bmbLayoutGridItem
+        [colStart]="1"
+        [rowStart]="2"
+      >
+        <bmb-sounds-card
+          bmbLayoutItem
+          [isDynamicItem]="true"
+          [colGrow]="1"
+          componentTitle="Tec Sounds Radio"
+          subtitle="98.76 FM"
+          ratio="8/9"
+        />
+        <bmb-media-card
+          bmbLayoutItem
+          [isDynamicItem]="true"
+          [colGrow]="1"
+          [src]="conectaImage"
+          ratio="8/9"
+          alt="Comunicados"
+          borderRadius="m"
+        >
+          <label
+            >Por octavo año, el Tec de Monterrey es #1 en México: ranking
+            QS</label
+          >
+          <label>1 de octubre de 2026</label>
+        </bmb-media-card>
+      </div>
+    </div>
+  </bmb-multi-dot-paginator-item>
+</bmb-multi-dot-paginator>

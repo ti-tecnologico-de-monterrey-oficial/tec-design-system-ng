@@ -145,7 +145,7 @@
 
   &:not(.bmb_button_icon-container, .bmb_button_icon-disabled) {
     &:hover {
-      color: rgb(var(--white-primary));
+      color: rgb(var(--general-contrasts-100));
 
       .bmb_action_icon-icon {
         scale: 1.2;
@@ -157,5 +157,5 @@
     }
   }
 
-  color: rgb(var(--white-primary));
+  color: rgb(var(--general-contrasts-100));
 }

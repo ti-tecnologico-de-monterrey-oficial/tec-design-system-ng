@@ -112,7 +112,16 @@ ${getBasicExampleBlock('BmbImageComponent')}
     alt: DBmbImageParamDesc.alt,
     width: DBmbImageParamDesc.width,
     ratio: DBmbImageParamDesc.ratio,
-    borderRadius: DBmbImageParamDesc.borderRadius,
+    borderRadius: {
+      ...DBmbImageParamDesc.borderRadius,
+      control: 'object',
+      description:
+        'Sets the border radius for all corners or configures each corner individually.',
+      table: {
+        ...DBmbImageParamDesc.borderRadius.table,
+        type: { summary: 'SizeNames | IBmbImageBorderRadius' },
+      },
+    },
     loading: DBmbImageParamDesc.loading,
     enableZoom: DBmbImageParamDesc.enableZoom,
     isBlurredBackdrop: DBmbImageParamDesc.isBlurredBackdrop,
@@ -220,6 +229,36 @@ export const Carousel: Story = {
         alt: 'Image 3',
       },
     ],
+  },
+};
+
+export const CarouselTopCornersSquare: Story = {
+  name: 'Carousel - Square top corners',
+  args: {
+    images: Carousel.args?.images,
+    borderRadius: {
+      topLeft: '0',
+      topRight: '0',
+      bottomRight: 'm',
+      bottomLeft: 'm',
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `Use an object to configure the radius of each corner independently.
+\`\`\`ts
+borderRadius = {
+  topLeft: '0',
+  topRight: '0',
+  bottomRight: 'm',
+  bottomLeft: 'm',
+};
+\`\`\`
+
+The string shorthand (for example, \`borderRadius="m"\`) remains available when all corners should use the same radius.`,
+      },
+    },
   },
 };
 
