@@ -1,0 +1,21 @@
+{
+  "name": "bamboo-angular-1-6-420-o-p0-candidato",
+  "version": "1.0.0",
+  "description": "Button, Tabs y List group: API y ejemplos verificados; revisión de Carlos y aceptación en Antigravity pendientes.",
+  "license": "MIT",
+  "keywords": [
+    "supernova",
+    "design-system",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Bamboo Angular 1.6.420-o — P0 candidato",
+    "shortDescription": "Button, Tabs y List group: API y ejemplos verificados; revisión de Carlos y aceptación en Antigravity pendientes.",
+    "category": "Design systems",
+    "capabilities": [
+      "Read"
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}
