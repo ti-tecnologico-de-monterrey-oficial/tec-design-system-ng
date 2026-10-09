@@ -8,10 +8,11 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout sources
         uses: actions/checkout@v5
