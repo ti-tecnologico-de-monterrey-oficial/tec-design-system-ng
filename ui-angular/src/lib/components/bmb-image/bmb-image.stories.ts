@@ -232,29 +232,6 @@ export const Carousel: Story = {
   },
 };
 
-export const CarouselDifferentObjectFit: Story = {
-  name: 'Carousel - Different object-fit values',
-  args: {
-    images: [
-      {
-        src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
-        alt: 'Image using cover',
-        objectFit: 'contain',
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
-        alt: 'Image using contain',
-        objectFit: 'fill',
-      },
-      {
-        src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
-        alt: 'Image using fill',
-        objectFit: 'cover',
-      },
-    ],
-  },
-};
-
 export const CarouselTopCornersSquare: Story = {
   name: 'Carousel - Square top corners',
   args: {

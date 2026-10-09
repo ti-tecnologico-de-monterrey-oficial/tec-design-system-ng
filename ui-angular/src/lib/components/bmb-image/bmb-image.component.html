@@ -51,7 +51,7 @@
           (keydown.space)="handleSingleImageClick()"
           [style]="{
             'object-fit': objectFit(),
-            cursor: enableCursorPointer() ? 'pointer' : 'default'
+            cursor: enableCursorPointer() ? 'pointer' : 'default',
           }"
           (error)="handleImageNotFoundError(encodedURL(), $event)"
         />
@@ -98,7 +98,7 @@
             tabindex="0"
             (click)="handleImageClick(img, $index)"
             (keydown)="handleImageKeyDown($event, img, $index)"
-            [style]="{ 'object-fit': img.objectFit || objectFit() }"
+            [style]="{ 'object-fit': objectFit() }"
             (error)="handleImageNotFoundError(img.src, $event)"
           />
         </picture>

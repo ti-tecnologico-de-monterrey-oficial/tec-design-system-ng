@@ -23,7 +23,6 @@ export interface BmbImageItem {
   src: string;
   mobileSrc?: string;
   alt?: string;
-  objectFit?: IBmbImageObjectFit;
 }
 
 export type RenderedImage = {
