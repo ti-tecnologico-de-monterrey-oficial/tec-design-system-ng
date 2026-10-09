@@ -230,6 +230,14 @@ export const appRoutes: Route[] = [
   },
   { path: 'pages', pathMatch: 'full', redirectTo: 'pages/carousel' },
   {
+    path: 'issues/imagenes-test',
+    title: 'Imágenes | BmbImage',
+    loadComponent: () =>
+      import('./pages/imagenes-views/imagenes-views').then(
+        ({ ImagenesViews }) => ImagenesViews,
+      ),
+  },
+  {
     path: 'issue/padding',
     title: 'Padding playground | Bamboo migration dashboard',
     loadComponent: () =>
