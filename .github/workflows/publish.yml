@@ -31,7 +31,7 @@ jobs:
       - name: Change package file for versioning
         run: |
           rm package.json package-lock.json
-          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}.json ./package.json
 
       - name: Clean npm cache
         run: npm cache clean --force
@@ -82,7 +82,7 @@ jobs:
       - name: Change package file for versioning
         run: |
           rm package.json package-lock.json
-          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}.json ./package.json
 
       - name: Clean npm cache
         run: npm cache clean --force
@@ -133,7 +133,7 @@ jobs:
       - name: Change package file for versioning
         run: |
           rm package.json package-lock.json
-          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}.json ./package.json
 
       - name: Clean npm cache
         run: npm cache clean --force

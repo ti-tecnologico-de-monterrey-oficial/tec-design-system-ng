@@ -125,7 +125,7 @@ export class BmbTotpComponent implements OnInit{
   handleKeyDown(event: KeyboardEvent): void {
     const input = event.target as HTMLInputElement;
     const inputId = input.id;
-    const match = inputId.match(/code_.*_(\d+)$/);
+    const match = inputId.match(/_(\d+)$/);
     const idx = match ? parseInt(match[1], 10) : -1;
 
     if (event.key === 'Backspace' && input.value.length === 0 && idx > 0) {
