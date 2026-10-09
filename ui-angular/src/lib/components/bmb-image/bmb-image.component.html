@@ -7,7 +7,7 @@
     <figure
       class="bmb_image-figure bmb_image-figure-backdrop"
       [ngClass]="getClasses()"
-      [ngStyle]="{ 'aspect-ratio': ratio() }"
+      [ngStyle]="{ 'aspect-ratio': ratio(), ...getImageContainerStyle() }"
     >
       <picture>
         <source media="(min-width: 1000px)" [srcset]="encodedURL()" />
@@ -31,7 +31,7 @@
     <figure
       class="bmb_image-figure"
       [ngClass]="getClasses()"
-      [ngStyle]="{ 'aspect-ratio': ratio() }"
+      [ngStyle]="{ 'aspect-ratio': ratio(), ...getImageContainerStyle() }"
     >
       <picture>
         <source media="(min-width: 1000px)" [srcset]="encodedURL()" />
@@ -51,7 +51,7 @@
           (keydown.space)="handleSingleImageClick()"
           [style]="{
             'object-fit': objectFit(),
-            cursor: enableCursorPointer() ? 'pointer' : 'default'
+            cursor: enableCursorPointer() ? 'pointer' : 'default',
           }"
           (error)="handleImageNotFoundError(encodedURL(), $event)"
         />
@@ -82,7 +82,7 @@
       <figure
         class="bmb_image-figure bmb_image-figure-images"
         [ngClass]="getClasses()"
-        [ngStyle]="getImageStyle($index)"
+        [ngStyle]="{ ...getImageStyle($index), ...getImageContainerStyle() }"
       >
         <picture>
           <source media="(min-width: 1000px)" [srcset]="img.src" />
