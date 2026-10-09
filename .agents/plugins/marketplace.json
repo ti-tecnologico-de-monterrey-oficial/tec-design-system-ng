@@ -1,0 +1,20 @@
+{
+  "name": "bamboo-angular-1-6-420-o-p0-candidato",
+  "interface": {
+    "displayName": "Bamboo Angular 1.6.420-o — P0 candidato"
+  },
+  "plugins": [
+    {
+      "name": "bamboo-angular-1-6-420-o-p0-candidato",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Design systems"
+    }
+  ]
+}
