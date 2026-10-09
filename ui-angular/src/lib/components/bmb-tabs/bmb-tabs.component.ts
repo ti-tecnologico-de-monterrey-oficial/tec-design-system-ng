@@ -38,6 +38,7 @@ export type { IBmbTab };
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  providers: [TabsService],
 })
 export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
   appearanceContrast = input<IBmbContrast>('default');
@@ -54,7 +55,7 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
   scrollRight = signal<number>(999999);
   @ViewChild('tabsItems', { static: true }) tabsItems!: ElementRef;
 
-  private tabsService: TabsService = inject(TabsService);
+  readonly tabsService: TabsService = inject(TabsService);
   private zone: NgZone = inject(NgZone);
 
   ngOnInit(): void {

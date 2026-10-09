@@ -11,6 +11,7 @@ import {
   model,
   OnDestroy,
   TemplateRef,
+  untracked,
   viewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -181,24 +182,31 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
       const content = this.aiChatContent();
       const mode = this.mode();
 
-      if (mode === 'chat') {
-        if (!content) return;
+      untracked(() => {
+        if (mode === 'chat') {
+          if (!content) return;
 
-        this.contentProjected.openContent({
-          id: this.aiChatId,
-          content,
-          dialogClass: ['bmb_ai-chat-card-dialog'],
-          focusOnOpen: true,
-        });
-      } else if (
-        mode === 'compact' ||
-        mode === 'expanded' ||
-        mode === 'invisible'
-      ) {
-        if (this.contentProjected.isContentOpen(this.aiChatId)) {
-          this.contentProjected.closeContent(this.aiChatId);
+          this.contentProjected.openContent({
+            id: this.aiChatId,
+            content,
+            dialogClass: ['bmb_ai-chat-card-dialog'],
+            focusOnOpen: true,
+            afterCloseContent: () => {
+              if (this.mode() === 'chat') {
+                this.mode.set(this.lastNonChatMode);
+              }
+            },
+          });
+        } else if (
+          mode === 'compact' ||
+          mode === 'expanded' ||
+          mode === 'invisible'
+        ) {
+          if (this.contentProjected.isContentOpen(this.aiChatId)) {
+            this.contentProjected.closeContent(this.aiChatId);
+          }
         }
-      }
+      });
     });
   }
 
