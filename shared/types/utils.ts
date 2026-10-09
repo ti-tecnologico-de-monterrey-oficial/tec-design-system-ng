@@ -1,4 +1,14 @@
 import { IBmbInteractiveIconAppearance } from './components/interactive-icon';
+import {
+  IBmbAlertColors,
+  IBmbBaseColors,
+  IBmbCreativeBaseColors,
+  IBmbCreativeUseColors,
+  IBmbmitecBaseColors,
+  IBmbMitecInstitutionalColors,
+  IBmbSemanticBaseColors,
+  IBmbSemanticColors,
+} from './foundations/colors/color-type';
 export type { IBmbActionHeader } from './components/navigation-bar';
 
 export const BMB_SIZE_NAME_LIST: string[] = [
@@ -76,7 +86,16 @@ export interface IBmbApp {
   title: string;
   link?: string;
   target?: IBmbTargetLink;
-  appearance: IBmbInteractiveIconAppearance;
+  appearance:
+    | IBmbBaseColors
+    | IBmbmitecBaseColors
+    | IBmbCreativeBaseColors
+    | IBmbSemanticBaseColors
+    | IBmbSemanticColors
+    | IBmbMitecInstitutionalColors
+    | IBmbCreativeUseColors
+    | IBmbAlertColors
+    | IBmbInteractiveIconAppearance;
   callbackParam?: any;
 }
 
