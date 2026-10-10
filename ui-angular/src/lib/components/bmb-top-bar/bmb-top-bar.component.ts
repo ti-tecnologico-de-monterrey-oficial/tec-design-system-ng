@@ -8,19 +8,16 @@ import {
   model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IUserInformation } from './types';
+import { IUserInformation } from '../../_shared/types';
 import { BmbTopBarUserSectionComponent } from './bmb-top-bar-user-section/bmb-top-bar-user-section.component';
 import { IBmbDataAlert } from '../bmb-alert-center/types';
 import { getMobileResolutionSize } from '../../_shared/logic/utils';
+import { resolveTopBarImage } from '../../_shared/logic/components/top-bar';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { IBmbTargetLink } from '../../_shared/types';
 import { TranslatePipe } from '../../pipes/translations';
 
-export type { IUserInformation } from './types';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+export type { IUserInformation } from '../../_shared/types';
 
 @Component({
   selector: 'bmb-top-bar',
@@ -71,15 +68,23 @@ export class BmbTopBarComponent implements OnInit {
   imageMitecDefault = 'assets/images/logos-mitec/logo_mitec-mob.svg';
 
   ngOnInit(): void {
-    if (this.image() === '') {
-      this.image.set(this.mitec() ? this.imageMitecDefault : this.imageDefault);
-    }
+    this.image.set(
+      resolveTopBarImage(
+        this.image(),
+        this.mitec(),
+        this.imageDefault,
+        this.imageMitecDefault,
+      ),
+    );
 
-    if (this.mobileImage() === '') {
-      this.mobileImage.set(
-        this.mitec() ? this.mobileImageMitecDefault : this.mobileImageDefault,
-      );
-    }
+    this.mobileImage.set(
+      resolveTopBarImage(
+        this.mobileImage(),
+        this.mitec(),
+        this.mobileImageDefault,
+        this.mobileImageMitecDefault,
+      ),
+    );
 
     const hasBeenViewed = localStorage.getItem('bmbTopBarViewed');
     if (hasBeenViewed) {

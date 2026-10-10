@@ -8,11 +8,16 @@ import {
 import { IBmbActionHeader } from '../../_shared/types';
 import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { IBmbFooterEvent, IBmbNavigationBarIcon, IBmbNavigationBarIcons } from '../../_shared/types/components/bottom-navigation-bar';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  IBmbFooterEvent,
+  IBmbNavigationBarIcon,
+  IBmbNavigationBarIcons,
+} from '../../_shared/types/components/bottom-navigation-bar';
+import {
+  buildActionHeaders,
+  buildNavigationElement,
+  buildNavigationElements,
+} from '../../_shared/logic/components/bottom-navigation-bar';
 
 @Component({
   selector: 'bmb-bottom-navigation-bar',
@@ -34,30 +39,17 @@ export class BmbBottomNavigationBarComponent {
     element: IBmbNavigationBarIcon,
     eventName: IBmbFooterEvent,
   ): IBmbNavigationBarIcon {
-    const newElement = { ...element };
-
-    if (newElement.eventName !== eventName) {
-      newElement['eventName'] = eventName;
-    }
-
-    return newElement;
+    return buildNavigationElement(element, eventName);
   }
 
   ngOnInit(): void {
-    const elements: IBmbNavigationBarIcon[] = [
-      this.buildElement(this.navigationBarIcons()['one'], 'back'),
-      this.buildElement(this.navigationBarIcons()['two'], 'forward'),
-      this.buildElement(this.navigationBarIcons()['three'], 'share'),
-      this.buildElement(this.navigationBarIcons()['four'], 'reload'),
-    ];
+    const elements: IBmbNavigationBarIcon[] = buildNavigationElements(
+      this.navigationBarIcons(),
+    );
 
-    elements.forEach((element) => {
-      this.actionHeaders.push({
-        icon: element.name,
-        action: () => this.onNavigationBarOptionClick(element.eventName!),
-        alt: element.label,
-      });
-    });
+    this.actionHeaders = buildActionHeaders(elements, (event) =>
+      this.onNavigationBarOptionClick(event),
+    );
   }
 
   onNavigationBarOptionClick(event: IBmbFooterEvent): void {
