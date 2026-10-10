@@ -8,7 +8,7 @@ import {
   model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IUserInformation } from './types';
+import { IUserInformation } from '../../_shared/types';
 import { BmbTopBarUserSectionComponent } from './bmb-top-bar-user-section/bmb-top-bar-user-section.component';
 import { IBmbDataAlert } from '../bmb-alert-center/types';
 import { getMobileResolutionSize } from '../../_shared/logic/utils';
@@ -17,7 +17,7 @@ import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-
 import { IBmbTargetLink } from '../../_shared/types';
 import { TranslatePipe } from '../../pipes/translations';
 
-export type { IUserInformation } from './types';
+export type { IUserInformation } from '../../_shared/types';
 
 @Component({
   selector: 'bmb-top-bar',

@@ -6,7 +6,7 @@ import {
   input,
   inject,
 } from '@angular/core';
-import { IUserInformation } from '../types';
+import { IUserInformation } from '../../../_shared/types';
 import { CommonModule } from '@angular/common';
 import { IBmbDataAlert } from '../../bmb-alert-center/types';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
