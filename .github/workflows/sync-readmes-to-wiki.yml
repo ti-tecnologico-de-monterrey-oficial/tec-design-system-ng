@@ -9,6 +9,8 @@ on:
 jobs:
   sync-readmes:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout main repo
         uses: actions/checkout@v5
