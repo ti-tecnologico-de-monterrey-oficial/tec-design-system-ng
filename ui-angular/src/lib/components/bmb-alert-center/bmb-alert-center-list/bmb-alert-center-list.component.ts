@@ -24,6 +24,7 @@ import {
   BmbSwipeDirective,
   BmbSwipeRightActionsDirective,
   IBmbSwipeSide,
+  BmbSwipeLeftActionsDirective,
 } from '../../../directives/bmb-swipe/bmb-swipe.directive';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../../pipes/translations';
@@ -44,6 +45,7 @@ import { TranslatePipe } from '../../../pipes/translations';
     BmbSwipeRightActionsDirective,
     BmbActionIconComponent,
     TranslatePipe,
+    BmbSwipeLeftActionsDirective,
   ],
   templateUrl: './bmb-alert-center-list.component.html',
   styleUrl: './bmb-alert-center-list.component.scss',

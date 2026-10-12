@@ -17,6 +17,7 @@ import type {
   BmbImageItem,
   BmbImageHeight,
   IBmbImageObjectFit,
+  IBmbImageBorderRadius,
 } from '../../_shared/types/components/image';
 import { BmbButtonIconComponent } from '../bmb-button-icon/bmb-button-icon.component';
 import { TranslatePipe } from '../../pipes/translations';
@@ -41,7 +42,7 @@ export class BmbImageComponent implements OnDestroy {
   alt = input<string>('');
   width = input<string>('100%');
   ratio = input<string>();
-  borderRadius = input<SizeNames>('m');
+  borderRadius = input<SizeNames | IBmbImageBorderRadius>('m');
   loading = input<IBmbMediaCardLoading>('lazy');
   enableZoom = input<boolean>(false);
   isBlurredBackdrop = input<boolean>();
@@ -169,7 +170,9 @@ export class BmbImageComponent implements OnDestroy {
   }
 
   getClasses(): string[] {
-    const classes = [`bmb_radius-${this.borderRadius()}`];
+    const borderRadius = this.borderRadius();
+    const classes =
+      typeof borderRadius === 'string' ? [`bmb_radius-${borderRadius}`] : [];
     if (this.enableZoom()) classes.push('bmb_image-figure-zoom');
     if (this.hasBackdrop()) classes.push('bmb_image-figure-backdrop-fill');
     return classes;
@@ -181,7 +184,9 @@ export class BmbImageComponent implements OnDestroy {
 
   getImageStyle(index: number): object {
     const position = index - this.currentIndex();
-    const style: any = {};
+    const style: any = {
+      ...this.getImageContainerStyle(),
+    };
 
     if (this.animation() === 'parallax') {
       return {
@@ -207,6 +212,21 @@ export class BmbImageComponent implements OnDestroy {
     }
 
     return style;
+  }
+
+  getImageContainerStyle(): Record<string, string> {
+    const borderRadius = this.borderRadius();
+
+    if (typeof borderRadius === 'string') return {
+      'border-radius': `var(--bmb-radius-${borderRadius})`,
+    };
+
+    return {
+      'border-top-left-radius': `var(--bmb-radius-${borderRadius.topLeft ?? 'm'})`,
+      'border-top-right-radius': `var(--bmb-radius-${borderRadius.topRight ?? 'm'})`,
+      'border-bottom-right-radius': `var(--bmb-radius-${borderRadius.bottomRight ?? 'm'})`,
+      'border-bottom-left-radius': `var(--bmb-radius-${borderRadius.bottomLeft ?? 'm'})`,
+    };
   }
 
   handleImageNotFoundError(imageName: string, event: Event): void {
