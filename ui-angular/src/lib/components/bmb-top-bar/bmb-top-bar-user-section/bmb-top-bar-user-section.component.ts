@@ -6,7 +6,6 @@ import {
   input,
   inject,
 } from '@angular/core';
-import { IUserInformation } from '../../../_shared/types';
 import { CommonModule } from '@angular/common';
 import { IBmbDataAlert } from '../../bmb-alert-center/types';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
@@ -14,7 +13,7 @@ import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layou
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 import { BmbUserSummaryContentComponent } from '../../bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 import { BmbDropdownMenuComponent } from '../../bmb-dropdown-menu/bmb-dropdown-menu.component';
-import { IDropdownItem } from '../../../_shared/types/index';
+import { IDropdownItem, IUserInformation } from '../../../_shared/types';
 import { BmbButtonIconComponent } from '../../bmb-button-icon/bmb-button-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { TranslatePipe } from '../../../pipes/translations';
