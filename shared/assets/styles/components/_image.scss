@@ -3,18 +3,6 @@
 @use '../../../assets/styles/base/rem' as rem;
 @use '../../../assets/styles/base/mixins' as mixins;
 
-bmb-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  min-height: var(--image-min-height-s);
-  height: 100%;
-
-  @include mixins.media-query(1000, 'min') {
-    min-height: var(--image-min-height-l);
-  }
-}
-
 .bmb_image {
   position: relative;
   grid-area: 1/1/2/2;
@@ -91,11 +79,7 @@ bmb-image {
       width: 100%;
       object-fit: cover;
       object-position: center;
-      height: auto;
-
-      @include mixins.media-query(768, 'min') {
-        height: 100%;
-      }
+      height: 100%;
     }
 
     &-images {
@@ -105,10 +89,7 @@ bmb-image {
       width: 100%;
       height: auto;
       cursor: pointer;
-
-      @include mixins.media-query(768, 'min') {
-        height: 100%;
-      }
+      height: 100%;
     }
   }
 

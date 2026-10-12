@@ -1,45 +1,87 @@
-Change the selected index using external controls.
-<button bmbButton (click)="currentIndex.set(currentIndex() + 1)">Update Index</button>
-<button bmbButton (click)="currentIndex.set(currentIndex() - 1)">Previous Index</button>
 <bmb-multi-dot-paginator
   title="Test title"
   subtitle="Test subtitle"
   [(selectedIndex)]="currentIndex"
 >
-@for (item of items(); track $index) {
   <bmb-multi-dot-paginator-item>
     <div bmbVerticalLayout layoutHeight="100%">
-      <bmb-home-card
-          leftIcon="chevron_left"
-          icon="account_balance_wallet"
-          bgIconAppearance="green-light"
-          title="Title"
-          subtitle="Subtitle"
-          [showRightButton]="true"
-          [style.view-transition-name]="'homeCardTransition2'"
-          contentPadding="none"
-          bmbVerticalLayoutItem
-          [rowGrow]="1"
-          [disableScroll]="true"
-        >
-          <bmb-image
-            [src]="
-              'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg'
-            "
-            [mobileSrc]="
-              'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg'
-            "
-            [alt]="'Fruits'"
-            [width]="'clamp(200px, 100%, calc(50dvw - 3rem))'"
-            [borderRadius]="'none'"
-            [loading]="'lazy'"
-            [enableZoom]="false"
-            [isBlurredBackdrop]="false"
-          />
-        </bmb-home-card>
+      <bmb-image
+        [images]="[
+          { src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg', alt: 'Fruits' },
+          { src: 'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg', alt: 'Fruits' },
+          { src: 'https://saprodtecportal.blob.core.windows.net/mitec/colaboradores/PublishingImages/Avisos/2026/oct/TEC_EMDL_2_Ep5_HGarza_Ban_1280x1024.png', alt: 'Fruits' }
+        ]"
+        width="100%"
+        [borderRadius]="'none'"
+        [loading]="'lazy'"
+        [enableZoom]="false"
+        [isBlurredBackdrop]="false"
+        [objectFit]="'contain'"
+      />
     </div>
   </bmb-multi-dot-paginator-item>
-}
+  <bmb-multi-dot-paginator-item>
+    <bmb-home-card title="Some title">
+      <bmb-balance-overview
+        [progressCirclePercent]="75"
+        [progressCircleValue]="'$100000000000000'"
+        [showProgressCircleValue]="true"
+        [progressCircleTitle]="['Total a pagar', 'este mes']"
+        [labelPrimary]="'Cuota Mensual'"
+        [valuePrimary]="'$7,500.00'"
+        [labelSecondary]="'Pendiente'"
+        [valueSecondary]="',500.00'"
+      ></bmb-balance-overview>
+    </bmb-home-card>
+  </bmb-multi-dot-paginator-item>
+  <bmb-multi-dot-paginator-item>
+    <bmb-home-card title="Some title">
+      <section bmbLayout justify="center">
+        <bmb-interactive-icon
+          bmbLayoutItem
+          margin="none"
+          [colSm]="1"
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="jsandkjfnaslkdfjnaskldjnfljkasnd fsakdjfn lajsndfj"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem
+          margin="none"
+          [isDynamicItem]="true"
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem
+          margin="none"
+          [isDynamicItem]="true"
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+      </section>
+    </bmb-home-card>
+  </bmb-multi-dot-paginator-item>
 <!--
   <bmb-multi-dot-paginator-item>
     <div bmbVerticalLayout layoutHeight="100%">
@@ -103,306 +145,7 @@ Change the selected index using external controls.
       </bmb-home-card>
     </div>
   </bmb-multi-dot-paginator-item>
-  <bmb-multi-dot-paginator-item>
-    <bmb-home-card title="Some title">
-      <bmb-balance-overview
-        [progressCirclePercent]="75"
-        [progressCircleValue]="'$100000000000000'"
-        [showProgressCircleValue]="true"
-        [progressCircleTitle]="['Total a pagar', 'este mes']"
-        [labelPrimary]="'Cuota Mensual'"
-        [valuePrimary]="'$7,500.00'"
-        [labelSecondary]="'Pendiente'"
-        [valueSecondary]="',500.00'"
-      ></bmb-balance-overview>
-    </bmb-home-card>
-  </bmb-multi-dot-paginator-item>
-  <bmb-multi-dot-paginator-item>
-    <bmb-home-card title="Some title">
-      <section bmbLayout justify="center">
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [colSm]="1"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="jsandkjfnaslkdfjnaskldjnfljkasnd fsakdjfn lajsndfj"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-        <bmb-interactive-icon
-          bmbLayoutItem
-          margin="none"
-          [isDynamicItem]="true"
-          appearanceContrast="default"
-          appearance="red"
-          icon="face"
-          [horizontal]="false"
-          target="_blank"
-          link="https://www.youtube.com/"
-          layout="regular"
-          [setButtonTemplate]="false"
-          componentTitle="Canvas"
-        />
-      </section>
-    </bmb-home-card>
-  </bmb-multi-dot-paginator-item>
+
   <bmb-multi-dot-paginator-item>
     <bmb-home-card title="Some title">Custom content</bmb-home-card>
   </bmb-multi-dot-paginator-item>
@@ -411,5 +154,3 @@ Change the selected index using external controls.
     <bmb-home-card title="Some title">Custom content</bmb-home-card>
   </bmb-multi-dot-paginator-item> -->
 </bmb-multi-dot-paginator>
-<p>Current Index: {{ currentIndex() }}</p>
-<button (click)="currentIndex.set(currentIndex() + 1)">Next</button>

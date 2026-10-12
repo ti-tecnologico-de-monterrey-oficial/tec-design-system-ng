@@ -1,5 +1,17 @@
 import { Component, model, signal, ViewEncapsulation } from '@angular/core';
-import { BmbMultiDotPaginatorItemComponent, BmbMultiDotPaginatorComponent, BmbHomeCardComponent, BmbImageComponent, BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirective, BmbButtonDirective } from 'ui-angular';
+import {
+  BmbMultiDotPaginatorItemComponent,
+  BmbMultiDotPaginatorComponent,
+  BmbHomeCardComponent,
+  BmbImageComponent,
+  BmbVerticalLayoutDirective,
+  BmbVerticalLayoutItemDirective,
+  BmbButtonDirective,
+  BmbBalanceOverviewComponent,
+  BmbInteractiveIconComponent,
+  BmbLayoutDirective,
+  BmbLayoutItemDirective,
+} from 'ui-angular';
 
 @Component({
   selector: 'app-dot-paginator',
@@ -11,8 +23,12 @@ import { BmbMultiDotPaginatorItemComponent, BmbMultiDotPaginatorComponent, BmbHo
     BmbImageComponent,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
-    BmbButtonDirective
-],
+    BmbButtonDirective,
+    BmbBalanceOverviewComponent,
+    BmbInteractiveIconComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+  ],
   templateUrl: './dot-paginator.component.html',
   styleUrl: './dot-paginator.component.scss',
   encapsulation: ViewEncapsulation.None,

@@ -35,10 +35,12 @@
           [objectFit]="'contain'"
           [enableZoom]="false"
           [isBlurredBackdrop]="false"
-          [images]="[{src: 'https://saprodtecportal.blob.core.windows.net/mitec/colaboradores/PublishingImages/Avisos/2026/oct/TEC_EMDL_2_Ep5_HGarza_Ban_1280x1024.png',
-            mobileSrc: 'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg', alt: 'Image 1'},
-            {src: 'https://saprodtecportal.blob.core.windows.net/mitec/colaboradores/PublishingImages/Avisos/2026/oct/TEC_EMDL_2_Ep5_HGarza_Ban_1280x1024.png', mobileSrc: 'https://mitecpprd.tec.mx/api/images/mitec/colaboradores/Avisos/2022/mar/CentroIdiomas.png', alt: 'Image 2'},
-            {src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22', alt: 'Image 3'}]"
+          [images]="[
+            {src: 'https://saprodtecportal.blob.core.windows.net/mitec/colaboradores/PublishingImages/Avisos/2026/oct/TEC_EMDL_2_Ep5_HGarza_Ban_1280x1024.png', alt: 'Image 1', bgColor: '#EDEDED', hasBackdrop: true},
+            {src: 'https://mitecpprd.tec.mx/api/images/mitec/colaboradores/Avisos/2022/mar/CentroIdiomas.png', alt: 'Image 2', hasBackdrop: true},
+            {src: '/img/01.jpeg', alt: 'Image 3', hasBackdrop: true},
+            {src: '/img/02.png', alt: 'Image 3', hasBackdrop: true},
+          ]"
           [avoidEncoding]="false"
           [enableCursorPointer]="false"
         ></bmb-image>
@@ -192,11 +194,10 @@
           alt="Comunicados"
           borderRadius="m"
         >
-          <label
-            >Por octavo año, el Tec de Monterrey es #1 en México: ranking
-            QS</label
-          >
-          <label>1 de octubre de 2026</label>
+          <strong>
+            Por octavo año, el Tec de Monterrey es #1 en México: ranking QS
+          </strong>
+          <strong>1 de octubre de 2026</strong>
         </bmb-media-card>
       </div>
     </div>

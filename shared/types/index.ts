@@ -53,6 +53,7 @@ export * from './components/skeleton';
 export * from './components/value-counter';
 export * from './components/iframe';
 export * from './components/simple-text';
+export * from './components/image';
 
 export * from './input';
 export * from './utils';

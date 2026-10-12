@@ -11,3 +11,15 @@ export type RenderedImage = {
   alt?: string;
   direction: 'next' | 'prev' | null;
 };
+
+export interface BmbImageHeight {
+  s: string;
+  l: string;
+}
+
+export type IBmbImageObjectFit =
+  | 'cover'
+  | 'contain'
+  | 'fill'
+  | 'none'
+  | 'scale-down';
