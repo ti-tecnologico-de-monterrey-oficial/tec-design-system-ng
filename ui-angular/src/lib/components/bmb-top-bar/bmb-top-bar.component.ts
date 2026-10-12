@@ -17,8 +17,6 @@ import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-
 import { IBmbTargetLink } from '../../_shared/types';
 import { TranslatePipe } from '../../pipes/translations';
 
-export type { IUserInformation } from '../../_shared/types';
-
 @Component({
   selector: 'bmb-top-bar',
   standalone: true,
