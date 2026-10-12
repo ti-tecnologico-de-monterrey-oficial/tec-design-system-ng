@@ -1,4 +1,4 @@
-import { SizeNames } from '../../_shared/types';
+import { SizeNames } from '../index';
 
 export interface BmbImageHeight {
   s: string;
@@ -38,9 +38,9 @@ export interface BmbImageHeight {
   l: string;
 }
 
-export type IBmbImageObjectFit =
-  | 'cover'
-  | 'contain'
-  | 'fill'
-  | 'none'
-  | 'scale-down';
+export interface IBmbImageBorderRadius {
+  topLeft?: SizeNames;
+  topRight?: SizeNames;
+  bottomRight?: SizeNames;
+  bottomLeft?: SizeNames;
+}
