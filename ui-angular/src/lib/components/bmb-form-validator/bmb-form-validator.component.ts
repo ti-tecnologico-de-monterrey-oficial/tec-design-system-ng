@@ -11,7 +11,6 @@ import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { BmbInputTagsComponent } from '../bmb-input-tags/bmb-input-tags.component';
-import { handleValidity } from '../../_shared/logic/formControl';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
 import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
@@ -19,10 +18,15 @@ import { BmbInputPhoneNumberComponent } from '../bmb-input-phone-number/bmb-inpu
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  getCheckedRadialValue,
+  getFormValidatorControl,
+  getRadialGroupIndexesByName,
+  getUniqueRadialGroupNames,
+  isEveryRadialInGroupControlled,
+  resolveFormValidatorControl,
+  updateFormValidatorErrorState,
+} from '../../_shared/logic/components/form-validator';
 
 @Component({
   selector: 'bmb-form-validator',
@@ -111,52 +115,39 @@ export class BmbFormValidatorComponent implements AfterViewInit {
     control: FormControl,
     isControlNull: boolean,
   ): void {
-    if (!this.getFormControl(controlName)) {
-      this.formGroup().addControl(controlName, control);
-    } else {
-      if (isControlNull) this.formGroup().setControl(controlName, control);
-    }
+    resolveFormValidatorControl(
+      this.formGroup(),
+      controlName,
+      control,
+      isControlNull,
+    );
   }
 
   addRadials(): void {
-    const radialNames: string[] = this.bmbRadials().reduce(
-      (acc: string[], currentElement: BmbRadialComponent) => {
-        if (acc.includes(currentElement.name())) return acc;
-        return [...acc, currentElement.name()];
-      },
-      [],
-    );
+    const radialSnapshots = this.bmbRadials().map((radial) => ({
+      name: radial.name(),
+      control: radial.control(),
+      isControlNull: radial.isControlNull,
+      checked: radial.checked(),
+    }));
+
+    const radialNames = getUniqueRadialGroupNames(radialSnapshots);
 
     radialNames.forEach((name: string) => {
-      const radialIndexWithSameName: number[] = this.bmbRadials().reduce(
-        (acc: number[], currentElement: BmbRadialComponent, index) => {
-          if (currentElement.name() === name) return [...acc, index];
-          return acc;
-        },
-        [],
+      const radialIndexWithSameName = getRadialGroupIndexesByName(
+        radialSnapshots,
+        name,
       );
 
       const radialControl: BmbRadialComponent =
         this.bmbRadials()[radialIndexWithSameName[0]]!;
 
-      if (
-        this.bmbRadials()
-          .filter((element: BmbRadialComponent) => element.name() === name)
-          .every(
-            (elementSelected: BmbRadialComponent) =>
-              !elementSelected.isControlNull,
-          )
-      ) {
+      if (isEveryRadialInGroupControlled(radialSnapshots, name)) {
         this.addControl(radialControl.name(), radialControl.control()!, false);
         return;
       }
 
-      const value = this.bmbRadials()
-        .filter((element: BmbRadialComponent) => element.name() === name)
-        ?.find((elementSelected: BmbRadialComponent) =>
-          elementSelected.checked(),
-        )
-        ?.control()?.value!;
+      const value = getCheckedRadialValue(radialSnapshots, name);
 
       radialControl.control()?.setValue(value);
       radialIndexWithSameName.slice(1).forEach((element) => {
@@ -175,16 +166,10 @@ export class BmbFormValidatorComponent implements AfterViewInit {
   }
 
   updateErrorState() {
-    Object.keys(this.formGroup().controls).forEach((field) => {
-      const control = this.getFormControl(field);
-
-      if (!!control) {
-        handleValidity(control);
-      }
-    });
+    updateFormValidatorErrorState(this.formGroup());
   }
 
   getFormControl(name: string): FormControl {
-    return this.formGroup().get(name) as FormControl;
+    return getFormValidatorControl(this.formGroup(), name);
   }
 }

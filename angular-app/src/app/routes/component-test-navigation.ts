@@ -74,6 +74,11 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
+            label: 'Alert center detail',
+            url: '/pages/alert-center-detail',
+            icon: 'widgets',
+          },
+          {
             label: 'Advertisement card (*old)',
             url: '/pages/containers/advertisement-card',
             icon: 'widgets',
@@ -245,7 +250,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'more_vert',
           },
           {
-            label: 'Bottom navigation bar (*old)',
+            label: 'Bottom navigation bar',
             url: '/pages/menus/bottom-navigation-bar',
             icon: 'widgets',
           },
@@ -270,7 +275,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Top bar (*old)',
+            label: 'Top bar',
             url: '/pages/menus/top-bar',
             icon: 'widgets',
           },

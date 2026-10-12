@@ -43,6 +43,19 @@ describe('BmbBottomNavigationBarComponent', () => {
     expect(component.navigationBarEvents.emit).toHaveBeenCalledWith(event);
   });
 
+  it('should emit the correct event when an actionHeader action is invoked', () => {
+    jest.spyOn(component.navigationBarEvents, 'emit');
+
+    component.actionHeaders.forEach((actionHeader, index) => {
+      actionHeader.action();
+      const expectedEvents: any[] = ['back', 'forward', 'share', 'reload'];
+      expect(component.navigationBarEvents.emit).toHaveBeenNthCalledWith(
+        index + 1,
+        expectedEvents[index],
+      );
+    });
+  });
+
   it('should render navigation bar icons', () => {
     const icons: any = {
       one: { name: 'home', label: 'Home' },
@@ -59,6 +72,23 @@ describe('BmbBottomNavigationBarComponent', () => {
 
   it('should handle undefined navigationBarIcons gracefully', () => {
     expect(() => component.onNavigationBarOptionClick('back')).not.toThrow();
+  });
+
+  it('should set eventName when it differs from the current one', () => {
+    const element = { name: 'home', label: 'Home' };
+
+    const result = component.buildElement(element, 'back');
+
+    expect(result).toEqual({ name: 'home', label: 'Home', eventName: 'back' });
+    expect(result).not.toBe(element);
+  });
+
+  it('should keep the element unchanged when eventName already matches', () => {
+    const element = { name: 'home', label: 'Home', eventName: 'back' as const };
+
+    const result = component.buildElement(element, 'back');
+
+    expect(result).toEqual(element);
   });
 
   it('should have four navigation bar icons', () => {
