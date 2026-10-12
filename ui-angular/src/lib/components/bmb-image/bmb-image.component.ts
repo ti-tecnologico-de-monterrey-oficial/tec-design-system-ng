@@ -171,6 +171,7 @@ export class BmbImageComponent implements OnDestroy {
   getClasses(): string[] {
     const classes = [`bmb_radius-${this.borderRadius()}`];
     if (this.enableZoom()) classes.push('bmb_image-figure-zoom');
+    if (this.hasBackdrop()) classes.push('bmb_image-figure-backdrop-fill');
     return classes;
   }
 
@@ -181,10 +182,6 @@ export class BmbImageComponent implements OnDestroy {
   getImageStyle(index: number): object {
     const position = index - this.currentIndex();
     const style: any = {};
-
-    if (this.hasBackdrop()) {
-      style['backdrop-filter'] = 'blur(20px)';
-    }
 
     if (this.animation() === 'parallax') {
       return {

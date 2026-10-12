@@ -1,6 +1,6 @@
 <section
   class="bmb_image"
-  [ngClass]="['bmb_image-carousel', carouselClass()]"
+  [ngClass]="['bmb_image-carousel', carouselClass(), `bmb_radius-${this.borderRadius()}`]"
   [ngStyle]="{
     width: width(),
     'aspect-ratio': ratio(),

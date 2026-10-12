@@ -91,6 +91,10 @@
       cursor: pointer;
       height: 100%;
     }
+
+    &-backdrop-fill {
+      backdrop-filter: blur(20px);
+    }
   }
 
   &-arrow {
