@@ -230,8 +230,8 @@ export class HomeComponent {
       icon: 'language_spanish',
       iconActiveToggle: 'language_us',
       alt: 'Language',
-      action: (event) => {
-        console.info('Edit action clicked', event);
+      action: () => {
+        window.open('https://www.google.com/', '_blank', 'noopener,noreferrer');
       },
     },
     {

@@ -1,62 +1,24 @@
 <section
   class="bmb_image"
   [ngClass]="['bmb_image-carousel', carouselClass()]"
-  [ngStyle]="{ width: width(), 'aspect-ratio': ratio() }"
+  [ngStyle]="{
+    width: width(),
+    'aspect-ratio': ratio(),
+    ...getImageContainerStyle(),
+    ...imageBackdropStyle,
+  }"
 >
-  @if (isBlurredBackdrop() && !isCarousel()) {
-    <figure
-      class="bmb_image-figure bmb_image-figure-backdrop"
-      [ngClass]="getClasses()"
-      [ngStyle]="{ 'aspect-ratio': ratio(), ...getImageContainerStyle() }"
-    >
-      <picture>
-        <source media="(min-width: 1000px)" [srcset]="encodedURL()" />
-        @if (encodedMobileURL()) {
-          <source [srcset]="encodedMobileURL()" />
-        }
-        <img
-          [src]="encodedURL()"
-          [srcset]="encodedURL()"
-          [alt]="alt()"
-          [loading]="loading()"
-          class="bmb_image-figure-image"
-          [style]="{ 'object-fit': objectFit() }"
-          (error)="handleImageNotFoundError(encodedURL(), $event)"
-        />
-      </picture>
-    </figure>
-  }
-
   @if (!isCarousel()) {
-    <figure
-      class="bmb_image-figure"
-      [ngClass]="getClasses()"
-      [ngStyle]="{ 'aspect-ratio': ratio(), ...getImageContainerStyle() }"
-    >
-      <picture>
-        <source media="(min-width: 1000px)" [srcset]="encodedURL()" />
-        @if (encodedMobileURL()) {
-          <source [srcset]="encodedMobileURL()" />
+    <ng-container
+      *ngTemplateOutlet="
+        imageTemplate;
+        context: {
+          img: { src: src(), mobileSrc: mobileSrc(), alt: alt() },
+          index: 0,
+          isCarousel: false,
         }
-        <img
-          [src]="encodedURL()"
-          [srcset]="encodedURL()"
-          [alt]="alt()"
-          [loading]="loading()"
-          class="bmb_image-figure-image"
-          role="button"
-          tabindex="0"
-          (click)="handleSingleImageClick()"
-          (keydown.enter)="handleSingleImageClick()"
-          (keydown.space)="handleSingleImageClick()"
-          [style]="{
-            'object-fit': objectFit(),
-            cursor: enableCursorPointer() ? 'pointer' : 'default',
-          }"
-          (error)="handleImageNotFoundError(encodedURL(), $event)"
-        />
-      </picture>
-    </figure>
+      "
+    ></ng-container>
   } @else {
     @if (images() && images()!.length > 1) {
       <div class="bmb_image-arrow bmb_image-arrow--left">
@@ -79,30 +41,50 @@
       </div>
     }
     @for (img of images(); track $index) {
-      <figure
-        class="bmb_image-figure bmb_image-figure-images"
-        [ngClass]="getClasses()"
-        [ngStyle]="{ ...getImageStyle($index), ...getImageContainerStyle() }"
-      >
-        <picture>
-          <source media="(min-width: 1000px)" [srcset]="img.src" />
-          @if (img.mobileSrc) {
-            <source [srcset]="img.mobileSrc" />
-          }
-          <img
-            [src]="img.src"
-            [alt]="img.alt || alt()"
-            [loading]="loading()"
-            class="bmb_image-figure-image"
-            role="button"
-            tabindex="0"
-            (click)="handleImageClick(img, $index)"
-            (keydown)="handleImageKeyDown($event, img, $index)"
-            [style]="{ 'object-fit': objectFit() }"
-            (error)="handleImageNotFoundError(img.src, $event)"
-          />
-        </picture>
-      </figure>
+      <ng-container
+        *ngTemplateOutlet="imageTemplate; context: { img: img, index: $index, isCarousel: true }"
+      ></ng-container>
     }
   }
 </section>
+
+<ng-template
+  #imageTemplate
+  let-img="img"
+  let-index="index"
+  let-isCarousel="isCarousel"
+>
+  <figure
+    [class]="
+      isCarousel
+        ? 'bmb_image-figure bmb_image-figure-images'
+        : 'bmb_image-figure'
+    "
+    [ngClass]="getClasses()"
+    [ngStyle]="isCarousel ? getImageStyle(index) : { 'aspect-ratio': ratio(), ...getImageContainerStyle() }"
+  >
+    <picture>
+      <source media="(min-width: 1000px)" [srcset]="encodedURL(img.src)" />
+      @if (img.mobileSrc) {
+        <source [srcset]="encodedURL(img.mobileSrc)" />
+      }
+      <img
+        [src]="encodedURL(img.src)"
+        [srcset]="encodedURL(img.src)"
+        [alt]="img.alt || alt()"
+        [loading]="loading()"
+        class="bmb_image-figure-image"
+        role="button"
+        tabindex="0"
+        (click)="handleImageClick(img, index)"
+        (keydown.enter)="handleImageClick(img, index)"
+        (keydown.space)="handleImageClick(img, index)"
+        [style]="{
+          'object-fit': objectFit(),
+          cursor: enableCursorPointer() ? 'pointer' : 'default',
+        }"
+        (error)="handleImageNotFoundError(img.src, $event)"
+      />
+    </picture>
+  </figure>
+</ng-template>

@@ -20,4 +20,16 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should open Google in a new window from the language action', () => {
+    const openSpy = jest.spyOn(window, 'open').mockImplementation(() => null);
+
+    component.homeCardActions[0].action?.(new MouseEvent('click'));
+
+    expect(openSpy).toHaveBeenCalledWith(
+      'https://www.google.com/',
+      '_blank',
+      'noopener,noreferrer',
+    );
+  });
 });

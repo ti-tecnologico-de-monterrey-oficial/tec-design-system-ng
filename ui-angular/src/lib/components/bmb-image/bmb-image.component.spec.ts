@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbImageComponent } from './bmb-image.component';
 import { ComponentRef } from '@angular/core';
-import { BmbImageItem } from './types';
+import type { BmbImageItem } from '../../_shared/types/components/image';
 
 describe('BmbImageComponent', () => {
   let component: BmbImageComponent;
@@ -28,7 +28,7 @@ describe('BmbImageComponent', () => {
     expect(component.borderRadius()).toBe('m');
     expect(component.loading()).toBe('lazy');
     expect(component.enableZoom()).toBe(false);
-    expect(component.isBlurredBackdrop()).toBe(false);
+    expect(component.isBlurredBackdrop()).toBeUndefined();
   });
 
   it('should return correct classes based on inputs', () => {
@@ -136,8 +136,8 @@ describe('BmbImageComponent', () => {
     componentRef.setInput('mobileSrc', 'mobile image.jpg');
     fixture.detectChanges();
 
-    expect(component.encodedURL()).toBe('image%20with%20space.jpg');
-    expect(component.encodedMobileURL()).toBe('mobile%20image.jpg');
+    expect(component.encodedURL(component.src())).toBe('image%20with%20space.jpg');
+    expect(component.encodedURL(component.mobileSrc()!)).toBe('mobile%20image.jpg');
   });
 
   it('should navigate to next and previous images in carousel', () => {
@@ -193,41 +193,6 @@ describe('BmbImageComponent', () => {
       index: 1,
       cbParams: {},
     });
-  });
-
-  it('should emit imageClick on Enter or Space key press', () => {
-    const img: BmbImageItem = { src: 'image1.jpg', alt: 'Image 1' };
-    const spy = jasmine.createSpy('imageClickSpy');
-    component.imageClick.subscribe(spy);
-
-    const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
-    component.handleImageKeyDown(enterEvent, img, 0);
-    expect(spy).toHaveBeenCalledWith({
-      img,
-      index: 0,
-      cbParams: {},
-    });
-
-    spy.calls.reset();
-
-    const spaceEvent = new KeyboardEvent('keydown', { key: ' ' });
-    component.handleImageKeyDown(spaceEvent, img, 1);
-    expect(spy).toHaveBeenCalledWith({
-      img,
-      index: 1,
-      cbParams: {},
-    });
-  });
-
-  it('should not emit imageClick for other keys', () => {
-    const img: BmbImageItem = { src: 'image1.jpg', alt: 'Image 1' };
-    const spy = jasmine.createSpy('imageClickSpy');
-    component.imageClick.subscribe(spy);
-
-    const otherEvent = new KeyboardEvent('keydown', { key: 'Escape' });
-    component.handleImageKeyDown(otherEvent, img, 0);
-
-    expect(spy).not.toHaveBeenCalled();
   });
 
   it('should render carousel arrows and call navigation methods on click', () => {

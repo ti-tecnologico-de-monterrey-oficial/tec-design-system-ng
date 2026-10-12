@@ -10,7 +10,7 @@ import {
   DBmbIconParamDesc,
   DBmbImageParamDesc,
 } from '@docs/utils/parameterDescriptions';
-import { BmbImageItem } from './types';
+import type { BmbImageItem } from '../../_shared/types/components/image';
 import { Component, signal } from '@angular/core';
 
 /*
@@ -38,11 +38,11 @@ class StorybookBmbImageSignalHostComponent {
     setTimeout(() => {
       this.images.set([
         {
-          src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
+          src: './assets/doc/bmb-image/photo-1.svg',
           alt: 'Image 1',
         },
         {
-          src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
+          src: './assets/doc/bmb-image/photo-2.svg',
           alt: 'Image 2',
         },
       ]);
@@ -66,17 +66,12 @@ export default {
           'isCarousel',
           'carouselClass',
           'encodedURL',
-          'encodedMobileURL',
           'imageClick',
-          'animationClass',
           'autoplayTimer',
           'currentImage',
-          'getImageContainerStyle',
           'getImageStyle',
           'handleImageClick',
-          'handleImageKeyDown',
           'handleImageNotFoundError',
-          'handleSingleImageClick',
           'next',
           'ngOnDestroy',
           'prev',
@@ -183,24 +178,32 @@ ${getBasicExampleBlock('BmbImageComponent')}
         category: 'Properties',
       },
     },
+    hasBackdrop: {
+      control: 'boolean',
+      description: 'If true, a backdrop will be displayed behind the image.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+        category: 'Properties',
+      },
+    },
   },
   args: {
-    src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
-    mobileSrc:
-      'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg',
+    src: './assets/doc/bmb-image/photo-fruits.svg',
+    mobileSrc: './assets/doc/bmb-image/photo-cats.svg',
     alt: 'Fruits',
     width: 'clamp(200px, 100%, calc(50dvw - 3rem))',
     ratio: '1/1',
     borderRadius: 'm',
     loading: 'lazy',
     enableZoom: false,
-    isBlurredBackdrop: false,
     imageClick: (event: { img: BmbImageItem; index: number }) => {
       console.log('Image clicked', event);
     },
     objectFit: 'cover',
     avoidEncoding: false,
     enableCursorPointer: false,
+    hasBackdrop: false,
   },
 } as Meta<typeof BmbImageComponent>;
 
@@ -213,19 +216,17 @@ export const Carousel: Story = {
   args: {
     images: [
       {
-        src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
-        mobileSrc:
-          'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg',
+        src: './assets/doc/bmb-image/photo-fruits.svg',
+        mobileSrc: './assets/doc/bmb-image/photo-cats.svg',
         alt: 'Image 1',
       },
       {
-        src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
-        mobileSrc:
-          'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=60',
+        src: './assets/doc/bmb-image/photo-1.svg',
+        mobileSrc: './assets/doc/bmb-image/photo-1.svg',
         alt: 'Image 2',
       },
       {
-        src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
+        src: './assets/doc/bmb-image/photo-2.svg',
         alt: 'Image 3',
       },
     ],
@@ -267,11 +268,11 @@ export const ClickEvent: Story = {
   args: {
     images: [
       {
-        src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
+        src: './assets/doc/bmb-image/photo-1.svg',
         alt: 'Image 1',
       },
       {
-        src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
+        src: './assets/doc/bmb-image/photo-2.svg',
         alt: 'Image 2',
       },
     ],
@@ -293,15 +294,15 @@ export const CarouselAutoplay: Story = {
     autoplayInterval: 2000,
     images: [
       {
-        src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
+        src: './assets/doc/bmb-image/photo-fruits.svg',
         alt: 'Image 1',
       },
       {
-        src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
+        src: './assets/doc/bmb-image/photo-1.svg',
         alt: 'Image 2',
       },
       {
-        src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
+        src: './assets/doc/bmb-image/photo-2.svg',
         alt: 'Image 3',
       },
     ],
@@ -354,11 +355,11 @@ constructor() {
   setTimeout(() => {
     this.images.set([
       {
-        src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
+        src: './assets/doc/bmb-image/photo-1.svg',
         alt: 'Image 1'
       },
       {
-        src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
+        src: './assets/doc/bmb-image/photo-2.svg',
         alt: 'Image 2'
       }
     ]);
@@ -370,6 +371,30 @@ handleImageClick(event: { img: BmbImageItem; index: number }) {
 }
 \`\`\`
         `,
+      },
+    },
+  },
+};
+
+export const CarouselBackdropAndBgColor: Story = {
+  name: 'Carousel - Per-image backdrop and background color',
+  args: {
+    images: [
+      {
+        src: './assets/doc/bmb-image/photo-1.svg',
+        alt: 'Image 1',
+      },
+      {
+        src: './assets/doc/bmb-image/photo-2.svg',
+        alt: 'Image 2',
+      },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Each item in `images` can define its own `bgColor` (applied as the container background while that image is visible) and `hasBackdrop` (shows a blurred, covered copy of the visible image behind it).',
       },
     },
   },

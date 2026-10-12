@@ -1,6 +1,6 @@
-import { SizeNames } from '../../_shared/types';
+import { SizeNames } from '../index';
 
-export interface BmbImageHeight {
+export interface IBmbImageHeight {
   s: string;
   l: string;
 }
@@ -32,3 +32,4 @@ export type RenderedImage = {
   alt?: string;
   direction: 'next' | 'prev' | null;
 };
+
