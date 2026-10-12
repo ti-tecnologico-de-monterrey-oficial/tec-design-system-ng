@@ -1,6 +1,6 @@
 import { SizeNames } from '../index';
 
-export interface BmbImageHeight {
+export interface IBmbImageHeight {
   s: string;
   l: string;
 }
@@ -33,14 +33,3 @@ export type RenderedImage = {
   direction: 'next' | 'prev' | null;
 };
 
-export interface BmbImageHeight {
-  s: string;
-  l: string;
-}
-
-export interface IBmbImageBorderRadius {
-  topLeft?: SizeNames;
-  topRight?: SizeNames;
-  bottomRight?: SizeNames;
-  bottomLeft?: SizeNames;
-}

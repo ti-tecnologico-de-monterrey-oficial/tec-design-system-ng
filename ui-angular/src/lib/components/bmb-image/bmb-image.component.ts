@@ -15,7 +15,7 @@ import { handleImageNotFoundError } from '../../_shared/logic/utils';
 import type { IBmbMediaCardLoading } from '../../_shared/types';
 import type {
   BmbImageItem,
-  BmbImageHeight,
+  IBmbImageHeight,
   IBmbImageObjectFit,
   IBmbImageBorderRadius,
 } from '../../_shared/types/components/image';
@@ -48,7 +48,7 @@ export class BmbImageComponent implements OnDestroy {
   isBlurredBackdrop = input<boolean>();
   images = input<BmbImageItem[] | null>(null);
   callbackParams = input<any>({});
-  minHeight = input<BmbImageHeight>({ s: 'auto', l: 'auto' });
+  minHeight = input<IBmbImageHeight>({ s: 'auto', l: 'auto' });
   objectFit = input<IBmbImageObjectFit>('cover');
   animation = input<'fade' | 'parallax' | 'parallax-fade'>('parallax');
   avoidEncoding = input<boolean>(false);
