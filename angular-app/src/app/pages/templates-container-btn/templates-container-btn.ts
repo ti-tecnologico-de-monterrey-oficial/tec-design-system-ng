@@ -5,6 +5,7 @@ import { map } from 'rxjs';
 import {
   BmbBadgeComponent,
   BmbBookmarkComponent,
+  BmbActionIconComponent,
   BmbBoxIconComponent,
   BmbCheckboxComponent,
   BmbContainerButtonBaseComponent,
@@ -23,6 +24,7 @@ import {
   imports: [
     BmbBadgeComponent,
     BmbBookmarkComponent,
+    BmbActionIconComponent,
     BmbBoxIconComponent,
     BmbCheckboxComponent,
     BmbBoxIconComponent,
