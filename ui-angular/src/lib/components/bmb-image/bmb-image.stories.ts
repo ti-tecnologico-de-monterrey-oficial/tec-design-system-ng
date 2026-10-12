@@ -194,6 +194,7 @@ ${getBasicExampleBlock('BmbImageComponent')}
     objectFit: 'cover',
     avoidEncoding: false,
     enableCursorPointer: false,
+    hasBackdrop: false,
   },
 } as Meta<typeof BmbImageComponent>;
 
