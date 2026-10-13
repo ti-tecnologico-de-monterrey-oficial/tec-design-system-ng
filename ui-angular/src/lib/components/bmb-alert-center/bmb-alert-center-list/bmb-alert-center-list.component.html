@@ -11,6 +11,15 @@
       [swipeDisabled]="!enableSwipe()"
       (getSwipeOpenChange)="handleSwipe($event)"
     >
+      <ng-template bmbSwipeLeftActions>
+        <bmb-action-icon
+          class="bmb_alert-center-list-item-delete"
+          icon="delete"
+          [iconSize]="24"
+          [tooltipText]="'alert_center.list.delete' | translate"
+          (buttonClick)="handleDelete(item)"
+        />
+      </ng-template>
       <ng-template bmbSwipeRightActions>
         <bmb-action-icon
           class="bmb_alert-center-list-item-delete"
