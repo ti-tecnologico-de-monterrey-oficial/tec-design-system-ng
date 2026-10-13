@@ -3,6 +3,7 @@ export * from './components/header-mitec';
 export * from './components/academic-progress';
 export * from './components/action-icon';
 export * from './components/advertisement-card';
+export * from './components/ai-chat-card';
 export * from './components/alert-center-detail';
 export * from './components/badge';
 export * from './components/bottom-navigation-bar';

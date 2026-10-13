@@ -23,7 +23,7 @@ export const navigationTest: ComponentGroupTest[] = [
         label: 'Buttons',
         items: [
           {
-            label: 'Action icon (*old)',
+            label: 'Action icon',
             url: '/pages/buttons/action-icon',
             icon: 'widgets',
           },
@@ -79,7 +79,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Advertisement card (*old)',
+            label: 'Advertisement card',
             url: '/pages/containers/advertisement-card',
             icon: 'widgets',
           },
@@ -255,12 +255,12 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Action menu (*old)',
+            label: 'Action menu',
             url: '/pages/menus/action-menu',
             icon: 'widgets',
           },
           {
-            label: 'Chevron title selector (*old)',
+            label: 'Chevron title selector',
             url: '/pages/menus/chevron-title-selector',
             icon: 'widgets',
           },

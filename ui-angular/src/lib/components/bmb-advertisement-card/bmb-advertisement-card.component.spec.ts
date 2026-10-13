@@ -119,4 +119,13 @@ describe('BmbAdvertisementCardComponent', () => {
     expect(titleElement.textContent).toContain('Test Title');
     expect(descriptionElement.textContent).toContain('Test Description');
   });
+
+  it('should emit imageNotFoundError on handleImageNotFoundError', () => {
+    jest.spyOn(component.imageNotFoundError, 'emit');
+    const event = { target: document.createElement('img') } as unknown as Event;
+
+    component.handleImageNotFoundError('broken-image', event);
+
+    expect(component.imageNotFoundError.emit).toHaveBeenCalled();
+  });
 });
