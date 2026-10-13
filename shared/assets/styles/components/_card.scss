@@ -1,56 +1,106 @@
+@use 'sass:map';
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+
+$types: (
+  'primary': (
+    'border': var(--buttons-stroke-primary-selected),
+    'background': var(--buttons-text-link),
+    'color': rgb(var(--white-primary)),
+  ),
+  'secondary': (
+    'border': var(--general-contrasts-container-outline),
+    'background': var(-general_contrasts-20),
+    'color': var(--general-contrasts-100),
+  ),
+  'succes': (
+    'border': var(--alert-successful),
+    'background': var(--general-contrasts-main-selection-alternative),
+    'color': rgb(var(--white-primary)),
+  ),
+  'info': (
+    'border': var(--alert-event),
+    'background': var(--menu-select-alternative-focus-label),
+    'color': rgb(var(--white-primary)),
+  ),
+  'warning': (
+    'border': var(--alert-warning),
+    'background': rgb(var(--yellow-tint)),
+    'color': rgb(var(--gray-charade-950)),
+  ),
+  'error': (
+    'border': var(--buttons-destructive),
+    'background': var(--alert-error),
+    'color': rgb(var(--white-primary)),
+  ),
+  'normal': (
+    'border': var(--general-contrasts-container-outline),
+    'background': var(--containers-main),
+    'color': var(--general-contrasts-100),
+  ),
+  'transparent': (
+    'border': var(--general-contrasts-container-outline),
+    'background': transparent,
+    'color': var(--general-contrasts-100),
+  ),
+);
+
 .bmb_card {
-  display: block;
-  overflow: hidden;
-  border: 1px solid var(--general-contrasts-25);
-  background-color: var(--general-contrasts-5);
-}
-
-.bmb_card-header,
-.bmb_card-content,
-.bmb_card-footer {
-  display: block;
-}
-
-.bmb_card-content-with-radius {
-  border-radius: inherit;
-}
-
-.bmb_card-type-primary,
-.bmb_card-type-secondary,
-.bmb_card-type-success,
-.bmb_card-type-succes,
-.bmb_card-type-info,
-.bmb_card-type-warning,
-.bmb_card-type-error,
-.bmb_card-type-normal,
-.bmb_card-type-transparent {
+  border-width: rem.rem_calc(1);
   border-style: solid;
-}
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
 
-.bmb_card-type-transparent {
-  background-color: transparent;
-}
+  @each $name, $type in $types {
+    &.bmb_card-type-#{$name} {
+      --border-color: #{map.get($type, 'border')};
+      --text-color: #{map.get($type, 'color')};
+      background-color: map.get($type, 'background');
+      border-color: var(--border-color);
+      color: map.get($type, 'color');
+    }
+  }
 
-.bmb_card-box-shadow-1 {
-  box-shadow: var(--bmb-box-shadow-1);
-}
+  @for $i from 1 through 6 {
+    &.bmb_card-box-shadow-#{$i} {
+      box-shadow: var(--bmb-box-shadow-#{$i});
+    }
+  }
 
-.bmb_card-box-shadow-2 {
-  box-shadow: var(--bmb-box-shadow-2);
-}
+  &-header {
+    border-bottom: rem.rem_calc(1) solid var(--border-color);
+    overflow: hidden;
+    border-radius: var(--bmb-border-radius) var(--bmb-border-radius) 0 0;
+    &,
+    * {
+      @include fonts.font(5, regular);
+      color: var(--text-color);
+    }
+  }
 
-.bmb_card-box-shadow-3 {
-  box-shadow: var(--bmb-box-shadow-3);
-}
+  &-footer {
+    // &,
+    // * {
+    @include fonts.font(3, regular);
+    // }
+    border-top: rem.rem_calc(1) solid var(--border-color);
+    overflow: hidden;
+    border-radius: 0 0 var(--bmb-border-radius) var(--bmb-border-radius);
+  }
 
-.bmb_card-box-shadow-4 {
-  box-shadow: var(--bmb-box-shadow-4);
-}
+  bmb-card-content {
+    display: block;
+    flex: 1;
+  }
 
-.bmb_card-box-shadow-5 {
-  box-shadow: var(--bmb-box-shadow-5);
-}
+  &-content {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 
-.bmb_card-box-shadow-6 {
-  box-shadow: var(--bmb-box-shadow-6);
+    &-with-radius {
+      border-radius: var(--bmb-border-radius);
+    }
+  }
 }

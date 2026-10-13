@@ -271,4 +271,9 @@ export class AlertsPageComponent implements OnInit {
   handleCloseAlertDetail(alert: IBmbDataAlert): void {
     console.log('Close alert detail:', alert);
   }
+
+  handleDelete(alert: IBmbDataAlert): void {
+    this.alertCenter.removeAlert(alert.id);
+    console.log('Alert deleted:', alert);
+  }
 }

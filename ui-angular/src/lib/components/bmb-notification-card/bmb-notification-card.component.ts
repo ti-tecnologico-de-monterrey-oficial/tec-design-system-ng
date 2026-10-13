@@ -55,10 +55,12 @@ export class BmbNotificationCardComponent {
   leftIcon = input<string>('');
   enableCustomHandlerClick = input<boolean>(false);
   componentTitle = input<string>('');
+  enableSwipe = input<boolean>(false);
 
   alertEvent = output<IBmbDataAlert>();
   showAlertDetail = output<IBmbDataAlert>();
   onExpandClick = output<void>();
+  getDeleteClick = output<IBmbDataAlertsParsed>();
 
   expanded = false;
   activeTab = 1;
@@ -159,5 +161,9 @@ export class BmbNotificationCardComponent {
         visibleAlert: alert,
       },
     });
+  }
+
+  handleDelete(item: IBmbDataAlertsParsed): void {
+    this.getDeleteClick.emit(item);
   }
 }

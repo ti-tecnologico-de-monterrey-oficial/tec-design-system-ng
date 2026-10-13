@@ -77,6 +77,14 @@
         (change)="useEmptyState.set($any($event.target).checked)"
       />emptyStateData</label
     >
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="enableSwipe()"
+        (change)="enableSwipe.set($any($event.target).checked)"
+      />
+      enableSwipe (deslizar para eliminar)
+    </label>
 
     <output><strong>Último evento:</strong> {{ lastEvent() }}</output>
   </aside>
@@ -94,9 +102,11 @@
       [leftIcon]="leftIcon()"
       [enableCustomHandlerClick]="enableCustomHandlerClick()"
       [componentTitle]="componentTitle()"
+      [enableSwipe]="enableSwipe()"
       (alertEvent)="recordAlert('alertEvent', $event)"
       (showAlertDetail)="recordAlert('showAlertDetail', $event)"
       (onExpandClick)="recordExpand()"
+      (getDeleteClick)="handleDelete($event)"
     />
 
     <section class="modal-preview" aria-labelledby="notification-modal-heading">

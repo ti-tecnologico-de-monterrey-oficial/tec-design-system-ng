@@ -81,6 +81,7 @@ export class NotificationCardPage {
   readonly enableCustomHandlerClick = signal(false);
   readonly componentTitle = signal('Notification card');
   readonly useEmptyState = signal(false);
+  readonly enableSwipe = signal(true);
   readonly lastEvent = signal('Sin interacciones');
   readonly selectedAlert = computed<IBmbDataAlertsParsed>(() => ({
     ...this.notifications()[0],
@@ -100,5 +101,12 @@ export class NotificationCardPage {
 
   recordExpand(): void {
     this.lastEvent.set('onExpandClick');
+  }
+
+  handleDelete(alert: IBmbDataAlert): void {
+    this.notifications.update((items) =>
+      items.filter((item) => item.id !== alert.id),
+    );
+    this.lastEvent.set(`deleteAlert: ${alert.title}`);
   }
 }

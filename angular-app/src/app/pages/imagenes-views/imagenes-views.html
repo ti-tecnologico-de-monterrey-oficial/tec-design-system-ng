@@ -1,0 +1,369 @@
+<main class="image-lab">
+  <header class="lab-header">
+    <div>
+      <h1>Adaptive Image Lab</h1>
+      <p>
+        Selección dinámica de imágenes según viewport, contenedor, proporción y
+        resolución.
+      </p>
+    </div>
+
+    <button
+      type="button"
+      class="button button--secondary"
+      (click)="restoreDefaults()"
+    >
+      Restablecer
+    </button>
+  </header>
+
+  <!-- CONTROLES SUPERIORES -->
+  <section class="controls-panel">
+    <h2>Configuración de pruebas</h2>
+
+    <div class="controls-grid">
+      <div class="control-field">
+        <label for="resolutionMode"> Modo de resolución </label>
+
+        <select
+          id="resolutionMode"
+          [value]="resolutionMode()"
+          (change)="onResolutionChange($event)"
+        >
+          <option value="auto">Automático (navegador)</option>
+          <option value="preset">Resolución predefinida</option>
+          <option value="custom">Resolución personalizada</option>
+        </select>
+      </div>
+
+      @if (resolutionMode() === 'preset') {
+      <div class="control-field">
+        <label for="preset"> Dispositivo / resolución </label>
+
+        <select
+          id="preset"
+          [value]="selectedPresetIndex()"
+          (change)="onPresetChange($event)"
+        >
+          @for (preset of presets; track $index) {
+          <option [value]="$index">{{ preset.label }}</option>
+          }
+        </select>
+      </div>
+      } @if (resolutionMode() === 'custom') {
+      <div class="control-field">
+        <label for="customWidth"> Ancho simulado (px) </label>
+
+        <input
+          id="customWidth"
+          type="number"
+          min="1"
+          max="10000"
+          [value]="customWidth()"
+          (change)="onWidthChange($event)"
+        />
+      </div>
+
+      <div class="control-field">
+        <label for="customHeight"> Alto simulado (px) </label>
+
+        <input
+          id="customHeight"
+          type="number"
+          min="1"
+          max="10000"
+          [value]="customHeight()"
+          (change)="onHeightChange($event)"
+        />
+      </div>
+      }
+
+      <div class="control-field">
+        <label for="ratioMode"> Aspect ratio </label>
+
+        <select
+          id="ratioMode"
+          [value]="ratioMode()"
+          (change)="onRatioChange($event)"
+        >
+          <option value="auto">Automático (mejor coincidencia)</option>
+
+          @for (ratio of ratios; track ratio) {
+          <option [value]="ratio">{{ ratio }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="control-field">
+        <label for="zoom"> Zoom simulado: {{ zoom() }}% </label>
+
+        <input
+          id="zoom"
+          type="range"
+          min="50"
+          max="300"
+          step="25"
+          [value]="zoom()"
+          [disabled]="resolutionMode() === 'auto'"
+          (input)="onZoomChange($event)"
+        />
+
+        <span class="field-help">
+          En modo automático usa el zoom real del navegador.
+        </span>
+      </div>
+    </div>
+
+    <!-- CATÁLOGO EDITABLE -->
+    <div class="catalog-section">
+      <div class="section-heading">
+        <div>
+          <h3>Catálogo de imágenes</h3>
+          <p>
+            Cambia las URLs o selecciona una proporción para probarla
+            manualmente.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          class="button button--secondary"
+          (click)="restoreAutomaticSelection()"
+        >
+          Ratio automático
+        </button>
+      </div>
+
+      <div class="catalog-grid">
+        @for (image of images(); track image.id) {
+        <div
+          class="catalog-item"
+          [class.catalog-item--active]="
+              selectedImage()?.id === image.id
+            "
+        >
+          <div class="catalog-item__header">
+            <strong>{{ image.id }}</strong>
+            <span>{{ image.label }}</span>
+          </div>
+
+          <span class="catalog-item__dimensions">
+            {{ image.width }} × {{ image.height }}
+          </span>
+
+          <label [for]="'image-source-' + image.id"> URL de la imagen </label>
+
+          <input
+            type="url"
+            [id]="'image-source-' + image.id"
+            [value]="image.src"
+            (change)="onSourceChange(image.id, $event)"
+            placeholder="https://..."
+          />
+
+          <button
+            type="button"
+            class="button button--catalog"
+            (click)="showImage(image.id)"
+          >
+            Visualizar {{ image.id }}
+          </button>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS DE MEDICIÓN -->
+  <section class="metrics-panel">
+    <div class="metric">
+      <span class="metric__label">Viewport</span>
+      <strong>
+        {{ formatDimension(viewport().width) }} × {{
+        formatDimension(viewport().height) }}
+      </strong>
+      <small> Ratio: {{ formatNumber(viewportRatio()) }} </small>
+    </div>
+
+    <div class="metric">
+      <span class="metric__label">Contenedor</span>
+      <strong>
+        {{ formatDimension(container().width) }} × {{
+        formatDimension(container().height) }}
+      </strong>
+      <small> Ratio: {{ formatNumber(containerRatio()) }} </small>
+    </div>
+
+    <div class="metric">
+      <span class="metric__label">Imagen elegida</span>
+      <strong>{{ selectedImage()?.id ?? 'Ninguna' }}</strong>
+      <small>
+        {{ selectedImage()?.width ?? 0 }} × {{ selectedImage()?.height ?? 0 }}
+      </small>
+    </div>
+
+    <div class="metric">
+      <span class="metric__label">Pixel ratio / DPR</span>
+      <strong>{{ formatNumber(viewport().dpr) }}×</strong>
+      <small> Límite usado: {{ effectiveDpr() }}× </small>
+    </div>
+
+    <div class="metric">
+      <span class="metric__label">Resolución requerida</span>
+      <strong>
+        {{ requiredResolution().width }} × {{ requiredResolution().height }}
+      </strong>
+      <small>
+        @if (hasEnoughResolution()) { Resolución suficiente } @else { Puede
+        requerir ampliación }
+      </small>
+    </div>
+
+    <div class="metric">
+      <span class="metric__label">Diferencia de ratio</span>
+      <strong> {{ formatNumber(ratioDifference()) }}% </strong>
+      <small> Diferencia logarítmica relativa </small>
+    </div>
+  </section>
+
+  <!-- VISOR DE IMAGEN -->
+  <section class="preview-panel">
+    <div class="section-heading">
+      <div>
+        <h2>Vista previa</h2>
+        <p>
+          Redimensiona el navegador o utiliza los controles para observar la
+          selección automática.
+        </p>
+      </div>
+
+      <span class="mode-indicator">
+        @if (ratioMode() === 'auto') { Selección automática } @else { Ratio
+        forzado: {{ ratioMode() }} }
+      </span>
+    </div>
+
+    <div class="preview-scroll">
+      <div
+        #previewContainer
+        class="preview-container"
+        [style.width]="previewWidth()"
+        [style.height]="previewHeight()"
+      >
+        @if (selectedImage(); as image) {
+        <img
+          class="preview-image"
+          [src]="selectedImageUrl()"
+          [alt]="'Imagen de prueba ' + image.id"
+          (load)="onImageLoad()"
+          (error)="onImageError()"
+        />
+        } @if (imageFailed()) {
+        <div class="image-error">
+          No se pudo cargar la imagen. Verifica la URL correspondiente.
+        </div>
+        }
+
+        <div class="image-overlay">
+          <span> Imagen: {{ selectedImage()?.id }} </span>
+          <span>
+            Contenedor: {{ formatDimension(container().width) }} × {{
+            formatDimension(container().height) }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-footer">
+      <span>
+        Fuente:
+        <a
+          [href]="selectedImageUrl()"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Abrir imagen seleccionada
+        </a>
+      </span>
+
+      <span> Ratio disponible: {{ formatNumber(activeRatio()) }} </span>
+    </div>
+  </section>
+  <section class="preview-panel" aria-labelledby="viewport-example-title">
+    <div class="section-heading">
+      <div>
+        <h2 id="viewport-example-title">
+          Ejemplo: {{ viewportExampleWidth() }}vw × {{ viewportExampleHeight()
+          }}vh
+        </h2>
+        <p>
+          Redimensiona el ancho o alto de la ventana. La imagen se selecciona
+          automáticamente según la proporción real de este contenedor.
+        </p>
+      </div>
+    </div>
+    <div class="controls-grid viewport-example-controls">
+      <div class="control-field">
+        <label for="viewport-example-width">Ancho del contenedor (vw)</label>
+        <input
+          id="viewport-example-width"
+          type="number"
+          min="1"
+          max="100"
+          step="1"
+          [value]="viewportExampleWidth()"
+          (input)="onViewportExampleDimensionChange('width', $event)"
+        />
+      </div>
+      <div class="control-field">
+        <label for="viewport-example-height">Alto del contenedor (vh)</label>
+        <input
+          id="viewport-example-height"
+          type="number"
+          min="1"
+          max="100"
+          step="1"
+          [value]="viewportExampleHeight()"
+          (input)="onViewportExampleDimensionChange('height', $event)"
+        />
+      </div>
+    </div>
+    <div class="preview-scroll">
+      <div
+        #viewportExampleContainer
+        class="preview-container viewport-example-container"
+        [style.width]="viewportExampleWidth() + 'vw'"
+        [style.height]="viewportExampleHeight() + 'vh'"
+      >
+        @if (viewportExampleImage(); as image) {
+        <img
+          class="preview-image"
+          [src]="image.src"
+          [alt]="'Imagen adaptable ' + image.id"
+          (load)="onViewportExampleImageLoad($event, image.src)"
+          (error)="viewportExampleFailed.set(true)"
+        />
+        } @if (viewportExampleFailed()) {
+        <div class="image-error">
+          No se pudo cargar la imagen. Verifica la URL en el catálogo.
+        </div>
+        }
+        <div class="image-overlay">
+          <span
+            >Contenedor: {{ formatDimension(viewportExampleSize().width) }} × {{
+            formatDimension(viewportExampleSize().height) }} px · Ratio: {{
+            formatNumber(viewportExampleRatio()) }}</span
+          >
+          <span
+            >Imagen: {{ viewportExampleImage()?.id }} · Ratio real: {{
+            formatNumber(viewportExampleNaturalRatio()) }} @if
+            (viewportExampleNaturalSize(); as size) { · Original: {{ size.width
+            }} × {{ size.height }} px } @else { · Cargando dimensiones… } ·
+            Mostrada: {{ formatDimension(viewportExampleSize().width) }} × {{
+            formatDimension(viewportExampleSize().height) }} px (cover)
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

@@ -14,10 +14,6 @@ import {
 import { getAlertCenterDetailClass } from '../../../_shared/logic/components/alert-center-detail';
 import { TranslatePipe } from '../../../pipes/translations';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-alert-center-detail',
   standalone: true,

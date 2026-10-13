@@ -84,4 +84,12 @@ describe('BmbActionMenuComponent', () => {
   it('should have componentTitle attribute from host component', () => {
     expect(component.componentTitle()).toBe('Test title');
   });
+
+  it('should throw when neither title nor componentTitle is provided', () => {
+    const freshFixture = TestBed.createComponent(BmbActionMenuComponent);
+
+    expect(() => freshFixture.detectChanges()).toThrow(
+      'The "componentTitle" input is required. Please provide a value for it.',
+    );
+  });
 });

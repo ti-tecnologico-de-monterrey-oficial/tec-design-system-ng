@@ -73,7 +73,9 @@ export class BmbAlertCenterComponent {
   dateFormat = input<string>('dd/MM/yyyy');
   tabsName = input<string[] | IBmbAlertCenterTabConfig[]>([
     {
-      title: this.translationsService.translate('alert_center.tabs.notifications'),
+      title: this.translationsService.translate(
+        'alert_center.tabs.notifications',
+      ),
       isMobile: true,
       isDesktop: true,
     },
@@ -118,6 +120,8 @@ export class BmbAlertCenterComponent {
     favorites: true,
     archive: true,
   });
+  enableSwipe = input<boolean>(false);
+
   notificationSelectionState = model<{ [key: string]: boolean }>({});
 
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
@@ -126,6 +130,7 @@ export class BmbAlertCenterComponent {
   showAlertDetail = output<IBmbDataAlert>();
   closeAlertDetail = output<IBmbDataAlert>();
   navigationBarEvents = output<IBmbAlertCenterFooterEvent>();
+  getDeleteClick = output<IBmbDataAlertsParsed>();
 
   @ViewChild('detailContent', { read: TemplateRef })
   detailContent?: TemplateRef<any>;
@@ -256,6 +261,10 @@ export class BmbAlertCenterComponent {
 
   handleChangeAlertStatus(alert: IBmbDataAlertsOutput): void {
     this.onChangeAlertStatus.emit(alert);
+  }
+
+  handleDelete(alert: IBmbDataAlertsParsed): void {
+    this.getDeleteClick.emit(alert);
   }
 
   handleNavigationBarEvents(event: IBmbAlertCenterProtoEventFooter): void {

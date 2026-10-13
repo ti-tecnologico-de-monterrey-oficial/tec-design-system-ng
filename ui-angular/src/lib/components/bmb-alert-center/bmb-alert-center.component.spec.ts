@@ -298,6 +298,38 @@ describe('BmbAlertCenterComponent', () => {
 
       expect(mockNativeModalService.openModal).toHaveBeenCalled();
     });
+
+    it('should open modal when the viewport is narrow', () => {
+      Object.defineProperty(window, 'innerWidth', {
+        configurable: true,
+        value: 900,
+      });
+      const alertWithParsedDate: IBmbDataAlertsParsed = {
+        ...mockAlerts[0],
+        pDate: DateTime.now() as DateTime<true>,
+      };
+
+      component.handleShowAlert(alertWithParsedDate);
+
+      expect(mockNativeModalService.openModal).toHaveBeenCalled();
+    });
+
+    it('should emit custom-handler alerts without opening the detail modal', () => {
+      jest.spyOn(component.showAlertDetail, 'emit');
+      const customAlert: IBmbDataAlertsParsed = {
+        ...mockAlerts[0],
+        customEventHandler: true,
+        pDate: DateTime.now() as DateTime<true>,
+      };
+
+      component.handleShowAlert(customAlert);
+
+      expect(component.showAlertDetail.emit).toHaveBeenCalledWith({
+        ...mockAlerts[0],
+        customEventHandler: true,
+      });
+      expect(mockNativeModalService.openModal).not.toHaveBeenCalled();
+    });
   });
 
   describe('handleCloseDetail', () => {
@@ -337,6 +369,20 @@ describe('BmbAlertCenterComponent', () => {
       expect(component.onChangeAlertStatus.emit).toHaveBeenCalledWith(
         statusChange,
       );
+    });
+  });
+
+  describe('handleDelete', () => {
+    it('should emit the selected alert for deletion', () => {
+      jest.spyOn(component.getDeleteClick, 'emit');
+      const parsedAlert: IBmbDataAlertsParsed = {
+        ...mockAlerts[0],
+        pDate: DateTime.now() as DateTime<true>,
+      };
+
+      component.handleDelete(parsedAlert);
+
+      expect(component.getDeleteClick.emit).toHaveBeenCalledWith(parsedAlert);
     });
   });
 
