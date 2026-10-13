@@ -14,13 +14,12 @@ import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-
 import { CommonModule } from '@angular/common';
 import { IBmbTargetLink } from '../../_shared/types/utils';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { sanitizeContent } from '../../_shared/logic/sanitizeContent';
 import { BmbTooltipBaseComponent } from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
 import { isImage } from '../../_shared/logic/utils';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  getActionIcon,
+  getSanitizedSvg,
+} from '../../_shared/logic/components/action-icon';
 
 @Component({
   selector: 'bmb-action-icon',
@@ -60,9 +59,11 @@ export class BmbActionIconComponent {
   sanitizer: DomSanitizer = inject(DomSanitizer);
 
   getIcon(): string {
-    if (this.isToggleActive() && this.toggleIconActive())
-      return this.toggleIconActive() || '';
-    return this.icon();
+    return getActionIcon({
+      icon: this.icon(),
+      toggleIconActive: this.toggleIconActive(),
+      isToggleActive: this.isToggleActive(),
+    });
   }
 
   handlePress(event?: MouseEvent): void {
@@ -78,15 +79,14 @@ export class BmbActionIconComponent {
   }
 
   get safeSVG(): SafeHtml | null {
-    if (
-      (!this.isSVGTemplate() && this.customActionIcon()) ||
-      (this.isSVGTemplate() && this.customActionIcon() === undefined)
-    ) {
-      return null;
-    }
+    const sanitized = getSanitizedSvg({
+      isSVGTemplate: this.isSVGTemplate(),
+      customActionIcon: this.customActionIcon(),
+    });
 
-    const clean = sanitizeContent((this.customActionIcon() ?? '').toString());
-    return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
+    if (sanitized === null) return null;
+
+    return this.sanitizer.bypassSecurityTrustHtml(sanitized); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
   }
 
   isImage(icon: string): boolean {
