@@ -1,4 +1,4 @@
-import { SizeNames } from '../index';
+import type { SizeNames } from '../index';
 
 export interface IBmbImageHeight {
   s: string;
