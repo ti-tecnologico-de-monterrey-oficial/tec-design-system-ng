@@ -30,19 +30,11 @@ import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { IBmbActionHeader } from '../../_shared/types';
 import { getUUID } from '../../_shared/logic/utils';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
-
-export const BMB_AI_CHAT_CARD_MODE_LIST: string[] = [
-  'compact',
-  'chat',
-  'expanded',
-  'invisible',
-] as const;
-
-export type IBmbAIChatCardMode = (typeof BMB_AI_CHAT_CARD_MODE_LIST)[number];
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { IBmbAIChatCardMode } from '../../_shared/types/components/ai-chat-card';
+import {
+  getNextAiChatCardMode,
+  shouldTrackAsLastNonChatMode,
+} from '../../_shared/logic/components/ai-chat-card';
 
 @Component({
   selector: 'bmb-ai-chat-card',
@@ -150,7 +142,7 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
       /**Handle - Track last non-'chat' mode so contract can restore it */
       const mode = this.mode();
 
-      if ((mode !== 'chat' && mode === 'invisible') || mode === 'compact') {
+      if (shouldTrackAsLastNonChatMode(mode)) {
         this.lastNonChatMode = mode;
       }
     });
@@ -219,14 +211,8 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
   }
 
   protected handleExpandOrContract(): void {
-    this.mode.update((value) => {
-      if (value === 'compact' || value === 'invisible') return 'chat';
-      if (value === 'chat') {
-        return this.lastNonChatMode === 'invisible' ? 'invisible' : 'compact';
-      }
-      if (value === 'expanded') return 'chat';
-
-      return 'expanded';
-    });
+    this.mode.update((value) =>
+      getNextAiChatCardMode(value, this.lastNonChatMode),
+    );
   }
 }

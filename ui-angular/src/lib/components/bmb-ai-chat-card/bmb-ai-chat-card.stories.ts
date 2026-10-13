@@ -18,10 +18,8 @@ import {
 } from '@docs/utils/utils';
 import { BmbTopBarComponent } from '../bmb-top-bar/bmb-top-bar.component';
 import { BmbSidebarComponent } from '../bmb-sidebar/bmb-sidebar.component';
-import {
-  BMB_AI_CHAT_CARD_MODE_LIST,
-  BmbAIChatCardComponent,
-} from './bmb-ai-chat-card.component';
+import { BmbAIChatCardComponent } from './bmb-ai-chat-card.component';
+import { BMB_AI_CHAT_CARD_MODE_LIST } from '@shared/types/components/ai-chat-card';
 import { BmbAiChatBubbleComponent } from '../bmb-ai-chat-bubble/bmb-ai-chat-bubble.component';
 import { BmbChatBarComponent } from '../bmb-chat-bar/bmb-chat-bar.component';
 import {

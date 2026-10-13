@@ -21,4 +21,41 @@ describe('BmbAIChatCardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should go to chat when contracting from compact or invisible', () => {
+    component.mode.set('compact');
+    (component as unknown as { handleExpandOrContract: () => void })
+      .handleExpandOrContract();
+    expect(component.mode()).toBe('chat');
+
+    component.mode.set('invisible');
+    (component as unknown as { handleExpandOrContract: () => void })
+      .handleExpandOrContract();
+    expect(component.mode()).toBe('chat');
+  });
+
+  it('should go to compact when contracting from chat and the last non-chat mode was not invisible', () => {
+    component.mode.set('chat');
+    (component as unknown as { handleExpandOrContract: () => void })
+      .handleExpandOrContract();
+    expect(component.mode()).toBe('compact');
+  });
+
+  it('should go back to invisible when contracting from chat after tracking invisible as the last non-chat mode', () => {
+    component.mode.set('invisible');
+    fixture.detectChanges();
+
+    component.mode.set('chat');
+    (component as unknown as { handleExpandOrContract: () => void })
+      .handleExpandOrContract();
+
+    expect(component.mode()).toBe('invisible');
+  });
+
+  it('should go to chat when expanding', () => {
+    component.mode.set('expanded');
+    (component as unknown as { handleExpandOrContract: () => void })
+      .handleExpandOrContract();
+    expect(component.mode()).toBe('chat');
+  });
 });
