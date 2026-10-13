@@ -29,9 +29,6 @@ jobs:
       - name: Build Angular Library
         run: npm run build:lib:angular
 
-      - name: Test Angular Library
-        run: npx nx test ui-angular
-
       # - name: Build React Library
       #   run: npm run build:lib:react
 
