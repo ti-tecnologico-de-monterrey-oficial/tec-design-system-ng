@@ -103,6 +103,18 @@ export class BmbImageComponent implements OnDestroy {
     return `bmb_image-carousel-${this.animation()}`;
   });
 
+  imageContainerStyle = computed(() => ({
+    width: this.width(),
+    'aspect-ratio': this.ratio(),
+    ...this.getImageContainerStyle(),
+    ...this.imageBackdropStyle,
+  }));
+
+  imageFigureStyle = computed(() => ({
+    'aspect-ratio': this.ratio(),
+    ...this.getImageContainerStyle(),
+  }));
+
   constructor() {
     effect(() => {
       const imgs = this.images();
