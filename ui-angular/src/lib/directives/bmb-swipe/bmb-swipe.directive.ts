@@ -52,10 +52,10 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
   readonly getSwipeOpenChange = output<IBmbSwipeSide | null>();
 
   @ContentChild(BmbSwipeLeftActionsDirective, { read: TemplateRef })
-  private leftTemplate: TemplateRef<unknown> | undefined;
+  private readonly leftTemplate: TemplateRef<unknown> | undefined;
 
   @ContentChild(BmbSwipeRightActionsDirective, { read: TemplateRef })
-  private rightTemplate: TemplateRef<unknown> | undefined;
+  private readonly rightTemplate: TemplateRef<unknown> | undefined;
 
   private readonly el: ElementRef<HTMLElement> = inject(ElementRef);
   private readonly renderer: Renderer2 = inject(Renderer2);
