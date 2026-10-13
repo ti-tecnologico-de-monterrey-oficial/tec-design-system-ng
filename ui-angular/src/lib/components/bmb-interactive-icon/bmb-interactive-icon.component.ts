@@ -14,14 +14,10 @@ import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
 import {
   IBmbTargetLink,
   IBmbInteractiveIconAppearance,
+  IBmbInteractiveIconType,
 } from '../../_shared/types';
 import { BmbTooltipBaseComponent } from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
-
-export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { getInteractiveIconClasses } from '../../_shared/logic/components/interactive-icon';
 
 @Component({
   selector: 'bmb-interactive-icon',
@@ -66,23 +62,11 @@ export class BmbInteractiveIconComponent {
   }
 
   getClasses(): string[] {
-    const principalClassName = 'bmb_interactive_icon';
-    const classes: string[] = [
-      principalClassName,
-      `${principalClassName}-${this.layout()}`,
-    ];
-
-    if (this.appearanceContrast() === 'primary') {
-      classes.push('bmb_interactive_icon-primary');
-    }
-
-    if (this.appearanceContrast() === 'alternative') {
-      classes.push('bmb_interactive_icon-alternative');
-    }
-
-    if (this.horizontal()) classes.push(`${principalClassName}-horizontal`);
-
-    return classes;
+    return getInteractiveIconClasses(
+      this.layout(),
+      this.appearanceContrast(),
+      this.horizontal(),
+    );
   }
 
   handleClick(event: MouseEvent): void {

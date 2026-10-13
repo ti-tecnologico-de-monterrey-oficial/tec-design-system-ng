@@ -1,0 +1,25 @@
+.board {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+[bmbDropzone] {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.bmb-dropzone-active {
+  border: 2px dashed var(--color-mariner-500);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.bmb-dragging {
+  opacity: 0.5;
+}
