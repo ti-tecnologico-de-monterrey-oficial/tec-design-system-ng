@@ -76,7 +76,7 @@ export default meta;
 type Story = StoryObj<BmbContainerButtonBaseComponent>;
 
 const desktopTemplate = `<div bmbLayout margin="none" gapSize="none" alignItems="stretch">
-  <div bmbLayoutItem style="width: 210px; max-width: 100%; flex: 0 1 210px">
+  <div bmbLayoutItem style="width: 11.0625rem; max-width: 100%; flex: 0 1 210px">
     <bmb-container-button-base>
       <ng-template #bmbContainerMain>
         <div bmbVerticalLayout gapSize="m" alignItems="stretch">
