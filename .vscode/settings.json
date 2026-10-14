@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "vcode",
+        "projectKey": "tec-design-system-ng"
+    }
+}

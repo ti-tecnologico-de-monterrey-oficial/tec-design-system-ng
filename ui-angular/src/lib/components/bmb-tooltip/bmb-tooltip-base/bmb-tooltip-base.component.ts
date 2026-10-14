@@ -43,6 +43,7 @@ export class BmbTooltipBaseComponent {
   private readonly platformId = inject(PLATFORM_ID);
   private tooltipElement: HTMLDialogElement | null = null;
   private readonly repositionHandler = () => this.updateTooltipPosition();
+  private readonly windowBlurHandler = () => this.hideTooltip();
 
   constructor() {
     effect(() => {
@@ -81,8 +82,15 @@ export class BmbTooltipBaseComponent {
     });
   }
 
-  showTooltip(): void {
+  showTooltip(event?: Event): void {
     if (!this.isBrowserEnvironment()) {
+      return;
+    }
+
+    if (
+      event?.type === 'focusin' &&
+      !(event.target as HTMLElement | null)?.matches(':focus-visible')
+    ) {
       return;
     }
 
@@ -101,6 +109,7 @@ export class BmbTooltipBaseComponent {
 
     window.addEventListener('resize', this.repositionHandler);
     window.addEventListener('scroll', this.repositionHandler, true);
+    window.addEventListener('blur', this.windowBlurHandler);
   }
 
   hideTooltip(): void {
@@ -117,6 +126,7 @@ export class BmbTooltipBaseComponent {
     this.tooltipElement = null;
     window.removeEventListener('resize', this.repositionHandler);
     window.removeEventListener('scroll', this.repositionHandler, true);
+    window.removeEventListener('blur', this.windowBlurHandler);
   }
 
   private createTooltipElement(): HTMLDialogElement {

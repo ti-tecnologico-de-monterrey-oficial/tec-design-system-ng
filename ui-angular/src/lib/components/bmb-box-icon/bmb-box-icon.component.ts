@@ -7,18 +7,7 @@ import {
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { CommonModule } from '@angular/common';
-import {
-  IBmbAlertColors,
-  IBmbBaseColors,
-  IBmbCreativeBaseColors,
-  IBmbCreativeUseColors,
-  IBmbmitecBaseColors,
-  IBmbMitecInstitutionalColors,
-  IBmbSemanticBaseColors,
-  IBmbSemanticColors,
-} from '../../_shared/types/foundations/colors/color-type';
 import { IBmbInteractiveIconAppearance } from '../../_shared/types/components/interactive-icon';
-import { IBmbColor } from '../../_shared/types';
 import {
   IBmbBoxIconShape,
   IBmbBoxIconSize,
@@ -38,18 +27,7 @@ export class BmbBoxIconComponent {
   iconName = input.required<string>();
   iconImageAlt = input<string>();
   isIconFilled = input<boolean>(true);
-  boxColor = input<
-    | IBmbBaseColors
-    | IBmbmitecBaseColors
-    | IBmbCreativeBaseColors
-    | IBmbSemanticBaseColors
-    | IBmbSemanticColors
-    | IBmbMitecInstitutionalColors
-    | IBmbCreativeUseColors
-    | IBmbAlertColors
-    | IBmbInteractiveIconAppearance
-    | IBmbColor
-  >();
+  boxColor = input<IBmbInteractiveIconAppearance | (string & {})>();
   boxSize = input<IBmbBoxIconSize>('small');
   boxShape = input<IBmbBoxIconShape>('square');
 

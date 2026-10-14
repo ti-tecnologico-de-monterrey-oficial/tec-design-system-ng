@@ -7,10 +7,8 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  BmbTopBarComponent,
-  IUserInformation,
-} from '../bmb-top-bar/bmb-top-bar.component';
+import { BmbTopBarComponent } from '../bmb-top-bar/bmb-top-bar.component';
+import { IUserInformation } from '../../_shared/types';
 import { BmbSidebarComponent } from '../bmb-sidebar/bmb-sidebar.component';
 import { SidebarElement } from '../bmb-sidebar/bmb-sidebar.interface';
 import { CommonModule } from '@angular/common';

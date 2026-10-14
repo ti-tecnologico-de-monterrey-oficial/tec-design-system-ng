@@ -270,6 +270,33 @@ describe('BmbAlertCenterListComponent', () => {
       expect(() => component.getFormattedTime('invalid', date)).not.toThrow();
       expect(component.getFormattedTime('invalid', date)).toBe('');
     });
+
+    it('should identify today, yesterday, other dates, and invalid dates', () => {
+      expect(component.getTimeVariant(DateTime.fromISO('2023-01-01'))).toBe(
+        'today',
+      );
+      expect(component.getTimeVariant(DateTime.fromISO('2022-12-31'))).toBe(
+        'yesterday',
+      );
+      expect(component.getTimeVariant(DateTime.fromISO('2022-12-29'))).toBe(
+        'date',
+      );
+      expect(component.getTimeVariant(DateTime.invalid('invalid'))).toBe('date');
+    });
+
+    it('should format future times in lowercase and older dates as dates', () => {
+      const future = DateTime.fromISO('2023-01-02T14:00:00');
+      const older = DateTime.fromISO('2022-12-29T14:00:00');
+
+      expect(component.getFormattedTime('14:00', future)).toBe('2:00 pm');
+      expect(component.getFormattedTime('14:00', older)).toBe('29/12/2022');
+    });
+
+    it('should return empty text for invalid dates or malformed time parts', () => {
+      expect(component.getFormattedTime('09:30', DateTime.invalid('invalid'))).toBe('');
+      expect(component.getFormattedTime('09:30:00', DateTime.now())).toBe('');
+      expect(component.getFormattedTime('aa:bb', DateTime.now())).toBe('');
+    });
   });
 
   describe('Component State', () => {
@@ -313,6 +340,29 @@ describe('BmbAlertCenterListComponent', () => {
         By.css('.bmb_alert-center-list-item'),
       );
       expect(alertItems.length).toBe(1);
+    });
+  });
+
+  describe('Selection and swipe state', () => {
+    it('reports whether any alert is selected', () => {
+      expect(component.isSomeAlertSelected()).toBe(false);
+
+      component.selectionState.set({ '1': false, '2': true });
+
+      expect(component.isSomeAlertSelected()).toBe(true);
+    });
+
+    it('tracks the current swipe side and emits delete requests', () => {
+      const emit = jest.spyOn(component.getDeleteClick, 'emit');
+
+      component.handleSwipe('right');
+      expect(component.lastEvent()).toBe('right');
+
+      component.handleSwipe(null);
+      expect(component.lastEvent()).toBeNull();
+
+      component.handleDelete(mockAlerts[0]);
+      expect(emit).toHaveBeenCalledWith(mockAlerts[0]);
     });
   });
 
