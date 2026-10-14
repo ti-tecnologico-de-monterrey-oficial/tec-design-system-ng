@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   input,
+  model,
   output,
   OnChanges,
   SimpleChanges,
@@ -43,7 +44,7 @@ export class BmbSearchInputComponent implements AfterViewInit, OnChanges {
   inputId = input<string>(getUUID());
   name = input<string>(getUUID());
   data = input<string[]>([]);
-  isLoading = input<boolean>(false);
+  isLoading = model<boolean>(false);
   isServerSideFilter = input<boolean>(false);
   placeholder = input<string>('');
   serverSideFilteredData = input<string[]>([]);

@@ -1,5 +1,14 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BmbSearchInputComponent } from 'ui-angular';
+import { EMPTY, Subject, timer } from 'rxjs';
+import { finalize, map, switchMap, tap } from 'rxjs/operators';
 
 const PEOPLE = [
   'David Medina',
@@ -28,6 +37,41 @@ export class IssueSearchBarPage {
   readonly serverSideFilteredData = signal<string[]>([]);
   readonly lastEvent = signal('Sin interacciones');
 
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly searchQueries$ = new Subject<string>();
+  private readonly searchApi = {
+    search: (query: string) =>
+      timer(400).pipe(
+        map(() =>
+          PEOPLE.filter((person) =>
+            person.toLowerCase().includes(query.toLowerCase()),
+          ),
+        ),
+      ),
+  };
+
+  constructor() {
+    this.searchQueries$
+      .pipe(
+        switchMap((query) => {
+          if (!query) return EMPTY;
+
+          return timer(this.searchDebounceTime()).pipe(
+            switchMap(() => {
+              this.isLoading.set(true);
+
+              return this.searchApi.search(query).pipe(
+                tap((results) => this.serverSideFilteredData.set(results)),
+                finalize(() => this.isLoading.set(false)),
+              );
+            }),
+          );
+        }),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
+  }
+
   handleValueChange(value: string): void {
     this.lastEvent.set(`onValueChange: ${value}`);
     console.log('onValueChange emitted to parent:', value);
@@ -35,11 +79,12 @@ export class IssueSearchBarPage {
 
   handleServerSideFilterEvent(value: string): void {
     this.lastEvent.set(`onServerSideFilterEvent: ${value}`);
-    this.simulateServerResults(value);
+    this.searchQueries$.next(value);
   }
 
   handleClearField(): void {
     this.lastEvent.set('onClearField emitido');
+    this.searchQueries$.next('');
     this.serverSideFilteredData.set([]);
   }
 
@@ -48,10 +93,4 @@ export class IssueSearchBarPage {
     this.searchDebounceTime.set(value);
   }
 
-  private simulateServerResults(query: string): void {
-    const matches = PEOPLE.filter((person) =>
-      person.toLowerCase().includes(query.toLowerCase()),
-    );
-    this.serverSideFilteredData.set(matches);
-  }
 }

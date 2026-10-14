@@ -38,8 +38,17 @@
         type="checkbox"
         [checked]="isLoading()"
         (change)="isLoading.set($any($event.target).checked)"
-      />isLoading</label
+      />isLoading: {{ isLoading() }}</label
     >
+
+    <p
+      class="loading-status"
+      [class.is-loading]="isLoading()"
+      role="status"
+      aria-live="polite"
+    >
+      {{ isLoading() ? 'Cargando resultados...' : 'Sin solicitudes en curso' }}
+    </p>
 
     <label class="toggle"
       ><input
@@ -64,7 +73,7 @@
     <bmb-search-input
       [data]="data()"
       [placeholder]="placeholder()"
-      [isLoading]="isLoading()"
+      [(isLoading)]="isLoading"
       [isServerSideFilter]="isServerSideFilter()"
       [serverSideFilteredData]="serverSideFilteredData()"
       [searchDebounceTime]="searchDebounceTime()"
@@ -76,7 +85,7 @@
     <bmb-search-input
       [data]="data()"
       [placeholder]="placeholder()"
-      [isLoading]="isLoading()"
+      [(isLoading)]="isLoading"
       [isServerSideFilter]="isServerSideFilter()"
       [serverSideFilteredData]="serverSideFilteredData()"
       [searchDebounceTime]="searchDebounceTime()"
@@ -84,24 +93,8 @@
       (onServerSideFilterEvent)="handleServerSideFilterEvent($event)"
       (onClearField)="handleClearField()"
     />
+    <div style="position: relative;z-index: 1; background: red;">Example</div>
   </div>
 </section>
 
-<section class="explanation">
-  <h2>Issue original</h2>
-  <p>
-    Al buscar "David Medina" escribiendo rápido, la búsqueda se disparaba
-    demasiado pronto tras "David", impidiendo continuar con "Medina". El
-    debounce estaba fijo en 300 ms dentro del componente, sin forma de
-    ajustarlo según la velocidad de respuesta del backend que consume cada
-    implementación.
-  </p>
-  <p>
-    <strong>Solución:</strong> se agregó el input
-    <code>searchDebounceTime</code> (por defecto 300 ms) para que cada
-    consumidor del componente pueda ajustar el tiempo de espera antes de
-    filtrar, usando <code>toObservable</code> + <code>switchMap</code> para
-    reaccionar a cambios en caliente de ese valor. Prueba moviendo el slider
-    de arriba y escribiendo "David Medina" en el campo.
-  </p>
-</section>
+
