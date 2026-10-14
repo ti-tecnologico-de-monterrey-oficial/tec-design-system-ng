@@ -1,32 +1,28 @@
-import { getNextAiChatCardMode, shouldTrackAsLastNonChatMode } from './ai-chat-card';
+import {
+  getNextAiChatCardMode,
+  shouldTrackAsLastNonChatMode,
+} from './ai-chat-card';
 
 describe('ai-chat-card', () => {
   describe('getNextAiChatCardMode', () => {
     it('should go to chat from compact', () => {
-      expect(getNextAiChatCardMode('compact', 'expanded')).toBe('chat');
+      expect(getNextAiChatCardMode('compact')).toBe('chat');
     });
 
     it('should go to chat from invisible', () => {
-      expect(getNextAiChatCardMode('invisible', 'expanded')).toBe('chat');
+      expect(getNextAiChatCardMode('invisible')).toBe('chat');
     });
 
-    it('should go to invisible from chat when the last non-chat mode was invisible', () => {
-      expect(getNextAiChatCardMode('chat', 'invisible')).toBe('invisible');
-    });
-
-    it('should go to compact from chat when the last non-chat mode was not invisible', () => {
-      expect(getNextAiChatCardMode('chat', 'expanded')).toBe('compact');
-      expect(getNextAiChatCardMode('chat', 'compact')).toBe('compact');
+    it('should expand the floating chat', () => {
+      expect(getNextAiChatCardMode('chat')).toBe('expanded');
     });
 
     it('should go to chat from expanded', () => {
-      expect(getNextAiChatCardMode('expanded', 'compact')).toBe('chat');
+      expect(getNextAiChatCardMode('expanded')).toBe('chat');
     });
 
     it('should fall back to expanded for any other mode', () => {
-      expect(getNextAiChatCardMode('unknown' as never, 'compact')).toBe(
-        'expanded',
-      );
+      expect(getNextAiChatCardMode('unknown' as never)).toBe('expanded');
     });
   });
 
