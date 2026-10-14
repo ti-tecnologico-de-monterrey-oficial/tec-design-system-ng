@@ -65,6 +65,7 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   iconSize = input<number>();
   bgIconAppearance = input<IBmbColor>();
   actionHeaders = input<IBmbActionHeader[]>([]);
+  aiChatHeaderActions = input<IBmbActionHeader[]>();
   isMobile = input<boolean>();
   showRightButton = input<boolean>(true);
   isExpanded = model<boolean>(false);

@@ -6,8 +6,8 @@
         componentTitle() || ('home_card_chat.title' | translate)
       "
       [subtitle]="subtitle() || ('home_card_chat.subtitle' | translate)"
-      [actionHeaders]="headerActionList()"
-      [isExpanded]="true"
+      [aiChatHeaderActions]="headerActionList()"
+      [isExpanded]="mode() === 'expanded'"
       [showOneHeaderAction]="true"
       [(currentBot)]="currentBot"
       (onExpandClick)="handleExpandOrContract()"

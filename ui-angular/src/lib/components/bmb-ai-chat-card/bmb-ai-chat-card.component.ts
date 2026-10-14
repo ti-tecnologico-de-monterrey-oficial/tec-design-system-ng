@@ -89,18 +89,16 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
 
   private aiChatBar = contentChildren(BmbChatBarComponent);
   protected isOneChatBar = computed(() => this.aiChatBar().length === 1);
-  protected headerActionList = computed(() =>
-    this.mode() === 'chat'
-      ? [
-          {
-            icon: 'zoom_out_map',
-            tooltipText: this.translationService.translate('home_card.expand'),
-            action: () => this.handleExpand(),
-          },
-          ...this.headerActions(),
-        ]
-      : [],
-  );
+  protected headerActionList = computed<IBmbActionHeader[]>(() => {
+    return [
+      ...this.headerActions(),
+      {
+        icon: 'minimize',
+        tooltipText: this.translationService.translate('home_card.collapse'),
+        action: () => this.handleMinimize(),
+      },
+    ];
+  });
 
   private aiChatId = 'ai_chat_bar_actions_dialog';
   /**  Preserves the mode to return to when collapsing the chat.*/
@@ -214,15 +212,17 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
     this.mode.set('chat');
   }
 
-  protected handleExpand(): void {
-    this.mode.set('expanded');
+  protected handleMinimize(): void {
+    this.mode.set(
+      this.lastNonChatMode === 'invisible' ? 'invisible' : 'compact',
+    );
   }
 
   protected handleExpandOrContract(): void {
     this.mode.update((value) => {
       if (value === 'compact' || value === 'invisible') return 'chat';
       if (value === 'chat') {
-        return this.lastNonChatMode === 'invisible' ? 'invisible' : 'compact';
+        return 'expanded';
       }
       if (value === 'expanded') return 'chat';
 

@@ -33,6 +33,7 @@ export class BmbHomeCardComponent {
   iconSize = input<number>(24);
   bgIconAppearance = input<IBmbColor>();
   actionHeaders = input<IBmbActionHeader[]>([]);
+  aiChatHeaderActions = input<IBmbActionHeader[]>();
   isMobile = input<boolean>();
   contentPadding = input<SizeNames>('l');
   showRightButton = input<boolean>(true);

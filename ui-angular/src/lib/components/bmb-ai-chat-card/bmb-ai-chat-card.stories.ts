@@ -100,7 +100,7 @@ ${getGeneralDescription(
 )}
 ${getSpecialSpecifications(
   `${getAlertBlockquote(
-    `When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
+    `The header displays the minimize button alongside its existing controls. Additional actions are supplied by the consumer through headerActions, including their icons and callbacks.
 `,
     { title: RELEVANT_TITLE.warning, blockquoteType: BlockquoteType.important },
   )}${getTechnicalDocReferences({
@@ -130,10 +130,11 @@ ${getBasicExampleBlock(
       `${getAlertBlockquote(
         `
 Flows automatically supported by the component:
- - "compact" -> "chat" (collapsing) -> compact
+ - "compact" -> "chat" (minimizing) -> compact
  - "chat" (expanding) -> "expanded"
  - "expanded" (collapsing) -> "chat"
- - "invisible" -> "chat" (collapsing) -> invisible`,
+ - "expanded" (minimizing) -> "compact"
+ - "invisible" -> "chat" (minimizing) -> invisible`,
         {
           title: RELEVANT_TITLE.important,
           blockquoteType: BlockquoteType.important,
@@ -144,7 +145,10 @@ Flows automatically supported by the component:
         `
 If the AI chat card is in "expanded" mode, it will occupy the full available space, so we recommend redirect to a page where it can be used exclusively for this purpose in layouts where this behavior is desired.
         `,
-        { title: RELEVANT_TITLE.warning, blockquoteType: BlockquoteType.warning },
+        {
+          title: RELEVANT_TITLE.warning,
+          blockquoteType: BlockquoteType.warning,
+        },
       )}
 <br/>The "invisible" mode allows you to hide the "AI chat card"; to show it, you simply need to change the mode value to "chat".
 <br/><br/>In the case where the "invisible" mode is switched to "chat" mode via an external implementation, it automatically reverts to "invisible" upon collapsing.,
