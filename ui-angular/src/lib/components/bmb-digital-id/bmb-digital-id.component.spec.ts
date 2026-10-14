@@ -37,4 +37,21 @@ describe('BmbDigitalIdComponent', () => {
     component.closeDigitalId();
     expect(component.close.emit).toHaveBeenCalled();
   });
+
+  it('should emit access event when clickAccess is called', () => {
+    jest.spyOn(component.access, 'emit');
+    component.clickAccess();
+    expect(component.access.emit).toHaveBeenCalled();
+  });
+
+  it('should emit onSecondaryClick event when handleSecondaryClick is called', () => {
+    jest.spyOn(component.onSecondaryClick, 'emit');
+    const event = new MouseEvent('click');
+    component.handleSecondaryClick(event);
+    expect(component.onSecondaryClick.emit).toHaveBeenCalledWith(event);
+  });
+
+  it('should return the full name through getFullName', () => {
+    expect(component.getFullName()).toBe('Paola Mendez');
+  });
 });

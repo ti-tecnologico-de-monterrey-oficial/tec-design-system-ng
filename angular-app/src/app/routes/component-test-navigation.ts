@@ -48,7 +48,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Interactive icon (*old)',
+            label: 'Interactive icon',
             url: '/pages/buttons/interactive-icon',
             icon: 'widgets',
           },
@@ -194,7 +194,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Date picker (*old)',
+            label: 'Date picker',
             url: '/pages/inputs/date-picker',
             icon: 'widgets',
           },
@@ -486,7 +486,7 @@ export const navigationTest: ComponentGroupTest[] = [
     label: 'Mitec app',
     items: [
       {
-        label: 'Digital ID (*old)',
+        label: 'Digital ID',
         url: '/pages/mitec-app/digital-id',
         icon: 'widgets',
       },

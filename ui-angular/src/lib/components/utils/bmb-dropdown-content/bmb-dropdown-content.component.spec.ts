@@ -330,6 +330,72 @@ describe('BmbDropdownContentComponent', () => {
     });
   });
 
+  describe('Multi-select', () => {
+    beforeEach(() => {
+      component.items.set(mockItems);
+      fixture.componentRef.setInput('isMultiSelect', true);
+      fixture.detectChanges();
+    });
+
+    it('should report indeterminate when some but not all items are selected', () => {
+      fixture.componentRef.setInput('selectedOption', ['first']);
+      fixture.detectChanges();
+
+      expect(component.isIndeterminate()).toBe(true);
+      expect(component.isAllSelected()).toBe(false);
+    });
+
+    it('should report all selected when every item is selected', () => {
+      fixture.componentRef.setInput('selectedOption', [
+        'first',
+        'second',
+        'third',
+      ]);
+      fixture.detectChanges();
+
+      expect(component.isAllSelected()).toBe(true);
+      expect(component.isIndeterminate()).toBe(false);
+    });
+
+    it('should add the item to the selection on handleDropdown', () => {
+      component.handleDropdown(mockItems[0]);
+
+      expect(component.isSelected('first')).toBe(true);
+    });
+
+    it('should remove the item from the selection when already selected', () => {
+      fixture.componentRef.setInput('selectedOption', ['first']);
+      fixture.detectChanges();
+
+      component.handleDropdown(mockItems[0]);
+
+      expect(component.isSelected('first')).toBe(false);
+    });
+
+    it('should select every item through handleSelectedAll', () => {
+      component.handleSelectedAll();
+
+      expect(component.isSelected('first')).toBe(true);
+      expect(component.isSelected('second')).toBe(true);
+      expect(component.isSelected('third')).toBe(true);
+      mockItems.forEach((item) => expect(item.action).toHaveBeenCalled());
+    });
+
+    it('should clear every selection through handleSelectedAll when all are already selected', () => {
+      fixture.componentRef.setInput('selectedOption', [
+        'first',
+        'second',
+        'third',
+      ]);
+      fixture.detectChanges();
+
+      component.handleSelectedAll();
+
+      expect(component.isSelected('first')).toBe(false);
+      expect(component.isAllSelected()).toBe(false);
+    });
+  });
+
   describe('Accessibility', () => {
     beforeEach(() => {
       component.items.set(mockItems);

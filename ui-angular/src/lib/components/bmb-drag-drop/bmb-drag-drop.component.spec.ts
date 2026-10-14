@@ -3,8 +3,18 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { BmbDropzoneDirective } from './bmb-dropzone.directive';
+import { BmbDraggableDirective } from './bmb-draggable.directive';
 import { BmbDragDropService } from './bmb-drag-drop.service';
 import { BmbDragDropComponent } from './bmb-drag-drop.component';
+
+@Component({
+  standalone: true,
+  imports: [BmbDraggableDirective],
+  template: ` <div bmbDraggable [dragData]="dragData">Draggable</div> `,
+})
+class DraggableTestHostComponent {
+  dragData = { id: 1, label: 'Item A' };
+}
 
 @Component({
   standalone: true,
@@ -110,6 +120,63 @@ describe('BmbDropzoneDirective', () => {
 
     expect(service.clearDrag).toHaveBeenCalled();
 
+    expect(service.draggedItem()).toBeNull();
+  });
+});
+
+describe('BmbDraggableDirective', () => {
+  let fixture: ComponentFixture<DraggableTestHostComponent>;
+  let service: BmbDragDropService;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [DraggableTestHostComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(DraggableTestHostComponent);
+    service = TestBed.inject(BmbDragDropService);
+    fixture.detectChanges();
+  });
+
+  it('should create directive', () => {
+    const directive = fixture.debugElement.query(
+      By.directive(BmbDraggableDirective),
+    );
+
+    expect(directive).toBeTruthy();
+  });
+
+  it('should start the drag and mark the element as dragging on dragstart', () => {
+    const directiveEl = fixture.debugElement.query(
+      By.directive(BmbDraggableDirective),
+    );
+    const directive = directiveEl.injector.get(BmbDraggableDirective);
+    const event = new DragEvent('dragstart', {
+      dataTransfer: new DataTransfer(),
+    });
+
+    directiveEl.triggerEventHandler('dragstart', event);
+    fixture.detectChanges();
+
+    expect(directive.isDragging).toBe(true);
+    expect(service.draggedItem()).toEqual({ id: 1, label: 'Item A' });
+    expect(directiveEl.nativeElement.classList).toContain('bmb-dragging');
+  });
+
+  it('should clear the drag state and unmark the element on dragend', () => {
+    const directiveEl = fixture.debugElement.query(
+      By.directive(BmbDraggableDirective),
+    );
+    const directive = directiveEl.injector.get(BmbDraggableDirective);
+
+    directiveEl.triggerEventHandler(
+      'dragstart',
+      new DragEvent('dragstart', { dataTransfer: new DataTransfer() }),
+    );
+    directiveEl.triggerEventHandler('dragend');
+    fixture.detectChanges();
+
+    expect(directive.isDragging).toBe(false);
     expect(service.draggedItem()).toBeNull();
   });
 });
