@@ -33,4 +33,32 @@ describe('BmbChevronTitleSelectorComponent', () => {
     expect(componentRef.instance.leadingIcon()).toBe('');
     expect(componentRef.instance.trailingIcon()).toBe('');
   });
+
+  it('should emit onLeadingClick on handleLeadingClick', () => {
+    jest.spyOn(component.onLeadingClick, 'emit');
+    const event = new MouseEvent('click');
+
+    component.handleLeadingClick(event);
+
+    expect(component.onLeadingClick.emit).toHaveBeenCalledWith(event);
+  });
+
+  it('should emit onTrailingClick on handleTrailingClick', () => {
+    jest.spyOn(component.onTrailingClick, 'emit');
+    const event = new MouseEvent('click');
+
+    component.handleTrailingClick(event);
+
+    expect(component.onTrailingClick.emit).toHaveBeenCalledWith(event);
+  });
+
+  it('should throw when neither title nor componentTitle is provided', () => {
+    const freshFixture = TestBed.createComponent(
+      BmbChevronTitleSelectorComponent,
+    );
+
+    expect(() => freshFixture.detectChanges()).toThrow(
+      'The "componentTitle" input is required. Please provide a value for it.',
+    );
+  });
 });

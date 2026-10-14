@@ -18,7 +18,6 @@ import {
 import { useEffect, useGlobals } from 'storybook/internal/preview-api';
 import { themes } from 'storybook/theming';
 import { withThemeByClassName } from '@storybook/addon-themes';
-import { withDocsViewport } from '@docs/components/viewport.decorator';
 
 const preview: Preview = {
   parameters: {
@@ -161,7 +160,6 @@ const preview: Preview = {
 
       return story;
     },
-    withDocsViewport,
     withThemeByClassName({
       themes: {
         light: 'storybook-light-theme',

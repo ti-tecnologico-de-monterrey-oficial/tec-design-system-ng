@@ -1,8 +1,13 @@
 import { componentTestRoutes } from './routes/component-tests.routes';
 import { Route } from '@angular/router';
+import { TemplatesContainerBtn } from './pages/templates-container-btn/templates-container-btn';
 
 export const appRoutes: Route[] = [
   ...componentTestRoutes,
+  {
+    path: 'template-container-btn',
+    component: TemplatesContainerBtn,
+  },
   {
     path: 'pages/item-default',
     title: 'Item default',
@@ -224,6 +229,22 @@ export const appRoutes: Route[] = [
       ),
   },
   { path: 'pages', pathMatch: 'full', redirectTo: 'pages/carousel' },
+  {
+    path: 'issues/imagenes-test',
+    title: 'Imágenes | BmbImage',
+    loadComponent: () =>
+      import('./pages/imagenes-views/imagenes-views').then(
+        ({ ImagenesViews }) => ImagenesViews,
+      ),
+  },
+  {
+    path: 'issue/padding',
+    title: 'Padding playground | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/issue-padding-page/issue-padding-page').then(
+        ({ IssuePaddingPage }) => IssuePaddingPage,
+      ),
+  },
   {
     path: 'pages/carousel',
     title: 'BmbCarousel | Bamboo migration dashboard',
@@ -483,14 +504,6 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'pages/top-bar-item',
-    title: 'BmbTopBarItem | Bamboo migration dashboard',
-    loadComponent: () =>
-      import('./pages/top-bar-item-page/top-bar-item-page').then(
-        ({ TopBarItemPage }) => TopBarItemPage,
-      ),
-  },
-  {
     path: 'pages/interactive-item-text-button',
     title: 'BmbInteractiveItemTextButton | Bamboo migration dashboard',
     loadComponent: () =>
@@ -689,6 +702,14 @@ export const appRoutes: Route[] = [
     title: 'BmbTabs | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/tabs-page/tabs-page').then(({ TabsPage }) => TabsPage),
+  },
+  {
+    path: 'pages/swipe',
+    title: 'Swipe',
+    loadComponent: () =>
+      import('./pages/swipe-page/swipe-page').then(
+        ({ SwipePage }) => SwipePage,
+      ),
   },
   {
     path: 'pages/list-items',

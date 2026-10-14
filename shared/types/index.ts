@@ -3,9 +3,12 @@ export * from './components/header-mitec';
 export * from './components/academic-progress';
 export * from './components/action-icon';
 export * from './components/advertisement-card';
+export * from './components/ai-chat-card';
+export * from './components/alert-center-detail';
 export * from './components/badge';
 export * from './components/bottom-navigation-bar';
 export * from './components/bot-icon';
+export * from './components/box-icon';
 export * from './components/breadcrumb';
 export * from './components/card';
 export * from './components/divider';
@@ -16,6 +19,7 @@ export * from './components/grade-value';
 export * from './components/hito-list';
 export * from './components/icon';
 export * from './components/iframe';
+export * from './components/input-phone-number';
 export * from './components/interactive-icon';
 export * from './components/invoice';
 export * from './components/icon-status';
@@ -38,25 +42,22 @@ export * from './components/skeleton';
 export * from './components/tags';
 export * from './components/text-link';
 export * from './components/title';
+export * from './components/top-bar';
 export * from './components/toast';
 export * from './components/tooltip';
 export * from './components/user-summary';
 export * from './components/value-counter';
 export * from './components/action-icon';
-export type { IBmbDataTopBar } from './components/breadcrumb';
+export * from './components/hito-list';
+export * from './components/breadcrumb';
 export * from './components/skeleton';
 export * from './colors';
-export type { IBmbNotificationCounterType } from './components/notification-counter';
-export type { BmbSkeletonType } from './components/skeleton';
-export type {
-  BmbValueCounterFormatter,
-  BmbValueCounterParts,
-} from './components/value-counter';
-export type {
-  BmbIframeAttributes,
-  BmbIframeLoading,
-  BmbIframeReferrerPolicy,
-} from './components/iframe';
+export * from './components/notification-counter';
+export * from './components/skeleton';
+export * from './components/value-counter';
+export * from './components/iframe';
+export * from './components/simple-text';
+export * from './components/image';
 
 export * from './input';
 export * from './utils';

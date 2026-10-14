@@ -488,7 +488,7 @@
     padding: rem.rem_calc(16);
 
     @include mixins.check-for-desktop() {
-      padding: rem.rem_calc(96 140);
+      padding: rem.rem_calc(16 16 16 140);
     }
   }
 

@@ -28,6 +28,12 @@ export class BmbAlertCenterService {
     this.alerts.update((currentAlerts) => [...currentAlerts, ...alerts]);
   }
 
+  removeAlert(id: IBmbDataAlert['id']) {
+    this.alerts.update((currentAlerts) =>
+      currentAlerts.filter((alert) => alert.id !== id),
+    );
+  }
+
   getAlerts() {
     return this.alerts();
   }

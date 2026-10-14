@@ -1,0 +1,10 @@
+@use '../../../assets/styles/base/rem' as rem;
+
+.bmb_dropdown-menu {
+  display: inline-flex;
+  color: currentColor;
+
+  &-button {
+    display: inline-flex;
+  }
+}

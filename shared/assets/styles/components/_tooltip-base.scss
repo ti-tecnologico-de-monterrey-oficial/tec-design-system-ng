@@ -31,6 +31,7 @@ bmb-tooltip-base {
     width: max-content;
     outline: 0 none;
     hyphens: auto;
+    -webkit-hyphens: auto;
     overflow-wrap: break-word;
 
     &--floating {

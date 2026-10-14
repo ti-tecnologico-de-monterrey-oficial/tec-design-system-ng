@@ -27,6 +27,8 @@
         [alerts]="filteredEvents().recent"
         [(selectionState)]="selectionState"
         [enableMultipleSelection]="enableMultipleSelection()"
+        [enableSwipe]="enableSwipe()"
+        (getDeleteClick)="handleDelete($event)"
       />
     }
     @if (filteredEvents().sevenDays.length) {
@@ -36,6 +38,8 @@
         [alerts]="filteredEvents().sevenDays"
         [enableMultipleSelection]="enableMultipleSelection()"
         [(selectionState)]="selectionState"
+        [enableSwipe]="enableSwipe()"
+        (getDeleteClick)="handleDelete($event)"
       />
     }
     @if (filteredEvents().month.length) {
@@ -45,6 +49,8 @@
         [alerts]="filteredEvents().month"
         [enableMultipleSelection]="enableMultipleSelection()"
         [(selectionState)]="selectionState"
+        [enableSwipe]="enableSwipe()"
+        (getDeleteClick)="handleDelete($event)"
       />
     }
     @if (filteredEvents().rest.length) {
@@ -54,6 +60,8 @@
         [alerts]="filteredEvents().rest"
         [enableMultipleSelection]="enableMultipleSelection()"
         [(selectionState)]="selectionState"
+        [enableSwipe]="enableSwipe()"
+        (getDeleteClick)="handleDelete($event)"
       />
     }
     @if (

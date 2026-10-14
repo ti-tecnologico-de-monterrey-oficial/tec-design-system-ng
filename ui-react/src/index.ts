@@ -11,4 +11,9 @@ export type {
 	BmbTranslationValue,
 } from './lib/context/bmb-translate';
 
+export { BmbSimpleText } from './lib/component/bmb-simple-text';
+export type {
+	BmbSimpleTextProps,
+	IBmbSimpleTextElementType,
+} from './lib/component/bmb-simple-text';
 

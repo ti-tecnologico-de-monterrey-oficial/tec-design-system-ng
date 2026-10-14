@@ -21,3 +21,12 @@ export default meta;
 
 export const Desktop = cardExampleStory('informative');
 export const Mobile = cardExampleStory('informative', true);
+Mobile.parameters = {
+  ...Mobile.parameters,
+  layout: 'fullscreen',
+  docs: {
+    ...Mobile.parameters?.['docs'],
+    previewWidth: '375px',
+    story: { inline: false, height: '1000px' },
+  },
+};

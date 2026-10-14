@@ -12,10 +12,6 @@ import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../pipes/translations';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-chevron-title-selector',
   standalone: true,

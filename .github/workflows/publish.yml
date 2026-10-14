@@ -17,10 +17,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
@@ -31,7 +31,7 @@ jobs:
       - name: Change package file for versioning
         run: |
           rm package.json package-lock.json
-          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}.json ./package.json
 
       - name: Clean npm cache
         run: npm cache clean --force
@@ -68,10 +68,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
@@ -82,7 +82,7 @@ jobs:
       - name: Change package file for versioning
         run: |
           rm package.json package-lock.json
-          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}.json ./package.json
 
       - name: Clean npm cache
         run: npm cache clean --force
@@ -119,10 +119,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
@@ -133,7 +133,7 @@ jobs:
       - name: Change package file for versioning
         run: |
           rm package.json package-lock.json
-          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}.json ./package.json
 
       - name: Clean npm cache
         run: npm cache clean --force

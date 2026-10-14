@@ -21,7 +21,8 @@ import {
 import {
   DBmbInputParamDesc,
 } from '@docs/utils/parameterDescriptions';
-import { IBmbCountryCode, IBmbCountryCodes } from '@shared/logic/countryCodes';
+import { IBmbCountryCodes } from '@shared/logic/countryCodes';
+import { IBmbCountryCode } from '@shared/types/components/input-phone-number';
 
 const inputName = 'input_phone_number';
 const inputExample = `<bmb-input-phone-number

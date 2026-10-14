@@ -271,6 +271,12 @@ $alignItemsOptions: (
       display: block;
     }
   }
+
+  & > bmb-image,
+  & > bmb-image .bmb_image {
+    height: 100%;
+    display: block;
+  }
 }
 
 // Opt-in horizontal scrolling; retain intrinsic item widths.

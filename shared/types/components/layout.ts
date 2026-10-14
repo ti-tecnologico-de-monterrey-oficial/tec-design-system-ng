@@ -28,3 +28,19 @@ export interface IMargin {
   lg?: number;
   xl?: number;
 }
+export type ILayoutFlow = 'row' | 'reverse';
+export interface ILayoutFlowResponsive {
+  m: ILayoutFlow;
+  l: ILayoutFlow;
+  xl: ILayoutFlow;
+}
+export interface IAlignItemsOptionsResponsive {
+  sm: IAlignItemsOptions;
+  lg: IAlignItemsOptions;
+  xl: IAlignItemsOptions;
+}
+export interface IJustifyOptionsResponsive {
+  sm: IJustifyOptions;
+  lg: IJustifyOptions;
+  xl: IJustifyOptions;
+}

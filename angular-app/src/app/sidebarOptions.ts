@@ -229,12 +229,6 @@ export const sidebarOptions: SidebarElement[][] = [
           link: '/pages/navigation-bar',
         },
         {
-          id: 27,
-          icon: 'view_list',
-          title: 'Top bar item',
-          link: '/pages/top-bar-item',
-        },
-        {
           id: 28,
           icon: 'touch_app',
           title: 'Interactive item text button',

@@ -8,20 +8,13 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
-import {
-  IBmbAlertColors,
-  IBmbBaseColors,
-  IBmbCreativeBaseColors,
-  IBmbCreativeUseColors,
-  IBmbmitecBaseColors,
-  IBmbMitecInstitutionalColors,
-  IBmbSemanticBaseColors,
-  IBmbSemanticColors,
-} from '../../_shared/types/foundations/colors/color-type';
 import { IBmbContrast } from '../../_shared/types/colors';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
-import { IBmbTargetLink, IBmbInteractiveIconAppearance } from '../../_shared/types';
+import {
+  IBmbTargetLink,
+  IBmbInteractiveIconAppearance,
+} from '../../_shared/types';
 import { BmbTooltipBaseComponent } from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
 
 export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
@@ -46,17 +39,7 @@ export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
 })
 export class BmbInteractiveIconComponent {
   appearanceContrast = input<IBmbContrast>('default');
-  appearance = input<
-    | IBmbBaseColors
-    | IBmbmitecBaseColors
-    | IBmbCreativeBaseColors
-    | IBmbSemanticBaseColors
-    | IBmbSemanticColors
-    | IBmbMitecInstitutionalColors
-    | IBmbCreativeUseColors
-    | IBmbAlertColors
-    | IBmbInteractiveIconAppearance
-  >('red');
+  appearance = input<IBmbInteractiveIconAppearance | (string & {})>('red');
   description = input<string>('');
   icon = input<string>('face');
   dotNotification = input<number>();
@@ -83,7 +66,7 @@ export class BmbInteractiveIconComponent {
   }
 
   getClasses(): string[] {
-    const principalClassName: string = 'bmb_interactive_icon';
+    const principalClassName = 'bmb_interactive_icon';
     const classes: string[] = [
       principalClassName,
       `${principalClassName}-${this.layout()}`,

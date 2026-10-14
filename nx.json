@@ -97,6 +97,14 @@
     }
   },
   "targetDefaults": {
+    "test": {
+      "dependsOn": [
+        {
+          "projects": ["ui-angular"],
+          "target": "check-shared-import-boundaries"
+        }
+      ]
+    },
     "@angular/build:application": {
       "cache": true,
       "dependsOn": ["^build"],

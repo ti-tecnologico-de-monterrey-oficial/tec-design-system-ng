@@ -1,0 +1,3 @@
+@use '../../../styles/playground';
+
+@include playground.page(12rem, 16rem, 12rem);

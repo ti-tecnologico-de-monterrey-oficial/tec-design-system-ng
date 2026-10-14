@@ -1,0 +1,17 @@
+@switch (elementType()) {
+  @case ('span') {
+    <span class="bmb_simple-text" [ngStyle]="styles"><ng-content></ng-content></span>
+  }
+  @case ('div') {
+    <div class="bmb_simple-text" [ngStyle]="styles"><ng-content></ng-content></div>
+  }
+  @case ('section') {
+    <section class="bmb_simple-text" [ngStyle]="styles"><ng-content></ng-content></section>
+  }
+  @case ('small') {
+    <small class="bmb_simple-text" [ngStyle]="styles"><ng-content></ng-content></small>
+  }
+  @default {
+    <p class="bmb_simple-text" [ngStyle]="styles"><ng-content></ng-content></p>
+  }
+}
