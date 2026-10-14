@@ -13,7 +13,7 @@ const ignoredDirectories = new Set([
   'tmp',
 ]);
 const sourceExtensions = new Set(['.cjs', '.js', '.jsx', '.mjs', '.ts', '.tsx']);
-const forbiddenImport = new RegExp('@shared/' + '(?:logic|types)/');
+const forbiddenImport = /@shared\/(?:logic|types)(?:\/|['"])/;
 const violations = [];
 
 function scanDirectory(directory) {
