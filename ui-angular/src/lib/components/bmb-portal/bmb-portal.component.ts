@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 import { BmbNoticeCardComponent } from '../bmb-notice-card/bmb-notice-card.component';
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
 import { BmbNativeModalComponent } from '../bmb-modal/bmb-native-modal.component';
-import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
+import { IBmbNativeModal } from '../../_shared/types';
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,

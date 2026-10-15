@@ -20,12 +20,7 @@ import {
   BMB_SEMANTIC_COLOR_LIST,
 } from '../../../_shared/types/foundations/colors/color-type';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
-
-export type IBmbTextEditorPromptType = 'link' | 'image' | 'color';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { IBmbTextEditorPromptType } from '../../../_shared/types';
 
 @Component({
   selector: 'bmb-text-editor-prompt',

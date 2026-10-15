@@ -169,7 +169,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'ToTP prompt (*old)',
+            label: 'ToTP prompt',
             url: '/pages/containers/totp-prompt',
             icon: 'widgets',
           },
@@ -214,7 +214,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Text editor (*old)',
+            label: 'Text editor',
             url: '/pages/inputs/text-editor',
             icon: 'widgets',
           },
@@ -265,7 +265,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'FAB Overlay drawer (*old)',
+            label: 'FAB Overlay drawer',
             url: '/pages/menus/fab-overlay-drawer',
             icon: 'widgets',
           },
@@ -387,7 +387,7 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Web templates (*old)',
+        label: 'Web templates',
         url: '/pages/internals/web-templates',
         icon: 'widgets',
       },

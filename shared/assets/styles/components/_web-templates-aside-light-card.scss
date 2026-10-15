@@ -1,8 +1,8 @@
-@use '../../../../../../shared/assets/styles/base/fonts' as fonts;
-@use '../../../../../../shared/assets/styles/base/rem' as rem;
-@use '../../../../../../shared/assets/styles/base/mixins' as mixins;
+@use '../base/fonts' as fonts;
+@use '../base/rem' as rem;
+@use '../base/mixins' as mixins;
 
-.bmb_web-template-aside-first-card {
+.bmb_web-template-aside-light-card {
   grid-template-columns: 1fr;
   grid-template-rows: 71px max-content max-content;
   grid-template-areas:
@@ -11,14 +11,9 @@
     'content';
   @include fonts.font(3, regular);
   @include mixins.check-for-desktop() {
+    grid-template-columns: 1fr;
+    grid-template-rows: 71px max-content 1fr;
     gap: 0;
-  }
-
-  &.bmb_web-template {
-    @include mixins.check-for-desktop() {
-      height: auto;
-      overflow: auto;
-    }
   }
 
   .bmb_web-template {
@@ -70,6 +65,7 @@
       width: 100%;
       box-sizing: border-box;
       margin: 0 auto;
+      height: 100%;
       overflow: auto;
 
       @include mixins.check-for-mobile() {
@@ -79,10 +75,7 @@
 
       @include mixins.check-for-desktop() {
         padding: 0 rem.rem_calc(16) rem.rem_calc(16);
-      }
-
-      @include mixins.media-query(1800, 'min') {
-        padding: 0;
+        gap: 0 0 var(--bmb-spacing-m);
       }
 
       @include mixins.media-desktop-templates() {
@@ -91,17 +84,31 @@
     }
 
     &-main {
-      background-color: var(--containers-main);
       border-radius: var(--bmb-radius-m);
       padding: var(--bmb-spacing-m);
-      border: rem.rem_calc(1) solid var(--general-contrasts-container);
+      height: 100%;
+      overflow: auto;
+
+      @include mixins.check-for-desktop() {
+        border: rem.rem_calc(1) solid var(--general-contrasts-container);
+        border-radius: 0 var(--bmb-radius-m) var(--bmb-radius-m) 0;
+      }
+
+      &-container {
+        overflow: auto;
+      }
     }
 
     &-aside {
       background-color: var(--containers-main);
       border-radius: var(--bmb-radius-m);
       padding: var(--bmb-spacing-m);
-      border: rem.rem_calc(1) solid var(--general-contrasts-container);
+      height: 100%;
+      overflow: auto;
+
+      @include mixins.check-for-desktop() {
+        border-radius: var(--bmb-radius-m) 0 0 var(--bmb-radius-m);
+      }
     }
   }
 }

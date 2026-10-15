@@ -34,7 +34,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
+import { IBmbNativeModal } from '../../_shared/types';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../pipes/translations';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
