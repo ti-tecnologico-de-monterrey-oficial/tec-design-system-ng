@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copiar el workspace y luego sobreescribir package.json con la variante v20
 COPY . .
-COPY package/v20/package.json ./package.json
+COPY package/v20.json ./package.json
 
 # Instalar Angular CLI y dependencias
 RUN rm -f package-lock.json && npm add --global nx && npm install

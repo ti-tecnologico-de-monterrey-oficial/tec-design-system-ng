@@ -23,7 +23,7 @@ export const navigationTest: ComponentGroupTest[] = [
         label: 'Buttons',
         items: [
           {
-            label: 'Action icon (*old)',
+            label: 'Action icon',
             url: '/pages/buttons/action-icon',
             icon: 'widgets',
           },
@@ -48,7 +48,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Interactive icon (*old)',
+            label: 'Interactive icon',
             url: '/pages/buttons/interactive-icon',
             icon: 'widgets',
           },
@@ -74,7 +74,12 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Advertisement card (*old)',
+            label: 'Alert center detail',
+            url: '/pages/alert-center-detail',
+            icon: 'widgets',
+          },
+          {
+            label: 'Advertisement card',
             url: '/pages/containers/advertisement-card',
             icon: 'widgets',
           },
@@ -164,7 +169,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'ToTP prompt (*old)',
+            label: 'ToTP prompt',
             url: '/pages/containers/totp-prompt',
             icon: 'widgets',
           },
@@ -189,7 +194,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Date picker (*old)',
+            label: 'Date picker',
             url: '/pages/inputs/date-picker',
             icon: 'widgets',
           },
@@ -209,7 +214,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Text editor (*old)',
+            label: 'Text editor',
             url: '/pages/inputs/text-editor',
             icon: 'widgets',
           },
@@ -245,22 +250,22 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'more_vert',
           },
           {
-            label: 'Bottom navigation bar (*old)',
+            label: 'Bottom navigation bar',
             url: '/pages/menus/bottom-navigation-bar',
             icon: 'widgets',
           },
           {
-            label: 'Action menu (*old)',
+            label: 'Action menu',
             url: '/pages/menus/action-menu',
             icon: 'widgets',
           },
           {
-            label: 'Chevron title selector (*old)',
+            label: 'Chevron title selector',
             url: '/pages/menus/chevron-title-selector',
             icon: 'widgets',
           },
           {
-            label: 'FAB Overlay drawer (*old)',
+            label: 'FAB Overlay drawer',
             url: '/pages/menus/fab-overlay-drawer',
             icon: 'widgets',
           },
@@ -270,7 +275,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Top bar (*old)',
+            label: 'Top bar',
             url: '/pages/menus/top-bar',
             icon: 'widgets',
           },
@@ -382,7 +387,7 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Web templates (*old)',
+        label: 'Web templates',
         url: '/pages/internals/web-templates',
         icon: 'widgets',
       },
@@ -481,7 +486,7 @@ export const navigationTest: ComponentGroupTest[] = [
     label: 'Mitec app',
     items: [
       {
-        label: 'Digital ID (*old)',
+        label: 'Digital ID',
         url: '/pages/mitec-app/digital-id',
         icon: 'widgets',
       },

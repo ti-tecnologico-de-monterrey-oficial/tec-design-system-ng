@@ -22,11 +22,10 @@ import { CommonModule } from '@angular/common';
 import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { BmbAcademicProgressComponent } from '../bmb-academic-progress/bmb-academic-progress.component';
-import { IBmbNameValuePair } from '../../_shared/types';
+import { IBmbNameValuePair, IBmbNativeModal } from '../../_shared/types';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { buildErrorMessage } from '../../_shared/logic/utils';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
-import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 

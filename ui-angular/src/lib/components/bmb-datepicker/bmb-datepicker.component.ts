@@ -26,12 +26,7 @@ import {
 } from '../../_shared/types/input';
 import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
-import {
-  getCustomValidation,
-  getCustomValidationMessage,
-  getUUID,
-  isErrorMessageSet,
-} from '../../_shared/logic/utils';
+import { getUUID } from '../../_shared/logic/utils';
 import {
   assignNewFormControl,
   newFormControlByType,
@@ -39,10 +34,11 @@ import {
 } from '../../_shared/logic/formControl';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  buildDatepickerErrorMessage,
+  getDatepickerValidationResult,
+  parseDatepickerDate,
+} from '../../_shared/logic/components/datepicker';
 
 @Component({
   selector: 'bmb-datepicker',
@@ -109,51 +105,29 @@ export class BmbDatepickerComponent implements OnInit {
 
   handleCustomValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      const { value } = control;
-      if (!value) return null;
-
-      const isValidDate = DateTime.fromFormat(
+      const { errors, message } = getDatepickerValidationResult(
         control.value,
         this.dateFormat(),
-      ).isValid;
-
-      if (!isValidDate) {
-        this.customValidationMessage = `Por favor ingresa la fecha con formato ${this.dateFormat()}`;
-        return {
-          customValidation: true,
-        };
-      }
-
-      const result = getCustomValidation(
-        this.customValidation()!,
+        this.customValidation(),
         this.control(),
-      );
-      this.customValidationMessage = getCustomValidationMessage(
-        result,
         this.errorMessage(),
       );
 
-      return result;
+      if (message !== undefined) {
+        this.customValidationMessage = message;
+      }
+
+      return errors;
     };
   }
 
   getErrorMessage(): IBmbInputError {
-    const defaultErrorMessages: IBmbInputError = {
-      required:
-        this.requiredFieldErrorMessage() ||
-        `Por favor ingresa la fecha de ${this.label()}`,
-      customValidation: this.customValidationMessage,
-    };
-
-    if (isErrorMessageSet(this.errorMessage())) {
-      const errorMessages = this.errorMessage() as IBmbInputError;
-      return {
-        ...defaultErrorMessages,
-        required: errorMessages.required || defaultErrorMessages.required,
-      };
-    }
-
-    return defaultErrorMessages;
+    return buildDatepickerErrorMessage(
+      this.requiredFieldErrorMessage(),
+      this.label(),
+      this.customValidationMessage,
+      this.errorMessage(),
+    );
   }
 
   handleFocusedEvent(event: KeyboardEvent | MouseEvent) {
@@ -192,8 +166,7 @@ export class BmbDatepickerComponent implements OnInit {
   }
 
   convertToDate(date: string): DateTime | null {
-    const dateTime = DateTime.fromFormat(date, this.dateFormat());
-    return dateTime.isValid ? dateTime : null;
+    return parseDatepickerDate(date, this.dateFormat());
   }
 
   get shouldShowError(): boolean {

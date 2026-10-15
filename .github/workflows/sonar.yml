@@ -12,11 +12,27 @@ jobs:
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout sources
         uses: actions/checkout@v5
         with:
           fetch-depth: 0 # Mejor relevancia del análisis
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Angular coverage
+        run: ./node_modules/.bin/nx test ui-angular --coverage --runInBand
+
+      - name: Verify LCOV report
+        run: test -s coverage/ui-angular/lcov.info
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@master

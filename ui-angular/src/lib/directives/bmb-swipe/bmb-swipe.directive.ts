@@ -40,22 +40,22 @@ export class BmbSwipeRightActionsDirective {
   standalone: true,
 })
 export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
-  swipeThreshold = input<number>(DEFAULT_SNAP_THRESHOLD);
-  swipeCloseOnAction = input<boolean>(true);
-  swipeDisabled = input<boolean>(false);
+  readonly swipeThreshold = input<number>(DEFAULT_SNAP_THRESHOLD);
+  readonly swipeCloseOnAction = input<boolean>(true);
+  readonly swipeDisabled = input<boolean>(false);
 
   @HostBinding('class.bmb_swipe-disabled')
   get isSwipeDisabled(): boolean {
     return this.swipeDisabled();
   }
 
-  getSwipeOpenChange = output<IBmbSwipeSide | null>();
+  readonly getSwipeOpenChange = output<IBmbSwipeSide | null>();
 
   @ContentChild(BmbSwipeLeftActionsDirective, { read: TemplateRef })
-  private leftTemplate: TemplateRef<unknown> | undefined;
+  private readonly leftTemplate: TemplateRef<unknown> | undefined;
 
   @ContentChild(BmbSwipeRightActionsDirective, { read: TemplateRef })
-  private rightTemplate: TemplateRef<unknown> | undefined;
+  private readonly rightTemplate: TemplateRef<unknown> | undefined;
 
   private readonly el: ElementRef<HTMLElement> = inject(ElementRef);
   private readonly renderer: Renderer2 = inject(Renderer2);
@@ -78,7 +78,7 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
   private dragStartOffset = 0;
   private currentX = 0;
   private openSide: IBmbSwipeSide | null = null;
-  private className = 'bmb_swipe';
+  private readonly className = 'bmb_swipe';
 
   ngAfterContentInit(): void {
     this.buildStructure();
@@ -278,7 +278,15 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
   private snapTo(x: number): void {
     this.setTransition(true);
     this.setPosition(x);
-    this.updateOpenSide(x > 0 ? 'left' : x < 0 ? 'right' : null);
+
+    let side: IBmbSwipeSide | null = null;
+    if (x > 0) {
+      side = 'left';
+    } else if (x < 0) {
+      side = 'right';
+    }
+
+    this.updateOpenSide(side);
   }
 
   private setPosition(x: number): void {

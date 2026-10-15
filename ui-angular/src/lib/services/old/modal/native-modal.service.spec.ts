@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { BmbNativeModalService } from './native-modal.service';
-import { IBmbNativeModal } from '../../../components/bmb-modal/bmb-modal.interface';
+import { IBmbNativeModal } from '../../../_shared/types';
 import { getUUID } from '../../../_shared/logic/utils';
 
 describe('BmbNativeModalService', () => {

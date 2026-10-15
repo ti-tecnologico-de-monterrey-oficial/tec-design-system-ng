@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copiar los archivos de configuración de dependencias
 COPY . .
-COPY package/v21/package.json ./
+COPY package/v21.json ./package.json
 
 # Instalar Angular CLI y dependencias
 RUN rm -f package-lock.json && npm add --global nx && npm install

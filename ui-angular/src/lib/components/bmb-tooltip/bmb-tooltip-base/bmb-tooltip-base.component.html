@@ -3,7 +3,7 @@
   class="bmb_tooltip-container"
   (mouseenter)="showTooltip()"
   (mouseleave)="hideTooltip()"
-  (focusin)="showTooltip()"
+  (focusin)="showTooltip($event)"
   (focusout)="hideTooltip()"
   (mousedown)="showTooltip()"
   (mouseup)="hideTooltip()"

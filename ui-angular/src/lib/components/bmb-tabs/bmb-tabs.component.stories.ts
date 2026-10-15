@@ -101,7 +101,7 @@ ${getBasicExampleBlock(
     BmbLegendComponent,
     BmbContainerComponent,
 `,
-  `import { ViewChild, inject, DestroyRef } from '@angular/core';
+  `import { ViewChild, DestroyRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
  `,
   `@ViewChild(BmbTabsComponent) bmbTabsComponent!: BmbTabsComponent;
@@ -117,12 +117,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     { id: 6, title: 'Mas usado' },
   ];
 
-  constructor(private tabsService: TabsService) {}
+  ngAfterViewInit(): void {
+    this.bmbTabsComponent.tabsService.setTabs(this.tabsData);
 
-  ngOnInit(): void {
-    this.tabsService.setTabs(this.tabsData);
-
-    this.tabsService.selectedTab$
+    this.bmbTabsComponent.tabsService.selectedTab$
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((tab) => {
         if (tab) {
@@ -134,7 +132,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
   onTabSelected(selectedTab: IBmbTab): void {
     if (this.activeTabId !== selectedTab.id) {
-      this.tabsService.selectTab(selectedTab);
+      this.bmbTabsComponent.tabsService.selectTab(selectedTab);
     }
   }
 
@@ -148,7 +146,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
   setFirstTabFromOutside() {
     const firstTab = this.tabsData[0];
-    this.tabsService.selectTab(firstTab);
+    this.bmbTabsComponent.tabsService.selectTab(firstTab);
   }`,
 )}
 \`\`\`html

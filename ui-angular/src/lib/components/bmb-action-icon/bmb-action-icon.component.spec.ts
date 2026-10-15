@@ -52,4 +52,50 @@ describe('BmbActionIconComponent', () => {
     componentRef.setInput('toggleIconActive', undefined);
     expect(component.getIcon()).toBe('face');
   });
+
+  it('should toggle isToggleActive on handleClick when toggleIconActive is set', () => {
+    componentRef.setInput('toggleIconActive', 'toggle');
+    expect(component.isToggleActive()).toBe(false);
+
+    component.handleClick();
+
+    expect(component.isToggleActive()).toBe(true);
+  });
+
+  it('should not toggle isToggleActive on handleClick when toggleIconActive is not set', () => {
+    component.handleClick();
+    expect(component.isToggleActive()).toBe(false);
+  });
+
+  it('should return null for safeSVG when not an SVG template but a custom icon is set', () => {
+    (component as unknown as { customActionIcon: () => unknown }).customActionIcon =
+      () => 'template';
+    componentRef.setInput('isSVGTemplate', false);
+    expect(component.safeSVG).toBeNull();
+  });
+
+  it('should return null for safeSVG when an SVG template but no custom icon is set', () => {
+    (component as unknown as { customActionIcon: () => unknown }).customActionIcon =
+      () => undefined;
+    componentRef.setInput('isSVGTemplate', true);
+    expect(component.safeSVG).toBeNull();
+  });
+
+  it('should return sanitized safe html for safeSVG when an SVG template with a custom icon', () => {
+    (component as unknown as { customActionIcon: () => unknown }).customActionIcon =
+      () => 'template';
+    componentRef.setInput('isSVGTemplate', true);
+    expect(component.safeSVG).not.toBeNull();
+  });
+
+  it('should detect image icons via isImage', () => {
+    expect(component.isImage('https://example.com/icon.png')).toBe(true);
+    expect(component.isImage('face')).toBe(false);
+  });
+
+  it('should emit imageNotFoundError on handleImageNotFoundError', () => {
+    jest.spyOn(component.imageNotFoundError, 'emit');
+    component.handleImageNotFoundError();
+    expect(component.imageNotFoundError.emit).toHaveBeenCalled();
+  });
 });
