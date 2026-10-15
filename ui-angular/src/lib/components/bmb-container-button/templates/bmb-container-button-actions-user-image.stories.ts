@@ -104,7 +104,7 @@ const template = `<bmb-container-button-base>
 
 		<ng-template #bmbContainerMain>
 			<div bmbLayout margin="none" gapSize="m" justify="start" alignItems="center">
-				<bmb-user-image size="mobile-small" image="https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/assets/logo.png" />
+				<bmb-user-image size="mobile-small" image="/assets/doc/bmb-image/photo-cats.svg" />
 				<div bmbVerticalLayout gapSize="none" alignItems="start">
 					<bmb-simple-text [size]="4" color="general-contrasts-100" weight="bold">Title</bmb-simple-text>
 					<bmb-simple-text [size]="4" color="general-contrasts-100" weight="light">Subtitle (optional)</bmb-simple-text>
