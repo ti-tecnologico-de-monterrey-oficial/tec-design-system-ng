@@ -9,7 +9,7 @@ import {
 import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-stepper-step.component';
 import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
 import { BmbNativeModalService } from '../../../../services/old/modal/native-modal.service';
-import { IBmbNativeModal } from '../../../bmb-modal/bmb-modal.interface';
+import { IBmbNativeModal } from '../../../../_shared/types';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 import { TranslatePipe } from '../../../../pipes/translations';
 

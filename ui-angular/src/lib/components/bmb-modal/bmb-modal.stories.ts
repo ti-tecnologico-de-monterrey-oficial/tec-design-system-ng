@@ -1,4 +1,4 @@
-import { ModalDataConfig } from './bmb-modal.interface';
+import { ModalDataConfig } from '../../_shared/types';
 import { Component, inject, input } from '@angular/core';
 import {
   Meta,

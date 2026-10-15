@@ -180,4 +180,3 @@ export * from './lib/components/bmb-simple-text/bmb-simple-text.component';
 
 // types
 export * from './lib/_shared/types';
-export * from './lib/components/bmb-modal/bmb-modal.interface';

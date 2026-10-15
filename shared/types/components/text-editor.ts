@@ -3,3 +3,5 @@ export interface IActions {
   icon: string;
   action: () => void;
 }
+
+export type IBmbTextEditorPromptType = 'link' | 'image' | 'color';

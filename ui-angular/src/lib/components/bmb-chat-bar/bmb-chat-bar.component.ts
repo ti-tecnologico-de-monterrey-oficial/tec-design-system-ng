@@ -29,7 +29,7 @@ import {
   BmbProjectionContentService,
   IBmbProjectionContent,
 } from '../../services/old/projection/projection.service';
-import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
+import { IBmbNativeModal } from '../../_shared/types';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbTranslationsService } from '../../services/translations/translations.service';

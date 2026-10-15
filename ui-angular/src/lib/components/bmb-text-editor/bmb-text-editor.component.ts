@@ -21,19 +21,17 @@ import {
 } from '../../services/old/projection/projection.service';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
-import { IActions } from './types';
+import { IActions, IBmbTextEditorPromptType } from '../../_shared/types';
 import { getInsertList, getSettingsList } from './list';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
-import {
-  BmbTextEditorPromptComponent,
-  IBmbTextEditorPromptType,
-} from './bmb-text-editor-prompt/bmb-text-editor-prompt.component';
+import { BmbTextEditorPromptComponent } from './bmb-text-editor-prompt/bmb-text-editor-prompt.component';
 import { CdkTableModule } from '@angular/cdk/table';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  generateTableHtml,
+  getTextEditorContainerColor,
+  isValidImageUrl,
+} from '../../_shared/logic/components/text-editor';
 
 @Component({
   selector: 'bmb-text-editor',
@@ -271,12 +269,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   }
 
   isValidImageUrl(url: string): boolean {
-    try {
-      new URL(url); // Intenta crear un objeto URL
-      return true;
-    } catch {
-      return false;
-    }
+    return isValidImageUrl(url);
   }
 
   // Método para abrir el diálogo de la tabla
@@ -302,16 +295,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   }
 
   generateTableHtml(rows: number, columns: number): string {
-    let tableHtml = '<table style="border-collapse: collapse; width: 100%;">';
-    for (let i = 0; i < rows; i++) {
-      tableHtml += '<tr>';
-      for (let j = 0; j < columns; j++) {
-        tableHtml += `<td style="border: 1px solid #000; padding: 8px;">&nbsp;</td>`;
-      }
-      tableHtml += '</tr>';
-    }
-    tableHtml += '</table>';
-    return tableHtml;
+    return generateTableHtml(rows, columns);
   }
 
   // Método para insertar HTML en el editor
@@ -351,12 +335,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   }
 
   getContainerColor(name: string): string {
-    return `border: 1px solid var(--${name});
-          border-radius: var(--bmb-radius-xs);
-          width: 1.5rem;
-          height: 1.5rem;
-          background: var(--${name});
-          `;
+    return getTextEditorContainerColor(name);
   }
 
   addColor(name: string): void {

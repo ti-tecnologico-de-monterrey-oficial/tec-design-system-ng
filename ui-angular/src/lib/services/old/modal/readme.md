@@ -30,7 +30,7 @@
 ```typescript
 import { Component } from '@angular/core';
 import { BmbNativeModalService } from './services/modal/native-modal.service';
-import { IBmbNativeModal } from './components/bmb-modal/bmb-modal.interface';
+import { IBmbNativeModal } from './_shared/types';
 
 @Component({
   selector: 'app-demo-modal',
@@ -64,7 +64,7 @@ export class DemoModalComponent {
 ## Dependencias
 
 - `@angular/core` (Injectable, signal, ApplicationRef, EnvironmentInjector, ComponentRef, createComponent, EmbeddedViewRef)
-- Tipos: `IBmbNativeModal` (definido en `../../components/bmb-modal/bmb-modal.interface`)
+- Tipos: `IBmbNativeModal` (definido en `../../_shared/types/components/modal`)
 - Componente: `BmbPortalComponent`
 - Utilidad: `getUUID` (definido en `../../utils/utils`)
 

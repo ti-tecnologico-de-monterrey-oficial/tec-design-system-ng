@@ -21,7 +21,7 @@ import {
 } from '../../_shared/types/components/timestream';
 import { CommonModule } from '@angular/common';
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
-import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
+import { IBmbNativeModal } from '../../_shared/types';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
