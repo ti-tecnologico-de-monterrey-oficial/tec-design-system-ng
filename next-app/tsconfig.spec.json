@@ -1,0 +1,36 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/out-tsc",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "ignoreDeprecations": "6.0",
+    "jsx": "preserve",
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "jest.config.ts",
+    "jest.config.cts",
+    "specs/**/*.test.ts",
+    "specs/**/*.spec.ts",
+    "specs/**/*.test.tsx",
+    "specs/**/*.spec.tsx",
+    "specs/**/*.test.js",
+    "specs/**/*.spec.js",
+    "specs/**/*.test.jsx",
+    "specs/**/*.spec.jsx",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.tsx",
+    "src/**/*.test.js",
+    "src/**/*.spec.js",
+    "src/**/*.test.jsx",
+    "src/**/*.spec.jsx",
+    "src/**/*.d.ts",
+    "index.d.ts",
+    "next-env.d.ts",
+    "../node_modules/@nx/react/typings/cssmodule.d.ts"
+  ],
+  "exclude": ["node_modules"]
+}

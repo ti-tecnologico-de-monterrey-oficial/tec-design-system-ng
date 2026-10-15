@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "supernova": {
+      "type": "http",
+      "url": "https://mcp.supernova.io/mcp/c/349505"
+    }
+  }
+}
