@@ -255,10 +255,8 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
         selectedOption: this.control().value,
         items: this.parsedOptions(),
         isKeyboardEvent: this.isKeyboardEvent,
-        enableFilter: !this.isMultiSelect() && this.isFilterable(),
-        customFilterFunction: this.isMultiSelect()
-          ? null
-          : this.customFilterFunction(),
+        enableFilter: this.isFilterable(),
+        customFilterFunction: this.customFilterFunction(),
         isMultiSelect: this.isMultiSelect(),
       },
       focusOnOpen: true,

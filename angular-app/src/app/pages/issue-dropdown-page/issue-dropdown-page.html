@@ -1,0 +1,199 @@
+<header class="page-header">
+  <h1>BmbDropdownComponent</h1>
+</header>
+<section class="playground">
+  <form class="controls" (ngSubmit)="apply()">
+    <h2>Propiedades</h2>
+    @for (property of textProperties; track property) {
+    <label [for]="'property-' + property">{{ property }}</label>
+    <input
+      [id]="'property-' + property"
+      [name]="property"
+      [ngModel]="draft[property]"
+      (ngModelChange)="draft[property] = $event; updateProperties()"
+    />
+    } @for (property of booleanProperties; track property) {
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [id]="'property-' + property"
+        [name]="property"
+        [ngModel]="draft[property]"
+        (ngModelChange)="draft[property] = $event; updateProperties()"
+      />{{ property }}</label
+    >
+    }
+    <label for="align">tooltipPosition.align</label>
+    <select
+      id="align"
+      name="align"
+      [ngModel]="align"
+      (ngModelChange)="align = $event; updateProperties()"
+    >
+      @for (position of ['above', 'below', 'left', 'right']; track position) {
+      <option [value]="position">{{ position }}</option>
+      }
+    </select>
+    <label for="justify">tooltipPosition.justify</label>
+    <select
+      id="justify"
+      name="justify"
+      [ngModel]="justify"
+      (ngModelChange)="justify = $event; updateProperties()"
+    >
+      @for (position of ['before', 'after', 'centered']; track position) {
+      <option [value]="position">{{ position }}</option>
+      }
+    </select>
+    <label for="options">options (JSON: strings u objetos)</label>
+    <textarea
+      id="options"
+      name="options"
+      rows="10"
+      [ngModel]="optionsText"
+      (ngModelChange)="optionsText = $event; updateProperties()"
+    ></textarea>
+    <label for="preferred">preferredOptions (JSON)</label>
+    <textarea
+      id="preferred"
+      name="preferred"
+      rows="2"
+      [ngModel]="preferredText"
+      (ngModelChange)="preferredText = $event; updateProperties()"
+    ></textarea>
+    <label for="value">value inicial (JSON)</label>
+    <input
+      id="value"
+      name="value"
+      [ngModel]="valueText"
+      (ngModelChange)="valueText = $event; updateProperties()"
+    />
+    <label for="control">control: valor del FormControl (JSON)</label>
+    <input
+      id="control"
+      name="control"
+      [ngModel]="controlText"
+      (ngModelChange)="controlText = $event; setControl()"
+    />
+    <button type="button" (click)="setControl()">
+      Actualizar FormControl sin recrear
+    </button>
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        name="errorObject"
+        [ngModel]="useErrorObject"
+        (ngModelChange)="useErrorObject = $event; updateProperties()"
+      />errorMessage como objeto</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        name="validation"
+        [ngModel]="useCustomValidation"
+        (ngModelChange)="useCustomValidation = $event; updateProperties()"
+      />customValidation: rechazar opportunity-1</label
+    >
+    <label for="filter">customFilterFunction</label>
+    <select
+      id="filter"
+      name="filter"
+      [ngModel]="filterMode"
+      (ngModelChange)="filterMode = $event; updateProperties()"
+    >
+      <option value="default">null: filtro predeterminado</option>
+      <option value="value">Buscar únicamente por value</option>
+      <option value="prefix">Nombre comienza con la búsqueda</option>
+    </select>
+    <button type="submit">Reiniciar con valores iniciales</button>
+    @if (error()) {
+    <p role="alert">{{ error() }}</p>
+    }
+  </form>
+  <div>
+    <section class="preview" aria-label="Vista previa">
+      @for (instance of instances(); track instance) {
+      <bmb-dropdown
+        [required]="config.required"
+        [showIcon]="config.showIcon"
+        [placeholder]="config.placeholder"
+        [icon]="config.icon"
+        [options]="options"
+        [helperText]="config.helperText"
+        [errorMessage]="errorMessage"
+        [label]="config.label"
+        [name]="config.name"
+        [preferredOptions]="preferredOptions"
+        [isMultiSelect]="config.isMultiSelect"
+        [tooltip]="config.tooltip"
+        [tooltipPosition]="tooltipPosition"
+        [disabled]="config.disabled"
+        [value]="value"
+        [isFilterable]="config.isFilterable"
+        [inputId]="config.inputId"
+        [customValidation]="customValidation"
+        [customFilterFunction]="customFilterFunction"
+        [control]="control"
+        (controlChange)="log('controlChange', $event.value)"
+        [(isModalOpen)]="modalOpen"
+        (isModalOpenChange)="log('isModalOpenChange', $event)"
+        (onValueChange)="log('onValueChange', $event)"
+        (onFocus)="log('onFocus', $event)"
+      />
+      }
+    </section>
+    <section class="state">
+      <h2>Estado del formulario</h2>
+      <pre>
+{{ { value: control.value, status: control.status, errors: control.errors, touched: control.touched, dirty: control.dirty } | json }}</pre
+      >
+      <button
+        bmbButton
+        appearance="secondary-outlined"
+        size="small"
+        type="button"
+        (click)="control.markAllAsTouched()"
+      >
+        Marcar como tocado
+      </button>
+      <button
+        bmbButton
+        appearance="secondary-outlined"
+        size="small"
+        type="button"
+        (click)="control.reset(config.isMultiSelect ? [] : '')"
+      >
+        Limpiar FormControl
+      </button>
+      <label class="toggle"
+        ><input type="checkbox" [(ngModel)]="modalOpen" />isModalOpen: {{
+        modalOpen }}</label
+      >
+      <p>
+        isModalOpen es un modelo público, pero actualmente no controla la
+        apertura del menú.
+      </p>
+      <h2>Eventos (últimos 30)</h2>
+      <button
+        bmbButton
+        appearance="secondary-outlined"
+        size="small"
+        type="button"
+        (click)="events.set([])"
+      >
+        Limpiar eventos
+      </button>
+      <ol aria-live="polite">
+        @for (event of events(); track $index) {
+        <li><code>{{ event }}</code></li>
+        }
+      </ol>
+      <h2>Recorrido DS01-3902</h2>
+      <p>
+        Compara simple + filtro con múltiple + filtro. Selecciona opciones,
+        cambia o limpia la búsqueda y verifica las selecciones. Revisa también
+        seleccionar todos, cero resultados, teclado y reapertura del menú.
+      </p>
+    </section>
+  </div>
+</section>
