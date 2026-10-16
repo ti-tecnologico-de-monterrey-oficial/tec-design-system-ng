@@ -13,6 +13,7 @@
       tabindex="0"
     >
       <bmb-check-external-link-button
+        [attr.data-testid]="testId()"
         class="bmb_sidebar-element"
         [idElement]="'element' + element.id!"
         [link]="getLink(element)"

@@ -59,6 +59,7 @@
   }
   @if (!!userInformation()) {
     <bmb-check-external-link-button
+      [attr.data-testid]="testId()"
       [disabled]="false"
       (buttonClick)="handleUserClick($event)"
       class="bmb_top-bar-user-section-button"

@@ -19,6 +19,7 @@ The component accepts the following inputs to customize its behavior and appeara
 | Input              | Type             | Default     | Description                                            |
 | ------------------ | ---------------- | ----------- | ------------------------------------------------------ | ---------------------------------------------------- |
 | `idElement`        | `string`         | `undefined` | Unique identifier for the component.                   |
+| `testId`           | `string`         | `'action-icon-button'` | Sets `data-testid` on the internal `bmb-check-external-link-button` host. |
 | `icon` (required)  | `string`         | `undefined` | The name of the icon to display.                       |
 | `alt`              | `string`         | `''`        | Alternative text for the icon.                         |
 | `iconSize`         | `number          | undefined`  | `undefined`                                            | The size of the icon in pixels.                      |
@@ -88,6 +89,7 @@ The component's template is structured as follows:
 ```html
 <bmb-action-icon
   [idElement]="'action-icon-1'"
+  [testId]="'settings-action'"
   [icon]="'settings'"
   [alt]="'Settings Icon'"
   [iconSize]="32"

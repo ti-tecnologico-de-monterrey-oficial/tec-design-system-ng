@@ -40,6 +40,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDropdownContentComponent {
+  testId = input<string>('dropdown-content-item-button');
   selectedOption = input<string | string[]>([]); //Internal
   items = model<IDropdownItem[]>([]);
   isKeyboardEvent = model<boolean>(false); //Internal

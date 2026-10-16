@@ -1,5 +1,6 @@
 <span [ngClass]="getClasses()">
   <bmb-check-external-link-button
+    [attr.data-testid]="testId()"
     [idElement]="buttonName()"
     [link]="link()"
     [target]="target()"

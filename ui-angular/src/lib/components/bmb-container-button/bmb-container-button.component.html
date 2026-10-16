@@ -1,5 +1,6 @@
 <section class="bmb_container-button">
   <bmb-check-external-link-button
+    [attr.data-testid]="testId()"
     class="bmb_container-button-wrapper"
     [ngClass]="getClassList()"
     [link]="link()"
