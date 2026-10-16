@@ -623,8 +623,8 @@ The badge should always have a parent element.`,
     },
   },
   isBlurredBackdrop: {
-    control: { type: 'boolean' },
-    description: 'Sets a blurred image as box shadow.',
+    control: null,
+    description: 'This input is deprecated.',
     table: {
       category: 'Properties',
       defaultValue: getDefaultValueControl('false'),

@@ -7,10 +7,8 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  BmbTopBarComponent,
-  IUserInformation,
-} from '../bmb-top-bar/bmb-top-bar.component';
+import { BmbTopBarComponent } from '../bmb-top-bar/bmb-top-bar.component';
+import { IUserInformation, IBmbTemplateName } from '../../_shared/types';
 import { BmbSidebarComponent } from '../bmb-sidebar/bmb-sidebar.component';
 import { SidebarElement } from '../bmb-sidebar/bmb-sidebar.interface';
 import { CommonModule } from '@angular/common';
@@ -18,18 +16,6 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { IBmbDataAlert } from '../bmb-alert-center/types';
-
-export type IBmbTemplateName =
-  | 'full-width-card'
-  | 'justify-width-card'
-  | 'single-column-card'
-  | 'aside-first-card'
-  | 'aside-light-card'
-  | 'two-aside-card';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-web-templates',

@@ -20,6 +20,11 @@
     border-bottom: rem.rem_calc(1) solid var(--general-contrasts-50);
     padding-bottom: var(--bmb-spacing-m);
 
+    .bmb_swipe-content {
+      display: flex;
+      gap: rem.rem_calc(8);
+    }
+
     &-status {
       &-circle {
         width: rem.rem_calc(12);
@@ -82,6 +87,10 @@
     &-delete {
       color: var(--semantic-error);
       z-index: 0;
+    }
+
+    &-selection {
+      padding-top: rem.rem_calc(6);
     }
   }
 

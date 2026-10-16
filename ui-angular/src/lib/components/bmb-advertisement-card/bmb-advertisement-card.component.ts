@@ -18,10 +18,7 @@ import { BmbCarouselComponent } from '../bmb-carousel/bmb-carousel.component';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { buildAdvertisementCardTabs } from '../../_shared/logic/components/advertisement-card';
 
 @Component({
   selector: 'bmb-advertisement-card',
@@ -56,11 +53,19 @@ export class BmbAdvertisementCardComponent {
 
   constructor() {
     effect(() => {
-      this.tabsData.set([
-        { id: 1, title: this.translationsService.translate('advertisement_card.tabs.promotions'), isActive: true },
-        { id: 2, title: this.translationsService.translate('advertisement_card.tabs.announcements') },
-        { id: 3, title: this.translationsService.translate('advertisement_card.tabs.information') },
-      ]);
+      this.tabsData.set(
+        buildAdvertisementCardTabs(
+          this.translationsService.translate(
+            'advertisement_card.tabs.promotions',
+          ),
+          this.translationsService.translate(
+            'advertisement_card.tabs.announcements',
+          ),
+          this.translationsService.translate(
+            'advertisement_card.tabs.information',
+          ),
+        ),
+      );
     });
   }
 

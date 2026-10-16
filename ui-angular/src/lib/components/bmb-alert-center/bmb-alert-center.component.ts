@@ -34,7 +34,7 @@ import { BmbAlertCenterEmptyComponent } from './bmb-alert-center-empty/bmb-alert
 import { BmbAlertCenterService } from './bmb-alert-center.service';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
-import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
+import { IBmbNativeModal } from '../../_shared/types';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { BmbAlertCenterDetailComponent } from '../utils/bmb-alert-center-detail/bmb-alert-center-detail.component';
 import { TranslatePipe } from '../../pipes/translations';

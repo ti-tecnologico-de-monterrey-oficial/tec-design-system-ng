@@ -1,3 +1,1 @@
-.bmb_text-editor-prompt {
-  width: clamp(300px, 90dvw, 400px);
-}
+@use '../../../../../../shared/assets/styles/components/text-editor-prompt';

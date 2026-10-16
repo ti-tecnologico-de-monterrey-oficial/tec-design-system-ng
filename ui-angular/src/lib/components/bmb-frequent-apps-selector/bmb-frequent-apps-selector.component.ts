@@ -6,11 +6,8 @@ import {
   output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  BmbInteractiveIconComponent,
-  IBmbInteractiveIconType,
-} from '../bmb-interactive-icon/bmb-interactive-icon.component';
-import { IBmbApp } from '../../_shared/types';
+import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
+import { IBmbApp, IBmbInteractiveIconType } from '../../_shared/types';
 import { getFrequentAppsSelectorClasses } from '../../_shared/logic/components/frequent-apps-selector';
 
 @Component({

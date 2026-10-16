@@ -14,10 +14,6 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-action-menu',
   standalone: true,
