@@ -417,7 +417,7 @@ export class BmbFilterCardComponent implements OnInit {
     const map = this.visibleControlIds();
     if (!map) return true;
     const visible = map.get(name);
-    return visible === undefined ? true : visible;
+    return visible ?? true;
   }
 
   isSectionVisible(controlType: IBmbControlType): boolean {

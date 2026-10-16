@@ -31,6 +31,7 @@ import { TranslatePipe } from '../../pipes/translations';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTopBarComponent implements OnInit {
+  testId = input<string>('top-bar-logo-button');
   userInformation = input<IUserInformation | null>(null);
   appName = input<string>('');
   appPowered = input<string>('');

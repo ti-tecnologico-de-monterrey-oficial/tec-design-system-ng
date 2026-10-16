@@ -72,6 +72,8 @@ import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbProfileComponent implements OnInit {
+  testId = input<string>('profile-change-role-button');
+  backButtonTestId = input<string>('profile-back-to-previous-version-button');
   userData = input<IBmbProfileData>(); //Deprecated
   isStandAlone = input<boolean>(false);
   standAloneData = input<IBmbUserData>();

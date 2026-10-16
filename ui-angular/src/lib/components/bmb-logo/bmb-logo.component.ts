@@ -20,6 +20,7 @@ import type { IBmbTargetLink } from '../../_shared/types';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbLogoComponent {
+  testId = input<string>('logo-button');
   size = input<string>('');
   image = input<string>('');
   altImage = input<string>('');

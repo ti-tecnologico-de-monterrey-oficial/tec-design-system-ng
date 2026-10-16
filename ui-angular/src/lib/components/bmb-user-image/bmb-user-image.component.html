@@ -8,6 +8,7 @@
 </ng-template>
 @if (!!link()) {
   <bmb-check-external-link-button
+    [attr.data-testid]="testId()"
     [ngClass]="getClasses('bmb_user_image', size()!, bordered())"
     [link]="link()"
     [target]="target()!"
