@@ -25,7 +25,6 @@ export class HomeCardPage {
   readonly icon = signal('home');
   readonly contentPadding = signal<SizeNames>('l');
   readonly showRightButton = signal(true);
-  readonly showOneHeaderAction = signal(false);
   readonly isMobile = signal(false);
   readonly isExpanded = signal(false);
   readonly closeCount = signal(0);
@@ -50,10 +49,6 @@ export class HomeCardPage {
 
   setShowRightButton(value: boolean): void {
     this.showRightButton.set(value);
-  }
-
-  setShowOneHeaderAction(value: boolean): void {
-    this.showOneHeaderAction.set(value);
   }
 
   setIsMobile(value: boolean): void {

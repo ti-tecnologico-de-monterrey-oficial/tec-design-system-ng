@@ -25,7 +25,6 @@ describe('HomeCardPage', () => {
     component.setIcon('star');
     component.selectContentPadding('s');
     component.setShowRightButton(false);
-    component.setShowOneHeaderAction(true);
     component.setIsMobile(true);
     fixture.detectChanges();
 
@@ -34,7 +33,6 @@ describe('HomeCardPage', () => {
     expect(component.icon()).toBe('star');
     expect(component.contentPadding()).toBe('s');
     expect(component.showRightButton()).toBe(false);
-    expect(component.showOneHeaderAction()).toBe(true);
     expect(component.isMobile()).toBe(true);
   });
 
