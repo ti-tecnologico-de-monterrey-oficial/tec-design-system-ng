@@ -1,6 +1,113 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbAIChatCardComponent } from './bmb-ai-chat-card.component';
-import { ComponentRef } from '@angular/core';
+import {
+  Component,
+  ComponentRef,
+  CUSTOM_ELEMENTS_SCHEMA,
+  signal,
+} from '@angular/core';
+import { BmbChatBarComponent } from '../bmb-chat-bar/bmb-chat-bar.component';
+import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
+import { IBmbAIChatCardMode } from '../../_shared/types/components/ai-chat-card';
+
+@Component({
+  standalone: true,
+  imports: [BmbAIChatCardComponent, BmbChatBarComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <bmb-ai-chat-card [(mode)]="mode">
+      <bmb-ai-chat-bubble></bmb-ai-chat-bubble>
+      <bmb-chat-bar></bmb-chat-bar>
+    </bmb-ai-chat-card>
+  `,
+})
+class HostComponent {
+  mode = signal<IBmbAIChatCardMode>('compact');
+}
+
+describe('BmbAIChatCardComponent with projected content', () => {
+  let fixture: ComponentFixture<HostComponent>;
+  let host: HostComponent;
+  let projection: BmbProjectionContentService;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [HostComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(HostComponent);
+    host = fixture.componentInstance;
+    projection = TestBed.inject(BmbProjectionContentService);
+    fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    host.mode.set('compact');
+    fixture.detectChanges();
+    fixture.destroy();
+  });
+
+  it('should open the projected dialog in chat mode and close it afterwards', () => {
+    host.mode.set('chat');
+    fixture.detectChanges();
+    expect(projection.isContentOpen('ai_chat_bar_actions_dialog')).toBe(true);
+
+    host.mode.set('compact');
+    fixture.detectChanges();
+    expect(projection.isContentOpen('ai_chat_bar_actions_dialog')).toBe(false);
+  });
+
+  it('should render bubbles and chat bar and scroll bubbles to bottom', async () => {
+    host.mode.set('expanded');
+    fixture.detectChanges();
+
+    const bubbles = fixture.nativeElement.querySelector(
+      '.bmb_ai-chat-card-bubbles',
+    ) as HTMLElement;
+    expect(bubbles).toBeTruthy();
+    expect(
+      fixture.nativeElement.querySelector('.bmb_ai-chat-card-bar'),
+    ).toBeTruthy();
+
+    Object.defineProperty(bubbles, 'scrollHeight', {
+      configurable: true,
+      value: 500,
+    });
+    bubbles.appendChild(document.createElement('div'));
+    await Promise.resolve();
+    await new Promise((resolve) => setTimeout(resolve));
+    expect(bubbles.scrollTop).toBe(500);
+  });
+
+  it('should focus the chat bar input when conversation is enabled', async () => {
+    const spy = jest.spyOn(HTMLElement.prototype, 'focus');
+    host.mode.set('expanded');
+    fixture.detectChanges();
+    await Promise.resolve();
+    await new Promise((resolve) => setTimeout(resolve));
+
+    const bar = fixture.nativeElement.querySelector('.bmb_ai-chat-card-bar');
+    expect(bar).toBeTruthy();
+    expect(spy.mock.contexts.some((el) => bar.contains(el as Node))).toBe(
+      true,
+    );
+    spy.mockRestore();
+  });
+
+  it('should restore the previous mode when the dialog is closed', () => {
+    host.mode.set('chat');
+    fixture.detectChanges();
+    projection.closeContent('ai_chat_bar_actions_dialog');
+    fixture.detectChanges();
+    expect(host.mode()).toBe('compact');
+  });
+
+  it('should disconnect the observer on destroy', () => {
+    host.mode.set('expanded');
+    fixture.detectChanges();
+    expect(() => fixture.destroy()).not.toThrow();
+  });
+});
 
 describe('BmbAIChatCardComponent', () => {
   let component: BmbAIChatCardComponent;
