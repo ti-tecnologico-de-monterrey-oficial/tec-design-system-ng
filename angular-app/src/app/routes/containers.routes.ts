@@ -81,7 +81,7 @@ export const routes: Routes = [
   },
   {
     path: 'ai-chat-bubble',
-    title: 'AI Chat Bubble',
+    title: 'AI Chat bubble',
     loadComponent: () =>
       import('../pages/ai-chat-bubble-page/ai-chat-bubble-page').then(
         (m) => m.AiChatBubblePage,
