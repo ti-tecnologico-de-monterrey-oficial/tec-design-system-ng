@@ -32,6 +32,7 @@ export * from './components/modal';
 export * from './components/notification-counter';
 export * from './components/notification-card';
 export * from './components/navigation-bar';
+export * from './components/notice-card';
 export * from './components/progress-circle';
 export * from './components/step-progress-bar';
 export * from './components/student-activity-card';
