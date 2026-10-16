@@ -182,6 +182,7 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
         if (!this.contentProjected.isContentOpen(this.aiChatId)) {
           this.contentProjected.openContent({
             id: this.aiChatId,
+            showBackdrop: false,
             content,
             dialogClass: ['bmb_ai-chat-card-dialog'],
             focusOnOpen: true,
