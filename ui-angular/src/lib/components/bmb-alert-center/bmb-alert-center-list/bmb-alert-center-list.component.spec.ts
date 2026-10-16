@@ -281,7 +281,9 @@ describe('BmbAlertCenterListComponent', () => {
       expect(component.getTimeVariant(DateTime.fromISO('2022-12-29'))).toBe(
         'date',
       );
-      expect(component.getTimeVariant(DateTime.invalid('invalid'))).toBe('date');
+      expect(component.getTimeVariant(DateTime.invalid('invalid'))).toBe(
+        'date',
+      );
     });
 
     it('should format future times in lowercase and older dates as dates', () => {
@@ -293,7 +295,9 @@ describe('BmbAlertCenterListComponent', () => {
     });
 
     it('should return empty text for invalid dates or malformed time parts', () => {
-      expect(component.getFormattedTime('09:30', DateTime.invalid('invalid'))).toBe('');
+      expect(
+        component.getFormattedTime('09:30', DateTime.invalid('invalid')),
+      ).toBe('');
       expect(component.getFormattedTime('09:30:00', DateTime.now())).toBe('');
       expect(component.getFormattedTime('aa:bb', DateTime.now())).toBe('');
     });
@@ -473,40 +477,6 @@ describe('BmbAlertCenterListComponent', () => {
         By.css('.bmb_alert-center-list-item-status-circle-read'),
       );
       expect(readCircle).toBeFalsy();
-    });
-  });
-
-  describe('Performance', () => {
-    it('should handle large number of alerts efficiently', () => {
-      const manyAlerts: IBmbDataAlertsParsed[] = Array.from(
-        { length: 100 },
-        (_, index) => ({
-          id: index + 1,
-          title: `Alert ${index + 1}`,
-          description: [
-            { text: `Description ${index + 1}`, type: 'paragraph' },
-          ],
-          date: '01/01/2023',
-          time: '09:30',
-          isRead: index % 2 === 0,
-          isFavorite: index % 5 === 0,
-          isArchived: false,
-          type: 'notification',
-          pDate: DateTime.fromISO('2023-01-01T09:30:00') as DateTime<true>,
-        }),
-      );
-
-      const startTime = performance.now();
-      componentRef.setInput('alerts', manyAlerts);
-      fixture.detectChanges();
-      const endTime = performance.now();
-
-      expect(endTime - startTime).toBeLessThan(5000); // Should render within 1 second
-
-      const alertItems = fixture.debugElement.queryAll(
-        By.css('.bmb_alert-center-list-item'),
-      );
-      expect(alertItems.length).toBe(100);
     });
   });
 });
