@@ -1,0 +1,100 @@
+<header class="page-header">
+  <p class="eyebrow">Issue</p>
+  <h1>BmbSearchInput — debounce configurable</h1>
+  <p>
+    Dashboard para probar todas las propiedades de
+    <code>bmb-search-input</code>, incluyendo el nuevo input
+    <code>searchDebounceTime</code> agregado para resolver el issue de
+    búsqueda de personas demasiado rápida.
+  </p>
+</header>
+
+<section class="playground" aria-labelledby="search-bar-properties">
+  <aside class="controls">
+    <h2 id="search-bar-properties">Propiedades</h2>
+
+    <label for="sb-placeholder">placeholder</label>
+    <input
+      id="sb-placeholder"
+      [value]="placeholder()"
+      (input)="placeholder.set($any($event.target).value)"
+    />
+
+    <label for="sb-debounce"
+      >searchDebounceTime ({{ searchDebounceTime() }} ms)</label
+    >
+    <input
+      id="sb-debounce"
+      type="range"
+      min="0"
+      max="1500"
+      step="50"
+      [value]="searchDebounceTime()"
+      (input)="setSearchDebounceTime($event)"
+    />
+
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="isLoading()"
+        (change)="isLoading.set($any($event.target).checked)"
+      />isLoading: {{ isLoading() }}</label
+    >
+
+    <p
+      class="loading-status"
+      [class.is-loading]="isLoading()"
+      role="status"
+      aria-live="polite"
+    >
+      {{ isLoading() ? 'Cargando resultados...' : 'Sin solicitudes en curso' }}
+    </p>
+
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="isServerSideFilter()"
+        (change)="isServerSideFilter.set($any($event.target).checked)"
+      />isServerSideFilter</label
+    >
+
+    <p>Último evento: {{ lastEvent() }}</p>
+
+    @if (isServerSideFilter()) {
+      <p class="note">
+        Nota: en modo servidor, el componente solo emite
+        <code>onServerSideFilterEvent</code> al <strong>seleccionar</strong>
+        una opción, no mientras se escribe.
+      </p>
+    }
+  </aside>
+
+  <div class="preview">
+    <bmb-search-input
+      [data]="data()"
+      [placeholder]="placeholder()"
+      [(isLoading)]="isLoading"
+      [isServerSideFilter]="isServerSideFilter()"
+      [serverSideFilteredData]="serverSideFilteredData()"
+      [searchDebounceTime]="searchDebounceTime()"
+      (onValueChange)="handleValueChange($event)"
+      (onServerSideFilterEvent)="handleServerSideFilterEvent($event)"
+      (onClearField)="handleClearField()"
+    />
+
+    <bmb-search-input
+      [data]="data()"
+      [placeholder]="placeholder()"
+      [(isLoading)]="isLoading"
+      [isServerSideFilter]="isServerSideFilter()"
+      [serverSideFilteredData]="serverSideFilteredData()"
+      [searchDebounceTime]="searchDebounceTime()"
+      (onValueChange)="handleValueChange($event)"
+      (onServerSideFilterEvent)="handleServerSideFilterEvent($event)"
+      (onClearField)="handleClearField()"
+    />
+    <div style="position: relative;z-index: 1; background: red;">Example</div>
+  </div>
+</section>
+
+

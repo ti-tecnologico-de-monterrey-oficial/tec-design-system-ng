@@ -698,6 +698,14 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'issue/search-bar',
+    title: 'Issue | BmbSearchInput debounce',
+    loadComponent: () =>
+      import('./pages/issue-search-bar-page/issue-search-bar-page').then(
+        ({ IssueSearchBarPage }) => IssueSearchBarPage,
+      ),
+  },
+  {
     path: 'pages/tabs',
     title: 'BmbTabs | Bamboo migration dashboard',
     loadComponent: () =>
