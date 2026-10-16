@@ -19,6 +19,19 @@
   font-size: 0.85rem;
 }
 
+.loading-status {
+  border-left: 3px solid var(--color-success, #15803d);
+  color: var(--color-success, #15803d);
+  font-size: 0.875rem;
+  margin: 0.5rem 0;
+  padding: 0.375rem 0.625rem;
+}
+
+.loading-status.is-loading {
+  border-color: var(--color-warning, #b45309);
+  color: var(--color-warning, #b45309);
+}
+
 .explanation {
   margin-top: 2rem;
   max-width: 48rem;
