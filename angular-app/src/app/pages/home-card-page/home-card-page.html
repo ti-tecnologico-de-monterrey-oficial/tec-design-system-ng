@@ -39,7 +39,7 @@
       (change)="selectContentPadding($any($event.target).value)"
     >
       @for (option of contentPaddings; track option) {
-        <option [value]="option">{{ option }}</option>
+      <option [value]="option">{{ option }}</option>
       }
     </select>
 
@@ -55,25 +55,16 @@
     <label class="toggle">
       <input
         type="checkbox"
-        [checked]="showOneHeaderAction()"
-        (change)="setShowOneHeaderAction($any($event.target).checked)"
-      />
-      showOneHeaderAction
-    </label>
-
-    <label class="toggle">
-      <input
-        type="checkbox"
         [checked]="isMobile()"
         (change)="setIsMobile($any($event.target).checked)"
       />
       isMobile
     </label>
 
-    <output
-      >close: {{ closeCount() }} · back: {{ backCount() }} · expand:
-      {{ expandCount() }}</output
-    >
+    <output>
+      close: {{ closeCount() }} · back: {{ backCount() }} · expand: {{
+      expandCount() }}
+    </output>
   </aside>
 
   <div class="preview">
@@ -84,7 +75,6 @@
       [actionHeaders]="actionHeaders()"
       [contentPadding]="contentPadding()"
       [showRightButton]="showRightButton()"
-      [showOneHeaderAction]="showOneHeaderAction()"
       [isMobile]="isMobile()"
       [(isExpanded)]="isExpanded"
       (onClose)="handleClose()"
