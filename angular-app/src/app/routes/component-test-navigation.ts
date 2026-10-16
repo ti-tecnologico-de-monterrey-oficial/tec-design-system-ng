@@ -84,7 +84,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'AI Chat Bubble',
+            label: 'AI Chat bubble',
             url: '/pages/containers/ai-chat-bubble',
             icon: 'widgets',
           },

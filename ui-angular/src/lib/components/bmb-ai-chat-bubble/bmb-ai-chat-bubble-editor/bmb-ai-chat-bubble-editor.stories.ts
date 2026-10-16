@@ -6,13 +6,16 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
+  getStoryLink,
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
 import { BmbAiChatBubbleEditorComponent } from './bmb-ai-chat-bubble-editor.component';
 
+import * as aiChatBubbleStory from '../bmb-ai-chat-bubble.stories';
+
 const CONSIDERATIONS = `
 ${getAlertBlockquote(
-  `This element is a sub-component of [**AI Chat Bubble**](/docs/components-containers-ai-chat-bubble--documentation). It is rendered automatically by **AI Chat Bubble** when a user text message enters edit mode (\`userActions\` includes \`'edit'\`). Use it directly only when building a custom chat layout.`,
+  `This element is a sub-component of ${getStoryLink({ title: aiChatBubbleStory.default.title!, showFullLinkName: false })}. It is rendered automatically by **${aiChatBubbleStory.default.title}** when a user text message enters edit mode (\`userActions\` includes \`'edit'\`). Use it directly only when building a custom chat layout.`,
   {
     title: RELEVANT_TITLE.configuration,
     blockquoteType: BlockquoteType.important,
@@ -28,7 +31,7 @@ ${getAlertBlockquote(
 `;
 
 export default {
-  title: 'Components/Containers/AI Chat Bubble/Editor',
+  title: 'Components/Containers/AI Chat bubble/Editor',
   tags: ['!autodocs'],
   component: BmbAiChatBubbleEditorComponent,
   parameters: {
@@ -38,7 +41,7 @@ export default {
 ${getGeneralDescription(
   `${getGeneralComponentDescription({
     name: 'ai-chat-bubble-editor',
-  })} the author to edit a previously sent user text message inside an **AI Chat Bubble**. It shows a multiline textarea pre-filled with the current message plus **Cancel** and **Save** actions.`,
+  })} the author to edit a previously sent user text message inside an **AI Chat bubble**. It shows a multiline textarea pre-filled with the current message plus **Cancel** and **Save** actions.`,
   {
     generalDocLink:
       'https://bamboo.tec.mx/latest/componentes/ai-chat-bubble/descripcion-general-kum7HyJA',
