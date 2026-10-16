@@ -16,6 +16,7 @@
   }
 
   &-bubbles {
+    padding-right: var(--bmb-spacing-m);
     overflow-y: auto;
   }
 
@@ -57,14 +58,5 @@
   .bmb_home-card-wrapper {
     display: flex;
     flex-direction: column;
-  }
-}
-
-bmb-ai-chat-card:has(.bmb_ai-chat-card-expanded) {
-  display: block;
-  height: 100%;
-
-  .bmb_home-card-wrapper-container {
-    flex: 1;
   }
 }
