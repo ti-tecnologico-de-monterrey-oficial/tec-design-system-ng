@@ -91,9 +91,10 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
     isChatAIChatCardMode(this.mode())
       ? [
           {
-            icon: 'zoom_out_map',
-            tooltipText: this.translationService.translate('home_card.expand'),
-            action: () => this.handleExpand(),
+            icon: 'minimize',
+            tooltipText:
+              this.translationService.translate('home_card.collapse'),
+            action: () => this.handleMinimize(),
           },
           ...this.headerActions(),
         ]
@@ -207,9 +208,13 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
     this.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
   }
 
+  protected handleMinimize(): void {
+    this.mode.set(this.lastConversationDisabledMode);
+  }
+
   protected handleExpandOrContract(): void {
     this.mode.update((value) => {
-      return getNextAIChatCardMode(value, this.lastConversationDisabledMode);
+      return getNextAIChatCardMode(value);
     });
   }
 

@@ -88,9 +88,7 @@ describe('BmbAIChatCardComponent with projected content', () => {
 
     const bar = fixture.nativeElement.querySelector('.bmb_ai-chat-card-bar');
     expect(bar).toBeTruthy();
-    expect(spy.mock.contexts.some((el) => bar.contains(el as Node))).toBe(
-      true,
-    );
+    expect(spy.mock.contexts.some((el) => bar.contains(el as Node))).toBe(true);
     spy.mockRestore();
   });
 
@@ -202,41 +200,23 @@ describe('BmbAIChatCardComponent', () => {
     expect(component.mode()).toBe('expanded');
   });
 
-  it('should only provide the expand header action (plus custom ones) in chat mode', () => {
-    expect(internals().headerActionList()).toEqual([]);
-
-    const custom = { icon: 'close', tooltipText: 'Close', action: jest.fn() };
-    componentRef.setInput('headerActions', [custom]);
-    component.mode.set('chat');
-
-    const actions = internals().headerActionList();
-    expect(actions.length).toBe(2);
-    expect(actions[0].icon).toBe('zoom_out_map');
-    expect(actions[1]).toBe(custom);
-
-    actions[0].action();
-    expect(component.mode()).toBe('expanded');
-
-    component.mode.set('expanded');
-    expect(internals().headerActionList()).toEqual([]);
-  });
-
   it('should go to chat when contracting from compact or invisible', () => {
     component.mode.set('compact');
-    (component as unknown as { handleExpandOrContract: () => void })
-      .handleExpandOrContract();
+    (
+      component as unknown as { handleExpandOrContract: () => void }
+    ).handleExpandOrContract();
     expect(component.mode()).toBe('chat');
 
     component.mode.set('invisible');
-    (component as unknown as { handleExpandOrContract: () => void })
-      .handleExpandOrContract();
+    (
+      component as unknown as { handleExpandOrContract: () => void }
+    ).handleExpandOrContract();
     expect(component.mode()).toBe('chat');
   });
 
   it('should go to compact when contracting from chat and the last non-chat mode was not invisible', () => {
     component.mode.set('chat');
-    (component as unknown as { handleExpandOrContract: () => void })
-      .handleExpandOrContract();
+    (component as unknown as { handleMinimize: () => void }).handleMinimize();
     expect(component.mode()).toBe('compact');
   });
 
@@ -245,16 +225,16 @@ describe('BmbAIChatCardComponent', () => {
     fixture.detectChanges();
 
     component.mode.set('chat');
-    (component as unknown as { handleExpandOrContract: () => void })
-      .handleExpandOrContract();
+    (component as unknown as { handleMinimize: () => void }).handleMinimize();
 
     expect(component.mode()).toBe('invisible');
   });
 
   it('should go to chat when expanding', () => {
     component.mode.set('expanded');
-    (component as unknown as { handleExpandOrContract: () => void })
-      .handleExpandOrContract();
+    (
+      component as unknown as { handleExpandOrContract: () => void }
+    ).handleExpandOrContract();
     expect(component.mode()).toBe('chat');
   });
 });
