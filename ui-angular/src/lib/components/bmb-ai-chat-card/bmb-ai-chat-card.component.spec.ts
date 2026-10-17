@@ -88,9 +88,7 @@ describe('BmbAIChatCardComponent with projected content', () => {
 
     const bar = fixture.nativeElement.querySelector('.bmb_ai-chat-card-bar');
     expect(bar).toBeTruthy();
-    expect(spy.mock.contexts.some((el) => bar.contains(el as Node))).toBe(
-      true,
-    );
+    expect(spy.mock.contexts.some((el) => bar.contains(el as Node))).toBe(true);
     spy.mockRestore();
   });
 
@@ -100,6 +98,27 @@ describe('BmbAIChatCardComponent with projected content', () => {
     projection.closeContent('ai_chat_bar_actions_dialog');
     fixture.detectChanges();
     expect(host.mode()).toBe('compact');
+  });
+
+  it('should re-observe the bubbles container when it is recreated', () => {
+    host.mode.set('expanded');
+    fixture.detectChanges();
+    host.mode.set('compact');
+    fixture.detectChanges();
+    host.mode.set('expanded');
+    fixture.detectChanges();
+    expect(
+      fixture.nativeElement.querySelector('.bmb_ai-chat-card-bubbles'),
+    ).toBeTruthy();
+  });
+
+  it('should not fail when starting directly in chat mode', () => {
+    const f = TestBed.createComponent(HostComponent);
+    f.componentInstance.mode.set('chat');
+    expect(() => f.detectChanges()).not.toThrow();
+    f.componentInstance.mode.set('compact');
+    f.detectChanges();
+    f.destroy();
   });
 
   it('should disconnect the observer on destroy', () => {
@@ -202,41 +221,23 @@ describe('BmbAIChatCardComponent', () => {
     expect(component.mode()).toBe('expanded');
   });
 
-  it('should only provide the expand header action (plus custom ones) in chat mode', () => {
-    expect(internals().headerActionList()).toEqual([]);
-
-    const custom = { icon: 'close', tooltipText: 'Close', action: jest.fn() };
-    componentRef.setInput('headerActions', [custom]);
-    component.mode.set('chat');
-
-    const actions = internals().headerActionList();
-    expect(actions.length).toBe(2);
-    expect(actions[0].icon).toBe('zoom_out_map');
-    expect(actions[1]).toBe(custom);
-
-    actions[0].action();
-    expect(component.mode()).toBe('expanded');
-
-    component.mode.set('expanded');
-    expect(internals().headerActionList()).toEqual([]);
-  });
-
   it('should go to chat when contracting from compact or invisible', () => {
     component.mode.set('compact');
-    (component as unknown as { handleExpandOrContract: () => void })
-      .handleExpandOrContract();
+    (
+      component as unknown as { handleExpandOrContract: () => void }
+    ).handleExpandOrContract();
     expect(component.mode()).toBe('chat');
 
     component.mode.set('invisible');
-    (component as unknown as { handleExpandOrContract: () => void })
-      .handleExpandOrContract();
+    (
+      component as unknown as { handleExpandOrContract: () => void }
+    ).handleExpandOrContract();
     expect(component.mode()).toBe('chat');
   });
 
   it('should go to compact when contracting from chat and the last non-chat mode was not invisible', () => {
     component.mode.set('chat');
-    (component as unknown as { handleExpandOrContract: () => void })
-      .handleExpandOrContract();
+    (component as unknown as { handleMinimize: () => void }).handleMinimize();
     expect(component.mode()).toBe('compact');
   });
 
@@ -245,16 +246,52 @@ describe('BmbAIChatCardComponent', () => {
     fixture.detectChanges();
 
     component.mode.set('chat');
-    (component as unknown as { handleExpandOrContract: () => void })
-      .handleExpandOrContract();
+    (component as unknown as { handleMinimize: () => void }).handleMinimize();
 
     expect(component.mode()).toBe('invisible');
   });
 
+  it('should go to expanded when expand-or-contract is triggered from chat', () => {
+    component.mode.set('chat');
+    (
+      component as unknown as { handleExpandOrContract: () => void }
+    ).handleExpandOrContract();
+    expect(component.mode()).toBe('expanded');
+  });
+
+  it('should only provide the minimize header action (plus custom ones) in chat mode', () => {
+    expect(internals().headerActionList()).toEqual([]);
+
+    const custom = { icon: 'close', tooltipText: 'Close', action: jest.fn() };
+    componentRef.setInput('headerActions', [custom]);
+    component.mode.set('chat');
+
+    const actions = internals().headerActionList();
+    expect(actions.length).toBe(2);
+    expect(actions[0].icon).toBe('minimize');
+    expect(actions[1]).toBe(custom);
+
+    actions[0].action();
+    expect(component.mode()).toBe('compact');
+
+    component.mode.set('expanded');
+    expect(internals().headerActionList()).toEqual([]);
+  });
+
+  it('should do nothing when scrolling or focusing without containers', () => {
+    const c = component as unknown as {
+      scrollBubblesToBottom: () => void;
+      focusChatBarInput: () => void;
+    };
+    expect(() => c.scrollBubblesToBottom()).not.toThrow();
+    expect(() => c.focusChatBarInput()).not.toThrow();
+  });
+
   it('should go to chat when expanding', () => {
     component.mode.set('expanded');
-    (component as unknown as { handleExpandOrContract: () => void })
-      .handleExpandOrContract();
+    (
+      component as unknown as { handleExpandOrContract: () => void }
+    ).handleExpandOrContract();
     expect(component.mode()).toBe('chat');
   });
 });
