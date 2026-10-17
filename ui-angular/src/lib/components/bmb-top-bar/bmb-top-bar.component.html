@@ -6,6 +6,7 @@
   }"
 >
   <bmb-check-external-link-button
+    [attr.data-testid]="testId()"
     [link]="getLogoLink()"
     [target]="getLogoTarget() || '_blank'"
     (buttonClick)="handleLogoClick()"

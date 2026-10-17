@@ -19,6 +19,15 @@ import { weeksAndDays } from '../../bmb-calendar/utils';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import { TranslatePipe } from '../../../pipes/translations';
+import {
+  getAdjustedMonth,
+  getAdjustedYear,
+  getDatepickerDayClasses,
+  getDatepickerYearsRange,
+  isDatepickerDateDisabled,
+  isDatepickerYearSelected,
+  resolveDatepickerInitialState,
+} from '../../../_shared/logic/components/datepicker-modal';
 
 @Component({
   selector: 'bmb-datepicker-modal',
@@ -66,21 +75,17 @@ export class BmbDatepickerModalComponent implements OnInit {
   private translateService: BmbTranslationsService = inject(BmbTranslationsService);
 
   ngOnInit() {
-    if (this.value()) {
-      const formattedDate = DateTime.fromFormat(
-        this.value(),
-        this.dateFormat(),
-      );
-      this.selectedDate = formattedDate;
-      this.selectedYear = formattedDate.year;
-      this.selectedMonth = formattedDate.month;
-      this.month = this.monthsNames()[formattedDate.month - 1];
-    } else {
-      this.selectedYear = this.now().year;
-      this.selectedMonth = this.now().month;
-      this.month =
-        this.monthsNames()[(this.selectedMonth || this.now().month) - 1];
-    }
+    const state = resolveDatepickerInitialState(
+      this.value(),
+      this.dateFormat(),
+      this.now(),
+    );
+
+    this.selectedDate = state.selectedDate;
+    this.selectedYear = state.selectedYear;
+    this.selectedMonth = state.selectedMonth;
+    this.month =
+      this.monthsNames()[(this.selectedMonth || this.now().month) - 1];
   }
 
   handleMonthChange(event: number) {
@@ -95,12 +100,7 @@ export class BmbDatepickerModalComponent implements OnInit {
   }
 
   getYears(): string[] {
-    const yearsList = new Array(this.stepYearPicker()).fill(0);
-    const currentYear = this.selectedYear;
-    const yearsFinal = yearsList.map((_, index) => {
-      return (currentYear - (this.stepYearPicker() / 2 - 1) + index).toString();
-    });
-    return yearsFinal;
+    return getDatepickerYearsRange(this.stepYearPicker(), this.selectedYear);
   }
 
   handleDayChange(date: DateTime): void {
@@ -127,16 +127,12 @@ export class BmbDatepickerModalComponent implements OnInit {
   }
 
   isSelectedDay(date: DateTime): string[] {
-    const classList = [];
-    if (date.month === this.selectedMonth) {
-      classList.push('bmb_datepicker-modal-button-current-month');
-    }
-
-    if (this.selectedDate && date.hasSame(this.selectedDate, 'day'))
-      classList.push('bmb_datepicker-modal-button-selected');
-    if (this.now().hasSame(date, 'day'))
-      classList.push('bmb_datepicker-modal-button-today');
-    return classList;
+    return getDatepickerDayClasses(
+      date,
+      this.selectedMonth,
+      this.selectedDate,
+      this.now(),
+    );
   }
 
   handleChangeView(view: string) {
@@ -154,50 +150,31 @@ export class BmbDatepickerModalComponent implements OnInit {
   }
 
   handleChangeYear(event: string, yearsAmount: number = 0) {
-    if (event === 'less') {
-      this.selectedYear = this.selectedYear - yearsAmount;
-    } else {
-      this.selectedYear = this.selectedYear + yearsAmount;
-    }
+    this.selectedYear = getAdjustedYear(this.selectedYear, event, yearsAmount);
   }
 
   handleChangeMonth(event: string) {
-    if (event === 'less') {
-      if (this.selectedMonth === 1) {
-        this.selectedMonth = 12;
-        this.month = this.monthsNames()[this.selectedMonth - 1];
-        this.selectedYear = this.selectedYear - 1;
-      } else {
-        this.selectedMonth = this.selectedMonth - 1;
-        this.month = this.monthsNames()[this.selectedMonth - 1];
-      }
-    } else {
-      if (this.selectedMonth === 12) {
-        this.selectedMonth = 1;
-        this.month = this.monthsNames()[this.selectedMonth - 1];
-        this.selectedYear = this.selectedYear + 1;
-      } else {
-        this.selectedMonth = this.selectedMonth + 1;
-        this.month = this.monthsNames()[this.selectedMonth - 1];
-      }
-    }
+    const adjusted = getAdjustedMonth(
+      this.selectedMonth,
+      this.selectedYear,
+      event,
+    );
+
+    this.selectedMonth = adjusted.month;
+    this.selectedYear = adjusted.year;
+    this.month = this.monthsNames()[this.selectedMonth - 1];
   }
 
   checkIfDisabled(date: DateTime): boolean {
-    let isValid: boolean = this.disableDatesBefore()
-      ? date.startOf('day') <= this.disableDatesBefore()!.startOf('day')
-      : false;
-
-    isValid =
-      !isValid && this.disableDatesAfter()
-        ? date.startOf('day') >= this.disableDatesAfter()!.startOf('day')
-        : isValid;
-
-    return isValid;
+    return isDatepickerDateDisabled(
+      date,
+      this.disableDatesBefore(),
+      this.disableDatesAfter(),
+    );
   }
 
   isSelectedYear(year: string): boolean {
-    return this.selectedYear === parseInt(year);
+    return isDatepickerYearSelected(this.selectedYear, year);
   }
 
   onDayKeydown(event: KeyboardEvent, date?: DateTime) {

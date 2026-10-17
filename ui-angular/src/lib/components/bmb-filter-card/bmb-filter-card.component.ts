@@ -18,7 +18,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
-import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
+import { IBmbNativeModal } from '../../_shared/types';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import {
   IBmbControlType,
@@ -417,7 +417,7 @@ export class BmbFilterCardComponent implements OnInit {
     const map = this.visibleControlIds();
     if (!map) return true;
     const visible = map.get(name);
-    return visible === undefined ? true : visible;
+    return visible ?? true;
   }
 
   isSectionVisible(controlType: IBmbControlType): boolean {

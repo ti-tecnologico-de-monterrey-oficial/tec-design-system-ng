@@ -16,10 +16,13 @@ import { IDropdownItem } from '../../../_shared/types/index';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../../pipes/translations';
 import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  getFilteredDropdownItems,
+  getNextDropdownSelectionState,
+  isDropdownAllSelected,
+  isDropdownIndeterminate,
+  isDropdownItemSelected,
+} from '../../../_shared/logic/components/dropdown-content';
 
 @Component({
   selector: 'bmb-dropdown-content',
@@ -37,6 +40,7 @@ import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDropdownContentComponent {
+  testId = input<string>('dropdown-content-item-button');
   selectedOption = input<string | string[]>([]); //Internal
   items = model<IDropdownItem[]>([]);
   isKeyboardEvent = model<boolean>(false); //Internal
@@ -50,40 +54,20 @@ export class BmbDropdownContentComponent {
 
   isOpen = model<boolean>(false); //remove this
 
-  filteredItems = computed<IDropdownItem[]>(() => {
-    if (this.enableFilter() && this.filterString() !== '') {
-      if (this.customFilterFunction()) {
-        return this.items().filter((item) =>
-          this.customFilterFunction()!(item, this.filterString()),
-        );
-      }
-
-      return this.items().filter((item) => {
-        return (
-          item.text.toLocaleLowerCase().includes(this.filterString()) ||
-          item.value?.toLocaleLowerCase().includes(this.filterString()) ||
-          item.selectedText?.toLocaleLowerCase().includes(this.filterString())
-        );
-      });
-    }
-
-    return this.items();
-  });
-  isIndeterminate = computed(() => {
-    if (typeof this.selectionState() === 'string') return true;
-
-    return (
-      this.items().length > this.selectionState()?.length &&
-      this.selectionState()?.length > 0
-    );
-  });
-  isAllSelected = computed(() => {
-    if (typeof this.selectionState() === 'string') return false;
-    return (
-      this.items().length === this.selectionState()?.length &&
-      this.items().length > 0
-    );
-  });
+  filteredItems = computed<IDropdownItem[]>(() =>
+    getFilteredDropdownItems(
+      this.items(),
+      this.enableFilter(),
+      this.filterString(),
+      this.customFilterFunction(),
+    ),
+  );
+  isIndeterminate = computed(() =>
+    isDropdownIndeterminate(this.items().length, this.selectionState()),
+  );
+  isAllSelected = computed(() =>
+    isDropdownAllSelected(this.items().length, this.selectionState()),
+  );
   selectionState = signal<string[] | string>([]);
   filterString = signal<string>('');
 
@@ -103,25 +87,18 @@ export class BmbDropdownContentComponent {
   }
 
   isSelected(item: string): boolean {
-    if (typeof this.selectionState() === 'string')
-      return item === this.selectionState();
-
-    return this.selectionState()?.includes(item) || false;
+    return isDropdownItemSelected(this.selectionState(), item);
   }
 
   handleDropdown(item: IDropdownItem) {
     if (this.isMultiSelect()) {
-      if (this.isSelected(item.value!)) {
-        this.selectionState.update((value) => {
-          if (typeof value === 'string') return [];
-          return value.filter((selectedItem) => selectedItem !== item.value);
-        });
-      } else {
-        this.selectionState.update((value) => {
-          if (typeof value === 'string') return [item.value!];
-          return [...value, item.value!];
-        });
-      }
+      this.selectionState.update((value) =>
+        getNextDropdownSelectionState(
+          value,
+          item.value!,
+          this.isSelected(item.value!),
+        ),
+      );
     }
     if (item?.action) {
       item.action();

@@ -4,15 +4,17 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   input,
+  model,
   output,
   OnChanges,
   SimpleChanges,
   AfterViewInit,
   inject,
 } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, switchMap } from 'rxjs/operators';
 import { getUUID } from '../../_shared/logic/utils';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
@@ -42,10 +44,11 @@ export class BmbSearchInputComponent implements AfterViewInit, OnChanges {
   inputId = input<string>(getUUID());
   name = input<string>(getUUID());
   data = input<string[]>([]);
-  isLoading = input<boolean>(false);
+  isLoading = model<boolean>(false);
   isServerSideFilter = input<boolean>(false);
   placeholder = input<string>('');
   serverSideFilteredData = input<string[]>([]);
+  searchDebounceTime = input<number>(300);
 
   onValueChange = output<string>();
   onServerSideFilterEvent = output<string>();
@@ -59,10 +62,14 @@ export class BmbSearchInputComponent implements AfterViewInit, OnChanges {
   items: IDropdownItem[] = [];
 
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+  // toObservable needs an injection context, which ngAfterViewInit does not provide
+  private readonly debounceTime$ = toObservable(this.searchDebounceTime);
 
   ngAfterViewInit(): void {
-    this.filterControl.valueChanges
-      .pipe(debounceTime(300))
+    this.debounceTime$
+      .pipe(
+        switchMap((time) => this.filterControl.valueChanges.pipe(debounceTime(time))),
+      )
       .subscribe((value) => {
         this.filteredData = filteredValue(value, this.items);
         this.cdr.detectChanges();

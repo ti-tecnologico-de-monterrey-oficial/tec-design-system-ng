@@ -177,7 +177,7 @@ export * from './lib/components/bmb-table-lite/bmb-table-lite.component';
 export * from './lib/components/bmb-search-card/bmb-search-card.component';
 export * from './lib/components/bmb-ai-chat-card/bmb-ai-chat-card.component';
 export * from './lib/components/bmb-simple-text/bmb-simple-text.component';
+export * from './lib/directives/bmb-swipe/bmb-swipe.directive';
 
 // types
 export * from './lib/_shared/types';
-export * from './lib/components/bmb-modal/bmb-modal.interface';

@@ -38,6 +38,7 @@ export * from './bmb-sidebar.interface';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbSidebarComponent {
+  testId = input<string>('sidebar-element-button');
   elements = input<SidebarElement[][]>([]);
   position = input<IPositionButtonMenu>('left'); //Only for web
   componentTitle = input<string>('Navigation');

@@ -22,15 +22,12 @@ import {
   IBmbModalAlertStyle,
   IBmbNativeModalSize,
   IBmbActionButton,
-} from './bmb-modal.interface';
+} from '../../_shared/types';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { TranslatePipe } from '../../pipes/translations';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { getNativeModalContainerClass } from '../../_shared/logic/components/modal';
 
 @Component({
   selector: 'bmb-native-modal',
@@ -89,18 +86,7 @@ export class BmbNativeModalComponent {
   });
 
   getContainerClass(): string {
-    switch (this.size()) {
-      case 'x-small':
-        return 'bmb_native-modal-container-x-small';
-      case 'x-large':
-        return 'bmb_native-modal-container-x-large';
-      case 'small':
-        return 'bmb_native-modal-container-small';
-      case 'large':
-        return 'bmb_native-modal-container-large';
-      default:
-        return 'bmb_native-modal-container-medium';
-    }
+    return getNativeModalContainerClass(this.size());
   }
 
   isTemplateRef(): boolean {

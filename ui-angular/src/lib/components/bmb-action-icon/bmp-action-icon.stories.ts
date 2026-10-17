@@ -110,6 +110,7 @@ ${getBasicExampleBlock(
     },
   },
   argTypes: {
+    testId: DBmbGenericParamDesc.testId,
     idElement: DBmbGenericParamDesc.uniqueId,
     icon: DBmbIconParamDesc.icon,
     alt: DBmbIconParamDesc.alt,

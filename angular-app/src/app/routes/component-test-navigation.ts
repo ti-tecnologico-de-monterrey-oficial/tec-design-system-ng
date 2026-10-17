@@ -48,7 +48,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Interactive icon (*old)',
+            label: 'Interactive icon',
             url: '/pages/buttons/interactive-icon',
             icon: 'widgets',
           },
@@ -84,7 +84,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'AI Chat Bubble',
+            label: 'AI Chat bubble',
             url: '/pages/containers/ai-chat-bubble',
             icon: 'widgets',
           },
@@ -169,7 +169,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'ToTP prompt (*old)',
+            label: 'ToTP prompt',
             url: '/pages/containers/totp-prompt',
             icon: 'widgets',
           },
@@ -194,7 +194,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Date picker (*old)',
+            label: 'Date picker',
             url: '/pages/inputs/date-picker',
             icon: 'widgets',
           },
@@ -214,7 +214,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Text editor (*old)',
+            label: 'Text editor',
             url: '/pages/inputs/text-editor',
             icon: 'widgets',
           },
@@ -265,7 +265,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'FAB Overlay drawer (*old)',
+            label: 'FAB Overlay drawer',
             url: '/pages/menus/fab-overlay-drawer',
             icon: 'widgets',
           },
@@ -387,7 +387,7 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Web templates (*old)',
+        label: 'Web templates',
         url: '/pages/internals/web-templates',
         icon: 'widgets',
       },
@@ -486,7 +486,7 @@ export const navigationTest: ComponentGroupTest[] = [
     label: 'Mitec app',
     items: [
       {
-        label: 'Digital ID (*old)',
+        label: 'Digital ID',
         url: '/pages/mitec-app/digital-id',
         icon: 'widgets',
       },

@@ -1,4 +1,4 @@
-import { IActions } from './types';
+import { IActions } from '../../_shared/types';
 import { BmbTextEditorComponent } from './bmb-text-editor.component';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 

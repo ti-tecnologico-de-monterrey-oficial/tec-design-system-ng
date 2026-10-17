@@ -25,4 +25,19 @@ describe('BmbTextLinkComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should reuse the existing test ID for the link and automation attribute', () => {
+    const element: HTMLElement = fixture.nativeElement.querySelector(
+      'bmb-check-external-link-button',
+    );
+    expect(element.getAttribute('data-testid')).toBe(component.testId());
+
+    componentRef.setInput('testId', 'custom-text-link');
+    fixture.detectChanges();
+
+    const wrapper: HTMLElement =
+      fixture.nativeElement.querySelector('.bmb_text-link');
+    expect(element.getAttribute('data-testid')).toBe('custom-text-link');
+    expect(wrapper.getAttribute('data-automation-id')).toBe('custom-text-link');
+  });
 });

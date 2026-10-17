@@ -13,10 +13,7 @@ import { IBmbApp } from '../../_shared/types';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { buildMaxElementsErrorMessage } from '../../_shared/logic/utils';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { getDrawerOverlayActiveApps } from '../../_shared/logic/components/drawer-overlay';
 
 @Component({
   selector: 'bmb-drawer-overlay',
@@ -91,7 +88,9 @@ export class BmbDrawerOverlayComponent implements OnInit {
   }
 
   get appsActive(): IBmbApp[] {
-    const appsForCurrentNav = this.appServices()[this.activeNavItemIndex];
-    return Array.isArray(appsForCurrentNav) ? appsForCurrentNav : [];
+    return getDrawerOverlayActiveApps(
+      this.appServices(),
+      this.activeNavItemIndex,
+    );
   }
 }

@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { BmbActionIconComponent } from 'ui-angular';
 import {
-  BmbActionIconComponent,
   BmbSwipeDirective,
   BmbSwipeLeftActionsDirective,
   BmbSwipeRightActionsDirective,
-  IBmbSwipeSide,
-} from 'ui-angular';
+} from '../../../../../ui-angular/src/lib/directives/bmb-swipe/bmb-swipe.directive';
+import type { IBmbSwipeSide } from '../../../../../ui-angular/src/lib/directives/bmb-swipe/bmb-swipe.directive';
 
 interface SwipeItem {
   id: number;

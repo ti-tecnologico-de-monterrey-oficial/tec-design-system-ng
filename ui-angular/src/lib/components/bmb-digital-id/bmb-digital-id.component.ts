@@ -11,10 +11,7 @@ import { BmbUserSummaryContentComponent } from '../bmb-user-summary/bmb-user-sum
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbImageComponent } from '../bmb-image/bmb-image.component';
 import { TranslatePipe } from '../../pipes/translations';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { getDigitalIdFullName } from '../../_shared/logic/components/digital-id';
 
 @Component({
   selector: 'bmb-digital-id',
@@ -69,6 +66,6 @@ export class BmbDigitalIdComponent {
   }
 
   getFullName(): string {
-    return this.name().concat(' ', this.surname());
+    return getDigitalIdFullName(this.name(), this.surname());
   }
 }

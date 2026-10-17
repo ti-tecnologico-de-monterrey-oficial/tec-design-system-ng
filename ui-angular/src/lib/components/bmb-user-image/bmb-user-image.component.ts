@@ -24,6 +24,7 @@ import { handleImageNotFoundError } from '../../_shared/logic/utils';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbUserImageComponent {
+  testId = input<string>('user-image-link-button');
   size = input<IBmbUserImageSize>();
   image = input<string>('');
   altImage = input<string>('');
