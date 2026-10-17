@@ -35,3 +35,24 @@ queries to the item container or use a query that returns multiple matches.
 ## Running unit tests
 
 Run `nx test ui-angular` to execute the unit tests.
+
+## Building versioned packages with Docker
+
+From the repository root, run:
+
+```bash
+docker build -f dockers/Dockerfile-21 -t bamboo-angular:21 .
+```
+
+Use `Dockerfile-20` or `Dockerfile-22` for the other supported Angular versions.
+The output image contains the compiled package at `/ui-angular`.
+
+The versioned Dockerfiles and publishing workflow pin npm to `11.21.1`.
+Dependency resolution for the Angular 21 manifest crashes with
+`Cannot read properties of null (reading 'edgesOut')` on npm `10.9.9` and
+`11.5.1`. Updating npm avoids that resolver failure without disabling peer
+dependency checks.
+
+Each version uses its own manifest from `package/`, so the root Angular 22
+lockfile is removed inside the build container before installation. No global
+Nx installation is required by the `docker-build` script.
