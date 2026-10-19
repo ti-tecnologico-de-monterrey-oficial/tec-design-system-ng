@@ -161,7 +161,7 @@ Enables the functionality to filter data when true, the user can type in order t
 
 ${RELEVANT_TITLE.important}
 
-Compatible with \`isMultiSelect\`. The search stays visible while selecting multiple options. The select-all action is hidden while filtering is enabled.`,
+Compatible with \`isMultiSelect\`. The search stays visible while selecting multiple options. Select-all selects or deselects only the filtered results, preserving selections outside the search.`,
       table: {
         category: 'Properties',
         defaultValue: getDefaultValueControl(false),
@@ -344,7 +344,7 @@ export const FilterableMultiSelect: Story = {
     docs: {
       description: {
         story:
-          'Open the dropdown and search for "Internship". Select more options, change or clear the search, and verify that previous selections remain. Scroll the list to check that option checkboxes stay behind the sticky search field. Select-all is hidden when filtering is enabled.',
+          'Open the dropdown and search for "Internship". Select more options, change or clear the search, and verify that previous selections remain. Scroll the list to check that option checkboxes stay behind the sticky search field. Select-all affects only the filtered results. Selections outside the search are preserved; select-all is disabled when there are no results.',
       },
     },
   },

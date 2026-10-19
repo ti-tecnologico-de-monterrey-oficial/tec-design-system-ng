@@ -19,8 +19,6 @@ import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import {
   getFilteredDropdownItems,
   getNextDropdownSelectionState,
-  isDropdownAllSelected,
-  isDropdownIndeterminate,
   isDropdownItemSelected,
 } from '../../../_shared/logic/components/dropdown-content';
 
@@ -61,11 +59,18 @@ export class BmbDropdownContentComponent {
       this.customFilterFunction(),
     ),
   );
-  isIndeterminate = computed(() =>
-    isDropdownIndeterminate(this.items().length, this.selectionState()),
+  private selectedFilteredItems = computed(() =>
+    this.filteredItems().filter((item) => this.isSelected(item.value!)),
   );
-  isAllSelected = computed(() =>
-    isDropdownAllSelected(this.items().length, this.selectionState()),
+  isIndeterminate = computed(
+    () =>
+      this.selectedFilteredItems().length > 0 &&
+      this.selectedFilteredItems().length < this.filteredItems().length,
+  );
+  isAllSelected = computed(
+    () =>
+      this.filteredItems().length > 0 &&
+      this.selectedFilteredItems().length === this.filteredItems().length,
   );
   selectionState = signal<string[] | string>([]);
   filterString = signal<string>('');
@@ -106,27 +111,11 @@ export class BmbDropdownContentComponent {
   }
 
   handleSelectedAll() {
-    if (this.isAllSelected()) {
-      this.selectionState.set([]);
-      this.items().forEach((item) => {
-        if (item?.action) {
-          item.action();
-          this.clickedItem.emit(item);
-        }
-      });
-    } else {
-      const allValues = this.items().map((item) => item.value!);
-      const currentSelectedValues = [...this.selectionState()];
-      this.selectionState.set(allValues);
-      this.items().forEach((item) => {
-        const hasSelection = currentSelectedValues.includes(item.value!);
-        if (!hasSelection) {
-          if (item?.action) {
-            item.action();
-            this.clickedItem.emit(item);
-          }
-        }
-      });
-    }
+    if (!this.isMultiSelect()) return;
+    const deselect = this.isAllSelected();
+    const changedItems = this.filteredItems().filter(
+      (item) => this.isSelected(item.value!) === deselect,
+    );
+    changedItems.forEach((item) => this.handleDropdown(item));
   }
 }
