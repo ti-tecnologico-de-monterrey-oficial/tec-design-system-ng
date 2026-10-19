@@ -33,6 +33,24 @@ import {
   newFormControlByType,
 } from '../../_shared/logic/formControl';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
+import {
+  getDropzoneAcceptAttribute,
+  getDropzoneAvatarIcon,
+  getDropzoneFileName,
+  getDropzoneFileSize,
+  getDropzoneFormatProgress,
+  getDropzoneProgress,
+  hasDropzoneFileErrors,
+  hasDropzoneFormatErrorFiles,
+  hasDropzoneNameErrorFiles,
+  hasDropzoneSizeErrorFiles,
+  isDropzoneFileDuplicate,
+  isDropzoneUploadCompleted,
+  isDropzoneUploadInProgress,
+  isValidDropzoneFileFormat,
+  isValidDropzoneFileSize,
+  sortDropzoneFiles,
+} from '../../_shared/logic/components/dropzone';
 
 interface FileData {
   id: string;
@@ -53,10 +71,6 @@ interface FileSizeDisplay {
   value: number;
   unit: 'KB' | 'MB';
 }
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-dropzone',
@@ -205,36 +219,19 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
   }
 
   protected getAvatarIcon(file: FileData): string {
-    if (this.getProgress(file) === 100) return 'upload_file';
-    if (file.error) return 'task';
-
-    return 'progress_activity';
+    return getDropzoneAvatarIcon(this.getProgress(file), !!file.error);
   }
 
   protected getFileName(file: FileData): string {
-    return file.error ? file.name.concat('*') : file.name;
+    return getDropzoneFileName(file.name, !!file.error);
   }
 
   protected getFormatProgress(value: string, total: string): string {
-    return `${value}%/${total}%`;
-  }
-
-  protected getFileSizeInMB(fileSize: number): number {
-    return fileSize / 1048576;
-  }
-
-  protected getFileSizeInKB(fileSize: number): number {
-    return fileSize / 1024;
+    return getDropzoneFormatProgress(value, total);
   }
 
   protected getFileSize(fileSize: number): FileSizeDisplay {
-    const sizeInMB = this.getFileSizeInMB(fileSize);
-
-    if (Math.floor(sizeInMB) === 0) {
-      return { value: this.getFileSizeInKB(fileSize), unit: 'KB' };
-    }
-
-    return { value: sizeInMB, unit: 'MB' };
+    return getDropzoneFileSize(fileSize);
   }
 
   protected getFileSizeFormat(
@@ -251,22 +248,11 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
   }
 
   protected getProgress(file: FileData): number {
-    const progress = this.progress();
-
-    if (file.error) return 0;
-    if (typeof progress === 'number') return progress;
-    return progress?.[file.name] ?? 0;
+    return getDropzoneProgress(this.progress(), file.name, !!file.error);
   }
 
   protected get organizedFiles(): FileData[] {
-    if (this.fileDataList.some((file: FileData) => file.error)) {
-      return this.fileDataList.sort(
-        (file1: FileData, file2: FileData) =>
-          (Number(file1.error) - Number(file2.error)) * -1,
-      );
-    }
-
-    return this.fileDataList;
+    return sortDropzoneFiles(this.fileDataList);
   }
 
   private getFileAndValidate(file: File | File[]): void {
@@ -339,84 +325,46 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
   }
 
   private isValidFileFormat(fileType: string, fileName: string): boolean {
-    if (
-      this.acceptedExtensions().some((element: string) => element.includes('/'))
-    ) {
-      const types = this.acceptedExtensions().filter((element: string) =>
-        element.endsWith('/*'),
-      );
-      if (
-        !!types.length &&
-        types.some(
-          (element: string) =>
-            element.substring(0, element.length - 2) ===
-            fileType.substring(0, element.length - 2),
-        )
-      ) {
-        return true;
-      } else {
-        if (this.acceptedExtensions().includes(fileType)) return true;
-      }
-    }
-
-    if (
-      this.acceptedExtensions().includes(
-        fileName.substring(fileName.lastIndexOf('.') + 1),
-      )
-    )
-      return true;
-
-    return false;
+    return isValidDropzoneFileFormat(
+      fileType,
+      fileName,
+      this.acceptedExtensions(),
+    );
   }
 
   protected isValidFileSize(fileSize: number): boolean {
-    return this.getFileSizeInMB(fileSize) <= this.fileSize();
+    return isValidDropzoneFileSize(fileSize, this.fileSize());
   }
 
-  // private isValidFileName(fileName: string): boolean {
-  //   debugger;
-  //   return /^[a-zA-Z0-9._-]+$/.test(fileName);
-  // }
-
   private isFileDuplicate(fileName: string): boolean {
-    return this.fileDataList.some((existing) => existing.name === fileName);
+    return isDropzoneFileDuplicate(this.fileDataList, fileName);
   }
 
   protected isUploadInProgress(file: FileData) {
-    return !file.error && this.getProgress(file) < 100;
+    return isDropzoneUploadInProgress(this.getProgress(file), !!file.error);
   }
 
   protected isUploadCompleted(file: FileData) {
-    return !file.error && this.getProgress(file) === 100;
+    return isDropzoneUploadCompleted(this.getProgress(file), !!file.error);
   }
 
   protected isErrorFiles(): boolean {
     return (
-      this.fileDataList.some((file) => file.error) ||
+      hasDropzoneFileErrors(this.fileDataList) ||
       !!this.customErrorMessageLabels.length
     );
   }
 
-  private isFormatError(file: FileData): boolean {
-    return (file.error && file.errorType === 'format') || false;
-  }
-
   protected isFormatErrorFiles(): boolean {
-    return this.fileDataList.some((file) => this.isFormatError(file));
-  }
-
-  private isSizeError(file: FileData): boolean {
-    return (file.error && file.errorType === 'size') || false;
+    return hasDropzoneFormatErrorFiles(this.fileDataList);
   }
 
   protected isSizeErrorFiles(): boolean {
-    return this.fileDataList.some((file) => this.isSizeError(file));
+    return hasDropzoneSizeErrorFiles(this.fileDataList);
   }
 
   protected isNameErrorFiles(): boolean {
-    return this.fileDataList.some(
-      (file) => file.error && file.errorType === 'name',
-    );
+    return hasDropzoneNameErrorFiles(this.fileDataList);
   }
 
   protected handleDragOver(event: DragEvent) {
@@ -489,15 +437,6 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
   }
 
   protected getAcceptAttribute(): string {
-    return this.acceptedExtensions()
-      .map((ext) => {
-        const cleanExt = ext.trim().toLowerCase();
-
-        if (cleanExt.includes('/')) return cleanExt;
-        if (cleanExt.startsWith('.')) return cleanExt;
-
-        return `.${cleanExt}`;
-      })
-      .join(',');
+    return getDropzoneAcceptAttribute(this.acceptedExtensions());
   }
 }

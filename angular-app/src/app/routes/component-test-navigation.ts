@@ -114,12 +114,12 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'badge',
           },
           {
-            label: 'Header mobile (*old)',
+            label: 'Header mobile',
             url: '/pages/containers/header-mobile',
             icon: 'widgets',
           },
           {
-            label: 'Hito card (*old)',
+            label: 'Hito card',
             url: '/pages/containers/hito-card',
             icon: 'widgets',
           },
@@ -189,7 +189,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Text input with tags (*old)',
+            label: 'Text input with tags',
             url: '/pages/inputs/text-input-with-tags',
             icon: 'widgets',
           },
@@ -496,7 +496,7 @@ export const navigationTest: ComponentGroupTest[] = [
     label: 'Mitec card',
     items: [
       {
-        label: 'Notice card (*old)',
+        label: 'Notice card',
         url: '/pages/mitec-card/notice-card',
         icon: 'widgets',
       },
