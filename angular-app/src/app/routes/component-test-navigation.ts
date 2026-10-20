@@ -164,7 +164,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Tables (*old)',
+            label: 'Tables',
             url: '/pages/containers/tables',
             icon: 'widgets',
           },
@@ -270,7 +270,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Inner header (*old)',
+            label: 'Inner header',
             url: '/pages/menus/inner-header',
             icon: 'widgets',
           },
@@ -367,7 +367,7 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Portal (*old)',
+        label: 'Portal',
         url: '/pages/dev-tools/portal',
         icon: 'widgets',
       },
@@ -417,7 +417,7 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Login onboarding mobile (*old)',
+        label: 'Login onboarding mobile',
         url: '/pages/organisms/login-onboarding-mobile',
         icon: 'widgets',
       },

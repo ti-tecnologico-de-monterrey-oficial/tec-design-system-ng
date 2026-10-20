@@ -16,10 +16,7 @@ import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../pipes/translations';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { getInnerHeaderLeftIcon } from '../../_shared/logic/components/inner-header';
 
 @Component({
   selector: 'bmb-inner-header',
@@ -83,10 +80,7 @@ export class BmbInnerHeaderComponent {
   onHandleClose = output<MouseEvent>();
   searchData = output<string>();
   getLeftIcon(): string {
-    if (!this.showClose() && this.showReturn()) return 'arrow_back';
-    if (this.showClose() && !this.showReturn()) return 'close';
-
-    return '';
+    return getInnerHeaderLeftIcon(this.showClose(), this.showReturn());
   }
 
   handleBack(event: any): void {
