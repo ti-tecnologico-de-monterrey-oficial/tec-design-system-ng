@@ -38,6 +38,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDropdownContentComponent {
+  readonly testId = input<string>('dropdown-content-item-button');
   readonly selectedOption = input<string | string[]>([]); //Internal
   readonly items = model<IDropdownItem[]>([]);
   readonly isKeyboardEvent = model<boolean>(false); //Internal
@@ -59,7 +60,7 @@ export class BmbDropdownContentComponent {
       this.customFilterFunction(),
     ),
   );
-  private readonly  selectedFilteredItems = computed(() =>
+  private readonly selectedFilteredItems = computed(() =>
     this.filteredItems().filter((item) => this.isSelected(item.value!)),
   );
   readonly isIndeterminate = computed(
