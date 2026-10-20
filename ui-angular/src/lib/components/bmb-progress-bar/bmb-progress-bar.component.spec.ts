@@ -60,4 +60,35 @@ describe('BmbProgressBarComponent', () => {
     componentRef.setInput('counter', 200);
     expect(component.progressValue()).toBe('100');
   });
+
+  it('should clamp a negative progress value to 0', () => {
+    componentRef.setInput('totalCount', 100);
+    componentRef.setInput('counter', -10);
+    expect(component.progressValue()).toBe('0');
+  });
+
+  describe('progressBarColorClass', () => {
+    it('should build the class from the status color', () => {
+      componentRef.setInput('statusColor', 'success');
+      expect(component.progressBarColorClass()).toBe(
+        'bmb_progress-bar-active-success',
+      );
+    });
+  });
+
+  describe('handleClick', () => {
+    it('should prevent default, stop propagation and emit actionClick', () => {
+      const emitSpy = jest.spyOn(component.actionClick, 'emit');
+      const event = {
+        preventDefault: jest.fn(),
+        stopPropagation: jest.fn(),
+      } as unknown as MouseEvent;
+
+      component.handleClick(event);
+
+      expect(event.preventDefault).toHaveBeenCalled();
+      expect(event.stopPropagation).toHaveBeenCalled();
+      expect(emitSpy).toHaveBeenCalledWith(event);
+    });
+  });
 });

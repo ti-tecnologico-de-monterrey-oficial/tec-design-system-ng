@@ -300,7 +300,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Progress bar (*old)',
+            label: 'Progress bar',
             url: '/pages/status-indicators/progress-bar',
             icon: 'widgets',
           },
@@ -407,7 +407,7 @@ export const navigationTest: ComponentGroupTest[] = [
     label: 'Organisms',
     items: [
       {
-        label: 'Access to external link (*old)',
+        label: 'Access to external link',
         url: '/pages/organisms/access-to-external-link',
         icon: 'widgets',
       },
@@ -448,7 +448,7 @@ export const navigationTest: ComponentGroupTest[] = [
     label: 'Components',
     items: [
       {
-        label: 'Sidebar (*old)',
+        label: 'Sidebar',
         url: '/pages/components/sidebar',
         icon: 'widgets',
       },
@@ -519,7 +519,7 @@ export const navigationTest: ComponentGroupTest[] = [
           },
 
           {
-            label: 'Header section (*old)',
+            label: 'Header section',
             url: '/pages/containers/header-section',
             icon: 'widgets',
           },

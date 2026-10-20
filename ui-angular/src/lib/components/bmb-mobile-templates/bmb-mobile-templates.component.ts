@@ -18,13 +18,13 @@ import {
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbLoginOnboardingComponent } from '../bmb-login-onboarding/bmb-login-onboarding.component';
 import { BmbCalendarComponent } from '../bmb-calendar/bmb-calendar.component';
-import {
-  BmbExternalLinkComponent,
-  IBmbMenuEvent,
-} from '../bmb-external-link/bmb-external-link.component';
-import { IBmbFooterEvent } from '../../_shared/types/index';
+import { BmbExternalLinkComponent } from '../bmb-external-link/bmb-external-link.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
-import { IBmbTargetLink } from '../../_shared/types';
+import {
+  IBmbFooterEvent,
+  IBmbMenuEvent,
+  IBmbTargetLink,
+} from '../../_shared/types';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 
 export type IBmbMobileTemplateName =
