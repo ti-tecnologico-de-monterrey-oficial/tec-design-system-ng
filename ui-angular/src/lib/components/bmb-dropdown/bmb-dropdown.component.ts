@@ -44,10 +44,6 @@ import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../pipes/translations';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-dropdown',
   standalone: true,

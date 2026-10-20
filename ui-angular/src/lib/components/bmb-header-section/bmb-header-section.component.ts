@@ -8,19 +8,15 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { getRGBColorKeyValue, isImage } from '../../_shared/logic/utils';
+import { isImage } from '../../_shared/logic/utils';
 import { BmbBreadcrumbComponent } from '../bmb-breadcrumb/bmb-breadcrumb.component';
-import type { IBmbDataTopBar } from '../../_shared/types';
+import type { IBmbActionHeader, IBmbDataTopBar } from '../../_shared/types';
 import { IBmbColor } from '../../_shared/types/colors';
-import { IBmbActionHeader } from '../../_shared/types';
 import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';
 import { getClassNameByConditional } from '../../_shared/logic/getClassName';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../pipes/translations';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { getHeaderSectionStyles } from '../../_shared/logic/components/header-section';
 
 @Component({
   selector: 'bmb-header-section',
@@ -55,13 +51,10 @@ export class BmbHeaderSectionComponent {
   onClickLeft = output<any>();
 
   getStyles(): object {
-    if (this.isImage(this.icon())) {
-      return { 'background-color': 'transparent' };
-    }
-    if (this.bgIconAppearance()) {
-      return getRGBColorKeyValue(this.bgIconAppearance() as string);
-    }
-    return {};
+    return getHeaderSectionStyles(
+      this.icon(),
+      this.bgIconAppearance() as string | undefined,
+    );
   }
 
   evaluateConditional(conditional: any): boolean {

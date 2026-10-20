@@ -17,15 +17,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { sanitizeContent } from '../../_shared/logic/sanitizeContent';
-
-export interface IBmbCardNoticeDescription {
-  pageOne?: string | SafeHtml;
-  pageTwo?: string | SafeHtml;
-}
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { IBmbCardNoticeDescription } from '../../_shared/types';
 
 @Component({
   selector: 'bmb-notice-card',

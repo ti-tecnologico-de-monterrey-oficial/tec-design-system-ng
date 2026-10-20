@@ -1,4 +1,4 @@
-import { IBmbTargetLink } from '../../_shared/types';
+import { IBmbTargetLink } from '../utils';
 
 export interface SidebarElement {
   id: number;

@@ -1,4 +1,5 @@
 <bmb-check-external-link-button
+  [attr.data-testid]="testId()"
   [link]="link()!"
   [target]="target()!"
   (buttonClick)="handleClick($event)"

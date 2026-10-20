@@ -18,19 +18,13 @@ import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-d
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { isExternalLink } from '../../_shared/logic/utils';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { IDropdownItem } from '../../_shared/types';
+import { IBmbMenuEvent, IDropdownItem } from '../../_shared/types';
 import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
-
-export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { getExternalLinkSubtitleIcon } from '../../_shared/logic/components/external-link';
 
 @Component({
   selector: 'bmb-external-link',
@@ -88,9 +82,7 @@ export class BmbExternalLinkComponent {
   @ViewChild('contentDiv') contentRef!: ElementRef<any>;
 
   getSubtitleIcon(): string {
-    return (
-      (!!this.subtitle() && isExternalLink(this.subtitle()) && 'lock') || ''
-    );
+    return getExternalLinkSubtitleIcon(this.subtitle());
   }
 
   menuItems: IDropdownItem[] = [

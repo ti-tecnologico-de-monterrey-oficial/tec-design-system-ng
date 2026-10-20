@@ -8,7 +8,6 @@ import {
   output,
   effect,
 } from '@angular/core';
-import { IBmbTargetLink } from '../../_shared/types';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 import { BmbValueCounterComponent } from '../bmb-value-counter/bmb-value-counter.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
@@ -18,18 +17,16 @@ import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
-
-export type IBmbProgressBarVariations = 'info' | 'warning' | 'error';
-export type IBmbProgressBarTypes = 'simple' | 'counter' | 'container';
-export type IBmbProgressBarStatusColor =
-  | 'info'
-  | 'warning'
-  | 'error'
-  | 'success';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  IBmbProgressBarStatusColor,
+  IBmbProgressBarTypes,
+  IBmbProgressBarVariations,
+  IBmbTargetLink,
+} from '../../_shared/types';
+import {
+  getProgressBarColorClass,
+  getProgressBarValue,
+} from '../../_shared/logic/components/progress-bar';
 
 @Component({
   selector: 'bmb-progress-bar',
@@ -91,16 +88,10 @@ export class BmbProgressBarComponent {
   }
 
   progressValue = computed(() => {
-    if (this.totalCount() === 0) return '0';
-    const numberProgress = (this.counter() / this.totalCount()) * 100;
-    let newProgress = numberProgress.toFixed(2);
-    if (numberProgress < 0) newProgress = '0';
-    if (numberProgress > 100) newProgress = '100';
-
-    return newProgress;
+    return getProgressBarValue(this.counter(), this.totalCount());
   });
 
   progressBarColorClass = computed(() => {
-    return `bmb_progress-bar-active-${this.statusColor()}`;
+    return getProgressBarColorClass(this.statusColor());
   });
 }

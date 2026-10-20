@@ -34,6 +34,7 @@ import { getInteractiveIconClasses } from '../../_shared/logic/components/intera
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbInteractiveIconComponent {
+  testId = input<string>('interactive-icon-button');
   appearanceContrast = input<IBmbContrast>('default');
   appearance = input<IBmbInteractiveIconAppearance | (string & {})>('red');
   description = input<string>('');

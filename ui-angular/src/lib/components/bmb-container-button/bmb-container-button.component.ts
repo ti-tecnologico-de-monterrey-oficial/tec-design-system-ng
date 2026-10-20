@@ -55,6 +55,7 @@ const MOBILE_TABLET_QUERY = '(max-width: 992px)';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbContainerButtonComponent {
+  testId = input<string>('container-button');
   componentTitle = input<string>();
   score = input<string>('');
   square = input<boolean>();

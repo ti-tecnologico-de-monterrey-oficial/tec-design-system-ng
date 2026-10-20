@@ -47,6 +47,7 @@
         [id]="item.idItem"
       >
         <bmb-check-external-link-button
+          [attr.data-testid]="testId()"
           [link]="item.url!"
           [target]="item.target!"
           (buttonClick)="handleDropdown(item)"

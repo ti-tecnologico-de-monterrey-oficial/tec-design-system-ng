@@ -43,6 +43,7 @@ import { BmbTranslationsService } from '../../../services/translations/translati
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTopBarUserSectionComponent {
+  testId = input<string>('top-bar-user-section-button');
   userInformation = input<IUserInformation>({
     image: '',
     name: '',

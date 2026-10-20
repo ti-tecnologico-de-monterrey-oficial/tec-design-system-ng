@@ -41,6 +41,36 @@ describe('BmbProfileComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should allow independent test IDs for the role switch and back button', () => {
+    componentRef.setInput('isStudent', false);
+    componentRef.setInput('collaboratorData', {
+      userData: component.studentData()?.userData,
+      enableRolSwitch: true,
+    });
+    componentRef.setInput('enableVersionBack', true);
+    fixture.detectChanges();
+
+    const roleButton: HTMLElement = fixture.nativeElement.querySelector(
+      'bmb-check-external-link-button.bmb_profile-info-change-role',
+    );
+    const backButton: HTMLElement = fixture.nativeElement.querySelector(
+      'bmb-check-external-link-button.bmb_profile-info-container-link',
+    );
+    expect(roleButton.getAttribute('data-testid')).toBe(
+      'profile-change-role-button',
+    );
+    expect(backButton.getAttribute('data-testid')).toBe(
+      'profile-back-to-previous-version-button',
+    );
+
+    componentRef.setInput('testId', 'custom-role-switch');
+    componentRef.setInput('backButtonTestId', 'custom-version-back');
+    fixture.detectChanges();
+
+    expect(roleButton.getAttribute('data-testid')).toBe('custom-role-switch');
+    expect(backButton.getAttribute('data-testid')).toBe('custom-version-back');
+  });
+
   it('should have default input values', () => {
     expect(component.idDigitalLink()).toBe('');
     expect(component.campusAcessLink()).toBe('');
