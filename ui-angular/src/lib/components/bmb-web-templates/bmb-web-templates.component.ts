@@ -8,9 +8,12 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbTopBarComponent } from '../bmb-top-bar/bmb-top-bar.component';
-import { IUserInformation, IBmbTemplateName } from '../../_shared/types';
+import {
+  IUserInformation,
+  IBmbTemplateName,
+  SidebarElement,
+} from '../../_shared/types';
 import { BmbSidebarComponent } from '../bmb-sidebar/bmb-sidebar.component';
-import { SidebarElement } from '../bmb-sidebar/bmb-sidebar.interface';
 import { CommonModule } from '@angular/common';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
