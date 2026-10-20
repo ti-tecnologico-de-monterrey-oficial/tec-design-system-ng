@@ -8,6 +8,22 @@
   <div class="demo-grid">
     <aside class="controls">
       <h2>Propiedades</h2>
+      <label class="field">
+        Placeholder
+        <input
+          type="text"
+          [value]="placeholder()"
+          (input)="updatePlaceholder($event)"
+        />
+      </label>
+      <label class="field">
+        Icono de emoji
+        <input
+          type="text"
+          [value]="emojiIcon()"
+          (input)="updateEmojiIcon($event)"
+        />
+      </label>
       <label class="check">
         <input
           type="checkbox"
@@ -40,6 +56,46 @@
         />
         Deshabilitar input
       </label>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="isLoading()"
+          (change)="isLoading.set(!isLoading())"
+        />
+        Mostrar estado de carga
+      </label>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="isBotSpeaking()"
+          (change)="isBotSpeaking.set(!isBotSpeaking())"
+        />
+        El bot está hablando
+      </label>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="disabledBotSpeaking()"
+          (change)="disabledBotSpeaking.set(!disabledBotSpeaking())"
+        />
+        Deshabilitar control de voz del bot
+      </label>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="showFileAction()"
+          (change)="showFileAction.set(!showFileAction())"
+        />
+        Mostrar acción para adjuntar archivos
+      </label>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="emptyBotList()"
+          (change)="emptyBotList.set(!emptyBotList())"
+        />
+        Probar lista de bots vacía
+      </label>
       <p class="event">
         <strong>Última acción:</strong> {{ lastEvent() }}
       </p>
@@ -49,15 +105,24 @@
       <header>
         <span class="eyebrow">VISTA PREVIA</span>
         <h2>Bot activo: {{ currentBot()?.label ?? 'TecBot' }}</h2>
+        <p>
+          {{ botList().length }} bots disponibles ·
+          {{ actionsList().length }} acciones adicionales
+        </p>
       </header>
 
       <bmb-chat-bar
-        placeholder="Escribe un mensaje..."
+        [placeholder]="placeholder()"
+        [emojiIcon]="emojiIcon()"
+        [botList]="botList()"
+        [actionsList]="actionsList()"
         [showEmoji]="showEmoji()"
         [enableMicInput]="enableMicInput()"
         [disableChangeBot]="disableChangeBot()"
         [(disabledInput)]="disabledInput"
         [(isLoading)]="isLoading"
+        [(isBotSpeaking)]="isBotSpeaking"
+        [(disabledBotSpeaking)]="disabledBotSpeaking"
         [currentBot]="currentBot()"
         (currentBotChange)="handleCurrentBotChange($event)"
         (onSendMessage)="handleSendMessage($event)"
@@ -65,6 +130,10 @@
         (onRecord)="handleRecord($event)"
         (onEmoji)="handleEmoji($event)"
       />
+      <p class="hint">
+        Prueba enviar con Enter, adjuntar o arrastrar archivos, cambiar el bot,
+        activar el micrófono y alternar los estados desde las propiedades.
+      </p>
     </article>
   </div>
 </section>
