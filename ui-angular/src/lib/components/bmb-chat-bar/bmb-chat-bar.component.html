@@ -22,7 +22,7 @@
         <div class="bmb_chat-bar-files-list-option">
           <bmb-icon
             class="bmb_chat-bar-files-list-option-icon"
-            icon="upload_file"
+            icon="attach_file"
             [size]="24"
           />
           <span class="bmb_chat-bar-files-list-option-text">
@@ -206,7 +206,10 @@
 
 <ng-template #chatBarTemplate>
   <section class="bmb_chat-bar-add-dialog">
-    <bmb-action-menu [showHeader]="false" [componentTitle]="'chat_bar.plus_menu' | translate">
+    <bmb-action-menu
+      [showHeader]="false"
+      [componentTitle]="'chat_bar.plus_menu' | translate"
+    >
       @for (action of actionsList(); track $index) {
         <ng-template #actionMenuItem>
           <bmb-item
