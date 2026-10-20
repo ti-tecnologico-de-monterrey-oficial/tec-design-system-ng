@@ -38,20 +38,20 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDropdownContentComponent {
-  selectedOption = input<string | string[]>([]); //Internal
-  items = model<IDropdownItem[]>([]);
-  isKeyboardEvent = model<boolean>(false); //Internal
-  enableFilter = input<boolean>(false);
-  customFilterFunction = input<
+  readonly selectedOption = input<string | string[]>([]); //Internal
+  readonly items = model<IDropdownItem[]>([]);
+  readonly isKeyboardEvent = model<boolean>(false); //Internal
+  readonly enableFilter = input<boolean>(false);
+  readonly customFilterFunction = input<
     ((item: IDropdownItem, filter: string) => boolean) | null
   >(null);
-  isMultiSelect = input<boolean>(false);
+  readonly isMultiSelect = input<boolean>(false);
 
-  clickedItem = output<IDropdownItem>();
+  readonly clickedItem = output<IDropdownItem>();
 
-  isOpen = model<boolean>(false); //remove this
+  readonly isOpen = model<boolean>(false); //remove this
 
-  filteredItems = computed<IDropdownItem[]>(() =>
+  readonly filteredItems = computed<IDropdownItem[]>(() =>
     getFilteredDropdownItems(
       this.items(),
       this.enableFilter(),
@@ -59,21 +59,21 @@ export class BmbDropdownContentComponent {
       this.customFilterFunction(),
     ),
   );
-  private selectedFilteredItems = computed(() =>
+  private readonly  selectedFilteredItems = computed(() =>
     this.filteredItems().filter((item) => this.isSelected(item.value!)),
   );
-  isIndeterminate = computed(
+  readonly isIndeterminate = computed(
     () =>
       this.selectedFilteredItems().length > 0 &&
       this.selectedFilteredItems().length < this.filteredItems().length,
   );
-  isAllSelected = computed(
+  readonly isAllSelected = computed(
     () =>
       this.filteredItems().length > 0 &&
       this.selectedFilteredItems().length === this.filteredItems().length,
   );
-  selectionState = signal<string[] | string>([]);
-  filterString = signal<string>('');
+  readonly selectionState = signal<string[] | string>([]);
+  readonly filterString = signal<string>('');
 
   constructor() {
     effect(
