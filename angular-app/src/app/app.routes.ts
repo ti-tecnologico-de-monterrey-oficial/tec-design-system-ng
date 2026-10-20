@@ -3,6 +3,14 @@ import { Route } from '@angular/router';
 import { TemplatesContainerBtn } from './pages/templates-container-btn/templates-container-btn';
 
 export const appRoutes: Route[] = [
+  {
+    path: 'issue/dropdown',
+    title: 'DS01-3902 | BmbDropdown',
+    loadComponent: () =>
+      import('./pages/issue-dropdown-page/issue-dropdown-page').then(
+        ({ IssueDropdownPage }) => IssueDropdownPage,
+      ),
+  },
   ...componentTestRoutes,
   {
     path: 'template-container-btn',
