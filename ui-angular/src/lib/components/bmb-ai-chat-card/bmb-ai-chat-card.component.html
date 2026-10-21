@@ -7,7 +7,7 @@
       "
       [subtitle]="subtitle() || ('home_card_chat.subtitle' | translate)"
       [actionHeaders]="headerActionList()"
-      [isExpanded]="isExpandedMode()"
+      [(isExpanded)]="isExpanded"
       [(currentBot)]="currentBot"
       (onExpandClick)="handleExpandOrContract()"
     >

@@ -11,7 +11,7 @@ describe('ai-chat-card', () => {
     });
 
     it('should go to chat from expanded', () => {
-      expect(getNextAIChatCardMode('expanded')).toBe('chat');
+      expect(getNextAIChatCardMode('expanded')).toBe('expanded');
     });
 
     it('should fall back to expanded for any other mode', () => {

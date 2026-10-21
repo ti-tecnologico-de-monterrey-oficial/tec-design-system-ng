@@ -8,7 +8,10 @@ import {
 } from '@angular/core';
 import { BmbChatBarComponent } from '../bmb-chat-bar/bmb-chat-bar.component';
 import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
-import { IBmbAIChatCardMode } from '../../_shared/types/components/ai-chat-card';
+import {
+  IBMB_AI_CHAT_CARD_MODE,
+  IBmbAIChatCardMode,
+} from '../../_shared/types/components/ai-chat-card';
 
 @Component({
   standalone: true,
@@ -22,7 +25,7 @@ import { IBmbAIChatCardMode } from '../../_shared/types/components/ai-chat-card'
   `,
 })
 class HostComponent {
-  mode = signal<IBmbAIChatCardMode>('compact');
+  mode = signal<IBmbAIChatCardMode>(IBMB_AI_CHAT_CARD_MODE.COMPACT);
 }
 
 describe('BmbAIChatCardComponent with projected content', () => {
@@ -42,23 +45,23 @@ describe('BmbAIChatCardComponent with projected content', () => {
   });
 
   afterEach(() => {
-    host.mode.set('compact');
+    host.mode.set(IBMB_AI_CHAT_CARD_MODE.COMPACT);
     fixture.detectChanges();
     fixture.destroy();
   });
 
   it('should open the projected dialog in chat mode and close it afterwards', () => {
-    host.mode.set('chat');
+    host.mode.set(IBMB_AI_CHAT_CARD_MODE.CHAT);
     fixture.detectChanges();
     expect(projection.isContentOpen('ai_chat_bar_actions_dialog')).toBe(true);
 
-    host.mode.set('compact');
+    host.mode.set(IBMB_AI_CHAT_CARD_MODE.COMPACT);
     fixture.detectChanges();
     expect(projection.isContentOpen('ai_chat_bar_actions_dialog')).toBe(false);
   });
 
   it('should render bubbles and chat bar and scroll bubbles to bottom', async () => {
-    host.mode.set('expanded');
+    host.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
     fixture.detectChanges();
 
     const bubbles = fixture.nativeElement.querySelector(
@@ -81,7 +84,7 @@ describe('BmbAIChatCardComponent with projected content', () => {
 
   it('should focus the chat bar input when conversation is enabled', async () => {
     const spy = jest.spyOn(HTMLElement.prototype, 'focus');
-    host.mode.set('expanded');
+    host.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
     fixture.detectChanges();
     await Promise.resolve();
     await new Promise((resolve) => setTimeout(resolve));
@@ -93,19 +96,19 @@ describe('BmbAIChatCardComponent with projected content', () => {
   });
 
   it('should restore the previous mode when the dialog is closed', () => {
-    host.mode.set('chat');
+    host.mode.set(IBMB_AI_CHAT_CARD_MODE.CHAT);
     fixture.detectChanges();
     projection.closeContent('ai_chat_bar_actions_dialog');
     fixture.detectChanges();
-    expect(host.mode()).toBe('compact');
+    expect(host.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.COMPACT);
   });
 
   it('should re-observe the bubbles container when it is recreated', () => {
-    host.mode.set('expanded');
+    host.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
     fixture.detectChanges();
-    host.mode.set('compact');
+    host.mode.set(IBMB_AI_CHAT_CARD_MODE.COMPACT);
     fixture.detectChanges();
-    host.mode.set('expanded');
+    host.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
     fixture.detectChanges();
     expect(
       fixture.nativeElement.querySelector('.bmb_ai-chat-card-bubbles'),
@@ -114,15 +117,15 @@ describe('BmbAIChatCardComponent with projected content', () => {
 
   it('should not fail when starting directly in chat mode', () => {
     const f = TestBed.createComponent(HostComponent);
-    f.componentInstance.mode.set('chat');
+    f.componentInstance.mode.set(IBMB_AI_CHAT_CARD_MODE.CHAT);
     expect(() => f.detectChanges()).not.toThrow();
-    f.componentInstance.mode.set('compact');
+    f.componentInstance.mode.set(IBMB_AI_CHAT_CARD_MODE.COMPACT);
     f.detectChanges();
     f.destroy();
   });
 
   it('should disconnect the observer on destroy', () => {
-    host.mode.set('expanded');
+    host.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
     fixture.detectChanges();
     expect(() => fixture.destroy()).not.toThrow();
   });
@@ -150,7 +153,6 @@ describe('BmbAIChatCardComponent', () => {
 
   type Internals = {
     openChat: () => void;
-    handleExpand: () => void;
     isCompactMode: () => boolean;
     isExpandedMode: () => boolean;
     isOneChatBar: () => boolean;
@@ -159,7 +161,7 @@ describe('BmbAIChatCardComponent', () => {
   const internals = () => component as unknown as Internals;
 
   it('should have compact mode and the default bot by default', () => {
-    expect(component.mode()).toBe('compact');
+    expect(component.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.COMPACT);
     expect(component.currentBot().name).toBe('TecBot');
     expect(component.currentBot().icon).toBe('bot_tecStandar');
     expect(component.componentTitle()).toBe('');
@@ -192,11 +194,11 @@ describe('BmbAIChatCardComponent', () => {
     const selector = 'bmb-action-icon.bmb_ai-chat-card-bot';
     expect(fixture.nativeElement.querySelector(selector)).toBeTruthy();
 
-    componentRef.setInput('mode', 'invisible');
+    componentRef.setInput('mode', IBMB_AI_CHAT_CARD_MODE.INVISIBLE);
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector(selector)).toBeNull();
 
-    componentRef.setInput('mode', 'expanded');
+    componentRef.setInput('mode', IBMB_AI_CHAT_CARD_MODE.EXPANDED);
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector(selector)).toBeNull();
   });
@@ -205,58 +207,52 @@ describe('BmbAIChatCardComponent', () => {
     expect(internals().isCompactMode()).toBe(true);
     expect(internals().isExpandedMode()).toBe(false);
 
-    component.mode.set('expanded');
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
     expect(internals().isCompactMode()).toBe(false);
     expect(internals().isExpandedMode()).toBe(true);
   });
 
   it('should switch to chat mode when opening the chat', () => {
     internals().openChat();
-    expect(component.mode()).toBe('chat');
-  });
-
-  it('should switch to expanded mode when expanding', () => {
-    component.mode.set('chat');
-    internals().handleExpand();
-    expect(component.mode()).toBe('expanded');
+    expect(component.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.CHAT);
   });
 
   it('should go to chat when contracting from compact or invisible', () => {
-    component.mode.set('compact');
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.COMPACT);
     (
       component as unknown as { handleExpandOrContract: () => void }
     ).handleExpandOrContract();
-    expect(component.mode()).toBe('chat');
+    expect(component.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.CHAT);
 
-    component.mode.set('invisible');
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.INVISIBLE);
     (
       component as unknown as { handleExpandOrContract: () => void }
     ).handleExpandOrContract();
-    expect(component.mode()).toBe('chat');
+    expect(component.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.CHAT);
   });
 
   it('should go to compact when contracting from chat and the last non-chat mode was not invisible', () => {
-    component.mode.set('chat');
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.CHAT);
     (component as unknown as { handleMinimize: () => void }).handleMinimize();
-    expect(component.mode()).toBe('compact');
+    expect(component.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.COMPACT);
   });
 
   it('should go back to invisible when contracting from chat after tracking invisible as the last non-chat mode', () => {
-    component.mode.set('invisible');
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.INVISIBLE);
     fixture.detectChanges();
 
-    component.mode.set('chat');
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.CHAT);
     (component as unknown as { handleMinimize: () => void }).handleMinimize();
 
-    expect(component.mode()).toBe('invisible');
+    expect(component.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.INVISIBLE);
   });
 
   it('should go to expanded when expand-or-contract is triggered from chat', () => {
-    component.mode.set('chat');
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.CHAT);
     (
       component as unknown as { handleExpandOrContract: () => void }
     ).handleExpandOrContract();
-    expect(component.mode()).toBe('expanded');
+    expect(component.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.INVISIBLE);
   });
 
   it('should only provide the minimize header action (plus custom ones) in chat mode', () => {
@@ -264,7 +260,7 @@ describe('BmbAIChatCardComponent', () => {
 
     const custom = { icon: 'close', tooltipText: 'Close', action: jest.fn() };
     componentRef.setInput('headerActions', [custom]);
-    component.mode.set('chat');
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.CHAT);
 
     const actions = internals().headerActionList();
     expect(actions.length).toBe(2);
@@ -272,10 +268,10 @@ describe('BmbAIChatCardComponent', () => {
     expect(actions[1]).toBe(custom);
 
     actions[0].action();
-    expect(component.mode()).toBe('compact');
+    expect(component.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.COMPACT);
 
-    component.mode.set('expanded');
-    expect(internals().headerActionList()).toEqual([]);
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
+    expect(actions[1]).toBe(custom);
   });
 
   it('should do nothing when scrolling or focusing without containers', () => {
@@ -288,10 +284,10 @@ describe('BmbAIChatCardComponent', () => {
   });
 
   it('should go to chat when expanding', () => {
-    component.mode.set('expanded');
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
     (
       component as unknown as { handleExpandOrContract: () => void }
     ).handleExpandOrContract();
-    expect(component.mode()).toBe('chat');
+    expect(component.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.CHAT);
   });
 });

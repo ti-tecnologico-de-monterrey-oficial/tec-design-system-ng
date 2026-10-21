@@ -45,6 +45,7 @@ export class AiChatCardPage {
     label: 'Tecbot Standard',
     icon: 'bot_tecStandar',
   });
+  readonly isExpanded = signal<boolean>(false);
 
   readonly botList: IBotType[] = [
     { name: 'TecBot', label: 'Tecbot Standard', icon: 'bot_tecStandar' },
