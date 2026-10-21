@@ -7,7 +7,7 @@ import {
   IBmbControlType,
   IBmbOptionRule,
   IBmbVisibilityRule,
-} from './bmb-filter-card.interface';
+} from '../../_shared/types';
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
 
 describe('BmbFilterCardComponent', () => {

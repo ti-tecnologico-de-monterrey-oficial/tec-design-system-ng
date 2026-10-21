@@ -104,7 +104,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Filter card (*old)',
+            label: 'Filter card',
             url: '/pages/containers/filter-card',
             icon: 'widgets',
           },
@@ -149,7 +149,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Search card (*old)',
+            label: 'Search card',
             url: '/pages/containers/search-card',
             icon: 'widgets',
           },
@@ -422,7 +422,7 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Account statement (*old)',
+        label: 'Account statement',
         url: '/pages/organisms/account-statement',
         icon: 'widgets',
       },
@@ -458,7 +458,7 @@ export const navigationTest: ComponentGroupTest[] = [
     label: 'Deprecated',
     items: [
       {
-        label: 'Home card chat (*old)',
+        label: 'Home card chat',
         url: '/pages/deprecated/home-card-chat',
         icon: 'widgets',
       },

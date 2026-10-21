@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { IBmbColor } from '../../_shared/types/colors';
-import type { IBmbDataTopBar } from '../../_shared/types';
 import {
   BmbTimestreamComponent,
   IBmbClamp,
@@ -22,10 +21,13 @@ import {
   BmbCardContentComponent,
 } from '../bmb-card/bmb-card.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { IBmbControlType } from '../bmb-filter-card/bmb-filter-card.interface';
 import { timestreamFilter } from '../../_shared/logic/timestreamFilters';
 import { CommonModule } from '@angular/common';
-import { IBmbActionHeader } from '../../_shared/types';
+import {
+  IBmbActionHeader,
+  IBmbControlType,
+  IBmbDataTopBar,
+} from '../../_shared/types';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { TranslatePipe } from '../../pipes/translations';

@@ -1,4 +1,4 @@
-import { IBmbDropdownItem } from '../../_shared/types';
+import { IBmbDropdownItem } from './dropdown';
 
 export interface IBmbControlType {
   title: string;
