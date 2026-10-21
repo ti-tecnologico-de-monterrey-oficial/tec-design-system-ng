@@ -293,24 +293,6 @@ export const UploadFileMessage: Story = {
   },
 };
 
-export const UploadFileWithoutRequirements: Story = {
-  args: {
-    ...UploadFileMessage.args,
-    message: {
-      id: 'upload-minimal',
-      type: 'upload-file',
-      timestamp: new Date('2026-05-05T20:00:00'),
-      isUser: false,
-      content: {
-        fileName: 'documento',
-        text: 'Adjunta el documento para continuar con tu solicitud.',
-        buttonLabel: 'Seleccionar documento',
-        cancelKeyword: 'Salir',
-      },
-    },
-  },
-};
-
 export const UserMessage: Story = {
   args: {
     showActions: true,
