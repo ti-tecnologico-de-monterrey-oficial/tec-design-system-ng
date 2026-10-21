@@ -9,6 +9,7 @@ import {
 import {
   BmbAiChatBubbleComponent,
   BmbDropdownComponent,
+  BmbInputComponent,
   type BmbChatAction,
   type BmbChatActionEvent,
   type BmbChatMessage,
@@ -22,7 +23,7 @@ import { CHAT_USER_IMAGE_OPTIONS } from './chat-user-image-options';
 
 @Component({
   selector: 'app-ai-chat-bubble-page',
-  imports: [BmbAiChatBubbleComponent, BmbDropdownComponent],
+  imports: [BmbAiChatBubbleComponent, BmbDropdownComponent, BmbInputComponent],
   templateUrl: './ai-chat-bubble-page.html',
   styleUrl: './ai-chat-bubble-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

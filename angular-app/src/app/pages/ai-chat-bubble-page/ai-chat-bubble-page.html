@@ -195,23 +195,17 @@
         Mostrar requisitos
       </label>
       @if (showRequirements()) {
-      <label class="field">
-        <span>Formatos aceptados</span>
-        <select
-          #formats
-          [value]="acceptedFormats()"
-          (change)="acceptedFormats.set(formats.value)"
-        >
-          <option value=".pdf,.doc,.xml">Extensiones: .pdf, .doc, .xml</option>
-          <option value="application/pdf,image/png">
-            Tipos MIME: PDF y PNG
-          </option>
-          <option value="image/*,audio/*,video/*">
-            Imágenes, audio y video
-          </option>
-          <option value="">Sin formatos</option>
-        </select>
-      </label>
+      <!-- .pdf,.doc,.xml
+       application/pdf,image/png
+       image/*,audio/*,video/*-->
+      <bmb-input
+        label="Formatos aceptados"
+        name="chat-accepted-formats"
+        placeholder=".pdf,application/pdf,image/*"
+        helperMessage="Extensiones o tipos MIME separados por comas. Vacío para no indicar formatos."
+        [value]="acceptedFormats()"
+        (onChange)="acceptedFormats.set($event.value)"
+      />
       <label class="field">
         <span>Tamaño máximo (informativo)</span>
         <input

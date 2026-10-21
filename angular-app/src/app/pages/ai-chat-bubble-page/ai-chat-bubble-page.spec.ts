@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   BmbDropdownComponent,
+  BmbInputComponent,
   BmbTranslationsService,
   type BmbChatMessageType,
 } from 'ui-angular';
@@ -78,6 +79,27 @@ describe('AiChatBubblePage', () => {
       'Texto alternativo',
     );
     expect(fixture.nativeElement.textContent).not.toContain('Mostrar editar');
+  });
+
+  it('should update accepted formats from the BmbInput event', () => {
+    page.selectMessageType('upload-file');
+    fixture.detectChanges();
+    const input = fixture.debugElement.query(By.directive(BmbInputComponent));
+    expect(input.componentInstance.label()).toBe('Formatos aceptados');
+    const nativeInput = document.createElement('input');
+    nativeInput.value = '.png,image/png';
+    input.componentInstance.onChange.emit(nativeInput);
+    fixture.detectChanges();
+    expect(page.message()).toMatchObject({
+      type: 'upload-file',
+      content: { acceptedFormats: ['.png', 'image/png'] },
+    });
+    nativeInput.value = '';
+    input.componentInstance.onChange.emit(nativeInput);
+    fixture.detectChanges();
+    expect(page.message()).toMatchObject({
+      content: { acceptedFormats: [] },
+    });
   });
 
   it('should preserve controls and update message content across selections', () => {
