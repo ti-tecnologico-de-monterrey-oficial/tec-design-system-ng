@@ -1,14 +1,14 @@
-import { TestBed } from '@angular/core/testing';
-import { BmbFilterCardComponent } from './bmb-filter-card.component';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormControl } from '@angular/forms';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import {
+import { TestBed } from '@angular/core/testing';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import type {
   IBmbControlType,
   IBmbOptionRule,
   IBmbVisibilityRule,
-} from './bmb-filter-card.interface';
+} from '../../_shared/types/components/filter-card';
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbFilterCardComponent } from './bmb-filter-card.component';
 
 describe('BmbFilterCardComponent', () => {
   beforeEach(async () => {

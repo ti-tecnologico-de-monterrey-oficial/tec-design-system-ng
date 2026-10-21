@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,14 +8,13 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbHomeCardHeaderComponent } from './bmb-home-card-header/bmb-home-card-header.component';
-import type { IBmbDataTopBar } from '../../_shared/types';
-import { IBmbColor } from '../../_shared/types/colors';
-import { IBmbActionHeader, SizeNames } from '../../_shared/types';
-import { CommonModule } from '@angular/common';
-import { IBotType } from '../bmb-chat-bar/types';
-import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { getHomeCardContentClass } from '../../_shared/logic/components/home-card';
+import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
+import type { IBmbDataTopBar } from '../../_shared/types';
+import type { IBmbActionHeader, SizeNames } from '../../_shared/types';
+import type { IBmbColor } from '../../_shared/types/colors';
+import type { IBotType } from '../../_shared/types/components/chat-bar';
+import { BmbHomeCardHeaderComponent } from './bmb-home-card-header/bmb-home-card-header.component';
 
 @Component({
   selector: 'bmb-home-card',

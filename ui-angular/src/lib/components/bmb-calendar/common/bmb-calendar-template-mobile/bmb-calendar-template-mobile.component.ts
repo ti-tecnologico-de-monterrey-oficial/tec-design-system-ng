@@ -1,36 +1,44 @@
+import { CommonModule } from '@angular/common';
 import {
-  Component,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
+  Component,
+  computed,
+  effect,
   inject,
   input,
-  output,
-  computed,
-  signal,
-  ViewChild,
-  TemplateRef,
-  effect,
   OnInit,
+  output,
+  signal,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
-import { DateTime } from 'luxon';
-import { getWeeksInMonth, weeksAndDays } from '../../utils';
-import { CommonModule } from '@angular/common';
-import { BmbButtonDirective } from '../../../../directives/bmb-button/button.directive';
-import { Info } from 'luxon';
-import { orderDayNames } from '../../../../_shared/logic/utils';
-import { BmbInnerHeaderComponent } from '../../../bmb-inner-header/bmb-inner-header.component';
-import { BmbChevronTitleSelectorComponent } from '../../../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
-import { BmbPullWedgeComponent } from '../../../bmb-pull-wedge/bmb-pull-wedge.component';
-import { BmbTranslationsService } from '../../../../services/translations/translations.service';
-import { TranslatePipe } from '../../../../pipes/translations';
-import { BmbCalendarComponentService } from '../../bmb-calendar.service';
-import { BmbNativeModalService } from '../../../../services/old/modal/native-modal.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { BmbCheckboxComponent } from '../../../bmb-checkbox/bmb-checkbox.component';
+import { DateTime, Info } from 'luxon';
+import {
+  getWeeksInMonth,
+  weeksAndDays,
+} from '../../../../_shared/logic/components/calendar';
+import {
+  mobileFindEventsForToday,
+  mobileGetBulletClass,
+  mobileGetCalendarName,
+  mobileIsSelectedDay,
+} from '../../../../_shared/logic/components/calendar-view';
+import { orderDayNames } from '../../../../_shared/logic/utils';
+import { BmbButtonDirective } from '../../../../directives/bmb-button/button.directive';
 import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../../../directives/bmb-layout/bmb-layout.directive';
+import { TranslatePipe } from '../../../../pipes/translations';
+import { BmbNativeModalService } from '../../../../services/old/modal/native-modal.service';
+import { BmbTranslationsService } from '../../../../services/translations/translations.service';
+import { BmbCheckboxComponent } from '../../../bmb-checkbox/bmb-checkbox.component';
+import { BmbChevronTitleSelectorComponent } from '../../../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component';
+import { BmbInnerHeaderComponent } from '../../../bmb-inner-header/bmb-inner-header.component';
+import { BmbPullWedgeComponent } from '../../../bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbSwitchComponent } from '../../../bmb-switch/bmb-switch.component';
+import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 
 @Component({
   selector: 'bmb-calendar-template-mobile',
@@ -146,7 +154,7 @@ export class BmbCalendarTemplateMobileComponent implements OnInit {
   }
 
   isSelectedDay(date: DateTime): boolean {
-    return date.hasSame(this.now(), 'day');
+    return mobileIsSelectedDay(date, this.now());
   }
 
   handleDayChange(date: DateTime): void {
@@ -185,15 +193,11 @@ export class BmbCalendarTemplateMobileComponent implements OnInit {
   }
 
   findEventsForToday(date: DateTime) {
-    const weekNumber = date.weekNumber;
-    const stringDate = date.toFormat('yyyy-MM-dd');
-    return !!this.events()?.[weekNumber]?.[stringDate]?.some(
-      (event) => event.isVisible,
-    );
+    return mobileFindEventsForToday(date, this.events());
   }
 
   getBulletClass(name: string): string[] {
-    return ['bmb_calendar-event-bullet', `bmb_calendar-event-bullet-${name}`];
+    return mobileGetBulletClass(name);
   }
 
   getFormControl(name: string): FormControl {
@@ -201,17 +205,6 @@ export class BmbCalendarTemplateMobileComponent implements OnInit {
   }
 
   getCalendarName(name: string): string {
-    switch (name) {
-      case 'academic':
-        return 'Horario de clases';
-      case 'life':
-        return 'Vida';
-      case 'events':
-        return 'Eventos';
-      case 'save_the_date':
-        return 'Save the date';
-      default:
-        return name;
-    }
+    return mobileGetCalendarName(name);
   }
 }

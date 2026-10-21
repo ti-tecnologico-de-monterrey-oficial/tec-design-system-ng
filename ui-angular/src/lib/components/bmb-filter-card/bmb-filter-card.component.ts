@@ -1,42 +1,44 @@
+import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
+  inject,
   input,
   OnInit,
-  ChangeDetectionStrategy,
-  ViewEncapsulation,
-  TemplateRef,
-  ViewChild,
   output,
   signal,
-  inject,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
-import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
-import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
-import { IBmbNativeModal } from '../../_shared/types';
-import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import {
+  getFilterCardOptions,
+  getFilterCardSubmission,
+  getFilterCardVisibility,
+  matchesFilterCardRule,
+} from '../../_shared/logic/components/filter-card';
+import type { IBmbNativeModal } from '../../_shared/types';
+import type { IBmbDropdownItem } from '../../_shared/types/components/dropdown';
+import type {
   IBmbControlType,
   IBmbOptionRule,
   IBmbVisibilityRule,
-} from './bmb-filter-card.interface';
-import { IBmbDropdownItem } from '../../_shared/types/components/dropdown';
+} from '../../_shared/types/components/filter-card';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
-import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
-import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
 import { TranslatePipe } from '../../pipes/translations';
+import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
+import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
+import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
+import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 
 export * from './bmb-filter-card.interface';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-filter-card',
@@ -88,32 +90,13 @@ export class BmbFilterCardComponent implements OnInit {
 
   private filterValues = signal<Record<string, any>>({});
 
-  private readonly visibleControlIds = computed(() => {
-    const rules = this.visibilityRules();
-    if (!rules.length) return null;
-    const values = this.filterValues();
-    const map = new Map<string, boolean>();
-    for (const rule of rules) {
-      if (this.ruleMatches(rule.when, values)) {
-        rule.show?.forEach((id) => map.set(id, true));
-        rule.hide?.forEach((id) => map.set(id, false));
-      }
-    }
-    return map;
-  });
+  private readonly visibleControlIds = computed(() =>
+    getFilterCardVisibility(this.visibilityRules(), this.filterValues()),
+  );
 
-  private readonly dynamicOptionsMap = computed(() => {
-    const rules = this.optionRules();
-    if (!rules.length) return new Map<string, string[] | IBmbDropdownItem[]>();
-    const values = this.filterValues();
-    const map = new Map<string, string[] | IBmbDropdownItem[]>();
-    for (const rule of rules) {
-      if (this.ruleMatches(rule.when, values)) {
-        map.set(rule.target, rule.options);
-      }
-    }
-    return map;
-  });
+  private readonly dynamicOptionsMap = computed(() =>
+    getFilterCardOptions(this.optionRules(), this.filterValues()),
+  );
 
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
 
@@ -309,34 +292,14 @@ export class BmbFilterCardComponent implements OnInit {
   }
 
   handleSubmit() {
-    const formData: any = {};
-    Object.keys(this.storedValues).forEach((key) => {
-      const stored = this.storedValues[key];
-      if (
-        stored.checked &&
-        (stored.type === 'checkbox' ||
-          stored.type === 'tag' ||
-          stored.type === 'radial' ||
-          stored.type === 'switch')
-      ) {
-        formData[key] = stored;
-      } else if (stored.type === 'dropdown') {
-        const currentValue = this.filterForm.get(key)?.value;
-        const hasValue = Array.isArray(currentValue)
-          ? currentValue.length > 0
-          : !!currentValue;
-        if (hasValue) {
-          formData[key] = { ...stored, value: currentValue };
-        }
-      }
-    });
-    const globalSearchValue = this.filterForm.get('search')?.value;
-    if (globalSearchValue) {
-      formData.search = globalSearchValue;
-    }
-    if (this.modalId()) {
-      this.modalService.closeModal(this.modalId() as string);
-    }
+    const values = Object.fromEntries(
+      Object.keys(this.filterForm.controls).map((key) => [
+        key,
+        this.filterForm.get(key)?.value,
+      ]),
+    );
+    const formData = getFilterCardSubmission(this.storedValues, values);
+    if (this.modalId()) this.modalService.closeModal(this.modalId() as string);
     this.applyFilters.emit(formData);
   }
 
@@ -371,7 +334,7 @@ export class BmbFilterCardComponent implements OnInit {
     when: Record<string, any>,
     values: Record<string, any>,
   ): boolean {
-    return Object.entries(when).every(([k, v]) => values[k] === v);
+    return matchesFilterCardRule(when, values);
   }
 
   private clearControl(name: string): void {

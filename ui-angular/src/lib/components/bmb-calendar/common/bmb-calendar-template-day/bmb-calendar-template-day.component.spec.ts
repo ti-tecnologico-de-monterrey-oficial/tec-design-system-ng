@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BmbCalendarTemplateDayComponent } from './bmb-calendar-template-day.component';
-import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 import { DateTime, Interval } from 'luxon';
-import { IBmbCalendarEvent } from '../../types';
+import type { IBmbCalendarEvent } from '../../../../_shared/types/components/calendar';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
+import { BmbCalendarComponentService } from '../../bmb-calendar.service';
+import { BmbCalendarTemplateDayComponent } from './bmb-calendar-template-day.component';
 
 describe('BmbCalendarTemplateDayComponent', () => {
   let component: BmbCalendarTemplateDayComponent;

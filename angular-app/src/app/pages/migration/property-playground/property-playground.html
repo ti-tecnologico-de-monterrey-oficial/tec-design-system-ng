@@ -1,0 +1,89 @@
+<section class="test-page">
+  <header class="test-page-header"><h1>{{ configuration().title }}</h1></header>
+  <div class="test-grid">
+    <aside class="test-controls" aria-label="Controls" tabindex="0">
+      <h2>Properties ({{ configuration().properties.length }})</h2>
+      <p>Edit the values, then apply to restart the example.</p>
+      <div class="property-actions">
+        <button type="button" (click)="apply()">Apply properties</button>
+        <button type="button" (click)="reset()">Reset defaults</button>
+      </div>
+      @if (error()) {
+      <p class="property-error" role="alert">{{ error() }}</p>
+      } @for (property of configuration().properties; track property.name) {
+      <div class="property" [attr.data-property]="property.name">
+        <label [attr.for]="'demo-' + property.name">
+          {{ property.name }} @if (property.model) { <small>model</small> } @if
+          (property.deprecated) { <small>deprecated</small> } @if
+          (property.service) { <small>service</small> }
+        </label>
+        @switch (property.kind) { @case ('boolean') {
+        <input
+          type="checkbox"
+          [id]="'demo-' + property.name"
+          [attr.aria-label]="property.name"
+          [checked]="drafts()[property.name]"
+          (change)="setDraft(property.name, $any($event.target).checked)"
+        />
+        } @case ('json') {
+        <textarea
+          [id]="'demo-' + property.name"
+          [attr.aria-label]="property.name"
+          [value]="drafts()[property.name]"
+          (input)="setDraft(property.name, $any($event.target).value)"
+          rows="6"
+          spellcheck="false"
+        ></textarea>
+        } @case ('select') {
+        <select
+          [id]="'demo-' + property.name"
+          [attr.aria-label]="property.name"
+          [value]="drafts()[property.name]"
+          (change)="setDraft(property.name, $any($event.target).value)"
+        >
+          @for (option of property.options; track option) {
+          <option [value]="option">{{ option }}</option>
+          }
+        </select>
+        } @default {
+        <input
+          [type]="property.kind === 'number' ? 'number' : 'text'"
+          [id]="'demo-' + property.name"
+          [attr.aria-label]="property.name"
+          [value]="drafts()[property.name]"
+          (input)="setDraft(property.name, $any($event.target).value)"
+        />
+        } }
+        <small
+          >{{ property.type }}{{ property.optional ? ' · blank = undefined' : ''
+          }}</small
+        >
+        @if (property.hint) { <small>{{ property.hint }}</small> }
+      </div>
+      }
+      <section class="output-events" aria-label="Output events">
+        <h2>Output events</h2>
+        <p>
+          {{ outputNames().join(', ') || 'This component has no output events.'
+          }}
+        </p>
+        <button type="button" (click)="events.set([])">Clear events</button>
+        <div aria-live="polite">
+          @for (event of events(); track $index) {
+          <h3>{{ event.name }}</h3>
+          <pre>{{ event.payload }}</pre>
+          } @empty {
+          <p>No events yet.</p>
+          }
+        </div>
+      </section>
+    </aside>
+    <section class="test-preview" aria-label="Component example" tabindex="0">
+      <div [class.component-stage--tall]="configuration().tall">
+        @if (ready()) { @for (version of [revision()]; track version) {
+        <ng-container *ngComponentOutlet="component(); inputs: applied()" />
+        } }
+      </div>
+    </section>
+  </div>
+</section>

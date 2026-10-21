@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,18 +8,17 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbTopBarComponent } from '../bmb-top-bar/bmb-top-bar.component';
-import {
-  IUserInformation,
+import type {
   IBmbTemplateName,
+  IUserInformation,
   SidebarElement,
 } from '../../_shared/types';
-import { BmbSidebarComponent } from '../bmb-sidebar/bmb-sidebar.component';
-import { CommonModule } from '@angular/common';
-import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
-import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import type { IBmbDataAlert } from '../../_shared/types/components/alert-center';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
-import { IBmbDataAlert } from '../bmb-alert-center/types';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BmbSidebarComponent } from '../bmb-sidebar/bmb-sidebar.component';
+import { BmbTopBarComponent } from '../bmb-top-bar/bmb-top-bar.component';
 
 @Component({
   selector: 'bmb-web-templates',
