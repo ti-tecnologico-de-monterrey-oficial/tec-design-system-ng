@@ -186,15 +186,7 @@
           (input)="cancelKeyword.set(cancel.value)"
         />
       </label>
-      <label class="check">
-        <input
-          type="checkbox"
-          [checked]="showRequirements()"
-          (change)="showRequirements.set(!showRequirements())"
-        />
-        Mostrar requisitos
-      </label>
-      @if (showRequirements()) {
+
       <!-- .pdf,.doc,.xml
        application/pdf,image/png
        image/*,audio/*,video/*-->
@@ -222,7 +214,7 @@
           (input)="additionalRequirements.set(requirements.value)"
         ></textarea>
       </label>
-      }
+
       <p>
         El botón siempre está activo y emite la solicitud. Esta página no
         selecciona ni carga archivos.

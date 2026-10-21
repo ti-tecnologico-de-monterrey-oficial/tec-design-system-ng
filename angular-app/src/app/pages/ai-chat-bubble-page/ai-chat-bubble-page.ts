@@ -63,7 +63,6 @@ export class AiChatBubblePage {
   readonly buttonLabel = signal('');
   readonly uploadText = signal('');
   readonly cancelKeyword = signal('');
-  readonly showRequirements = signal(true);
   readonly acceptedFormats = signal('.pdf,.doc,.xml');
   readonly maxFileSize = signal('10 MB');
   readonly additionalRequirements = signal('El documento debe ser legible.');
@@ -136,17 +135,10 @@ export class AiChatBubblePage {
             text: this.uploadText() || undefined,
             buttonLabel: this.buttonLabel() || undefined,
             cancelKeyword: this.cancelKeyword() || undefined,
-            ...(this.showRequirements()
-              ? {
-                  acceptedFormats: this.acceptedFormats()
-                    .split(',')
-                    .filter(Boolean),
-                  maxFileSize: this.maxFileSize() || undefined,
-                  additionalRequirements: this.lines(
-                    this.additionalRequirements(),
-                  ),
-                }
-              : {}),
+
+            acceptedFormats: this.acceptedFormats().split(',').filter(Boolean),
+            maxFileSize: this.maxFileSize() || undefined,
+            additionalRequirements: this.lines(this.additionalRequirements()),
           },
         };
       case 'template': {
