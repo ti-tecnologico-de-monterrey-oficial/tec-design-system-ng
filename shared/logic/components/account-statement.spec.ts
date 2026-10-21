@@ -1,3 +1,4 @@
+import { Settings } from 'luxon';
 import {
   getAccountStatementFormattedDate,
   getAccountStatementProgressPercent,
@@ -6,6 +7,17 @@ import {
 } from './account-statement';
 
 describe('getAccountStatementFormattedDate', () => {
+  let originalLocale: string | undefined;
+
+  beforeAll(() => {
+    originalLocale = Settings.defaultLocale;
+    Settings.defaultLocale = 'es';
+  });
+
+  afterAll(() => {
+    Settings.defaultLocale = originalLocale;
+  });
+
   it('should return an empty string when no date is given', () => {
     expect(getAccountStatementFormattedDate(undefined, 'yyyy-MM-dd')).toBe(
       '',

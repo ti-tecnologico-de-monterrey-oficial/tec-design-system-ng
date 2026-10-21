@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbAccountStatementComponent } from './bmb-account-statement.component';
 import { ComponentRef } from '@angular/core';
 import { currencyFormat } from '../../_shared/logic/currencyFormat';
+import { Settings } from 'luxon';
 
 describe('BmbAccountStatementComponent', () => {
   let component: BmbAccountStatementComponent;
@@ -71,6 +72,17 @@ describe('BmbAccountStatementComponent', () => {
   });
 
   describe('getFormattedDate', () => {
+    let originalLocale: string | undefined;
+
+    beforeAll(() => {
+      originalLocale = Settings.defaultLocale;
+      Settings.defaultLocale = 'es';
+    });
+
+    afterAll(() => {
+      Settings.defaultLocale = originalLocale;
+    });
+
     it('should return an empty string when no date is given', () => {
       expect(component.getFormattedDate()).toBe('');
     });
