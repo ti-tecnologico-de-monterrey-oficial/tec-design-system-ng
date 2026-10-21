@@ -18,25 +18,24 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
-import { IBmbNativeModal } from '../../_shared/types';
-import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import {
   IBmbControlType,
+  IBmbNativeModal,
   IBmbOptionRule,
   IBmbVisibilityRule,
-} from './bmb-filter-card.interface';
+} from '../../_shared/types';
+import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { IBmbDropdownItem } from '../../_shared/types/components/dropdown';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
 import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
 import { TranslatePipe } from '../../pipes/translations';
-
-export * from './bmb-filter-card.interface';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  filterCardRuleMatches,
+  getFilterCardClearAllResetValue,
+  getFilterCardControlResetValue,
+} from '../../_shared/logic/components/filter-card';
 
 @Component({
   selector: 'bmb-filter-card',
@@ -346,14 +345,10 @@ export class BmbFilterCardComponent implements OnInit {
     Object.keys(this.storedValues).forEach((name) => {
       const stored = this.storedValues[name];
       if (!stored) return;
-      const resetValue =
-        stored.type === 'checkbox' ||
-        stored.type === 'switch' ||
-        stored.type === 'tag'
-          ? false
-          : stored.isMultiSelect
-            ? []
-            : '';
+      const resetValue = getFilterCardClearAllResetValue(
+        stored.type,
+        stored.isMultiSelect,
+      );
       this.storedValues[name] = {
         ...stored,
         checked: false,
@@ -371,25 +366,17 @@ export class BmbFilterCardComponent implements OnInit {
     when: Record<string, any>,
     values: Record<string, any>,
   ): boolean {
-    return Object.entries(when).every(([k, v]) => values[k] === v);
+    return filterCardRuleMatches(when, values);
   }
 
   private clearControl(name: string): void {
     const stored = this.storedValues[name];
     let resetValue: any = '';
     if (stored) {
-      switch (stored.type) {
-        case 'checkbox':
-        case 'switch':
-        case 'tag':
-          resetValue = false;
-          break;
-        case 'dropdown':
-          resetValue = stored.isMultiSelect ? [] : '';
-          break;
-        default:
-          resetValue = '';
-      }
+      resetValue = getFilterCardControlResetValue(
+        stored.type,
+        stored.isMultiSelect,
+      );
       this.storedValues[name] = {
         ...stored,
         checked: false,

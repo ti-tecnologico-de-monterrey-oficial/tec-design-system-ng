@@ -13,6 +13,7 @@ import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.compo
 import { BmbBookmarkComponent } from '../../bmb-bookmark/bmb-bookmark.component';
 import { BmbBoxIconComponent } from '../../bmb-box-icon/bmb-box-icon.component';
 import { IBmbInteractiveIconAppearance } from '../../../_shared/types/components/interactive-icon';
+import { getSearchCardItemBoxClass } from '../../../_shared/logic/components/search-card-item';
 
 @Component({
   selector: 'bmb-search-card-item',
@@ -57,6 +58,6 @@ export class BmbSearchCardItemComponent {
   }
 
   getClassBox(): string {
-    return `bmb_search-card-item-box-${this.backgroundColorIcon()}`;
+    return getSearchCardItemBoxClass(this.backgroundColorIcon());
   }
 }

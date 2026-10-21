@@ -39,12 +39,12 @@ import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.compo
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { deprecatedComponentLog } from '../../_shared/logic/deprecatedComponent';
-
-export type IBmbHomeCardChatMode = 'compact' | 'chat' | 'expanded';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  getHomeCardChatBubbleActionMeta,
+  getHomeCardChatTestId,
+  isHomeCardChatGptMessage,
+  isHomeCardChatThinking,
+} from '../../_shared/logic/components/home-card-chat';
 
 @Component({
   selector: 'bmb-home-card-chat',
@@ -110,40 +110,12 @@ export class BmbHomeCardChatComponent implements OnInit {
   parsedBotActions = computed<IBmbChatBubblesActions[]>(() => {
     const newActions = this.botActions();
     return newActions.map((action) => {
-      switch (action) {
-        case 'repeat':
-          return {
-            key: 'repeat',
-            icon: 'repeat',
-            label: this.translationService.translate('chat_bubbles.repeat'),
-          };
-        case 'voice':
-          return {
-            key: 'voice',
-            icon: 'record_voice_over',
-            label: this.translationService.translate('chat_bubbles.voice'),
-          };
-        case 'copy':
-          return {
-            key: 'copy',
-            icon: 'content_copy',
-            label: this.translationService.translate('chat_bubbles.copy'),
-          };
-        case 'like':
-          return {
-            key: 'like',
-            icon: 'thumb_up',
-            label: this.translationService.translate('chat_bubbles.like'),
-          };
-        case 'dislike':
-          return {
-            key: 'dislike',
-            icon: 'thumb_down',
-            label: this.translationService.translate('chat_bubbles.dislike'),
-          };
-        default:
-          throw new Error('Action name not supported');
-      }
+      const meta = getHomeCardChatBubbleActionMeta(action);
+      return {
+        key: meta.key,
+        icon: meta.icon,
+        label: this.translationService.translate(meta.translationKey),
+      };
     });
   });
 
@@ -282,20 +254,24 @@ export class BmbHomeCardChatComponent implements OnInit {
   }
 
   resolveGptIcons(message: IBmbChatMessage): boolean {
-    return !message.isUserMessage;
+    return isHomeCardChatGptMessage(message.isUserMessage);
   }
 
   resolveGptBot(message: IBmbChatMessage): boolean {
-    return !message.isUserMessage;
+    return isHomeCardChatGptMessage(message.isUserMessage);
   }
 
   resolveThinking(message: IBmbChatMessage, index: number): boolean {
     const isLast = index === this.messagesHistory().length - 1;
 
-    return !message.isUserMessage && this.isLoading() && isLast;
+    return isHomeCardChatThinking(
+      message.isUserMessage,
+      isLast,
+      this.isLoading(),
+    );
   }
 
   resolveTestId(message: IBmbChatMessage, index: number): string {
-    return `${this.testId()}-bubble-${message.id ?? index}`;
+    return getHomeCardChatTestId(this.testId(), message.id, index);
   }
 }
