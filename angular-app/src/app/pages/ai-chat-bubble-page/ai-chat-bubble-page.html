@@ -2,30 +2,81 @@
   <header>
     <span class="eyebrow">COMPONENTE AI</span>
     <h1>BmbAiChatBubble</h1>
-    <p>Prueba la distribución y las acciones de los mensajes del chat.</p>
+    <p>
+      Selecciona un tipo de mensaje y modifica sus propiedades para probarlo.
+    </p>
   </header>
 
   <div class="demo-grid">
     <aside class="controls">
       <h2>Propiedades</h2>
+      <bmb-dropdown
+        label="Tipo de mensaje"
+        name="chat-message-type"
+        [options]="messageTypes"
+        [value]="selectedMessageType()"
+        (onValueChange)="selectMessageType($event)"
+      />
+
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="isUser()"
+          (change)="isUser.set(!isUser())"
+        />
+        Mensaje de usuario
+      </label>
+      @if (isUser()) {
       <label class="field">
-        <span>Logo del chat de usuario</span>
+        <span>Imagen del usuario</span>
         <select
+          #userImage
           [value]="selectedUserImage()"
-          (change)="selectUserImage($event)"
+          (change)="selectedUserImage.set(userImage.value)"
         >
-          @for (imageOption of userImageOptions; track imageOption.label) {
-          <option [value]="imageOption.value">{{ imageOption.label }}</option>
+          @for (option of userImageOptions; track option.label) {
+          <option [value]="option.value">{{ option.label }}</option>
           }
         </select>
       </label>
+      } @else {
+      <label class="field">
+        <span>Icono del bot</span>
+        <input #bot [value]="botIcon()" (input)="botIcon.set(bot.value)" />
+      </label>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="like()"
+          (change)="like.set(!like())"
+        />
+        Me gusta activo
+      </label>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="dislike()"
+          (change)="dislike.set(!dislike())"
+        />
+        No me gusta activo
+      </label>
+      }
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="showActions()"
+          (change)="showActions.set(!showActions())"
+        />
+        Mostrar acciones
+      </label>
+      @if (isUser() && selectedMessageType() === 'text' && showActions()) {
       <label class="check">
         <input
           type="checkbox"
           [checked]="userCopyEnabled()"
           (change)="userCopyEnabled.set(!userCopyEnabled())"
         />
-        Mostrar copiar en usuario
+        Mostrar copiar
       </label>
       <label class="check">
         <input
@@ -33,8 +84,161 @@
           [checked]="userEditEnabled()"
           (change)="userEditEnabled.set(!userEditEnabled())"
         />
-        Mostrar editar en usuario
+        Mostrar editar
       </label>
+      }
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="isThinking()"
+          (change)="isThinking.set(!isThinking())"
+        />
+        Estado pensando
+      </label>
+      <label class="field">
+        <span>Estado del mensaje</span>
+        <select
+          #messageStatus
+          [value]="status()"
+          (change)="status.set(messageStatus.value === 'sending' ? 'sending' : messageStatus.value === 'error' ? 'error' : 'sent')"
+        >
+          <option value="sending">Enviando</option>
+          <option value="sent">Enviado</option>
+          <option value="error">Error</option>
+        </select>
+      </label>
+
+      <h3>Contenido: {{ selectedMessageType() }}</h3>
+      @if (selectedMessageType() !== 'image' && selectedMessageType() !==
+      'upload-file') {
+      <label class="field">
+        <span>Texto</span>
+        <textarea
+          #messageText
+          [value]="text()"
+          (input)="text.set(messageText.value)"
+        ></textarea>
+      </label>
+      } @if (selectedMessageType() === 'image' || selectedMessageType() ===
+      'mixed') {
+      <label class="field">
+        <span>URL de la imagen</span>
+        <input
+          #image
+          [value]="imageUrl()"
+          (input)="imageUrl.set(image.value)"
+        />
+      </label>
+      <p>Usa una URL inexistente para probar el evento de error de imagen.</p>
+      } @if (selectedMessageType() === 'image') {
+      <label class="field">
+        <span>Texto alternativo</span>
+        <input #alt [value]="imageAlt()" (input)="imageAlt.set(alt.value)" />
+      </label>
+      } @if (selectedMessageType() === 'link') {
+      <label class="field">
+        <span>URL del enlace</span>
+        <input #link [value]="href()" (input)="href.set(link.value)" />
+      </label>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="openInNewTab()"
+          (change)="openInNewTab.set(!openInNewTab())"
+        />
+        Abrir en una pestaña nueva
+      </label>
+      } @if (selectedMessageType() === 'options') {
+      <label class="field">
+        <span>Opciones (una por línea)</span>
+        <textarea
+          #options
+          [value]="optionLabels()"
+          (input)="optionLabels.set(options.value)"
+        ></textarea>
+      </label>
+      } @if (selectedMessageType() === 'upload-file') {
+      <label class="field">
+        <span>Nombre del archivo</span>
+        <input #file [value]="fileName()" (input)="fileName.set(file.value)" />
+      </label>
+      <label class="field">
+        <span>Instrucciones (vacío para usar las predeterminadas)</span>
+        <textarea
+          #instructions
+          [value]="uploadText()"
+          (input)="uploadText.set(instructions.value)"
+        ></textarea>
+      </label>
+      <label class="field">
+        <span>Texto del botón (opcional)</span>
+        <input
+          #button
+          [value]="buttonLabel()"
+          (input)="buttonLabel.set(button.value)"
+        />
+      </label>
+      <label class="field">
+        <span>Palabra de cancelación (opcional)</span>
+        <input
+          #cancel
+          [value]="cancelKeyword()"
+          (input)="cancelKeyword.set(cancel.value)"
+        />
+      </label>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="showRequirements()"
+          (change)="showRequirements.set(!showRequirements())"
+        />
+        Mostrar requisitos
+      </label>
+      @if (showRequirements()) {
+      <label class="field">
+        <span>Formatos aceptados</span>
+        <select
+          #formats
+          [value]="acceptedFormats()"
+          (change)="acceptedFormats.set(formats.value)"
+        >
+          <option value=".pdf,.doc,.xml">Extensiones: .pdf, .doc, .xml</option>
+          <option value="application/pdf,image/png">
+            Tipos MIME: PDF y PNG
+          </option>
+          <option value="image/*,audio/*,video/*">
+            Imágenes, audio y video
+          </option>
+          <option value="">Sin formatos</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Tamaño máximo (informativo)</span>
+        <input
+          #size
+          [value]="maxFileSize()"
+          (input)="maxFileSize.set(size.value)"
+        />
+      </label>
+      <label class="field">
+        <span>Requisitos adicionales (uno por línea)</span>
+        <textarea
+          #requirements
+          [value]="additionalRequirements()"
+          (input)="additionalRequirements.set(requirements.value)"
+        ></textarea>
+      </label>
+      }
+      <p>
+        El botón siempre está activo y emite la solicitud. Esta página no
+        selecciona ni carga archivos.
+      </p>
+      } @if (selectedMessageType() === 'template') {
+      <p>
+        El texto se proyecta desde un TemplateRef con un botón para probar
+        contenido interactivo.
+      </p>
+      }
       <p class="event" role="status">
         <strong>Última acción:</strong> {{ conversationEvent() }}
       </p>
@@ -42,101 +246,38 @@
 
     <article class="preview">
       <header>
-        <span class="eyebrow">CONVERSACIÓN DE PRUEBA</span>
-        <h2>Mensajes GPT y usuario</h2>
-        <p>Pasa el cursor sobre un mensaje del usuario para copiarlo.</p>
+        <span class="eyebrow">VISTA PREVIA</span>
+        <h2>Mensaje: {{ selectedMessageType() }}</h2>
+        <p>Los controles conservan su valor al cambiar de tipo de mensaje.</p>
       </header>
-
-      <bmb-tabs [tabs]="tabs" (selected)="handleTabSelected($event)">
-        @if (activeTabId() === 1) {
-        <div class="conversation" data-testid="chat-conversation">
-          @for (chatMessage of conversation(); track chatMessage.id) {
-          <bmb-ai-chat-bubble
-            [showActions]="true"
-            [actions]="['copy','like' ,'dislike']"
-            [message]="chatMessage"
-            [testId]="chatMessage.id"
-            (getAction)="handleConversationAction($event)"
-            (messageEditCancelled)="handleMessageEditCancelled($event)"
-            (messageEdited)="handleMessageEdited($event)"
-          />
-          }
-        </div>
-        } @if (activeTabId() === 2) {
-        <div class="conversation" data-testid="chat-media-conversation">
-          @for (chatMessage of mediaMessages(); track chatMessage.id) {
-          <bmb-ai-chat-bubble
-            [message]="chatMessage"
-            [testId]="chatMessage.id"
-            (getAction)="handleConversationAction($event)"
-            (imageNotFoundError)="handleImageLoadError()"
-          />
-          }
-        </div>
-        } @if (activeTabId() === 3) {
-        <div class="conversation" data-testid="chat-options-conversation">
-          @for (chatMessage of optionsMessages(); track chatMessage.id) {
-          <bmb-ai-chat-bubble
-            [message]="chatMessage"
-            [actions]="userActions()"
-            [testId]="chatMessage.id"
-            (getAction)="handleConversationAction($event)"
-            (getOptionClicked)="handleOptionSelected($event)"
-          />
-          }
-        </div>
-        } @if (activeTabId() === 4) {
-        <div class="conversation" data-testid="chat-status-conversation">
-          @for (chatMessage of statusMessages(); track chatMessage.id) {
-          <bmb-ai-chat-bubble
-            [message]="chatMessage"
-            [actions]="userActions()"
-            [testId]="chatMessage.id"
-            (getAction)="handleConversationAction($event)"
-          />
-          }
-        </div>
-        } @if (activeTabId() === 5) {
-        <div
-          class="conversation"
-          data-testid="chat-disabled-actions-conversation"
-        >
-          @for (chatMessage of disabledActionsMessages(); track chatMessage.id)
-          {
-          <bmb-ai-chat-bubble
-            [message]="chatMessage"
-            [actions]="[]"
-            [showActions]="false"
-            [testId]="chatMessage.id"
-          />
-          }
-        </div>
+      <div class="conversation" data-testid="chat-message-preview">
+        @if (message(); as chatMessage) {
+        <bmb-ai-chat-bubble
+          [message]="chatMessage"
+          [botIcon]="botIcon()"
+          [showActions]="showActions() && (!isUser() || actions().length > 0)"
+          [actions]="actions()"
+          [isThinking]="isThinking()"
+          [testId]="chatMessage.id"
+          (getAction)="handleConversationAction($event)"
+          (imageNotFoundError)="handleImageLoadError()"
+          (getOptionClicked)="handleOptionSelected($event)"
+          (messageEditCancelled)="handleMessageEditCancelled($event)"
+          (messageEdited)="handleMessageEdited($event)"
+          (uploadFileRequested)="handleUploadFileRequested($event)"
+        />
         }
-        @if (activeTabId() === 6) {
-        <section class="conversation" data-testid="chat-upload-file-conversation">
-          <h3>Carga de archivos</h3>
-          <p>
-            Prueba cada botón con clic, Enter y espacio. La solicitud se muestra
-            en «Última acción» y en la consola. Esta vista no abre un selector
-            ni carga archivos: los formatos y el tamaño son informativos y la
-            aplicación consumidora debe validarlos. La palabra de cancelación
-            también es informativa.
-          </p>
-          @for (scenario of uploadFileScenarios; track scenario.message.id) {
-          <section [attr.aria-labelledby]="scenario.message.id + '-title'">
-            <h4 [id]="scenario.message.id + '-title'">{{ scenario.title }}</h4>
-            <p>{{ scenario.description }}</p>
-            <bmb-ai-chat-bubble
-              [message]="scenario.message"
-              [showActions]="false"
-              [testId]="scenario.message.id"
-              (uploadFileRequested)="handleUploadFileRequested($event)"
-            />
-          </section>
-          }
-        </section>
-        }
-      </bmb-tabs>
+      </div>
     </article>
   </div>
 </section>
+
+<ng-template #customMessageTemplate>
+  <p>{{ text() }}</p>
+  <button
+    type="button"
+    (click)="conversationEvent.set('Acción del template personalizado')"
+  >
+    Probar acción del template
+  </button>
+</ng-template>
