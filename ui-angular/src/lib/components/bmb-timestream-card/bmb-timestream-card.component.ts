@@ -14,8 +14,7 @@ import {
   getTimestreamCardClasses,
 } from '../../_shared/logic/components/timestream-card';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
-import type { IBmbDataTopBar } from '../../_shared/types';
-import type { IBmbActionHeader } from '../../_shared/types';
+import type { IBmbActionHeader, IBmbDataTopBar } from '../../_shared/types';
 import type { IBmbColor } from '../../_shared/types/colors';
 import type { IBmbControlType } from '../../_shared/types/components/filter-card';
 import type {

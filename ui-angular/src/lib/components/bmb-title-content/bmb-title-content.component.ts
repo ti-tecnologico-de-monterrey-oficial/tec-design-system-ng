@@ -14,8 +14,8 @@ import {
 } from '../../_shared/logic/components/title-content';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { isImage } from '../../_shared/logic/utils';
-import type { IBmbDataTopBar } from '../../_shared/types';
 import type {
+  IBmbDataTopBar,
   IBmbFontWeightContent,
   IBmbUserImageSize,
 } from '../../_shared/types';

@@ -24,12 +24,13 @@ import {
 } from '../../_shared/logic/components/timestream';
 import type { IBmbNativeModal } from '../../_shared/types';
 import type { IBbmBgAppearance } from '../../_shared/types/components/advertisement-card';
-import type { IBmbClamp, Tab } from '../../_shared/types/components/timestream';
 import type {
+  IBmbClamp,
   IBmbTimelineCustomEvent,
   ISelectedDate,
   ITimelineEvent,
   ITimelineEventParsed,
+  Tab,
 } from '../../_shared/types/components/timestream';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { TranslatePipe } from '../../pipes/translations';
