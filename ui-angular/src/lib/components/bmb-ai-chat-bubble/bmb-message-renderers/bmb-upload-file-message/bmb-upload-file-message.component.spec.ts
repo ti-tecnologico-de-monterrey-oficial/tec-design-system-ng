@@ -117,4 +117,66 @@ describe('BmbUploadFileMessageComponent', () => {
     expect(button.disabled).toBe(false);
     expect(emit).toHaveBeenCalledTimes(2);
   });
+
+  it.each([
+    '.pdf',
+    '.DOCX',
+    '.tar.gz',
+    'application/pdf',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'application/ld+json',
+    'IMAGE/PNG',
+    'image/*',
+    'audio/*',
+    'video/*',
+  ])('should accept the valid format %s', (format) => {
+    fixture.componentRef.setInput('message', {
+      ...message,
+      content: { ...message.content, acceptedFormats: [format] },
+    } satisfies BmbUploadFileMessage);
+    expect(() => fixture.detectChanges()).not.toThrow();
+  });
+
+  it.each([
+    '',
+    'pdf',
+    '.',
+    '.pdf ',
+    '.pdf\n',
+    ' application/pdf',
+    '.pdf,.doc',
+    'application',
+    'application/',
+    '/pdf',
+    'unknown/pdf',
+    'application/pdf/extra',
+    'text/plain; charset=utf-8',
+    '*/*',
+    'application/*',
+    'image/p*',
+  ])(
+    'should reject the invalid format %s when the message changes',
+    (format) => {
+      fixture.componentRef.setInput('message', {
+        ...message,
+        content: { ...message.content, acceptedFormats: ['.pdf', format] },
+      } satisfies BmbUploadFileMessage);
+      expect(() => fixture.detectChanges()).toThrow(
+        'The "acceptedFormats" input is invalid.',
+      );
+    },
+  );
+
+  it('should validate accepted formats on initial rendering', () => {
+    const initialFixture = TestBed.createComponent(
+      BmbUploadFileMessageComponent,
+    );
+    initialFixture.componentRef.setInput('message', {
+      ...message,
+      content: { ...message.content, acceptedFormats: ['pdf'] },
+    } satisfies BmbUploadFileMessage);
+    expect(() => initialFixture.detectChanges()).toThrow(
+      'Invalid values: ["pdf"]',
+    );
+  });
 });

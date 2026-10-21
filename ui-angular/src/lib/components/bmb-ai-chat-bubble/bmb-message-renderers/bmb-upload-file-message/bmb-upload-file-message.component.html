@@ -7,7 +7,16 @@
       {{ 'ai_chat_bubble.upload_file.intro' | translate }}
       “{{ content.fileName }}”,
       {{ 'ai_chat_bubble.upload_file.chat_bar_instruction' | translate }}
-      <strong>+</strong>
+      <bmb-icon
+        icon="add"
+        [size]="24"
+        [alt]="'ai_chat_bubble.upload_file.recommended_icon' | translate"
+      />
+      {{
+        'ai_chat_bubble.upload_file.disjunction_icon_bar_instruction'
+          | translate
+      }}
+      <bmb-icon icon="attach_file" [size]="24" />
       {{ 'ai_chat_bubble.upload_file.button_instruction' | translate }}
     }
   </p>

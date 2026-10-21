@@ -508,13 +508,15 @@
     "upload_file": {
       "intro": "To upload your",
       "chat_bar_instruction": "click the",
+      "disjunction_icon_bar_instruction": "or",
       "button_instruction": "icon in the chat bar or the following button:",
       "button": "Upload file",
       "requirements": "Make sure your file meets the following requirements:",
       "formats": "Accepted formats:",
       "max_size": "Maximum size:",
       "cancel_instruction": "If you do not want to upload your file, type",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "recommended_icon": "Add"
     }
   },
   "alert_center_empty": {

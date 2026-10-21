@@ -42,6 +42,15 @@ El evento `BmbUploadFileRequestEvent` contiene `messageId`, `message` y
 validación y la carga. Los formatos y el tamaño son únicamente informativos:
 este componente no selecciona ni sube archivos.
 
+`acceptedFormats` valida su configuración al recibir o actualizar el mensaje:
+cada elemento debe ser una extensión con punto inicial (`.pdf`, `.tar.gz`) o un
+tipo MIME sin parámetros (`application/pdf`, `image/png`). También se admiten
+`image/*`, `audio/*` y `video/*`. No se admiten espacios, listas separadas por
+comas dentro de un elemento ni extensiones sin punto. Los valores inválidos
+lanzan un error construido con `buildErrorMessage`. Esta validación verifica
+la sintaxis, no la existencia de un subtipo MIME en un registro ni los archivos.
+Una lista vacía o ausente sigue siendo válida.
+
 `text`, `buttonLabel` y `cancelKeyword` permiten personalizar los textos.
 El botón siempre está habilitado. Sin requisitos se oculta esa sección.
 Los textos predeterminados usan el servicio de traducciones en español e inglés.

@@ -508,13 +508,15 @@
     "upload_file": {
       "intro": "Para cargar tu",
       "chat_bar_instruction": "da click en el ícono",
+      "disjunction_icon_bar_instruction": "o",
       "button_instruction": "de la barra de chat o en el siguiente botón:",
       "button": "Cargar archivo",
       "requirements": "Asegúrate que tu archivo cumpla los siguientes requisitos:",
       "formats": "Formatos aceptados:",
       "max_size": "Tamaño máximo:",
       "cancel_instruction": "Si no deseas realizar la carga de tu archivo, escribe",
-      "cancel": "Cancelar"
+      "cancel": "Cancelar",
+      "recommended_icon": "Agregar"
     }
   },
   "alert_center_empty": {
