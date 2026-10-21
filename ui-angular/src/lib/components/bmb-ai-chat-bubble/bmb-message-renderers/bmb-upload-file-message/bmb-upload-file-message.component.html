@@ -1,0 +1,60 @@
+@let content = message().content;
+<section class="bmb_upload-file-message">
+  <p>
+    @if (content.text) {
+      {{ content.text }}
+    } @else {
+      {{ 'ai_chat_bubble.upload_file.intro' | translate }}
+      “{{ content.fileName }}”,
+      {{ 'ai_chat_bubble.upload_file.chat_bar_instruction' | translate }}
+      <strong>+</strong>
+      {{ 'ai_chat_bubble.upload_file.button_instruction' | translate }}
+    }
+  </p>
+
+  <button
+    bmbButton
+    type="button"
+    appearance="secondary-outlined"
+    size="large"
+    class="bmb_upload-file-message-button"
+    (click)="requestUpload($event)"
+  >
+    {{
+      content.buttonLabel ?? ('ai_chat_bubble.upload_file.button' | translate)
+    }}
+  </button>
+
+  @if (
+    content.acceptedFormats?.length ||
+    content.maxFileSize ||
+    content.additionalRequirements?.length
+  ) {
+    <p>{{ 'ai_chat_bubble.upload_file.requirements' | translate }}</p>
+    <ul class="bmb_upload-file-message-requirements">
+      @if (content.acceptedFormats?.length) {
+        <li>
+          {{ 'ai_chat_bubble.upload_file.formats' | translate }}
+          <strong>{{ content.acceptedFormats.join(', ') }}</strong>
+        </li>
+      }
+      @if (content.maxFileSize) {
+        <li>
+          {{ 'ai_chat_bubble.upload_file.max_size' | translate }}
+          <strong>{{ content.maxFileSize }}</strong>
+        </li>
+      }
+      @for (requirement of content.additionalRequirements; track $index) {
+        <li>{{ requirement }}</li>
+      }
+    </ul>
+  }
+
+  <p>
+    {{ 'ai_chat_bubble.upload_file.cancel_instruction' | translate }}
+    <strong>{{
+      content.cancelKeyword ?? ('ai_chat_bubble.upload_file.cancel' | translate)
+    }}</strong
+    >.
+  </p>
+</section>

@@ -18,6 +18,7 @@ import {
   BmbChatMessage,
   BmbChatMessageEditedEvent,
   BmbTextMessage,
+  BmbUploadFileRequestEvent,
   IBmbChatOptionEvent,
 } from './types';
 import { ChatActionsComponent } from './bmb-chat-actions/bmb-chat-actions.component';
@@ -27,6 +28,7 @@ import { MixedMessageComponent } from './bmb-message-renderers/bmb-mixed-message
 import { LinkMessageComponent } from './bmb-message-renderers/bmb-link-message/bmb-link-message.component';
 import { OptionsMessageComponent } from './bmb-message-renderers/bmb-options-message/bmb-options-message.component';
 import { TemplateMessageComponent } from './bmb-message-renderers/bmb-template-message/bmb-template-message.component';
+import { BmbUploadFileMessageComponent } from './bmb-message-renderers/bmb-upload-file-message/bmb-upload-file-message.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
@@ -51,6 +53,7 @@ export * from './types';
     LinkMessageComponent,
     OptionsMessageComponent,
     TemplateMessageComponent,
+    BmbUploadFileMessageComponent,
     BmbUserImageComponent,
     BmbIconComponent,
     BmbBotIconComponent,
@@ -105,6 +108,7 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
   readonly messageEdited = output<BmbChatMessageEditedEvent>();
   readonly messageEditCancelled = output<BmbChatMessage>();
   getOptionClicked = output<IBmbChatOptionEvent>();
+  readonly uploadFileRequested = output<BmbUploadFileRequestEvent>();
 
   /**
    * Emits image not found events.
@@ -242,6 +246,7 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
           .join('\n\n')
           .trim();
       }
+      case 'upload-file':
       case 'template':
         return this.messageContent?.nativeElement.innerText.trim() ?? '';
     }

@@ -11,6 +11,7 @@ import {
   BmbMixedMessage,
   BmbOptionsMessage,
   BmbTextMessage,
+  BmbUploadFileMessage,
 } from './types';
 
 let componentRef: ComponentRef<BmbAiChatBubbleComponent>;
@@ -393,6 +394,37 @@ describe('BmbAiChatBubbleComponent', () => {
         minute: '2-digit',
       }).format(mockBotMessage.timestamp),
     );
+  });
+
+  it('should render an upload request and forward the upload event', () => {
+    const message: BmbUploadFileMessage = {
+      id: 'upload-1',
+      type: 'upload-file',
+      isUser: false,
+      timestamp: new Date(),
+      content: { fileName: 'comprobante de servicio' },
+    };
+    const emit = jest.spyOn(component.uploadFileRequested, 'emit');
+    componentRef.setInput('message', message);
+    fixture.detectChanges();
+
+    const button = fixture.debugElement.query(
+      By.css('bmb-upload-file-message button'),
+    );
+    expect(button).toBeTruthy();
+    const nativeEvent = new MouseEvent('click', { bubbles: true });
+    button.nativeElement.dispatchEvent(nativeEvent);
+    expect(emit).toHaveBeenCalledWith({
+      messageId: message.id,
+      message,
+      nativeEvent,
+    });
+
+    componentRef.setInput('isThinking', true);
+    fixture.detectChanges();
+    expect(
+      fixture.debugElement.query(By.css('bmb-upload-file-message')),
+    ).toBeNull();
   });
 
   it('should emit imageNotFoundError when user image reports an error', () => {

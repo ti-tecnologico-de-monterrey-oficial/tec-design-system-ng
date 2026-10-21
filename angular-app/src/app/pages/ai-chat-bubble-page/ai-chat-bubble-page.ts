@@ -11,6 +11,8 @@ import {
   type BmbChatActionEvent,
   type BmbChatMessage,
   type BmbChatMessageEditedEvent,
+  type BmbUploadFileMessage,
+  type BmbUploadFileRequestEvent,
   type IBmbChatOptionEvent,
   type IBmbTab,
 } from 'ui-angular';
@@ -36,6 +38,7 @@ export class AiChatBubblePage {
     { id: 3, title: 'Opciones y enlaces' },
     { id: 4, title: 'Estados y errores' },
     { id: 5, title: 'Acciones deshabilitadas' },
+    { id: 6, title: 'Carga de archivos' },
   ];
   readonly activeTabId = signal<number>(1);
 
@@ -202,6 +205,71 @@ export class AiChatBubblePage {
   readonly disabledActionsMessages = computed<BmbChatMessage[]>(() =>
     this.conversation(),
   );
+
+  readonly uploadFileScenarios: {
+    title: string;
+    description: string;
+    message: BmbUploadFileMessage;
+  }[] = [
+    {
+      title: 'Solicitud completa',
+      description:
+        'Verifica el nombre, los formatos, el tamaño y los requisitos. El botón debe registrar el mensaje correspondiente.',
+      message: {
+        id: 'upload-file-complete',
+        type: 'upload-file',
+        isUser: false,
+        timestamp: new Date(),
+        content: {
+          fileName: 'nombre de archivo de servicio',
+          acceptedFormats: ['.pdf', '.doc', '.xml'],
+          maxFileSize: '10 MB',
+          additionalRequirements: [
+            'El documento debe ser legible.',
+            'Incluye todas las páginas del archivo.',
+          ],
+        },
+      },
+    },
+    {
+      title: 'Sin requisitos',
+      description:
+        'Solo muestra las instrucciones y el botón; no debe aparecer la sección de requisitos.',
+      message: {
+        id: 'upload-file-minimal',
+        type: 'upload-file',
+        isUser: false,
+        timestamp: new Date(),
+        content: { fileName: 'documento' },
+      },
+    },
+    {
+      title: 'Textos personalizados',
+      description:
+        'Verifica las instrucciones, la etiqueta del botón y la palabra de cancelación personalizadas.',
+      message: {
+        id: 'upload-file-custom',
+        type: 'upload-file',
+        isUser: false,
+        timestamp: new Date(),
+        content: {
+          fileName: 'comprobante de inscripción',
+          text: 'Adjunta tu comprobante de inscripción para continuar con la solicitud.',
+          buttonLabel: 'Seleccionar comprobante',
+          cancelKeyword: 'Salir',
+          acceptedFormats: ['.pdf'],
+          maxFileSize: '5 MB',
+        },
+      },
+    },
+  ];
+
+  handleUploadFileRequested(event: BmbUploadFileRequestEvent): void {
+    console.info('BmbAiChatBubble uploadFileRequested:', event);
+    this.conversationEvent.set(
+      `uploadFileRequested · mensaje ${event.messageId} · ${event.message.content.fileName}`,
+    );
+  }
 
   selectUserImage(event: Event): void {
     this.selectedUserImage.set((event.target as HTMLSelectElement).value);

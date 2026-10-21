@@ -7,3 +7,43 @@ import { getFormatName } from '@docs/utils/utils';
 
 <Meta of={mainStory} />
 <ListTemplate isMultiStory={true} content={[mainStory, editorStory]} />
+
+## Solicitudes de carga de archivos
+
+El tipo `BmbUploadFileMessage` forma parte de `BmbChatMessage` con el discriminante
+`type: 'upload-file'`. Su renderer `BmbUploadFileMessageComponent` también se
+exporta para uso independiente.
+
+```typescript
+const message: BmbUploadFileMessage = {
+  id: 'upload-service-file',
+  type: 'upload-file',
+  timestamp: new Date(),
+  isUser: false,
+  content: {
+    fileName: 'nombre de archivo de servicio',
+    acceptedFormats: ['.pdf', '.doc', '.xml'],
+    maxFileSize: '10 MB',
+    additionalRequirements: ['El documento debe ser legible.'],
+  },
+};
+```
+
+```html
+<bmb-ai-chat-bubble
+  [message]="message"
+  [showActions]="false"
+  (uploadFileRequested)="handleUploadRequest($event)"
+/>
+```
+
+El evento `BmbUploadFileRequestEvent` contiene `messageId`, `message` y
+`nativeEvent`. La aplicación consumidora abre el selector y gestiona la
+validación y la carga. Los formatos y el tamaño son únicamente informativos:
+este componente no selecciona ni sube archivos.
+
+`text`, `buttonLabel` y `cancelKeyword` permiten personalizar los textos.
+El botón siempre está habilitado. Sin requisitos se oculta esa sección.
+Los textos predeterminados usan el servicio de traducciones en español e inglés.
+La instrucción de escribir **Cancelar** no cancela automáticamente la
+conversación: la aplicación debe procesar esa respuesta desde la barra de chat.

@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.bmb_upload-file-message {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bmb-spacing-l);
+  overflow-wrap: anywhere;
+
+  p {
+    margin: 0;
+    white-space: pre-line;
+  }
+
+  &-button {
+    width: 100%;
+    white-space: normal;
+  }
+
+  &-requirements {
+    display: flex;
+    flex-direction: column;
+    gap: var(--bmb-spacing-s);
+    list-style: none;
+    margin: var(--bmb-spacing-l) 0;
+    padding: 0;
+  }
+}

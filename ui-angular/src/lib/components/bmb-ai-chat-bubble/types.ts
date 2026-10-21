@@ -6,6 +6,7 @@ export type BmbChatMessageType =
   | 'mixed'
   | 'link'
   | 'options'
+  | 'upload-file'
   | 'template';
 
 export type BmbChatStatus = 'sending' | 'sent' | 'error';
@@ -81,12 +82,33 @@ export interface BmbTemplateMessage extends BmbChatBaseMessage {
   };
 }
 
+export interface BmbUploadFileMessage extends BmbChatBaseMessage {
+  type: 'upload-file';
+  content: {
+    fileName: string;
+    text?: string;
+    buttonLabel?: string;
+    acceptedFormats?: string[];
+    /** Display-only limit; file validation is handled by the consuming app. */
+    maxFileSize?: string;
+    additionalRequirements?: string[];
+    cancelKeyword?: string;
+  };
+}
+
+export interface BmbUploadFileRequestEvent {
+  messageId: string;
+  message: BmbUploadFileMessage;
+  nativeEvent: Event;
+}
+
 export type BmbChatMessage =
   | BmbTextMessage
   | BmbImageMessage
   | BmbMixedMessage
   | BmbLinkMessage
   | BmbOptionsMessage
+  | BmbUploadFileMessage
   | BmbTemplateMessage;
 
 export type BmbChatAction =

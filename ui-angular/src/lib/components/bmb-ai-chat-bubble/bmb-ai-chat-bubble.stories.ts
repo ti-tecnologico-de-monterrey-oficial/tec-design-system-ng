@@ -43,6 +43,7 @@ Supported message types include:
 - mixed
 - links
 - selectable options
+- file upload requests (the consuming app handles file selection and validation)
 - custom templates<br/><br/>`;
 
 export default {
@@ -220,6 +221,15 @@ For user message use ['copy', 'edit'] to enable both. Copy is enabled by default
     getOptionClicked: getOnClickParam(
       getOnEvent('prompt option', 'getOptionClicked', 'IBmbChatOptionEvent'),
     ),
+    uploadFileRequested: {
+      control: false,
+      description:
+        'Emits { messageId, message, nativeEvent } when the upload button is activated. The consuming app opens the file picker and handles validation and upload.',
+      table: {
+        category: 'Events',
+        type: { summary: 'BmbUploadFileRequestEvent' },
+      },
+    },
   },
   args: {
     botIcon: 'bot_tecStandar',
@@ -245,12 +255,61 @@ For user message use ['copy', 'edit'] to enable both. Copy is enabled by default
     messageEdited: ($event: undefined) => {
       console.info('messageEdited', $event);
     },
+    uploadFileRequested: ($event: undefined) => {
+      console.info('uploadFileRequested', $event);
+    },
   },
 } as Meta<typeof BmbAiChatBubbleComponent>;
 
 type Story = StoryObj<BmbAiChatBubbleComponent>;
 
 export const Default: Story = {};
+
+export const UploadFileMessage: Story = {
+  args: {
+    showActions: false,
+    message: {
+      id: 'upload-service-file',
+      type: 'upload-file',
+      timestamp: new Date('2026-05-05T20:00:00'),
+      isUser: false,
+      content: {
+        fileName: 'nombre de archivo de servicio',
+        acceptedFormats: ['.pdf', '.doc', '.xml'],
+        maxFileSize: '10 MB',
+        additionalRequirements: [
+          'Otro dato importante para el archivo relevante.',
+        ],
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Solicitud de carga basada en el diseño de referencia. El botón emite uploadFileRequested sin abrir un selector. Los formatos y el tamaño son informativos; la aplicación debe validarlos. La palabra Cancelar es una instrucción, no una acción automática.',
+      },
+    },
+  },
+};
+
+export const UploadFileWithoutRequirements: Story = {
+  args: {
+    ...UploadFileMessage.args,
+    message: {
+      id: 'upload-minimal',
+      type: 'upload-file',
+      timestamp: new Date('2026-05-05T20:00:00'),
+      isUser: false,
+      content: {
+        fileName: 'documento',
+        text: 'Adjunta el documento para continuar con tu solicitud.',
+        buttonLabel: 'Seleccionar documento',
+        cancelKeyword: 'Salir',
+      },
+    },
+  },
+};
 
 export const UserMessage: Story = {
   args: {

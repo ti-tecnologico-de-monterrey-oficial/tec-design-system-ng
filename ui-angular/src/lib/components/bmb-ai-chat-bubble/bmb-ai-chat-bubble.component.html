@@ -83,6 +83,13 @@
                   <bmb-template-message [message]="message" />
                 }
 
+                @case ('upload-file') {
+                  <bmb-upload-file-message
+                    [message]="message"
+                    (uploadFileRequested)="uploadFileRequested.emit($event)"
+                  />
+                }
+
                 @default {
                   <bmb-text-message [message]="message" />
                 }

@@ -35,7 +35,7 @@
         />
         Mostrar editar en usuario
       </label>
-      <p class="event">
+      <p class="event" role="status">
         <strong>Última acción:</strong> {{ conversationEvent() }}
       </p>
     </aside>
@@ -111,6 +111,30 @@
           />
           }
         </div>
+        }
+        @if (activeTabId() === 6) {
+        <section class="conversation" data-testid="chat-upload-file-conversation">
+          <h3>Carga de archivos</h3>
+          <p>
+            Prueba cada botón con clic, Enter y espacio. La solicitud se muestra
+            en «Última acción» y en la consola. Esta vista no abre un selector
+            ni carga archivos: los formatos y el tamaño son informativos y la
+            aplicación consumidora debe validarlos. La palabra de cancelación
+            también es informativa.
+          </p>
+          @for (scenario of uploadFileScenarios; track scenario.message.id) {
+          <section [attr.aria-labelledby]="scenario.message.id + '-title'">
+            <h4 [id]="scenario.message.id + '-title'">{{ scenario.title }}</h4>
+            <p>{{ scenario.description }}</p>
+            <bmb-ai-chat-bubble
+              [message]="scenario.message"
+              [showActions]="false"
+              [testId]="scenario.message.id"
+              (uploadFileRequested)="handleUploadFileRequested($event)"
+            />
+          </section>
+          }
+        </section>
         }
       </bmb-tabs>
     </article>
