@@ -11,9 +11,12 @@
           />
         </section>
       </li>
-    } @else if (isMultiSelect()) {
+    }
+    @if (isMultiSelect()) {
       <li class="bmb_dropdown-content-item" id="select_all">
         <button
+          type="button"
+          [disabled]="!filteredItems().length"
           class="bmb_check-external-link-button bmb_check-external-link-button-element"
           (click)="handleSelectedAll()"
         >
@@ -23,10 +26,10 @@
               context: {
                 item: {
                   showIndicator: true,
-                  text: 'dropdown.select_all' | translate
+                  text: 'dropdown.select_all' | translate,
                 },
                 isIndeterminate: isIndeterminate(),
-                isSelected: isAllSelected()
+                isSelected: isAllSelected(),
               }
             "
           />
@@ -39,7 +42,7 @@
         class="bmb_dropdown-content-item"
         [ngClass]="{
           'bmb_dropdown-content-item-selected':
-            !isMultiSelect() && isSelected(item.value!)
+            !isMultiSelect() && isSelected(item.value!),
         }"
         [id]="item.idItem"
       >

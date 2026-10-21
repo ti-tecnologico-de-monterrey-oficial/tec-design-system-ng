@@ -12,7 +12,7 @@ export interface TableColum {
   icon?: string;
   dateFormat?: string;
   isFilterable?: boolean;
-  sticky?: boolean | 'auto';
+  cellTemplate?: TemplateRef<any>;
 }
 
 export interface TableConfig {
@@ -24,4 +24,4 @@ export interface TableConfig {
 
 export type IBmbFiltersPosition = 'top' | 'right' | 'bottom' | 'left';
 
-export type IBmbTableLang = 'en' | 'es';
+export type BmbTableLang = 'en' | 'es';

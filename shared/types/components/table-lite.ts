@@ -1,6 +1,6 @@
 import { TemplateRef } from '@angular/core';
 
-export interface TableColum {
+export interface ITableLiteColumn {
   label: string;
   labelEn?: string;
   def: string;
@@ -12,14 +12,16 @@ export interface TableColum {
   icon?: string;
   dateFormat?: string;
   isFilterable?: boolean;
-  cellTemplate?: TemplateRef<any>;
+  sticky?: boolean | 'auto';
 }
 
-export interface TableConfig {
+export interface ITableLiteConfig {
   isSelectable?: boolean;
   isPaginable?: boolean;
   isExpandible?: boolean;
   showActions?: boolean;
 }
 
-export type IBmbFiltersPosition = 'top' | 'right' | 'bottom' | 'left';
+export type IBmbTableLiteFiltersPosition = 'top' | 'right' | 'bottom' | 'left';
+
+export type IBmbTableLang = 'en' | 'es';

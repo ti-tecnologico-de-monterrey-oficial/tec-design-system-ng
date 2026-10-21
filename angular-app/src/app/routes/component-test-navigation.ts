@@ -114,12 +114,12 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'badge',
           },
           {
-            label: 'Header mobile (*old)',
+            label: 'Header mobile',
             url: '/pages/containers/header-mobile',
             icon: 'widgets',
           },
           {
-            label: 'Hito card (*old)',
+            label: 'Hito card',
             url: '/pages/containers/hito-card',
             icon: 'widgets',
           },
@@ -164,7 +164,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Tables (*old)',
+            label: 'Tables',
             url: '/pages/containers/tables',
             icon: 'widgets',
           },
@@ -189,7 +189,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Text input with tags (*old)',
+            label: 'Text input with tags',
             url: '/pages/inputs/text-input-with-tags',
             icon: 'widgets',
           },
@@ -270,7 +270,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Inner header (*old)',
+            label: 'Inner header',
             url: '/pages/menus/inner-header',
             icon: 'widgets',
           },
@@ -300,7 +300,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Progress bar (*old)',
+            label: 'Progress bar',
             url: '/pages/status-indicators/progress-bar',
             icon: 'widgets',
           },
@@ -367,7 +367,7 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Portal (*old)',
+        label: 'Portal',
         url: '/pages/dev-tools/portal',
         icon: 'widgets',
       },
@@ -407,7 +407,7 @@ export const navigationTest: ComponentGroupTest[] = [
     label: 'Organisms',
     items: [
       {
-        label: 'Access to external link (*old)',
+        label: 'Access to external link',
         url: '/pages/organisms/access-to-external-link',
         icon: 'widgets',
       },
@@ -417,7 +417,7 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Login onboarding mobile (*old)',
+        label: 'Login onboarding mobile',
         url: '/pages/organisms/login-onboarding-mobile',
         icon: 'widgets',
       },
@@ -448,7 +448,7 @@ export const navigationTest: ComponentGroupTest[] = [
     label: 'Components',
     items: [
       {
-        label: 'Sidebar (*old)',
+        label: 'Sidebar',
         url: '/pages/components/sidebar',
         icon: 'widgets',
       },
@@ -496,7 +496,7 @@ export const navigationTest: ComponentGroupTest[] = [
     label: 'Mitec card',
     items: [
       {
-        label: 'Notice card (*old)',
+        label: 'Notice card',
         url: '/pages/mitec-card/notice-card',
         icon: 'widgets',
       },
@@ -519,7 +519,7 @@ export const navigationTest: ComponentGroupTest[] = [
           },
 
           {
-            label: 'Header section (*old)',
+            label: 'Header section',
             url: '/pages/containers/header-section',
             icon: 'widgets',
           },

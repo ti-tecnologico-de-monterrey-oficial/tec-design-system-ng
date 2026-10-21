@@ -44,10 +44,6 @@ import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../pipes/translations';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-dropdown',
   standalone: true,
@@ -255,10 +251,8 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
         selectedOption: this.control().value,
         items: this.parsedOptions(),
         isKeyboardEvent: this.isKeyboardEvent,
-        enableFilter: !this.isMultiSelect() && this.isFilterable(),
-        customFilterFunction: this.isMultiSelect()
-          ? null
-          : this.customFilterFunction(),
+        enableFilter: this.isFilterable(),
+        customFilterFunction: this.customFilterFunction(),
         isMultiSelect: this.isMultiSelect(),
       },
       focusOnOpen: true,
