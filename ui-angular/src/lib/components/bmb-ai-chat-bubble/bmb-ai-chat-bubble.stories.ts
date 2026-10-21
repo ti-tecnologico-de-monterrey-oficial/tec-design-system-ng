@@ -276,7 +276,7 @@ export const UploadFileMessage: Story = {
       content: {
         fileName: 'nombre de archivo de servicio',
         acceptedFormats: ['.pdf', '.doc', '.xml'],
-        maxFileSize: '10 MB',
+        maxFileSize: 10,
         additionalRequirements: [
           'Otro dato importante para el archivo relevante.',
         ],

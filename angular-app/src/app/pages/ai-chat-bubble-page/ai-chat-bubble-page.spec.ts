@@ -112,9 +112,11 @@ describe('AiChatBubblePage', () => {
     });
   });
 
-  it('should toggle upload requirements and forward upload requests', () => {
+  it('should omit empty upload requirements and forward upload requests', () => {
     page.selectMessageType('upload-file');
-    page.showRequirements.set(false);
+    page.acceptedFormats.set('');
+    page.maxFileSize.set(undefined);
+    page.additionalRequirements.set('');
     fixture.detectChanges();
     expect(page.message()).toMatchObject({
       type: 'upload-file',

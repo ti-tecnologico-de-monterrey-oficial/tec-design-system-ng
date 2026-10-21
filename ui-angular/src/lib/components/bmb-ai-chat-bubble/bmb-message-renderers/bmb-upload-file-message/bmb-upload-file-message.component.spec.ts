@@ -14,7 +14,7 @@ describe('BmbUploadFileMessageComponent', () => {
     content: {
       fileName: 'comprobante de servicio',
       acceptedFormats: ['.pdf', '.doc', '.xml'],
-      maxFileSize: '10 MB',
+      maxFileSize: 10,
       additionalRequirements: ['El documento debe ser legible.'],
     },
   };
@@ -51,6 +51,16 @@ describe('BmbUploadFileMessageComponent', () => {
     expect(element.textContent).toContain('.pdf, .doc, .xml');
     expect(element.textContent).toContain('10 MB');
     expect(element.textContent).toContain('El documento debe ser legible.');
+  });
+
+  it.each([0, 2.5, 10])('should display a numeric size of %s MB', (maxFileSize) => {
+    fixture.componentRef.setInput('message', {
+      ...message,
+      content: { fileName: 'documento', maxFileSize },
+    } satisfies BmbUploadFileMessage);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.textContent).toContain(`${maxFileSize} MB`);
+    expect(fixture.nativeElement.querySelectorAll('li')).toHaveLength(1);
   });
 
   it('should emit the message and native event when upload is requested', () => {

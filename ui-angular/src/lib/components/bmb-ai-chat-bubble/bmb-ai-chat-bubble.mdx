@@ -23,7 +23,7 @@ const message: BmbUploadFileMessage = {
   content: {
     fileName: 'nombre de archivo de servicio',
     acceptedFormats: ['.pdf', '.doc', '.xml'],
-    maxFileSize: '10 MB',
+    maxFileSize: 10,
     additionalRequirements: ['El documento debe ser legible.'],
   },
 };
@@ -41,6 +41,9 @@ El evento `BmbUploadFileRequestEvent` contiene `messageId`, `message` y
 `nativeEvent`. La aplicación consumidora abre el selector y gestiona la
 validación y la carga. Los formatos y el tamaño son únicamente informativos:
 este componente no selecciona ni sube archivos.
+
+`maxFileSize` es un número expresado en MB; por ejemplo, `10` se muestra como
+**10 MB**. Es opcional y admite valores decimales.
 
 `acceptedFormats` valida su configuración al recibir o actualizar el mensaje:
 cada elemento debe ser una extensión con punto inicial (`.pdf`, `.tar.gz`) o un

@@ -89,8 +89,8 @@ export interface BmbUploadFileMessage extends BmbChatBaseMessage {
     text?: string;
     buttonLabel?: string;
     acceptedFormats?: string[];
-    /** Display-only limit; file validation is handled by the consuming app. */
-    maxFileSize?: string;
+    /** Display-only limit in MB; file validation is handled by the consuming app. */
+    maxFileSize?: number;
     additionalRequirements?: string[];
     cancelKeyword?: string;
   };

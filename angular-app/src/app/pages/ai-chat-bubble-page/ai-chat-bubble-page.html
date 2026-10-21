@@ -199,11 +199,13 @@
         (onChange)="acceptedFormats.set($event.value)"
       />
       <label class="field">
-        <span>Tamaño máximo (informativo)</span>
+        <span>Tamaño máximo en MB</span>
         <input
           #size
+          type="number"
+          step="any"
           [value]="maxFileSize()"
-          (input)="maxFileSize.set(size.value)"
+          (input)="maxFileSize.set(size.value === '' ? undefined : size.valueAsNumber)"
         />
       </label>
       <label class="field">

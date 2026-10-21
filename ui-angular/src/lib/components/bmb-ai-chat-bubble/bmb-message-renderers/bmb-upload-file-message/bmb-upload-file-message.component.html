@@ -35,7 +35,7 @@
 
   @if (
     content.acceptedFormats?.length ||
-    content.maxFileSize ||
+    content.maxFileSize !== undefined ||
     content.additionalRequirements?.length
   ) {
     <p>{{ 'ai_chat_bubble.upload_file.requirements' | translate }}</p>
@@ -46,10 +46,10 @@
           <strong>{{ content.acceptedFormats.join(', ') }}</strong>
         </li>
       }
-      @if (content.maxFileSize) {
+      @if (content.maxFileSize !== undefined) {
         <li>
           {{ 'ai_chat_bubble.upload_file.max_size' | translate }}
-          <strong>{{ content.maxFileSize }}</strong>
+          <strong>{{ content.maxFileSize }} MB</strong>
         </li>
       }
       @for (requirement of content.additionalRequirements; track $index) {

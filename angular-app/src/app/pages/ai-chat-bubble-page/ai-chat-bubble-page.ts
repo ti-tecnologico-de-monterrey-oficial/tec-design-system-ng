@@ -64,7 +64,7 @@ export class AiChatBubblePage {
   readonly uploadText = signal('');
   readonly cancelKeyword = signal('');
   readonly acceptedFormats = signal('.pdf,.doc,.xml');
-  readonly maxFileSize = signal('10 MB');
+  readonly maxFileSize = signal<number | undefined>(10);
   readonly additionalRequirements = signal('El documento debe ser legible.');
   private readonly timestamp = new Date();
   private readonly customTemplate = viewChild<TemplateRef<unknown>>(
@@ -137,7 +137,7 @@ export class AiChatBubblePage {
             cancelKeyword: this.cancelKeyword() || undefined,
 
             acceptedFormats: this.acceptedFormats().split(',').filter(Boolean),
-            maxFileSize: this.maxFileSize() || undefined,
+            maxFileSize: this.maxFileSize(),
             additionalRequirements: this.lines(this.additionalRequirements()),
           },
         };
