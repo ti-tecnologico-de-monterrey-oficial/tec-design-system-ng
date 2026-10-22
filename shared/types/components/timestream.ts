@@ -59,3 +59,20 @@ export interface IBmbTimestreamFilters {
   text?: string;
   type?: string[];
 }
+
+export interface IPlaceholderObject {
+  [key: string]: any | any[];
+}
+
+export interface Tab {
+  id: number;
+  title: string;
+  isActive?: boolean;
+  badge?: number;
+}
+
+export interface IBmbClamp {
+  min: number | string;
+  max: number | string;
+  size: number | string;
+}

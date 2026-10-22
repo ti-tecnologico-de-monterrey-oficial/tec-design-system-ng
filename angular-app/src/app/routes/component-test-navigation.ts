@@ -392,12 +392,12 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Title content template (*old)',
+        label: 'Title content template',
         url: '/pages/internals/title-content-template',
         icon: 'widgets',
       },
       {
-        label: 'Timestream (*old)',
+        label: 'Timestream',
         url: '/pages/internals/timestream',
         icon: 'widgets',
       },
@@ -412,7 +412,7 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Timestream card (full) (*old)',
+        label: 'Timestream card (full)',
         url: '/pages/organisms/timestream-card-full',
         icon: 'widgets',
       },
@@ -427,7 +427,7 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Notification center (*old)',
+        label: 'Notification center',
         url: '/pages/organisms/notification-center',
         icon: 'widgets',
       },

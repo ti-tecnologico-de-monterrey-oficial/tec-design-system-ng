@@ -1,32 +1,48 @@
-<section>
-  <h2>Alert center detail</h2>
+<section class="test-page">
+  <header class="test-page-header"><h1>Alert center detail</h1></header>
+  <div class="test-grid">
+    <aside class="test-controls" aria-label="Controls" tabindex="0">
+      <h2>Properties</h2>
+      <label>
+        Title
+        <input
+          [value]="title()"
+          (input)="title.set($any($event.target).value)"
+        />
+      </label>
 
-  <div class="controls">
-    <label>
-      Title
-      <input [value]="title()" (input)="title.set($any($event.target).value)" />
-    </label>
+      <label>
+        Style
+        <select
+          [value]="textStyle()"
+          (change)="textStyle.set($any($event.target).value)"
+        >
+          <option value="normal">normal</option>
+          <option value="bold">bold</option>
+          <option value="italic">italic</option>
+          <option value="underline">underline</option>
+        </select>
+      </label>
 
-    <label>
-      Style
-      <select [value]="textStyle()" (change)="textStyle.set($any($event.target).value)">
-        <option value="normal">normal</option>
-        <option value="bold">bold</option>
-        <option value="italic">italic</option>
-        <option value="underline">underline</option>
-      </select>
-    </label>
+      <label>
+        Link href
+        <input
+          [value]="linkHref()"
+          (input)="linkHref.set($any($event.target).value)"
+        />
+      </label>
 
-    <label>
-      Link href
-      <input [value]="linkHref()" (input)="linkHref.set($any($event.target).value)" />
-    </label>
-
-    <label class="checkbox">
-      <input type="checkbox" [checked]="showHtml()" (change)="showHtml.set($any($event.target).checked)" />
-      Show HTML block
-    </label>
+      <label class="checkbox">
+        <input
+          type="checkbox"
+          [checked]="showHtml()"
+          (change)="showHtml.set($any($event.target).checked)"
+        />
+        Show HTML block
+      </label>
+    </aside>
+    <section class="test-preview" aria-label="Component example" tabindex="0">
+      <bmb-alert-center-detail [alert]="alert()" />
+    </section>
   </div>
-
-  <bmb-alert-center-detail [alert]="alert()" />
 </section>

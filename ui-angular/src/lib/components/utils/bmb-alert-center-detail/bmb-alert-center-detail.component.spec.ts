@@ -1,12 +1,12 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BmbAlertCenterDetailComponent } from './bmb-alert-center-detail.component';
 import { ComponentRef } from '@angular/core';
-import {
-  IBmbDataAlert,
-  IBmbDataAlertDetails,
-} from '../../bmb-alert-center/types';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import DOMPurify from 'dompurify';
 import { forbidTagsAndAttributes } from '../../../_shared/logic/utils';
+import type {
+  IBmbDataAlert,
+  IBmbDataAlertDetails,
+} from '../../../_shared/types/components/alert-center';
+import { BmbAlertCenterDetailComponent } from './bmb-alert-center-detail.component';
 
 describe('BmbAlertCenterDetailComponent', () => {
   let component: BmbAlertCenterDetailComponent;

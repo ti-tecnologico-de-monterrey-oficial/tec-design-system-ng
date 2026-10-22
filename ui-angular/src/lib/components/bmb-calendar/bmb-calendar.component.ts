@@ -1,43 +1,43 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  ViewEncapsulation,
-  HostListener,
-  model,
-  input,
-  output,
-  computed,
-  OnInit,
-  AfterViewInit,
-  effect,
-  inject,
-} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DateTime } from 'luxon';
-import { BmbCalendarTemplateWeekComponent } from './common/bmb-calendar-template-week/bmb-calendar-template-week.component';
-import { BmbCalendarTemplateDayComponent } from './common/bmb-calendar-template-day/bmb-calendar-template-day.component';
-import { BmbCalendarTemplateMonthComponent } from './common/bmb-calendar-template-month/bmb-calendar-template-month.component';
-import { BmbCalendarHeaderComponent } from './common/bmb-calendar-header/bmb-calendar-header.component';
-import { BmbCalendarTemplateMobileComponent } from './common/bmb-calendar-template-mobile/bmb-calendar-template-mobile.component';
-import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  HostListener,
+  inject,
+  input,
+  model,
+  OnInit,
+  output,
+  ViewEncapsulation,
+} from '@angular/core';
+import { DateTime } from 'luxon';
+import { DEFAULT_DATE_FORMAT } from '../../_shared/logic/components/calendar';
+import {
+  getCalendarHeight,
+  getCalendarDateChange,
+} from '../../_shared/logic/components/calendar-view';
+import type {
   IBmbCalendarEvent,
   IBmbCalendarEventClick,
   IBmbCalendarView,
-} from './types';
-import { getWeekDays, getMonthDays, DEFAULT_DATE_FORMAT } from './utils';
+} from '../../_shared/types/components/calendar';
 import { BmbCalendarService } from '../../services/old/calendar/calendar.service';
+import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import { BmbCalendarComponentService } from './bmb-calendar.service';
+import { BmbCalendarHeaderComponent } from './common/bmb-calendar-header/bmb-calendar-header.component';
+import { BmbCalendarTemplateDayComponent } from './common/bmb-calendar-template-day/bmb-calendar-template-day.component';
+import { BmbCalendarTemplateMobileComponent } from './common/bmb-calendar-template-mobile/bmb-calendar-template-mobile.component';
+import { BmbCalendarTemplateMonthComponent } from './common/bmb-calendar-template-month/bmb-calendar-template-month.component';
+import { BmbCalendarTemplateWeekComponent } from './common/bmb-calendar-template-week/bmb-calendar-template-week.component';
 
 export type {
   IBmbCalendarEvent,
   IBmbCalendarEventClick,
   IBmbEventType,
 } from './types';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-calendar',
@@ -100,7 +100,6 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   }
 
   constructor() {
-
     effect(
       () => {
         const events = this.events();
@@ -149,30 +148,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
 
   handleDateChange(range: IBmbCalendarView, now: DateTime): void {
     this.view.set(range);
-    let visibleDates: (string | null)[] = [];
-
-    switch (range) {
-      case 'day':
-        visibleDates = getMonthDays(now).map((date) => date.toISO());
-        break;
-
-      case 'week':
-        visibleDates = getWeekDays(now).map((date) => date.toISO());
-        break;
-
-      case 'month':
-        visibleDates = getMonthDays(now).map((date) => date.toISO());
-        break;
-
-      default:
-        break;
-    }
-
-    this.onDateChange.emit({
-      range,
-      now: now.toISO(),
-      visibleDates,
-    });
+    this.onDateChange.emit(getCalendarDateChange(range, now));
   }
 
   isAnEventSelected(event: IBmbCalendarEventClick | null): boolean {
@@ -180,9 +156,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   }
 
   getHeight(height: string | number): string {
-    if (typeof height === 'number') return `${height}px`;
-
-    return height;
+    return getCalendarHeight(height);
   }
 
   handleClose() {

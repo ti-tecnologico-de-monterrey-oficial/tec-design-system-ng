@@ -1,25 +1,32 @@
+import { CommonModule } from '@angular/common';
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   ViewEncapsulation,
-  input,
   computed,
   inject,
+  input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Info, DateTime } from 'luxon';
+import { DateTime, Info } from 'luxon';
 import {
+  DEFAULT_DATE_FORMAT,
+  eventsInDate,
+  layoutEvents,
+} from '../../../../_shared/logic/components/calendar';
+import {
+  templateWeekIsNow,
+  templateWeekIsToday,
+} from '../../../../_shared/logic/components/calendar-view';
+import { orderDayNames } from '../../../../_shared/logic/utils';
+import type {
   IBmbCalendarEvent,
   IBmbCalendarRenderEvents,
-  IBmbParsedDates,
-} from '../../types';
-import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
-import { DEFAULT_DATE_FORMAT, eventsInDate, layoutEvents } from '../../utils';
-import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
-import { orderDayNames } from '../../../../_shared/logic/utils';
+} from '../../../../_shared/types/components/calendar';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
-import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicator/bmb-calendar-time-indicator.component';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
+import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
+import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
+import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicator/bmb-calendar-time-indicator.component';
 
 @Component({
   selector: 'bmb-calendar-template-week',
@@ -61,8 +68,7 @@ export class BmbCalendarTemplateWeekComponent {
   rows = new Array(25).fill(0);
 
   isNow(date: DateTime): boolean {
-    const diff = date?.diffNow('day')?.days;
-    return diff < 0 && diff > -1;
+    return templateWeekIsNow(date);
   }
 
   renderEvents(events: IBmbCalendarRenderEvents): any[] {
@@ -70,7 +76,6 @@ export class BmbCalendarTemplateWeekComponent {
   }
 
   isToday(date: DateTime): boolean {
-    const today = DateTime.now();
-    return date.hasSame(today, 'day');
+    return templateWeekIsToday(date);
   }
 }

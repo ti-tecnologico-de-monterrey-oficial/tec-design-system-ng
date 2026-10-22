@@ -1,19 +1,23 @@
+import { CommonModule } from '@angular/common';
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   ViewEncapsulation,
-  input,
   computed,
   inject,
+  input,
 } from '@angular/core';
-import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
-import { CommonModule } from '@angular/common';
-import { IBmbCalendarEvent } from '../../types';
-import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
-import { DEFAULT_DATE_FORMAT, layoutEvents } from '../../utils';
-import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicator/bmb-calendar-time-indicator.component';
+import {
+  DEFAULT_DATE_FORMAT,
+  layoutEvents,
+} from '../../../../_shared/logic/components/calendar';
+import { getCalendarDayName } from '../../../../_shared/logic/components/calendar-view';
+import type { IBmbCalendarEvent } from '../../../../_shared/types/components/calendar';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
+import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
+import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
+import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicator/bmb-calendar-time-indicator.component';
 
 @Component({
   selector: 'bmb-calendar-template-day',
@@ -46,6 +50,6 @@ export class BmbCalendarTemplateDayComponent {
   rows = new Array(24).fill(0);
 
   getNameDay(): string {
-    return this.now().toFormat('cccc', { locale: this.locale() });
+    return getCalendarDayName(this.now(), this.locale());
   }
 }
