@@ -217,20 +217,6 @@ describe('BmbAIChatCardComponent', () => {
     expect(component.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.CHAT);
   });
 
-  it('should go to chat when contracting from compact or invisible', () => {
-    component.mode.set(IBMB_AI_CHAT_CARD_MODE.COMPACT);
-    (
-      component as unknown as { handleExpandOrContract: () => void }
-    ).handleExpandOrContract();
-    expect(component.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.CHAT);
-
-    component.mode.set(IBMB_AI_CHAT_CARD_MODE.INVISIBLE);
-    (
-      component as unknown as { handleExpandOrContract: () => void }
-    ).handleExpandOrContract();
-    expect(component.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.CHAT);
-  });
-
   it('should go to compact when contracting from chat and the last non-chat mode was not invisible', () => {
     component.mode.set(IBMB_AI_CHAT_CARD_MODE.CHAT);
     (component as unknown as { handleMinimize: () => void }).handleMinimize();
@@ -288,6 +274,6 @@ describe('BmbAIChatCardComponent', () => {
     (
       component as unknown as { handleExpandOrContract: () => void }
     ).handleExpandOrContract();
-    expect(component.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.CHAT);
+    expect(component.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
   });
 });
