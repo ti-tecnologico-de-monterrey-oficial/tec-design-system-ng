@@ -23,32 +23,11 @@ import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.co
 import {
   IBmbFooterEvent,
   IBmbMenuEvent,
-  IBmbTargetLink,
+  IBmbMobileTemplateButton,
+  IBmbMobileTemplateName,
 } from '../../_shared/types';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
-
-export type IBmbMobileTemplateName =
-  | 'single-header'
-  | 'header-with-footer'
-  | 'card-header-with-footer'
-  | 'header-with-button-list'
-  | 'header-with-card-list'
-  | 'login'
-  | 'calendar'
-  | 'external-link';
-
-export interface IBmbMobileTemplateButton {
-  title: string;
-  iconLeft: string;
-  subtitle?: string;
-  target?: IBmbTargetLink;
-  link?: string;
-  onButton?: () => void;
-}
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { getMobileTemplateClassList } from '../../_shared/logic/components/mobile-templates';
 
 @Component({
   selector: 'bmb-mobile-templates',
@@ -113,12 +92,7 @@ export class BmbMobileTemplatesComponent implements OnInit {
   }
 
   getSectionClass(): string[] {
-    const classList = [
-      'bmb_mobile-template',
-      `bmb_mobile-template-${this.template()}`,
-    ];
-
-    return classList;
+    return getMobileTemplateClassList(this.template());
   }
 
   handleLeftClick(event: any): void {

@@ -15,6 +15,8 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
+  getFilterCardClearAllResetValue,
+  getFilterCardControlResetValue,
   getFilterCardOptions,
   getFilterCardSubmission,
   getFilterCardVisibility,
@@ -309,14 +311,10 @@ export class BmbFilterCardComponent implements OnInit {
     Object.keys(this.storedValues).forEach((name) => {
       const stored = this.storedValues[name];
       if (!stored) return;
-      const resetValue =
-        stored.type === 'checkbox' ||
-        stored.type === 'switch' ||
-        stored.type === 'tag'
-          ? false
-          : stored.isMultiSelect
-            ? []
-            : '';
+      const resetValue = getFilterCardClearAllResetValue(
+        stored.type,
+        stored.isMultiSelect,
+      );
       this.storedValues[name] = {
         ...stored,
         checked: false,
@@ -341,18 +339,10 @@ export class BmbFilterCardComponent implements OnInit {
     const stored = this.storedValues[name];
     let resetValue: any = '';
     if (stored) {
-      switch (stored.type) {
-        case 'checkbox':
-        case 'switch':
-        case 'tag':
-          resetValue = false;
-          break;
-        case 'dropdown':
-          resetValue = stored.isMultiSelect ? [] : '';
-          break;
-        default:
-          resetValue = '';
-      }
+      resetValue = getFilterCardControlResetValue(
+        stored.type,
+        stored.isMultiSelect,
+      );
       this.storedValues[name] = {
         ...stored,
         checked: false,
