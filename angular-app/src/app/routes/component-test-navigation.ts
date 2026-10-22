@@ -43,7 +43,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Container button (Default) (*old)',
+            label: 'Container button (Default)',
             url: '/pages/buttons/container-button-default',
             icon: 'widgets',
           },
@@ -99,7 +99,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'horizontal_rule',
           },
           {
-            label: 'Evaluation rubric (*old)',
+            label: 'Evaluation rubric',
             url: '/pages/containers/evaluation-rubric',
             icon: 'widgets',
           },
@@ -144,7 +144,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'notifications',
           },
           {
-            label: 'Profile card (*old)',
+            label: 'Profile card',
             url: '/pages/containers/profile-card',
             icon: 'widgets',
           },
@@ -432,7 +432,7 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Grades (*old)',
+        label: 'Grades',
         url: '/pages/organisms/grades',
         icon: 'widgets',
       },

@@ -1,26 +1,8 @@
-import {
-  Component,
-  input,
-  model,
-  output,
-  reflectComponentType,
-} from '@angular/core';
+import { Component, input, model, output, reflectComponentType } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {
-  BmbAlertCenterComponent,
-  BmbCalendarComponent,
-  BmbChatBarComponent,
-  BmbFilterCardComponent,
-  BmbTimestreamCardComponent,
-  BmbTimestreamComponent,
-  BmbTitleContentComponent,
-} from 'ui-angular';
+import { BmbAlertCenterComponent, BmbCalendarComponent, BmbChatBarComponent, BmbFilterCardComponent, BmbTimestreamCardComponent, BmbTimestreamComponent, BmbTitleContentComponent } from 'ui-angular';
 import { createDemoConfiguration } from './demo-configurations';
-import {
-  DemoConfiguration,
-  parseDemoProperties,
-  demoDrafts,
-} from './demo-properties';
+import { DemoConfiguration, parseDemoProperties, demoDrafts } from './demo-properties';
 import { PropertyPlayground } from './property-playground';
 
 @Component({
@@ -86,6 +68,45 @@ describe('PropertyPlayground', () => {
       ]),
     );
     expect(component.drafts()['count']).toBe('3');
+  });
+
+  it('refreshes the visible example when a text control is edited without clicking Apply', async () => {
+    const previous = component.outlet()?.componentInstance;
+    const control = fixture.nativeElement.querySelector('#demo-label') as HTMLInputElement;
+    control.value = 'Live title';
+    control.dispatchEvent(new Event('input', { bubbles: true }));
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.outlet()?.componentInstance).not.toBe(previous);
+    expect(fixture.nativeElement.querySelector('app-demo-fixture').textContent).toContain('Live title');
+  });
+
+  it('keeps invalid edits in the editor and refreshes once they become valid', async () => {
+    const previous = component.outlet()?.componentInstance;
+    component.setDraft('count', 'invalid');
+    fixture.detectChanges();
+    expect(component.error()).toContain('count:');
+    expect(component.outlet()?.componentInstance).toBe(previous);
+
+    component.setDraft('count', '7');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(component.error()).toBe('');
+    expect((component.outlet()?.componentInstance as DemoFixture).count()).toBe(7);
+  });
+
+  it('reflects model emissions without recreating the component or resetting its state', async () => {
+    const instance = component.outlet()?.componentInstance as DemoFixture;
+    const revision = component.revision();
+    instance.count.set(5);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.drafts()['count']).toBe('5');
+    expect(component.revision()).toBe(revision);
+    expect(component.outlet()?.componentInstance).toBe(instance);
+    expect(instance.count()).toBe(5);
   });
 
   it('keeps the current example when validation fails', () => {

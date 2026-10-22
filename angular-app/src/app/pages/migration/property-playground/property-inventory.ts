@@ -1,6 +1,15 @@
+import { containerButtonProperties } from '../container-button-test/container-button-demo-configuration';
+import { gradesProperties } from '../grades-test/grades-demo-configuration';
+import { evaluationRubricProperties } from '../evaluation-rubric-test/evaluation-rubric-demo-configuration';
+import { profileProperties } from '../profile-test/profile-demo-configuration';
 import type { DemoProperty } from './demo-properties';
 
 export const propertyInventory: Record<string, DemoProperty[]> = {
+  'container-button': containerButtonProperties,
+  'grades': gradesProperties,
+  'evaluation-rubric': evaluationRubricProperties,
+  'profile': profileProperties,
+
   'alert-center': [
     {
       name: 'dateFormat',

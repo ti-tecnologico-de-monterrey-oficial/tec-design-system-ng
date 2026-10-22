@@ -1,29 +1,7 @@
-export type IBmbElementDetail = {
-  title: string;
-  subtitle: string;
-  score: number;
-};
-
-export type IBmbPartial = {
-  title: string;
-  score: number;
-};
-
-export type IBmbClassDetail = {
-  detail: IBmbElementDetail;
-  partials: IBmbPartial[];
-};
-
-export type IBmbPeriod = {
-  detail: IBmbElementDetail;
-  accreditedClasses: number;
-  periodAverage: number;
-  serviceHours: number | null;
-  classes: IBmbClassDetail[];
-};
-
-export type IBmbGrades = {
-  title: string;
-  subtitle: string;
-  periods: IBmbPeriod[];
-};
+export type {
+  IBmbElementDetail,
+  IBmbPartial,
+  IBmbClassDetail,
+  IBmbPeriod,
+  IBmbGrades,
+} from '../../_shared/types/components/grades';

@@ -1,3 +1,7 @@
+import { createContainerButtonDemoConfiguration } from '../container-button-test/container-button-demo-configuration';
+import { createGradesDemoConfiguration } from '../grades-test/grades-demo-configuration';
+import { createEvaluationRubricDemoConfiguration } from '../evaluation-rubric-test/evaluation-rubric-demo-configuration';
+import { createProfileDemoConfiguration } from '../profile-test/profile-demo-configuration';
 import { DateTime } from 'luxon';
 import { defaultBotList } from 'ui-angular';
 import { createTimestreamDemoEvents } from '../timestream-demo-events';
@@ -5,7 +9,12 @@ import type { DemoConfiguration, DemoValue } from './demo-properties';
 import { filterCardDemoControls } from './filter-card-demo-controls';
 import { propertyInventory } from './property-inventory';
 
-export function createDemoConfiguration(name: string): DemoConfiguration {
+export function createDemoConfiguration(name: string, preset?: string): DemoConfiguration {
+  if (name === 'container-button') return createContainerButtonDemoConfiguration(preset);
+  if (name === 'grades') return createGradesDemoConfiguration(preset);
+  if (name === 'evaluation-rubric') return createEvaluationRubricDemoConfiguration(preset);
+  if (name === 'profile') return createProfileDemoConfiguration(preset);
+
   const now = DateTime.now();
   const initial: Record<string, Record<string, DemoValue>> = {
     'alert-center': {

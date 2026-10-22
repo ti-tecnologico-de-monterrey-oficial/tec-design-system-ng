@@ -72,3 +72,8 @@ export * from './utils';
 export * from './components/alert-center';
 export * from './components/calendar';
 export * from './components/chat-bar';
+
+export * from './components/container-button';
+export * from './components/grades';
+export * from './components/evaluation-rubric';
+export * from './components/profile';

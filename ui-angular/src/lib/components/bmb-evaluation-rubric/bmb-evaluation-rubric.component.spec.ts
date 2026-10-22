@@ -28,4 +28,15 @@ describe('BmbEvaluationRubricComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('keeps model updates, matching-object identity and summary behavior', () => {
+    const item = { criterion: 'A', tooltip: '', evaluation: 1 };
+    componentRef.setInput('evaluationRubricList', [item]);
+    const changed = jest.fn();
+    component.evaluationRubricList.subscribe(changed);
+    component.handleEval('A', 4);
+    expect(component.evaluationRubricList()[0]).toBe(item);
+    expect(component.summary).toBe(4);
+    expect(changed).toHaveBeenCalled();
+    expect(component.getSelectedButtonClass(4, 4)).toBe('-active');
+  });
 });

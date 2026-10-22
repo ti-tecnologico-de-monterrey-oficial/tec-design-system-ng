@@ -1,21 +1,12 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  input,
-  model,
-  output,
-  ViewEncapsulation,
-} from '@angular/core';
+import { getEvaluationRubricValues, getEvaluationRubricSelectedClass, getEvaluationRubricButtonClass, updateEvaluationRubric, getEvaluationRubricSummary } from '../../_shared/logic/components/evaluation-rubric';
+import { ChangeDetectionStrategy, Component, effect, input, model, output, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
-import {
-  BmbInputComponent,
-} from '../bmb-input/bmb-input.component';
+import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
@@ -24,35 +15,13 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../pipes/translations';
-import { IBmbInputAppearance } from '../../_shared/types';
+import type { IBmbEvaluationRubric, IBmbCommentEvalRubric, IBmbEvalRubricButtons } from '../../_shared/types/components/evaluation-rubric';
 
-
-export interface IBmbEvaluationRubric {
-  criterion: string;
-  tooltip: string;
-  evaluation?: number;
-}
-
-export interface IBmbCommentEvalRubric {
-  label: string;
-  placeHolder: string;
-  tooltip: string;
-  icon?: string;
-  errorMessage?: string;
-  helperMessage?: string;
-  appearance?: IBmbInputAppearance;
-  disabled?: boolean;
-  isRequired?: boolean;
-  showError?: boolean;
-  showMaxTextLength?: boolean;
-}
-
-export interface IBmbEvalRubricButtons {
-  rightLabel: string;
-  rightIcon?: string;
-  leftLabel: string;
-  leftIcon?: string;
-}
+export type {
+  IBmbEvaluationRubric,
+  IBmbCommentEvalRubric,
+  IBmbEvalRubricButtons,
+} from '../../_shared/types/components/evaluation-rubric';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -116,39 +85,23 @@ export class BmbEvaluationRubricComponent {
   }
 
   getEvalList(): number[] {
-    const evalList: number[] = [];
-    for (let index = 0; index < this.maxEval(); index++) {
-      evalList.push(index + 1);
-    }
-    return evalList;
+    return getEvaluationRubricValues(this.maxEval());
   }
-
   getSelectedButtonClass(evaluation: number, element: number): string {
-    return evaluation === element ? '-active' : '';
+    return getEvaluationRubricSelectedClass(evaluation, element);
   }
-
   getButtonClass(
     parentClassName: string,
     item: IBmbEvaluationRubric,
     element: number,
   ): string {
-    return `${parentClassName}-button${this.getSelectedButtonClass(item.evaluation!, element)}`;
+    return getEvaluationRubricButtonClass(parentClassName, item, element);
   }
-
   handleEval(criterion: string, evaluation: number) {
     this.evaluationRubricList.update((list) =>
-      list.map((element) => {
-        if (element['criterion'] === criterion) {
-          element['evaluation'] = evaluation;
-        }
-        return element;
-      }),
+      updateEvaluationRubric(list, criterion, evaluation),
     );
-
-    this.summary = this.evaluationRubricList().reduce(
-      (accumulator, current) => accumulator + (current.evaluation || 0),
-      0,
-    );
+    this.summary = getEvaluationRubricSummary(this.evaluationRubricList());
   }
 
   handleClose(): void {
