@@ -1,4 +1,7 @@
-import type { IBmbProfileData, IBmbStudentProfileData, IBmbCollaboratorProfileData, IBmbUserData } from '../utils';
+import type { IBmbProfileData,
+  IBmbStudentProfileData,
+  IBmbCollaboratorProfileData,
+  IBmbUserData } from '../utils';
 export interface IBmbProfileOptions {
   userData?: IBmbProfileData;
   studentData?: IBmbStudentProfileData;

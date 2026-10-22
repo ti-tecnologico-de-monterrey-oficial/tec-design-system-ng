@@ -1,5 +1,28 @@
-import { getGradesTitle, getGradesDetailHeading, getGradesCalendarIcon, getGradesAccreditedClasses, getGradesPeriodAverage, getGradesServiceHours, getGradesDetailTitle, getGradesDetailSubtitle, getGradesDetailScore, getGradesElements, getMissingGradesMicroInputs, getGradesNavigationIndex, findGradesPeriodIndex } from '../../_shared/logic/components/grades';
-import { ChangeDetectionStrategy, Component, effect, input, OnInit, AfterViewInit, output, signal, TemplateRef, ViewChild, ViewEncapsulation, inject } from '@angular/core';
+import { getGradesTitle,
+  getGradesDetailHeading,
+  getGradesCalendarIcon,
+  getGradesAccreditedClasses,
+  getGradesPeriodAverage,
+  getGradesServiceHours,
+  getGradesDetailTitle,
+  getGradesDetailSubtitle,
+  getGradesDetailScore,
+  getGradesElements,
+  getMissingGradesMicroInputs,
+  getGradesNavigationIndex,
+  findGradesPeriodIndex } from '../../_shared/logic/components/grades';
+import { ChangeDetectionStrategy,
+  Component,
+  effect,
+  input,
+  OnInit,
+  AfterViewInit,
+  output,
+  signal,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+  inject } from '@angular/core';
 import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';

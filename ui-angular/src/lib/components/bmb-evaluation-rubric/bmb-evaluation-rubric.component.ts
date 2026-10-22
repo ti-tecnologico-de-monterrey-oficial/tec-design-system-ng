@@ -1,5 +1,15 @@
-import { getEvaluationRubricValues, getEvaluationRubricSelectedClass, getEvaluationRubricButtonClass, updateEvaluationRubric, getEvaluationRubricSummary } from '../../_shared/logic/components/evaluation-rubric';
-import { ChangeDetectionStrategy, Component, effect, input, model, output, ViewEncapsulation } from '@angular/core';
+import { getEvaluationRubricValues,
+  getEvaluationRubricSelectedClass,
+  getEvaluationRubricButtonClass,
+  updateEvaluationRubric,
+  getEvaluationRubricSummary } from '../../_shared/logic/components/evaluation-rubric';
+import { ChangeDetectionStrategy,
+  Component,
+  effect,
+  input,
+  model,
+  output,
+  ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
@@ -15,7 +25,9 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../pipes/translations';
-import type { IBmbEvaluationRubric, IBmbCommentEvalRubric, IBmbEvalRubricButtons } from '../../_shared/types/components/evaluation-rubric';
+import type { IBmbEvaluationRubric,
+  IBmbCommentEvalRubric,
+  IBmbEvalRubricButtons } from '../../_shared/types/components/evaluation-rubric';
 
 export type {
   IBmbEvaluationRubric,

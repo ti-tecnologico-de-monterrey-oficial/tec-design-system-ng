@@ -1,4 +1,5 @@
-import type { DemoConfiguration, DemoProperty } from '../property-playground/demo-properties';
+import type { DemoConfiguration,
+  DemoProperty } from '../property-playground/demo-properties';
 
 export const gradesProperties: DemoProperty[] = [
   {

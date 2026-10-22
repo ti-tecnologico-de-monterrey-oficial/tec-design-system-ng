@@ -1,6 +1,15 @@
 import { getContainerButtonClassList } from '../../_shared/logic/components/container-button';
 import type { IBmbContainerButtonState } from '../../_shared/types/components/container-button';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, input, output, model, signal, inject, DestroyRef, effect } from '@angular/core';
+import { Component,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
+  input,
+  output,
+  model,
+  signal,
+  inject,
+  DestroyRef,
+  effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';

@@ -1,4 +1,9 @@
-import { getGradesNavigationIndex, getMissingGradesMicroInputs, getGradesServiceHours, getGradesElements, getGradesDetailHeading, findGradesPeriodIndex } from './grades';
+import { getGradesNavigationIndex,
+  getMissingGradesMicroInputs,
+  getGradesServiceHours,
+  getGradesElements,
+  getGradesDetailHeading,
+  findGradesPeriodIndex } from './grades';
 import type { IBmbGrades } from '../../types/components/grades';
 
 describe('Grades shared behavior', () => {

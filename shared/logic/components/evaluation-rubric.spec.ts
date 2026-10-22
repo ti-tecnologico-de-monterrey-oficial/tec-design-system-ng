@@ -1,4 +1,7 @@
-import { getEvaluationRubricValues, getEvaluationRubricButtonClass, updateEvaluationRubric, getEvaluationRubricSummary } from './evaluation-rubric';
+import { getEvaluationRubricValues,
+  getEvaluationRubricButtonClass,
+  updateEvaluationRubric,
+  getEvaluationRubricSummary } from './evaluation-rubric';
 
 describe('Evaluation rubric shared behavior', () => {
   it('preserves value generation and selected classes', () => {

@@ -1,6 +1,21 @@
 import { NgComponentOutlet } from '@angular/common';
-import { afterEveryRender, ChangeDetectionStrategy, Component, DestroyRef, inject, input, OnInit, output, reflectComponentType, signal, Type, viewChild } from '@angular/core';
-import { demoDrafts, DemoConfiguration, DemoValue, parseDemoProperties, serializeDemoValue } from './demo-properties';
+import { afterEveryRender,
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  input,
+  OnInit,
+  output,
+  reflectComponentType,
+  signal,
+  Type,
+  viewChild } from '@angular/core';
+import { demoDrafts,
+  DemoConfiguration,
+  DemoValue,
+  parseDemoProperties,
+  serializeDemoValue } from './demo-properties';
 
 @Component({
   selector: 'app-property-playground',

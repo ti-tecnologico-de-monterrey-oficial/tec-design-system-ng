@@ -2,7 +2,8 @@ import { reflectComponentType } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { BmbEvaluationRubricComponent } from 'ui-angular';
 import { EvaluationRubricTestComponent } from './evaluation-rubric-test.component';
-import { evaluationRubricPresets, createEvaluationRubricDemoConfiguration } from './evaluation-rubric-demo-configuration';
+import { evaluationRubricPresets,
+  createEvaluationRubricDemoConfiguration } from './evaluation-rubric-demo-configuration';
 import { demoDrafts, parseDemoProperties } from '../property-playground/demo-properties';
 
 describe('EvaluationRubric migration playground', () => {

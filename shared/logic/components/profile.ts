@@ -1,4 +1,6 @@
-import type { IBmbProfileData, IBmbStudentProfileData, IBmbUserData } from '../../types/utils';
+import type { IBmbProfileData,
+  IBmbStudentProfileData,
+  IBmbUserData } from '../../types/utils';
 import type { IBmbProfileOptions } from '../../types/components/profile';
 // Kept local to avoid importing the Angular form utilities in ../utils.
 function buildErrorMessage(inputs: string[]): string {

@@ -1,4 +1,5 @@
-import type { IBmbGrades, IBmbGradesMicroOptions } from '../../types/components/grades';
+import type { IBmbGrades,
+  IBmbGradesMicroOptions } from '../../types/components/grades';
 
 export function getMissingGradesMicroInputs(
   options: IBmbGradesMicroOptions,

@@ -1,8 +1,20 @@
-import { Component, input, model, output, reflectComponentType } from '@angular/core';
+import { Component,
+  input,
+  model,
+  output,
+  reflectComponentType } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BmbAlertCenterComponent, BmbCalendarComponent, BmbChatBarComponent, BmbFilterCardComponent, BmbTimestreamCardComponent, BmbTimestreamComponent, BmbTitleContentComponent } from 'ui-angular';
+import { BmbAlertCenterComponent,
+  BmbCalendarComponent,
+  BmbChatBarComponent,
+  BmbFilterCardComponent,
+  BmbTimestreamCardComponent,
+  BmbTimestreamComponent,
+  BmbTitleContentComponent } from 'ui-angular';
 import { createDemoConfiguration } from './demo-configurations';
-import { DemoConfiguration, parseDemoProperties, demoDrafts } from './demo-properties';
+import { DemoConfiguration,
+  parseDemoProperties,
+  demoDrafts } from './demo-properties';
 import { PropertyPlayground } from './property-playground';
 
 @Component({

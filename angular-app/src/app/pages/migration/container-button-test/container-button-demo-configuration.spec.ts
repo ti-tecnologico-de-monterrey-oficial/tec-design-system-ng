@@ -2,7 +2,8 @@ import { reflectComponentType } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { BmbContainerButtonComponent } from 'ui-angular';
 import { ContainerButtonTestComponent } from './container-button-test.component';
-import { containerButtonPresets, createContainerButtonDemoConfiguration } from './container-button-demo-configuration';
+import { containerButtonPresets,
+  createContainerButtonDemoConfiguration } from './container-button-demo-configuration';
 import { demoDrafts, parseDemoProperties } from '../property-playground/demo-properties';
 
 describe('ContainerButton migration playground', () => {

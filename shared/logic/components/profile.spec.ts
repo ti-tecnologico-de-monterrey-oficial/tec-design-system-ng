@@ -1,4 +1,7 @@
-import { mapLegacyProfileData, validateProfileOptions, getProfileUserData, assertProfileInputs } from './profile';
+import { mapLegacyProfileData,
+  validateProfileOptions,
+  getProfileUserData,
+  assertProfileInputs } from './profile';
 import type { IBmbProfileOptions } from '../../types/components/profile';
 
 describe('Profile shared behavior', () => {

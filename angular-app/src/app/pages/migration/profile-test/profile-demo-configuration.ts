@@ -1,4 +1,5 @@
-import type { DemoConfiguration, DemoProperty } from '../property-playground/demo-properties';
+import type { DemoConfiguration,
+  DemoProperty } from '../property-playground/demo-properties';
 
 const PROFILE_DEMO_IMAGE = 'assets/images/placeholders/user-icon-test.svg';
 

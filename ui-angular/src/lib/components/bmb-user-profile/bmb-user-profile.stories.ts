@@ -1,6 +1,10 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbUserProfileComponent } from './bmb-user-profile.component';
-import { getBasicExampleBlock, getGeneralComponentDescription, getGeneralDescription, getSpecialSpecifications, getTECParticularitiesMessage } from '@docs/utils/utils';
+import { getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
+  getTECParticularitiesMessage } from '@docs/utils/utils';
 import { DBmbGenericParamDesc } from '@docs/utils/parameterDescriptions';
 
 export default {
