@@ -3,7 +3,7 @@ import { ComponentRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { MixedMessageComponent } from './bmb-mixed-message.component';
-import { BmbMixedMessage } from '../../types';
+import { BmbMixedMessage } from '../../../../_shared/types';
 
 let componentRef: ComponentRef<MixedMessageComponent>;
 

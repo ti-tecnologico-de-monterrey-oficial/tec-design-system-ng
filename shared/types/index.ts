@@ -4,6 +4,7 @@ export * from './components/academic-progress';
 export * from './components/account-statement';
 export * from './components/action-icon';
 export * from './components/advertisement-card';
+export * from './components/ai-chat-bubble';
 export * from './components/ai-chat-card';
 export * from './components/alert-center-detail';
 export * from './components/badge';
