@@ -16,13 +16,13 @@ import {
   alertCenterGetTimeVariant,
 } from '../../../_shared/logic/components/alert-center-list';
 import type { IBmbDataAlertsParsed } from '../../../_shared/types/components/alert-center';
+import type { IBmbSwipeSide } from '../../../_shared/types';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 import {
   BmbSwipeDirective,
   BmbSwipeLeftActionsDirective,
   BmbSwipeRightActionsDirective,
-  IBmbSwipeSide,
 } from '../../../directives/bmb-swipe/bmb-swipe.directive';
 import {
   BmbLayoutGridDirective,

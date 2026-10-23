@@ -40,12 +40,6 @@ import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 
-export * from './types';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-grades',
   standalone: true,

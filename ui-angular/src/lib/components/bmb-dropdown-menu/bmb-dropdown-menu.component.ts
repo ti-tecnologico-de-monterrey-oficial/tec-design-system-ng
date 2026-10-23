@@ -11,12 +11,10 @@ import {
 } from '@angular/core';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { IDropdownItem } from '../../_shared/types';
+import { IDropdownItem, IBmbDropdownMenuIcon } from '../../_shared/types';
 import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
 import { TranslatePipe } from '../../pipes/translations';
 import { handleDropdownItemSelection } from '../../_shared/logic/components/dropdown-menu';
-
-export type IBmbDropdownMenuIcon = 'more_vert' | 'more_horiz';
 
 @Component({
   selector: 'bmb-dropdown-menu',
