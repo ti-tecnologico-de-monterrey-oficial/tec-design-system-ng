@@ -1,0 +1,93 @@
+<section class="attachment-page">
+  <header class="attachment-page-header">
+    <h1>AIChatCardAttachment</h1>
+    <div class="attachment-page-toolbar">
+      <label for="attachment-chat-mode">Mode</label>
+      <select
+        id="attachment-chat-mode"
+        [value]="mode()"
+        (change)="selectMode($event)"
+      >
+        @for (option of modes; track option) {
+          <option [value]="option">{{ option }}</option>
+        }
+      </select>
+      <bmb-action-icon
+        icon="restart_alt"
+        tooltipText="Reset conversation"
+        [iconSize]="24"
+        (buttonClick)="reset()"
+      />
+    </div>
+  </header>
+
+  <div class="attachment-page-layout">
+    <section class="attachment-page-preview" aria-label="Conversation">
+      <bmb-ai-chat-card
+        [(mode)]="mode"
+        [(isExpanded)]="isExpanded"
+        componentTitle="Document assistant"
+        subtitle="Attachments"
+      >
+        @for (message of messages(); track message.id) {
+          <bmb-ai-chat-bubble
+            [message]="message"
+            [showActions]="false"
+            [testId]="message.id"
+          />
+        }
+        <bmb-chat-bar
+          placeholder="Write a message"
+          [disableChangeBot]="true"
+          [actionsList]="actionsList"
+          [(files)]="files"
+          [(isLoading)]="isLoading"
+          (onSendMessage)="handleSendMessage($event)"
+          (onSendFiles)="handleSendFiles($event)"
+        />
+      </bmb-ai-chat-card>
+    </section>
+
+    <aside class="attachment-page-inspector" aria-label="Attachment events">
+      <section>
+        <h2>Pending Files <span>{{ files().length }}</span></h2>
+        <ul class="attachment-page-file-list" aria-live="polite">
+          @for (file of files(); track $index) {
+            <li><strong>{{ file.name }}</strong><span>{{ file.size }} bytes</span></li>
+          } @empty {
+            <li class="attachment-page-empty">No pending files</li>
+          }
+        </ul>
+      </section>
+
+      <section>
+        <h2>Last onSendFiles <span>{{ lastSentFiles().length }}</span></h2>
+        <ul class="attachment-page-file-list" aria-live="polite">
+          @for (file of lastSentFiles(); track $index) {
+            <li><strong>{{ file.name }}</strong><span>{{ file.type || 'Unknown type' }}</span></li>
+          } @empty {
+            <li class="attachment-page-empty">No files sent</li>
+          }
+        </ul>
+      </section>
+
+      <section>
+        <h2>Submissions <span>{{ submissions().length }}</span></h2>
+        <ol class="attachment-page-submissions" aria-live="polite">
+          @for (submission of submissions(); track submission.id) {
+            <li>
+              <strong>Submission {{ submission.id }}</strong>
+              @if (submission.text) { <p>{{ submission.text }}</p> }
+              <span>{{ submission.files.length }} file(s)</span>
+              @for (file of submission.files; track $index) {
+                <span>{{ file.name }}</span>
+              }
+            </li>
+          } @empty {
+            <li class="attachment-page-empty">No submissions</li>
+          }
+        </ol>
+      </section>
+    </aside>
+  </div>
+</section>
