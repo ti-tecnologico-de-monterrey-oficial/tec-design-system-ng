@@ -28,10 +28,6 @@ import { TranslatePipe } from '../../pipes/translations';
 
 const MOBILE_TABLET_QUERY = '(max-width: 992px)';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-container-button',
   standalone: true,

@@ -34,10 +34,6 @@ import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-i
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-profile',
   standalone: true,

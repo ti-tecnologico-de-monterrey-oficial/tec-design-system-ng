@@ -19,10 +19,6 @@ import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-li
 import { BmbDropdownMenuComponent } from '../../bmb-dropdown-menu/bmb-dropdown-menu.component';
 import { BmbUserSummaryContentComponent } from '../../bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-top-bar-user-section',
   standalone: true,

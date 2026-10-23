@@ -25,19 +25,11 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../pipes/translations';
-import type { IBmbEvaluationRubric,
-  IBmbCommentEvalRubric,
-  IBmbEvalRubricButtons } from '../../_shared/types/components/evaluation-rubric';
-
-export type {
+import type {
   IBmbEvaluationRubric,
   IBmbCommentEvalRubric,
   IBmbEvalRubricButtons,
-} from '../../_shared/types/components/evaluation-rubric';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+} from '../../_shared/types';
 
 @Component({
   selector: 'bmb-evaluation-rubric',

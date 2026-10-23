@@ -382,7 +382,7 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Login content (*old)',
+        label: 'Login content',
         url: '/pages/internals/login-content',
         icon: 'widgets',
       },
@@ -468,7 +468,7 @@ export const navigationTest: ComponentGroupTest[] = [
     label: 'Templates',
     items: [
       {
-        label: 'Mobile (*old)',
+        label: 'Mobile',
         url: '/pages/templates/mobile',
         icon: 'widgets',
       },
