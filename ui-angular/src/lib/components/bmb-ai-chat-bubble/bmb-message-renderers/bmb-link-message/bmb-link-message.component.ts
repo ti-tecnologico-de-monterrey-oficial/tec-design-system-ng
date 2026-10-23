@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbLinkMessage } from '../../types';
+import { BmbLinkMessage } from '../../../../_shared/types';
 import { BmbTextLinkComponent } from '../../../bmb-text-link/bmb-text-link.component';
 
 @Component({

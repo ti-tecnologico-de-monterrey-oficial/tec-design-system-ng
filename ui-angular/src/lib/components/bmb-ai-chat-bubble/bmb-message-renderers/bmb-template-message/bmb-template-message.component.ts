@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbTemplateMessage } from '../../types';
+import { BmbTemplateMessage } from '../../../../_shared/types';
 
 @Component({
   selector: 'bmb-template-message',
