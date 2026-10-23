@@ -109,6 +109,7 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
   readonly messageEditCancelled = output<BmbChatMessage>();
   getOptionClicked = output<IBmbChatOptionEvent>();
   readonly uploadFileRequested = output<BmbUploadFileRequestEvent>();
+  readonly filesSelected = output<File[]>();
 
   /**
    * Emits image not found events.

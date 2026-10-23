@@ -87,6 +87,7 @@
                   <bmb-upload-file-message
                     [message]="message"
                     (uploadFileRequested)="uploadFileRequested.emit($event)"
+                    (filesSelected)="filesSelected.emit($event)"
                   />
                 }
 

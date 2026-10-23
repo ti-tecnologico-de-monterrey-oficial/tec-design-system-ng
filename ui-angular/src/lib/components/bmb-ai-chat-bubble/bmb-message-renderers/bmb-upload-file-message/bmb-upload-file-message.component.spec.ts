@@ -3,6 +3,7 @@ import { By } from '@angular/platform-browser';
 import { BmbUploadFileMessageComponent } from './bmb-upload-file-message.component';
 import type { BmbUploadFileMessage } from '../../types';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
+import { BmbFileAttachment } from '../../../bmb-file-attachment/bmb-file-attachment.component';
 
 describe('BmbUploadFileMessageComponent', () => {
   let fixture: ComponentFixture<BmbUploadFileMessageComponent>;
@@ -77,6 +78,57 @@ describe('BmbUploadFileMessageComponent', () => {
       message,
       nativeEvent,
     });
+  });
+
+  it('should open the reusable picker with the requested file formats', () => {
+    const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
+    const click = jest.spyOn(input, 'click').mockImplementation(() => {});
+
+    fixture.nativeElement.querySelector('button').click();
+
+    expect(click).toHaveBeenCalledTimes(1);
+    expect(input.accept).toBe('.pdf,.doc,.xml');
+  });
+
+  it('should emit selected files and clear the local list after forwarding them', () => {
+    const selected = jest.fn();
+    fixture.componentInstance.filesSelected.subscribe(selected);
+    const file = new File(['document'], 'document.pdf', { type: 'application/pdf' });
+    const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
+    Object.defineProperty(input, 'files', { value: [file] });
+
+    input.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    const attachment = fixture.debugElement.query(By.directive(BmbFileAttachment))
+      .componentInstance as BmbFileAttachment;
+    expect(selected).toHaveBeenCalledTimes(1);
+    expect(selected).toHaveBeenCalledWith([file]);
+    expect(attachment.files()).toEqual([]);
+    expect(input.value).toBe('');
+  });
+
+  it('should forward dropped files through the same output', () => {
+    const selected = jest.fn();
+    fixture.componentInstance.filesSelected.subscribe(selected);
+    const file = new File(['document'], 'document.pdf');
+    const drop = new Event('drop', { bubbles: true, cancelable: true });
+    Object.defineProperty(drop, 'dataTransfer', { value: { files: [file] } });
+
+    fixture.nativeElement.querySelector('button').dispatchEvent(drop);
+    fixture.detectChanges();
+
+    expect(selected).toHaveBeenCalledTimes(1);
+    expect(selected).toHaveBeenCalledWith([file]);
+  });
+
+  it('should not emit files when the picker is cancelled', () => {
+    const selected = jest.fn();
+    fixture.componentInstance.filesSelected.subscribe(selected);
+
+    fixture.nativeElement.querySelector('input').dispatchEvent(new Event('change'));
+
+    expect(selected).not.toHaveBeenCalled();
   });
 
   it('should hide requirements when none are provided', () => {

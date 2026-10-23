@@ -21,17 +21,22 @@
     }
   </p>
 
-  <button
-    bmbButton
-    type="button"
-    appearance="secondary-outlined"
-    size="large"
-    (click)="requestUpload($event)"
+  <bmb-file-attachment
+    [acceptedExtensions]="content.acceptedFormats!"
+    (filesChange)="handleFilesSelected($event)"
   >
-    {{
-      content.buttonLabel ?? ('ai_chat_bubble.upload_file.button' | translate)
-    }}
-  </button>
+    <button
+      bmbButton
+      type="button"
+      appearance="secondary-outlined"
+      size="large"
+      (click)="requestUpload($event)"
+    >
+      {{
+        content.buttonLabel ?? ('ai_chat_bubble.upload_file.button' | translate)
+      }}
+    </button>
+  </bmb-file-attachment>
 
   @if (
     content.acceptedFormats?.length ||
