@@ -1,5 +1,17 @@
-import {
-  ChangeDetectionStrategy,
+import { getGradesTitle,
+  getGradesDetailHeading,
+  getGradesCalendarIcon,
+  getGradesAccreditedClasses,
+  getGradesPeriodAverage,
+  getGradesServiceHours,
+  getGradesDetailTitle,
+  getGradesDetailSubtitle,
+  getGradesDetailScore,
+  getGradesElements,
+  getMissingGradesMicroInputs,
+  getGradesNavigationIndex,
+  findGradesPeriodIndex } from '../../_shared/logic/components/grades';
+import { ChangeDetectionStrategy,
   Component,
   effect,
   input,
@@ -10,14 +22,13 @@ import {
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
-  inject,
-} from '@angular/core';
+  inject } from '@angular/core';
 import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
-import { IBmbGrades, IBmbPartial } from './types';
+import type { IBmbGrades, IBmbPartial } from '../../_shared/types/components/grades';
 import { CommonModule } from '@angular/common';
 import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
@@ -80,13 +91,14 @@ export class BmbGradesComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     if (this.isMicro()) {
-      const inputs: string[] = [];
-
-      if (!this.gradeTitle()) inputs.push('gradeTitle');
-      if (!this.componentTitle() && !this.title()) inputs.push('title');
-      if (!this.accredited()) inputs.push('accredited');
-      if (!this.average()) inputs.push('average');
-      if (!this.summary()) inputs.push('summary');
+      const inputs = getMissingGradesMicroInputs({
+        gradeTitle: this.gradeTitle(),
+        componentTitle: this.componentTitle(),
+        title: this.title(),
+        accredited: this.accredited(),
+        average: this.average(),
+        summary: this.summary(),
+      });
 
       if (inputs.length) {
         throw new Error(
@@ -129,61 +141,68 @@ export class BmbGradesComponent implements OnInit, AfterViewInit {
   }
 
   getGradesTitle(): string {
-    return this.grades()[this.gradeIndex()]?.title;
+    return getGradesTitle(this.grades(), this.gradeIndex());
   }
 
   getTitle(): string {
-    const period =
-      this.grades()[this.gradeIndex()]?.periods[this.periodIndex()];
-    if (this.showPrincipalDetail) return period.detail.title;
-    return this.grades()[this.gradeIndex()]?.subtitle;
+    return getGradesDetailHeading(
+      this.grades(),
+      this.gradeIndex(),
+      this.periodIndex(),
+      this.showPrincipalDetail,
+    );
   }
 
   getCalendarIcon(): string {
-    if (this.showPrincipalDetail) return 'calendar_month';
-    return 'calendar_today';
+    return getGradesCalendarIcon(this.showPrincipalDetail);
   }
 
   getAccreditedClasses(): number {
-    const period = this.grades()[this.gradeIndex()].periods[this.periodIndex()];
-    if (this.showPrincipalDetail) return period.accreditedClasses;
-    return 0;
+    return getGradesAccreditedClasses(
+      this.grades(),
+      this.gradeIndex(),
+      this.periodIndex(),
+      this.showPrincipalDetail,
+    );
   }
 
   getPeriodAverage(): number {
-    const period = this.grades()[this.gradeIndex()].periods[this.periodIndex()];
-    if (this.showPrincipalDetail) return period.periodAverage;
-    return 0;
+    return getGradesPeriodAverage(
+      this.grades(),
+      this.gradeIndex(),
+      this.periodIndex(),
+      this.showPrincipalDetail,
+    );
   }
 
   getServiceHours(): number | boolean {
-    if (
-      this.grades()[this.gradeIndex()].periods[this.periodIndex()].serviceHours
-    ) {
-      const period =
-        this.grades()[this.gradeIndex()].periods[this.periodIndex()];
-      if (this.showPrincipalDetail) return period.serviceHours ?? 0;
-      return 0;
-    }
-    return false;
+    return getGradesServiceHours(
+      this.grades(),
+      this.gradeIndex(),
+      this.periodIndex(),
+      this.showPrincipalDetail,
+    );
   }
 
   getDetailTitle(element: any): string {
-    return element.detail.title;
+    return getGradesDetailTitle(element);
   }
 
   getDetailSubtitle(element: any): string {
-    return element.detail.subtitle;
+    return getGradesDetailSubtitle(element);
   }
 
   getDetailScore(element: any): string {
-    return element.detail.score;
+    return getGradesDetailScore(element);
   }
 
   getElements(): any {
-    const periods = this.grades()[this.gradeIndex()]?.periods;
-    if (this.showPrincipalDetail) return periods[this.periodIndex()]?.classes;
-    return periods;
+    return getGradesElements(
+      this.grades(),
+      this.gradeIndex(),
+      this.periodIndex(),
+      this.showPrincipalDetail,
+    );
   }
 
   handleLeftGradesClick(event: any): void {
@@ -196,31 +215,27 @@ export class BmbGradesComponent implements OnInit, AfterViewInit {
 
   handleLeftPeriodClick(): void {
     if (this.showPrincipalDetail) {
-      if (this.periodIndex()) {
-        this.periodIndex.update((value) => value - 1);
-      }
+      this.periodIndex.update((value) =>
+        getGradesNavigationIndex(value, -1, 0),
+      );
       return;
     }
-
-    if (this.gradeIndex()) {
-      this.gradeIndex.update((value) => value - 1);
-    }
+    this.gradeIndex.update((value) => getGradesNavigationIndex(value, -1, 0));
   }
-
   handleRightPeriodClick(): void {
     if (this.showPrincipalDetail) {
-      if (
-        this.periodIndex() + 1 <
-        this.grades()[this.gradeIndex()].periods.length
-      ) {
-        this.periodIndex.update((value) => value + 1);
-      }
+      this.periodIndex.update((value) =>
+        getGradesNavigationIndex(
+          value,
+          1,
+          this.grades()[this.gradeIndex()].periods.length,
+        ),
+      );
       return;
     }
-
-    if (this.gradeIndex() + 1 < this.grades().length) {
-      this.gradeIndex.update((value) => value + 1);
-    }
+    this.gradeIndex.update((value) =>
+      getGradesNavigationIndex(value, 1, this.grades().length),
+    );
   }
 
   handleDetails(element: any): void {
@@ -232,8 +247,10 @@ export class BmbGradesComponent implements OnInit, AfterViewInit {
     if (!this.showPrincipalDetail) {
       this.showPrincipalDetail = true;
       this.periodIndex.set(
-        this.grades()[this.gradeIndex()].periods.findIndex(
-          (period) => period.detail.title === element.detail.title,
+        findGradesPeriodIndex(
+          this.grades(),
+          this.gradeIndex(),
+          element.detail.title,
         ),
       );
     }

@@ -52,4 +52,16 @@ describe('BmbContainerButtonComponent', () => {
     expect(classList).toContain('bmb_container-button-disabled');
     expect(classList).toContain('bmb_container-button-alternative');
   });
+  it('preserves independent primary and secondary click outputs', () => {
+    const event = new MouseEvent('click');
+    const primary = jest.fn(),
+      secondary = jest.fn();
+    component.onButton.subscribe(primary);
+    component.secondaryAction.subscribe(secondary);
+    component.handleClick(event);
+    expect(primary).toHaveBeenCalledWith(event);
+    expect(secondary).not.toHaveBeenCalled();
+    component.handleSecondaryClick(event);
+    expect(secondary).toHaveBeenCalledWith(event);
+  });
 });

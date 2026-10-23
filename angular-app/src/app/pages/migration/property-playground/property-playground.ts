@@ -1,6 +1,5 @@
 import { NgComponentOutlet } from '@angular/common';
-import {
-  afterEveryRender,
+import { afterEveryRender,
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
@@ -11,15 +10,12 @@ import {
   reflectComponentType,
   signal,
   Type,
-  viewChild,
-} from '@angular/core';
-import {
-  demoDrafts,
+  viewChild } from '@angular/core';
+import { demoDrafts,
   DemoConfiguration,
   DemoValue,
   parseDemoProperties,
-  serializeDemoValue,
-} from './demo-properties';
+  serializeDemoValue } from './demo-properties';
 
 @Component({
   selector: 'app-property-playground',
@@ -66,8 +62,9 @@ export class PropertyPlayground implements OnInit {
     this.reset();
   }
 
-  setDraft(name: string, value: string | boolean): void {
+  setDraft(name: string, value: string | boolean, refresh = true): void {
     this.drafts.update((drafts) => ({ ...drafts, [name]: value }));
+    if (refresh) this.apply();
   }
 
   reset(): void {
@@ -177,6 +174,7 @@ export class PropertyPlayground implements OnInit {
                   : property.kind === 'json'
                     ? serializeDemoValue(value)
                     : String(value ?? ''),
+                false,
               );
           }),
         );
