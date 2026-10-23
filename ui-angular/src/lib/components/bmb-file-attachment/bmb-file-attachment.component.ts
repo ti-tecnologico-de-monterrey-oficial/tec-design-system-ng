@@ -30,6 +30,7 @@ export class BmbFileAttachment {
   onDragFiles = model<boolean>(false);
   inputId = input<string>();
   acceptedExtensions = input<string[]>();
+
   filesSelected = output<File[]>();
 
   private readonly fileInput =
