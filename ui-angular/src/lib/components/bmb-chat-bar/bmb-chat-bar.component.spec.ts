@@ -53,7 +53,7 @@ describe('BmbChatBarComponent', () => {
     fixture.nativeElement.querySelector('.bmb_chat-bar-main').dispatchEvent(event);
     fixture.detectChanges();
 
-    expect(component.files).toEqual([file]);
+    expect(component.files()).toEqual([file]);
     expect(event.defaultPrevented).toBe(true);
   });
 });

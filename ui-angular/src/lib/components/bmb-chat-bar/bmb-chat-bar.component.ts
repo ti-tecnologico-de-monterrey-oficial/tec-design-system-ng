@@ -71,7 +71,9 @@ export class BmbChatBarComponent implements OnInit {
   emojiIcon = input<string>('');
   enableMicInput = input<boolean>(false);
   disableChangeBot = input<boolean>(false);
+  acceptedExtensions = input<string[]>();
   disabledInput = model<boolean>(false);
+  files = model<File[]>([]);
 
   currentBot = model<IBotType>();
   isLoading = model<boolean>(false);
@@ -87,7 +89,6 @@ export class BmbChatBarComponent implements OnInit {
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onEmoji = output<boolean>();
 
-  files: File[] = [];
   control = new FormControl();
   isDialogOpen = signal<boolean>(false);
   showMicControls = false;
@@ -137,7 +138,9 @@ export class BmbChatBarComponent implements OnInit {
       (
         bot: IBotType = {
           name: 'TecBot',
-          label: this.translationsService.translate('chat_bar.default_bot_label'),
+          label: this.translationsService.translate(
+            'chat_bar.default_bot_label',
+          ),
           icon: 'bot_tecStandar',
         },
       ): IBotType => bot,
@@ -146,12 +149,12 @@ export class BmbChatBarComponent implements OnInit {
 
   handleSend(): void {
     this.onSendMessage.emit(this.control.value);
-    if (this.files.length > 0) {
-      this.onSendFiles.emit(this.files);
+    if (this.files().length > 0) {
+      this.onSendFiles.emit(this.files());
     }
     this.isLoading.update((value) => !value);
     this.control.reset();
-    this.files = [];
+    this.files.set([]);
     this.textareaRef.nativeElement.style.height = 'calc(1lh + 2rem)';
   }
 
