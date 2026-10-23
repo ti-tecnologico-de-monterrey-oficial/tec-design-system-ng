@@ -25,6 +25,7 @@
   multiple
   type="file"
   [attr.id]="inputId()"
+  [accept]="getAcceptAttribute()"
   [attr.aria-label]="'chat_bar.add' | translate"
   (change)="onFileSelect($event)"
   hidden

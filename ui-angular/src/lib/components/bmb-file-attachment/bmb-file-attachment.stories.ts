@@ -8,6 +8,7 @@ import { fn } from 'storybook/test';
 import { BmbFileAttachment } from './bmb-file-attachment.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import {
+  attributes,
   BlockquoteType,
   getAlertBlockquote,
   getBasicExampleBlock,
@@ -16,12 +17,12 @@ import {
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
 import { getModelDescription } from '@docs/utils/parameterDescriptions';
-import { title } from 'process';
 
 type FileAttachmentArgs = {
   files: File[];
   onDragFiles: boolean;
   inputId?: string;
+  acceptedExtensions?: string;
   filesSelected: (files: File[]) => void;
   filesChange: (files: File[]) => void;
   onDragFilesChange: (dragging: boolean) => void;
@@ -126,8 +127,18 @@ ${getModelDescription('onDragFiles')}
         'Optional identifier for the hidden native input. Not required when using openFilePicker().',
       table: {
         category: 'Properties',
-        type: { summary: 'string | undefined' },
-        defaultValue: { summary: 'undefined' },
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    acceptedExtensions: {
+      control: { type: 'text' },
+      description:
+        'Optional native file picker filter, such as ".pdf,image/*". This is a selection hint, not file validation; it does not restrict drag and drop.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
       },
     },
     filesSelected: {
@@ -173,12 +184,7 @@ ${getModelDescription('onDragFiles')}
       >
         <bmb-file-attachment
           #attachment
-          [files]="files"
-          (filesChange)="files = $event; filesChange($event)"
-          [onDragFiles]="onDragFiles"
-          (onDragFilesChange)="onDragFiles = $event; onDragFilesChange($event)"
-          [inputId]="inputId"
-          (filesSelected)="filesSelected($event)"
+          ${attributes(args)}
         >
           <div style="display: flex; align-items: center; gap: 16px; min-height: 96px; padding: 24px;">
             <bmb-action-icon

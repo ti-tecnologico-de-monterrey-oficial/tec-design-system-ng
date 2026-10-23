@@ -10,6 +10,7 @@ import {
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../pipes/translations';
+import { getDropzoneAcceptAttribute } from '../../_shared/logic/components/dropzone';
 
 @Component({
   selector: 'bmb-file-attachment',
@@ -28,6 +29,7 @@ export class BmbFileAttachment {
   files = model<File[]>([]);
   onDragFiles = model<boolean>(false);
   inputId = input<string>();
+  acceptedExtensions = input<string[]>();
   filesSelected = output<File[]>();
 
   private readonly fileInput =
@@ -74,5 +76,9 @@ export class BmbFileAttachment {
         ...Array.from(files),
       ]);
     }
+  }
+
+  protected getAcceptAttribute(): string {
+    return getDropzoneAcceptAttribute(this.acceptedExtensions() || []);
   }
 }
