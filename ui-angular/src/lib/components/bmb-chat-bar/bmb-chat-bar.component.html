@@ -5,39 +5,18 @@
 >
   <div
     class="bmb_chat-bar-container"
-    (drop)="onDrop($event)"
-    (dragover)="onDragOver($event)"
-    (dragleave)="onDragLeave($event)"
     [ngClass]="{
       'bmb_chat-bar-container-files': files.length > 0,
       'bmb_chat-bar-drag': onDragFiles,
     }"
     tabindex="0"
   >
-    <div
-      class="bmb_chat-bar-files-list"
-      [ngClass]="{ 'bmb_chat-bar-files-list-active': files.length > 0 }"
+    <bmb-file-attachment
+      inputId="inputFile"
+      [(files)]="files"
+      [(onDragFiles)]="onDragFiles"
+      (filesSelected)="handleFilesSelected()"
     >
-      @for (file of files; track $index) {
-        <div class="bmb_chat-bar-files-list-option">
-          <bmb-icon
-            class="bmb_chat-bar-files-list-option-icon"
-            icon="attach_file"
-            [size]="24"
-          />
-          <span class="bmb_chat-bar-files-list-option-text">
-            {{ file.name }}
-          </span>
-          <bmb-action-icon
-            class="bmb_chat-bar-files-list-option-delete"
-            icon="close"
-            [iconSize]="24"
-            (buttonClick)="deleteFile($index)"
-            [tooltipText]="'chat_bar.close' | translate"
-          />
-        </div>
-      }
-    </div>
     <div class="bmb_chat-bar-main" #containerRef>
       @if (!disableChangeBot()) {
         <bmb-action-icon
@@ -166,6 +145,7 @@
         </div>
       }
     </div>
+    </bmb-file-attachment>
   </div>
   <div
     class="bmb_chat-bar-dialog"
@@ -195,13 +175,6 @@
       }
     </ul>
   </div>
-  <input
-    multiple
-    type="file"
-    id="inputFile"
-    (change)="onFileSelect($event)"
-    style="display: none"
-  />
 </section>
 
 <ng-template #chatBarTemplate>

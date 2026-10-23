@@ -33,6 +33,7 @@ import { IBmbNativeModal } from '../../_shared/types';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { BmbFileAttachment } from '../bmb-file-attachment/bmb-file-attachment.component';
 
 export { defaultBotList, defaultActionList } from './bot_list';
 export type { IBotType, IChatBarActions } from './types';
@@ -55,6 +56,7 @@ export type { IBotType, IChatBarActions } from './types';
     BmbActionMenuComponent,
     BmbItemComponent,
     TranslatePipe,
+    BmbFileAttachment,
   ],
   templateUrl: './bmb-chat-bar.component.html',
   styleUrl: './bmb-chat-bar.component.scss',
@@ -90,7 +92,6 @@ export class BmbChatBarComponent implements OnInit {
   isDialogOpen = signal<boolean>(false);
   showMicControls = false;
   onDragFiles = false;
-  arrayThumbnail: string[] = [];
   botChunks = computed(() => {
     const chunks: IBotType[][] = [];
     for (let i = 0; i < (this.botList()?.length ?? 0); i += 6) {
@@ -201,53 +202,8 @@ export class BmbChatBarComponent implements OnInit {
     this.contentProjected.openContent(data);
   }
 
-  onDrop(event: any): void {
-    event.preventDefault();
-    const droppedFiles = event.dataTransfer.files;
-
-    for (let i = 0; i < droppedFiles.length; i++) {
-      if (droppedFiles[i].type.startsWith('image/')) {
-        this.createImageThumbnail(droppedFiles[i]);
-      } else {
-        this.arrayThumbnail?.push('');
-      }
-      this.files.push(droppedFiles[i]);
-    }
-    this.onDragFiles = false;
-  }
-
-  onFileSelect(event: any): void {
-    const selectedFiles = event.target.files;
-    for (let i = 0; i < selectedFiles.length; i++) {
-      if (selectedFiles[i].type.startsWith('image/')) {
-        this.createImageThumbnail(selectedFiles[i]);
-      } else {
-        this.arrayThumbnail?.push('');
-      }
-      this.files.push(selectedFiles[i]);
-    }
+  handleFilesSelected(): void {
     this.contentProjected.closeContent();
-  }
-
-  onDragOver(event: any): void {
-    event.preventDefault();
-    this.onDragFiles = true;
-  }
-
-  onDragLeave(event: any): void {
-    event.preventDefault();
-    this.onDragFiles = false;
-  }
-
-  createImageThumbnail(file: File): void {
-    const reader = new FileReader();
-    this.arrayThumbnail?.push(URL.createObjectURL(file));
-    reader.readAsDataURL(file);
-  }
-
-  deleteFile(index: number): void {
-    this.files.splice(index, 1);
-    this.arrayThumbnail.splice(index, 1);
   }
 
   handleDotPress(index: number): void {

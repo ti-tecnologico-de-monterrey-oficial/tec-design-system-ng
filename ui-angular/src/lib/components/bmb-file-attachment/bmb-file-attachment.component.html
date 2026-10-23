@@ -1,0 +1,32 @@
+<div
+  class="bmb_file-attachment-list"
+  [class.bmb_file-attachment-list-active]="files().length > 0"
+>
+  @for (file of files(); track $index) {
+    <div class="bmb_file-attachment-list-option">
+      <bmb-icon
+        class="bmb_file-attachment-list-option-icon"
+        icon="attach_file"
+        [size]="24"
+      />
+      <span class="bmb_file-attachment-list-option-text">{{ file.name }}</span>
+      <bmb-action-icon
+        class="bmb_file-attachment-list-option-delete"
+        icon="close"
+        [iconSize]="24"
+        (buttonClick)="deleteFile($index)"
+        [tooltipText]="'chat_bar.close' | translate"
+      />
+    </div>
+  }
+</div>
+<input
+  #fileInput
+  multiple
+  type="file"
+  [attr.id]="inputId()"
+  [attr.aria-label]="'chat_bar.add' | translate"
+  (change)="onFileSelect($event)"
+  hidden
+/>
+<ng-content />
