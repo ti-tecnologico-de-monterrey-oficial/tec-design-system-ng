@@ -21,7 +21,7 @@
     }
   </p>
 
-  <bmb-file-attachment
+  <bmb-file-attachment-picker
     [acceptedExtensions]="content.acceptedFormats!"
     (filesChange)="handleFilesSelected($event)"
   >
@@ -36,7 +36,7 @@
         content.buttonLabel ?? ('ai_chat_bubble.upload_file.button' | translate)
       }}
     </button>
-  </bmb-file-attachment>
+  </bmb-file-attachment-picker>
 
   @if (
     content.acceptedFormats?.length ||

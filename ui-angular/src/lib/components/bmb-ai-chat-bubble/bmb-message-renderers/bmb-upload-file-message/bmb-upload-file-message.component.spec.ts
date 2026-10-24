@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { BmbUploadFileMessageComponent } from './bmb-upload-file-message.component';
 import type { BmbUploadFileMessage } from '../../types';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
-import { BmbFileAttachment } from '../../../bmb-file-attachment/bmb-file-attachment.component';
+import { BmbFileAttachmentPicker } from '../../../bmb-file-attachment/bmb-file-attachment.component';
 
 describe('BmbUploadFileMessageComponent', () => {
   let fixture: ComponentFixture<BmbUploadFileMessageComponent>;
@@ -100,8 +100,8 @@ describe('BmbUploadFileMessageComponent', () => {
     input.dispatchEvent(new Event('change'));
     fixture.detectChanges();
 
-    const attachment = fixture.debugElement.query(By.directive(BmbFileAttachment))
-      .componentInstance as BmbFileAttachment;
+    const attachment = fixture.debugElement.query(By.directive(BmbFileAttachmentPicker))
+      .componentInstance as BmbFileAttachmentPicker;
     expect(selected).toHaveBeenCalledTimes(1);
     expect(selected).toHaveBeenCalledWith([file]);
     expect(attachment.files()).toEqual([]);

@@ -5,7 +5,7 @@ import {
   StoryObj,
 } from '@storybook/angular';
 import { fn } from 'storybook/test';
-import { BmbFileAttachment } from './bmb-file-attachment.component';
+import { BmbFileAttachmentPicker } from './bmb-file-attachment.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import {
   attributes,
@@ -30,11 +30,11 @@ type FileAttachmentArgs = {
 
 export default {
   title: 'Internals/File attachment',
-  component: BmbFileAttachment,
+  component: BmbFileAttachmentPicker,
   tags: ['autodocs'],
   decorators: [
     moduleMetadata({
-      imports: [BmbFileAttachment, BmbActionIconComponent],
+      imports: [BmbFileAttachmentPicker, BmbActionIconComponent],
     }),
     componentWrapperDecorator(
       (story: string) => `<div class="bmb_margin-xxl">${story}</div>`,
@@ -84,13 +84,13 @@ ${getBasicExampleBlock(
   '@ti-tecnologico-de-monterrey-oficial/ds-ng',
 )}
 \`\`\`html
-<bmb-file-attachment #attachments [(files)]="files">
+<bmb-file-attachment-picker #attachments [(files)]="files">
   <bmb-action-icon
     icon="attach_file"
     tooltipText="Attach files"
     (buttonClick)="attachments.openFilePicker()"
   />
-</bmb-file-attachment>
+</bmb-file-attachment-picker>
 \`\`\`
         `,
       },
@@ -182,7 +182,7 @@ ${getModelDescription('onDragFiles')}
         style="width: 100%; max-width: 48rem; border: 1px dashed; border-radius: 8px; background: var(--containers-main); color: var(--general-contrasts-80);"
         [style.border-color]="attachment.onDragFiles() ? 'var(--buttons-primary-select)' : 'var(--general-contrasts-container-outline)'"
       >
-        <bmb-file-attachment
+        <bmb-file-attachment-picker
           #attachment
           ${attributes(args)}
         >
@@ -194,7 +194,7 @@ ${getModelDescription('onDragFiles')}
               (buttonClick)="attachment.openFilePicker()"
             />
           </div>
-        </bmb-file-attachment>
+        </bmb-file-attachment-picker>
       </section>
     `,
   }),

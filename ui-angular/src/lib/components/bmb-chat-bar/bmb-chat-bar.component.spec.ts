@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbChatBarComponent } from './bmb-chat-bar.component';
 import { By } from '@angular/platform-browser';
-import { BmbFileAttachment } from '../bmb-file-attachment/bmb-file-attachment.component';
+import { BmbFileAttachmentPicker } from '../bmb-file-attachment/bmb-file-attachment.component';
 
 describe('BmbChatBarComponent', () => {
   let component: BmbChatBarComponent;
@@ -22,8 +22,8 @@ describe('BmbChatBarComponent', () => {
   });
 
   it('should send attached files through the existing output and clear them', () => {
-    const attachment = fixture.debugElement.query(By.directive(BmbFileAttachment))
-      .componentInstance as BmbFileAttachment;
+    const attachment = fixture.debugElement.query(By.directive(BmbFileAttachmentPicker))
+      .componentInstance as BmbFileAttachmentPicker;
     const files = [new File(['document'], 'document.txt', { type: 'text/plain' })];
     const sendFiles = jest.fn();
     const sendMessage = jest.fn();
@@ -59,15 +59,15 @@ describe('BmbChatBarComponent', () => {
 });
 
 describe('BmbFileAttachment', () => {
-  let component: BmbFileAttachment;
-  let fixture: ComponentFixture<BmbFileAttachment>;
+  let component: BmbFileAttachmentPicker;
+  let fixture: ComponentFixture<BmbFileAttachmentPicker>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbFileAttachment],
+      imports: [BmbFileAttachmentPicker],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BmbFileAttachment);
+    fixture = TestBed.createComponent(BmbFileAttachmentPicker);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

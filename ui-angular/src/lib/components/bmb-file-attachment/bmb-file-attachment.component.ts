@@ -13,7 +13,7 @@ import { TranslatePipe } from '../../pipes/translations';
 import { getDropzoneAcceptAttribute } from '../../_shared/logic/components/dropzone';
 
 @Component({
-  selector: 'bmb-file-attachment',
+  selector: 'bmb-file-attachment-picker',
   standalone: true,
   imports: [BmbIconComponent, BmbActionIconComponent, TranslatePipe],
   templateUrl: './bmb-file-attachment.component.html',
@@ -25,7 +25,7 @@ import { getDropzoneAcceptAttribute } from '../../_shared/logic/components/dropz
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbFileAttachment {
+export class BmbFileAttachmentPicker {
   files = model<File[]>([]);
   onDragFiles = model<boolean>(false);
   inputId = input<string>();

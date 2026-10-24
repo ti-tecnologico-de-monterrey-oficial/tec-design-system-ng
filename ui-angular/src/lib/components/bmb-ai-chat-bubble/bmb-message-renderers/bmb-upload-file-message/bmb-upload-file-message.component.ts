@@ -14,7 +14,7 @@ import { BmbButtonDirective } from '../../../../directives/bmb-button/button.dir
 import { TranslatePipe } from '../../../../pipes/translations';
 import { buildErrorMessage } from '../../../../_shared/logic/utils';
 import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
-import { BmbFileAttachment } from '../../../bmb-file-attachment/bmb-file-attachment.component';
+import { BmbFileAttachmentPicker } from '../../../bmb-file-attachment/bmb-file-attachment.component';
 
 @Component({
   selector: 'bmb-upload-file-message',
@@ -23,7 +23,7 @@ import { BmbFileAttachment } from '../../../bmb-file-attachment/bmb-file-attachm
     BmbButtonDirective,
     BmbIconComponent,
     TranslatePipe,
-    BmbFileAttachment,
+    BmbFileAttachmentPicker,
   ],
   templateUrl: './bmb-upload-file-message.component.html',
   styleUrl: './bmb-upload-file-message.component.scss',
@@ -34,7 +34,9 @@ export class BmbUploadFileMessageComponent implements OnChanges {
   readonly uploadFileRequested = output<BmbUploadFileRequestEvent>();
   readonly filesSelected = output<File[]>();
 
-  private readonly fileAttachment = viewChild.required(BmbFileAttachment);
+  private readonly fileAttachmentPicker = viewChild.required(
+    BmbFileAttachmentPicker,
+  );
 
   ngOnChanges(): void {
     const extension = /^\.[a-z0-9]+(?:[._-][a-z0-9]+)*$/i;
@@ -64,12 +66,12 @@ export class BmbUploadFileMessageComponent implements OnChanges {
       message: this.message(),
       nativeEvent,
     });
-    this.fileAttachment().openFilePicker();
+    this.fileAttachmentPicker().openFilePicker();
   }
 
   protected handleFilesSelected(files: File[]): void {
     if (!files.length) return;
     this.filesSelected.emit(files);
-    this.fileAttachment().files.set([]);
+    this.fileAttachmentPicker().files.set([]);
   }
 }
