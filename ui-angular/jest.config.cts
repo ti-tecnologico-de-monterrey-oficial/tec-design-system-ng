@@ -4,9 +4,27 @@ module.exports = {
   displayName: 'ui-angular',
   testPathIgnorePatterns: ['/node_modules/', '/compat/'],
   preset: '../jest.preset.js',
+  resolver: '../scripts/jest-angular-compat-resolver.cjs',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../coverage/ui-angular',
   coverageReporters: ['html', 'lcov', 'text-summary'],
+  coverageThreshold: Object.fromEntries(
+    [
+      './compat/logic/formControl.ts',
+      './compat/logic/utils.ts',
+      './compat/logic/components/datepicker.ts',
+      './compat/logic/components/form-validator.ts',
+      './compat/logic/components/input-phone-number.ts',
+      './compat/logic/components/input-validator.ts',
+      './compat/logic/components/totp.ts',
+      './src/lib/directives/old/bmb-button-group/bmb-button-group.directive.ts',
+      './src/lib/directives/old/bmb-selector/bmb-selector.directive.ts',
+      './src/lib/directives/old/bmb-layout-grid/bmb-layout-grid.directive.ts',
+    ].map((file) => [
+      require('node:path').resolve(__dirname, file),
+      { statements: 85, branches: 85, functions: 85, lines: 85 },
+    ]),
+  ),
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
