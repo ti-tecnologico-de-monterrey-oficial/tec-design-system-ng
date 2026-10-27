@@ -1,7 +1,7 @@
 import {
   BmbChatAction,
   BmbChatMessage,
-} from '../../types/components/ai-chat-bubble';
+} from '../../types/contracts/ai-chat-bubble';
 
 export const AI_CHAT_BUBBLE_PROMPT_ACTIONS: BmbChatAction[] = [
   'repeat',
@@ -27,7 +27,7 @@ export function getAiChatBubbleClasses(
 }
 
 export function resolveAiChatBubbleActions(
-  message: BmbChatMessage,
+  message: BmbChatMessage<unknown>,
   showActions: boolean,
   actions: BmbChatAction[] | null,
 ): BmbChatAction[] | null {
@@ -46,9 +46,7 @@ export function resolveAiChatBubbleActions(
     }
     return actions.reduce(
       (acc, action): BmbChatAction[] =>
-        AI_CHAT_BUBBLE_PROMPT_ACTIONS.includes(action)
-          ? [...acc, action]
-          : acc,
+        AI_CHAT_BUBBLE_PROMPT_ACTIONS.includes(action) ? [...acc, action] : acc,
       [] as BmbChatAction[],
     );
   }
@@ -57,7 +55,7 @@ export function resolveAiChatBubbleActions(
 }
 
 export function buildAiChatBubblePlainText(
-  message: BmbChatMessage,
+  message: BmbChatMessage<unknown>,
 ): string | null {
   switch (message.type) {
     case 'text':
@@ -76,7 +74,10 @@ export function buildAiChatBubblePlainText(
           [`- ${option.label}`, option.href].filter(Boolean).join('\n'),
         )
         .join('\n');
-      return [message.content.text, options].filter(Boolean).join('\n\n').trim();
+      return [message.content.text, options]
+        .filter(Boolean)
+        .join('\n\n')
+        .trim();
     }
     case 'template':
       return null;

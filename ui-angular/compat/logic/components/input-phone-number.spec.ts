@@ -61,9 +61,9 @@ describe('input-phone-number logic', () => {
 
   describe('getPhoneNumberWithoutLada', () => {
     it('should strip the lada from the control value when present', () => {
-      expect(
-        getPhoneNumberWithoutLada('+525512345678', '', '+52'),
-      ).toBe('5512345678');
+      expect(getPhoneNumberWithoutLada('+525512345678', '', '+52')).toBe(
+        '5512345678',
+      );
     });
 
     it('should fall back to the component value when the control value is empty', () => {
@@ -92,7 +92,12 @@ describe('input-phone-number logic', () => {
   describe('getPhoneNumberCountryOptions', () => {
     it('should return all countries as options when onlyCountries is empty', () => {
       expect(getPhoneNumberCountryOptions(allCountryCodes, [])).toEqual([
-        { name: 'México (+52)', value: 'mx', selectedText: '+52', icon: 'flag' },
+        {
+          name: 'México (+52)',
+          value: 'mx',
+          selectedText: '+52',
+          icon: 'flag',
+        },
         {
           name: 'Estados Unidos (+1)',
           value: 'us',
@@ -104,7 +109,12 @@ describe('input-phone-number logic', () => {
 
     it('should filter options by onlyCountries', () => {
       expect(getPhoneNumberCountryOptions(allCountryCodes, ['mx'])).toEqual([
-        { name: 'México (+52)', value: 'mx', selectedText: '+52', icon: 'flag' },
+        {
+          name: 'México (+52)',
+          value: 'mx',
+          selectedText: '+52',
+          icon: 'flag',
+        },
       ]);
     });
   });
@@ -224,7 +234,9 @@ describe('input-phone-number logic', () => {
     });
 
     it('should run the custom validation function when provided', () => {
-      const customValidation = jest.fn().mockReturnValue({ customValidation: true });
+      const customValidation = jest
+        .fn()
+        .mockReturnValue({ customValidation: true });
 
       const result = getPhoneNumberValidationResult(
         '+525512345678',

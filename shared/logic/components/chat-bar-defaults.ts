@@ -1,3 +1,4 @@
+import { openDefaultChatFileInput } from '../browser/chat-bar';
 import type { IChatBarActions } from '../../types/components/chat-bar';
 
 export const defaultBotList = [
@@ -27,14 +28,19 @@ export const defaultBotList = [
   { name: 'Google', label: 'Google', icon: 'google' },
 ];
 
-export const defaultActionList: IChatBarActions[] = [
-  {
-    name: 'Adjuntar Archivo',
-    label: 'Adjuntar Archivo',
-    icon: 'upload_file',
-    action: () => {
-      const input = document.getElementById('inputFile') as HTMLInputElement;
-      input?.click();
+export function createDefaultActionList(
+  uploadFile: () => void,
+): IChatBarActions[] {
+  return [
+    {
+      name: 'Adjuntar Archivo',
+      label: 'Adjuntar Archivo',
+      icon: 'upload_file',
+      action: uploadFile,
     },
-  },
-];
+  ];
+}
+
+export const defaultActionList = createDefaultActionList(
+  openDefaultChatFileInput,
+);

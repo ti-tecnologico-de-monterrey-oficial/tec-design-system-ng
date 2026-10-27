@@ -1,3 +1,7 @@
+import {
+  getBmbVerticalLayoutItemFlexSize,
+  getBmbVerticalLayoutItemElementClass,
+} from '../../../_shared/logic/directives/bmb-vertical-layout-item';
 import { Directive, HostBinding, input } from '@angular/core';
 
 @Directive({
@@ -11,14 +15,14 @@ export class BmbVerticalLayoutItemDirective {
 
   @HostBinding('style.flex')
   get flexSize(): string {
-    return `${this.rowGrow()} 0 0%`;
+    return getBmbVerticalLayoutItemFlexSize({ rowGrow: this.rowGrow() });
   }
 
   @HostBinding('class') get elementClass(): string[] {
-    const classes = ['bmb_vertical-layout-item'];
-    if (this.isFullWidth()) classes.push('bmb_vertical-layout-item-full');
-    if (this.rowGrow() && !this.disableScroll())
-      classes.push('bmb_vertical-layout-item-scroll');
-    return classes;
+    return getBmbVerticalLayoutItemElementClass({
+      isFullWidth: this.isFullWidth(),
+      rowGrow: this.rowGrow(),
+      disableScroll: this.disableScroll(),
+    });
   }
 }

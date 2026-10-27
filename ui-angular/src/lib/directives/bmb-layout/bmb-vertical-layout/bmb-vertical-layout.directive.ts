@@ -1,4 +1,12 @@
-import { Directive, effect, ElementRef, HostBinding, inject, input } from '@angular/core';
+import { getBmbVerticalLayoutElementClass } from '../../../_shared/logic/directives/bmb-vertical-layout';
+import {
+  Directive,
+  effect,
+  ElementRef,
+  HostBinding,
+  inject,
+  input,
+} from '@angular/core';
 import { SizeNames } from '../../../_shared/types';
 import {
   IAlignItemsOptions,
@@ -26,12 +34,11 @@ export class BmbVerticalLayoutDirective {
 
   @HostBinding('class')
   get elementClass(): string[] {
-    return [
-      'bmb_vertical-layout',
-      `bmb_gap-${this.gapSize()}`,
-      `bmb_justify-${this.justify()}`,
-      `bmb_align-items-${this.alignItems()}`,
-      `bmb_margin-${this.margin()}`,
-    ];
+    return getBmbVerticalLayoutElementClass({
+      gapSize: this.gapSize(),
+      justify: this.justify(),
+      alignItems: this.alignItems(),
+      margin: this.margin(),
+    });
   }
 }

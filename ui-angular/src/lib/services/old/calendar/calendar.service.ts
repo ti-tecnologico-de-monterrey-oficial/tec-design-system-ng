@@ -1,3 +1,8 @@
+import {
+  appendItems,
+  removeItemBy,
+  patchItemBy,
+} from '../../../_shared/logic/services/collections';
 import { Injectable, signal } from '@angular/core';
 import { getUUID } from '../../../_shared/logic/utils';
 import type { IBmbCalendarEvent } from '../../../_shared/types/components/calendar';
@@ -14,7 +19,9 @@ export class BmbCalendarService {
       const id = event.id ?? getUUID();
       return { ...event, id };
     });
-    this.eventList.update((currentEvents) => [...currentEvents, ...newEvents]);
+    this.eventList.update((currentEvents) =>
+      appendItems(currentEvents, newEvents),
+    );
   }
 
   addEvent(event: IBmbCalendarEvent) {
@@ -27,17 +34,13 @@ export class BmbCalendarService {
 
   deleteEvent(id: string) {
     this.eventList.update((currentEvents) =>
-      currentEvents.filter((event) => event.id !== id),
+      removeItemBy(currentEvents, 'id', id),
     );
   }
 
   editEvent(id: string, newEventData: Partial<IBmbCalendarEvent>) {
     this.eventList.update((currentEvents) =>
-      currentEvents.map((event) => {
-        if (event.id !== id) return event;
-
-        return { ...event, ...newEventData };
-      }),
+      patchItemBy(currentEvents, 'id', id, newEventData),
     );
   }
 

@@ -1,6 +1,9 @@
-import { IBmbNativeModalSize, ModalDataConfig } from '../../types/components/modal';
+import {
+  IBmbNativeModalSize,
+  ModalDataConfig,
+} from '../../types/contracts/modal';
 
-export function getModalClasses(data: ModalDataConfig): string[] {
+export function getModalClasses(data: ModalDataConfig<unknown>): string[] {
   const baseClassName = 'bmb_modal';
   const classNames: string[] = [baseClassName];
 
@@ -13,7 +16,7 @@ export function getModalClasses(data: ModalDataConfig): string[] {
 
 export function getModalDescriptionClasses(
   sectionName: string,
-  data: ModalDataConfig,
+  data: ModalDataConfig<unknown>,
 ): string[] {
   const baseClassName = 'bmb_modal-content';
   const classNames: string[] = [`${baseClassName}-${sectionName}`];
@@ -27,7 +30,7 @@ export function getModalDescriptionClasses(
 
 export function getModalButtonClass(
   isSecondaryButton: boolean,
-  data: ModalDataConfig,
+  data: ModalDataConfig<unknown>,
 ): string[] {
   const footerClassName = 'bmb_modal-footer';
   const baseClassName = `${footerClassName}-button`;
@@ -48,7 +51,10 @@ export function getModalButtonClass(
   return classNames;
 }
 
-export function getModalImage(svgUrl: string, data: ModalDataConfig): string {
+export function getModalImage(
+  svgUrl: string,
+  data: ModalDataConfig<unknown>,
+): string {
   if (data.type === 'alert') {
     if (data.alertStyle) {
       return `${svgUrl}${data.alertStyle}_fill.svg`;
@@ -60,20 +66,24 @@ export function getModalImage(svgUrl: string, data: ModalDataConfig): string {
   return '';
 }
 
-export function showModalFooter(data: ModalDataConfig): boolean {
+export function showModalFooter(data: ModalDataConfig<unknown>): boolean {
   const hiddenButtons = data.hidePrimaryButton && data.hideSecondaryButton;
   return data.type !== 'informative' && !hiddenButtons;
 }
 
-export function showModalPrimaryButton(data: ModalDataConfig): boolean {
+export function showModalPrimaryButton(
+  data: ModalDataConfig<unknown>,
+): boolean {
   return !data.hidePrimaryButton;
 }
 
-export function showModalSecondaryButton(data: ModalDataConfig): boolean {
+export function showModalSecondaryButton(
+  data: ModalDataConfig<unknown>,
+): boolean {
   return !data.hideSecondaryButton;
 }
 
-export function isModalSingleButton(data: ModalDataConfig): boolean {
+export function isModalSingleButton(data: ModalDataConfig<unknown>): boolean {
   const showPrimary = showModalPrimaryButton(data);
   const showSecondary = showModalSecondaryButton(data);
   return (showPrimary && !showSecondary) || (!showPrimary && showSecondary);

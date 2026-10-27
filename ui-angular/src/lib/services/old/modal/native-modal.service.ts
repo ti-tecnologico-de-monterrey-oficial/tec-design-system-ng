@@ -1,4 +1,9 @@
 import {
+  removeItemBy,
+  hasItemBy,
+  findItemBy,
+} from '../../../_shared/logic/services/collections';
+import {
   ApplicationRef,
   ComponentRef,
   createComponent,
@@ -20,7 +25,8 @@ export class BmbNativeModalService {
   private portalComponentRef: ComponentRef<BmbPortalComponent> | null = null;
 
   private appRef: ApplicationRef = inject(ApplicationRef);
-  private environmentInjector: EnvironmentInjector = inject(EnvironmentInjector);
+  private environmentInjector: EnvironmentInjector =
+    inject(EnvironmentInjector);
 
   private getOrCreatePortal() {
     if (this.portalComponentRef) {
@@ -85,12 +91,12 @@ export class BmbNativeModalService {
   }
 
   closeModal(id: string) {
-    const modalToClose = this.modalList().find((modal) => modal.modalId === id);
+    const modalToClose = findItemBy(this.modalList(), 'modalId', id);
 
     if (!modalToClose) return;
     this.runModalHook(modalToClose, 'beforeCloseModal', 'single');
     this.modalList.update((currentModals) =>
-      currentModals.filter((modal) => modal.modalId !== id),
+      removeItemBy(currentModals, 'modalId', id),
     );
     this.runModalHook(modalToClose, 'afterCloseModal', 'single');
   }
@@ -112,6 +118,6 @@ export class BmbNativeModalService {
   }
 
   checkIfModalExists(id: string): boolean {
-    return this.modalList().some((modal) => modal.modalId === id);
+    return hasItemBy(this.modalList(), 'modalId', id);
   }
 }

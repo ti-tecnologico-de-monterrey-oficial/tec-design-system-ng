@@ -1,7 +1,9 @@
 import { DateTime } from 'luxon';
-import { IBmbFiltersPosition, TableColum } from '../../types/components/tables';
+import { IBmbFiltersPosition, TableColum } from '../../types/contracts/tables';
 
-export function getTablesClasses(filtersPosition: IBmbFiltersPosition): string[] {
+export function getTablesClasses(
+  filtersPosition: IBmbFiltersPosition,
+): string[] {
   const classList = ['bmb_table'];
   switch (filtersPosition) {
     case 'right':
@@ -58,7 +60,11 @@ export function getTablesCellClasses(
 
 export function buildTablesDisplayColumns(
   columnDefs: string[],
-  config: { isExpandible?: boolean; isSelectable?: boolean; showActions?: boolean },
+  config: {
+    isExpandible?: boolean;
+    isSelectable?: boolean;
+    showActions?: boolean;
+  },
 ): string[] {
   const displayColumns = [...columnDefs];
 
@@ -69,7 +75,9 @@ export function buildTablesDisplayColumns(
   return displayColumns;
 }
 
-export function normalizeTablesColumns(columns: TableColum[]): TableColum[] {
+export function normalizeTablesColumns<TTemplate>(
+  columns: TableColum<TTemplate>[],
+): TableColum<TTemplate>[] {
   return (columns || []).map((col) => ({
     type: 'string',
     labelEn: col.label,
@@ -77,9 +85,9 @@ export function normalizeTablesColumns(columns: TableColum[]): TableColum[] {
   }));
 }
 
-export function filterTablesRows(
+export function filterTablesRows<TTemplate>(
   originalData: any[],
-  rawColumns: TableColum[],
+  rawColumns: TableColum<TTemplate>[],
   filterValues: Record<string, any>,
 ): any[] {
   let filtered = [...originalData];
@@ -94,9 +102,7 @@ export function filterTablesRows(
 
       filtered = filtered.filter((row) => {
         const value = +row[key];
-        return (
-          (min === null || value >= min) && (max === null || value <= max)
-        );
+        return (min === null || value >= min) && (max === null || value <= max);
       });
     }
 

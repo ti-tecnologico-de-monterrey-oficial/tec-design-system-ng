@@ -2,6 +2,7 @@ process.env.TZ = 'America/Mexico_City';
 
 module.exports = {
   displayName: 'ui-angular',
+  testPathIgnorePatterns: ['/node_modules/', '/compat/'],
   preset: '../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../coverage/ui-angular',

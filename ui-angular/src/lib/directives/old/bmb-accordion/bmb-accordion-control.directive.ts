@@ -1,9 +1,10 @@
 import {
+  getInitialAccordionState,
+  getOpenedAccordionState,
+} from '../../../_shared/logic/directives/accordion-control';
+import {
   Directive,
   AfterContentInit,
-  DoCheck,
-  KeyValueDiffer,
-  KeyValueDiffers,
   OnDestroy,
   OutputRefSubscription,
   ContentChildren,
@@ -63,40 +64,36 @@ export class BmbAccordionControlDirective
 
   private applyControlledStates(): void {
     const states = this.accordionStates();
-
-    if (!states || Object.keys(states).length === 0) {
-      this.accordions.forEach((accordion, index) => {
-        accordion._disabled.set(false);
-        accordion._expanded.set(index === 0);
-        accordion._active.set(index === 0);
-      });
-      return;
-    }
-
-    this.accordions.forEach((accordion) => {
-      const id = String(accordion.accordionId());
-      const state = !!states[id];
-
-      accordion._disabled.set(!state);
-      accordion._expanded.set(state);
-      accordion._active.set(state);
+    this.accordions.forEach((accordion, index) => {
+      const state = getInitialAccordionState(
+        states,
+        String(accordion.accordionId()),
+        index,
+      );
+      accordion._disabled.set(state.disabled);
+      accordion._expanded.set(state.expanded);
+      accordion._active.set(state.active);
     });
   }
 
   private closeOthers(openId: string): void {
-    const hasControlledStates =
+    const controlled =
       !!this.accordionStates() &&
       Object.keys(this.accordionStates()).length > 0;
-
     this.accordions.forEach((accordion) => {
-      if (String(accordion.accordionId()) !== openId) {
-        accordion._expanded.set(false);
-        accordion._active.set(false);
-        accordion._disabled.set(hasControlledStates);
+      const state = getOpenedAccordionState(
+        String(accordion.accordionId()),
+        openId,
+        controlled,
+      );
+      if (state.expanded) {
+        accordion._active.set(state.active);
+        accordion._expanded.set(state.expanded);
+        accordion._disabled.set(state.disabled);
       } else {
-        accordion._active.set(true);
-        accordion._expanded.set(true);
-        accordion._disabled.set(false);
+        accordion._expanded.set(state.expanded);
+        accordion._active.set(state.active);
+        accordion._disabled.set(state.disabled);
       }
     });
   }

@@ -1,4 +1,10 @@
 import {
+  appendItems,
+  removeItemBy,
+  hasItemBy,
+  findItemBy,
+} from '../../../_shared/logic/services/collections';
+import {
   ApplicationRef,
   ComponentRef,
   createComponent,
@@ -12,33 +18,13 @@ import {
 } from '@angular/core';
 import { BmbPortalComponent } from '../../../components/bmb-portal/bmb-portal.component';
 
-export type IBmbProjectedContentMode = 'over' | 'partial' | 'outside';
-
-export interface IBmbProjectionContent {
-  id?: string;
-  content: TemplateRef<any> | null | Type<any>;
-  targetRef?: HTMLElement | null;
-  mode?: IBmbProjectedContentMode;
-  fixSizeToRef?: boolean;
-  inputContext?: { [key: string]: any };
-  showBackdrop?: boolean;
-  outputContext?: { [key: string]: (value: any) => void };
-  focusOnOpen?: boolean;
-  dialogClass?: string | string[] | Record<string, boolean>;
-  forceMobileCenter?: boolean;
-  beforeCloseContent?: (event: {
-    contentId: string;
-    reason: 'single' | 'all';
-  }) => void;
-  afterCloseContent?: (event: {
-    contentId: string;
-    reason: 'single' | 'all';
-  }) => void;
-  afterOpenContent?: (event: {
-    contentId: string;
-    reason: 'single' | 'all';
-  }) => void;
-}
+export type { IBmbProjectedContentMode } from '../../../_shared/types/contracts/projection';
+import type { IBmbProjectionContent as ProjectionContent } from '../../../_shared/types/contracts/projection';
+export interface IBmbProjectionContent
+  extends ProjectionContent<
+    TemplateRef<any> | null | Type<any>,
+    HTMLElement | null
+  > {}
 
 @Injectable({
   providedIn: 'root',
@@ -90,7 +76,7 @@ export class BmbProjectionContentService {
 
     const id = content.id ?? this.generateId();
 
-    if (this.contentList().some((item) => item.id === id)) {
+    if (hasItemBy(this.contentList(), 'id', id)) {
       console.warn(
         `Projected content with id "${id}" is already open. Skipping creation.`,
       );
@@ -102,7 +88,7 @@ export class BmbProjectionContentService {
       id,
     };
 
-    this.contentList.update((list) => [...list, normalizedContent]);
+    this.contentList.update((list) => appendItems(list, [normalizedContent]));
     this.runContentHook(normalizedContent, 'afterOpenContent', 'single');
 
     return id;
@@ -143,12 +129,12 @@ export class BmbProjectionContentService {
       return;
     }
 
-    const content = this.contentList()?.find((item) => item.id === id);
+    const content = findItemBy(this.contentList(), 'id', id);
 
     if (!content) return;
 
     this.runContentHook(content, 'beforeCloseContent', 'single');
-    this.contentList.update((list) => list.filter((item) => item.id !== id));
+    this.contentList.update((list) => removeItemBy(list, 'id', id));
     this.runContentHook(content, 'afterCloseContent', 'single');
   }
 
@@ -157,6 +143,6 @@ export class BmbProjectionContentService {
   }
 
   isContentOpen(id: string) {
-    return this.contentList().some((item) => item.id === id);
+    return hasItemBy(this.contentList(), 'id', id);
   }
 }

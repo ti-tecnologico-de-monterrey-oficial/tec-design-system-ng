@@ -1,4 +1,8 @@
 import {
+  removeItemBy,
+  findItemBy,
+} from '../../../_shared/logic/services/collections';
+import {
   ApplicationRef,
   ComponentRef,
   createComponent,
@@ -25,7 +29,8 @@ export class BmbNotificationService {
   private portalComponentRef: ComponentRef<BmbPortalComponent> | null = null;
 
   private readonly appRef: ApplicationRef = inject(ApplicationRef);
-  private readonly environmentInjector: EnvironmentInjector = inject(EnvironmentInjector);
+  private readonly environmentInjector: EnvironmentInjector =
+    inject(EnvironmentInjector);
   private readonly injector: Injector = inject(Injector);
   public readonly positionX: NotificationPositionX =
     this.injector.get<NotificationPositionX>(
@@ -84,7 +89,7 @@ export class BmbNotificationService {
 
   deleteNotification(id: string, delay = 500) {
     const current = this.notificationList();
-    const notification = current.find((n) => n.id === id);
+    const notification = findItemBy(current, 'id', id);
     if (!notification) return;
 
     if (notification.component === 'toast') {
@@ -93,10 +98,10 @@ export class BmbNotificationService {
       );
 
       setTimeout(() => {
-        this.notificationList.update((list) => list.filter((n) => n.id !== id));
+        this.notificationList.update((list) => removeItemBy(list, 'id', id));
       }, delay);
     } else {
-      this.notificationList.update((list) => list.filter((n) => n.id !== id));
+      this.notificationList.update((list) => removeItemBy(list, 'id', id));
     }
   }
 

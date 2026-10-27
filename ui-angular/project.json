@@ -12,7 +12,8 @@
       "options": {
         "command": "node scripts/check-shared-import-boundaries.mjs",
         "cwd": "{workspaceRoot}"
-      }
+      },
+      "dependsOn": ["check-neutral-core"]
     },
     "sync-shared": {
       "executor": "nx:run-commands",
@@ -25,7 +26,7 @@
     "build": {
       "executor": "@nx/angular:ng-packagr-lite",
       "outputs": ["{workspaceRoot}/dist/ui-angular"],
-      "dependsOn": ["sync-shared"],
+      "dependsOn": ["sync-shared", "check-neutral-core"],
       "options": {
         "project": "ui-angular/ng-package.json",
         "tsConfig": "ui-angular/tsconfig.lib.prod.json"
@@ -35,16 +36,32 @@
           "tsConfig": "ui-angular/tsconfig.lib.prod.json"
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "production",
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/shared/**/*",
+        "{workspaceRoot}/scripts/sync-angular-shared.mjs"
+      ]
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "dependsOn": ["sync-shared", "check-shared-import-boundaries"],
+      "dependsOn": [
+        "sync-shared",
+        "check-shared-import-boundaries",
+        "check-compatibility"
+      ],
       "options": {
         "jestConfig": "ui-angular/jest.config.cts",
         "tsConfig": "ui-angular/tsconfig.spec.json"
-      }
+      },
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/shared/**/*",
+        "{workspaceRoot}/scripts/sync-angular-shared.mjs"
+      ]
     },
     "lint": {
       "executor": "@nx/eslint:lint"
@@ -97,6 +114,21 @@
           "buildTarget": "ui-angular:build-storybook:ci"
         }
       }
+    },
+    "check-neutral-core": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node scripts/check-neutral-core.mjs"
+      },
+      "cache": false
+    },
+    "check-compatibility": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["sync-shared"],
+      "options": {
+        "command": "node scripts/check-angular-compatibility.mjs"
+      },
+      "cache": false
     }
   }
 }

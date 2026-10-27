@@ -1,3 +1,7 @@
+import {
+  translateDictionary,
+  mergeDictionary,
+} from '../../_shared/logic/services/translations';
 import { computed, Injectable, signal } from '@angular/core';
 
 export interface BmbDictionaries {
@@ -19,7 +23,9 @@ export interface BmbDictionaries {
 })
 export class BmbTranslationsService {
   private readonly currentLanguage = signal<string>('es');
-  private readonly dictionaries = signal<{ [key: string]: BmbDictionaries }>({});
+  private readonly dictionaries = signal<{ [key: string]: BmbDictionaries }>(
+    {},
+  );
   private readonly translationsVersion = signal<number>(0);
   private defaultDictionariesLoadRequested = false;
   private readonly selectedDictionary = computed<BmbDictionaries>(() => {
@@ -85,10 +91,7 @@ export class BmbTranslationsService {
 
   updateDictionary(lang: string, dictionary: BmbDictionaries) {
     this.dictionaries.update((dicts) => {
-      const updatedDictionary = {
-        ...dicts[lang],
-        ...dictionary,
-      };
+      const updatedDictionary = mergeDictionary(dicts[lang], dictionary);
 
       return {
         ...dicts,
@@ -114,12 +117,7 @@ export class BmbTranslationsService {
 
   translate(keyList: string): string {
     this.ensureDefaultDictionariesLoaded();
-
-    const translatedValue = keyList
-      ?.split('.')
-      .reduce((acc: any, key: string) => acc?.[key], this.selectedDictionary());
-
-    return typeof translatedValue === 'string' ? translatedValue : keyList;
+    return translateDictionary(this.selectedDictionary(), keyList);
   }
 
   private ensureDefaultDictionariesLoaded() {

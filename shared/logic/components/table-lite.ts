@@ -2,7 +2,7 @@ import { DateTime } from 'luxon';
 import {
   IBmbTableLiteFiltersPosition,
   ITableLiteColumn,
-} from '../../types/components/table-lite';
+} from '../../types/contracts/table-lite';
 
 export function getTableLiteClasses(
   filtersPosition: IBmbTableLiteFiltersPosition,
@@ -78,9 +78,9 @@ export function getTableLitePaginationText(
   return `${startIndex} - ${endIndex} de ${total}`;
 }
 
-export function normalizeTableLiteColumns(
-  columns: ITableLiteColumn[],
-): ITableLiteColumn[] {
+export function normalizeTableLiteColumns<TTemplate>(
+  columns: ITableLiteColumn<TTemplate>[],
+): ITableLiteColumn<TTemplate>[] {
   return (columns || []).map((col) => ({
     type: 'string' as const,
     labelEn: col.labelEn,
@@ -88,9 +88,9 @@ export function normalizeTableLiteColumns(
   }));
 }
 
-export function filterTableLiteRows(
+export function filterTableLiteRows<TTemplate>(
   originalData: any[],
-  rawColumns: ITableLiteColumn[],
+  rawColumns: ITableLiteColumn<TTemplate>[],
   filterValues: Record<string, any>,
   searchText: string,
 ): any[] {

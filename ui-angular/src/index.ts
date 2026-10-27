@@ -181,3 +181,5 @@ export * from './lib/directives/bmb-swipe/bmb-swipe.directive';
 
 // types
 export * from './lib/_shared/types';
+
+export * as BmbCore from './lib/_shared/logic/core';

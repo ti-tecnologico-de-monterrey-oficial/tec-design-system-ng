@@ -1,3 +1,11 @@
+import {
+  getBmbLayoutGridElementClass,
+  getBmbLayoutGridElementStyle,
+  getBmbLayoutGridItemElementClass,
+  getBmbLayoutGridItemElementStyle,
+  generateGridArray,
+  getGridRules,
+} from '../../../_shared/logic/directives/bmb-layout-grid';
 import { Directive, HostBinding, input } from '@angular/core';
 import { SizeNames } from '../../../_shared/types';
 
@@ -17,39 +25,27 @@ export class BmbLayoutGridDirective {
   constructor() {}
 
   @HostBinding('class') get elementClass(): string[] {
-    return ['bmb_layout-grid'];
+    return getBmbLayoutGridElementClass({});
   }
 
   generateArray(size: string[], elements: number): string {
-    if (elements !== size.length) {
-      return size.reduce((acc, curr, index) => {
-        if (index === size.length - 1) {
-          return acc + `repeat(${elements - index}, ${curr})`;
-        }
-        return acc + `${curr} `;
-      }, '');
-    }
-    return size.join(' ');
+    return generateGridArray(size, elements);
   }
 
   getRules(size: string | string[], elements: number): string {
-    if (typeof size === 'string') return `repeat(${elements}, ${size})`;
-    return this.generateArray(size as string[], elements);
+    return getGridRules(size, elements);
   }
 
   @HostBinding('style') get elementStyle(): string {
-    const rowTemplate: string = this.getRules(this.rowSize(), this.rows());
-    const colTemplate: string = this.getRules(
-      this.columnSize(),
-      this.columns(),
-    );
-
-    return `
-      grid-template-columns: ${colTemplate};
-      grid-template-rows: ${rowTemplate};
-      gap: var(--bmb-gap-${this.colGapSize()}) var(--bmb-gap-${this.rowGapSize()});
-      height: ${typeof this.height() === 'number' ? `${this.height()}px` : this.height()};
-    `;
+    return getBmbLayoutGridElementStyle({
+      rowSize: this.rowSize(),
+      rows: this.rows(),
+      columnSize: this.columnSize(),
+      columns: this.columns(),
+      colGapSize: this.colGapSize(),
+      rowGapSize: this.rowGapSize(),
+      height: this.height(),
+    });
   }
 }
 
@@ -66,12 +62,15 @@ export class BmbLayoutGridItemDirective {
   constructor() {}
 
   @HostBinding('class') get elementClass(): string[] {
-    return ['bmb_layout-grid-item'];
+    return getBmbLayoutGridItemElementClass({});
   }
 
   @HostBinding('style') get elementStyle(): string {
-    return `
-      grid-area: ${this.rowStart()} / ${this.colStart()} / ${this.numberOfRows() + this.rowStart()} / ${this.numberOfColumns() + this.colStart()};
-    `;
+    return getBmbLayoutGridItemElementStyle({
+      rowStart: this.rowStart(),
+      colStart: this.colStart(),
+      numberOfRows: this.numberOfRows(),
+      numberOfColumns: this.numberOfColumns(),
+    });
   }
 }
