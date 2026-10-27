@@ -1,10 +1,6 @@
 @use '../base/rem' as rem;
 @use '../base/mixins' as mixins;
 
-:host {
-  display: contents;
-}
-
 .bmb_file-attachment-picker {
   display: none;
   gap: var(--bmb-spacing-m);

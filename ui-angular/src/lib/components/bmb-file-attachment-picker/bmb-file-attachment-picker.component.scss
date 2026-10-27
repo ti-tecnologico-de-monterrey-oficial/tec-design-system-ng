@@ -1,1 +1,5 @@
 @use '../../../../../shared/assets/styles/components/file-attachment';
+
+:host {
+  display: contents;
+}
