@@ -1,5 +1,3 @@
-import { TemplateRef } from '@angular/core';
-
 export type BmbChatMessageType =
   | 'text'
   | 'image'
@@ -74,20 +72,21 @@ export interface BmbOptionsMessage extends BmbChatBaseMessage {
   };
 }
 
-export interface BmbTemplateMessage extends BmbChatBaseMessage {
+export interface BmbTemplateMessage<TTemplate = unknown>
+  extends BmbChatBaseMessage {
   type: 'template';
   content: {
-    template: TemplateRef<unknown>;
+    template: TTemplate;
   };
 }
 
-export type BmbChatMessage =
+export type BmbChatMessage<TTemplate = unknown> =
   | BmbTextMessage
   | BmbImageMessage
   | BmbMixedMessage
   | BmbLinkMessage
   | BmbOptionsMessage
-  | BmbTemplateMessage;
+  | BmbTemplateMessage<TTemplate>;
 
 export type BmbChatAction =
   | 'repeat'
@@ -99,7 +98,7 @@ export type BmbChatAction =
 
 export type BmbChatCopyState = 'idle' | 'pending' | 'success' | 'error';
 
-export interface BmbChatActionEvent {
+export interface BmbChatActionEvent<TTemplate = unknown> {
   /**
    * Triggered action.
    */
@@ -113,7 +112,7 @@ export interface BmbChatActionEvent {
   /**
    * Current message reference.
    */
-  message: BmbChatMessage;
+  message: BmbChatMessage<TTemplate>;
 
   /**
    * Native DOM event.

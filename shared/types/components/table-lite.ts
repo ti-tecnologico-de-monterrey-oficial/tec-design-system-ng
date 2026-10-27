@@ -1,12 +1,10 @@
-import { TemplateRef } from '@angular/core';
-
-export interface ITableLiteColumn {
+export interface ITableLiteColumn<TTemplate = unknown> {
   label: string;
   labelEn?: string;
   def: string;
   dataKey: string;
-  htmlLabel?: TemplateRef<any>;
-  templateActions?: TemplateRef<any>;
+  htmlLabel?: TTemplate;
+  templateActions?: TTemplate;
   width?: number;
   type?: 'string' | 'number' | 'date';
   icon?: string;

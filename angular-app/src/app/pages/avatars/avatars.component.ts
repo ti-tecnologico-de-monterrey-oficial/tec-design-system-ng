@@ -49,7 +49,7 @@ export class AvatarsComponent implements AfterViewInit {
   newAvatar: any;
   id = this.route.snapshot.paramMap.get('id');
   loading = true;
-  columns: TableColum[] = [
+  columns: TableColum<TemplateRef<any>>[] = [
     {
       def: 'name',
       label: 'Nombre',

@@ -1,4 +1,3 @@
-import { TemplateRef, Type } from '@angular/core';
 import { IButtonAppearance } from '../utils';
 
 export type IBmbModalSize = 'small' | 'medium' | 'large';
@@ -19,10 +18,10 @@ export interface IBmbActionButton {
   action: (event?: Event, btn?: IBmbActionButton) => void;
 }
 
-export interface ModalDataConfig {
+export interface ModalDataConfig<TContent = unknown> {
   title?: string;
   subtitle?: string;
-  content?: string | TemplateRef<any> | null;
+  content?: string | TContent | null;
   type?: IBmbModalType;
   alertStyle?: IBmbModalAlertStyle;
   size?: IBmbModalSize;
@@ -36,9 +35,9 @@ export interface ModalDataConfig {
   secondaryAction?: () => void;
   closeAction?: () => void;
 }
-export interface IBmbNativeModal
+export interface IBmbNativeModal<TContent = unknown>
   extends Omit<
-    ModalDataConfig,
+    ModalDataConfig<TContent>,
     | 'primaryAction'
     | 'secondaryAction'
     | 'closeAction'
@@ -67,5 +66,5 @@ export interface IBmbNativeModal
   }) => void;
   inputContext?: { [key: string]: any };
   outputContext?: { [key: string]: (value: any) => void };
-  content?: string | TemplateRef<any> | null | Type<any>;
+  content?: string | TContent | null;
 }

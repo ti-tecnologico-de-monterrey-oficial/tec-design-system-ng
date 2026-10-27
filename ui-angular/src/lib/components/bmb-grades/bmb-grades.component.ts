@@ -33,7 +33,12 @@ import { CommonModule } from '@angular/common';
 import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { BmbAcademicProgressComponent } from '../bmb-academic-progress/bmb-academic-progress.component';
-import { IBmbNameValuePair, IBmbNativeModal } from '../../_shared/types';
+import {
+  IBmbNameValuePair,
+  IBmbNativeModal as IBmbNativeModalGeneric,
+} from '../../_shared/types';
+
+type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { buildErrorMessage } from '../../_shared/logic/utils';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
