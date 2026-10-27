@@ -20,10 +20,18 @@ module.exports = {
       './src/lib/directives/old/bmb-button-group/bmb-button-group.directive.ts',
       './src/lib/directives/old/bmb-selector/bmb-selector.directive.ts',
       './src/lib/directives/old/bmb-layout-grid/bmb-layout-grid.directive.ts',
-    ].map((file) => [
-      require('node:path').resolve(__dirname, file),
-      { statements: 85, branches: 85, functions: 85, lines: 85 },
-    ]),
+    ].map((file) => {
+      const minimum = file.endsWith('/input-validator.ts') ? 95 : 85;
+      return [
+        require('node:path').resolve(__dirname, file),
+        {
+          statements: minimum,
+          branches: minimum,
+          functions: minimum,
+          lines: minimum,
+        },
+      ];
+    }),
   ),
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [

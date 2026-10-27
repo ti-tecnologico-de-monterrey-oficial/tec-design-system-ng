@@ -356,6 +356,25 @@ describe('Angular compatibility coverage', () => {
     configure(new FormControl(null), { type: 'checkbox', checked: true });
   });
 
+  it('safely skips all validator registration and disabling when no control exists', () => {
+    const validate = jest.fn(() => ({ customValidation: true }));
+
+    expect(() =>
+      configure(undefined, {
+        type: 'email',
+        isRequired: true,
+        min: 1,
+        max: 10,
+        minLength: 2,
+        pattern: '[a-z]+',
+        isJsonFormat: true,
+        customValidation: validate,
+        isDisabled: true,
+      }),
+    ).not.toThrow();
+    expect(validate).not.toHaveBeenCalled();
+  });
+
   it('resolves required status from an existing validator or the input flag', () => {
     expect(
       getInputValidatorIsFieldRequired({
