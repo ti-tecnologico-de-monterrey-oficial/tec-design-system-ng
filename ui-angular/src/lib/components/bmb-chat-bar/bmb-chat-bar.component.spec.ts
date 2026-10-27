@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbChatBarComponent } from './bmb-chat-bar.component';
 import { By } from '@angular/platform-browser';
-import { BmbFileAttachmentPicker } from '../bmb-file-attachment/bmb-file-attachment.component';
+import { BmbFileAttachmentPicker } from '../bmb-file-attachment-picker/bmb-file-attachment-picker.component';
 
 describe('BmbChatBarComponent', () => {
   let component: BmbChatBarComponent;

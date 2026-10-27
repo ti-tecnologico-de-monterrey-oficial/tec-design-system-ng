@@ -16,8 +16,8 @@ import { getDropzoneAcceptAttribute } from '../../_shared/logic/components/dropz
   selector: 'bmb-file-attachment-picker',
   standalone: true,
   imports: [BmbIconComponent, BmbActionIconComponent, TranslatePipe],
-  templateUrl: './bmb-file-attachment.component.html',
-  styleUrl: './bmb-file-attachment.component.scss',
+  templateUrl: './bmb-file-attachment-picker.component.html',
+  styleUrl: './bmb-file-attachment-picker.component.scss',
   host: {
     '(drop)': 'onDrop($event)',
     '(dragover)': 'onDragOver($event)',

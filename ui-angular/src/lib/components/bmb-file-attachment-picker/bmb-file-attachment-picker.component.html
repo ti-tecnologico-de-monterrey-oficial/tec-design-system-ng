@@ -1,17 +1,17 @@
 <div
-  class="bmb_file-attachment-list"
-  [class.bmb_file-attachment-list-active]="files().length > 0"
+  class="bmb_file-attachment-picker"
+  [class.bmb_file-attachment-picker-active]="files().length > 0"
 >
   @for (file of files(); track $index) {
-    <div class="bmb_file-attachment-list-option">
+    <div class="bmb_file-attachment-picker-option">
       <bmb-icon
-        class="bmb_file-attachment-list-option-icon"
+        class="bmb_file-attachment-picker-option-icon"
         icon="attach_file"
         [size]="24"
       />
-      <span class="bmb_file-attachment-list-option-text">{{ file.name }}</span>
+      <span class="bmb_file-attachment-picker-option-text">{{ file.name }}</span>
       <bmb-action-icon
-        class="bmb_file-attachment-list-option-delete"
+        class="bmb_file-attachment-picker-option-delete"
         icon="close"
         [iconSize]="24"
         (buttonClick)="deleteFile($index)"

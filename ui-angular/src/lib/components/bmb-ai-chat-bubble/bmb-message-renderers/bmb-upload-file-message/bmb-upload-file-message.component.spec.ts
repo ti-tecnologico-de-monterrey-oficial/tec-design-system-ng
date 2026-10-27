@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { BmbUploadFileMessageComponent } from './bmb-upload-file-message.component';
 import type { BmbUploadFileMessage } from '../../types';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
-import { BmbFileAttachmentPicker } from '../../../bmb-file-attachment/bmb-file-attachment.component';
+import { BmbFileAttachmentPicker } from '../../../bmb-file-attachment-picker/bmb-file-attachment-picker.component';
 
 describe('BmbUploadFileMessageComponent', () => {
   let fixture: ComponentFixture<BmbUploadFileMessageComponent>;

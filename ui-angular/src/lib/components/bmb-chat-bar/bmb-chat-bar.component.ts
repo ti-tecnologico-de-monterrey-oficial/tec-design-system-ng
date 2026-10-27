@@ -33,7 +33,7 @@ import { IBmbNativeModal } from '../../_shared/types';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
-import { BmbFileAttachmentPicker } from '../bmb-file-attachment/bmb-file-attachment.component';
+import { BmbFileAttachmentPicker } from '../bmb-file-attachment-picker/bmb-file-attachment-picker.component';
 
 export { defaultBotList, defaultActionList } from './bot_list';
 export type { IBotType, IChatBarActions } from './types';

@@ -14,7 +14,7 @@ import { BmbButtonDirective } from '../../../../directives/bmb-button/button.dir
 import { TranslatePipe } from '../../../../pipes/translations';
 import { buildErrorMessage } from '../../../../_shared/logic/utils';
 import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
-import { BmbFileAttachmentPicker } from '../../../bmb-file-attachment/bmb-file-attachment.component';
+import { BmbFileAttachmentPicker } from '../../../bmb-file-attachment-picker/bmb-file-attachment-picker.component';
 
 @Component({
   selector: 'bmb-upload-file-message',

@@ -5,7 +5,7 @@ import {
   StoryObj,
 } from '@storybook/angular';
 import { fn } from 'storybook/test';
-import { BmbFileAttachmentPicker } from './bmb-file-attachment.component';
+import { BmbFileAttachmentPicker } from './bmb-file-attachment-picker.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import {
   attributes,
