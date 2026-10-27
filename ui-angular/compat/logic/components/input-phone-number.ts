@@ -6,7 +6,7 @@ import type {
 import type { IBmbInputError } from '../../types/input';
 import * as Core from './input-phone-number-core';
 export * from './input-phone-number-core';
-export function getPhoneNumberValidationResult(
+type PhoneNumberValidationArguments = [
   value: string,
   hasPatternError: boolean,
   hasLengthOrMinLengthError: boolean,
@@ -15,15 +15,10 @@ export function getPhoneNumberValidationResult(
   customValidation: ValidatorFn | undefined,
   control: FormControl,
   errorMessage: string | IBmbInputError,
-): { errors: ValidationErrors | null; message?: string } {
-  return Core.getPhoneNumberValidationResult(
-    value,
-    hasPatternError,
-    hasLengthOrMinLengthError,
-    lada,
-    length,
-    customValidation,
-    control,
-    errorMessage,
-  );
-}
+];
+
+// Keep the existing eight positional arguments and delegate without another wrapper.
+export const getPhoneNumberValidationResult: (
+  ...args: PhoneNumberValidationArguments
+) => { errors: ValidationErrors | null; message?: string } =
+  Core.getPhoneNumberValidationResult;

@@ -23,7 +23,8 @@ export function getInputValidatorValidatorError(
         try {
           JSON.parse(control.value);
           return null;
-        } catch (e) {
+        } catch {
+          // Invalid JSON is an expected validation failure, returned to the form.
           return { invalidJson: true };
         }
       }
@@ -55,8 +56,21 @@ export function addInputValidatorValue(
 
   if (value) {
     control.setValue(value);
-    return;
   }
+}
+
+function addCustomInputValidators(
+  control: FormControl | undefined,
+  customValidation: ValidatorFn | ValidatorFn[],
+): void {
+  if (!customValidation) return;
+
+  const validators = Array.isArray(customValidation)
+    ? customValidation
+    : [customValidation];
+  validators.forEach((validator) =>
+    control?.addValidators(getInputValidatorValidatorError(validator)),
+  );
 }
 
 export function configureInputValidatorControl({
@@ -118,17 +132,7 @@ export function configureInputValidatorControl({
     control?.addValidators(getInputValidatorValidatorError('jsonValidation'));
   }
 
-  if (customValidation) {
-    if (Array.isArray(customValidation)) {
-      customValidation.forEach((currentValidation: ValidatorFn) =>
-        control?.addValidators(
-          getInputValidatorValidatorError(currentValidation),
-        ),
-      );
-    } else {
-      control?.addValidators(getInputValidatorValidatorError(customValidation));
-    }
-  }
+  addCustomInputValidators(control, customValidation);
 
   if (isDisabled) control?.disable();
   else control?.enable();

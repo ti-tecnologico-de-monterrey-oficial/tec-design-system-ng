@@ -1,5 +1,7 @@
-import { getInitialFieldValue } from './formControl-core';
-import { showError as showFieldError } from './formControl-core';
+import {
+  getInitialFieldValue,
+  showError as showFieldError,
+} from './formControl-core';
 import { FormControl } from '@angular/forms';
 import { IBmbInputType, IBmbInputValType } from '../types/input';
 

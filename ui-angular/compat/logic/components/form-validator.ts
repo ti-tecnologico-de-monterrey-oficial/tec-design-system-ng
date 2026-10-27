@@ -35,18 +35,17 @@ export function updateFormValidatorErrorState(formGroup: FormGroup): void {
   Object.keys(formGroup.controls).forEach((field) => {
     const control = getFormValidatorControl(formGroup, field);
 
-    if (!!control) {
+    if (control) {
       handleValidity(control);
     }
   });
 }
 
-import { getCheckedRadialSnapshotValue } from './form-validator-core';
 export function getCheckedRadialValue(
   radials: IFormValidatorRadialSnapshot[],
   name: string,
 ): unknown {
-  return getCheckedRadialSnapshotValue(
+  return Core.getCheckedRadialSnapshotValue(
     radials.map((radial) => ({ ...radial, value: radial.control?.value })),
     name,
   );
