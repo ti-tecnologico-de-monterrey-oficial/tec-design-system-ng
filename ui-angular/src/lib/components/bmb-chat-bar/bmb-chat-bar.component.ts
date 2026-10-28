@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  DestroyRef,
   effect,
   ElementRef,
   inject,
@@ -34,6 +35,12 @@ import { TranslatePipe } from '../../pipes/translations';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { BmbFileAttachmentPicker } from '../bmb-file-attachment-picker/bmb-file-attachment-picker.component';
+import {
+  BmbChatAttachmentsService,
+  provideBmbChatAttachments,
+} from '../../services/chat-attachments/chat-attachments.service';
+import type { BmbChatAttachmentResult } from '../../services/chat-attachments/chat-attachments.service';
+import { getUUID } from '../../_shared/logic/utils';
 
 export { defaultBotList, defaultActionList } from './bot_list';
 export type { IBotType, IChatBarActions } from './types';
@@ -62,6 +69,7 @@ export type { IBotType, IChatBarActions } from './types';
   styleUrl: './bmb-chat-bar.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideBmbChatAttachments()],
 })
 export class BmbChatBarComponent implements OnInit {
   placeholder = input<string>('');
@@ -72,6 +80,7 @@ export class BmbChatBarComponent implements OnInit {
   enableMicInput = input<boolean>(false);
   disableChangeBot = input<boolean>(false);
   acceptedExtensions = input<string[]>();
+  maxFileSize = input<number>(2);
   disabledInput = model<boolean>(false);
   files = model<File[]>([]);
 
@@ -84,6 +93,7 @@ export class BmbChatBarComponent implements OnInit {
   onSendMessage = output<string>();
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onSendFiles = output<File[]>();
+  readonly attachmentResult = output<BmbChatAttachmentResult>();
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onRecord = output<boolean>();
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
@@ -120,6 +130,12 @@ export class BmbChatBarComponent implements OnInit {
     BmbNativeModalService,
   );
   private readonly translationsService = inject(BmbTranslationsService);
+  private readonly attachments = inject(BmbChatAttachmentsService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly attachmentSourceId = getUUID();
+  protected readonly fileResult = computed(() =>
+    this.attachments.result(this.attachmentSourceId),
+  );
 
   protected readonly _disabledInput = computed<boolean>(
     () => this.isLoading() || this.disabledInput(),
@@ -134,6 +150,19 @@ export class BmbChatBarComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.destroyRef.onDestroy(
+      this.attachments.registerDraft(
+        {
+          read: () => this.files(),
+          write: (files) => this.files.set(files),
+          rules: () => ({
+            acceptedFormats: this.acceptedExtensions(),
+            maxFileSize: this.maxFileSize(),
+          }),
+        },
+        this.attachmentSourceId,
+      ),
+    );
     this.currentBot.update(
       (
         bot: IBotType = {
@@ -154,7 +183,7 @@ export class BmbChatBarComponent implements OnInit {
     }
     this.isLoading.update((value) => !value);
     this.control.reset();
-    this.files.set([]);
+    this.attachments.clear(this.attachmentSourceId);
     this.textareaRef.nativeElement.style.height = 'calc(1lh + 2rem)';
   }
 
@@ -207,6 +236,19 @@ export class BmbChatBarComponent implements OnInit {
 
   handleFilesSelected(): void {
     this.contentProjected.closeContent();
+  }
+
+  handleAttachmentChanges(files: File[]): void {
+    const result = this.attachments.select(
+      files,
+      {
+        acceptedFormats: this.acceptedExtensions(),
+        maxFileSize: this.maxFileSize(),
+      },
+      this.attachmentSourceId,
+      true,
+    );
+    this.attachmentResult.emit(result);
   }
 
   handleDotPress(index: number): void {

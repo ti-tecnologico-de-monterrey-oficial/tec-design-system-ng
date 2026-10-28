@@ -88,6 +88,8 @@
                     [message]="message"
                     (uploadFileRequested)="uploadFileRequested.emit($event)"
                     (filesSelected)="filesSelected.emit($event)"
+                    (attachmentResult)="attachmentResult.emit($event)"
+                    (retryUploadRequested)="retryUploadRequested.emit($event)"
                   />
                 }
 

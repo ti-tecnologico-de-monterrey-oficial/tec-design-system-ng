@@ -34,6 +34,8 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbAiChatBubbleEditorComponent } from './bmb-ai-chat-bubble-editor/bmb-ai-chat-bubble-editor.component';
 import { TranslatePipe } from '../../pipes/translations';
+import { provideBmbChatAttachments } from '../../services/chat-attachments/chat-attachments.service';
+import type { BmbChatAttachmentResult } from '../../services/chat-attachments/chat-attachments.service';
 
 export * from './types';
 
@@ -63,6 +65,7 @@ export * from './types';
   templateUrl: './bmb-ai-chat-bubble.component.html',
   styleUrl: './bmb-ai-chat-bubble.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideBmbChatAttachments()],
 })
 export class BmbAiChatBubbleComponent implements OnDestroy {
   /**
@@ -110,6 +113,8 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
   getOptionClicked = output<IBmbChatOptionEvent>();
   readonly uploadFileRequested = output<BmbUploadFileRequestEvent>();
   readonly filesSelected = output<File[]>();
+  readonly attachmentResult = output<BmbChatAttachmentResult>();
+  readonly retryUploadRequested = output<BmbUploadFileRequestEvent>();
 
   /**
    * Emits image not found events.

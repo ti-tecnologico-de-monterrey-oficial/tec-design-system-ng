@@ -14,7 +14,8 @@
     <bmb-file-attachment-picker
       inputId="inputFile"
       [acceptedExtensions]="acceptedExtensions()"
-      [(files)]="files"
+      [files]="files()"
+      (filesChange)="handleAttachmentChanges($event)"
       [(onDragFiles)]="onDragFiles"
       (filesSelected)="handleFilesSelected()"
     >
@@ -177,6 +178,24 @@
     </ul>
   </div>
 </section>
+
+@if (fileResult(); as result) {
+  @if (result.errors.length) {
+    <div role="alert" class="bmb_chat-bar-file-errors">
+      @for (error of result.errors; track $index) {
+        <p>
+          {{ error.fileName }}
+          {{ 'ai_chat_bubble.upload_file.error_' + error.code | translate }}
+          @if (error.code === 'size') {
+            {{ error.maxFileSize ?? maxFileSize() }} MB.
+          }
+        </p>
+      }
+    </div>
+  } @else if (result.accepted.length) {
+    <p role="status">{{ 'ai_chat_bubble.upload_file.selected' | translate }}</p>
+  }
+}
 
 <ng-template #chatBarTemplate>
   <section class="bmb_chat-bar-add-dialog">

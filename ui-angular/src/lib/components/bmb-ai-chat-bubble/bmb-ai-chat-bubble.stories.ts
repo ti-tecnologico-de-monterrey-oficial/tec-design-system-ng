@@ -287,7 +287,41 @@ export const UploadFileMessage: Story = {
     docs: {
       description: {
         story:
-          'Solicitud de carga basada en el diseño de referencia. El botón emite uploadFileRequested sin abrir un selector. Los formatos y el tamaño son informativos; la aplicación debe validarlos. La palabra Cancelar es una instrucción, no una acción automática.',
+          'El botón abre el selector. El servicio local valida formatos, tamaño (2 MB por defecto) y duplicados. attachmentResult notifica el resultado; filesSelected contiene solo archivos válidos. La aplicación realiza la subida y procesa la palabra Cancelar.',
+      },
+    },
+  },
+};
+
+export const UploadFileFormatError: Story = {
+  args: {
+    ...UploadFileMessage.args,
+    message: {
+      id: 'upload-format-error',
+      type: 'upload-file',
+      timestamp: new Date('2026-05-05T20:00:00'),
+      isUser: false,
+      content: {
+        fileName: 'documento',
+        acceptedFormats: ['.pdf', '.doc', '.xml'],
+        maxFileSize: 10,
+        error: { code: 'format', extension: '.xps' },
+      },
+    },
+  },
+};
+
+export const UploadFileInterrupted: Story = {
+  args: {
+    ...UploadFileMessage.args,
+    message: {
+      id: 'upload-interrupted',
+      type: 'upload-file',
+      timestamp: new Date('2026-05-05T20:00:00'),
+      isUser: false,
+      content: {
+        fileName: 'documento',
+        error: { code: 'interrupted' },
       },
     },
   },
