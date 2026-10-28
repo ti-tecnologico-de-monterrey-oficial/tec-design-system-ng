@@ -1,5 +1,4 @@
-import { TemplateRef } from '@angular/core';
-import type { BmbChatAttachmentError } from '../../services/chat-attachments/chat-attachments.service';
+import { BmbChatAttachmentError } from '../utils';
 
 export type BmbChatMessageType =
   | 'text'
@@ -76,10 +75,11 @@ export interface BmbOptionsMessage extends BmbChatBaseMessage {
   };
 }
 
-export interface BmbTemplateMessage extends BmbChatBaseMessage {
+export interface BmbTemplateMessage<TTemplate = unknown>
+  extends BmbChatBaseMessage {
   type: 'template';
   content: {
-    template: TemplateRef<unknown>;
+    template: TTemplate;
   };
 }
 
@@ -104,13 +104,12 @@ export interface BmbUploadFileRequestEvent {
   nativeEvent: Event;
 }
 
-export type BmbChatMessage =
+export type BmbChatMessage<TTemplate = unknown> =
   | BmbTextMessage
   | BmbImageMessage
   | BmbMixedMessage
   | BmbLinkMessage
   | BmbOptionsMessage
-  | BmbUploadFileMessage
   | BmbTemplateMessage;
 
 export type BmbChatAction =
@@ -123,7 +122,7 @@ export type BmbChatAction =
 
 export type BmbChatCopyState = 'idle' | 'pending' | 'success' | 'error';
 
-export interface BmbChatActionEvent {
+export interface BmbChatActionEvent<TTemplate = unknown> {
   /**
    * Triggered action.
    */
@@ -137,7 +136,7 @@ export interface BmbChatActionEvent {
   /**
    * Current message reference.
    */
-  message: BmbChatMessage;
+  message: BmbChatMessage<TTemplate>;
 
   /**
    * Native DOM event.

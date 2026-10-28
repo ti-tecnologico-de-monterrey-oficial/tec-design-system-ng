@@ -7,15 +7,16 @@ import {
   OnDestroy,
   output,
   signal,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import {
-  BmbChatActionEvent,
+  BmbChatActionEvent as BmbChatActionEventGeneric,
   BmbChatAction,
   BmbChatCopyState,
-  BmbChatMessage,
+  BmbChatMessage as BmbChatMessageGeneric,
   BmbChatMessageEditedEvent,
   BmbTextMessage,
   BmbUploadFileRequestEvent,
@@ -26,6 +27,9 @@ import {
   getAiChatBubbleClasses,
   resolveAiChatBubbleActions,
 } from '../../_shared/logic/components/ai-chat-bubble';
+
+type BmbChatMessage = BmbChatMessageGeneric<TemplateRef<unknown>>;
+type BmbChatActionEvent = BmbChatActionEventGeneric<TemplateRef<unknown>>;
 import { ChatActionsComponent } from './bmb-chat-actions/bmb-chat-actions.component';
 import { TextMessageComponent } from './bmb-message-renderers/bmb-text-message/bmb-text-message.component';
 import { ImageMessageComponent } from './bmb-message-renderers/bmb-image-message/bmb-image-message.component';

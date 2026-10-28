@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ComponentRef } from '@angular/core';
+import { ComponentRef, TemplateRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { BmbAiChatBubbleComponent } from './bmb-ai-chat-bubble.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import {
-  BmbChatActionEvent,
+  BmbChatActionEvent as BmbChatActionEventGeneric,
   BmbImageMessage,
   BmbLinkMessage,
   BmbMixedMessage,
@@ -13,6 +13,8 @@ import {
   BmbTextMessage,
   BmbUploadFileMessage,
 } from '../../_shared/types';
+
+type BmbChatActionEvent = BmbChatActionEventGeneric<TemplateRef<unknown>>;
 
 let componentRef: ComponentRef<BmbAiChatBubbleComponent>;
 

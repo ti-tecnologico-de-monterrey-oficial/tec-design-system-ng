@@ -33,7 +33,9 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { IBmbNativeModal } from '../../_shared/types';
+import { IBmbNativeModal as IBmbNativeModalGeneric } from '../../_shared/types';
+
+type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../pipes/translations';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
