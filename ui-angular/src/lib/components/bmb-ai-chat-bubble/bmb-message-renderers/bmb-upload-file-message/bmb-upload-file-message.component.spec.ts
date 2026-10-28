@@ -4,6 +4,7 @@ import { BmbUploadFileMessageComponent } from './bmb-upload-file-message.compone
 import type { BmbUploadFileMessage } from '../../types';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 import { BmbFileAttachmentPicker } from '../../../bmb-file-attachment-picker/bmb-file-attachment-picker.component';
+import { BmbToastComponent } from '../../../bmb-toast/bmb-toast.component';
 
 describe('BmbUploadFileMessageComponent', () => {
   let fixture: ComponentFixture<BmbUploadFileMessageComponent>;
@@ -54,15 +55,18 @@ describe('BmbUploadFileMessageComponent', () => {
     expect(element.textContent).toContain('El documento debe ser legible.');
   });
 
-  it.each([0, 2.5, 10])('should display a numeric size of %s MB', (maxFileSize) => {
-    fixture.componentRef.setInput('message', {
-      ...message,
-      content: { fileName: 'documento', maxFileSize },
-    } satisfies BmbUploadFileMessage);
-    fixture.detectChanges();
-    expect(fixture.nativeElement.textContent).toContain(`${maxFileSize} MB`);
-    expect(fixture.nativeElement.querySelectorAll('li')).toHaveLength(1);
-  });
+  it.each([0, 2.5, 10])(
+    'should display a numeric size of %s MB',
+    (maxFileSize) => {
+      fixture.componentRef.setInput('message', {
+        ...message,
+        content: { fileName: 'documento', maxFileSize },
+      } satisfies BmbUploadFileMessage);
+      fixture.detectChanges();
+      expect(fixture.nativeElement.textContent).toContain(`${maxFileSize} MB`);
+      expect(fixture.nativeElement.querySelectorAll('li')).toHaveLength(1);
+    },
+  );
 
   it('should emit the message and native event when upload is requested', () => {
     const emit = jest.spyOn(
@@ -81,7 +85,8 @@ describe('BmbUploadFileMessageComponent', () => {
   });
 
   it('should open the reusable picker with the requested file formats', () => {
-    const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
+    const input: HTMLInputElement =
+      fixture.nativeElement.querySelector('input');
     const click = jest.spyOn(input, 'click').mockImplementation(() => {});
 
     fixture.nativeElement.querySelector('button').click();
@@ -93,15 +98,19 @@ describe('BmbUploadFileMessageComponent', () => {
   it('should emit selected files and clear the local list after forwarding them', () => {
     const selected = jest.fn();
     fixture.componentInstance.filesSelected.subscribe(selected);
-    const file = new File(['document'], 'document.pdf', { type: 'application/pdf' });
-    const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
+    const file = new File(['document'], 'document.pdf', {
+      type: 'application/pdf',
+    });
+    const input: HTMLInputElement =
+      fixture.nativeElement.querySelector('input');
     Object.defineProperty(input, 'files', { value: [file] });
 
     input.dispatchEvent(new Event('change'));
     fixture.detectChanges();
 
-    const attachment = fixture.debugElement.query(By.directive(BmbFileAttachmentPicker))
-      .componentInstance as BmbFileAttachmentPicker;
+    const attachment = fixture.debugElement.query(
+      By.directive(BmbFileAttachmentPicker),
+    ).componentInstance as BmbFileAttachmentPicker;
     expect(selected).toHaveBeenCalledTimes(1);
     expect(selected).toHaveBeenCalledWith([file]);
     expect(attachment.files()).toEqual([]);
@@ -126,12 +135,104 @@ describe('BmbUploadFileMessageComponent', () => {
     const selected = jest.fn();
     fixture.componentInstance.filesSelected.subscribe(selected);
 
-    fixture.nativeElement.querySelector('input').dispatchEvent(new Event('change'));
+    fixture.nativeElement
+      .querySelector('input')
+      .dispatchEvent(new Event('change'));
 
     expect(selected).not.toHaveBeenCalled();
   });
 
-  it('should hide requirements when none are provided', () => {
+  it('should show a format error and recovery instructions without emitting invalid files', () => {
+    const selected = jest.fn();
+    const results = jest.fn();
+    fixture.componentInstance.filesSelected.subscribe(selected);
+    fixture.componentInstance.attachmentResult.subscribe(results);
+    const input = fixture.nativeElement.querySelector('input');
+    Object.defineProperty(input, 'files', {
+      value: [new File(['bad'], 'document.xps')],
+    });
+    input.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    expect(selected).not.toHaveBeenCalled();
+    expect(results.mock.calls[0][0].errors[0].code).toBe('format');
+    expect(
+      fixture.nativeElement.querySelector('[role="alert"]').textContent,
+    ).toContain('.xps');
+    const toast = fixture.debugElement.query(By.directive(BmbToastComponent))
+      .componentInstance as BmbToastComponent;
+    expect(toast.appearance()).toBe('error');
+    expect(toast.componentTitle()).toBe(
+      'ai_chat_bubble.upload_file.error_title',
+    );
+    expect(toast.description()).toContain('.xps');
+    expect(toast.isClosable()).toBe(false);
+    expect(fixture.nativeElement.textContent).toContain('.pdf, .doc, .xml');
+    expect(fixture.nativeElement.textContent).toContain('10 MB');
+    expect(
+      fixture.nativeElement.querySelector('.bmb_toast-warning'),
+    ).toBeNull();
+  });
+
+  it('should render interrupted upload as a warning and emit retry without reopening the picker', () => {
+    fixture.componentRef.setInput('message', {
+      ...message,
+      content: { ...message.content, error: { code: 'interrupted' } },
+    } satisfies BmbUploadFileMessage);
+    fixture.detectChanges();
+    const retry = jest.fn();
+    fixture.componentInstance.retryUploadRequested.subscribe(retry);
+    const click = jest.spyOn(
+      fixture.nativeElement.querySelector('input'),
+      'click',
+    );
+    const nativeEvent = new MouseEvent('click', { bubbles: true });
+    fixture.nativeElement
+      .querySelector('.bmb_upload-file-message-retry')
+      .dispatchEvent(nativeEvent);
+
+    expect(
+      fixture.nativeElement.querySelector('.bmb_toast-warning'),
+    ).toBeTruthy();
+    expect(retry).toHaveBeenCalledWith({
+      messageId: message.id,
+      message: fixture.componentInstance.message(),
+      nativeEvent,
+    });
+    const toast = fixture.debugElement.query(By.directive(BmbToastComponent))
+      .componentInstance as BmbToastComponent;
+    expect(toast.appearance()).toBe('warning');
+    expect(toast.componentTitle()).toBe(
+      'ai_chat_bubble.upload_file.interrupted_title',
+    );
+    expect(toast.description()).toBe(
+      'ai_chat_bubble.upload_file.error_interrupted',
+    );
+    expect(toast.isClosable()).toBe(false);
+    expect(click).not.toHaveBeenCalled();
+  });
+
+  it('should retain valid files in a mixed selection and report size and duplicate errors', () => {
+    const selected = jest.fn();
+    fixture.componentInstance.filesSelected.subscribe(selected);
+    const valid = new File(['ok'], 'valid.pdf', { lastModified: 1 });
+    const large = new File([new Uint8Array(10 * 1024 * 1024 + 1)], 'large.pdf');
+    const input = fixture.nativeElement.querySelector('input');
+    Object.defineProperty(input, 'files', { value: [valid, valid, large] });
+    input.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    expect(selected).toHaveBeenCalledWith([valid]);
+    const alert = fixture.nativeElement.querySelector('[role="alert"]');
+    expect(alert.textContent).toContain(
+      'ai_chat_bubble.upload_file.error_duplicate',
+    );
+    expect(alert.textContent).toContain(
+      'ai_chat_bubble.upload_file.error_size',
+    );
+  });
+
+  it('should display the default size limit when none is provided', () => {
     fixture.componentRef.setInput('message', {
       ...message,
       content: {
@@ -141,7 +242,8 @@ describe('BmbUploadFileMessageComponent', () => {
       },
     } satisfies BmbUploadFileMessage);
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('ul')).toBeNull();
+    expect(fixture.nativeElement.querySelectorAll('li')).toHaveLength(1);
+    expect(fixture.nativeElement.textContent).toContain('2 MB');
   });
 
   it('should render custom instructions and labels as text, not HTML', () => {

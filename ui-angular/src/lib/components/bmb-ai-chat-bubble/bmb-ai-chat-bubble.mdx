@@ -104,11 +104,13 @@ aplicación; la validación automática se ejecuta en las selecciones del usuari
 
 ### Errores, éxito y reintento
 
-Los errores `format`, `size` y `duplicate` muestran un aviso rojo con
+Los errores `format`, `size` y `duplicate` muestran un `BmbToastComponent`
+con apariencia `error`, título y descripción del problema, con
 instrucciones de recuperación. El botón **+** permite seleccionar otro archivo.
 Para una subida interrumpida, usa
 `attachments.reportUploadResult(message.id, { code: 'interrupted' })`
-o establece `message.content.error` con ese valor. Se muestra un aviso amarillo
+o establece `message.content.error` con ese valor. Se muestra un
+`BmbToastComponent` con apariencia `warning`, sin botón de cierre,
 y **Reintentar carga**, que emite `retryUploadRequested` con el mensaje y el
 evento nativo; no abre el selector ni sube automáticamente.
 

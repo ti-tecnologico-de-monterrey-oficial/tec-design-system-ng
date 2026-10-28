@@ -1,48 +1,109 @@
 @let content = message().content;
 <section class="bmb_upload-file-message">
-  <p>
-    @if (content.text) {
-      {{ content.text }}
+  @if (errors().length) {
+    <div class="bmb_upload-file-message-alert" role="alert">
+      @for (error of errors(); track $index) {
+        <bmb-toast
+          [appearance]="error.code === 'interrupted' ? 'warning' : 'error'"
+          [isClosable]="false"
+          [componentTitle]="
+            (error.code === 'interrupted'
+              ? 'ai_chat_bubble.upload_file.interrupted_title'
+              : 'ai_chat_bubble.upload_file.error_title'
+            ) | translate
+          "
+          [description]="errorDescription(error)"
+        />
+      }
+    </div>
+    @if (interrupted()) {
+      <p>
+        {{ 'ai_chat_bubble.upload_file.interrupted_instruction' | translate }}
+      </p>
+      <button
+        bmbButton
+        type="button"
+        appearance="secondary-outlined"
+        size="large"
+        class="bmb_upload-file-message-retry"
+        (click)="retryUpload($event)"
+      >
+        {{ 'ai_chat_bubble.upload_file.retry' | translate }}
+      </button>
     } @else {
-      {{ 'ai_chat_bubble.upload_file.intro' | translate }}
-      “{{ content.fileName }}”,
-      {{ 'ai_chat_bubble.upload_file.chat_bar_instruction' | translate }}
-      <bmb-icon
-        icon="add"
-        [size]="24"
-        [alt]="'ai_chat_bubble.upload_file.recommended_icon' | translate"
-      />
-      {{
-        'ai_chat_bubble.upload_file.disjunction_icon_bar_instruction'
-          | translate
-      }}
-      <bmb-icon icon="attach_file" [size]="24" />
-      {{ 'ai_chat_bubble.upload_file.button_instruction' | translate }}
+      <p>
+        {{ 'ai_chat_bubble.upload_file.solution_prefix' | translate }}
+        <strong>{{ 'ai_chat_bubble.upload_file.solution' | translate }}</strong>
+      </p>
+      <div class="bmb_upload-file-message-solutions">
+        @if (content.acceptedFormats?.length) {
+          <p>
+            {{ 'ai_chat_bubble.upload_file.check_formats' | translate }}
+            <strong>{{ content.acceptedFormats.join(', ') }}</strong>
+          </p>
+        }
+        <p>
+          {{ 'ai_chat_bubble.upload_file.check_size' | translate }}
+          {{ content.maxFileSize ?? 2 }} MB.
+        </p>
+        <p>
+          {{ 'ai_chat_bubble.upload_file.choose_again_prefix' | translate }}
+          <button
+            type="button"
+            class="bmb_upload-file-message-choose"
+            [attr.aria-label]="'ai_chat_bubble.upload_file.button' | translate"
+            (click)="requestUpload($event)"
+          >
+            +
+          </button>
+          {{ 'ai_chat_bubble.upload_file.choose_again' | translate }}
+        </p>
+      </div>
     }
-  </p>
+  } @else {
+    <p>
+      @if (content.text) {
+        {{ content.text }}
+      } @else {
+        {{ 'ai_chat_bubble.upload_file.intro' | translate }}
+        “{{ content.fileName }}”,
+        {{ 'ai_chat_bubble.upload_file.chat_bar_instruction' | translate }}
+        <bmb-icon
+          icon="add"
+          [size]="24"
+          [alt]="'ai_chat_bubble.upload_file.recommended_icon' | translate"
+        />
+        {{
+          'ai_chat_bubble.upload_file.disjunction_icon_bar_instruction'
+            | translate
+        }}
+        <bmb-icon icon="attach_file" [size]="24" />
+        {{ 'ai_chat_bubble.upload_file.button_instruction' | translate }}
+      }
+    </p>
+  }
 
   <bmb-file-attachment-picker
-    [acceptedExtensions]="content.acceptedFormats!"
+    [acceptedExtensions]="content.acceptedFormats"
     (filesChange)="handleFilesSelected($event)"
   >
-    <button
-      bmbButton
-      type="button"
-      appearance="secondary-outlined"
-      size="large"
-      (click)="requestUpload($event)"
-    >
-      {{
-        content.buttonLabel ?? ('ai_chat_bubble.upload_file.button' | translate)
-      }}
-    </button>
+    @if (!errors().length) {
+      <button
+        bmbButton
+        type="button"
+        appearance="secondary-outlined"
+        size="large"
+        (click)="requestUpload($event)"
+      >
+        {{
+          content.buttonLabel ??
+            ('ai_chat_bubble.upload_file.button' | translate)
+        }}
+      </button>
+    }
   </bmb-file-attachment-picker>
 
-  @if (
-    content.acceptedFormats?.length ||
-    content.maxFileSize !== undefined ||
-    content.additionalRequirements?.length
-  ) {
+  @if (!errors().length) {
     <p>{{ 'ai_chat_bubble.upload_file.requirements' | translate }}</p>
     <ul class="bmb_upload-file-message-requirements">
       @if (content.acceptedFormats?.length) {
@@ -51,20 +112,33 @@
           <strong>{{ content.acceptedFormats.join(', ') }}</strong>
         </li>
       }
-      @if (content.maxFileSize !== undefined) {
-        <li>
-          {{ 'ai_chat_bubble.upload_file.max_size' | translate }}
-          <strong>{{ content.maxFileSize }} MB</strong>
-        </li>
-      }
+      <li>
+        {{ 'ai_chat_bubble.upload_file.max_size' | translate }}
+        <strong>{{ content.maxFileSize ?? 2 }} MB</strong>
+      </li>
       @for (requirement of content.additionalRequirements; track $index) {
         <li>{{ requirement }}</li>
       }
     </ul>
   }
 
+  @if (
+    !errors().length &&
+    result()?.status === 'selected' &&
+    result()?.accepted?.length
+  ) {
+    <p role="status">{{ 'ai_chat_bubble.upload_file.selected' | translate }}</p>
+  }
+  @if (!errors().length && result()?.status === 'uploaded') {
+    <p role="status">{{ 'ai_chat_bubble.upload_file.uploaded' | translate }}</p>
+  }
   <p>
-    {{ 'ai_chat_bubble.upload_file.cancel_instruction' | translate }}
+    {{
+      (interrupted()
+        ? 'ai_chat_bubble.upload_file.interrupted_cancel'
+        : 'ai_chat_bubble.upload_file.cancel_instruction'
+      ) | translate
+    }}
     <strong>{{
       content.cancelKeyword ?? ('ai_chat_bubble.upload_file.cancel' | translate)
     }}</strong

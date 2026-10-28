@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  inject,
   input,
   output,
   viewChild,
@@ -12,8 +14,17 @@ import type {
 } from '../../types';
 import { BmbButtonDirective } from '../../../../directives/bmb-button/button.directive';
 import { TranslatePipe } from '../../../../pipes/translations';
-import { buildErrorMessage } from '../../../../_shared/logic/utils';
+import {
+  BmbChatAttachmentsService,
+  provideBmbChatAttachments,
+} from '../../../../services/chat-attachments/chat-attachments.service';
+import type {
+  BmbChatAttachmentError,
+  BmbChatAttachmentResult,
+} from '../../../../services/chat-attachments/chat-attachments.service';
+import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
+import { BmbToastComponent } from '../../../bmb-toast/bmb-toast.component';
 import { BmbFileAttachmentPicker } from '../../../bmb-file-attachment-picker/bmb-file-attachment-picker.component';
 
 @Component({
@@ -22,42 +33,70 @@ import { BmbFileAttachmentPicker } from '../../../bmb-file-attachment-picker/bmb
   imports: [
     BmbButtonDirective,
     BmbIconComponent,
+    BmbToastComponent,
     TranslatePipe,
     BmbFileAttachmentPicker,
   ],
   templateUrl: './bmb-upload-file-message.component.html',
   styleUrl: './bmb-upload-file-message.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideBmbChatAttachments()],
 })
 export class BmbUploadFileMessageComponent implements OnChanges {
   readonly message = input.required<BmbUploadFileMessage>();
   readonly uploadFileRequested = output<BmbUploadFileRequestEvent>();
   readonly filesSelected = output<File[]>();
+  readonly attachmentResult = output<BmbChatAttachmentResult>();
+  readonly retryUploadRequested = output<BmbUploadFileRequestEvent>();
+  private readonly attachments = inject(BmbChatAttachmentsService);
+  private readonly translations = inject(BmbTranslationsService);
+  protected readonly result = computed(() =>
+    this.attachments.result(this.message().id),
+  );
+  protected readonly errors = computed(() => {
+    const external = this.message().content.error;
+    return external ? [external] : (this.result()?.errors ?? []);
+  });
+  protected readonly interrupted = computed(() =>
+    this.errors().some((error) => error.code === 'interrupted'),
+  );
 
   private readonly fileAttachmentPicker = viewChild.required(
     BmbFileAttachmentPicker,
   );
 
   ngOnChanges(): void {
-    const extension = /^\.[a-z0-9]+(?:[._-][a-z0-9]+)*$/i;
-    const mimeType =
-      /^(?:application|audio|font|image|message|model|multipart|text|video)\/[a-z0-9][a-z0-9!#$&^_.+-]{0,126}$/i;
-    const mediaWildcard = /^(?:audio|image|video)\/\*$/i;
-    const invalidFormats = (
-      this.message().content.acceptedFormats ?? []
-    ).filter(
-      (format) =>
-        format !== format.trim() ||
-        (!extension.test(format) &&
-          !mimeType.test(format) &&
-          !mediaWildcard.test(format)),
-    );
+    this.attachments.validateRules(this.message().content);
+  }
 
-    if (invalidFormats.length) {
-      throw new Error(
-        `The ${buildErrorMessage(['acceptedFormats'])} invalid. Use file extensions starting with "." or MIME types without parameters (for example, ".pdf", "application/pdf" or "image/*"). Invalid values: ${JSON.stringify(invalidFormats)}.`,
-      );
+  protected errorDescription(error: BmbChatAttachmentError): string {
+    const key = 'ai_chat_bubble.upload_file.';
+    const description = this.translations.translate(
+      key + 'error_' + error.code,
+    );
+    if (error.code === 'format') {
+      return [
+        this.translations.translate(key + 'format_prefix'),
+        error.extension ?? error.fileName,
+        description,
+      ]
+        .filter(Boolean)
+        .join(' ');
     }
+    const prefix = error.fileName ? `${error.fileName}: ` : '';
+    const size =
+      error.code === 'size'
+        ? ` ${error.maxFileSize ?? this.message().content.maxFileSize ?? 2} MB.`
+        : '';
+    return `${prefix}${description}${size}`;
+  }
+
+  protected retryUpload(nativeEvent: Event): void {
+    this.retryUploadRequested.emit({
+      messageId: this.message().id,
+      message: this.message(),
+      nativeEvent,
+    });
   }
 
   protected requestUpload(nativeEvent: Event): void {
@@ -71,7 +110,13 @@ export class BmbUploadFileMessageComponent implements OnChanges {
 
   protected handleFilesSelected(files: File[]): void {
     if (!files.length) return;
-    this.filesSelected.emit(files);
+    const result = this.attachments.select(
+      files,
+      this.message().content,
+      this.message().id,
+    );
+    this.attachmentResult.emit(result);
+    if (result.accepted.length) this.filesSelected.emit(result.accepted);
     this.fileAttachmentPicker().files.set([]);
   }
 }

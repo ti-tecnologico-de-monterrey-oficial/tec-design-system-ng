@@ -516,7 +516,26 @@
       "max_size": "Tamaño máximo:",
       "cancel_instruction": "Si no deseas realizar la carga de tu archivo, escribe",
       "cancel": "Cancelar",
-      "recommended_icon": "Agregar"
+      "recommended_icon": "Agregar",
+      "error_title": "No pudimos cargar tu archivo",
+      "interrupted_title": "Se interrumpió la carga",
+      "format_prefix": "El formato",
+      "error_format": "no es compatible",
+      "error_size": "El archivo supera el tamaño máximo permitido.",
+      "error_duplicate": "El archivo ya está agregado.",
+      "error_interrupted": "Interrupción de proceso",
+      "error_unavailable": "Debe existir una sola barra de chat por conversación.",
+      "solution_prefix": "¿Cómo puedes",
+      "solution": "solucionarlo?",
+      "check_formats": "Verifica que el formato sea uno de los admitidos:",
+      "check_size": "Asegúrate de que el archivo no supere",
+      "choose_again_prefix": "Selecciona el botón",
+      "choose_again": "para elegir otro archivo.",
+      "interrupted_instruction": "No pudimos completar la carga de tu archivo. Puedes intentarlo de nuevo.",
+      "retry": "Reintentar carga",
+      "interrupted_cancel": "¿Prefieres no continuar? Escribe",
+      "selected": "Archivos agregados. Aún no se han enviado.",
+      "uploaded": "Archivo cargado correctamente."
     }
   },
   "alert_center_empty": {

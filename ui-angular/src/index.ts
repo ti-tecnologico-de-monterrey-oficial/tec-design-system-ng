@@ -16,6 +16,7 @@ export * from './lib/services/theme/theme.service';
 export * from './lib/services/old/toast/toast.service';
 export * from './lib/services/translations/translations.service';
 export * from './lib/services/icon/icon.service';
+export * from './lib/services/chat-attachments/chat-attachments.service';
 
 // Pipes
 export * from './lib/pipes/translations';
