@@ -2,25 +2,18 @@
 // source=ui-angular/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.ts
 // component=BmbInteractiveIconComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const appearanceContrast = instance.getEnum('Container color', {
-  Default: 'default',
-  Primary: 'primary',
-  Alternative: 'alternative',
-})
-const layout = instance.getEnum('Variante', {
-  Extended: 'regular',
-  'Container Button': 'button',
-  Simple: 'regular',
-  'app Drawer': 'app_drawer',
-  'Simple (Small)': 'regular',
-  'Simple (Min)': 'regular',
-})
-const componentTitle = instance.getString('Text')
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-interactive-icon componentTitle="${componentTitle}" appearanceContrast="${appearanceContrast}" layout="${layout}" />`,
+  example: figma.code`<bmb-interactive-icon
+  appearanceContrast="default"
+  componentTitle="Canvas"
+  description=""
+  icon="${getIcon('face')}"
+  appearance="red"
+  [horizontal]="false"
+  layout="regular"
+/>`,
   imports: [
     "import { BmbInteractiveIconComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

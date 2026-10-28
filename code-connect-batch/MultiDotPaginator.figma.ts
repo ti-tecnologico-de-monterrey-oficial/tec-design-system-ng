@@ -4,7 +4,11 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-multi-dot-paginator componentTitle="Example title" />`,
+  example: figma.code`<bmb-multi-dot-paginator
+  componentTitle="Example Title"
+  subtitle="Example Subtitle"
+  [selectedIndex]="0"
+/>`,
   imports: [
     "import { BmbMultiDotPaginatorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

@@ -2,9 +2,14 @@
 // source=ui-angular/src/lib/components/bmb-icon-status/bmb-icon-status.component.ts
 // component=BmbIconStatusComponent
 import figma from 'figma'
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-icon-status icon="check" statusAppearance="success" />`,
+  example: figma.code`<bmb-icon-status
+  icon="${getIcon('check')}"
+  statusAppearance="success"
+  iconColor="primary"
+/>`,
   imports: [
     "import { BmbIconStatusComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
