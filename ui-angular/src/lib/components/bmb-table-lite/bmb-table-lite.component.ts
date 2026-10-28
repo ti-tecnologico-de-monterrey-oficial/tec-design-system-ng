@@ -17,7 +17,6 @@ import {
   inject,
 } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
-import { DateTime } from 'luxon';
 import { SelectionModel } from '@angular/cdk/collections';
 
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -28,15 +27,21 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { TranslatePipe } from '../../pipes/translations';
 
 import {
-  IBmbFiltersPosition,
-  TableColum,
-  TableConfig,
+  IBmbTableLiteFiltersPosition as IBmbFiltersPosition,
+  ITableLiteColumn as TableColum,
+  ITableLiteConfig as TableConfig,
   IBmbTableLang,
-} from './bmb-table-lite.interface';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+} from '../../_shared/types';
+import {
+  filterTableLiteRows,
+  getTableLiteClasses,
+  getTableLiteCssVars,
+  getTableLiteLastPage,
+  getTableLitePaginationText,
+  isTableLiteColumnSticky,
+  isTableLiteSinglePage,
+  normalizeTableLiteColumns,
+} from '../../_shared/logic/components/table-lite';
 
 @Component({
   selector: 'bmb-table-lite',
@@ -233,11 +238,7 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
 
   // 🔹 Estandariza las columnas y genera sus filtros dinámicos
   parseColumns(columns: TableColum[]) {
-    const normalized = (columns || []).map((col) => ({
-      type: 'string' as const,
-      labelEn: col.labelEn,
-      ...col,
-    }));
+    const normalized = normalizeTableLiteColumns(columns);
     this._rawColumns = normalized;
     this.applyColumnsAndConfig(normalized);
     this.setupDynamicFilters();
@@ -317,73 +318,13 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
     }
 
     const searchText = (this.searchControl.value || '').toLowerCase().trim();
-    let filtered = [...this.originalData];
 
-    // 🔹 Aplica filtros numéricos, de fecha y texto
-    this._rawColumns.forEach((column) => {
-      const key = column.dataKey;
-      const type = column.type || 'string';
-
-      if (type === 'number') {
-        const rawMin = values[`${key}_min`];
-        const rawMax = values[`${key}_max`];
-        const min =
-          rawMin === null || rawMin === undefined || rawMin === ''
-            ? null
-            : Number(rawMin);
-        const max =
-          rawMax === null || rawMax === undefined || rawMax === ''
-            ? null
-            : Number(rawMax);
-        filtered = filtered.filter((row) => {
-          const v = Number(row[key]);
-          if (Number.isNaN(v)) return false;
-          return (min === null || v >= min) && (max === null || v <= max);
-        });
-      }
-
-      if (type === 'date') {
-        const dateFormat = column.dateFormat || 'yyyy-MM-dd';
-        const rawFrom = values[`${key}_from`];
-        const rawTo = values[`${key}_to`];
-        const from = rawFrom
-          ? DateTime.fromFormat(String(rawFrom), dateFormat)
-          : null;
-        const to = rawTo
-          ? DateTime.fromFormat(String(rawTo), dateFormat)
-          : null;
-
-        filtered = filtered.filter((row) => {
-          const raw = row[key];
-          if (!raw) return true;
-          const dateVal = DateTime.fromFormat(String(raw), dateFormat);
-          if (!dateVal.isValid) return true;
-          const gte = !from || (from.isValid && dateVal >= from);
-          const lte = !to || (to.isValid && dateVal <= to);
-          return gte && lte;
-        });
-      }
-
-      if (type === 'string') {
-        const contains = (values[`${key}_contains`] || '').toLowerCase().trim();
-        if (contains) {
-          filtered = filtered.filter((row) =>
-            (row[key] ?? '').toString().toLowerCase().includes(contains),
-          );
-        }
-      }
-    });
-
-    // 🔹 Aplica búsqueda global
-    if (searchText) {
-      filtered = filtered.filter((row) =>
-        this._rawColumns.some((col) =>
-          ((row[col.dataKey] ?? '') + '').toLowerCase().includes(searchText),
-        ),
-      );
-    }
-
-    this.filteredData = filtered;
+    this.filteredData = filterTableLiteRows(
+      this.originalData,
+      this._rawColumns,
+      values,
+      searchText,
+    );
     this.applyClientPagination();
     this.cdr.markForCheck();
   }
@@ -432,7 +373,7 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
     const totalItems = this.serverSide()
       ? this.totalItems() ?? 0
       : this.filteredData.length;
-    return totalItems <= this.resolvedPageSize;
+    return isTableLiteSinglePage(totalItems, this.resolvedPageSize);
   }
 
   // 🔹 Calcula la última página disponible
@@ -440,9 +381,7 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
     const total = this.serverSide()
       ? this.totalItems() ?? 0
       : this.filteredData.length;
-    const size = this.resolvedPageSize;
-    const result = size === 0 ? 0 : Math.ceil(total / size) - 1;
-    return Math.max(0, result);
+    return getTableLiteLastPage(total, this.resolvedPageSize);
   }
 
   // 🔹 Navegación entre páginas
@@ -467,10 +406,7 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
       : this.filteredData.length;
     const pageIndex = this.currentPage?.() ?? 0;
     const pageSize = this.resolvedPageSize;
-    if (total === 0 || pageSize === 0) return `0 de ${total}`;
-    const startIndex = pageIndex * pageSize + 1;
-    const endIndex = Math.min((pageIndex + 1) * pageSize, total);
-    return `${startIndex} - ${endIndex} de ${total}`;
+    return getTableLitePaginationText(total, pageIndex, pageSize);
   }
 
   // -----------------------------------------------------------------------------
@@ -531,8 +467,7 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
     const column = this.tableColumns[index];
     const semanticType = row[columnKey + 'Type'];
 
-    const isSticky =
-      column?.sticky === true || (column?.sticky === undefined && index === 0);
+    const isSticky = isTableLiteColumnSticky(column?.sticky, index);
 
     return {
       'bmb_table_lite-sticky': isSticky,
@@ -545,8 +480,7 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
   getHeaderCellClasses(i: number): any {
     const column = this.tableColumns[i];
 
-    const isSticky =
-      column?.sticky === true || (column?.sticky === undefined && i === 0);
+    const isSticky = isTableLiteColumnSticky(column?.sticky, i);
 
     return {
       'bmb_table_lite-sticky': isSticky,
@@ -556,21 +490,7 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
 
   // 🔹 Determina clases principales del contenedor según posición de filtros
   getTableClasses(): string[] {
-    const classList = ['bmb_table_lite'];
-    switch (this.filtersPosition()) {
-      case 'right':
-        classList.push('bmb_table_lite-filters-right');
-        break;
-      case 'bottom':
-        classList.push('bmb_table_lite-filters-bottom');
-        break;
-      case 'left':
-        classList.push('bmb_table_lite-filters-left');
-        break;
-      default:
-        classList.push('bmb_table_lite-filters-top');
-    }
-    return classList;
+    return getTableLiteClasses(this.filtersPosition());
   }
 
   // 🔹 Obtiene un control del formulario de filtros
@@ -624,26 +544,12 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
 
   // 🔹 Expone las variables CSS usadas para el grid dinámico
   get cssVars() {
-    const hasSelect = this.tableConfig?.isSelectable;
-    const hasExpand = this.tableConfig?.isExpandible;
-    const hasActions = this.tableConfig?.showActions;
-
-    const columnTemplate = `repeat(${this.tableColumns.length}, minmax(120px, 1fr))`;
-
-    const parts = [
-      hasSelect ? 'var(--col-checkbox, 62px)' : '',
-      hasExpand ? 'var(--col-expand, 40px)' : '',
-      columnTemplate,
-      hasActions ? 'var(--col-actions, 80px)' : '',
-    ].filter(Boolean);
-
-    return {
-      '--col-count': this.tableColumns.length,
-      '--col-checkbox': hasSelect ? '62px' : '0px',
-      '--col-expand': hasExpand ? '40px' : '0px',
-      '--col-actions': hasActions ? '80px' : '0px',
-      '--grid-template': parts.join(' '),
-    };
+    return getTableLiteCssVars(
+      this.tableColumns.length,
+      this.tableConfig?.isSelectable,
+      this.tableConfig?.isExpandible,
+      this.tableConfig?.showActions,
+    );
   }
 
   trackByColumn(column: any): string | number {

@@ -1,9 +1,2 @@
-export interface IBotType {
-  name: string;
-  icon: string;
-  label?: string;
-}
-
-export interface IChatBarActions extends IBotType {
-  action: () => void;
-}
+// Compatibility export for existing consumers.
+export type * from '../../_shared/types/components/chat-bar';

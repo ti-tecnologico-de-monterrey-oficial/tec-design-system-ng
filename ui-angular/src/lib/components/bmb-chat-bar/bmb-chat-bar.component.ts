@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+import type { OnInit } from '@angular/core';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,25 +16,24 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import type { OnInit } from '@angular/core';
-import { IBotType, IChatBarActions } from './types';
-import { defaultBotList } from './bot_list';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import {
+  getChatBarTextareaHeight,
+  shouldSendChatBarMessage,
+} from '../../_shared/logic/components/chat-bar';
+import { defaultBotList } from '../../_shared/logic/components/chat-bar-defaults';
+import type { IBmbNativeModal } from '../../_shared/types';
+import type {
+  IBotType,
+  IChatBarActions,
+} from '../../_shared/types/components/chat-bar';
 import { ClickOutsideDirective } from '../../directives/click-outside/clickoutside.directive';
-import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
-import { BmbItemComponent } from '../bmb-item/bmb-item.component';
+import { TranslatePipe } from '../../pipes/translations';
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,
 } from '../../services/old/projection/projection.service';
-import { IBmbNativeModal } from '../../_shared/types';
-import { TranslatePipe } from '../../pipes/translations';
-import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { BmbFileAttachmentPicker } from '../bmb-file-attachment-picker/bmb-file-attachment-picker.component';
 import {
@@ -41,13 +42,15 @@ import {
 } from '../../services/chat-attachments/chat-attachments.service';
 import type { BmbChatAttachmentResult } from '../../services/chat-attachments/chat-attachments.service';
 import { getUUID } from '../../_shared/logic/utils';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
+import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
+import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 
-export { defaultBotList, defaultActionList } from './bot_list';
-export type { IBotType, IChatBarActions } from './types';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+export { defaultActionList, defaultBotList } from '../../_shared/logic/components/chat-bar-defaults';
+export type { IBotType, IChatBarActions } from '../../_shared/types/components/chat-bar';
 
 @Component({
   selector: 'bmb-chat-bar',
@@ -167,9 +170,7 @@ export class BmbChatBarComponent implements OnInit {
       (
         bot: IBotType = {
           name: 'TecBot',
-          label: this.translationsService.translate(
-            'chat_bar.default_bot_label',
-          ),
+          label: this.translationsService.translate('chat_bar.default_bot_label'),
           icon: 'bot_tecStandar',
         },
       ): IBotType => bot,
@@ -268,7 +269,7 @@ export class BmbChatBarComponent implements OnInit {
   }
 
   handleKeyDown(event: KeyboardEvent): void {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    if (shouldSendChatBarMessage(event.key, event.shiftKey)) {
       event.preventDefault();
       this.handleSend();
     }
@@ -279,8 +280,7 @@ export class BmbChatBarComponent implements OnInit {
 
     textarea.style.height = 'auto';
 
-    const minHeight = 57;
-    textarea.style.height = `${Math.max(textarea.scrollHeight, minHeight)}px`;
+    textarea.style.height = getChatBarTextareaHeight(textarea.scrollHeight);
   }
 
   handleDisableBotSpeaking(): void {

@@ -12,7 +12,7 @@ import {
   BmbOptionsMessage,
   BmbTextMessage,
   BmbUploadFileMessage,
-} from './types';
+} from '../../_shared/types';
 
 let componentRef: ComponentRef<BmbAiChatBubbleComponent>;
 
@@ -287,6 +287,23 @@ describe('BmbAiChatBubbleComponent', () => {
     });
 
     expect(writeText).not.toHaveBeenCalled();
+  });
+
+  it('should fall back to the rendered DOM text for template messages', () => {
+    const templateMessage = {
+      id: '7',
+      type: 'template',
+      isUser: false,
+      timestamp: new Date(),
+      content: { template: {} },
+    } as unknown as BmbTextMessage;
+
+    componentRef.setInput('message', templateMessage);
+    (component as any).messageContent = {
+      nativeElement: { innerText: '  Rendered template text  ' },
+    };
+
+    expect(component['buildPlainText']()).toBe('Rendered template text');
   });
 
   it('should render text message component', () => {

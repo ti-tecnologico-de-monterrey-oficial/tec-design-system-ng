@@ -6,130 +6,55 @@
 }
 
 .bmb_switch {
-  align-items: center;
-  cursor: pointer;
-  display: flex;
-  height: rem.rem_calc(32);
-  margin: rem.rem_calc(2 0);
+  display: inline-block;
+  padding: rem.rem_calc(8) rem.rem_calc(4);
   position: relative;
+  cursor: pointer;
 
-  &-position {
-    margin-top: rem.rem_calc(8);
-  }
+  &:hover {
+    .bmb_switch-bullet {
+      box-shadow: rem.rem_calc(0 0 0 4) var(--buttons-inactive-switch-box-shadow-hover);
+      scale: 1.2;
+    }
 
-  &-content {
-    width: max-content;
-    display: inline-block;
-  }
-
-  &-direction {
-    display: inline-flex;
-    flex-direction: row;
-    padding: rem.rem_calc(0 8);
-    align-items: center;
+    .bmb_switch-input:checked + .bmb_switch-bullet {
+      box-shadow: rem.rem_calc(0 0 0 4) var(--buttons-active-switch-box-shadow-hover);
+      scale: 1.2;
+    }
   }
 
   &-input {
-    opacity: 0;
-    height: 0;
-    width: 0;
     position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
 
-    &:checked + .bmb_switch-slider {
+    &:checked + .bmb_switch-pill {
       background-color: var(--buttons-active-switch);
 
-      &::after {
-        @include translate-element();
-      }
-
-      .material-symbols-rounded {
-        @include translate-element();
-      }
-
-      &:hover {
-        &::after {
-          box-shadow:
-            rem.rem_calc(0 4 4 0) var(--black-min),
-            rem.rem_calc(0 0 0 10) var(--buttons-active-switch-box-shadow-hover);
-          border-color: rgb(var(--white-primary));
-        }
-      }
-    }
-
-    &:not(:checked):hover + .bmb_switch-slider {
-      &::after {
-        box-shadow:
-          rem.rem_calc(0 4 4 0) var(--black-min),
-          rem.rem_calc(0 0 0 10) var(--buttons-inactive-switch-box-shadow-hover);
-      }
-    }
-
-    &:not(:checked):focus:focus-visible + .bmb_switch-slider {
-      &::after {
-        box-shadow:
-          rem.rem_calc(0 4 4 0) var(--black-min),
-          rem.rem_calc(0 0 0 10) var(--buttons-inactive-switch-box-shadow-focus);
-      }
-    }
-
-    &:is(:checked):focus:focus-visible + .bmb_switch-slider {
-      &::after {
-        box-shadow:
-          rem.rem_calc(0 4 4 0) var(--black-min),
-          rem.rem_calc(0 0 0 10) var(--buttons-active-switch-box-shadow-focus);
-        border-color: rgb(var(--white-primary));
+      .bmb_switch-bullet {
+        transform: translateX(rem.rem_calc(12));
       }
     }
   }
 
-  &-slider {
-    background-color: var(--general-contrasts-50);
-    border-radius: var(--bmb-radius-3);
-    cursor: pointer;
-    display: block;
-    height: rem.rem_calc(20);
-    margin: rem.rem_calc(0 12);
+  &-pill {
+    display: inline-block;
     position: relative;
-    transition:
-      background-color 0.3s,
-      left 0.3s;
-    width: rem.rem_calc(40);
-
-    &::after {
-      background-color: rgb(var(--white-primary));
-      border-radius: var(--bmb-radius-full);
-      border: rem.rem_calc(1) solid var(--general-contrasts-5);
-      box-shadow: rem.rem_calc(0 4 4 0) var(--black-min);
-      bottom: 0;
-      content: '';
-      height: rem.rem_calc(32);
-      left: rem.rem_calc(-12);
-      margin: auto;
-      position: absolute;
-      top: 0;
-      transition: all 0.3s;
-      width: rem.rem_calc(32);
-    }
-
-    .material-symbols-rounded {
-      transition: all 0.3s;
-    }
-
-    &-icon {
-      color: var(--general-contrasts-100);
-      position: absolute;
-      top: 0;
-      left: rem.rem_calc(-6);
-      z-index: 1;
-      transition: all 0.3s;
-    }
+    width: rem.rem_calc(32);
+    height: rem.rem_calc(20);
+    border-radius: rem.rem_calc(16);
+    background-color: var(--general-contrasts-50);
   }
 
-  &-label {
-    color: var(--general-contrasts-100);
-    padding: rem.rem_calc(0 5);
-    @include fonts.font(3, regular);
-    margin: rem.rem_calc(8 0 4 2);
-    cursor: pointer;
+  &-bullet {
+    width: rem.rem_calc(16);
+    height: rem.rem_calc(16);
+    border-radius: var(--bmb-radius-full);
+    background-color: rgb(var(--white-primary));
+    position: absolute;
+    top: rem.rem_calc(2);
+    left: rem.rem_calc(2);
+    transition: all 0.3s ease;
   }
 }

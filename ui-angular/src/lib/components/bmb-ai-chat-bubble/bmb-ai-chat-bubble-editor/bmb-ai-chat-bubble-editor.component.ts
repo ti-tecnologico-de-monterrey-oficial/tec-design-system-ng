@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
+import { canSaveAiChatBubbleEditorDraft } from '../../../_shared/logic/components/ai-chat-bubble-editor';
 
 @Component({
   selector: 'bmb-ai-chat-bubble-editor',
@@ -30,10 +31,9 @@ export class BmbAiChatBubbleEditorComponent implements AfterViewInit {
   readonly saveEvent = output<string>();
 
   protected readonly draft = signal('');
-  protected readonly canSave = computed(() => {
-    const value = this.draft();
-    return value.trim().length > 0 && value !== this.initialValue();
-  });
+  protected readonly canSave = computed(() =>
+    canSaveAiChatBubbleEditorDraft(this.draft(), this.initialValue()),
+  );
 
   private readonly translationService = inject(BmbTranslationsService);
 

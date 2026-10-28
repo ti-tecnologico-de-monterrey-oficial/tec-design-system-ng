@@ -1,22 +1,12 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  signal,
-} from '@angular/core';
-import {
-  BmbChatBarComponent,
-  defaultBotList,
-  type IBotType,
-  type IChatBarActions,
-} from 'ui-angular';
+import { Component, signal } from '@angular/core';
+import { type IBotType } from 'ui-angular';
+import { PropertyPlayground } from '../migration/property-playground/property-playground';
 
 @Component({
   selector: 'app-chat-bar-page',
-  imports: [BmbChatBarComponent],
+  imports: [PropertyPlayground],
   templateUrl: './chat-bar-page.html',
-  styleUrl: './chat-bar-page.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: [':host { display: block; min-height: 0; }'],
 })
 export class ChatBarPage {
   readonly showEmoji = signal(false);
@@ -24,39 +14,8 @@ export class ChatBarPage {
   readonly disableChangeBot = signal(false);
   readonly disabledInput = signal(false);
   readonly isLoading = signal(false);
-  readonly isBotSpeaking = signal(false);
-  readonly disabledBotSpeaking = signal(false);
-  readonly showFileAction = signal(false);
-  readonly emptyBotList = signal(false);
-  readonly placeholder = signal('Escribe un mensaje...');
-  readonly emojiIcon = signal('mood');
-  readonly botList = computed(() =>
-    this.emptyBotList() ? [] : defaultBotList,
-  );
-  readonly actionsList = computed<IChatBarActions[]>(() =>
-    this.showFileAction()
-      ? [
-          {
-            name: 'Adjuntar archivo',
-            label: 'Adjuntar archivo',
-            icon: 'upload_file',
-            action: () => {
-              document.getElementById('inputFile')?.click();
-            },
-          },
-        ]
-      : [],
-  );
   readonly currentBot = signal<IBotType | undefined>(undefined);
   readonly lastEvent = signal('Sin interacciones');
-
-  updatePlaceholder(event: Event): void {
-    this.placeholder.set((event.target as HTMLInputElement).value);
-  }
-
-  updateEmojiIcon(event: Event): void {
-    this.emojiIcon.set((event.target as HTMLInputElement).value);
-  }
 
   handleSendMessage(message: string): void {
     this.lastEvent.set(`onSendMessage: ${message}`);

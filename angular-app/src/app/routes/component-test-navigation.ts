@@ -43,7 +43,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Container button (Default) (*old)',
+            label: 'Container button (Default)',
             url: '/pages/buttons/container-button-default',
             icon: 'widgets',
           },
@@ -104,12 +104,12 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'horizontal_rule',
           },
           {
-            label: 'Evaluation rubric (*old)',
+            label: 'Evaluation rubric',
             url: '/pages/containers/evaluation-rubric',
             icon: 'widgets',
           },
           {
-            label: 'Filter card (*old)',
+            label: 'Filter card',
             url: '/pages/containers/filter-card',
             icon: 'widgets',
           },
@@ -149,12 +149,12 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'notifications',
           },
           {
-            label: 'Profile card (*old)',
+            label: 'Profile card',
             url: '/pages/containers/profile-card',
             icon: 'widgets',
           },
           {
-            label: 'Search card (*old)',
+            label: 'Search card',
             url: '/pages/containers/search-card',
             icon: 'widgets',
           },
@@ -169,7 +169,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Tables (*old)',
+            label: 'Tables',
             url: '/pages/containers/tables',
             icon: 'widgets',
           },
@@ -275,7 +275,7 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
-            label: 'Inner header (*old)',
+            label: 'Inner header',
             url: '/pages/menus/inner-header',
             icon: 'widgets',
           },
@@ -372,7 +372,7 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Portal (*old)',
+        label: 'Portal',
         url: '/pages/dev-tools/portal',
         icon: 'widgets',
       },
@@ -387,7 +387,7 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Login content (*old)',
+        label: 'Login content',
         url: '/pages/internals/login-content',
         icon: 'widgets',
       },
@@ -397,12 +397,12 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Title content template (*old)',
+        label: 'Title content template',
         url: '/pages/internals/title-content-template',
         icon: 'widgets',
       },
       {
-        label: 'Timestream (*old)',
+        label: 'Timestream',
         url: '/pages/internals/timestream',
         icon: 'widgets',
       },
@@ -417,27 +417,27 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Timestream card (full) (*old)',
+        label: 'Timestream card (full)',
         url: '/pages/organisms/timestream-card-full',
         icon: 'widgets',
       },
       {
-        label: 'Login onboarding mobile (*old)',
+        label: 'Login onboarding mobile',
         url: '/pages/organisms/login-onboarding-mobile',
         icon: 'widgets',
       },
       {
-        label: 'Account statement (*old)',
+        label: 'Account statement',
         url: '/pages/organisms/account-statement',
         icon: 'widgets',
       },
       {
-        label: 'Notification center (*old)',
+        label: 'Notification center',
         url: '/pages/organisms/notification-center',
         icon: 'widgets',
       },
       {
-        label: 'Grades (*old)',
+        label: 'Grades',
         url: '/pages/organisms/grades',
         icon: 'widgets',
       },
@@ -463,7 +463,7 @@ export const navigationTest: ComponentGroupTest[] = [
     label: 'Deprecated',
     items: [
       {
-        label: 'Home card chat (*old)',
+        label: 'Home card chat',
         url: '/pages/deprecated/home-card-chat',
         icon: 'widgets',
       },
@@ -473,7 +473,7 @@ export const navigationTest: ComponentGroupTest[] = [
     label: 'Templates',
     items: [
       {
-        label: 'Mobile (*old)',
+        label: 'Mobile',
         url: '/pages/templates/mobile',
         icon: 'widgets',
       },
