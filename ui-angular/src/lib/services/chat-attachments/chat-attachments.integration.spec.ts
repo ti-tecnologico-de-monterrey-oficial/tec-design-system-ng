@@ -111,7 +111,7 @@ describe('Chat attachment coordination without a chat card', () => {
     fixture.detectChanges();
     expect(
       fixture.nativeElement.querySelector(
-        '.bmb_upload-file-message-alert-warning',
+        '.bmb_toast-warning',
       ),
     ).toBeTruthy();
     fixture.nativeElement
