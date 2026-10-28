@@ -9,7 +9,7 @@
         (change)="selectMode($event)"
       >
         @for (option of modes; track option) {
-          <option [value]="option">{{ option }}</option>
+        <option [value]="option">{{ option }}</option>
         }
       </select>
       <bmb-action-icon
@@ -21,6 +21,66 @@
     </div>
   </header>
 
+  <form
+    class="attachment-page-toolbar"
+    [formGroup]="configurationForm"
+    (ngSubmit)="applyConfiguration()"
+  >
+    <label for="attachment-formats">Accepted formats (comma-separated)</label>
+    <input
+      id="attachment-formats"
+      type="text"
+      formControlName="acceptedFormats"
+      aria-describedby="attachment-formats-help"
+    />
+    <label for="attachment-max-size">Maximum file size (MB)</label>
+    <input
+      id="attachment-max-size"
+      type="number"
+      min="0"
+      step="any"
+      formControlName="maxFileSize"
+    />
+    <button type="submit">Apply limits</button>
+  </form>
+  <p id="attachment-formats-help">
+    Use extensions (.pdf), MIME types (application/pdf), or image/*, audio/*,
+    video/*. Leave formats empty to allow all types. Changes apply to new
+    selections; existing attachments are retained.
+  </p>
+  @if (configurationError()) {
+  <p role="alert">{{ configurationError() }}</p>
+  }
+  <p>
+    Select a file from the bubble or attach/drop it in the chat bar. Valid files
+    appear in the bar inside the card and in Pending Files. Allowed: {{
+    acceptedFormats().join(', ') || 'All formats' }}. Maximum: {{ maxFileSize()
+    }} MB. Select the same file twice to test duplicates, an unsupported format
+    to test format validation, or a file larger than {{ maxFileSize() }} MB to
+    test size.
+  </p>
+  <div class="attachment-page-toolbar">
+    <button
+      type="button"
+      [disabled]="!lastSentFiles().length"
+      (click)="simulateUpload(true)"
+    >
+      Simulate interrupted upload
+    </button>
+    <button
+      type="button"
+      [disabled]="!lastSentFiles().length"
+      (click)="simulateUpload(false)"
+    >
+      Confirm simulated upload success
+    </button>
+    <span role="status">Retry requests: {{ retryCount() }}</span>
+  </div>
+  <p>
+    No files are uploaded to a server. Retry emits an event; use the controls to
+    simulate the result.
+  </p>
+
   <div class="attachment-page-layout">
     <section class="attachment-page-preview" aria-label="Conversation">
       <bmb-ai-chat-card
@@ -30,32 +90,61 @@
         subtitle="Attachments"
       >
         @for (message of messages(); track message.id) {
-          <bmb-ai-chat-bubble
-            [message]="message"
-            [showActions]="false"
-            [testId]="message.id"
-          />
+        <bmb-ai-chat-bubble
+          [message]="message"
+          [showActions]="false"
+          [testId]="message.id"
+          (attachmentResult)="handleAttachmentResult($event)"
+          (retryUploadRequested)="handleRetryUpload($event)"
+        />
         }
         <bmb-chat-bar
           placeholder="Write a message"
           [disableChangeBot]="true"
           [actionsList]="actionsList"
+          [acceptedExtensions]="acceptedFormats()"
+          [maxFileSize]="maxFileSize()"
           [(files)]="files"
           [(isLoading)]="isLoading"
           (onSendMessage)="handleSendMessage($event)"
           (onSendFiles)="handleSendFiles($event)"
+          (attachmentResult)="handleAttachmentResult($event)"
         />
       </bmb-ai-chat-card>
     </section>
 
     <aside class="attachment-page-inspector" aria-label="Attachment events">
       <section>
+        <h2>
+          Validation / upload results
+          <span>{{ attachmentResults().length }}</span>
+        </h2>
+        <ol class="attachment-page-submissions" aria-live="polite">
+          @for (result of attachmentResults(); track $index) {
+          <li>
+            <strong>{{ result.status }} — {{ result.sourceId }}</strong>
+            <span>{{ result.accepted.length }} accepted file(s)</span>
+            @for (error of result.errors; track $index) {
+            <span
+              >{{ error.code }}: {{ error.fileName ?? error.extension ??
+              'Conversation' }}</span
+            >
+            }
+          </li>
+          } @empty {
+          <li class="attachment-page-empty">No results yet</li>
+          }
+        </ol>
+      </section>
+      <section>
         <h2>Pending Files <span>{{ files().length }}</span></h2>
         <ul class="attachment-page-file-list" aria-live="polite">
           @for (file of files(); track $index) {
-            <li><strong>{{ file.name }}</strong><span>{{ file.size }} bytes</span></li>
+          <li>
+            <strong>{{ file.name }}</strong><span>{{ file.size }} bytes</span>
+          </li>
           } @empty {
-            <li class="attachment-page-empty">No pending files</li>
+          <li class="attachment-page-empty">No pending files</li>
           }
         </ul>
       </section>
@@ -64,9 +153,12 @@
         <h2>Last onSendFiles <span>{{ lastSentFiles().length }}</span></h2>
         <ul class="attachment-page-file-list" aria-live="polite">
           @for (file of lastSentFiles(); track $index) {
-            <li><strong>{{ file.name }}</strong><span>{{ file.type || 'Unknown type' }}</span></li>
+          <li>
+            <strong>{{ file.name }}</strong
+            ><span>{{ file.type || 'Unknown type' }}</span>
+          </li>
           } @empty {
-            <li class="attachment-page-empty">No files sent</li>
+          <li class="attachment-page-empty">No files sent</li>
           }
         </ul>
       </section>
@@ -75,16 +167,18 @@
         <h2>Submissions <span>{{ submissions().length }}</span></h2>
         <ol class="attachment-page-submissions" aria-live="polite">
           @for (submission of submissions(); track submission.id) {
-            <li>
-              <strong>Submission {{ submission.id }}</strong>
-              @if (submission.text) { <p>{{ submission.text }}</p> }
-              <span>{{ submission.files.length }} file(s)</span>
-              @for (file of submission.files; track $index) {
-                <span>{{ file.name }}</span>
-              }
-            </li>
+          <li>
+            <strong>Submission {{ submission.id }}</strong>
+            @if (submission.text) {
+            <p>{{ submission.text }}</p>
+            }
+            <span>{{ submission.files.length }} file(s)</span>
+            @for (file of submission.files; track $index) {
+            <span>{{ file.name }}</span>
+            }
+          </li>
           } @empty {
-            <li class="attachment-page-empty">No submissions</li>
+          <li class="attachment-page-empty">No submissions</li>
           }
         </ol>
       </section>

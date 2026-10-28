@@ -28,13 +28,24 @@
     overflow-wrap: anywhere;
   }
 
-  select {
+  select,
+  input,
+  button {
     background: var(--containers-main);
     border: 1px solid var(--general-contrasts-container-outline);
     border-radius: 4px;
     color: inherit;
     min-height: 2.5rem;
     padding: 0.5rem;
+  }
+
+  button {
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
   }
 
   &-layout {

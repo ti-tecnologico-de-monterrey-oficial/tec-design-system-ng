@@ -1,12 +1,26 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import {
   BmbActionIconComponent,
   BmbAIChatCardComponent,
   BmbAiChatBubbleComponent,
   BmbChatBarComponent,
+  BmbChatAttachmentsService,
   defaultActionList,
   IBMB_AI_CHAT_CARD_MODE,
   type BmbChatMessage,
+  type BmbChatAttachmentResult,
+  type BmbUploadFileRequestEvent,
   type IBmbAIChatCardMode,
 } from 'ui-angular';
 
@@ -20,6 +34,7 @@ interface AttachmentSubmission {
   selector: 'app-ai-chat-card-attachment',
   standalone: true,
   imports: [
+    ReactiveFormsModule,
     BmbActionIconComponent,
     BmbAIChatCardComponent,
     BmbAiChatBubbleComponent,
@@ -28,8 +43,24 @@ interface AttachmentSubmission {
   templateUrl: './ai-chat-card-attachment.html',
   styleUrl: './ai-chat-card-attachment.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [BmbChatAttachmentsService],
 })
 export class AIChatCardAttachment {
+  readonly attachments = inject(BmbChatAttachmentsService);
+  readonly acceptedFormats = signal(['.pdf', '.txt', '.csv', 'image/*']);
+  readonly maxFileSize = signal(2);
+  readonly configurationError = signal('');
+  readonly configurationForm = new FormGroup({
+    acceptedFormats: new FormControl(this.acceptedFormats().join(', '), {
+      nonNullable: true,
+    }),
+    maxFileSize: new FormControl(2, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.min(0)],
+    }),
+  });
+  readonly attachmentResults = signal<BmbChatAttachmentResult[]>([]);
+  readonly retryCount = signal(0);
   readonly modes = Object.values(IBMB_AI_CHAT_CARD_MODE);
   readonly mode = signal<IBmbAIChatCardMode>(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
   readonly isExpanded = signal(true);
@@ -46,8 +77,50 @@ export class AIChatCardAttachment {
 
   private nextSubmissionId = 0;
 
+  applyConfiguration(): void {
+    if (this.configurationForm.invalid) {
+      this.configurationError.set(
+        'Maximum size must be a non-negative number in MB.',
+      );
+      return;
+    }
+    const values = this.configurationForm.getRawValue();
+    const acceptedFormats = values.acceptedFormats.trim()
+      ? values.acceptedFormats.split(',').map((format) => format.trim())
+      : [];
+    try {
+      this.attachments.validateRules({
+        acceptedFormats,
+        maxFileSize: values.maxFileSize,
+      });
+    } catch (error) {
+      if (!(error instanceof Error)) throw error;
+      this.configurationError.set(error.message);
+      return;
+    }
+    this.configurationError.set('');
+    this.acceptedFormats.set(acceptedFormats);
+    this.maxFileSize.set(values.maxFileSize);
+    this.messages.update((messages) =>
+      messages.map((message) =>
+        message.type === 'upload-file'
+          ? {
+              ...message,
+              content: {
+                ...message.content,
+                acceptedFormats,
+                maxFileSize: values.maxFileSize,
+              },
+            }
+          : message,
+      ),
+    );
+  }
+
   selectMode(event: Event): void {
-    this.mode.set((event.target as HTMLSelectElement).value as IBmbAIChatCardMode);
+    this.mode.set(
+      (event.target as HTMLSelectElement).value as IBmbAIChatCardMode,
+    );
   }
 
   handleSendMessage(message: string): void {
@@ -84,7 +157,29 @@ export class AIChatCardAttachment {
     this.lastSentFiles.set([...files]);
   }
 
+  handleAttachmentResult(result: BmbChatAttachmentResult): void {
+    this.attachmentResults.update((results) => [...results, result]);
+  }
+
+  simulateUpload(interrupted: boolean): void {
+    this.attachments.reportUploadResult(
+      'attachment-request',
+      interrupted ? { code: 'interrupted' } : undefined,
+    );
+    const result = this.attachments.result('attachment-request');
+    if (result) this.handleAttachmentResult(result);
+  }
+
+  handleRetryUpload(event: BmbUploadFileRequestEvent): void {
+    if (event.messageId === 'attachment-request') {
+      this.retryCount.update((count) => count + 1);
+    }
+  }
+
   reset(): void {
+    this.attachments.clear('attachment-request');
+    this.attachmentResults.set([]);
+    this.retryCount.set(0);
     this.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
     this.isExpanded.set(true);
     this.isLoading.set(false);
@@ -106,7 +201,8 @@ export class AIChatCardAttachment {
           fileName: 'Supporting document',
           text: 'Please attach your supporting document.',
           buttonLabel: 'Select document',
-          acceptedFormats: ['.pdf', '.txt', '.csv', 'image/*'],
+          acceptedFormats: this.acceptedFormats(),
+          maxFileSize: this.maxFileSize(),
         },
       },
     ];
