@@ -23,7 +23,7 @@ import {
   shouldSendChatBarMessage,
 } from '../../_shared/logic/components/chat-bar';
 import { defaultBotList } from '../../_shared/logic/components/chat-bar-defaults';
-import type { IBmbNativeModal } from '../../_shared/types';
+import type { IBmbNativeModal as IBmbNativeModalGeneric } from '../../_shared/types';
 import type {
   IBotType,
   IChatBarActions,
@@ -43,8 +43,16 @@ import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 
-export { defaultActionList, defaultBotList } from './bot_list';
-export type { IBotType, IChatBarActions } from './types';
+export {
+  defaultActionList,
+  defaultBotList,
+} from '../../_shared/logic/components/chat-bar-defaults';
+export type {
+  IBotType,
+  IChatBarActions,
+} from '../../_shared/types/components/chat-bar';
+
+type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 
 @Component({
   selector: 'bmb-chat-bar',

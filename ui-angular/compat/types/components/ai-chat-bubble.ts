@@ -2,8 +2,9 @@
 import type { TemplateRef } from '@angular/core';
 import type * as Core from '../contracts/ai-chat-bubble';
 export * from '../contracts/ai-chat-bubble';
-export interface BmbTemplateMessage
-  extends Core.BmbTemplateMessage<TemplateRef<unknown>> {}
-export type BmbChatMessage = Core.BmbChatMessage<TemplateRef<unknown>>;
-export interface BmbChatActionEvent
-  extends Core.BmbChatActionEvent<TemplateRef<unknown>> {}
+export interface BmbTemplateMessage<TTemplate = TemplateRef<unknown>>
+  extends Core.BmbTemplateMessage<TTemplate> {}
+export type BmbChatMessage<TTemplate = TemplateRef<unknown>> =
+  Core.BmbChatMessage<TTemplate>;
+export interface BmbChatActionEvent<TTemplate = TemplateRef<unknown>>
+  extends Core.BmbChatActionEvent<TTemplate> {}

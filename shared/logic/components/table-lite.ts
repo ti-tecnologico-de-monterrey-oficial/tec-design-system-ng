@@ -78,7 +78,7 @@ export function getTableLitePaginationText(
   return `${startIndex} - ${endIndex} de ${total}`;
 }
 
-export function normalizeTableLiteColumns<TTemplate>(
+export function normalizeTableLiteColumns<TTemplate = unknown>(
   columns: ITableLiteColumn<TTemplate>[],
 ): ITableLiteColumn<TTemplate>[] {
   return (columns || []).map((col) => ({
@@ -88,7 +88,7 @@ export function normalizeTableLiteColumns<TTemplate>(
   }));
 }
 
-export function filterTableLiteRows<TTemplate>(
+export function filterTableLiteRows<TTemplate = unknown>(
   originalData: any[],
   rawColumns: ITableLiteColumn<TTemplate>[],
   filterValues: Record<string, any>,

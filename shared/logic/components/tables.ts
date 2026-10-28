@@ -75,7 +75,7 @@ export function buildTablesDisplayColumns(
   return displayColumns;
 }
 
-export function normalizeTablesColumns<TTemplate>(
+export function normalizeTablesColumns<TTemplate = unknown>(
   columns: TableColum<TTemplate>[],
 ): TableColum<TTemplate>[] {
   return (columns || []).map((col) => ({
@@ -85,7 +85,7 @@ export function normalizeTablesColumns<TTemplate>(
   }));
 }
 
-export function filterTablesRows<TTemplate>(
+export function filterTablesRows<TTemplate = unknown>(
   originalData: any[],
   rawColumns: TableColum<TTemplate>[],
   filterValues: Record<string, any>,

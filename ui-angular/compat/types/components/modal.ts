@@ -2,7 +2,9 @@
 import type { TemplateRef, Type } from '@angular/core';
 import type * as Core from '../contracts/modal';
 export * from '../contracts/modal';
-export interface ModalDataConfig
-  extends Core.ModalDataConfig<TemplateRef<any>> {}
-export interface IBmbNativeModal
-  extends Core.IBmbNativeModal<TemplateRef<any>, Type<any>> {}
+export interface ModalDataConfig<TContent = TemplateRef<any>>
+  extends Core.ModalDataConfig<TContent> {}
+export interface IBmbNativeModal<
+  TContent = TemplateRef<any> | Type<any>,
+  TComponent = never,
+> extends Core.IBmbNativeModal<TContent, TComponent> {}

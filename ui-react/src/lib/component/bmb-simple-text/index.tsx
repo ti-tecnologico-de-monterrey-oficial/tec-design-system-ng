@@ -3,6 +3,8 @@ import { BmbSimpleTextSizes } from '../../_shared/types/components/simple-text';
 import type { IBmbSimpleTextElementType, IBmbSimpleTextSize, IBmbSimpleTextWeight } from '../../_shared/types/components/simple-text';
 import type { IBmbBaseGeneralContrastColors, IBmbSemanticBaseColors } from '../../_shared/types/foundations/colors/color-type';
 
+export type { IBmbSimpleTextElementType };
+
 export interface BmbSimpleTextProps {
   size?: IBmbSimpleTextSize;
   weight?: IBmbSimpleTextWeight;

@@ -2,4 +2,5 @@
 import type { TemplateRef } from '@angular/core';
 import type * as Core from '../contracts/tables';
 export * from '../contracts/tables';
-export interface TableColum extends Core.TableColum<TemplateRef<any>> {}
+export interface TableColum<TTemplate = TemplateRef<any>>
+  extends Core.TableColum<TTemplate> {}
