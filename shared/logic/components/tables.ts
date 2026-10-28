@@ -69,7 +69,9 @@ export function buildTablesDisplayColumns(
   return displayColumns;
 }
 
-export function normalizeTablesColumns(columns: TableColum[]): TableColum[] {
+export function normalizeTablesColumns<TTemplate = unknown>(
+  columns: TableColum<TTemplate>[],
+): TableColum<TTemplate>[] {
   return (columns || []).map((col) => ({
     type: 'string',
     labelEn: col.label,
@@ -77,9 +79,9 @@ export function normalizeTablesColumns(columns: TableColum[]): TableColum[] {
   }));
 }
 
-export function filterTablesRows(
+export function filterTablesRows<TTemplate = unknown>(
   originalData: any[],
-  rawColumns: TableColum[],
+  rawColumns: TableColum<TTemplate>[],
   filterValues: Record<string, any>,
 ): any[] {
   let filtered = [...originalData];

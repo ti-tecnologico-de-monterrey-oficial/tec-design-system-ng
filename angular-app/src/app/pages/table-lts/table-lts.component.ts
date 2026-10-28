@@ -25,7 +25,7 @@ export class TableLtsComponent implements OnInit, AfterViewInit {
   data = signal<any[]>([]);
   @ViewChild('conceptTemplate') conceptTemplate!: TemplateRef<any>;
 
-  columns: TableColum[] = [];
+  columns: TableColum<TemplateRef<any>>[] = [];
 
   filtersModel = model<{ [key: string]: any }>({
     first_name_contains: 'jj',

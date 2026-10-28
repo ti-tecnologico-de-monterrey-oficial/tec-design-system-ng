@@ -7,10 +7,14 @@ import {
   inject,
   Injectable,
   signal,
+  TemplateRef,
+  Type,
 } from '@angular/core';
 import { getUUID } from '../../../_shared/logic/utils';
-import { IBmbNativeModal } from '../../../_shared/types';
+import { IBmbNativeModal as IBmbNativeModalGeneric } from '../../../_shared/types';
 import { BmbPortalComponent } from '../../../components/bmb-portal/bmb-portal.component';
+
+type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any> | Type<any>>;
 
 @Injectable({
   providedIn: 'root',

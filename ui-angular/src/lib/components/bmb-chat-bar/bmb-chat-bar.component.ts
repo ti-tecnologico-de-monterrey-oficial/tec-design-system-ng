@@ -23,7 +23,9 @@ import {
   shouldSendChatBarMessage,
 } from '../../_shared/logic/components/chat-bar';
 import { defaultBotList } from '../../_shared/logic/components/chat-bar-defaults';
-import type { IBmbNativeModal } from '../../_shared/types';
+import type { IBmbNativeModal as IBmbNativeModalGeneric } from '../../_shared/types';
+
+type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import type {
   IBotType,
   IChatBarActions,

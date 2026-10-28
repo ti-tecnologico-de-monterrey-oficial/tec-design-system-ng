@@ -1,6 +1,4 @@
-import { SafeHtml } from '@angular/platform-browser';
-
-export interface IBmbCardNoticeDescription {
-  pageOne?: string | SafeHtml;
-  pageTwo?: string | SafeHtml;
+export interface IBmbCardNoticeDescription<TSafeHtml = unknown> {
+  pageOne?: string | TSafeHtml;
+  pageTwo?: string | TSafeHtml;
 }
