@@ -1,4 +1,5 @@
 import { TemplateRef } from '@angular/core';
+import type { BmbChatAttachmentError } from '../../services/chat-attachments/chat-attachments.service';
 
 export type BmbChatMessageType =
   | 'text'
@@ -89,8 +90,9 @@ export interface BmbUploadFileMessage extends BmbChatBaseMessage {
     text?: string;
     buttonLabel?: string;
     acceptedFormats?: string[];
-    /** Display-only limit in MB; file validation is handled by the consuming app. */
+    /** Maximum size per file in MB (1024 * 1024 bytes). Defaults to 2. */
     maxFileSize?: number;
+    error?: BmbChatAttachmentError;
     additionalRequirements?: string[];
     cancelKeyword?: string;
   };
