@@ -4,8 +4,47 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-alert-center />`,
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  tabsName: string[] | IBmbAlertCenterTabConfig[] = [
+    { title: 'Notificaciones', isMobile: true, isDesktop: true },
+    { title: 'No leídos', isMobile: true, isDesktop: true },
+    { title: 'Favoritos', isMobile: false, isDesktop: true },
+    { title: 'Archivados', isMobile: false, isDesktop: true },
+    { title: 'Anuncios', isMobile: false, isDesktop: false },
+  ];
+
+  emptyStateData: IBmbAlertEmptyState = {
+    primaryText: 'No hay notificaciones',
+    secondaryText: 'Vuelve a intentarlo más tarde.',
+    tertiaryText: 'Si el problema persiste, contacta soporte.',
+    buttonText: 'Ir al inicio',
+    size: 'large',
+    showButton: true,
+  };
+
+  enabledFooterOptions: IBmbBottomNavigationBarProps = {
+    tags: true,
+    favorites: true,
+    archive: true,
+  };
+}
+</script>
+
+<bmb-alert-center
+  [selectedTab]="selectedTab"
+  [tabsName]="tabsName"
+  dateFormat="dd/MM/yyyy"
+  [hideTabs]="false"
+  [emptyStateData]="emptyStateData"
+  [showMobileVersion]="false"
+  [enableMultipleSelection]="true"
+  [enabledFooterOptions]="enabledFooterOptions"
+  [enableSwipe]="false"
+  [notificationSelectionState]="{ '1': true, '2': false }"
+/>`,
   imports: [
+    "import type { IBmbAlertCenterTabConfig, IBmbAlertEmptyState, IBmbBottomNavigationBarProps } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
     "import { BmbAlertCenterComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
   id: 'bmb-alert-center',

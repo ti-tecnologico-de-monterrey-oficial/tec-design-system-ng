@@ -29,9 +29,11 @@ import {
   BmbAiChatBubbleComponent,
   IBmbActionHeader,
   IChatBarActions,
-  BmbChatMessage,
+  BmbChatMessage as BmbChatMessageGeneric,
   BmbChatBarComponent,
 } from 'ui-angular';
+
+type BmbChatMessage = BmbChatMessageGeneric<TemplateRef<unknown>>;
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { sidebarOptions } from './sidebarOptions';

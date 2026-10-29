@@ -3,12 +3,12 @@
 // component=BmbLegendComponent
 import figma from 'figma'
 
-const instance = figma.selectedInstance
-const label = instance.getString('Title')
-const value = instance.getString('Value')
-
 export default {
-  example: figma.code`<bmb-legend label="${label}" value="${value}" />`,
+  example: figma.code`<bmb-legend
+  label="Title"
+  value="$0.00"
+  indicatorAppearance="normal"
+/>`,
   imports: [
     "import { BmbLegendComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
