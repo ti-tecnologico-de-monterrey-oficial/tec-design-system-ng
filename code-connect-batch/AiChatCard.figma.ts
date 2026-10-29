@@ -3,6 +3,7 @@
 // component=BmbAIChatCardComponent
 import figma from 'figma'
 import { getIcon } from './icon-image'
+import { getBoxIconColor } from './box-icon-color'
 
 export default {
   example: figma.code`<script lang="ts">
@@ -15,7 +16,7 @@ export class ExampleComponent {
 
 <bmb-ai-chat-card
   mode="compact"
-  bgIconAppearance="gray-charade-500"
+  bgIconAppearance="${getBoxIconColor('gray-charade-500', 'InteractiveIcon_Base', ['BB_2_12_3', 'BB_2_12_2'])}"
   componentTitle=""
   subtitle=""
   [currentBot]="currentBot"

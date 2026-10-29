@@ -3,11 +3,12 @@
 // component=BmbBoxIconComponent
 import figma from 'figma'
 import { getIcon } from './icon-image'
+import { getBoxIconColor } from './box-icon-color'
 
 export default {
   example: figma.code`<bmb-box-icon
   iconName="${getIcon('face')}"
-  boxColor="semantic-success"
+  boxColor="${getBoxIconColor('semantic-success')}"
   boxShape="square"
   boxSize="small"
 />`,

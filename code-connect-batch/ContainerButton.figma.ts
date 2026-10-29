@@ -3,9 +3,22 @@
 // component=BmbContainerButtonComponent
 import figma from 'figma'
 import { getIcon } from './icon-image'
+import { getBoxIconColor } from './box-icon-color'
+
+const isAlternative = figma.selectedInstance.getPropertyValue('Type') === 'Alternative'
 
 export default {
-  example: figma.code`<script lang="ts">
+  example: isAlternative
+    ? figma.code`<bmb-container-button-complex-alternative
+  componentTitle="Title container button"
+  subtitle="sub title"
+  leftIconName="${getIcon('menu_open')}"
+  leftIconBoxColor="${getBoxIconColor('general-contrasts-main-selection', 'Box Icon')}"
+  [isBookmarkActive]="false"
+  [isDisabled]="false"
+  [isError]="false"
+/>`
+    : figma.code`<script lang="ts">
 export class ExampleComponent {
   dropdownMenuItems: IDropdownItem[] = [
     {
@@ -47,9 +60,13 @@ export class ExampleComponent {
   [enableBookmark]="false"
   [dropdownMenuItems]="dropdownMenuItems"
 />`,
-  imports: [
-    "import type { IDropdownItem } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
-    "import { BmbContainerButtonComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
-  ],
+  imports: isAlternative
+    ? [
+      "import { BmbContainerButtonComplexAlternativeComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
+    ]
+    : [
+      "import type { IDropdownItem } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
+      "import { BmbContainerButtonComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
+    ],
   id: 'bmb-container-button',
 }

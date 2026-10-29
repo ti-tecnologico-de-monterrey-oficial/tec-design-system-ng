@@ -3,6 +3,7 @@
 // component=BmbInteractiveIconComponent
 import figma from 'figma'
 import { getIcon } from './icon-image'
+import { getBoxIconColor } from './box-icon-color'
 
 export default {
   example: figma.code`<bmb-interactive-icon
@@ -10,7 +11,7 @@ export default {
   componentTitle="Canvas"
   description=""
   icon="${getIcon('face')}"
-  appearance="red"
+  appearance="${getBoxIconColor('red', 'Box Icon')}"
   [horizontal]="false"
   layout="regular"
 />`,

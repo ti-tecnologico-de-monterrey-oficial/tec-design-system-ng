@@ -3,6 +3,7 @@
 // component=BmbHomeCardComponent
 import figma from 'figma'
 import { getIcon } from './icon-image'
+import { getBoxIconColor } from './box-icon-color'
 
 export default {
   example: figma.code`<script lang="ts">
@@ -17,7 +18,7 @@ export class ExampleComponent {
   leftIcon="${getIcon('chevron_left')}"
   icon="${getIcon('account_balance_wallet')}"
   [iconSize]="iconSize"
-  bgIconAppearance="green-light"
+  bgIconAppearance="${getBoxIconColor('green-light', 'InteractiveIcon_Base', ['Gcard_Header'])}"
   subtitle="Subtitle"
   [dataLocalNav]="dataLocalNav"
   [actionHeaders]="actionHeaders"

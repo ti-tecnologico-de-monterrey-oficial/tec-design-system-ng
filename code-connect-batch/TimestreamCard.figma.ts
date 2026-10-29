@@ -3,6 +3,7 @@
 // component=BmbTimestreamCardComponent
 import figma from 'figma'
 import { getIcon } from './icon-image'
+import { getBoxIconColor } from './box-icon-color'
 
 export default {
   example: figma.code`<script lang="ts">
@@ -117,7 +118,7 @@ export class ExampleComponent {
   subtitle="Subtitle"
   [dataLocalNav]="dataLocalNav"
   icon="${getIcon('trending_up')}"
-  bgIconAppearance="mitec-red"
+  bgIconAppearance="${getBoxIconColor('mitec-red', 'InteractiveIcon_Base', ['BB_2_12_3', 'BB_2_12_2'])}"
   dateFormat="yyyy-MM-dd"
   lang="es"
   [events]="events"

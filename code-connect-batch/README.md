@@ -56,6 +56,14 @@ Los formatos `typescript` y `expression` permiten usar el mismo helper dentro de
 
 Los imports locales de helpers requieren Code Connect CLI **1.5.0 o posterior**, que los empaqueta al publicar: [notas oficiales de Figma](https://github.com/figma/code-connect/blob/main/CHANGELOG.md#code-connect-v150-29-july-2026).
 
+## Colores de Box Icon
+
+La lectura de `boxColor` está centralizada en [box-icon-color.ts](box-icon-color.ts). BoxIcon usa su propiedad directamente; InteractiveIcon la escribe como `appearance`, y los encabezados de HomeCard, AI Chat Card y TimestreamCard la escriben como `bgIconAppearance`. Las búsquedas anidadas se limitan a las rutas confirmadas en Figma.
+
+La variante `Alternative` de ContainerButton muestra `BmbContainerButtonComplexAlternativeComponent` y su input `leftIconBoxColor`; las demás variantes conservan el ejemplo existente.
+
+SearchCard queda pendiente: el contrato de `backgroundColorIcon` todavía usa colores antiguos y no admite `black-primary`, presente en su Box Icon de Figma. No se agregó un cast ni una prop inexistente al padre. ActionMenu y HomeCardMobile conservan sus ejemplos de color porque sus contextos consultados no exponen un Box Icon equivalente.
+
 ## Configuración
 
 Existen dos archivos de configuración:
