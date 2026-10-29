@@ -35,21 +35,6 @@
             alignItems="center"
             [dynamicCols]="true"
           >
-            @if (aiChatHeaderActions(); as chatActions) {
-              @for (chatAction of chatActions; track $index) {
-                <ng-container
-                  *ngTemplateOutlet="
-                    itemByIndex;
-                    context: {
-                      headerAction: chatAction,
-                      idElement: $index.toString(),
-                    }
-                  "
-                  bmbLayoutItem
-                  [isDynamicItem]="true"
-                />
-              }
-            }
             @if (isMobile()) {
               @if (actionHeaders().length === 0) {
                 @if (showRightButton()) {
