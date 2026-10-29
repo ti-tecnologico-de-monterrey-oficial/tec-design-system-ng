@@ -30,7 +30,7 @@ import { BmbButtonDirective } from '../../../../directives/bmb-button/button.dir
 import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../../../directives/bmb-layout/bmb-layout.directive';
 import { TranslatePipe } from '../../../../pipes/translations';
-import { BmbNativeModalService } from '../../../../services/old/modal/native-modal.service';
+import { BmbNativeModalService } from '../../../../services/modal/native-modal.service';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 import { BmbCheckboxComponent } from '../../../bmb-checkbox/bmb-checkbox.component';
 import { BmbChevronTitleSelectorComponent } from '../../../bmb-chevron-title-selector/bmb-chevron-title-selector.component';

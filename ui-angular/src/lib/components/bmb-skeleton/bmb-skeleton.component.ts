@@ -7,7 +7,7 @@ import {
 import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
-} from '../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
+} from '../../directives/bmb-layout-grid/bmb-layout-grid.directive';
 import type { BmbSkeletonType } from '../../_shared/types/components/skeleton';
 
 @Component({

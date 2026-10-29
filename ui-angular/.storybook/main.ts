@@ -30,7 +30,32 @@ const config: StorybookConfig = {
     docsMode: process.env.STORYBOOK_DOCS_MODE === 'true',
     defaultName: 'Documentation',
   },
-  webpackFinal: async (config) => {
+  webpackFinal: async (config, { configType }) => {
+    config.mode = configType === 'PRODUCTION' ? 'production' : 'development';
+    for (const plugin of config.plugins ?? []) {
+      if (plugin && 'definitions' in plugin) {
+        const definitions = plugin.definitions as Record<string, unknown>;
+        if ('process.env.NODE_ENV' in definitions) {
+          definitions['process.env.NODE_ENV'] = JSON.stringify(config.mode);
+        }
+        const environment = definitions['process.env'];
+        if (
+          environment &&
+          typeof environment === 'object' &&
+          'NODE_ENV' in environment
+        ) {
+          environment.NODE_ENV = JSON.stringify(config.mode);
+        }
+      }
+    }
+    // Angular supplies source-map plugins; Webpack's devtool would add another.
+    if (
+      config.plugins?.some(
+        (plugin) => plugin?.constructor?.name === 'SourceMapDevToolPlugin',
+      )
+    ) {
+      config.devtool = false;
+    }
     config.resolve ||= {};
     config.resolve.alias = {
       ...config.resolve.alias,

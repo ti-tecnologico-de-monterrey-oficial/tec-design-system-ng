@@ -50,6 +50,10 @@ describe('BmbNoticeCardComponent', () => {
   });
 
   describe('getPage', () => {
+    it('returns no page content when description is absent', () => {
+      componentRef.setInput('description', undefined);
+      expect(component.getPage('pageOne')).toBeUndefined();
+    });
     it('should return sanitized content for an existing page', () => {
       const result = component.getPage('pageOne');
       expect(result).toBeTruthy();

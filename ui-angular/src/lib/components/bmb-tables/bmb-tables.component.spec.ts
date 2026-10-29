@@ -1,4 +1,9 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbTablesComponent } from './bmb-tables.component';
@@ -29,6 +34,142 @@ describe('BmbTablesComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('clamps server pages to available data', () => {
+    fixture.componentRef.setInput('serverSide', true);
+    fixture.componentRef.setInput('totalItems', 21);
+    fixture.componentRef.setInput('pageSize', 10);
+    fixture.detectChanges();
+    component.currentPage.set(-1);
+    fixture.detectChanges();
+    expect(component.currentPage()).toBe(0);
+    component.currentPage.set(99);
+    fixture.detectChanges();
+    expect(component.currentPage()).toBe(2);
+  });
+
+  it('clears selection when the clearSelection input changes', () => {
+    component.selection.select(data[0]);
+    component.clearSelection.set(true);
+    const select = jest.spyOn(component.select, 'emit');
+    component.ngOnChanges({ clearSelection: { currentValue: true } as any });
+    expect(component.selection.selected).toEqual([]);
+    expect(component.clearSelection()).toBe(false);
+    expect(select).toHaveBeenCalledWith([]);
+    component.ngOnChanges({ clearSelection: { currentValue: false } as any });
+    expect(select).toHaveBeenCalledTimes(1);
+  });
+
+  it('reports full and partial selection in all-rows mode', () => {
+    fixture.componentRef.setInput('data', data);
+    component.parseData(data);
+    fixture.componentRef.setInput('selectionMode', 'all');
+    expect(component.checkIfAllRowsSelected()).toBe(false);
+    expect(component.checkIfSomeRowsSelected()).toBe(false);
+    component.selection.select(data[0]);
+    expect(component.checkIfSomeRowsSelected()).toBe(true);
+    component.handleMasterSelection({
+      target: { checked: true },
+    } as unknown as Event);
+    expect(component.checkIfAllRowsSelected()).toBe(true);
+    expect(component.checkIfSomeRowsSelected()).toBe(false);
+    expect(component.checkboxLabel({ ...data[0], position: 0 })).toBe(
+      'select row 1',
+    );
+    expect(
+      component.checkboxLabel(Object.assign(data[0], { position: 0 })),
+    ).toBe('deselect row 1');
+    fixture.componentRef.setInput('data', []);
+    expect(component.checkIfAllRowsSelected()).toBe(false);
+  });
+
+  it('configures expanded, selectable and action columns', () => {
+    component.parseColumns(columns);
+    component.setConfig({
+      isExpandible: true,
+      isSelectable: true,
+      showActions: true,
+    });
+    expect(component.tableDisplayColumns).toEqual([
+      'select',
+      'expand',
+      'name',
+      'age',
+      'joined',
+      'actions',
+    ]);
+    component.setConfig({});
+    expect(component.tableDisplayColumns).toEqual(['name', 'age', 'joined']);
+  });
+
+  it('reports client pagination before a paginator is attached and after data arrives', () => {
+    expect(component.getPaginationText()).toBe('0 de 0');
+    fixture.componentRef.setInput('data', data);
+    fixture.componentRef.setInput('columns', columns);
+    fixture.componentRef.setInput('config', { isPaginable: true });
+    fixture.componentRef.setInput('totalItems', data.length);
+    fixture.componentRef.setInput('pageSize', 10);
+    fixture.detectChanges();
+    component.parseData(data);
+    expect(component.dataSource.paginator).toBe(component.paginator);
+    expect(component.getPaginationText()).toBe('1 - 3 de 3');
+    expect(component.hasEllipsis(undefined)).toBe(false);
+  });
+
+  it('matches search against rows with missing values and clears empty searches', () => {
+    fixture.componentRef.setInput('data', [{ name: null }, { name: 'Alice' }]);
+    fixture.componentRef.setInput('columns', [columns[0]]);
+    fixture.detectChanges();
+    expect(component.dataSource.filterPredicate({ name: null }, 'alice')).toBe(
+      false,
+    );
+    expect(
+      component.dataSource.filterPredicate({ name: 'Alice' }, 'alice'),
+    ).toBe(true);
+    component.searchControl.setValue(null);
+    expect(component.dataSource.filter).toBe('');
+  });
+
+  it('starts resizing at the selected cell and releases document listeners on mouseup', () => {
+    fixture.componentRef.setInput('data', data);
+    fixture.componentRef.setInput('columns', columns);
+    fixture.detectChanges();
+    const cell = component['matTableRef']!.nativeElement.querySelector(
+      'th',
+    ) as HTMLElement;
+    const preventDefault = jest.fn();
+    component.onResizeColumn({ pageX: 10, target: cell, preventDefault }, 0);
+    expect(component.pressed).toBe(true);
+    expect(component.currentResizeIndex).toBe(0);
+    expect(preventDefault).toHaveBeenCalled();
+    document.dispatchEvent(
+      new MouseEvent('mousemove', { buttons: 0, clientX: 20 }),
+    );
+    document.dispatchEvent(
+      new MouseEvent('mousemove', { buttons: 1, clientX: 20 }),
+    );
+    component.isResizingRight = false;
+    document.dispatchEvent(
+      new MouseEvent('mousemove', { buttons: 1, clientX: 5 }),
+    );
+    document.dispatchEvent(new MouseEvent('mouseup'));
+    expect(component.pressed).toBe(false);
+    expect(component.currentResizeIndex).toBe(-1);
+  });
+
+  it('detects the resize edge for middle and last columns', () => {
+    const cellData = jest
+      .spyOn(component, 'getCellData')
+      .mockReturnValue({ right: 100, width: 40 } as DOMRect);
+    component.parseColumns(columns);
+    component.checkResizing({ pageX: 99 }, 1);
+    expect(component.isResizingRight).toBe(true);
+    component.checkResizing({ pageX: 60 }, 1);
+    expect(component.isResizingRight).toBe(false);
+    component.checkResizing({ pageX: 99 }, 2);
+    expect(component.isResizingRight).toBe(false);
+    cellData.mockRestore();
   });
 
   describe('initialization', () => {
@@ -77,14 +218,14 @@ describe('BmbTablesComponent', () => {
       fixture.componentRef.setInput('columns', columns);
       fixture.detectChanges();
 
-      expect(component.getCellClasses(data[0], 'name', 0)['bmb_table-sticky']).toBe(
-        true,
-      );
+      expect(
+        component.getCellClasses(data[0], 'name', 0)['bmb_table-sticky'],
+      ).toBe(true);
 
       fixture.componentRef.setInput('disableStickyColumn', true);
-      expect(component.getCellClasses(data[0], 'name', 0)['bmb_table-sticky']).toBe(
-        false,
-      );
+      expect(
+        component.getCellClasses(data[0], 'name', 0)['bmb_table-sticky'],
+      ).toBe(false);
     });
   });
 
@@ -420,7 +561,11 @@ describe('BmbTablesComponent - column cellTemplate', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CellTemplateTestHostComponent, BmbTablesComponent, NoopAnimationsModule],
+      imports: [
+        CellTemplateTestHostComponent,
+        BmbTablesComponent,
+        NoopAnimationsModule,
+      ],
     }).compileComponents();
 
     hostFixture = TestBed.createComponent(CellTemplateTestHostComponent);

@@ -1,4 +1,4 @@
-import { IButtonAppearance } from '../utils';
+import { IButtonAppearance } from '../utils/utils';
 
 export type IBmbModalSize = 'small' | 'medium' | 'large';
 export type IBmbModalType = 'informative' | 'action' | 'alert';

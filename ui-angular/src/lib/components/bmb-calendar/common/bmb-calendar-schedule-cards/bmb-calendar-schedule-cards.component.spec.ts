@@ -2,7 +2,7 @@ import { ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DateTime } from 'luxon';
 import type { IBmbCalendarEvent } from '../../../../_shared/types/components/calendar';
-import { BmbNativeModalService } from '../../../../services/old/modal/native-modal.service';
+import { BmbNativeModalService } from '../../../../services/modal/native-modal.service';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 import { BmbCalendarScheduleCardsComponent } from './bmb-calendar-schedule-cards.component';
 
@@ -60,6 +60,14 @@ describe('BmbCalendarScheduleCardsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('opens an active event using its title when modalTitle is omitted', () => {
+    componentRef.setInput('event', createEvent({ modalTitle: undefined }));
+    component.handleSelectEvent();
+    expect(modalService.openModal).toHaveBeenCalledWith(
+      expect.objectContaining({ title: 'Event custom' }),
+    );
   });
 
   it('should calculate absolute position for event card', () => {

@@ -71,7 +71,7 @@ export * from './components/value-counter';
 export * from './components/web-templates';
 
 export * from './input';
-export * from './utils';
+export * from './utils/utils';
 
 export * from './components/alert-center';
 export * from './components/calendar';

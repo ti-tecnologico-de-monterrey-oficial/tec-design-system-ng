@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component, Input, Output, EventEmitter, TemplateRef, ViewChild } from '@angular/core';
 import { BmbNativeModalComponent } from './bmb-native-modal.component';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 
 @Component({
   standalone: true,

@@ -63,6 +63,96 @@ describe('BmbAiChatBubbleComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('does not edit bot messages or non-text user messages', () => {
+    const edited = jest.spyOn(component.messageEdited, 'emit');
+    component['saveEdit']('changed');
+    componentRef.setInput('message', {
+      ...mockUserMessage,
+      type: 'image',
+      content: { imageUrl: 'image.png' },
+    });
+    component['saveEdit']('changed');
+    expect(edited).not.toHaveBeenCalled();
+  });
+
+  it('forwards selected options to the host', () => {
+    const selected = jest.spyOn(component.getOptionClicked, 'emit');
+    const event = {
+      option: { id: 'help', label: 'Help' },
+      event: new MouseEvent('click'),
+    };
+    component['handleOptionClick'](event);
+    expect(selected).toHaveBeenCalledWith(event);
+  });
+
+  it('reports an error when the browser has no clipboard API', async () => {
+    const original = Object.getOwnPropertyDescriptor(navigator, 'clipboard');
+    try {
+      Object.defineProperty(navigator, 'clipboard', {
+        configurable: true,
+        value: undefined,
+      });
+      await component['onAction']({
+        action: 'copy',
+        messageId: '1',
+        message: mockBotMessage,
+      });
+      expect(component.copyState()).toBe('error');
+    } finally {
+      if (original) Object.defineProperty(navigator, 'clipboard', original);
+      else Reflect.deleteProperty(navigator, 'clipboard');
+    }
+  });
+
+  it.each([false, true])(
+    'copies rich text and falls back when rich clipboard rejects: %s',
+    async (rejectRichCopy) => {
+      const clipboardDescriptor = Object.getOwnPropertyDescriptor(
+        navigator,
+        'clipboard',
+      );
+      const itemDescriptor = Object.getOwnPropertyDescriptor(
+        globalThis,
+        'ClipboardItem',
+      );
+      const write = rejectRichCopy
+        ? jest.fn().mockRejectedValue(new Error('Rich clipboard unavailable'))
+        : jest.fn().mockResolvedValue(undefined);
+      const writeText = jest.fn().mockResolvedValue(undefined);
+      try {
+        Object.defineProperty(globalThis, 'ClipboardItem', {
+          configurable: true,
+          value: class {
+            constructor(public data: Record<string, Blob>) {}
+          },
+        });
+        Object.defineProperty(navigator, 'clipboard', {
+          configurable: true,
+          value: { write, writeText },
+        });
+        await component['onAction']({
+          action: 'copy',
+          messageId: '1',
+          message: mockBotMessage,
+        });
+        expect(write).toHaveBeenCalledWith([
+          expect.objectContaining({
+            data: expect.objectContaining({ 'text/html': expect.any(Blob) }),
+          }),
+        ]);
+        expect(writeText).toHaveBeenCalledTimes(rejectRichCopy ? 1 : 0);
+        expect(component.copyState()).toBe('success');
+      } finally {
+        if (clipboardDescriptor)
+          Object.defineProperty(navigator, 'clipboard', clipboardDescriptor);
+        else Reflect.deleteProperty(navigator, 'clipboard');
+        if (itemDescriptor)
+          Object.defineProperty(globalThis, 'ClipboardItem', itemDescriptor);
+        else Reflect.deleteProperty(globalThis, 'ClipboardItem');
+      }
+    },
+  );
+
   it('should have correct testId input', () => {
     expect(component.testId()).toBe('chat-bubble');
   });

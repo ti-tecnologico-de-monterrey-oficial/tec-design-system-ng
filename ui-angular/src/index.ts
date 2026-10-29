@@ -4,16 +4,16 @@
 export const BAMBOO_VERSION = '1.6.4';
 
 // Services
-export * from './lib/services/old/notification/notification.service';
-export * from './lib/services/old/tabs/tabs.service';
-export * from './lib/services/old/calendar/calendar.service';
-export * from './lib/services/old/user/profile.service';
+export * from './lib/services/notification/notification.service';
+export * from './lib/services/tabs/tabs.service';
+export * from './lib/services/calendar/calendar.service';
+export * from './lib/services/user/profile.service';
 export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';
 export * from './lib/components/bmb-alert-center/bmb-alert-center.service';
-export * from './lib/services/old/modal/native-modal.service';
-export * from './lib/services/old/projection/projection.service';
+export * from './lib/services/modal/native-modal.service';
+export * from './lib/services/projection/projection.service';
 export * from './lib/services/theme/theme.service';
-export * from './lib/services/old/toast/toast.service';
+export * from './lib/services/toast/toast.service';
 export * from './lib/services/translations/translations.service';
 export * from './lib/services/icon/icon.service';
 
@@ -27,9 +27,9 @@ export * from './lib/directives/bmb-layout/bmb-layout.directive';
 export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 export * from './lib/directives/bmb-swipe/bmb-swipe.directive';
-export * from './lib/directives/old/bmb-button-group/bmb-button-group.directive';
-export * from './lib/directives/old/bmb-accordion/bmb-accordion-control.directive';
-export * from './lib/directives/old/bmb-layout-grid/bmb-layout-grid.directive';
+export * from './lib/directives/bmb-button-group/bmb-button-group.directive';
+export * from './lib/directives/bmb-accordion/bmb-accordion-control.directive';
+export * from './lib/directives/bmb-layout-grid/bmb-layout-grid.directive';
 export * from './lib/directives/bmb-swipe/bmb-swipe.directive';
 
 // Components
@@ -172,7 +172,7 @@ export * from './lib/components/bmb-interactive-item/children';
 export * from './lib/components/bmb-navigation-bar/bmb-navigation-bar.component';
 export * from './lib/components/bmb-notice-card/bmb-notice-card.component';
 export * from './lib/components/bmb-modal/bmb-native-modal.component';
-export * from './lib/directives/old/bmb-selector/bmb-selector.directive';
+export * from './lib/directives/bmb-selector/bmb-selector.directive';
 export * from './lib/components/bmb-table-lite/bmb-table-lite.component';
 export * from './lib/components/bmb-search-card/bmb-search-card.component';
 export * from './lib/components/bmb-ai-chat-card/bmb-ai-chat-card.component';

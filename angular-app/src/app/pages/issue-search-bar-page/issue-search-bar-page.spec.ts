@@ -1,8 +1,6 @@
 import {
   ComponentFixture,
   TestBed,
-  fakeAsync,
-  tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BmbSearchInputComponent } from 'ui-angular';
@@ -30,25 +28,30 @@ describe('IssueSearchBarPage', () => {
     searchInput.isLoading.set(true);
     fixture.detectChanges();
 
-    expect(component.isLoading()).toBeTrue();
+    expect(component.isLoading()).toBe(true);
     expect(
       fixture.debugElement
         .queryAll(By.directive(BmbSearchInputComponent))
         .every((element) => element.componentInstance.isLoading()),
-    ).toBeTrue();
+    ).toBe(true);
   });
 
-  it('should set loading while the debounced mock request runs', fakeAsync(() => {
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
+  it('should set loading while the debounced mock request runs', () => {
+    jest.useFakeTimers();
     component.handleServerSideFilterEvent('David');
 
-    tick(component.searchDebounceTime());
+    jest.advanceTimersByTime(component.searchDebounceTime());
     fixture.detectChanges();
-    expect(component.isLoading()).toBeTrue();
+    expect(component.isLoading()).toBe(true);
 
-    tick(400);
+    jest.advanceTimersByTime(400);
     fixture.detectChanges();
 
-    expect(component.isLoading()).toBeFalse();
+    expect(component.isLoading()).toBe(false);
     expect(component.serverSideFilteredData()).toEqual([
       'David Medina',
       'David Cabrera Yáñez',
@@ -57,5 +60,5 @@ describe('IssueSearchBarPage', () => {
       'David Pineda Quijano',
       'Alan David Corvee',
     ]);
-  }));
+  });
 });
