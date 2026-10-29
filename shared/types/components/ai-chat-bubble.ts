@@ -1,4 +1,4 @@
-import { BmbChatAttachmentError } from '../utils';
+import { BmbChatAttachmentError } from '../chat-attachment';
 
 export type BmbChatMessageType =
   | 'text'
@@ -110,7 +110,8 @@ export type BmbChatMessage<TTemplate = unknown> =
   | BmbMixedMessage
   | BmbLinkMessage
   | BmbOptionsMessage
-  | BmbTemplateMessage;
+  | BmbUploadFileMessage
+  | BmbTemplateMessage<TTemplate>;
 
 export type BmbChatAction =
   | 'repeat'

@@ -11,7 +11,7 @@ import type { OnChanges } from '@angular/core';
 import type {
   BmbUploadFileMessage,
   BmbUploadFileRequestEvent,
-} from '../../types';
+} from '../../../../_shared/types';
 import { BmbButtonDirective } from '../../../../directives/bmb-button/button.directive';
 import { TranslatePipe } from '../../../../pipes/translations';
 import {
@@ -21,7 +21,7 @@ import {
 import type {
   BmbChatAttachmentError,
   BmbChatAttachmentResult,
-} from '../../../../services/chat-attachments/chat-attachments.service';
+} from '../../../../_shared/types/chat-attachment';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
 import { BmbToastComponent } from '../../../bmb-toast/bmb-toast.component';

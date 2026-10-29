@@ -21,13 +21,13 @@ import {
   BmbTextMessage,
   BmbUploadFileRequestEvent,
   IBmbChatOptionEvent,
+  BmbChatAttachmentResult,
 } from '../../_shared/types';
 import {
   buildAiChatBubblePlainText,
   getAiChatBubbleClasses,
   resolveAiChatBubbleActions,
 } from '../../_shared/logic/components/ai-chat-bubble';
-
 type BmbChatMessage = BmbChatMessageGeneric<TemplateRef<unknown>>;
 type BmbChatActionEvent = BmbChatActionEventGeneric<TemplateRef<unknown>>;
 import { ChatActionsComponent } from './bmb-chat-actions/bmb-chat-actions.component';
@@ -43,12 +43,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbAiChatBubbleEditorComponent } from './bmb-ai-chat-bubble-editor/bmb-ai-chat-bubble-editor.component';
 import { TranslatePipe } from '../../pipes/translations';
-
-export * from './types';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { provideBmbChatAttachments } from '../../services/chat-attachments/chat-attachments.service';
 
 @Component({
   selector: 'bmb-ai-chat-bubble',
@@ -208,34 +203,10 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
   }
 
   private buildPlainText(): string {
-    const message = this.message();
+    const plainText = buildAiChatBubblePlainText(this.message());
+    if (plainText !== null) return plainText;
 
-    switch (message.type) {
-      case 'text':
-      case 'mixed':
-        return message.content.text.trim();
-      case 'image':
-        return (message.content.alt ?? '').trim();
-      case 'link':
-        return [message.content.text, message.content.href]
-          .filter(Boolean)
-          .join('\n\n')
-          .trim();
-      case 'options': {
-        const options = message.content.options
-          .map((option) =>
-            [`- ${option.label}`, option.href].filter(Boolean).join('\n'),
-          )
-          .join('\n');
-        return [message.content.text, options]
-          .filter(Boolean)
-          .join('\n\n')
-          .trim();
-      }
-      case 'upload-file':
-      case 'template':
-        return this.messageContent?.nativeElement.innerText.trim() ?? '';
-    }
+    return this.messageContent?.nativeElement.innerText.trim() ?? '';
   }
 
   private async writeToClipboard(

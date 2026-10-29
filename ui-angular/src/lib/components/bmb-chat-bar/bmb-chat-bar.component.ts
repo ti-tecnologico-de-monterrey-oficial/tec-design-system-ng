@@ -42,7 +42,7 @@ import {
   BmbChatAttachmentsService,
   provideBmbChatAttachments,
 } from '../../services/chat-attachments/chat-attachments.service';
-import type { BmbChatAttachmentResult } from '../../services/chat-attachments/chat-attachments.service';
+import { BmbChatAttachmentResult } from '../../_shared/types';
 import { getUUID } from '../../_shared/logic/utils';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
@@ -51,8 +51,14 @@ import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 
-export { defaultActionList, defaultBotList } from '../../_shared/logic/components/chat-bar-defaults';
-export type { IBotType, IChatBarActions } from '../../_shared/types/components/chat-bar';
+export {
+  defaultActionList,
+  defaultBotList,
+} from '../../_shared/logic/components/chat-bar-defaults';
+export type {
+  IBotType,
+  IChatBarActions,
+} from '../../_shared/types/components/chat-bar';
 
 @Component({
   selector: 'bmb-chat-bar',
@@ -172,7 +178,9 @@ export class BmbChatBarComponent implements OnInit {
       (
         bot: IBotType = {
           name: 'TecBot',
-          label: this.translationsService.translate('chat_bar.default_bot_label'),
+          label: this.translationsService.translate(
+            'chat_bar.default_bot_label',
+          ),
           icon: 'bot_tecStandar',
         },
       ): IBotType => bot,

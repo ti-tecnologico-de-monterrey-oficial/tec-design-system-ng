@@ -1,25 +1,11 @@
 import { inject, Injectable, signal } from '@angular/core';
 import type { Provider } from '@angular/core';
 import { buildErrorMessage } from '../../_shared/logic/utils';
-
-export interface BmbChatAttachmentRules {
-  acceptedFormats?: readonly string[];
-  maxFileSize?: number;
-}
-
-export interface BmbChatAttachmentError {
-  code: 'format' | 'size' | 'duplicate' | 'interrupted' | 'unavailable';
-  fileName?: string;
-  extension?: string;
-  maxFileSize?: number;
-}
-
-export interface BmbChatAttachmentResult {
-  sourceId: string;
-  status: 'selected' | 'error' | 'uploaded';
-  accepted: File[];
-  errors: BmbChatAttachmentError[];
-}
+import {
+  BmbChatAttachmentError,
+  BmbChatAttachmentResult,
+  BmbChatAttachmentRules,
+} from '../../_shared/types';
 
 interface AttachmentDraft {
   read(): readonly File[];
@@ -120,8 +106,7 @@ export class BmbChatAttachmentsService {
       let code: BmbChatAttachmentError['code'] | undefined;
       if (!matchesRules(rules) || (draftRules && !matchesRules(draftRules)))
         code = 'format';
-      else if (file.size > maxFileSize * 1024 * 1024)
-        code = 'size';
+      else if (file.size > maxFileSize * 1024 * 1024) code = 'size';
       else if (
         [...current, ...accepted].some(
           (existing) =>
