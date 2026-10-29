@@ -4,7 +4,13 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-calendar />`,
+  example: figma.code`<bmb-calendar
+  height="100%"
+  [showFilterButton]="false"
+  [calendarTitle]="calendarTitle"
+  dateFormat="iso"
+  [disableMobileFilter]="false"
+/>`,
   imports: [
     "import { BmbCalendarComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

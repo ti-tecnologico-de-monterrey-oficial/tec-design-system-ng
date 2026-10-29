@@ -3,16 +3,12 @@
 // component=BmbDividerComponent
 import figma from 'figma'
 
-const instance = figma.selectedInstance
-const type = instance.getEnum('Type', {
-  Default: 'simple',
-  Dotted: 'dotted',
-  Dash: 'dashed',
-  Vertical_S: 'simple',
-})
-
 export default {
-  example: figma.code`<bmb-divider type="${type}" />`,
+  example: figma.code`<bmb-divider
+  type="simple"
+  orientation="horizontal"
+  [removeMargin]="false"
+/>`,
   imports: [
     "import { BmbDividerComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
