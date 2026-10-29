@@ -2,16 +2,15 @@
 // source=ui-angular/src/lib/components/bmb-tooltip/bmb-tooltip.component.ts
 // component=BmbTooltipComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const showTitle = instance.getBoolean('Show Title')
-const titleLayer = instance.findText('Title', { traverseInstances: true })
-const textLayer = instance.findText('Description', { traverseInstances: true })
-const title = titleLayer && titleLayer.type === 'TEXT' ? titleLayer.textContent : ''
-const text = textLayer && textLayer.type === 'TEXT' ? textLayer.textContent : ''
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-tooltip text="${text}" componentTitle="${showTitle ? title : ''}" />`,
+  example: figma.code`<bmb-tooltip
+  componentTitle="Tooltip title"
+  text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis."
+  icon="${getIcon('help')}"
+  [size]="40"
+/>`,
   imports: [
     "import { BmbTooltipComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

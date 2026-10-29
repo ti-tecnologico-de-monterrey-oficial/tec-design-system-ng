@@ -21,10 +21,7 @@ import {
   IBmbProjectionContent,
 } from '../../services/old/projection/projection.service';
 import { BmbProjectedContentComponent } from './bmb-projected-content/bmb-projected-content.component';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { hasPortalToastNotification } from '../../_shared/logic/components/portal';
 
 @Component({
   selector: 'bmb-portal',
@@ -103,6 +100,6 @@ export class BmbPortalComponent {
   }
 
   hasToast(): boolean {
-    return this.notifications().some((n) => n.component === 'toast');
+    return hasPortalToastNotification(this.notifications());
   }
 }

@@ -2,17 +2,16 @@
 // source=ui-angular/src/lib/components/bmb-fab/bmb-fab.component.ts
 // component=BmbFabComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const mitec = instance.getEnum('Type', {
-  'Return Button': true,
-  Main: false,
-})
-const textLayer = instance.findText('App name', { traverseInstances: true })
-const text = textLayer && textLayer.type === 'TEXT' ? textLayer.textContent : ''
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-fab [mitec]="${mitec}" text="${text}" />`,
+  example: figma.code`<bmb-fab
+  icon="${getIcon('')}"
+  text=""
+  size="large"
+  type="normal"
+  [mitec]="false"
+/>`,
   imports: [
     "import { BmbFabComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

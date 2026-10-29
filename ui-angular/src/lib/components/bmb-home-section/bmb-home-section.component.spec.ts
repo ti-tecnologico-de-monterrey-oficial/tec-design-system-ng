@@ -1,11 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbHomeSectionComponent } from './bmb-home-section.component';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
 
 describe('BmbHomeSectionComponent', () => {
   let component: BmbHomeSectionComponent;
   let fixture: ComponentFixture<BmbHomeSectionComponent>;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: BmbTranslationsService,
+          useValue: {
+            getTranslationVersion: () => 0,
+            translate: (key: string) => key,
+          },
+        },
+      ],
+    });
     fixture = TestBed.createComponent(BmbHomeSectionComponent);
     component = fixture.componentInstance;
   });

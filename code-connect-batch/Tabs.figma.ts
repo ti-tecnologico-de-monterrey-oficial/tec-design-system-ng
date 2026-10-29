@@ -3,26 +3,27 @@
 // component=BmbTabsComponent
 import figma from 'figma'
 
-const instance = figma.selectedInstance
-const appearanceContrast = instance.getEnum('Container color', {
-  Default: 'default',
-  Primary: 'primary',
-  Alternative: 'alternative',
-})
-const notificationCounter = instance.getEnum('Variation', {
-  'Notification Counter': true,
-  Default: false,
-})
-const device = instance.getEnum('Device', {
-  Mobile: 'mobile',
-  Web: 'desktop',
-})
-const titleLayer = instance.findText('Todos', { traverseInstances: true })
-const title = titleLayer && titleLayer.type === 'TEXT' ? titleLayer.textContent : 'Todos'
-
 export default {
-  example: figma.code`<bmb-tabs appearanceContrast="${appearanceContrast}" [tabs]="[{ id: 1, title: '${title}', isActive: true, badge: ${notificationCounter ? 3 : 0}, isMobile: ${device === 'mobile'}, isDesktop: ${device === 'desktop'} }]" />`,
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  tabs: IBmbTab[] = [
+    { id: 1, title: 'Tec de Monterrey', badge: 13, isActive: true },
+    { id: 2, title: 'Label demasiado grande para una tab', badge: 113 },
+    { id: 3, title: 'Mas usado', badge: 100 },
+    { id: 4, title: 'Textualesssssssssssssssssssssssssss' },
+    { id: 5, title: 'Text' },
+    { id: 6, title: 'Mas usado' },
+  ];
+}
+</script>
+
+<bmb-tabs
+  appearanceContrast="default"
+  [tabs]="tabs"
+  [selectedTabId]="selectedTabId"
+/>`,
   imports: [
+    "import type { IBmbTab } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
     "import { BmbTabsComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
   id: 'bmb-tabs',

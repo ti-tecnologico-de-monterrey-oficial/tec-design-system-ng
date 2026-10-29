@@ -8,16 +8,16 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { DateTime } from 'luxon';
-import type { IBmbEventType } from '../bmb-calendar/types';
-import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
-import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
-import type { IBmbColorSemantics, IBbmBgAppearance } from '../../_shared/types';
-import type { IBmbBadgeColors } from '../../_shared/types/foundations/colors/color-type';
 import {
   getStudentActivityBadgeAppearance,
   getStudentActivityBulletStyles,
   getStudentActivityCardClasses,
 } from '../../_shared/logic/components/student-activity-card';
+import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
+import type { IBbmBgAppearance, IBmbColorSemantics } from '../../_shared/types';
+import type { IBmbEventType } from '../../_shared/types/components/calendar';
+import type { IBmbBadgeColors } from '../../_shared/types/foundations/colors/color-type';
+import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 
 @Component({
   selector: 'bmb-student-activity-card',

@@ -2,33 +2,17 @@
 // source=ui-angular/src/lib/components/bmb-button-icon/bmb-button-icon.component.ts
 // component=BmbButtonIconComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const type = instance.getEnum('Type', {
-  'Microphone - Do not use': 'default',
-  Default: 'default',
-  Outline: 'outline',
-  Solid: 'solid',
-})
-const active = instance.getEnum('State', {
-  Enabled: false,
-  Hovered: false,
-  Pressed: false,
-  Selected: true,
-})
-const showContainer = instance.getEnum('Container', {
-  Active: true,
-  inactive: false,
-})
-const contrast = instance.getEnum('Container color', {
-  Default: 'default',
-  Primary: 'primary',
-  Alternative: 'alternative',
-})
-const appearanceContrast = type === 'solid' ? 'solid' : contrast
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-button-icon icon="send" appearanceContrast="${appearanceContrast}" [showContainer]="${showContainer}" [active]="${active}" [isOutline]="${type === 'outline'}" />`,
+  example: figma.code`<bmb-button-icon
+  [appearanceContrast]="appearanceContrast"
+  icon="${getIcon('send')}"
+  [showContainer]="true"
+  [isOutline]="true"
+  [disabled]="false"
+  [active]="false"
+/>`,
   imports: [
     "import { BmbButtonIconComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

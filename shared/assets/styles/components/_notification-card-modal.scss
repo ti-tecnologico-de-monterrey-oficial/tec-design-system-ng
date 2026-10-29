@@ -1,0 +1,9 @@
+.bmb_alert-center-content-modal {
+  display: flex;
+  gap: var(--bmb-spacing-m);
+  flex-flow: column;
+
+  p {
+    margin: 0;
+  }
+}

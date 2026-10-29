@@ -1,7 +1,7 @@
 import { moduleMetadata, type Meta, type StoryFn } from '@storybook/angular';
 import { BmbLoginOnboardingComponent } from './bmb-login-onboarding.component';
 import { Component } from '@angular/core';
-import { IBmbLoginOnboarding } from './types';
+import { IBmbLoginOnboarding } from '@shared/types/components/login-onboarding';
 import { IBmbUserInfo } from '@shared/types/utils';
 import {
   BlockquoteType,

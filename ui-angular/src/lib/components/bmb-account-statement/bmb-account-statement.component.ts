@@ -18,7 +18,6 @@ import {
   BmbCardContentComponent,
 } from '../bmb-card/bmb-card.component';
 import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
-import { DateTime } from 'luxon';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
@@ -34,14 +33,18 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { IBmbNativeModal } from '../../_shared/types';
+import { IBmbNativeModal as IBmbNativeModalGeneric } from '../../_shared/types';
+
+type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../pipes/translations';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  getAccountStatementFormattedDate,
+  getAccountStatementProgressPercent,
+  isAccountStatementCustomAmountSelected,
+  resolveAccountStatementPaymentAmount,
+} from '../../_shared/logic/components/account-statement';
 
 @Component({
   selector: 'bmb-account-statement',
@@ -152,13 +155,7 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
   }
 
   getFormattedDate(date?: string): string {
-    if (!date) return '';
-    const formatDate = DateTime.fromFormat(date, this.formatDates());
-    return formatDate.toLocaleString({
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric',
-    });
+    return getAccountStatementFormattedDate(date, this.formatDates());
   }
 
   getFormattedAmount(amount: number): string {
@@ -166,26 +163,27 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
   }
 
   handleActiveCustomAmount(event: any) {
-    this.isEnableCustomAmount = event.value === 'modalOtherAmountInput';
+    this.isEnableCustomAmount = isAccountStatementCustomAmountSelected(
+      event.value,
+    );
   }
 
   handleSubmit() {
-    if (!this.isEnableCustomAmount) {
-      this.payEvent.emit(this.totalCount() - this.counter());
-      this.modalService.closeModal(this.modalID() as string);
-      this.modalID.set(null);
-    } else if (this.amountForm.valid) {
-      const amount = Number(this.amountForm.controls['amount'].value);
-      if (amount > 0 && amount <= this.maxAmount) {
-        this.payEvent.emit(amount);
-        this.modalService.closeModal(this.modalID() as string);
-        this.modalID.set(null);
-      } else {
-        this.showErrors['amount'] = true;
-      }
-    } else {
+    const { amount, hasError } = resolveAccountStatementPaymentAmount(
+      this.isEnableCustomAmount,
+      this.amountForm.valid,
+      Number(this.amountForm.controls['amount'].value),
+      this.totalCount(),
+      this.counter(),
+      this.maxAmount,
+    );
+    if (hasError) {
       this.showErrors['amount'] = true;
+      return;
     }
+    this.payEvent.emit(amount as number);
+    this.modalService.closeModal(this.modalID() as string);
+    this.modalID.set(null);
   }
 
   getFormControl(name: string): FormControl {
@@ -203,21 +201,25 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
   }
 
   getProgressPercent(): number {
-    return (100 * this.counter()) / this.totalCount();
+    return getAccountStatementProgressPercent(
+      this.counter(),
+      this.totalCount(),
+    );
   }
 
   customHandleClick() {
-    if (!this.isEnableCustomAmount) {
-      this.payEvent.emit(this.totalCount() - this.counter());
-    } else if (this.amountForm.valid) {
-      const amount = Number(this.amountForm.controls['amount'].value);
-      if (amount > 0 && amount <= this.maxAmount) {
-        this.payEvent.emit(amount);
-      } else {
-        this.showErrors['amount'] = true;
-      }
-    } else {
+    const { amount, hasError } = resolveAccountStatementPaymentAmount(
+      this.isEnableCustomAmount,
+      this.amountForm.valid,
+      Number(this.amountForm.controls['amount'].value),
+      this.totalCount(),
+      this.counter(),
+      this.maxAmount,
+    );
+    if (hasError) {
       this.showErrors['amount'] = true;
+      return;
     }
+    this.payEvent.emit(amount as number);
   }
 }

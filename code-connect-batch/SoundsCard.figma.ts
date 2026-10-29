@@ -4,7 +4,12 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-sounds-card componentTitle="Tec Sounds Radio" subtitle="98.76 FM" width="500px" ratio="8/9" />`,
+  example: figma.code`<bmb-sounds-card
+  componentTitle="Tec Sounds Radio"
+  subtitle="98.76 FM"
+  width="500px"
+  ratio="8/9"
+/>`,
   imports: [
     "import { BmbSoundsCardComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

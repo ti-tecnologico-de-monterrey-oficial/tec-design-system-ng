@@ -1,0 +1,488 @@
+import { containerButtonProperties } from '../container-button-test/container-button-demo-configuration';
+import { gradesProperties } from '../grades-test/grades-demo-configuration';
+import { evaluationRubricProperties } from '../evaluation-rubric-test/evaluation-rubric-demo-configuration';
+import { profileProperties } from '../profile-test/profile-demo-configuration';
+import type { DemoProperty } from './demo-properties';
+
+export const propertyInventory: Record<string, DemoProperty[]> = {
+  'container-button': containerButtonProperties,
+  'grades': gradesProperties,
+  'evaluation-rubric': evaluationRubricProperties,
+  'profile': profileProperties,
+
+  'alert-center': [
+    {
+      name: 'dateFormat',
+      kind: 'text',
+      type: 'string',
+      hint: 'Date strings in the event data must use this format.',
+    },
+    {
+      name: 'tabsName',
+      kind: 'json',
+      type: 'string[] | IBmbAlertCenterTabConfig[]',
+      shape: 'array',
+    },
+    {
+      name: 'hideTabs',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'enableMultipleSelection',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'showMobileVersion',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'emptyStateData',
+      kind: 'json',
+      type: 'IBmbAlertEmptyState',
+      shape: 'object',
+      hint: 'The onClick callback is wired to the event log.',
+    },
+    {
+      name: 'alerts',
+      kind: 'json',
+      type: 'IBmbDataAlert[]',
+      shape: 'array',
+      deprecated: true,
+    },
+    {
+      name: 'advertisements',
+      kind: 'json',
+      type: 'IBmbDataAlert[]',
+      shape: 'array',
+      deprecated: true,
+    },
+    {
+      name: 'enabledFooterOptions',
+      kind: 'json',
+      type: 'IBmbBottomNavigationBarProps',
+      shape: 'object',
+      deprecated: true,
+    },
+    {
+      name: 'enableSwipe',
+      kind: 'boolean',
+      type: 'boolean',
+      deprecated: true,
+    },
+    {
+      name: 'notificationSelectionState',
+      kind: 'json',
+      type: '{ [key: string]: boolean }',
+      shape: 'object',
+      model: true,
+    },
+    {
+      name: 'selectedTab',
+      kind: 'number',
+      type: 'number',
+      model: true,
+    },
+  ],
+  calendar: [
+    {
+      name: 'view',
+      kind: 'select',
+      type: 'IBmbCalendarView',
+      options: ['week', 'month', 'day'],
+      model: true,
+    },
+    {
+      name: 'filters',
+      kind: 'json',
+      type: '{ [key: string]: boolean }',
+      shape: 'object',
+      model: true,
+    },
+    {
+      name: 'calendarTimezone',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'clientTimezone',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'height',
+      kind: 'size',
+      type: 'number | string',
+    },
+    {
+      name: 'calendarTitle',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'dateFormat',
+      kind: 'text',
+      type: 'string',
+      hint: 'Date strings in the event data must use this format.',
+    },
+    {
+      name: 'showFilterButton',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'disableMobileFilter',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'startBusinessHour',
+      kind: 'number',
+      type: 'number',
+      deprecated: true,
+    },
+  ],
+  'chat-bar': [
+    {
+      name: 'placeholder',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'botList',
+      kind: 'json',
+      type: 'IBotType[]',
+      shape: 'array',
+    },
+    {
+      name: 'actionsList',
+      kind: 'json',
+      type: 'IChatBarActions[]',
+      shape: 'array',
+      hint: 'Actions are described as JSON. Each action callback is wired to the event log.',
+    },
+    {
+      name: 'showEmoji',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'emojiIcon',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'enableMicInput',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'disableChangeBot',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'disabledInput',
+      kind: 'boolean',
+      type: 'boolean',
+      model: true,
+    },
+    {
+      name: 'currentBot',
+      kind: 'json',
+      type: 'IBotType',
+      shape: 'object',
+      model: true,
+      optional: true,
+    },
+    {
+      name: 'isLoading',
+      kind: 'boolean',
+      type: 'boolean',
+      model: true,
+    },
+    {
+      name: 'isBotSpeaking',
+      kind: 'boolean',
+      type: 'boolean',
+      model: true,
+    },
+    {
+      name: 'disabledBotSpeaking',
+      kind: 'boolean',
+      type: 'boolean',
+      model: true,
+    },
+  ],
+  'timestream-card': [
+    {
+      name: 'subtitle',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'dataLocalNav',
+      kind: 'json',
+      type: 'IBmbDataTopBar[]',
+      shape: 'array',
+    },
+    {
+      name: 'icon',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'bgIconAppearance',
+      kind: 'text',
+      type: 'IBmbColor',
+      optional: true,
+    },
+    {
+      name: 'componentTitle',
+      kind: 'text',
+      type: 'string',
+      optional: true,
+    },
+    {
+      name: 'title',
+      kind: 'text',
+      type: 'string',
+      deprecated: true,
+      optional: true,
+    },
+    {
+      name: 'lang',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'dateFormat',
+      kind: 'text',
+      type: 'string',
+      hint: 'Date strings in the event data must use this format.',
+    },
+    {
+      name: 'events',
+      kind: 'json',
+      type: 'ITimelineEvent[]',
+      shape: 'array',
+    },
+  ],
+  'title-content': [
+    {
+      name: 'titleSize',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'titleFontWeight',
+      kind: 'select',
+      type: 'IBmbFontWeightContent',
+      options: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+    },
+    {
+      name: 'subtitle',
+      kind: 'text',
+      type: 'string | undefined',
+    },
+    {
+      name: 'subtitleSize',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'subtitleFontWeight',
+      kind: 'select',
+      type: 'IBmbFontWeightContent',
+      options: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+    },
+    {
+      name: 'subtitleIcon',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'subtitleIconSize',
+      kind: 'number',
+      type: 'number',
+    },
+    {
+      name: 'isCenterContent',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'dataLocalNav',
+      kind: 'json',
+      type: 'IBmbDataTopBar[]',
+      shape: 'array',
+    },
+    {
+      name: 'transparentBgC',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'icon',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'iconSize',
+      kind: 'number',
+      type: 'number',
+    },
+    {
+      name: 'bgIconAppearance',
+      kind: 'text',
+      type: 'IBmbColor',
+      optional: true,
+    },
+    {
+      name: 'isAvatarIcon',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'avatarSize',
+      kind: 'select',
+      type: 'IBmbUserImageSize',
+      options: [
+        'desktop-small',
+        'desktop-large',
+        'mobile-small',
+        'mobile-medium',
+        'mobile-large',
+        'mobile-xlarge',
+      ],
+    },
+    {
+      name: 'forceSquareApp',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'componentTitle',
+      kind: 'text',
+      type: 'string',
+      optional: true,
+    },
+    {
+      name: 'title',
+      kind: 'text',
+      type: 'string',
+      deprecated: true,
+      optional: true,
+    },
+    {
+      name: 'currentBot',
+      kind: 'json',
+      type: 'IBotType',
+      shape: 'object',
+      model: true,
+      optional: true,
+    },
+  ],
+  timestream: [
+    {
+      name: 'isMicro',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'lang',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'dateFormat',
+      kind: 'text',
+      type: 'string',
+      hint: 'Date strings in the event data must use this format.',
+    },
+    {
+      name: 'events',
+      kind: 'json',
+      type: 'ITimelineEvent[]',
+      shape: 'array',
+    },
+    {
+      name: 'clamp',
+      kind: 'json',
+      type: 'IBmbClamp',
+      shape: 'object',
+    },
+  ],
+  'filter-card': [
+    {
+      name: 'modalTitle',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'primaryBtnLabel',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'secondaryBtnLabel',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'icon',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'controlTypes',
+      kind: 'json',
+      type: 'IBmbControlType[]',
+      shape: 'array',
+    },
+    {
+      name: 'inLine',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'showGlobalSearch',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'showDropdown',
+      kind: 'boolean',
+      type: 'boolean',
+      deprecated: true,
+    },
+    {
+      name: 'dropdownOptions',
+      kind: 'json',
+      type: 'string[]',
+      shape: 'array',
+      deprecated: true,
+    },
+    {
+      name: 'placeholderSearch',
+      kind: 'text',
+      type: 'string',
+    },
+    {
+      name: 'visibilityRules',
+      kind: 'json',
+      type: 'IBmbVisibilityRule[]',
+      shape: 'array',
+      hint: 'Example: [{"when":{"checkbox-1":true},"hide":["switch-1"]}]',
+    },
+    {
+      name: 'optionRules',
+      kind: 'json',
+      type: 'IBmbOptionRule[]',
+      shape: 'array',
+      hint: 'Example: [{"when":{"checkbox-1":true},"target":"dropdown-1","options":["Apple","Banana"]}]',
+    },
+  ],
+};

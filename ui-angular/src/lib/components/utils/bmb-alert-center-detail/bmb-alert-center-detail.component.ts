@@ -1,18 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
-import {
+import { DomSanitizer } from '@angular/platform-browser';
+import { getAlertCenterDetailClass } from '../../../_shared/logic/components/alert-center-detail';
+import { sanitizeContent } from '../../../_shared/logic/sanitizeContent';
+import type {
   IBmbDataAlert,
   IBmbDataAlertsParsed,
-} from '../../bmb-alert-center/types';
-import { CommonModule } from '@angular/common';
-import { DomSanitizer } from '@angular/platform-browser';
-import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
+} from '../../../_shared/types/components/alert-center';
+import type { IBmbAlertCenterDetailTextStyle } from '../../../_shared/types/components/alert-center-detail';
 import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
-import { sanitizeContent } from '../../../_shared/logic/sanitizeContent';
-import {
-  IBmbAlertCenterDetailTextStyle,
-} from '../../../_shared/types/components/alert-center-detail';
-import { getAlertCenterDetailClass } from '../../../_shared/logic/components/alert-center-detail';
 import { TranslatePipe } from '../../../pipes/translations';
+import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
 
 @Component({
   selector: 'bmb-alert-center-detail',

@@ -1,33 +1,38 @@
 import { CommonModule } from '@angular/common';
 import {
-  Component,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
-  input,
-  output,
-  computed,
-  inject,
+  Component,
+  OnInit,
   TemplateRef,
   ViewChild,
-  OnInit,
+  ViewEncapsulation,
+  computed,
   effect,
+  inject,
+  input,
+  output,
 } from '@angular/core';
-import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
-import { DateTime } from 'luxon';
-import { IBmbCalendarView } from '../../types';
-import { BmbButtonGroupDirective } from '../../../../directives/old/bmb-button-group/bmb-button-group.directive';
-import { BmbLayoutDirective } from '../../../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbActionIconComponent } from '../../../bmb-action-icon/bmb-action-icon.component';
-import { TranslatePipe } from '../../../../pipes/translations';
-import { BmbTranslationsService } from '../../../../services/translations/translations.service';
-import { BmbCalendarComponentService } from '../../bmb-calendar.service';
-import { getUUID } from '../../../../_shared/logic/utils';
-import { BmbNativeModalService } from '../../../../services/old/modal/native-modal.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { DateTime } from 'luxon';
+import {
+  getCalendarHeaderTitle,
+  headerGetBulletClass,
+  headerGetCalendarName,
+} from '../../../../_shared/logic/components/calendar-view';
+import { getUUID } from '../../../../_shared/logic/utils';
+import type { IBmbCalendarView } from '../../../../_shared/types/components/calendar';
+import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbButtonGroupDirective } from '../../../../directives/old/bmb-button-group/bmb-button-group.directive';
+import { TranslatePipe } from '../../../../pipes/translations';
+import { BmbNativeModalService } from '../../../../services/old/modal/native-modal.service';
+import { BmbTranslationsService } from '../../../../services/translations/translations.service';
+import { BmbActionIconComponent } from '../../../bmb-action-icon/bmb-action-icon.component';
 import { BmbCheckboxComponent } from '../../../bmb-checkbox/bmb-checkbox.component';
 import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component';
+import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
 import { BmbSwitchComponent } from '../../../bmb-switch/bmb-switch.component';
+import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 
 @Component({
   selector: 'bmb-calendar-header',
@@ -92,22 +97,12 @@ export class BmbCalendarHeaderComponent implements OnInit {
   }
 
   getTitle(): string {
-    if (this.view() === 'week') {
-      return `${this.weekDays()[0].setLocale(this.locale()).toFormat('LLL dd')} -
-        ${this.weekDays()[6].setLocale(this.locale()).toFormat('LLL dd')}`;
-    }
-
-    if (this.view() === 'day') {
-      return this.currentDate().setLocale(this.locale()).toLocaleString({
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
-      });
-    }
-
-    return this.currentDate()
-      .setLocale(this.locale())
-      .toLocaleString({ month: 'long' });
+    return getCalendarHeaderTitle(
+      this.view(),
+      this.weekDays(),
+      this.locale(),
+      this.currentDate(),
+    );
   }
 
   handleRangeChange(event: IBmbCalendarView): void {
@@ -184,7 +179,7 @@ export class BmbCalendarHeaderComponent implements OnInit {
   }
 
   getBulletClass(name: string): string[] {
-    return ['bmb_calendar-event-bullet', `bmb_calendar-event-bullet-${name}`];
+    return headerGetBulletClass(name);
   }
 
   getFormControl(name: string): FormControl {
@@ -192,17 +187,6 @@ export class BmbCalendarHeaderComponent implements OnInit {
   }
 
   getCalendarName(name: string): string {
-    switch (name) {
-      case 'academic':
-        return 'Horario de clases';
-      case 'life':
-        return 'Vida';
-      case 'events':
-        return 'Eventos';
-      case 'save_the_date':
-        return 'Save the date';
-      default:
-        return name;
-    }
+    return headerGetCalendarName(name);
   }
 }
