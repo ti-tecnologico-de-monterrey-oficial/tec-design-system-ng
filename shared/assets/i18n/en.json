@@ -551,5 +551,10 @@
   },
   "push_notification_item": {
     "dont_ask_again": "Don't ask again"
+  },
+  "time_picker": {
+    "title": "Select time",
+    "accept": "Accept",
+    "close": "Close"
   }
 }

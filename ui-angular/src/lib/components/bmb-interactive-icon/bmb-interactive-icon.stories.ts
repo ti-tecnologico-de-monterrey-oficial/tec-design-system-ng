@@ -63,7 +63,7 @@ ${getGeneralDescription(
     name: 'interactive-icon',
     type: 'component',
     alternativeDescription:
-      'that provides the functionality to be used as a shortcut to other applications in an orderly and intuitive manner.',
+      'that provides the functionality to be used as  a shortcut to other applications in an orderly and intuitive manner.',
   }),
   {
     generalDocLink:
