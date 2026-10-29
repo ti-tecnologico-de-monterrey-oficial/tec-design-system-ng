@@ -9,8 +9,8 @@ import {
   BmbAIChatCardComponent,
   BmbAiChatBubbleComponent,
   BmbChatBarComponent,
-  type BmbChatActionEvent,
-  type BmbChatMessage,
+  type BmbChatActionEvent as BmbChatActionEventGeneric,
+  type BmbChatMessage as BmbChatMessageGeneric,
   type IBmbActionHeader,
   type IBmbChatOptionEvent,
   type IBotType,
@@ -18,6 +18,9 @@ import {
   type IBmbAIChatCardMode,
   IBMB_AI_CHAT_CARD_MODE,
 } from 'ui-angular';
+
+type BmbChatMessage = BmbChatMessageGeneric<TemplateRef<unknown>>;
+type BmbChatActionEvent = BmbChatActionEventGeneric<TemplateRef<unknown>>;
 
 @Component({
   selector: 'app-ai-chat-card-page',

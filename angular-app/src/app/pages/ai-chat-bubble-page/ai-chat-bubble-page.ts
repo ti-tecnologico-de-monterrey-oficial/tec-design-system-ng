@@ -11,14 +11,17 @@ import {
   BmbDropdownComponent,
   BmbInputComponent,
   type BmbChatAction,
-  type BmbChatActionEvent,
-  type BmbChatMessage,
+  type BmbChatActionEvent as BmbChatActionEventGeneric,
+  type BmbChatMessage as BmbChatMessageGeneric,
   type BmbChatMessageEditedEvent,
   type BmbChatMessageType,
   type BmbChatStatus,
   type BmbUploadFileRequestEvent,
   type IBmbChatOptionEvent,
 } from 'ui-angular';
+
+type BmbChatMessage = BmbChatMessageGeneric<TemplateRef<unknown>>;
+type BmbChatActionEvent = BmbChatActionEventGeneric<TemplateRef<unknown>>;
 import { CHAT_USER_IMAGE_OPTIONS } from './chat-user-image-options';
 
 @Component({
