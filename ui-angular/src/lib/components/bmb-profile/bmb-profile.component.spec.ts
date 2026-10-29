@@ -2,12 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BmbProfileComponent } from './bmb-profile.component';
 import { ComponentRef } from '@angular/core';
-import {
-  IBmbCollaboratorProfileData,
+import { IBmbCollaboratorProfileData,
   IBmbStudentProfileData,
   IBmbTargetLink,
-  IBmbUserData,
-} from '../../_shared/types';
+  IBmbUserData } from '../../_shared/types';
 
 describe('BmbProfileComponent', () => {
   let component: BmbProfileComponent;
@@ -39,6 +37,36 @@ describe('BmbProfileComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should allow independent test IDs for the role switch and back button', () => {
+    componentRef.setInput('isStudent', false);
+    componentRef.setInput('collaboratorData', {
+      userData: component.studentData()?.userData,
+      enableRolSwitch: true,
+    });
+    componentRef.setInput('enableVersionBack', true);
+    fixture.detectChanges();
+
+    const roleButton: HTMLElement = fixture.nativeElement.querySelector(
+      'bmb-check-external-link-button.bmb_profile-info-change-role',
+    );
+    const backButton: HTMLElement = fixture.nativeElement.querySelector(
+      'bmb-check-external-link-button.bmb_profile-info-container-link',
+    );
+    expect(roleButton.getAttribute('data-testid')).toBe(
+      'profile-change-role-button',
+    );
+    expect(backButton.getAttribute('data-testid')).toBe(
+      'profile-back-to-previous-version-button',
+    );
+
+    componentRef.setInput('testId', 'custom-role-switch');
+    componentRef.setInput('backButtonTestId', 'custom-version-back');
+    fixture.detectChanges();
+
+    expect(roleButton.getAttribute('data-testid')).toBe('custom-role-switch');
+    expect(backButton.getAttribute('data-testid')).toBe('custom-version-back');
   });
 
   it('should have default input values', () => {
@@ -172,5 +200,27 @@ describe('BmbProfileComponent', () => {
     componentRef.setInput('versionLabel', 'Versión 1.5.10');
     fixture.detectChanges();
     expect(component.versionLabel()).toEqual('Versión 1.5.10');
+  });
+  it('preserves legacy profile mapping and the standalone user reference', () => {
+    componentRef.setInput('userData', {
+      name: 'Legacy',
+      userImg: '',
+      mail: 'legacy@tec.mx',
+      matricula: 'A1',
+      period: 'Fall',
+      campus: 'Monterrey',
+      program: 'ARQ19',
+    });
+    component.ngOnInit();
+    expect(component.getUserData().email).toBe('legacy@tec.mx');
+    const user = {
+      name: 'Standalone',
+      userImg: '',
+      email: 'standalone@tec.mx',
+    };
+    componentRef.setInput('isStandAlone', true);
+    componentRef.setInput('standAloneData', user);
+    component.ngOnInit();
+    expect(component.getUserData()).toBe(user);
   });
 });

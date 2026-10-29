@@ -1,12 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BmbNotificationCardComponent } from './bmb-notification-card.component';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
-import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
-import { IBmbDataAlert, IBmbDataAlertsParsed } from '../bmb-alert-center/types';
 import { ComponentRef } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DateTime } from 'luxon';
+import type {
+  IBmbDataAlert,
+  IBmbDataAlertsParsed,
+} from '../../_shared/types/components/alert-center';
+import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { BmbNotificationCardModalComponent } from './bmb-notification-card-modal/bmb-notification-card-modal.component';
+import { BmbNotificationCardComponent } from './bmb-notification-card.component';
 
 class MockBmbTranslationsService {
   translate(key: string) {

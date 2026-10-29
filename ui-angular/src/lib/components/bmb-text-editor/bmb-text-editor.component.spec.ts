@@ -370,6 +370,13 @@ describe('BmbTextEditorComponent', () => {
       expect(tdCount).toBe(6);
     });
 
+    it('should build the container color style', () => {
+      const style = component.getContainerColor('red-primary');
+
+      expect(style).toContain('var(--red-primary)');
+      expect(style).toContain('background: var(--red-primary)');
+    });
+
     it('should insert table when valid dimensions', () => {
       jest.spyOn(component, 'insertHtml');
       jest.spyOn(component, 'closeTableDialog');

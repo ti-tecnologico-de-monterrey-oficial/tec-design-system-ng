@@ -1,17 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ComponentRef } from '@angular/core';
+import { ComponentRef, TemplateRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { BmbAiChatBubbleComponent } from './bmb-ai-chat-bubble.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import {
-  BmbChatActionEvent,
+  BmbChatActionEvent as BmbChatActionEventGeneric,
   BmbImageMessage,
   BmbLinkMessage,
   BmbMixedMessage,
   BmbOptionsMessage,
   BmbTextMessage,
-} from './types';
+} from '../../_shared/types';
+
+type BmbChatActionEvent = BmbChatActionEventGeneric<TemplateRef<unknown>>;
 
 let componentRef: ComponentRef<BmbAiChatBubbleComponent>;
 
@@ -286,6 +288,23 @@ describe('BmbAiChatBubbleComponent', () => {
     });
 
     expect(writeText).not.toHaveBeenCalled();
+  });
+
+  it('should fall back to the rendered DOM text for template messages', () => {
+    const templateMessage = {
+      id: '7',
+      type: 'template',
+      isUser: false,
+      timestamp: new Date(),
+      content: { template: {} },
+    } as unknown as BmbTextMessage;
+
+    componentRef.setInput('message', templateMessage);
+    (component as any).messageContent = {
+      nativeElement: { innerText: '  Rendered template text  ' },
+    };
+
+    expect(component['buildPlainText']()).toBe('Rendered template text');
   });
 
   it('should render text message component', () => {

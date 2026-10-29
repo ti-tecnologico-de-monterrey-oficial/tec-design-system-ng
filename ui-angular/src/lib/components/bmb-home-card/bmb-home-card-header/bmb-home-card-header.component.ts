@@ -2,32 +2,31 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  input,
-  output,
-  ViewEncapsulation,
-  model,
   effect,
+  inject,
+  input,
+  model,
   OnInit,
+  output,
+  signal,
   TemplateRef,
   ViewChild,
-  inject,
-  signal,
-  computed,
+  ViewEncapsulation,
 } from '@angular/core';
 
+import type { IBmbColor } from '../../../_shared/types/colors';
+import type { IBotType } from '../../../_shared/types/components/chat-bar';
+import type { IBmbActionHeader } from '../../../_shared/types/utils';
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
-import { IBmbColor } from '../../../_shared/types/colors';
-import { IBmbActionHeader } from '../../../_shared/types/utils';
-import { IBotType } from '../../bmb-chat-bar/types';
 
-import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-content.component';
-import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.component';
-import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
-import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
-import { BmbActionMenuComponent } from '../../bmb-action-menu/bmb-action-menu.component';
-import { BmbItemActionsComponent } from '../../bmb-item/bmb-item-actions/bmb-item-actions.component';
-import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
+import { BmbActionMenuComponent } from '../../bmb-action-menu/bmb-action-menu.component';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
+import { BmbItemActionsComponent } from '../../bmb-item/bmb-item-actions/bmb-item-actions.component';
+import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.component';
+import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-content.component';
 
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { buildMaxElementsErrorMessage } from '../../../_shared/logic/utils';
@@ -71,7 +70,6 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   isExpanded = model<boolean>(false);
   currentBot = model<IBotType>();
   componentTitle = input<string>(); // once title is removed, this should be required
-  showOneHeaderAction = input<boolean>(false);
 
   title = input<string>(); // deprecated
 
@@ -85,12 +83,6 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   @ViewChild('actionMenu') actionMenu!: TemplateRef<unknown>;
 
   GENERAL_ACTIONS_LIMIT = 2;
-  AI_CHAT_CARD_PARTICULARITY_LIMIT = 1;
-  actionsLimit = computed(() =>
-    this.showOneHeaderAction()
-      ? this.AI_CHAT_CARD_PARTICULARITY_LIMIT
-      : this.GENERAL_ACTIONS_LIMIT,
-  );
   MAX_ACTIONS = 8;
   isGreaterThanLimit = false;
   idActionMenu = signal<string>('');
@@ -116,7 +108,8 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isGreaterThanLimit = this.actionHeaders().length > this.actionsLimit();
+    this.isGreaterThanLimit =
+      this.actionHeaders().length > this.GENERAL_ACTIONS_LIMIT;
 
     if (this.actionHeaders().length > this.MAX_ACTIONS) {
       throw new Error(buildMaxElementsErrorMessage(this.MAX_ACTIONS));

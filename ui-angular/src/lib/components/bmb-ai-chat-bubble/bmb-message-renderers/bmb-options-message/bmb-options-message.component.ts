@@ -9,7 +9,7 @@ import {
   BmbChatOption,
   BmbOptionsMessage,
   IBmbChatOptionEvent,
-} from '../../types';
+} from '../../../../_shared/types';
 import { BmbItemInformativeTextComponent } from '../../../bmb-item/bmb-item-informative-text/bmb-item-informative-text.component';
 import { BmbItemActionsComponent } from '../../../bmb-item/bmb-item-actions/bmb-item-actions.component';
 import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component';

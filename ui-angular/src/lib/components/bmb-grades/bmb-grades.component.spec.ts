@@ -180,4 +180,18 @@ describe('BmbGradesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('preserves period and grade navigation boundaries after extraction', () => {
+    component.handleLeftPeriodClick();
+    expect(component.gradeIndex()).toBe(0);
+    for (let i = 0; i < 10; i++) component.handleRightPeriodClick();
+    expect(component.gradeIndex()).toBe(component.grades().length - 1);
+    component.showPrincipalDetail = true;
+    component.periodIndex.set(0);
+    component.handleLeftPeriodClick();
+    expect(component.periodIndex()).toBe(0);
+    for (let i = 0; i < 10; i++) component.handleRightPeriodClick();
+    expect(component.periodIndex()).toBe(
+      component.grades()[component.gradeIndex()].periods.length - 1,
+    );
+  });
 });

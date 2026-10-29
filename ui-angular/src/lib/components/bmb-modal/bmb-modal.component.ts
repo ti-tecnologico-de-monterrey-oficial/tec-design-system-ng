@@ -12,15 +12,23 @@ import {
   MAT_DIALOG_DATA,
   MatDialog,
 } from '@angular/material/dialog';
-import type { ModalDataConfig } from './bmb-modal.interface';
+import type { ModalDataConfig as ModalDataConfigGeneric } from '../../_shared/types';
+
+type ModalDataConfig = ModalDataConfigGeneric<TemplateRef<any>>;
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  getModalButtonClass,
+  getModalClasses,
+  getModalDescriptionClasses,
+  getModalImage,
+  isModalSingleButton,
+  showModalFooter,
+  showModalPrimaryButton,
+  showModalSecondaryButton,
+} from '../../_shared/logic/components/modal';
 
 @Component({
   selector: 'bmb-modal',
@@ -73,46 +81,15 @@ export class BmbModalComponent implements OnInit {
   }
 
   getModalClasses(): string[] {
-    const baseClassName = 'bmb_modal';
-    const classNames: string[] = [baseClassName];
-
-    if (this.getData().size) {
-      return [...classNames, `${baseClassName}-size-${this.getData().size}`];
-    }
-
-    return classNames;
+    return getModalClasses(this.getData());
   }
 
   getDescriptionClasses(sectionName: string): string[] {
-    const baseClassName = 'bmb_modal-content';
-    const classNames: string[] = [`${baseClassName}-${sectionName}`];
-
-    if (this.getData().scrollable) {
-      return [...classNames, `${baseClassName}-scrollable`];
-    }
-
-    return classNames;
+    return getModalDescriptionClasses(sectionName, this.getData());
   }
 
   getButtonClass(isSecondaryButton: boolean): string[] {
-    const data = this.getData();
-    const footerClassName = 'bmb_modal-footer';
-    const baseClassName = `${footerClassName}-button`;
-    const classNames: string[] = [baseClassName];
-
-    if (isSecondaryButton) {
-      const newClassNames = [...classNames, `${footerClassName}-btn`];
-      return [...newClassNames, `${baseClassName}-secondary_action`];
-    }
-
-    if (data.type === 'alert') {
-      if (data.alertStyle) {
-        return [...classNames, `${baseClassName}-${data.alertStyle}`];
-      }
-      return [...classNames, `${baseClassName}-neutral`];
-    }
-
-    return classNames;
+    return getModalButtonClass(isSecondaryButton, this.getData());
   }
 
   getData(): ModalDataConfig {
@@ -120,18 +97,7 @@ export class BmbModalComponent implements OnInit {
   }
 
   getImage(): string {
-    const data: ModalDataConfig = this.getData();
-    const alertStyle: string = data.alertStyle!;
-
-    if (data.type === 'alert') {
-      if (alertStyle) {
-        return `${this.svgUrl}${alertStyle}_fill.svg`;
-      }
-
-      return `${this.svgUrl}neutral_fill.svg`;
-    }
-
-    return '';
+    return getModalImage(this.svgUrl, this.getData());
   }
 
   getTitle(): string {
@@ -156,24 +122,19 @@ export class BmbModalComponent implements OnInit {
   }
 
   showFooter(): boolean {
-    const hiddenButtons =
-      this.getData().hidePrimaryButton && this.getData().hideSecondaryButton;
-    return this.getData().type !== 'informative' && !hiddenButtons;
+    return showModalFooter(this.getData());
   }
 
   showPrimaryButton(): boolean {
-    return !this.getData().hidePrimaryButton;
+    return showModalPrimaryButton(this.getData());
   }
 
   showSecondaryButton(): boolean {
-    return !this.getData().hideSecondaryButton;
+    return showModalSecondaryButton(this.getData());
   }
 
   isSingleButton(): boolean {
-    return (
-      (this.showPrimaryButton() && !this.showSecondaryButton()) ||
-      (!this.showPrimaryButton() && this.showSecondaryButton())
-    );
+    return isModalSingleButton(this.getData());
   }
 
   extendButtons(): boolean {

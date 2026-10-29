@@ -1,14 +1,13 @@
 <ng-template #aiChatContent>
-  <section class="bmb_ai-chat-card" [ngClass]="'bmb_ai-chat-card-' + mode()">
+  <section class="bmb_ai-chat-card">
     <bmb-home-card
       [bgIconAppearance]="bgIconAppearance()"
       [componentTitle]="
         componentTitle() || ('home_card_chat.title' | translate)
       "
       [subtitle]="subtitle() || ('home_card_chat.subtitle' | translate)"
-      [aiChatHeaderActions]="headerActionList()"
-      [isExpanded]="mode() === 'expanded'"
-      [showOneHeaderAction]="true"
+      [actionHeaders]="headerActionList()"
+      [isExpanded]="isExpandedMode()"
       [(currentBot)]="currentBot"
       (onExpandClick)="handleExpandOrContract()"
     >
@@ -27,14 +26,13 @@
   </section>
 </ng-template>
 
-@if (mode() === 'expanded') {
+@if (isExpandedMode()) {
   <ng-container *ngTemplateOutlet="aiChatContent" />
 }
 
-@if (currentBot() && mode() === 'compact') {
+@if (currentBot() && isCompactMode()) {
   <bmb-action-icon
     class="bmb_ai-chat-card-bot"
-    [ngClass]="'bmb_ai-chat-card-' + mode()"
     [icon]="currentBot().icon"
     [tooltipText]="currentBot().name"
     [iconSize]="40"

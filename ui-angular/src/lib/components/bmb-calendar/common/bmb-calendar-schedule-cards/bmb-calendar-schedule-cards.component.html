@@ -11,7 +11,11 @@
           <div
             class="bmb_calendar-event-microprogram-item"
             [ngStyle]="getMicroPosition(item)"
+            role="button"
+            tabindex="0"
             (click)="handleSelectMicroEvent(item)"
+            (keydown.enter)="handleSelectMicroEvent(item)"
+            (keydown.space)="handleSelectMicroEvent(item)"
           >
             <header class="bmb_calendar-event-header">
               <span
@@ -58,6 +62,9 @@
       (click)="handleSelectEvent()"
       title="{{ event().title }} - {{ event().detail }}"
       tabindex="0"
+      role="button"
+      (keydown.enter)="handleSelectEvent()"
+      (keydown.space)="handleSelectEvent()"
     >
       <div class="bmb_calendar-event-indicator"></div>
       <header class="bmb_calendar-event-header">

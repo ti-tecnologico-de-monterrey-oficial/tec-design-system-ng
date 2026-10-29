@@ -38,6 +38,7 @@
   <section class="bmb_profile-info">
     @if (collaboratorData()?.enableRolSwitch) {
       <bmb-check-external-link-button
+        [attr.data-testid]="testId()"
         class="bmb_profile-info-change-role bmb_item-wrapper"
         (buttonClick)="handleRoleSwitch()"
       >
@@ -200,6 +201,7 @@
         <bmb-check-external-link-button
           class="bmb_profile-info-container-link"
           (buttonClick)="handleBackClick($event)"
+          [attr.data-testid]="backButtonTestId()"
         >
           <div class="bmb_profile-info-container-item">
             <bmb-icon [icon]="'compare_arrows'" [size]="24" />

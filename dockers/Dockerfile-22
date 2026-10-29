@@ -8,8 +8,8 @@ WORKDIR /app
 COPY . .
 COPY package/v22.json ./package.json
 
-# Instalar Angular CLI y dependencias
-RUN rm -f package-lock.json && npm add --global nx && npm install
+# Usar npm con la correccion del resolver de peer dependencies
+RUN npm install --global npm@11.21.1 && rm -f package-lock.json && npm install
 
 # Construye la librería de Angular (ajusta el nombre de tu librería)
 RUN npm run docker-build

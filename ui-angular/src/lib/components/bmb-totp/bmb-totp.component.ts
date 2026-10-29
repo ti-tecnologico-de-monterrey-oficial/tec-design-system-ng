@@ -16,7 +16,6 @@ import { BmbButtonDirective } from '../../directives/bmb-button/button.directive
 import {
   FormGroup,
   FormBuilder,
-  Validators,
   FormControl,
   ReactiveFormsModule,
 } from '@angular/forms';
@@ -24,10 +23,13 @@ import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-inp
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { getUUID } from '../../_shared/logic/utils';
 import { TranslatePipe } from '../../pipes/translations';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  buildTotpControlsMap,
+  getTotpCodeIndexes,
+  isTotpNavigationKey,
+  joinTotpCode,
+  parseTotpInputIndex,
+} from '../../_shared/logic/components/totp';
 
 @Component({
   selector: 'bmb-totp',
@@ -65,7 +67,7 @@ export class BmbTotpComponent implements OnInit{
   codeForm!: FormGroup;
   _maxCode = 6;
   codesArray = computed(() => {
-    return Array.from({ length: this._maxCode }, (_, i) => i);
+    return getTotpCodeIndexes(this._maxCode);
   });
 
   private formBuilder: FormBuilder = inject(FormBuilder);
@@ -75,13 +77,7 @@ export class BmbTotpComponent implements OnInit{
   }
 
   buildForm() {
-    const group: { [key: string]: FormControl } = {};
-    for (let i = 0; i < this._maxCode; i++) {
-      group[`name_${this.instanceId()}_${i}`] = new FormControl('', [
-        Validators.required,
-        Validators.pattern('[0-9a-zA-Z]'),
-      ]);
-    }
+    const group = buildTotpControlsMap(this.instanceId(), this._maxCode);
     this.codeForm = this.formBuilder.group(group);
   }
 
@@ -96,13 +92,7 @@ export class BmbTotpComponent implements OnInit{
       return;
     }
 
-    if (
-      event.key === 'Tab' ||
-      event.key === 'Shift' ||
-      event.key === 'ArrowLeft' ||
-      event.key === 'ArrowRight' ||
-      event.key === 'Backspace'
-    ) {
+    if (isTotpNavigationKey(event.key)) {
       return;
     }
 
@@ -124,9 +114,7 @@ export class BmbTotpComponent implements OnInit{
   @HostListener('keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
     const input = event.target as HTMLInputElement;
-    const inputId = input.id;
-    const match = inputId.match(/_(\d+)$/);
-    const idx = match ? parseInt(match[1], 10) : -1;
+    const idx = parseTotpInputIndex(input.id);
 
     if (event.key === 'Backspace' && input.value.length === 0 && idx > 0) {
       const previousInput = document.getElementById(
@@ -168,8 +156,7 @@ export class BmbTotpComponent implements OnInit{
 
   onSubmit() {
     if (this.codeForm.valid) {
-      const code = Object.values(this.codeForm.value).join('');
-      this.handleSubmit.emit(code);
+      this.handleSubmit.emit(joinTotpCode(this.codeForm.value));
       return;
     }
 

@@ -1,0 +1,70 @@
+@use '../test-page';
+
+.test-grid {
+  grid-template-columns: minmax(18rem, 24rem) minmax(0, 1fr);
+}
+
+.test-controls {
+  .property {
+    display: grid;
+    gap: 0.5rem;
+    margin: 1.25rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--general-contrasts-25);
+  }
+
+  label {
+    margin: 0;
+    flex-wrap: wrap;
+    font-weight: 600;
+  }
+  small {
+    overflow-wrap: anywhere;
+    font-size: 0.75rem;
+  }
+
+  input:not([type='checkbox']),
+  textarea,
+  select {
+    width: 100%;
+    min-width: 0;
+    padding: 0.5rem;
+    border: 1px solid var(--general-contrasts-50);
+    border-radius: 0.375rem;
+    color: inherit;
+    background: var(--containers-background);
+  }
+
+  textarea {
+    resize: vertical;
+    font-family: monospace;
+  }
+  input[type='checkbox'] {
+    justify-self: start;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font-size: 0.75rem;
+  }
+  .property-error {
+    color: var(--bmb-color-error-primary, #ff8585);
+  }
+  .property-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  button {
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 48rem) {
+  .test-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

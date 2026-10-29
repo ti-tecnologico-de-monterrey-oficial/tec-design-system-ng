@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbActionIconComponent } from './bmb-action-icon.component';
 import { ComponentRef } from '@angular/core';
+import { provideRouter } from '@angular/router';
 
 describe('BmbActionIconComponent', () => {
   let component: BmbActionIconComponent;
@@ -10,6 +11,7 @@ describe('BmbActionIconComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BmbActionIconComponent],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BmbActionIconComponent);
@@ -22,6 +24,31 @@ describe('BmbActionIconComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should use the default test ID', () => {
+    const element: HTMLElement = fixture.nativeElement.querySelector(
+      'bmb-check-external-link-button',
+    );
+    expect(element.getAttribute('data-testid')).toBe('action-icon-button');
+  });
+
+  it.each(['', 'https://example.com', '/internal'])(
+    'should update the test ID for link "%s"',
+    (link) => {
+      componentRef.setInput('link', link);
+      componentRef.setInput('testId', 'custom-action');
+      fixture.detectChanges();
+
+      const element: HTMLElement = fixture.nativeElement.querySelector(
+        'bmb-check-external-link-button',
+      );
+      expect(element.getAttribute('data-testid')).toBe('custom-action');
+
+      componentRef.setInput('testId', 'updated-action');
+      fixture.detectChanges();
+      expect(element.getAttribute('data-testid')).toBe('updated-action');
+    },
+  );
 
   it('should emit buttonPress on handlePress', () => {
     jest.spyOn(component.buttonPress, 'emit');

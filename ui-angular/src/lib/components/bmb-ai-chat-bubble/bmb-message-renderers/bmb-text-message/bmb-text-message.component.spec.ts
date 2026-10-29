@@ -3,7 +3,7 @@ import { ComponentRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { TextMessageComponent } from './bmb-text-message.component';
-import { BmbTextMessage } from '../../types';
+import { BmbTextMessage } from '../../../../_shared/types';
 
 let componentRef: ComponentRef<TextMessageComponent>;
 

@@ -1,0 +1,36 @@
+@use '../../styles/playground';
+@include playground.page(18rem, 24rem, 14rem);
+.controls {
+  box-sizing: border-box;
+  max-height: 75dvh;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
+}
+.preview bmb-dropdown {
+  display: block;
+  width: 100%;
+}
+.state {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #d8dee8;
+  border-radius: 0.75rem;
+}
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+}
+pre,
+code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+button:not([bmbButton]) {
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+}
+[role='alert'] {
+  color: #b42318;
+}

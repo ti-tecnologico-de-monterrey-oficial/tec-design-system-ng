@@ -21,7 +21,7 @@ import type {
 } from '../../_shared/types/components/image';
 import { BmbButtonIconComponent } from '../bmb-button-icon/bmb-button-icon.component';
 import { TranslatePipe } from '../../pipes/translations';
-import { logDeprecatedInput } from '@shared/logic/logDeprecatedInput';
+import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-image',

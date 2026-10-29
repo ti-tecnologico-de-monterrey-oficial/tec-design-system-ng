@@ -3,6 +3,14 @@ import { Route } from '@angular/router';
 import { TemplatesContainerBtn } from './pages/templates-container-btn/templates-container-btn';
 
 export const appRoutes: Route[] = [
+  {
+    path: 'issue/dropdown',
+    title: 'DS01-3902 | BmbDropdown',
+    loadComponent: () =>
+      import('./pages/issue-dropdown-page/issue-dropdown-page').then(
+        ({ IssueDropdownPage }) => IssueDropdownPage,
+      ),
+  },
   ...componentTestRoutes,
   {
     path: 'template-container-btn',
@@ -695,6 +703,14 @@ export const appRoutes: Route[] = [
     loadComponent: () =>
       import('./pages/search-input-page/search-input-page').then(
         ({ SearchInputPage }) => SearchInputPage,
+      ),
+  },
+  {
+    path: 'issue/search-bar',
+    title: 'Issue | BmbSearchInput debounce',
+    loadComponent: () =>
+      import('./pages/issue-search-bar-page/issue-search-bar-page').then(
+        ({ IssueSearchBarPage }) => IssueSearchBarPage,
       ),
   },
   {

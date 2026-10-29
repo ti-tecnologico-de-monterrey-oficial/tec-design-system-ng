@@ -1,3 +1,5 @@
+export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
+
 export type IBmbInteractiveIconAppearance =
   | 'red'
   | 'blue'

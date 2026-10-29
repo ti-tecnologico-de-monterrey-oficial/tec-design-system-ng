@@ -81,7 +81,8 @@ ${getBasicExampleBlock('BmbSearchInputComponent', '', onChange.handleExample)}
     },
     isLoading: {
       control: 'boolean',
-      description: 'Set the loading state.',
+      description:
+        'Set the loading state. Model input, supports two-way binding with `[(isLoading)]`.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: getDefaultValueControl(false),
@@ -123,6 +124,16 @@ ${getBasicExampleBlock('BmbSearchInputComponent', '', onChange.handleExample)}
       'when the search is cleared',
       'other',
     ),
+    searchDebounceTime: {
+      control: 'number',
+      description:
+        'Time in milliseconds to wait after the last keystroke before filtering the data.',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: getDefaultValueControl(300),
+        category: 'Properties',
+      },
+    },
   },
   args: {
     inputId: '',
@@ -138,6 +149,7 @@ ${getBasicExampleBlock('BmbSearchInputComponent', '', onChange.handleExample)}
       'Midge Girardot',
     ],
     isLoading: false,
+    searchDebounceTime: 300,
     serverSideFilteredData: [
       'Giacopo Mellings',
       'Clyve Nerval',

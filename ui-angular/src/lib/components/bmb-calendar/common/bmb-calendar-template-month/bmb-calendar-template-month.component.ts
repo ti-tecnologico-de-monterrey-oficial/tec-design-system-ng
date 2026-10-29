@@ -1,17 +1,27 @@
+import { CommonModule } from '@angular/common';
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   ViewEncapsulation,
   computed,
   inject,
 } from '@angular/core';
-import { IBmbCalendarEvent, IBmbCalendarRenderEvents } from '../../types';
 import { DateTime } from 'luxon';
-import { eventsInDate, dayName, weeksAndDays } from '../../utils';
-import { CommonModule } from '@angular/common';
-import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
+import {
+  eventsInDate,
+  weeksAndDays,
+} from '../../../../_shared/logic/components/calendar';
+import {
+  getCalendarShortDayName,
+  templateMonthIsNow,
+} from '../../../../_shared/logic/components/calendar-view';
+import type {
+  IBmbCalendarEvent,
+  IBmbCalendarRenderEvents,
+} from '../../../../_shared/types/components/calendar';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
+import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
 
 @Component({
   selector: 'bmb-calendar-template-month',
@@ -40,12 +50,11 @@ export class BmbCalendarTemplateMonthComponent {
   });
 
   getDayName(date: DateTime) {
-    return dayName(date, this.locale());
+    return getCalendarShortDayName(date, this.locale());
   }
 
   isNow(date: DateTime): boolean {
-    const diff = date.diffNow('day').days;
-    return diff < 0 && diff > -1;
+    return templateMonthIsNow(date);
   }
 
   renderEvents(events: IBmbCalendarRenderEvents): any[] {

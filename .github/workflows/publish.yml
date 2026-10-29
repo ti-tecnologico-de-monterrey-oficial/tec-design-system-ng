@@ -25,8 +25,8 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install npm 11.5.1 for Trusted Publishers
-        run: npm install -g npm@11.5.1
+      - name: Install npm 11.21.1 for dependency resolution and Trusted Publishers
+        run: npm install -g npm@11.21.1
 
       - name: Change package file for versioning
         run: |
@@ -37,7 +37,7 @@ jobs:
         run: npm cache clean --force
 
       - name: Install Dependencies
-        run: npm add --global nx && npm install
+        run: npm install
 
       - name: Clean dist
         run: rm -rf dist/ui-angular
@@ -76,8 +76,8 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install npm 11.5.1 for Trusted Publishers
-        run: npm install -g npm@11.5.1
+      - name: Install npm 11.21.1 for dependency resolution and Trusted Publishers
+        run: npm install -g npm@11.21.1
 
       - name: Change package file for versioning
         run: |
@@ -88,7 +88,7 @@ jobs:
         run: npm cache clean --force
 
       - name: Install Dependencies
-        run: npm add --global nx && npm install
+        run: npm install
 
       - name: Clean dist
         run: rm -rf dist/ui-angular
@@ -127,8 +127,8 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install npm 11.5.1 for Trusted Publishers
-        run: npm install -g npm@11.5.1
+      - name: Install npm 11.21.1 for dependency resolution and Trusted Publishers
+        run: npm install -g npm@11.21.1
 
       - name: Change package file for versioning
         run: |
@@ -139,7 +139,7 @@ jobs:
         run: npm cache clean --force
 
       - name: Install Dependencies
-        run: npm add --global nx && npm install
+        run: npm install
 
       - name: Clean dist
         run: rm -rf dist/ui-angular

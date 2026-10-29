@@ -6,20 +6,18 @@ import {
   effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SidebarElement } from './bmb-sidebar.interface';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
-import { IPositionButtonMenu } from '../../_shared/types';
+import { IPositionButtonMenu, SidebarElement } from '../../_shared/types';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { TranslatePipe } from '../../pipes/translations';
-
-export * from './bmb-sidebar.interface';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  getSidebarLink,
+  getSidebarValidationErrors,
+  hasSidebarChildren,
+} from '../../_shared/logic/components/sidebar';
 
 @Component({
   selector: 'bmb-sidebar',
@@ -38,6 +36,7 @@ export * from './bmb-sidebar.interface';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbSidebarComponent {
+  testId = input<string>('sidebar-element-button');
   elements = input<SidebarElement[][]>([]);
   position = input<IPositionButtonMenu>('left'); //Only for web
   componentTitle = input<string>('Navigation');
@@ -51,24 +50,9 @@ export class BmbSidebarComponent {
 
   constructor() {
     effect(() => {
-      const totalElements = this.elements().reduce(
-        (acc, group) => acc + group.length,
-        0,
-      );
-
-      if (this.elements()?.length > 2) {
-        console.error(
-          'The sidebar component only supports two levels of navigation',
-        );
-        this.error = true;
-      }
-
-      if (totalElements > 8) {
-        console.error(
-          'The sidebar component only supports a maximum of 8 elements in the first level of navigation',
-        );
-        this.error = true;
-      }
+      const errors = getSidebarValidationErrors(this.elements());
+      errors.forEach((message) => console.error(message));
+      if (errors.length) this.error = true;
     });
 
     effect(() => {
@@ -82,12 +66,11 @@ export class BmbSidebarComponent {
   }
 
   protected hasChildren(selectedElement: SidebarElement): boolean {
-    return !!selectedElement.children;
+    return hasSidebarChildren(selectedElement);
   }
 
   protected getLink(selectedElement: SidebarElement): string {
-    if (this.hasChildren(selectedElement)) return '';
-    return selectedElement.link || '';
+    return getSidebarLink(selectedElement);
   }
 
   protected closeSidebar(selectedElement: SidebarElement) {

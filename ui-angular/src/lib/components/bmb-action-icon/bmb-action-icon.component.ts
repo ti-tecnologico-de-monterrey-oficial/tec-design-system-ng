@@ -36,6 +36,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbActionIconComponent {
+  testId = input<string>('action-icon-button');
   idElement = input<string>();
   icon = input.required<string>();
   alt = input<string>('');

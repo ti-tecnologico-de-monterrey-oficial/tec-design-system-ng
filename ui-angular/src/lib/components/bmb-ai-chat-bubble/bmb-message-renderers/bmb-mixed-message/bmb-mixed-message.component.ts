@@ -5,7 +5,7 @@ import {
   output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbMixedMessage } from '../../types';
+import { BmbMixedMessage } from '../../../../_shared/types';
 import { handleImageNotFoundError } from '../../../../_shared/logic/utils';
 
 @Component({

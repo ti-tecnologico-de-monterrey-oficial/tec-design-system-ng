@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,26 +9,30 @@ import {
   signal,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
-import { IBmbDataAlertsParsed } from '../types';
-import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
 import { DateTime } from 'luxon';
-import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import {
+  alertCenterGetFormattedTime,
+  alertCenterGetTextFromDate,
+  alertCenterGetTimeVariant,
+} from '../../../_shared/logic/components/alert-center-list';
+import type { IBmbDataAlertsParsed } from '../../../_shared/types/components/alert-center';
+import type { IBmbSwipeSide } from '../../../_shared/types';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import {
+  BmbSwipeDirective,
+  BmbSwipeLeftActionsDirective,
+  BmbSwipeRightActionsDirective,
+} from '../../../directives/bmb-swipe/bmb-swipe.directive';
 import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
 } from '../../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
-import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
-import { CommonModule } from '@angular/common';
-import {
-  BmbSwipeDirective,
-  BmbSwipeRightActionsDirective,
-  IBmbSwipeSide,
-  BmbSwipeLeftActionsDirective,
-} from '../../../directives/bmb-swipe/bmb-swipe.directive';
-import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../../pipes/translations';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
+import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
+import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
+import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-alert-center-list',
@@ -84,7 +89,7 @@ export class BmbAlertCenterListComponent {
   }
 
   getTextFromDate(date: DateTime): string {
-    return date.toFormat('EEEE dd LLLL yyyy', { locale: 'es' });
+    return alertCenterGetTextFromDate(date);
   }
 
   handleRowClick(item: IBmbDataAlertsParsed): void {
@@ -92,43 +97,11 @@ export class BmbAlertCenterListComponent {
   }
 
   getTimeVariant(pDate: DateTime): 'today' | 'yesterday' | 'date' {
-    if (!pDate?.isValid) return 'date';
-
-    const now = DateTime.now().startOf('day');
-    const target = pDate.startOf('day');
-    const diffDays = now.diff(target, 'days').days;
-
-    if (diffDays === 0) return 'today';
-    if (diffDays === 1) return 'yesterday';
-
-    return 'date';
+    return alertCenterGetTimeVariant(pDate);
   }
 
   getFormattedTime(time: string, pDate: DateTime): string {
-    if (!pDate?.isValid) return '';
-
-    const parts = time.split(':');
-    if (parts.length !== 2) return '';
-
-    const [hour, minute] = parts.map(Number);
-    if (isNaN(hour) || isNaN(minute)) return '';
-
-    const now = DateTime.now().startOf('day');
-    const target = pDate.startOf('day');
-    const diffDays = now.diff(target, 'days').days;
-
-    const dateTime = pDate.set({ hour, minute });
-
-    if (diffDays < 0) return dateTime.toFormat('h:mm a').toLowerCase();
-    if (diffDays === 0) return dateTime.toFormat('h:mm a');
-    if (diffDays === 1) {
-      return (
-        dateTime.setLocale('es').toRelativeCalendar() ??
-        dateTime.toFormat('dd/MM/yyyy')
-      );
-    }
-
-    return pDate.toFormat('dd/MM/yyyy');
+    return alertCenterGetFormattedTime(time, pDate);
   }
 
   handleSwipe(side: IBmbSwipeSide | null): void {

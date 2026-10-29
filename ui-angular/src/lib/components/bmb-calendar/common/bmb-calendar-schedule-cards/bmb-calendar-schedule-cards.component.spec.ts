@@ -1,10 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BmbCalendarScheduleCardsComponent } from './bmb-calendar-schedule-cards.component';
 import { ComponentRef } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DateTime } from 'luxon';
+import type { IBmbCalendarEvent } from '../../../../_shared/types/components/calendar';
 import { BmbNativeModalService } from '../../../../services/old/modal/native-modal.service';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
-import { IBmbCalendarEvent } from '../../types';
+import { BmbCalendarScheduleCardsComponent } from './bmb-calendar-schedule-cards.component';
 
 describe('BmbCalendarScheduleCardsComponent', () => {
   let component: BmbCalendarScheduleCardsComponent;

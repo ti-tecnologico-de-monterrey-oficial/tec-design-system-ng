@@ -15,6 +15,7 @@ import {
   type IBotType,
   type IChatBarActions,
   type IBmbAIChatCardMode,
+  IBMB_AI_CHAT_CARD_MODE,
 } from 'ui-angular';
 
 @Component({
@@ -32,13 +33,13 @@ import {
 })
 export class AiChatCardPage {
   readonly modes: { value: IBmbAIChatCardMode; label: string }[] = [
-    { value: 'chat', label: 'Chat' },
-    { value: 'compact', label: 'Compact' },
-    { value: 'expanded', label: 'Expanded' },
-    { value: 'invisible', label: 'Invisible' },
+    { value: IBMB_AI_CHAT_CARD_MODE.COMPACT, label: 'Compact' },
+    { value: IBMB_AI_CHAT_CARD_MODE.CHAT, label: 'Chat' },
+    { value: IBMB_AI_CHAT_CARD_MODE.EXPANDED, label: 'Expanded' },
+    { value: IBMB_AI_CHAT_CARD_MODE.INVISIBLE, label: 'Invisible' },
   ];
 
-  readonly mode = signal<IBmbAIChatCardMode>('expanded');
+  readonly mode = signal<IBmbAIChatCardMode>(IBMB_AI_CHAT_CARD_MODE.COMPACT);
   readonly currentBot = signal<IBotType>({
     name: 'TecBot',
     label: 'Tecbot Standard',
@@ -161,7 +162,7 @@ export class AiChatCardPage {
   }
 
   chatCard(): void {
-    this.mode.set('chat');
+    this.mode.set(IBMB_AI_CHAT_CARD_MODE.CHAT);
   }
 
   getAction(event: BmbChatActionEvent): void {

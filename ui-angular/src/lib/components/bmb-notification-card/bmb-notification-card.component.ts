@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,24 +9,22 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
+import { DateTime } from 'luxon';
+import { countUnreadItems } from '../../_shared/logic/components/notification-card';
+import type {
   IBmbAlertEmptyState,
   IBmbDataAlert,
   IBmbDataAlertsParsed,
-} from '../bmb-alert-center/types';
-import { IBmbTab } from '../bmb-tabs/bmb-tabs.component';
-import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
+} from '../../_shared/types/components/alert-center';
+import { TranslatePipe } from '../../pipes/translations';
+import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
-import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
 import { BmbAlertCenterAdsComponent } from '../bmb-alert-center/bmb-alert-center-ads/bmb-alert-center-ads.component';
 import { BmbAlertCenterListComponent } from '../bmb-alert-center/bmb-alert-center-list/bmb-alert-center-list.component';
-import { DateTime } from 'luxon';
-import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
+import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { BmbNotificationCardModalComponent } from './bmb-notification-card-modal/bmb-notification-card-modal.component';
-import { TranslatePipe } from '../../pipes/translations';
-import { countUnreadItems } from '../../_shared/logic/components/notification-card';
 
 @Component({
   selector: 'bmb-notification-card',

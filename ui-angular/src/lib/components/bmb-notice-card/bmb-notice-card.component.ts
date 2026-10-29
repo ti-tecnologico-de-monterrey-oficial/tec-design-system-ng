@@ -17,15 +17,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { sanitizeContent } from '../../_shared/logic/sanitizeContent';
-
-export interface IBmbCardNoticeDescription {
-  pageOne?: string | SafeHtml;
-  pageTwo?: string | SafeHtml;
-}
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { IBmbCardNoticeDescription } from '../../_shared/types';
 
 @Component({
   selector: 'bmb-notice-card',
@@ -48,7 +40,7 @@ export class BmbNoticeCardComponent {
   src = input<string>('');
   icon = input<string>('');
   iconSize = input<number>(24);
-  description = input<IBmbCardNoticeDescription>();
+  description = input<IBmbCardNoticeDescription<SafeHtml>>();
   buttonText = input<string>();
   link = input<string>('');
   closeBtnColor = input<'white' | 'black'>('white');
@@ -88,7 +80,7 @@ export class BmbNoticeCardComponent {
     this.onClickBtn.emit();
   }
 
-  getPage(page: keyof IBmbCardNoticeDescription): SafeHtml | undefined {
+  getPage(page: keyof IBmbCardNoticeDescription<SafeHtml>): SafeHtml | undefined {
     const value = this.description()?.[page];
     return value
       ? this.sanitizer.bypassSecurityTrustHtml(sanitizeContent(value as string)) // NOSONAR Content is sanitized with DOMPurify - safe to bypass

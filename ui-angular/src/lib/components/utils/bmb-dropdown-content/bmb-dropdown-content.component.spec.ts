@@ -330,6 +330,139 @@ describe('BmbDropdownContentComponent', () => {
     });
   });
 
+  describe('Multi-select', () => {
+    beforeEach(() => jest.clearAllMocks());
+    beforeEach(() => {
+      component.items.set(mockItems);
+      fixture.componentRef.setInput('isMultiSelect', true);
+      fixture.detectChanges();
+    });
+
+    it('renders search before select-all and before the options', () => {
+      fixture.componentRef.setInput('enableFilter', true);
+      fixture.detectChanges();
+      const rows = fixture.nativeElement.querySelectorAll('li');
+      expect(rows[0].querySelector('input')).not.toBeNull();
+      expect(rows[1].id).toBe('select_all');
+      expect(rows[2].id).toBe('1');
+    });
+
+    it('selects and deselects filtered results while retaining hidden selections', () => {
+      fixture.componentRef.setInput('enableFilter', true);
+      fixture.componentRef.setInput('selectedOption', ['third']);
+      fixture.detectChanges();
+      component.filterString.set('first');
+      component.handleSelectedAll();
+      expect(component.selectionState()).toEqual(['third', 'first']);
+      expect(component.isAllSelected()).toBe(true);
+      expect(component.isIndeterminate()).toBe(false);
+      expect(mockItems[0].action).toHaveBeenCalledTimes(1);
+      expect(mockItems[1].action).not.toHaveBeenCalled();
+      expect(mockItems[2].action).not.toHaveBeenCalled();
+      component.handleSelectedAll();
+      expect(component.selectionState()).toEqual(['third']);
+      expect(mockItems[0].action).toHaveBeenCalledTimes(2);
+      component.filterString.set('');
+      expect(component.filteredItems()).toEqual(mockItems);
+      expect(component.isSelected('third')).toBe(true);
+      expect(component.isIndeterminate()).toBe(true);
+    });
+
+    it('adds only missing matches for partial filtered selections', () => {
+      fixture.componentRef.setInput('enableFilter', true);
+      fixture.componentRef.setInput('selectedOption', ['first', 'third']);
+      fixture.componentRef.setInput(
+        'customFilterFunction',
+        (item: IDropdownItem) => item.value !== 'third',
+      );
+      fixture.detectChanges();
+      component.filterString.set('query');
+      expect(component.isAllSelected()).toBe(false);
+      expect(component.isIndeterminate()).toBe(true);
+      component.handleSelectedAll();
+      expect(component.selectionState()).toEqual(['first', 'third', 'second']);
+      expect(mockItems[0].action).not.toHaveBeenCalled();
+      expect(mockItems[1].action).toHaveBeenCalledTimes(1);
+      expect(mockItems[2].action).not.toHaveBeenCalled();
+      component.filterString.set('');
+      expect(component.isAllSelected()).toBe(true);
+    });
+
+    it('disables select-all with no matches without changing the selection', () => {
+      fixture.componentRef.setInput('enableFilter', true);
+      fixture.componentRef.setInput('selectedOption', ['third']);
+      fixture.detectChanges();
+      component.filterString.set('no matches');
+      fixture.detectChanges();
+      expect(
+        fixture.nativeElement.querySelector('#select_all button').disabled,
+      ).toBe(true);
+      expect(component.isAllSelected()).toBe(false);
+      expect(component.isIndeterminate()).toBe(false);
+      component.handleSelectedAll();
+      expect(component.selectionState()).toEqual(['third']);
+      mockItems.forEach((item) => expect(item.action).not.toHaveBeenCalled());
+    });
+
+    it('should report indeterminate when some but not all items are selected', () => {
+      fixture.componentRef.setInput('selectedOption', ['first']);
+      fixture.detectChanges();
+
+      expect(component.isIndeterminate()).toBe(true);
+      expect(component.isAllSelected()).toBe(false);
+    });
+
+    it('should report all selected when every item is selected', () => {
+      fixture.componentRef.setInput('selectedOption', [
+        'first',
+        'second',
+        'third',
+      ]);
+      fixture.detectChanges();
+
+      expect(component.isAllSelected()).toBe(true);
+      expect(component.isIndeterminate()).toBe(false);
+    });
+
+    it('should add the item to the selection on handleDropdown', () => {
+      component.handleDropdown(mockItems[0]);
+
+      expect(component.isSelected('first')).toBe(true);
+    });
+
+    it('should remove the item from the selection when already selected', () => {
+      fixture.componentRef.setInput('selectedOption', ['first']);
+      fixture.detectChanges();
+
+      component.handleDropdown(mockItems[0]);
+
+      expect(component.isSelected('first')).toBe(false);
+    });
+
+    it('should select every item through handleSelectedAll', () => {
+      component.handleSelectedAll();
+
+      expect(component.isSelected('first')).toBe(true);
+      expect(component.isSelected('second')).toBe(true);
+      expect(component.isSelected('third')).toBe(true);
+      mockItems.forEach((item) => expect(item.action).toHaveBeenCalled());
+    });
+
+    it('should clear every selection through handleSelectedAll when all are already selected', () => {
+      fixture.componentRef.setInput('selectedOption', [
+        'first',
+        'second',
+        'third',
+      ]);
+      fixture.detectChanges();
+
+      component.handleSelectedAll();
+
+      expect(component.isSelected('first')).toBe(false);
+      expect(component.isAllSelected()).toBe(false);
+    });
+  });
+
   describe('Accessibility', () => {
     beforeEach(() => {
       component.items.set(mockItems);

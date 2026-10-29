@@ -1,19 +1,49 @@
-import type { IBmbAIChatCardMode } from '../../types/components/ai-chat-card';
+import {
+  IBmbAIChatCardMode,
+  IBMB_AI_CHAT_CARD_MODE,
+} from '../../types/components/ai-chat-card';
 
-export function getNextAiChatCardMode(
+export function getNextAIChatCardMode(
   currentMode: IBmbAIChatCardMode,
 ): IBmbAIChatCardMode {
-  if (currentMode === 'compact' || currentMode === 'invisible') return 'chat';
+  if (isConversationDisabledAIChatCardMode(currentMode))
+    return IBMB_AI_CHAT_CARD_MODE.CHAT;
 
-  if (currentMode === 'chat') return 'expanded';
+  if (isExpandedAIChatCardMode(currentMode)) return IBMB_AI_CHAT_CARD_MODE.CHAT;
 
-  if (currentMode === 'expanded') return 'chat';
-
-  return 'expanded';
+  return IBMB_AI_CHAT_CARD_MODE.EXPANDED;
 }
 
-export function shouldTrackAsLastNonChatMode(
+export function isConversationDisabledAIChatCardMode(
   mode: IBmbAIChatCardMode,
 ): boolean {
-  return mode === 'invisible' || mode === 'compact';
+  return (
+    mode === IBMB_AI_CHAT_CARD_MODE.INVISIBLE ||
+    mode === IBMB_AI_CHAT_CARD_MODE.COMPACT
+  );
+}
+
+export function isConversationEnabledAIChatCardMode(
+  mode: IBmbAIChatCardMode,
+): boolean {
+  return (
+    mode === IBMB_AI_CHAT_CARD_MODE.CHAT ||
+    mode === IBMB_AI_CHAT_CARD_MODE.EXPANDED
+  );
+}
+
+export function isExpandedAIChatCardMode(mode: IBmbAIChatCardMode): boolean {
+  return mode === IBMB_AI_CHAT_CARD_MODE.EXPANDED;
+}
+
+export function isChatAIChatCardMode(mode: IBmbAIChatCardMode): boolean {
+  return mode === IBMB_AI_CHAT_CARD_MODE.CHAT;
+}
+
+export function isInvisibleAIChatCardMode(mode: IBmbAIChatCardMode): boolean {
+  return mode === IBMB_AI_CHAT_CARD_MODE.INVISIBLE;
+}
+
+export function isCompactAIChatCardMode(mode: IBmbAIChatCardMode): boolean {
+  return mode === IBMB_AI_CHAT_CARD_MODE.COMPACT;
 }

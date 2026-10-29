@@ -64,17 +64,135 @@ describe('BmbTotpComponent', () => {
     component.onSubmit();
     expect(component.handleSubmit.emit).toHaveBeenCalledWith('');
   });
-  // TODO: Add a validation for the next input focus on key up
-  // it('should focus next input on key up', () => {
-  //   const input = fixture.nativeElement.querySelector(
-  //     `#code_${component.instanceId()}_0`,
-  //   );
-  //   input.dispatchEvent(new KeyboardEvent('keyup', { key: '1' }));
-  //   fixture.detectChanges();
-  //   const nextInput = fixture.nativeElement.querySelector(
-  //     `#code_${component.instanceId()}_1`,
-  //   );
-  // });
+  describe('handleKeyUp', () => {
+    it('should submit on Enter', () => {
+      jest.spyOn(component, 'onSubmit');
+      const event = {
+        key: 'Enter',
+        target: { value: '', maxLength: 1 },
+        preventDefault: jest.fn(),
+        stopPropagation: jest.fn(),
+      } as unknown as KeyboardEvent;
+
+      component.handleKeyUp(event, 0);
+
+      expect(event.preventDefault).toHaveBeenCalled();
+      expect(event.stopPropagation).toHaveBeenCalled();
+      expect(component.onSubmit).toHaveBeenCalled();
+    });
+
+    it('should do nothing when the value has not reached max length', () => {
+      jest.spyOn(component, 'onSubmit');
+      const event = {
+        key: '1',
+        target: { value: '', maxLength: 1 },
+      } as unknown as KeyboardEvent;
+
+      component.handleKeyUp(event, 0);
+
+      expect(component.onSubmit).not.toHaveBeenCalled();
+    });
+
+    it('should do nothing for navigation keys', () => {
+      jest.spyOn(component, 'onSubmit');
+      const event = {
+        key: 'Tab',
+        target: { value: '', maxLength: 1 },
+      } as unknown as KeyboardEvent;
+
+      component.handleKeyUp(event, 0);
+
+      expect(component.onSubmit).not.toHaveBeenCalled();
+    });
+
+    it('should focus the next input when the current one is filled', () => {
+      componentRef.setInput('showButton', false);
+      fixture.detectChanges();
+
+      const nextInput = document.getElementById(
+        'code_totp_1',
+      ) as HTMLInputElement;
+      jest.spyOn(nextInput, 'focus');
+      jest.spyOn(nextInput, 'select');
+
+      const event = {
+        key: '1',
+        target: { value: '1', maxLength: 1 },
+      } as unknown as KeyboardEvent;
+
+      component.handleKeyUp(event, 0);
+
+      expect(nextInput.focus).toHaveBeenCalled();
+      expect(nextInput.select).toHaveBeenCalled();
+    });
+
+    it('should submit when the last input is filled and there is no button', () => {
+      jest.spyOn(component, 'onSubmit');
+      componentRef.setInput('showButton', false);
+      fixture.detectChanges();
+
+      const event = {
+        key: '6',
+        target: { value: '6', maxLength: 1 },
+      } as unknown as KeyboardEvent;
+
+      component.handleKeyUp(event, component._maxCode - 1);
+
+      expect(component.onSubmit).toHaveBeenCalled();
+    });
+
+    it('should not submit on the last input when the button is shown', () => {
+      jest.spyOn(component, 'onSubmit');
+      componentRef.setInput('showButton', true);
+      fixture.detectChanges();
+
+      const event = {
+        key: '6',
+        target: { value: '6', maxLength: 1 },
+      } as unknown as KeyboardEvent;
+
+      component.handleKeyUp(event, component._maxCode - 1);
+
+      expect(component.onSubmit).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('handleKeyDown', () => {
+    it('should focus the previous input on Backspace when the field is empty', () => {
+      const previousInput = document.getElementById(
+        'code_totp_0',
+      ) as HTMLInputElement;
+      const input = document.getElementById(
+        'code_totp_1',
+      ) as HTMLInputElement;
+      jest.spyOn(previousInput, 'focus');
+      jest.spyOn(previousInput, 'select');
+      input.value = '';
+
+      component.handleKeyDown({
+        key: 'Backspace',
+        target: input,
+      } as unknown as KeyboardEvent);
+
+      expect(previousInput.focus).toHaveBeenCalled();
+      expect(previousInput.select).toHaveBeenCalled();
+    });
+
+    it('should do nothing on Backspace at the first input', () => {
+      const input = document.getElementById(
+        'code_totp_0',
+      ) as HTMLInputElement;
+      input.value = '';
+
+      expect(() =>
+        component.handleKeyDown({
+          key: 'Backspace',
+          target: input,
+        } as unknown as KeyboardEvent),
+      ).not.toThrow();
+    });
+  });
+
   it('should handle paste event correctly', () => {
     const clipboardEvent = new ClipboardEvent('paste', {
       clipboardData: new DataTransfer(),
@@ -91,5 +209,23 @@ describe('BmbTotpComponent', () => {
       name_totp_5: '6',
     });
     expect(clipboardEvent.preventDefault).toHaveBeenCalled();
+  });
+
+  it('should ignore paste when the data length does not match the code length', () => {
+    const clipboardEvent = new ClipboardEvent('paste', {
+      clipboardData: new DataTransfer(),
+    });
+    clipboardEvent.clipboardData?.setData('text/plain', '123');
+    jest.spyOn(clipboardEvent, 'preventDefault');
+
+    component.handlePaste(clipboardEvent);
+
+    expect(clipboardEvent.preventDefault).not.toHaveBeenCalled();
+  });
+
+  it('should ignore paste when there is no clipboard data', () => {
+    const clipboardEvent = new ClipboardEvent('paste');
+
+    expect(() => component.handlePaste(clipboardEvent)).not.toThrow();
   });
 });

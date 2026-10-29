@@ -13,7 +13,7 @@ import {
   IBmbActionButton,
   IBmbNativeModalSize,
   IBmbModalAlertStyle,
-} from './bmb-modal.interface';
+} from '../../_shared/types';
 import {
   DBmbModalParamDesc,
   getAppearanceParam,

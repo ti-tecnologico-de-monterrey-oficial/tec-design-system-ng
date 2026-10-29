@@ -25,4 +25,41 @@ describe('BmbNoticeCardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('onDotPress', () => {
+    it('should update the active index', () => {
+      component.onDotPress(1);
+      expect(component.activeIndex).toBe(1);
+    });
+  });
+
+  describe('handleClose', () => {
+    it('should emit onClose', () => {
+      const emitSpy = jest.spyOn(component.onClose, 'emit');
+      component.handleClose();
+      expect(emitSpy).toHaveBeenCalled();
+    });
+  });
+
+  describe('handleClickBtn', () => {
+    it('should emit onClickBtn', () => {
+      const emitSpy = jest.spyOn(component.onClickBtn, 'emit');
+      component.handleClickBtn();
+      expect(emitSpy).toHaveBeenCalled();
+    });
+  });
+
+  describe('getPage', () => {
+    it('should return sanitized content for an existing page', () => {
+      const result = component.getPage('pageOne');
+      expect(result).toBeTruthy();
+    });
+
+    it('should return undefined for a missing page', () => {
+      componentRef.setInput('description', { pageOne: 'Página 1' });
+      fixture.detectChanges();
+
+      expect(component.getPage('pageTwo')).toBeUndefined();
+    });
+  });
 });

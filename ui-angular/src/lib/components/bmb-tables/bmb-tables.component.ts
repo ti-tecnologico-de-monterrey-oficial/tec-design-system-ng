@@ -39,27 +39,31 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import {
+  BmbTableLang,
   IBmbFiltersPosition,
-  TableColum,
+  TableColum as TableColumGeneric,
   TableConfig,
-} from './bmb-tables.interface';
+} from '../../_shared/types';
+
+type TableColum = TableColumGeneric<TemplateRef<any>>;
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { DateTime } from 'luxon';
 import { sanitizeContent } from '../../_shared/logic/sanitizeContent';
 import { TranslatePipe } from '../../pipes/translations';
-
-export * from './bmb-tables.interface';
-
-export type BmbTableLang = 'en' | 'es';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  buildTablesDisplayColumns,
+  filterTablesRows,
+  getTablesCellClasses,
+  getTablesClasses,
+  getTablesLastPage,
+  getTablesPaginationText,
+  isTablesRowEven,
+  normalizeTablesColumns,
+} from '../../_shared/logic/components/tables';
 
 @Component({
   selector: 'bmb-table',
@@ -432,26 +436,11 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
     if (!newColumns || !Array.isArray(newColumns) || newColumns.length === 0)
       return;
 
-    const parsedNewColumns: TableColum[] = newColumns.map((col) => {
-      return {
-        type: 'string',
-        labelEn: col.label,
-        ...col,
-      };
-    });
-    const displayColumns = [...parsedNewColumns.map((col) => col.def)];
-
-    if (this._rawConfig.isExpandible) {
-      displayColumns.unshift('expand');
-    }
-
-    if (this._rawConfig.isSelectable) {
-      displayColumns.unshift('select');
-    }
-
-    if (this._rawConfig.showActions) {
-      displayColumns.push('actions');
-    }
+    const parsedNewColumns = normalizeTablesColumns(newColumns);
+    const displayColumns = buildTablesDisplayColumns(
+      parsedNewColumns.map((col) => col.def),
+      this._rawConfig,
+    );
 
     this._rawColumns = parsedNewColumns;
     this.tableColumns = parsedNewColumns;
@@ -563,10 +552,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   }
 
   isEven(rowIndex: number): boolean {
-    const filteredIndex = this.dataSource.data
-      .filter((row) => !row.isDetail)
-      .findIndex((row, index) => index === rowIndex);
-    return filteredIndex % 2 === 0;
+    return isTablesRowEven(this.dataSource.data, rowIndex);
   }
 
   isOdd(rowIndex: number): boolean {
@@ -598,14 +584,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
       ? this.pageSize?.() ?? 10
       : this.paginator?.pageSize ?? 10;
 
-    if (total === 0 || pageSize === 0) {
-      return `0 de ${total}`;
-    }
-
-    const startIndex = pageIndex * pageSize + 1;
-    const endIndex = Math.min((pageIndex + 1) * pageSize, total);
-
-    return `${startIndex} - ${endIndex} de ${total}`;
+    return getTablesPaginationText(total, pageIndex, pageSize);
   }
 
   isTemplateRef(value: any): boolean {
@@ -618,15 +597,14 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
 
   getCellClasses(row: any, columnKey: string, index: number): any {
     const semanticType = row[columnKey + 'Type'];
-    const classes: { [key: string]: boolean } = {
-      'bmb_table-sticky': index === 0 && !this.disableStickyColumn(),
-      truncated: this.truncate(),
-      wrapped: this.wrap(),
-      [`bmb_table-${semanticType}`]: !!semanticType,
-      'bmb_table-content-custom': !!row[columnKey + 'Template'],
-    };
-
-    return classes;
+    return getTablesCellClasses(
+      semanticType,
+      !!row[columnKey + 'Template'],
+      index,
+      this.disableStickyColumn(),
+      this.truncate(),
+      this.wrap(),
+    );
   }
 
   setupDynamicFilters() {
@@ -656,7 +634,6 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   }
 
   applyFilters(): void {
-    let filtered = [...this.originalData];
     const values = this.filterForm.value as any;
 
     if (this.serverSide()) {
@@ -664,48 +641,11 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
       return;
     }
 
-    this._rawColumns.forEach((column) => {
-      const key = column.dataKey;
-      const type = column.type;
-
-      if (type === 'number') {
-        const min = parseInt(values[`${key}_min`]) || null;
-        const max = parseInt(values[`${key}_max`]) || null;
-
-        filtered = filtered.filter((row) => {
-          const value = +row[key];
-          return (
-            (min === null || value >= min) && (max === null || value <= max)
-          );
-        });
-      }
-
-      if (type === 'date') {
-        const dateFormat = column.dateFormat || 'yyyy-MM-dd';
-        const from = values[`${key}_from`]
-          ? DateTime.fromFormat(values[`${key}_from`], dateFormat)
-          : null;
-        const to = values[`${key}_to`]
-          ? DateTime.fromFormat(values[`${key}_to`], dateFormat)
-          : null;
-
-        filtered = filtered.filter((row) => {
-          const dateVal = DateTime.fromFormat(row[key], dateFormat);
-          return (!from || dateVal >= from) && (!to || dateVal <= to);
-        });
-      }
-
-      if (type === 'string') {
-        const search = values[`${key}_contains`]?.toLowerCase();
-        if (search) {
-          filtered = filtered.filter((row) =>
-            row[key]?.toLowerCase().includes(search),
-          );
-        }
-      }
-    });
-
-    this.dataSource.data = filtered;
+    this.dataSource.data = filterTablesRows(
+      this.originalData,
+      this._rawColumns,
+      values,
+    );
   }
 
   getFormControl(name: string): FormControl {
@@ -735,9 +675,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
 
   lastPage(): number {
     const total = this.totalItems() ?? 0;
-    const size = this.resolvedPageSize;
-    const result = size === 0 ? 0 : Math.ceil(total / size) - 1;
-    return Math.max(0, result);
+    return getTablesLastPage(total, this.resolvedPageSize);
   }
 
   goToFirstPage() {
@@ -784,40 +722,13 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   }
 
   getTableClasses(): string[] {
-    const classList = ['bmb_table'];
-    switch (this.filtersPosition()) {
-      case 'right':
-        classList.push('bmb_table-filters-right');
-        break;
-      case 'bottom':
-        classList.push('bmb_table-filters-bottom');
-        break;
-      case 'left':
-        classList.push('bmb_table-filters-left');
-        break;
-      default:
-        classList.push('bmb_table-filters-top');
-    }
-    return classList;
+    return getTablesClasses(this.filtersPosition());
   }
 
   private updateDisplayColumns() {
-    const baseColumns = this.tableColumns.map(col => col.def);
-    const displayColumns = [...baseColumns];
-
-    if (this.tableConfig?.isExpandible) {
-      displayColumns.unshift('expand');
-    }
-
-    if (this.tableConfig?.isSelectable) {
-      displayColumns.unshift('select');
-    }
-
-    if (this.tableConfig?.showActions) {
-      displayColumns.push('actions');
-    }
-
-    this.tableDisplayColumns = displayColumns;
+    this.tableDisplayColumns = buildTablesDisplayColumns(
+      this.tableColumns.map((col) => col.def),
+      this.tableConfig ?? {},
+    );
   }
-
 }

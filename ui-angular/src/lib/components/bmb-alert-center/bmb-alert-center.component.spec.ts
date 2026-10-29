@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DateTime } from 'luxon';
 
-import { BmbAlertCenterComponent } from './bmb-alert-center.component';
-import { BmbAlertCenterService } from './bmb-alert-center.service';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
-import {
-  IBmbDataAlert,
-  IBmbDataAlertsParsed,
+import { ComponentRef } from '@angular/core';
+import type {
   IBmbAlertCenterProtoEventFooter,
   IBmbAlertCenterTabConfig,
-} from './types';
-import { ComponentRef } from '@angular/core';
+  IBmbDataAlert,
+  IBmbDataAlertsParsed,
+} from '../../_shared/types/components/alert-center';
+import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { BmbAlertCenterComponent } from './bmb-alert-center.component';
+import { BmbAlertCenterService } from './bmb-alert-center.service';
 
 describe('BmbAlertCenterComponent', () => {
   let component: BmbAlertCenterComponent;

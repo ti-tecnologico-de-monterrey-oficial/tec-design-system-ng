@@ -1,14 +1,14 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   input,
   ViewEncapsulation,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
-import { IBmbAlertEmptyState } from '../types';
+import type { IBmbAlertEmptyState } from '../../../_shared/types/components/alert-center';
 import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { TranslatePipe } from '../../../pipes/translations';
+import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-alert-center-empty',

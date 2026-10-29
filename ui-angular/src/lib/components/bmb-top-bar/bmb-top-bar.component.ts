@@ -1,20 +1,20 @@
+import { CommonModule } from '@angular/common';
 import {
-  Component,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
-  OnInit,
-  output,
+  Component,
   input,
   model,
+  OnInit,
+  output,
+  ViewEncapsulation,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BmbTopBarUserSectionComponent } from './bmb-top-bar-user-section/bmb-top-bar-user-section.component';
-import { IBmbDataAlert } from '../bmb-alert-center/types';
-import { getMobileResolutionSize } from '../../_shared/logic/utils';
 import { resolveTopBarImage } from '../../_shared/logic/components/top-bar';
-import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
-import { IBmbTargetLink, IUserInformation } from '../../_shared/types';
+import { getMobileResolutionSize } from '../../_shared/logic/utils';
+import type { IBmbTargetLink, IUserInformation } from '../../_shared/types';
+import type { IBmbDataAlert } from '../../_shared/types/components/alert-center';
 import { TranslatePipe } from '../../pipes/translations';
+import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { BmbTopBarUserSectionComponent } from './bmb-top-bar-user-section/bmb-top-bar-user-section.component';
 
 @Component({
   selector: 'bmb-top-bar',
@@ -31,6 +31,7 @@ import { TranslatePipe } from '../../pipes/translations';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTopBarComponent implements OnInit {
+  testId = input<string>('top-bar-logo-button');
   userInformation = input<IUserInformation | null>(null);
   appName = input<string>('');
   appPowered = input<string>('');

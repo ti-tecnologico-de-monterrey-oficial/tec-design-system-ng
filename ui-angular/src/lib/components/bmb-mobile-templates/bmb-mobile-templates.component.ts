@@ -18,37 +18,16 @@ import {
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbLoginOnboardingComponent } from '../bmb-login-onboarding/bmb-login-onboarding.component';
 import { BmbCalendarComponent } from '../bmb-calendar/bmb-calendar.component';
-import {
-  BmbExternalLinkComponent,
-  IBmbMenuEvent,
-} from '../bmb-external-link/bmb-external-link.component';
-import { IBmbFooterEvent } from '../../_shared/types/index';
+import { BmbExternalLinkComponent } from '../bmb-external-link/bmb-external-link.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
-import { IBmbTargetLink } from '../../_shared/types';
+import {
+  IBmbFooterEvent,
+  IBmbMenuEvent,
+  IBmbMobileTemplateButton,
+  IBmbMobileTemplateName,
+} from '../../_shared/types';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
-
-export type IBmbMobileTemplateName =
-  | 'single-header'
-  | 'header-with-footer'
-  | 'card-header-with-footer'
-  | 'header-with-button-list'
-  | 'header-with-card-list'
-  | 'login'
-  | 'calendar'
-  | 'external-link';
-
-export interface IBmbMobileTemplateButton {
-  title: string;
-  iconLeft: string;
-  subtitle?: string;
-  target?: IBmbTargetLink;
-  link?: string;
-  onButton?: () => void;
-}
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { getMobileTemplateClassList } from '../../_shared/logic/components/mobile-templates';
 
 @Component({
   selector: 'bmb-mobile-templates',
@@ -113,12 +92,7 @@ export class BmbMobileTemplatesComponent implements OnInit {
   }
 
   getSectionClass(): string[] {
-    const classList = [
-      'bmb_mobile-template',
-      `bmb_mobile-template-${this.template()}`,
-    ];
-
-    return classList;
+    return getMobileTemplateClassList(this.template());
   }
 
   handleLeftClick(event: any): void {

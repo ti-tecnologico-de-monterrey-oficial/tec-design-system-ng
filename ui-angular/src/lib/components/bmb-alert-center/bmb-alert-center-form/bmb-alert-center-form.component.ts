@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +11,15 @@ import {
   untracked,
   ViewEncapsulation,
 } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import {
+  filterAlertCenterCategories,
+  getAlertCenterSelectionSummary,
+  getInitialAlertSelection,
+  getSelectedAlertIds,
+  selectAllAlertIds,
+} from '../../../_shared/logic/components/alert-center';
+import type {
   IBmbAlertCenterCategories,
   IBmbAlertCenterProtoEventFooter,
   IBmbAlertEmptyState,
@@ -18,17 +27,15 @@ import {
   IBmbDataAlertsEventType,
   IBmbDataAlertsOutput,
   IBmbDataAlertsParsed,
-} from '../types';
-import { IBmbActionHeader } from '../../../_shared/types/index';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { BmbAlertCenterListComponent } from '../bmb-alert-center-list/bmb-alert-center-list.component';
-import { BmbAlertCenterEmptyComponent } from '../bmb-alert-center-empty/bmb-alert-center-empty.component';
+} from '../../../_shared/types/components/alert-center';
+import type { IBmbActionHeader } from '../../../_shared/types/index';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
 import { TranslatePipe } from '../../../pipes/translations';
-import { BmbNavigationBarComponent } from '../../bmb-navigation-bar/bmb-navigation-bar.component';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
+import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
+import { BmbNavigationBarComponent } from '../../bmb-navigation-bar/bmb-navigation-bar.component';
+import { BmbAlertCenterEmptyComponent } from '../bmb-alert-center-empty/bmb-alert-center-empty.component';
+import { BmbAlertCenterListComponent } from '../bmb-alert-center-list/bmb-alert-center-list.component';
 
 @Component({
   selector: 'bmb-alert-center-form',
@@ -72,66 +79,12 @@ export class BmbAlertCenterFormComponent {
   changeAlertStatus = output<IBmbDataAlertsOutput>();
   navigationBarEvents = output<IBmbAlertCenterProtoEventFooter>();
   getDeleteClick = output<IBmbDataAlertsParsed>();
-  filteredEvents = computed<IBmbAlertCenterCategories>(() => {
-    if (this.filterBy() === 'unread') {
-      return {
-        recent: this.eventsInCategories().recent.filter(
-          (event) => !event.isRead,
-        ),
-        sevenDays: this.eventsInCategories().sevenDays.filter(
-          (event) => !event.isRead,
-        ),
-        month: this.eventsInCategories().month.filter((event) => !event.isRead),
-        rest: this.eventsInCategories().rest.filter((event) => !event.isRead),
-      };
-    }
-    if (this.filterBy() === 'archived') {
-      return {
-        recent: this.eventsInCategories().recent.filter(
-          (event) => event.isArchived,
-        ),
-        sevenDays: this.eventsInCategories().sevenDays.filter(
-          (event) => event.isArchived,
-        ),
-        month: this.eventsInCategories().month.filter(
-          (event) => event.isArchived,
-        ),
-        rest: this.eventsInCategories().rest.filter(
-          (event) => event.isArchived,
-        ),
-      };
-    }
-    if (this.filterBy() === 'favorites') {
-      return {
-        recent: this.eventsInCategories().recent.filter(
-          (event) => event.isFavorite,
-        ),
-        sevenDays: this.eventsInCategories().sevenDays.filter(
-          (event) => event.isFavorite,
-        ),
-        month: this.eventsInCategories().month.filter(
-          (event) => event.isFavorite,
-        ),
-        rest: this.eventsInCategories().rest.filter(
-          (event) => event.isFavorite,
-        ),
-      };
-    }
-
-    return this.eventsInCategories();
-  });
-  isSomeAlertSelected = computed(() => {
-    const state = this.selectionState();
-    const summarySelection = Object.values(state).reduce(
-      (acc, value) => {
-        acc.some = acc.some || value;
-        acc.all = acc.all && value;
-        return acc;
-      },
-      { some: false, all: true },
-    );
-    return summarySelection;
-  });
+  filteredEvents = computed<IBmbAlertCenterCategories>(() =>
+    filterAlertCenterCategories(this.filterBy(), this.eventsInCategories()),
+  );
+  isSomeAlertSelected = computed(() =>
+    getAlertCenterSelectionSummary(this.selectionState()),
+  );
   navigationBarIcons = computed<IBmbActionHeader[]>(() => {
     const actions: IBmbActionHeader[] = [
       {
@@ -180,19 +133,14 @@ export class BmbAlertCenterFormComponent {
     return actions;
   });
 
-  private translationsService: BmbTranslationsService = inject(BmbTranslationsService);
+  private translationsService: BmbTranslationsService = inject(
+    BmbTranslationsService,
+  );
 
   constructor() {
     effect(() => {
-      const alertList = this.eventsInCategories();
-      const flatAlerts = Object.values(alertList).flat();
-
-      const initialSelectionState: Record<string, boolean> = flatAlerts.reduce(
-        (acc, alert) => {
-          acc[`${alert.id}`] = false;
-          return acc;
-        },
-        {} as Record<string, boolean>,
+      const initialSelectionState = getInitialAlertSelection(
+        this.eventsInCategories(),
       );
 
       untracked(() => {
@@ -210,10 +158,7 @@ export class BmbAlertCenterFormComponent {
   }
 
   handleNavigationBarEvents(event: IBmbDataAlertsEventType): void {
-    const values = this.selectionState();
-    const selectedOptions = Object.keys(values).filter(
-      (value) => values[value] === true,
-    );
+    const selectedOptions = getSelectedAlertIds(this.selectionState());
 
     this.navigationBarEvents.emit({
       alerts: selectedOptions,
@@ -223,14 +168,6 @@ export class BmbAlertCenterFormComponent {
 
   handleSelectAll(event: Event): void {
     const isChecked = (event.target as HTMLInputElement).checked;
-    this.selectionState.update((state) => {
-      const updatedState: Record<string, boolean> = {};
-      for (const key in state) {
-        if (Object.prototype.hasOwnProperty.call(state, key)) {
-          updatedState[key] = isChecked;
-        }
-      }
-      return updatedState;
-    });
+    this.selectionState.update((state) => selectAllAlertIds(state, isChecked));
   }
 }
