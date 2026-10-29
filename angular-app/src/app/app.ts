@@ -611,7 +611,7 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
     },
   ];
 
-  readonly messages: BmbChatMessageBmbChatMessage<TemplateRef<unknown>>[] = [
+  readonly messages: BmbChatMessageGeneric<TemplateRef<unknown>>[] = [
     {
       id: '1',
       type: 'text',

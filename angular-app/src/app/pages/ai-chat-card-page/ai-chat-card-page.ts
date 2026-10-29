@@ -91,7 +91,7 @@ export class AiChatCardPage {
     },
   ];
 
-  readonly messages: BmbChatMessage<TemplateRef<unknown>>[] = [
+  readonly messages: BmbChatMessage[] = [
     {
       id: '1',
       type: 'text',

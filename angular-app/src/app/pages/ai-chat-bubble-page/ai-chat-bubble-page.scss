@@ -40,22 +40,13 @@
     font-weight: 600;
   }
 
-  select,
-  input,
-  textarea {
+  select {
     background: var(--general-contrasts-5);
     border: 1px solid var(--general-contrasts-25);
     border-radius: 0.5rem;
     color: inherit;
-    box-sizing: border-box;
-    font: inherit;
     padding: 0.625rem 0.75rem;
     width: 100%;
-  }
-
-  textarea {
-    min-height: 5rem;
-    resize: vertical;
   }
 }
 

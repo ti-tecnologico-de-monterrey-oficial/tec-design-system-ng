@@ -4,20 +4,16 @@ import {
   computed,
   signal,
   TemplateRef,
-  viewChild,
 } from '@angular/core';
 import {
   BmbAiChatBubbleComponent,
-  BmbDropdownComponent,
-  BmbInputComponent,
+  BmbTabsComponent,
   type BmbChatAction,
   type BmbChatActionEvent as BmbChatActionEventGeneric,
   type BmbChatMessage as BmbChatMessageGeneric,
   type BmbChatMessageEditedEvent,
-  type BmbChatMessageType,
-  type BmbChatStatus,
-  type BmbUploadFileRequestEvent,
   type IBmbChatOptionEvent,
+  type IBmbTab,
 } from 'ui-angular';
 
 type BmbChatMessage = BmbChatMessageGeneric<TemplateRef<unknown>>;
@@ -26,157 +22,202 @@ import { CHAT_USER_IMAGE_OPTIONS } from './chat-user-image-options';
 
 @Component({
   selector: 'app-ai-chat-bubble-page',
-  imports: [BmbAiChatBubbleComponent, BmbDropdownComponent, BmbInputComponent],
+  imports: [BmbAiChatBubbleComponent, BmbTabsComponent],
   templateUrl: './ai-chat-bubble-page.html',
   styleUrl: './ai-chat-bubble-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AiChatBubblePage {
-  readonly messageTypes: { name: string; value: BmbChatMessageType }[] = [
-    { name: 'BmbTextMessage', value: 'text' },
-    { name: 'BmbImageMessage', value: 'image' },
-    { name: 'BmbMixedMessage', value: 'mixed' },
-    { name: 'BmbLinkMessage', value: 'link' },
-    { name: 'BmbOptionsMessage', value: 'options' },
-    { name: 'BmbUploadFileMessage', value: 'upload-file' },
-    { name: 'BmbTemplateMessage', value: 'template' },
-  ];
-  readonly selectedMessageType = signal<BmbChatMessageType>('text');
-  readonly isUser = signal(false);
-  readonly showActions = signal(true);
-  readonly isThinking = signal(false);
   readonly userCopyEnabled = signal(true);
   readonly userEditEnabled = signal(true);
-  readonly status = signal<BmbChatStatus>('sent');
-  readonly like = signal(false);
-  readonly dislike = signal(false);
-  readonly botIcon = signal('bot_tecStandar');
   readonly conversationEvent = signal('Sin interacciones');
   readonly userImageOptions = CHAT_USER_IMAGE_OPTIONS;
   readonly selectedUserImage = signal(CHAT_USER_IMAGE_OPTIONS[0].value);
-  readonly text = signal('¡Hola! ¿En qué puedo ayudarte hoy?');
-  readonly imageUrl = signal(
-    'https://images.unsplash.com/photo-1547658719-da2b51169166?w=600',
-  );
-  readonly imageAlt = signal('Diagrama de arquitectura');
-  readonly href = signal('https://angular.dev/guide/signals');
-  readonly openInNewTab = signal(true);
-  readonly optionLabels = signal('Signals\nRxJS\nServer-Side Rendering');
-  readonly fileName = signal('nombre de archivo de servicio');
-  readonly buttonLabel = signal('');
-  readonly uploadText = signal('');
-  readonly cancelKeyword = signal('');
-  readonly acceptedFormats = signal('.pdf,.doc,.xml');
-  readonly maxFileSize = signal<number | undefined>(10);
-  readonly additionalRequirements = signal('El documento debe ser legible.');
-  private readonly timestamp = new Date();
-  private readonly customTemplate = viewChild<TemplateRef<unknown>>(
-    'customMessageTemplate',
-  );
 
-  readonly actions = computed<BmbChatAction[]>(() => {
-    if (!this.isUser()) return ['repeat', 'voice', 'copy', 'like', 'dislike'];
+  readonly tabs: IBmbTab[] = [
+    { id: 1, title: 'Texto', isActive: true },
+    { id: 2, title: 'Imágenes y mixto' },
+    { id: 3, title: 'Opciones y enlaces' },
+    { id: 4, title: 'Estados y errores' },
+    { id: 5, title: 'Acciones deshabilitadas' },
+  ];
+  readonly activeTabId = signal<number>(1);
+
+  handleTabSelected(tab: IBmbTab): void {
+    this.activeTabId.set(tab.id);
+  }
+
+  private readonly baseConversation = signal<BmbChatMessage[]>([
+    {
+      id: 'assistant-welcome',
+      isUser: false,
+      type: 'text',
+      content: { text: '¡Hola! ¿En qué puedo ayudarte hoy?' },
+      timestamp: new Date(),
+    },
+    {
+      id: 'user-short',
+      isUser: true,
+      type: 'text',
+      content: { text: 'Explícame Angular Signals.' },
+      timestamp: new Date(),
+    },
+    {
+      id: 'assistant-explanation',
+      isUser: false,
+      type: 'text',
+      content: {
+        text: 'Los Signals son valores reactivos que notifican a Angular cuando cambian.',
+      },
+      timestamp: new Date(),
+    },
+    {
+      id: 'user-long',
+      isUser: true,
+      type: 'text',
+      content: {
+        text: '¿Puedes mostrarme un ejemplo más completo donde un signal almacene una lista y un computed obtenga el total de elementos?',
+      },
+      timestamp: new Date(),
+    },
+  ]);
+
+  readonly userActions = computed<BmbChatAction[]>(() => {
     const actions: BmbChatAction[] = [];
     if (this.userCopyEnabled()) actions.push('copy');
     if (this.userEditEnabled()) actions.push('edit');
     return actions;
   });
 
-  readonly message = computed<BmbChatMessage<TemplateRef<unknown>> | undefined>(
-    () => {
-      const base = {
-        id: `preview-${this.selectedMessageType()}`,
-        isUser: this.isUser(),
-        userProfile: this.selectedUserImage(),
-        timestamp: this.timestamp,
-        status: this.status(),
-        like: this.like(),
-        dislike: this.dislike(),
-      };
-      switch (this.selectedMessageType()) {
-        case 'text':
-          return { ...base, type: 'text', content: { text: this.text() } };
-        case 'image':
-          return {
-            ...base,
-            type: 'image',
-            content: { imageUrl: this.imageUrl(), alt: this.imageAlt() },
-          };
-        case 'mixed':
-          return {
-            ...base,
-            type: 'mixed',
-            content: { text: this.text(), imageUrl: this.imageUrl() },
-          };
-        case 'link':
-          return {
-            ...base,
-            type: 'link',
-            content: {
-              text: this.text(),
-              href: this.href(),
-              target: this.openInNewTab() ? '_blank' : '_self',
-            },
-          };
-        case 'options':
-          return {
-            ...base,
-            type: 'options',
-            content: {
-              text: this.text(),
-              options: this.lines(this.optionLabels()).map((label, index) => ({
-                id: `option-${index}`,
-                label,
-              })),
-            },
-          };
-        case 'upload-file':
-          return {
-            ...base,
-            type: 'upload-file',
-            content: {
-              fileName: this.fileName(),
-              text: this.uploadText() || undefined,
-              buttonLabel: this.buttonLabel() || undefined,
-              cancelKeyword: this.cancelKeyword() || undefined,
-
-              acceptedFormats: this.acceptedFormats()
-                .split(',')
-                .filter(Boolean),
-              maxFileSize: this.maxFileSize(),
-              additionalRequirements: this.lines(this.additionalRequirements()),
-            },
-          };
-        case 'template': {
-          const template = this.customTemplate();
-          return template
-            ? { ...base, type: 'template', content: { template } }
-            : undefined;
-        }
-      }
-    },
+  readonly conversation = computed<BmbChatMessage[]>(() =>
+    this.baseConversation().map((message) =>
+      message.isUser
+        ? { ...message, userProfile: this.selectedUserImage() }
+        : message,
+    ),
   );
 
-  selectMessageType(value: unknown): void {
-    const option = this.messageTypes.find((item) => item.value === value);
-    if (!option) {
-      throw new Error(`Unknown chat message type: ${String(value)}`);
-    }
-    this.selectedMessageType.set(option.value);
-    this.conversationEvent.set('Sin interacciones');
-  }
+  private readonly mediaConversation = signal<BmbChatMessage[]>([
+    {
+      id: 'assistant-image',
+      isUser: false,
+      type: 'image',
+      content: {
+        imageUrl:
+          'https://images.unsplash.com/photo-1547658719-da2b51169166?w=600',
+        alt: 'Diagrama de arquitectura',
+      },
+      timestamp: new Date(),
+    },
+    {
+      id: 'user-mixed',
+      isUser: true,
+      type: 'mixed',
+      content: {
+        text: '¿Puedes revisar este diagrama y explicarme el flujo?',
+        imageUrl:
+          'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600',
+      },
+      timestamp: new Date(),
+    },
+  ]);
 
-  handleUploadFileRequested(event: BmbUploadFileRequestEvent): void {
-    this.conversationEvent.set(
-      `uploadFileRequested · mensaje ${event.messageId} · ${event.message.content.fileName}`,
-    );
+  readonly mediaMessages = computed<BmbChatMessage[]>(() =>
+    this.mediaConversation().map((message) =>
+      message.isUser
+        ? { ...message, userProfile: this.selectedUserImage() }
+        : message,
+    ),
+  );
+
+  private readonly optionsConversation = signal<BmbChatMessage[]>([
+    {
+      id: 'assistant-link',
+      isUser: false,
+      type: 'link',
+      content: {
+        text: 'Consulta la documentación oficial de Angular Signals.',
+        href: 'https://angular.dev/guide/signals',
+        target: '_blank',
+      },
+      timestamp: new Date(),
+    },
+    {
+      id: 'assistant-options',
+      isUser: false,
+      type: 'options',
+      content: {
+        text: '¿Sobre qué tema te gustaría profundizar?',
+        options: [
+          { id: 'signals', label: 'Signals' },
+          { id: 'rxjs', label: 'RxJS' },
+          { id: 'ssr', label: 'Server-Side Rendering' },
+        ],
+      },
+      timestamp: new Date(),
+    },
+  ]);
+
+  readonly optionsMessages = computed<BmbChatMessage[]>(() =>
+    this.optionsConversation().map((message) =>
+      message.isUser
+        ? { ...message, userProfile: this.selectedUserImage() }
+        : message,
+    ),
+  );
+
+  private readonly statusConversation = signal<BmbChatMessage[]>([
+    {
+      id: 'user-sending',
+      isUser: true,
+      type: 'text',
+      status: 'sending',
+      content: { text: 'Enviando pregunta sobre el estado del servidor...' },
+      timestamp: new Date(),
+    },
+    {
+      id: 'user-sent',
+      isUser: true,
+      type: 'text',
+      status: 'sent',
+      content: { text: '¿Cómo va el despliegue?' },
+      timestamp: new Date(),
+    },
+    {
+      id: 'assistant-error',
+      isUser: false,
+      type: 'text',
+      status: 'error',
+      content: {
+        text: 'No fue posible obtener una respuesta. Intenta de nuevo.',
+      },
+      timestamp: new Date(),
+    },
+  ]);
+
+  readonly statusMessages = computed<BmbChatMessage[]>(() =>
+    this.statusConversation().map((message) =>
+      message.isUser
+        ? { ...message, userProfile: this.selectedUserImage() }
+        : message,
+    ),
+  );
+
+  readonly disabledActionsMessages = computed<BmbChatMessage[]>(() =>
+    this.conversation(),
+  );
+
+  selectUserImage(event: Event): void {
+    this.selectedUserImage.set((event.target as HTMLSelectElement).value);
   }
 
   handleConversationAction(event: BmbChatActionEvent): void {
+    console.info('BmbAiChatBubble getAction:', event);
     this.conversationEvent.set(`${event.action} · mensaje ${event.messageId}`);
   }
 
   handleOptionSelected(event: IBmbChatOptionEvent): void {
+    console.info('BmbAiChatBubble getOptionClicked:', event);
     this.conversationEvent.set(`opción seleccionada · ${event.option.label}`);
   }
 
@@ -185,18 +226,22 @@ export class AiChatBubblePage {
   }
 
   handleMessageEditCancelled(message: BmbChatMessage): void {
+    console.info('BmbAiChatBubble messageEditCancelled:', message);
     this.conversationEvent.set(`edición cancelada · mensaje ${message.id}`);
   }
 
   handleMessageEdited(event: BmbChatMessageEditedEvent): void {
-    this.text.set(event.editedMessage.content.text);
-    this.conversationEvent.set(`editado · mensaje ${event.previousMessage.id}`);
-  }
+    console.info('BmbAiChatBubble messageEdited:', event);
+    this.baseConversation.update((messages) => {
+      const messageIndex = messages.findIndex(
+        ({ id }) => id === event.previousMessage.id,
+      );
 
-  private lines(value: string): string[] {
-    return value
-      .split('\n')
-      .map((line) => line.trim())
-      .filter(Boolean);
+      if (messageIndex === -1) return messages;
+
+      return [...messages.slice(0, messageIndex), event.editedMessage];
+    });
+
+    this.conversationEvent.set(`editado · mensaje ${event.previousMessage.id}`);
   }
 }
