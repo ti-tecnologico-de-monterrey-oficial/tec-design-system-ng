@@ -4,7 +4,9 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-text-editor />`,
+  example: figma.code`<bmb-text-editor
+  [control]="control"
+/>`,
   imports: [
     "import { BmbTextEditorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

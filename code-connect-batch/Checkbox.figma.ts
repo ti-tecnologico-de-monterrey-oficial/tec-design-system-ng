@@ -3,21 +3,20 @@
 // component=BmbCheckboxComponent
 import figma from 'figma'
 
-const instance = figma.selectedInstance
-const mode = instance.getEnum('Mode', {
-  Active: 'active',
-  Inactive: 'inactive',
-  Indeterminate: 'indeterminate',
-})
-const disabled = instance.getEnum('State', {
-  Hovered: false,
-  Enabled: false,
-  Focused: false,
-  Disabled: true,
-})
-
 export default {
-  example: figma.code`<bmb-checkbox [checked]="${mode === 'active'}" [indeterminate]="${mode === 'indeterminate'}" [disabled]="${disabled}" />`,
+  example: figma.code`<bmb-checkbox
+  [checked]="false"
+  [disabled]="false"
+  [required]="false"
+  [indeterminate]="false"
+  value=""
+  name=""
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  labelPosition="after"
+  [control]="control"
+  errorMessage=""
+  helperMessage=""
+/>`,
   imports: [
     "import { BmbCheckboxComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

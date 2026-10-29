@@ -3,20 +3,17 @@
 // component=BmbStepProgressBarComponent
 import figma from 'figma'
 
-const instance = figma.selectedInstance
-const type = instance.getEnum('Variante', {
-  Horizontal: 'horizontal',
-  'Vertical Small': 'vertical',
-  Wizard: 'step-panel',
-})
-const size = instance.getEnum('Variante', {
-  Horizontal: 'normal',
-  'Vertical Small': 'small',
-  Wizard: 'normal',
-})
-
 export default {
-  example: figma.code`<bmb-step-progress-bar type="${type}" size="${size}" [totalSteps]="3" [activeStep]="0" [labelSteps]="['Paso 1', 'Paso 2', 'Paso 3']" />`,
+  example: figma.code`<bmb-step-progress-bar
+  [activeStep]="3"
+  [totalSteps]="5"
+  size="default"
+  [freeze]="false"
+  type="vertical"
+  [labelSteps]="['¡Orden de compra aprobada!', '¡Orden de compra aprobada!', '¡Orden de compra aprobada!', '¡Orden de compra aprobada!', '¡Orden de compra aprobada!']"
+  labelComplete="Completo"
+  labelIncomplete="Pendiente"
+/>`,
   imports: [
     "import { BmbStepProgressBarComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

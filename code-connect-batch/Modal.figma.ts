@@ -3,42 +3,33 @@
 // component=BmbModalComponent
 import figma from 'figma'
 
-const instance = figma.selectedInstance
-const content = instance.getString('ModalContent_text')
-const type = instance.getEnum('Modals', {
-  Generic: 'informative',
-  Informative: 'informative',
-  Action: 'action',
-  'Action/Secondary': 'action',
-  Alert: 'alert',
-  Scrolling: 'action',
-  Rating: 'action',
-  Grade: 'action',
-  TimestreamDetail: 'action',
-  Visor: 'action',
-  Ad: 'action',
-  ListWithBadge: 'action',
-  'NoIcon(temp)': 'informative',
-})
-const scrollable = instance.getBoolean('Scroll Bar')
-const hideSecondaryButton = instance.getBoolean('Button Secondary', {
-  true: false,
-  false: true,
-})
-
 export default {
-  example: figma.code`const modalData: ModalDataConfig = {
-  title: 'Modal title',
-  content: "${content}",
-  type: "${type}",
-  scrollable: ${scrollable},
-  hideSecondaryButton: ${hideSecondaryButton},
-}
+  example: figma.code`export class ExampleComponent {
+  private readonly matDialog = inject(MatDialog);
 
-this.matDialog.open(BmbModalComponent, { data: modalData })`,
+  modalData: ModalDataConfig = {
+    title: 'My Modal',
+    subtitle: 'Subtitle',
+    content: 'This is plain text content.',
+    size: 'large',
+    type: 'action',
+    alertStyle: 'error',
+    primaryBtnLabel: 'OK',
+    secondaryBtnLabel: 'Cancel',
+    hidePrimaryButton: false,
+    hideSecondaryButton: true,
+    extendButtons: false,
+  };
+
+  openModal() {
+    this.matDialog.open(BmbModalComponent, { data: this.modalData });
+  }
+}`,
   imports: [
+    "import { inject } from '@angular/core'",
     "import { MatDialog } from '@angular/material/dialog'",
-    "import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
+    "import { BmbModalComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
+    "import type { ModalDataConfig } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
   id: 'bmb-modal',
 }

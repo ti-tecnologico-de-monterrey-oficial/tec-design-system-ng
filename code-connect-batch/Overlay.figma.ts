@@ -4,7 +4,9 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-overlay [active]="true" />`,
+  example: figma.code`<bmb-overlay
+  [active]="false"
+/>`,
   imports: [
     "import { BmbOverlayComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

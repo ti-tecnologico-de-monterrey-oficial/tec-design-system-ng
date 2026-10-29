@@ -2,15 +2,22 @@
 // source=ui-angular/src/lib/components/bmb-progress-bar/bmb-progress-bar.component.ts
 // component=BmbProgressBarComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const type = instance.getBoolean('Show ValueCounter_Numbers', {
-  true: 'counter',
-  false: 'simple',
-})
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-progress-bar type="${type}" />`,
+  example: figma.code`<bmb-progress-bar
+  type="container"
+  statusColor="info"
+  [totalCount]="1000"
+  [counter]="560"
+  componentTitle="Creditos ocupados para esta iniciativa"
+  appearance="info"
+  textLink="Aumentar Creditos"
+  href="https://www.google.com"
+  avatarIcon="${getIcon('')}"
+  [isContainer]="isContainer"
+  actionIcon="${getIcon('')}"
+/>`,
   imports: [
     "import { BmbProgressBarComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

@@ -2,43 +2,22 @@
 // source=ui-angular/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.component.ts
 // component=BmbProgressCircleComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const progress = instance.getEnum('Progress', {
-  'Loading Value': 'loading',
-  'Fully Load': 'full',
-  'No Load': 'none',
-  Empty: 'empty',
-  'Semantic status': 'semantic',
-})
-const semanticStatus = instance.getEnum('Semantic Status', {
-  'Medium risk': 'warning',
-  'N/A': 'gray',
-  'Low risk': 'success',
-  'High risk': 'error',
-})
-const operationState = instance.getEnum('Operation state', {
-  Error: 'error',
-  Success: 'success',
-  Empty: 'empty',
-  'N/A': 'none',
-})
-const titleLayer = instance.findText('Total a pagar este m', {
-  traverseInstances: true,
-})
-const valueLayer = instance.findText('$10,000.00', { traverseInstances: true })
-const componentTitle =
-  titleLayer && titleLayer.type === 'TEXT' ? titleLayer.textContent : ''
-const valueLabel =
-  valueLayer && valueLayer.type === 'TEXT' ? valueLayer.textContent : ''
-const operationStatus =
-  operationState === 'error' || operationState === 'success'
-    ? operationState
-    : semanticStatus
-const percent = progress === 'loading' ? 75 : progress === 'full' ? 100 : 0
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-progress-circle componentTitle="${componentTitle}" valueLabel="${valueLabel}" [showTitle]="true" [showValueLabel]="${progress === 'loading'}" [percent]="${percent}" fillPathStatus="${operationStatus}" [showOperationState]="${operationState === 'error' || operationState === 'success'}" [fullFillPathStatus]="${operationState === 'error' || operationState === 'success'}" [emptyState]="${progress === 'empty' || operationState === 'empty'}" />`,
+  example: figma.code`<bmb-progress-circle
+  [valueLabel]="valueLabel"
+  [fullFillPathStatus]="fullFillPathStatus"
+  [showValueLabel]="false"
+  [percent]="0"
+  [componentTitle]="componentTitle"
+  [showTitle]="false"
+  fillPathStatus="gray"
+  icon="${getIcon('')}"
+  size="default"
+  [showOperationState]="false"
+  [emptyState]="false"
+/>`,
   imports: [
     "import { BmbProgressCircleComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
