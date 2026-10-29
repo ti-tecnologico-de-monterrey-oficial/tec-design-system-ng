@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   signal,
+  type TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -87,7 +88,7 @@ export class AiChatCardPage {
     },
   ];
 
-  readonly messages: BmbChatMessage[] = [
+  readonly messages: BmbChatMessage<TemplateRef<unknown>>[] = [
     {
       id: '1',
       type: 'text',

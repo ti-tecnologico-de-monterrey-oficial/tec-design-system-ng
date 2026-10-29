@@ -79,76 +79,80 @@ export class AiChatBubblePage {
     return actions;
   });
 
-  readonly message = computed<BmbChatMessage | undefined>(() => {
-    const base = {
-      id: `preview-${this.selectedMessageType()}`,
-      isUser: this.isUser(),
-      userProfile: this.selectedUserImage(),
-      timestamp: this.timestamp,
-      status: this.status(),
-      like: this.like(),
-      dislike: this.dislike(),
-    };
-    switch (this.selectedMessageType()) {
-      case 'text':
-        return { ...base, type: 'text', content: { text: this.text() } };
-      case 'image':
-        return {
-          ...base,
-          type: 'image',
-          content: { imageUrl: this.imageUrl(), alt: this.imageAlt() },
-        };
-      case 'mixed':
-        return {
-          ...base,
-          type: 'mixed',
-          content: { text: this.text(), imageUrl: this.imageUrl() },
-        };
-      case 'link':
-        return {
-          ...base,
-          type: 'link',
-          content: {
-            text: this.text(),
-            href: this.href(),
-            target: this.openInNewTab() ? '_blank' : '_self',
-          },
-        };
-      case 'options':
-        return {
-          ...base,
-          type: 'options',
-          content: {
-            text: this.text(),
-            options: this.lines(this.optionLabels()).map((label, index) => ({
-              id: `option-${index}`,
-              label,
-            })),
-          },
-        };
-      case 'upload-file':
-        return {
-          ...base,
-          type: 'upload-file',
-          content: {
-            fileName: this.fileName(),
-            text: this.uploadText() || undefined,
-            buttonLabel: this.buttonLabel() || undefined,
-            cancelKeyword: this.cancelKeyword() || undefined,
+  readonly message = computed<BmbChatMessage<TemplateRef<unknown>> | undefined>(
+    () => {
+      const base = {
+        id: `preview-${this.selectedMessageType()}`,
+        isUser: this.isUser(),
+        userProfile: this.selectedUserImage(),
+        timestamp: this.timestamp,
+        status: this.status(),
+        like: this.like(),
+        dislike: this.dislike(),
+      };
+      switch (this.selectedMessageType()) {
+        case 'text':
+          return { ...base, type: 'text', content: { text: this.text() } };
+        case 'image':
+          return {
+            ...base,
+            type: 'image',
+            content: { imageUrl: this.imageUrl(), alt: this.imageAlt() },
+          };
+        case 'mixed':
+          return {
+            ...base,
+            type: 'mixed',
+            content: { text: this.text(), imageUrl: this.imageUrl() },
+          };
+        case 'link':
+          return {
+            ...base,
+            type: 'link',
+            content: {
+              text: this.text(),
+              href: this.href(),
+              target: this.openInNewTab() ? '_blank' : '_self',
+            },
+          };
+        case 'options':
+          return {
+            ...base,
+            type: 'options',
+            content: {
+              text: this.text(),
+              options: this.lines(this.optionLabels()).map((label, index) => ({
+                id: `option-${index}`,
+                label,
+              })),
+            },
+          };
+        case 'upload-file':
+          return {
+            ...base,
+            type: 'upload-file',
+            content: {
+              fileName: this.fileName(),
+              text: this.uploadText() || undefined,
+              buttonLabel: this.buttonLabel() || undefined,
+              cancelKeyword: this.cancelKeyword() || undefined,
 
-            acceptedFormats: this.acceptedFormats().split(',').filter(Boolean),
-            maxFileSize: this.maxFileSize(),
-            additionalRequirements: this.lines(this.additionalRequirements()),
-          },
-        };
-      case 'template': {
-        const template = this.customTemplate();
-        return template
-          ? { ...base, type: 'template', content: { template } }
-          : undefined;
+              acceptedFormats: this.acceptedFormats()
+                .split(',')
+                .filter(Boolean),
+              maxFileSize: this.maxFileSize(),
+              additionalRequirements: this.lines(this.additionalRequirements()),
+            },
+          };
+        case 'template': {
+          const template = this.customTemplate();
+          return template
+            ? { ...base, type: 'template', content: { template } }
+            : undefined;
+        }
       }
-    }
-  });
+    },
+  );
 
   selectMessageType(value: unknown): void {
     const option = this.messageTypes.find((item) => item.value === value);

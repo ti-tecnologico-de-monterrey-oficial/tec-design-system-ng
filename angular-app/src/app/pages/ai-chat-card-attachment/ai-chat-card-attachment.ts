@@ -3,6 +3,7 @@ import {
   Component,
   inject,
   signal,
+  type TemplateRef,
 } from '@angular/core';
 import {
   FormControl,
@@ -68,7 +69,9 @@ export class AIChatCardAttachment {
   readonly files = signal<File[]>([]);
   readonly lastSentFiles = signal<File[]>([]);
   readonly submissions = signal<AttachmentSubmission[]>([]);
-  readonly messages = signal<BmbChatMessage[]>(this.createMessages());
+  readonly messages = signal<BmbChatMessage<TemplateRef<unknown>>[]>(
+    this.createMessages(),
+  );
   readonly actionsList = defaultActionList.map((action) => ({
     ...action,
     name: 'Attach files',
@@ -190,7 +193,7 @@ export class AIChatCardAttachment {
     this.nextSubmissionId = 0;
   }
 
-  private createMessages(): BmbChatMessage[] {
+  private createMessages(): BmbChatMessage<TemplateRef<unknown>>[] {
     return [
       {
         id: 'attachment-request',
