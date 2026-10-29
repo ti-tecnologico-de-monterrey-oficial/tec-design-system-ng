@@ -19,8 +19,7 @@
     "@material-symbols/svg-400": "0.39.1",
     "dompurify": "3.4.16",
     "luxon": "3.7.2",
-    "tslib": "*",
-    "@types/luxon": "3.7.3"
+    "tslib": "*"
   },
   "devDependencies": {
     "@types/luxon": "3.7.1"

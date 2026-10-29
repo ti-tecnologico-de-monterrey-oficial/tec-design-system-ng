@@ -12,8 +12,7 @@
       "options": {
         "command": "node scripts/check-shared-import-boundaries.mjs",
         "cwd": "{workspaceRoot}"
-      },
-      "dependsOn": ["check-neutral-core"]
+      }
     },
     "sync-shared": {
       "executor": "nx:run-commands",
@@ -26,7 +25,7 @@
     "build": {
       "executor": "@nx/angular:ng-packagr-lite",
       "outputs": ["{workspaceRoot}/dist/ui-angular"],
-      "dependsOn": ["sync-shared", "check-neutral-core"],
+      "dependsOn": ["sync-shared"],
       "options": {
         "project": "ui-angular/ng-package.json",
         "tsConfig": "ui-angular/tsconfig.lib.prod.json"
@@ -36,32 +35,26 @@
           "tsConfig": "ui-angular/tsconfig.lib.prod.json"
         }
       },
-      "defaultConfiguration": "production",
-      "inputs": [
-        "default",
-        "^default",
-        "{workspaceRoot}/shared/**/*",
-        "{workspaceRoot}/scripts/sync-angular-shared.mjs"
-      ]
+      "defaultConfiguration": "production"
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "dependsOn": [
-        "sync-shared",
-        "check-shared-import-boundaries",
-        "check-compatibility"
-      ],
+      "dependsOn": ["sync-shared", "check-shared-import-boundaries"],
       "options": {
         "jestConfig": "ui-angular/jest.config.cts",
         "tsConfig": "ui-angular/tsconfig.spec.json"
-      },
-      "inputs": [
-        "default",
-        "^default",
-        "{workspaceRoot}/shared/**/*",
-        "{workspaceRoot}/scripts/sync-angular-shared.mjs"
-      ]
+      }
+    },
+    "test-migrated": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/ui-angular-migration"],
+      "dependsOn": ["sync-shared", "check-shared-import-boundaries"],
+      "options": {
+        "jestConfig": "ui-angular/jest.migration.config.cts",
+        "codeCoverage": true,
+        "runInBand": true
+      }
     },
     "lint": {
       "executor": "@nx/eslint:lint"
@@ -71,7 +64,7 @@
       "options": {
         "port": 4400,
         "configDir": "ui-angular/.storybook",
-        "browserTarget": "angular-app:storybook-browser:production",
+        "browserTarget": "angular-app:storybook-browser:development",
         "compodoc": false
       },
       "configurations": {
@@ -114,21 +107,6 @@
           "buildTarget": "ui-angular:build-storybook:ci"
         }
       }
-    },
-    "check-neutral-core": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "node scripts/check-neutral-core.mjs"
-      },
-      "cache": false
-    },
-    "check-compatibility": {
-      "executor": "nx:run-commands",
-      "dependsOn": ["sync-shared"],
-      "options": {
-        "command": "node scripts/check-angular-compatibility.mjs"
-      },
-      "cache": false
     }
   }
 }

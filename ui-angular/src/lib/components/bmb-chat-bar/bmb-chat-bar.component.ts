@@ -24,17 +24,19 @@ import {
 } from '../../_shared/logic/components/chat-bar';
 import { defaultBotList } from '../../_shared/logic/components/chat-bar-defaults';
 import type { IBmbNativeModal as IBmbNativeModalGeneric } from '../../_shared/types';
+
+type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import type {
   IBotType,
   IChatBarActions,
 } from '../../_shared/types/components/chat-bar';
 import { ClickOutsideDirective } from '../../directives/click-outside/clickoutside.directive';
 import { TranslatePipe } from '../../pipes/translations';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,
-} from '../../services/old/projection/projection.service';
+} from '../../services/projection/projection.service';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
@@ -43,16 +45,8 @@ import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 
-export {
-  defaultActionList,
-  defaultBotList,
-} from '../../_shared/logic/components/chat-bar-defaults';
-export type {
-  IBotType,
-  IChatBarActions,
-} from '../../_shared/types/components/chat-bar';
-
-type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
+export { defaultActionList, defaultBotList } from './bot_list';
+export type { IBotType, IChatBarActions } from './types';
 
 @Component({
   selector: 'bmb-chat-bar',

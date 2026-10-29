@@ -2,7 +2,7 @@ import {
   cpSync,
   mkdirSync,
   readFileSync,
-  writeFileSync
+  writeFileSync,
 } from 'node:fs';
 
 const targets = {
@@ -19,11 +19,19 @@ mkdirSync(targets.styles, { recursive: true });
 mkdirSync(targets.assets, { recursive: true });
 cpSync('shared/logic', targets.logic, { recursive: true });
 cpSync('shared/types', targets.types, { recursive: true });
-// Overlay stable Angular signatures on top of the neutral implementation.
-cpSync('ui-angular/compat/logic', targets.logic, { recursive: true });
-cpSync('ui-angular/compat/types', targets.types, { recursive: true });
 cpSync('shared/assets/styles', targets.styles, { recursive: true });
 cpSync('shared/assets', targets.assets, { recursive: true });
+
+// Preserve Angular template defaults after removing the compatibility overlay.
+const chatTypesFile = `${targets.types}/components/ai-chat-bubble.ts`;
+const chatTypes = readFileSync(chatTypesFile, 'utf8').replaceAll(
+  'TTemplate = unknown',
+  'TTemplate = TemplateRef<unknown>',
+);
+writeFileSync(
+  chatTypesFile,
+  `import type { TemplateRef } from '@angular/core';\n\n${chatTypes}`,
+);
 
 for (const file of [
   `${targets.types}/index.ts`,

@@ -1,4 +1,4 @@
-import { IBmbLinkConfiguration } from '../utils';
+import { IBmbLinkConfiguration } from '../utils/utils';
 
 export interface IBmbLoginOnboarding {
   data: {

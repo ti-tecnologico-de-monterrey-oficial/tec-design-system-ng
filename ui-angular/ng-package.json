@@ -8,8 +8,7 @@
     "@material-symbols/svg-400",
     "dompurify",
     "luxon",
-    "tslib",
-    "@types/luxon"
+    "tslib"
   ],
   "assets": [
     {

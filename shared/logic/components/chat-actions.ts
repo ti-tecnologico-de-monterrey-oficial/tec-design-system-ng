@@ -2,7 +2,7 @@ import {
   BmbChatAction,
   BmbChatActionConfig,
   BmbChatCopyState,
-} from '../../types/contracts/ai-chat-bubble';
+} from '../../types/components/ai-chat-bubble';
 
 export const AI_CHAT_ACTIONS_DEFAULT_CONFIG: BmbChatActionConfig[] = [
   {

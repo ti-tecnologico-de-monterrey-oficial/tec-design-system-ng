@@ -2,7 +2,7 @@ import { DateTime } from 'luxon';
 import {
   IBmbTableLiteFiltersPosition,
   ITableLiteColumn,
-} from '../../types/contracts/table-lite';
+} from '../../types/components/table-lite';
 
 export function getTableLiteClasses(
   filtersPosition: IBmbTableLiteFiltersPosition,

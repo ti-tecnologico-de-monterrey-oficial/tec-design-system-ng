@@ -1,9 +1,7 @@
 import { DateTime } from 'luxon';
-import { IBmbFiltersPosition, TableColum } from '../../types/contracts/tables';
+import { IBmbFiltersPosition, TableColum } from '../../types/components/tables';
 
-export function getTablesClasses(
-  filtersPosition: IBmbFiltersPosition,
-): string[] {
+export function getTablesClasses(filtersPosition: IBmbFiltersPosition): string[] {
   const classList = ['bmb_table'];
   switch (filtersPosition) {
     case 'right':
@@ -60,11 +58,7 @@ export function getTablesCellClasses(
 
 export function buildTablesDisplayColumns(
   columnDefs: string[],
-  config: {
-    isExpandible?: boolean;
-    isSelectable?: boolean;
-    showActions?: boolean;
-  },
+  config: { isExpandible?: boolean; isSelectable?: boolean; showActions?: boolean },
 ): string[] {
   const displayColumns = [...columnDefs];
 
@@ -102,7 +96,9 @@ export function filterTablesRows<TTemplate = unknown>(
 
       filtered = filtered.filter((row) => {
         const value = +row[key];
-        return (min === null || value >= min) && (max === null || value <= max);
+        return (
+          (min === null || value >= min) && (max === null || value <= max)
+        );
       });
     }
 

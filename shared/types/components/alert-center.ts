@@ -1,5 +1,5 @@
 import type { DateTime } from 'luxon';
-import type { IButtonAppearance } from '../utils';
+import type { IButtonAppearance } from '../utils/utils';
 import type { IBbmBgAppearance } from './advertisement-card';
 
 export interface IBmbAlertTag {

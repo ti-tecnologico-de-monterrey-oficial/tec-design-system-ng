@@ -1,7 +1,3 @@
-import {
-  resolveInitialTheme,
-  resolveRequestedTheme,
-} from '../../_shared/logic/services/theme';
 import { inject, Injectable, signal } from '@angular/core';
 import { BMB_DEFAULT_THEME } from './theme-config';
 
@@ -15,17 +11,21 @@ export class ThemeService {
   readonly theme = signal<string>(this.getInitialTheme());
 
   getInitialTheme(): string {
-    return resolveInitialTheme(
-      localStorage.getItem('theme'),
-      this.defaultTheme,
-    );
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) return savedTheme;
+    return this.defaultTheme;
   }
 
   setInitialTheme(newInitialTheme?: string): void {
     const savedTheme = localStorage.getItem('theme');
-    this.theme.set(
-      resolveRequestedTheme(savedTheme, newInitialTheme, this.defaultTheme),
-    );
+    if (newInitialTheme && !savedTheme) {
+      this.theme.set(newInitialTheme);
+    } else if (savedTheme) {
+      this.theme.set(savedTheme);
+    } else {
+      this.theme.set(this.defaultTheme);
+    }
+
     document.documentElement.setAttribute('data-theme', this.theme());
   }
 

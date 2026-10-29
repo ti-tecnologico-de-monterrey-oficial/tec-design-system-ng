@@ -17,8 +17,8 @@ import type {
   IBmbDataAlertsParsed,
 } from '../../_shared/types/components/alert-center';
 import { TranslatePipe } from '../../pipes/translations';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
-import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { BmbAlertCenterAdsComponent } from '../bmb-alert-center/bmb-alert-center-ads/bmb-alert-center-ads.component';
 import { BmbAlertCenterListComponent } from '../bmb-alert-center/bmb-alert-center-list/bmb-alert-center-list.component';

@@ -1,7 +1,3 @@
-import {
-  normalizeIconName,
-  getIconUrl,
-} from '../../_shared/logic/services/icon';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -20,7 +16,7 @@ export class BmbIconService {
       return null;
     }
 
-    const cleanName = normalizeIconName(iconName);
+    const cleanName = iconName.trim().replace(/\s+/g, '_').toLowerCase();
     if (this.iconCache.has(cleanName)) {
       return this.iconCache.get(cleanName) || null;
     }
@@ -31,8 +27,8 @@ export class BmbIconService {
       document.querySelector('#storybook-preview-wrapper') !== null;
 
     const url: string = isStorybook
-      ? getIconUrl(this.storybookPath, cleanName, isFilled)
-      : getIconUrl(this.angularAppPath, cleanName, isFilled);
+      ? `${this.storybookPath}/${cleanName}${isFilled ? '-fill' : ''}.svg`
+      : `${this.angularAppPath}/${cleanName}${isFilled ? '-fill' : ''}.svg`;
 
     try {
       const response = await fetch(url);

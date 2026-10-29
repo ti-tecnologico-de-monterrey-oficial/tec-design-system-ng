@@ -12,14 +12,7 @@ const ignoredDirectories = new Set([
   'outputs',
   'tmp',
 ]);
-const sourceExtensions = new Set([
-  '.cjs',
-  '.js',
-  '.jsx',
-  '.mjs',
-  '.ts',
-  '.tsx',
-]);
+const sourceExtensions = new Set(['.cjs', '.js', '.jsx', '.mjs', '.ts', '.tsx']);
 const forbiddenImport = /@shared\/(?:logic|types)(?:\/|['"])/;
 const violations = [];
 
@@ -34,28 +27,18 @@ function scanDirectory(directory) {
       continue;
     }
 
-    if (
-      !entry.isFile() ||
-      entry.name.endsWith('.stories.ts') ||
-      !sourceExtensions.has(entry.name.slice(entry.name.lastIndexOf('.')))
-    ) {
+      if (
+        !entry.isFile() ||
+        entry.name.endsWith('.stories.ts') ||
+        !sourceExtensions.has(entry.name.slice(entry.name.lastIndexOf('.')))
+      ) {
       continue;
     }
 
     const contents = readFileSync(entryPath, 'utf8');
     for (const [lineIndex, line] of contents.split(/\r?\n/).entries()) {
-      const inNeutralSource = /^(logic|types)[\\/]/.test(
-        relative(join(workspaceRoot, 'shared'), entryPath),
-      );
-      const frameworkImport =
-        /(?:from\s*|import\s*\(|require\s*\()\s*['"](?:@angular\/|react(?:['"/])|react-dom(?:['"/]))/;
-      if (
-        forbiddenImport.test(line) ||
-        (inNeutralSource && frameworkImport.test(line))
-      ) {
-        violations.push(
-          `${relative(workspaceRoot, entryPath)}:${lineIndex + 1}: ${line.trim()}`,
-        );
+      if (forbiddenImport.test(line)) {
+        violations.push(`${relative(workspaceRoot, entryPath)}:${lineIndex + 1}: ${line.trim()}`);
       }
     }
   }

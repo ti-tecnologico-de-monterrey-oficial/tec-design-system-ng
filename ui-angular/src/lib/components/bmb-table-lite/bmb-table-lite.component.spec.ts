@@ -1,4 +1,9 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 import { BmbTableLiteComponent } from './bmb-table-lite.component';
 
 describe('BmbTableLiteComponent', () => {
@@ -38,6 +43,62 @@ describe('BmbTableLiteComponent', () => {
   });
 
   describe('initialization', () => {
+    it('handles cleared inputs and ignores initial selection indexes outside the data', () => {
+      createComponent();
+      fixture.componentRef.setInput('initialTableSelection', [0, 99]);
+      component.parseData(data);
+      expect(component.selection.selected).toEqual([data[0]]);
+      component.ngOnChanges({
+        data: { currentValue: null } as any,
+        columns: { currentValue: null } as any,
+        config: { currentValue: null } as any,
+      });
+      expect(component.originalData).toEqual([]);
+      expect(component.tableColumns).toEqual([]);
+      component.parseData(null as any);
+      expect(component.pageSlice).toEqual([]);
+    });
+
+    it('reserves layout space for selection, expansion and action columns', () => {
+      createComponent();
+      fixture.componentRef.setInput('config', {
+        isSelectable: true,
+        isExpandible: true,
+        showActions: true,
+      });
+      fixture.componentRef.setInput('columns', columns);
+      fixture.componentRef.setInput('data', data);
+      fixture.detectChanges();
+      expect(component.colCheckbox).toBe('62px');
+      expect(component.colExpand).toBe('40px');
+      expect(component.colActions).toBe('80px');
+      expect(component.hasCheckbox).toBe(1);
+      expect(component.hasExpand).toBe(1);
+      expect(component.hasActions).toBe(1);
+      expect(component.cssVars).toEqual(
+        expect.objectContaining({ '--col-count': 3 }),
+      );
+      expect(component.trackByColumn({ label: 'Unnamed column' })).toBe(
+        'Unnamed column',
+      );
+    });
+
+    it('reports server pagination ranges and supports unknown totals', () => {
+      createComponent();
+      fixture.componentRef.setInput('serverSide', true);
+      fixture.componentRef.setInput('totalItems', 25);
+      fixture.componentRef.setInput('pageSize', 10);
+      component.currentPage.set(1);
+      expect(component.isSinglePage()).toBe(false);
+      expect(component.getPaginationText()).toBe('11 - 20 de 25');
+      fixture.componentRef.setInput('totalItems', undefined);
+      expect(component.isSinglePage()).toBe(true);
+      expect(component.lastPage()).toBe(0);
+      expect(component.getPaginationText()).toBe('0 de 0');
+      component.currentPage.set(0);
+      component.goToFirstPage();
+      expect(component.currentPage()).toBe(0);
+    });
     it('should parse data and columns on init', fakeAsync(() => {
       fixture.componentRef.setInput('data', data);
       fixture.componentRef.setInput('columns', columns);
@@ -65,7 +126,12 @@ describe('BmbTableLiteComponent', () => {
     it('should exclude columns explicitly marked as not filterable', () => {
       fixture.componentRef.setInput('columns', [
         ...columns,
-        { label: 'Hidden', def: 'hidden', dataKey: 'hidden', isFilterable: false },
+        {
+          label: 'Hidden',
+          def: 'hidden',
+          dataKey: 'hidden',
+          isFilterable: false,
+        },
       ]);
 
       expect(component.parsedFiltersColumns()).toHaveLength(columns.length);
@@ -128,15 +194,15 @@ describe('BmbTableLiteComponent', () => {
       fixture.detectChanges();
       tick();
 
-      expect(component.getCellClasses(data[0], 'name', 0)['bmb_table_lite-sticky']).toBe(
+      expect(
+        component.getCellClasses(data[0], 'name', 0)['bmb_table_lite-sticky'],
+      ).toBe(true);
+      expect(component.getHeaderCellClasses(0)['bmb_table_lite-sticky']).toBe(
         true,
       );
-      expect(
-        component.getHeaderCellClasses(0)['bmb_table_lite-sticky'],
-      ).toBe(true);
-      expect(
-        component.getHeaderCellClasses(1)['bmb_table_lite-sticky'],
-      ).toBe(false);
+      expect(component.getHeaderCellClasses(1)['bmb_table_lite-sticky']).toBe(
+        false,
+      );
     }));
 
     it('should not throw for an out-of-range column index', fakeAsync(() => {
