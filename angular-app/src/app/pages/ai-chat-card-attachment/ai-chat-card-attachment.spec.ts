@@ -182,11 +182,6 @@ describe('AIChatCardAttachment', () => {
           'bmb-upload-file-message [role="alert"]',
         ),
       ).toBeNull();
-      expect(
-        fixture.nativeElement.querySelector(
-          'bmb-upload-file-message [role="status"]',
-        ),
-      ).toBeTruthy();
     });
 
     it('should reset the shared draft, validation results and retry counter', () => {

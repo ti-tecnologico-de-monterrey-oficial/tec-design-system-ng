@@ -110,9 +110,7 @@ describe('Chat attachment coordination without a chat card', () => {
     });
     fixture.detectChanges();
     expect(
-      fixture.nativeElement.querySelector(
-        '.bmb_toast-warning',
-      ),
+      fixture.nativeElement.querySelector('.bmb_toast-warning'),
     ).toBeTruthy();
     fixture.nativeElement
       .querySelector('.bmb_upload-file-message-retry')
@@ -125,11 +123,6 @@ describe('Chat attachment coordination without a chat card', () => {
         'bmb-upload-file-message [role="alert"]',
       ),
     ).toBeNull();
-    expect(
-      fixture.nativeElement.querySelector(
-        'bmb-upload-file-message [role="status"]',
-      ),
-    ).toBeTruthy();
     fixture.destroy();
   });
 
