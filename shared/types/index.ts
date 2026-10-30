@@ -70,6 +70,7 @@ export * from './components/user-summary';
 export * from './components/value-counter';
 export * from './components/web-templates';
 
+export * from './chat-attachment';
 export * from './input';
 export * from './utils';
 

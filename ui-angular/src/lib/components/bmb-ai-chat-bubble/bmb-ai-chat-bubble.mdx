@@ -2,8 +2,9 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 import * as mainStory from './bmb-ai-chat-bubble.stories';
 import * as editorStory from './bmb-ai-chat-bubble-editor/bmb-ai-chat-bubble-editor.stories';
+import * as uploadFileStory from './bmb-message-renderers/bmb-upload-file-message/bmb-upload-file-message.stories';
 import { ListTemplate } from '@docs/components/ListTemplate.mdx';
 import { getFormatName } from '@docs/utils/utils';
 
 <Meta of={mainStory} />
-<ListTemplate isMultiStory={true} content={[mainStory, editorStory]} />
+<ListTemplate isMultiStory={true} content={[mainStory, editorStory, uploadFileStory]} />

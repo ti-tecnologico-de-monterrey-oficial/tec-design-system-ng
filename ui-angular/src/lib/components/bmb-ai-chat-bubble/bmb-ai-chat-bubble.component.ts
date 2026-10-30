@@ -19,14 +19,15 @@ import {
   BmbChatMessage as BmbChatMessageGeneric,
   BmbChatMessageEditedEvent,
   BmbTextMessage,
+  BmbUploadFileRequestEvent,
   IBmbChatOptionEvent,
+  BmbChatAttachmentResult,
 } from '../../_shared/types';
 import {
   buildAiChatBubblePlainText,
   getAiChatBubbleClasses,
   resolveAiChatBubbleActions,
 } from '../../_shared/logic/components/ai-chat-bubble';
-
 type BmbChatMessage = BmbChatMessageGeneric<TemplateRef<unknown>>;
 type BmbChatActionEvent = BmbChatActionEventGeneric<TemplateRef<unknown>>;
 import { ChatActionsComponent } from './bmb-chat-actions/bmb-chat-actions.component';
@@ -36,11 +37,13 @@ import { MixedMessageComponent } from './bmb-message-renderers/bmb-mixed-message
 import { LinkMessageComponent } from './bmb-message-renderers/bmb-link-message/bmb-link-message.component';
 import { OptionsMessageComponent } from './bmb-message-renderers/bmb-options-message/bmb-options-message.component';
 import { TemplateMessageComponent } from './bmb-message-renderers/bmb-template-message/bmb-template-message.component';
+import { BmbUploadFileMessageComponent } from './bmb-message-renderers/bmb-upload-file-message/bmb-upload-file-message.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbAiChatBubbleEditorComponent } from './bmb-ai-chat-bubble-editor/bmb-ai-chat-bubble-editor.component';
 import { TranslatePipe } from '../../pipes/translations';
+import { provideBmbChatAttachments } from '../../services/chat-attachments/chat-attachments.service';
 
 @Component({
   selector: 'bmb-ai-chat-bubble',
@@ -54,6 +57,7 @@ import { TranslatePipe } from '../../pipes/translations';
     LinkMessageComponent,
     OptionsMessageComponent,
     TemplateMessageComponent,
+    BmbUploadFileMessageComponent,
     BmbUserImageComponent,
     BmbIconComponent,
     BmbBotIconComponent,
@@ -63,6 +67,7 @@ import { TranslatePipe } from '../../pipes/translations';
   templateUrl: './bmb-ai-chat-bubble.component.html',
   styleUrl: './bmb-ai-chat-bubble.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideBmbChatAttachments()],
 })
 export class BmbAiChatBubbleComponent implements OnDestroy {
   /**
@@ -108,6 +113,10 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
   readonly messageEdited = output<BmbChatMessageEditedEvent>();
   readonly messageEditCancelled = output<BmbChatMessage>();
   getOptionClicked = output<IBmbChatOptionEvent>();
+  readonly uploadFileRequested = output<BmbUploadFileRequestEvent>();
+  readonly filesSelected = output<File[]>();
+  readonly attachmentResult = output<BmbChatAttachmentResult>();
+  readonly retryUploadRequested = output<BmbUploadFileRequestEvent>();
 
   /**
    * Emits image not found events.

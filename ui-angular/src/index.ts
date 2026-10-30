@@ -16,6 +16,7 @@ export * from './lib/services/theme/theme.service';
 export * from './lib/services/old/toast/toast.service';
 export * from './lib/services/translations/translations.service';
 export * from './lib/services/icon/icon.service';
+export * from './lib/services/chat-attachments/chat-attachments.service';
 
 // Pipes
 export * from './lib/pipes/translations';
@@ -151,6 +152,7 @@ export * from './lib/components/bmb-image/bmb-image.component';
 export * from './lib/components/bmb-icon-status/bmb-icon-status.component';
 export * from './lib/components/bmb-chat-bubbles/bmb-chat-bubbles.component';
 export * from './lib/components/bmb-ai-chat-bubble/bmb-ai-chat-bubble.component';
+export * from './lib/components/bmb-ai-chat-bubble/bmb-message-renderers/bmb-upload-file-message/bmb-upload-file-message.component';
 export * from './lib/components/bmb-ai-chat-bubble/bmb-ai-chat-bubble-editor/bmb-ai-chat-bubble-editor.component';
 export * from './lib/components/bmb-digital-id/bmb-digital-id.component';
 export * from './lib/components/bmb-sounds-card/bmb-sounds-card.component';
