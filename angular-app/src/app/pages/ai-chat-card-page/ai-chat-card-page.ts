@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   signal,
-  TemplateRef,
+  type TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -49,6 +49,7 @@ export class AiChatCardPage {
     label: 'Tecbot Standard',
     icon: 'bot_tecStandar',
   });
+  readonly isExpanded = signal<boolean>(false);
 
   readonly botList: IBotType[] = [
     { name: 'TecBot', label: 'Tecbot Standard', icon: 'bot_tecStandar' },

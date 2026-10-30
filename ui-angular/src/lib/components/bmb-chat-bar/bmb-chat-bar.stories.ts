@@ -56,7 +56,6 @@ ${getBasicExampleBlock('BmbChatBarComponent', importComments)}
         'createImageThumbnail',
         'actionListPagination',
         'activeDot',
-        'arrayThumbnail',
         'deleteFile',
         'handleAddDialog',
         'handleChangeBot',

@@ -6,7 +6,7 @@ import {
   inject,
   model,
   signal,
-  TemplateRef,
+  type TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
@@ -21,7 +21,6 @@ import {
   IBmbDataAlert,
   BmbDropdownComponent,
   BmbSearchCardComponent,
-  IBmbChatMessage,
   IBmbHomeCardChatMode,
   IBotType,
   IBmbSearchCardItemResult,
@@ -592,92 +591,92 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
     },
   ];
   readonly headerActions: IBmbActionHeader[] = [
-      {
-        icon: 'chat_add_on',
-        tooltipText: 'New chat',
-        action: () => {
-          console.info('New chat');
-        },
+    {
+      icon: 'chat_add_on',
+      tooltipText: 'New chat',
+      action: () => {
+        console.info('New chat');
       },
-    ];
+    },
+  ];
 
-    readonly actionsList: IChatBarActions[] = [
-      {
-        name: 'Adjuntar archivo',
-        label: 'Adjuntar archivo',
-        icon: 'attach_file',
-        action: () => {
-          console.log('Adjuntar archivo');
-        },
+  readonly actionsList: IChatBarActions[] = [
+    {
+      name: 'Adjuntar archivo',
+      label: 'Adjuntar archivo',
+      icon: 'attach_file',
+      action: () => {
+        console.log('Adjuntar archivo');
       },
-    ];
+    },
+  ];
 
-    readonly messages: BmbChatMessage[] = [
-      {
-        id: '1',
-        type: 'text',
-        timestamp: new Date('2026-08-25T22:47:25.997Z'),
-        isUser: true,
-        userProfile: 'https://picsum.photos/id/64/200/300',
-        content: { text: 'I need help with Angular signals.' },
+  readonly messages: BmbChatMessageGeneric<TemplateRef<unknown>>[] = [
+    {
+      id: '1',
+      type: 'text',
+      timestamp: new Date('2026-08-25T22:47:25.997Z'),
+      isUser: true,
+      userProfile: 'https://picsum.photos/id/64/200/300',
+      content: { text: 'I need help with Angular signals.' },
+    },
+    {
+      id: '2',
+      type: 'options',
+      timestamp: new Date('2026-08-25T01:28:13.313Z'),
+      isUser: false,
+      content: {
+        text: 'Choose one option:',
+        options: [
+          { id: '1', label: 'Option for conversational text-based prompts 1' },
+          { id: '2', label: 'Option for conversational text-based prompts 2' },
+          { id: '3', label: 'Option for conversational text-based prompts 3' },
+        ],
       },
-      {
-        id: '2',
-        type: 'options',
-        timestamp: new Date('2026-08-25T01:28:13.313Z'),
-        isUser: false,
-        content: {
-          text: 'Choose one option:',
-          options: [
-            { id: '1', label: 'Option for conversational text-based prompts 1' },
-            { id: '2', label: 'Option for conversational text-based prompts 2' },
-            { id: '3', label: 'Option for conversational text-based prompts 3' },
-          ],
-        },
+    },
+    {
+      id: '3',
+      type: 'text',
+      timestamp: new Date('2026-08-25T22:47:25.997Z'),
+      isUser: true,
+      userProfile: 'https://picsum.photos/id/64/200/300',
+      content: { text: 'I need help with Angular signals.' },
+    },
+    {
+      id: '4',
+      type: 'options',
+      timestamp: new Date('2026-08-25T01:28:13.313Z'),
+      isUser: false,
+      content: {
+        text: 'Choose one option:',
+        options: [
+          { id: '1', label: 'Option for conversational text-based prompts 1' },
+          { id: '2', label: 'Option for conversational text-based prompts 2' },
+          { id: '3', label: 'Option for conversational text-based prompts 3' },
+        ],
       },
-      {
-        id: '3',
-        type: 'text',
-        timestamp: new Date('2026-08-25T22:47:25.997Z'),
-        isUser: true,
-        userProfile: 'https://picsum.photos/id/64/200/300',
-        content: { text: 'I need help with Angular signals.' },
+    },
+    {
+      id: '5',
+      type: 'text',
+      timestamp: new Date('2026-08-25T22:47:25.997Z'),
+      isUser: true,
+      userProfile: 'https://picsum.photos/id/64/200/300',
+      content: { text: 'I need help with Angular signals.' },
+    },
+    {
+      id: '6',
+      type: 'options',
+      timestamp: new Date('2026-08-25T01:28:13.313Z'),
+      isUser: false,
+      content: {
+        text: 'Choose one option:',
+        options: [
+          { id: '1', label: 'Option for conversational text-based prompts 1' },
+          { id: '2', label: 'Option for conversational text-based prompts 2' },
+          { id: '3', label: 'Option for conversational text-based prompts 3' },
+        ],
       },
-      {
-        id: '4',
-        type: 'options',
-        timestamp: new Date('2026-08-25T01:28:13.313Z'),
-        isUser: false,
-        content: {
-          text: 'Choose one option:',
-          options: [
-            { id: '1', label: 'Option for conversational text-based prompts 1' },
-            { id: '2', label: 'Option for conversational text-based prompts 2' },
-            { id: '3', label: 'Option for conversational text-based prompts 3' },
-          ],
-        },
-      },
-      {
-        id: '5',
-        type: 'text',
-        timestamp: new Date('2026-08-25T22:47:25.997Z'),
-        isUser: true,
-        userProfile: 'https://picsum.photos/id/64/200/300',
-        content: { text: 'I need help with Angular signals.' },
-      },
-      {
-        id: '6',
-        type: 'options',
-        timestamp: new Date('2026-08-25T01:28:13.313Z'),
-        isUser: false,
-        content: {
-          text: 'Choose one option:',
-          options: [
-            { id: '1', label: 'Option for conversational text-based prompts 1' },
-            { id: '2', label: 'Option for conversational text-based prompts 2' },
-            { id: '3', label: 'Option for conversational text-based prompts 3' },
-          ],
-        },
-      },
-    ];
+    },
+  ];
 }
