@@ -13,6 +13,61 @@ interface AttachmentDraft {
   rules(): BmbChatAttachmentRules;
 }
 
+type AttachmentErrorCode = BmbChatAttachmentError['code'];
+
+const DEFAULT_MAX_FILE_SIZE_MB = 2;
+const BYTES_PER_MB = 1024 * 1024;
+
+function matchesFormat(file: File, format: string): boolean {
+  const normalized = format.toLowerCase();
+  const type = file.type.toLowerCase();
+  if (normalized.startsWith('.')) {
+    return file.name.toLowerCase().endsWith(normalized);
+  }
+  return normalized.endsWith('/*')
+    ? type.startsWith(normalized.slice(0, -1))
+    : type === normalized;
+}
+
+function matchesRules(file: File, rules: BmbChatAttachmentRules): boolean {
+  const formats = rules.acceptedFormats ?? [];
+  return (
+    !formats.length || formats.some((format) => matchesFormat(file, format))
+  );
+}
+
+function isSameFile(a: File, b: File): boolean {
+  return (
+    a.name === b.name && a.size === b.size && a.lastModified === b.lastModified
+  );
+}
+
+function getErrorCode(
+  file: File,
+  ruleSets: readonly BmbChatAttachmentRules[],
+  maxFileSize: number,
+  existing: readonly File[],
+): AttachmentErrorCode | undefined {
+  if (!ruleSets.every((rules) => matchesRules(file, rules))) return 'format';
+  if (file.size > maxFileSize * BYTES_PER_MB) return 'size';
+  if (existing.some((other) => isSameFile(other, file))) return 'duplicate';
+  return undefined;
+}
+
+function toAttachmentError(
+  file: File,
+  code: AttachmentErrorCode,
+  maxFileSize: number,
+): BmbChatAttachmentError {
+  const dot = file.name.lastIndexOf('.');
+  return {
+    code,
+    fileName: file.name,
+    extension: dot > 0 ? file.name.slice(dot) : file.name,
+    ...(code === 'size' ? { maxFileSize } : {}),
+  };
+}
+
 @Injectable()
 export class BmbChatAttachmentsService {
   private readonly drafts = new Set<AttachmentDraft>();
@@ -80,52 +135,24 @@ export class BmbChatAttachmentsService {
     const draft = this.drafts.values().next().value;
     const draftRules = draft?.rules();
     if (draftRules) this.validateRules(draftRules);
+    const ruleSets = draftRules ? [rules, draftRules] : [rules];
+    const maxFileSize = Math.min(
+      rules.maxFileSize ?? DEFAULT_MAX_FILE_SIZE_MB,
+      draftRules?.maxFileSize ?? rules.maxFileSize ?? DEFAULT_MAX_FILE_SIZE_MB,
+    );
     const current = replace ? [] : [...(draft?.read() ?? this.localFiles())];
     const accepted: File[] = [];
     const errors: BmbChatAttachmentError[] = [];
-    const maxFileSize = Math.min(
-      rules.maxFileSize ?? 2,
-      draftRules?.maxFileSize ?? rules.maxFileSize ?? 2,
-    );
+
     for (const file of files) {
-      const matchesRules = (constraints: BmbChatAttachmentRules): boolean => {
-        const formats = constraints.acceptedFormats ?? [];
-        return (
-          !formats.length ||
-          formats.some((format) => {
-            const normalized = format.toLowerCase();
-            if (normalized.startsWith('.')) {
-              return file.name.toLowerCase().endsWith(normalized);
-            }
-            return normalized.endsWith('/*')
-              ? file.type.toLowerCase().startsWith(normalized.slice(0, -1))
-              : file.type.toLowerCase() === normalized;
-          })
-        );
-      };
-      let code: BmbChatAttachmentError['code'] | undefined;
-      if (!matchesRules(rules) || (draftRules && !matchesRules(draftRules)))
-        code = 'format';
-      else if (file.size > maxFileSize * 1024 * 1024) code = 'size';
-      else if (
-        [...current, ...accepted].some(
-          (existing) =>
-            existing.name === file.name &&
-            existing.size === file.size &&
-            existing.lastModified === file.lastModified,
-        )
-      )
-        code = 'duplicate';
-      if (code) {
-        const dot = file.name.lastIndexOf('.');
-        errors.push({
-          code,
-          fileName: file.name,
-          extension: dot > 0 ? file.name.slice(dot) : file.name,
-          ...(code === 'size' ? { maxFileSize } : {}),
-        });
-      } else accepted.push(file);
+      const code = getErrorCode(file, ruleSets, maxFileSize, [
+        ...current,
+        ...accepted,
+      ]);
+      if (code) errors.push(toAttachmentError(file, code, maxFileSize));
+      else accepted.push(file);
     }
+
     const next = [...current, ...accepted];
     if (draft) draft.write(next);
     else this.localFiles.set(next);
