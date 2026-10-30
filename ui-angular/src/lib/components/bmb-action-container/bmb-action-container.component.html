@@ -1,0 +1,36 @@
+<section
+  class="bmb_action-container"
+  bmbLayout
+  [dynamicCols]="true"
+  margin="none"
+  alignItems="center"
+>
+  @if (!!avatarIcon()) {
+    <bmb-icon
+      class="bmb_action-container-icon"
+      [class.bmb_action-container-error]="isError()"
+      [icon]="avatarIcon()"
+      [size]="24"
+      bmbLayoutItem
+    />
+  }
+  <ng-content />
+  @if (showStatusIcon()) {
+    <bmb-icon
+      class="bmb_action-container-icon-successful"
+      icon="check_circle"
+      [size]="24"
+      bmbLayoutItem
+    />
+  }
+  @if (!!actionIcon()) {
+    <bmb-action-icon
+      class="bmb_action-container-icon-action"
+      [idElement]="actionIdElement()"
+      [icon]="actionIcon()"
+      [iconSize]="24"
+      (buttonClick)="handleClick($event)"
+      bmbLayoutItem
+    />
+  }
+</section>
