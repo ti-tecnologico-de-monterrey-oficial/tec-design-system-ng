@@ -13,6 +13,7 @@ import {
   getOnEvent,
   getSpecialSpecifications,
   RELEVANT_TITLE,
+  getStoryTitle,
 } from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
@@ -43,8 +44,7 @@ Supported message types include:
 - mixed
 - links
 - selectable options
-- file upload requests (the consuming app handles file selection and validation)
-- custom templates<br/><br/>`;
+- file upload requests **Upload file message** tab`;
 
 export default {
   title: 'Components/Containers/AI Chat bubble',
@@ -264,71 +264,6 @@ For user message use ['copy', 'edit'] to enable both. Copy is enabled by default
 type Story = StoryObj<BmbAiChatBubbleComponent>;
 
 export const Default: Story = {};
-
-export const UploadFileMessage: Story = {
-  name: 'Upload message',
-  args: {
-    showActions: false,
-    message: {
-      id: 'upload-service-file',
-      type: 'upload-file',
-      timestamp: new Date('2026-05-05T20:00:00'),
-      isUser: false,
-      content: {
-        fileName: 'nombre de archivo de servicio',
-        acceptedFormats: ['.pdf', '.doc', '.xml'],
-        maxFileSize: 2,
-        additionalRequirements: [
-          'Otro dato importante para el archivo relevante.',
-        ],
-      },
-    },
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'El botón abre el selector. El servicio local valida formatos, tamaño (2 MB por defecto) y duplicados. attachmentResult notifica el resultado; filesSelected contiene solo archivos válidos. La aplicación realiza la subida y procesa la palabra Cancelar.',
-      },
-    },
-  },
-};
-
-export const UploadFileFormatError: Story = {
-  name: 'Upload file error',
-  args: {
-    ...UploadFileMessage.args,
-    message: {
-      id: 'upload-format-error',
-      type: 'upload-file',
-      timestamp: new Date('2026-05-05T20:00:00'),
-      isUser: false,
-      content: {
-        fileName: 'documento',
-        acceptedFormats: ['.pdf', '.doc', '.xml'],
-        maxFileSize: 2,
-        error: { code: 'format', extension: '.xps' },
-      },
-    },
-  },
-};
-
-export const UploadFileInterrupted: Story = {
-  name: 'Upload file interrupted',
-  args: {
-    ...UploadFileMessage.args,
-    message: {
-      id: 'upload-interrupted',
-      type: 'upload-file',
-      timestamp: new Date('2026-05-05T20:00:00'),
-      isUser: false,
-      content: {
-        fileName: 'documento',
-        error: { code: 'interrupted' },
-      },
-    },
-  },
-};
 
 export const UserMessage: Story = {
   args: {
