@@ -266,6 +266,7 @@ type Story = StoryObj<BmbAiChatBubbleComponent>;
 export const Default: Story = {};
 
 export const UploadFileMessage: Story = {
+  name: 'Upload message',
   args: {
     showActions: false,
     message: {
@@ -276,7 +277,7 @@ export const UploadFileMessage: Story = {
       content: {
         fileName: 'nombre de archivo de servicio',
         acceptedFormats: ['.pdf', '.doc', '.xml'],
-        maxFileSize: 10,
+        maxFileSize: 2,
         additionalRequirements: [
           'Otro dato importante para el archivo relevante.',
         ],
@@ -294,6 +295,7 @@ export const UploadFileMessage: Story = {
 };
 
 export const UploadFileFormatError: Story = {
+  name: 'Upload file error',
   args: {
     ...UploadFileMessage.args,
     message: {
@@ -304,7 +306,7 @@ export const UploadFileFormatError: Story = {
       content: {
         fileName: 'documento',
         acceptedFormats: ['.pdf', '.doc', '.xml'],
-        maxFileSize: 10,
+        maxFileSize: 2,
         error: { code: 'format', extension: '.xps' },
       },
     },
@@ -312,6 +314,7 @@ export const UploadFileFormatError: Story = {
 };
 
 export const UploadFileInterrupted: Story = {
+  name: 'Upload file interrupted',
   args: {
     ...UploadFileMessage.args,
     message: {

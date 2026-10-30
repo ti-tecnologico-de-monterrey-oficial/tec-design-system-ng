@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   BmbAIChatCardComponent,
+  BmbAiChatBubbleComponent,
   BmbChatBarComponent,
   BmbChatAttachmentsService,
   IBMB_AI_CHAT_CARD_MODE,
@@ -221,6 +222,21 @@ describe('AIChatCardAttachment', () => {
     expect(component.messages()[0].type).toBe('upload-file');
   });
 
+  it('should render each sent message in its own bubble', () => {
+    component.handleSendMessage('First message');
+    fixture.detectChanges();
+    component.handleSendMessage('Second message');
+    fixture.detectChanges();
+
+    const bubbles = fixture.debugElement.queryAll(
+      By.directive(BmbAiChatBubbleComponent),
+    );
+    expect(bubbles).toHaveLength(3);
+    expect(
+      bubbles.map(({ componentInstance }) => componentInstance.message().id),
+    ).toEqual(['attachment-request', 'submission-1', 'submission-2']);
+  });
+
   it('should record a snapshot of the pending files when a message is sent', () => {
     const file = new File(['document'], 'document.pdf', {
       type: 'application/pdf',
@@ -269,13 +285,21 @@ describe('AIChatCardAttachment', () => {
     ]);
   });
 
-  it('should release the loading state after the send handler completes', async () => {
-    component.handleSendMessage('Message');
-    component.isLoading.set(true);
+  it('should release the loading state after 2 milliseconds', () => {
+    jest.useFakeTimers();
+    try {
+      component.handleSendMessage('Message');
+      component.isLoading.set(true);
 
-    await Promise.resolve();
+      jest.advanceTimersByTime(1);
+      expect(component.isLoading()).toBe(true);
 
-    expect(component.isLoading()).toBe(false);
+      jest.advanceTimersByTime(1);
+
+      expect(component.isLoading()).toBe(false);
+    } finally {
+      jest.useRealTimers();
+    }
   });
 
   it('should update the selected mode', () => {

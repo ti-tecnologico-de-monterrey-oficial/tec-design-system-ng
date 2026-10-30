@@ -8,21 +8,29 @@ import {
 import {
   FormControl,
   FormGroup,
-  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import {
   BmbActionIconComponent,
   BmbAIChatCardComponent,
   BmbAiChatBubbleComponent,
+  BmbButtonDirective,
   BmbChatBarComponent,
   BmbChatAttachmentsService,
+  BmbDropdownComponent,
+  BmbFormValidatorComponent,
+  BmbInputComponent,
+  BmbLayoutDirective,
+  BmbLayoutGridDirective,
+  BmbLayoutGridItemDirective,
+  BmbLayoutItemDirective,
   defaultActionList,
   IBMB_AI_CHAT_CARD_MODE,
   type BmbChatMessage,
   type BmbChatAttachmentResult,
   type BmbUploadFileRequestEvent,
   type IBmbAIChatCardMode,
+  BmbDividerComponent,
 } from 'ui-angular';
 
 interface AttachmentSubmission {
@@ -35,11 +43,19 @@ interface AttachmentSubmission {
   selector: 'app-ai-chat-card-attachment',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
     BmbActionIconComponent,
     BmbAIChatCardComponent,
     BmbAiChatBubbleComponent,
+    BmbButtonDirective,
     BmbChatBarComponent,
+    BmbDropdownComponent,
+    BmbFormValidatorComponent,
+    BmbDividerComponent,
+    BmbInputComponent,
+    BmbLayoutDirective,
+    BmbLayoutGridDirective,
+    BmbLayoutGridItemDirective,
+    BmbLayoutItemDirective,
   ],
   templateUrl: './ai-chat-card-attachment.html',
   styleUrl: './ai-chat-card-attachment.scss',
@@ -79,6 +95,11 @@ export class AIChatCardAttachment {
   }));
 
   private nextSubmissionId = 0;
+  private loadingTimer?: ReturnType<typeof setTimeout>;
+
+  getConfigurationControl(name: string): FormControl {
+    return this.configurationForm.get(name) as FormControl;
+  }
 
   applyConfiguration(): void {
     if (this.configurationForm.invalid) {
@@ -120,10 +141,10 @@ export class AIChatCardAttachment {
     );
   }
 
-  selectMode(event: Event): void {
-    this.mode.set(
-      (event.target as HTMLSelectElement).value as IBmbAIChatCardMode,
-    );
+  selectMode(value: unknown): void {
+    if (typeof value === 'string' && this.modes.includes(value)) {
+      this.mode.set(value as IBmbAIChatCardMode);
+    }
   }
 
   handleSendMessage(message: string): void {
@@ -153,7 +174,11 @@ export class AIChatCardAttachment {
       ]);
     }
 
-    queueMicrotask(() => this.isLoading.set(false));
+    clearTimeout(this.loadingTimer);
+    this.loadingTimer = setTimeout(() => {
+      this.isLoading.set(false);
+      this.loadingTimer = undefined;
+    }, 2);
   }
 
   handleSendFiles(files: File[]): void {
@@ -180,6 +205,8 @@ export class AIChatCardAttachment {
   }
 
   reset(): void {
+    clearTimeout(this.loadingTimer);
+    this.loadingTimer = undefined;
     this.attachments.clear('attachment-request');
     this.attachmentResults.set([]);
     this.retryCount.set(0);
