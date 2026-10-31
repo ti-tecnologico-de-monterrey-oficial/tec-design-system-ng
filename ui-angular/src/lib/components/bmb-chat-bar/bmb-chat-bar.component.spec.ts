@@ -22,9 +22,12 @@ describe('BmbChatBarComponent', () => {
   });
 
   it('should send attached files through the existing output and clear them', () => {
-    const attachment = fixture.debugElement.query(By.directive(BmbFileAttachmentPicker))
-      .componentInstance as BmbFileAttachmentPicker;
-    const files = [new File(['document'], 'document.txt', { type: 'text/plain' })];
+    const attachment = fixture.debugElement.query(
+      By.directive(BmbFileAttachmentPicker),
+    ).componentInstance as BmbFileAttachmentPicker;
+    const files = [
+      new File(['document'], 'document.txt', { type: 'text/plain' }),
+    ];
     const sendFiles = jest.fn();
     const sendMessage = jest.fn();
     component.onSendFiles.subscribe(sendFiles);
@@ -42,19 +45,121 @@ describe('BmbChatBarComponent', () => {
   });
 
   it('should keep the existing file input available to attachment actions', () => {
-    expect(fixture.nativeElement.querySelector('#inputFile')?.type).toBe('file');
+    expect(fixture.nativeElement.querySelector('#inputFile')?.type).toBe(
+      'file',
+    );
   });
 
   it('should handle dropped files anywhere in the chat content', () => {
+    fixture.componentRef.setInput('allowAttachments', true);
+    fixture.detectChanges();
     const file = new File(['document'], 'document.txt', { type: 'text/plain' });
     const event = new Event('drop', { bubbles: true, cancelable: true });
     Object.defineProperty(event, 'dataTransfer', { value: { files: [file] } });
 
-    fixture.nativeElement.querySelector('.bmb_chat-bar-main').dispatchEvent(event);
+    fixture.nativeElement
+      .querySelector('.bmb_chat-bar-main')
+      .dispatchEvent(event);
     fixture.detectChanges();
 
     expect(component.files()).toEqual([file]);
     expect(event.defaultPrevented).toBe(true);
+  });
+
+  it('should use the attachment picker as the chat bar container', () => {
+    const container = fixture.nativeElement.querySelector(
+      '.bmb_chat-bar-container',
+    );
+
+    expect(container.tagName).toBe('BMB-FILE-ATTACHMENT-PICKER');
+    expect(container.getAttribute('tabindex')).toBe('0');
+  });
+
+  it('should ignore dropped files and disable the input when attachments are not allowed', () => {
+    const file = new File(['document'], 'document.txt', { type: 'text/plain' });
+    const event = new Event('drop', { bubbles: true, cancelable: true });
+    Object.defineProperty(event, 'dataTransfer', { value: { files: [file] } });
+    const container = fixture.nativeElement.querySelector(
+      '.bmb_chat-bar-container',
+    );
+
+    container.dispatchEvent(new Event('dragover', { cancelable: true }));
+    fixture.nativeElement
+      .querySelector('.bmb_chat-bar-main')
+      .dispatchEvent(event);
+    fixture.detectChanges();
+
+    expect(component.files()).toEqual([]);
+    expect(event.defaultPrevented).toBe(false);
+    expect(
+      container.classList.contains('bmb_file-attachment-picker-dragging'),
+    ).toBe(false);
+    expect(fixture.nativeElement.querySelector('#inputFile').disabled).toBe(
+      true,
+    );
+  });
+
+  describe('allowAttachments', () => {
+    const customAction = { name: 'Help', icon: 'help', action: jest.fn() };
+    const menuActions = () =>
+      (
+        component as unknown as { menuActions: () => { icon: string }[] }
+      ).menuActions();
+
+    it('should not show the attach button by default', () => {
+      expect(
+        fixture.nativeElement.querySelector('.bmb_chat-bar-attach'),
+      ).toBeNull();
+    });
+
+    it('should show an attach button that opens the file picker when there are no actions', () => {
+      fixture.componentRef.setInput('allowAttachments', true);
+      fixture.detectChanges();
+      const click = jest.spyOn(
+        fixture.nativeElement.querySelector('#inputFile'),
+        'click',
+      );
+
+      fixture.nativeElement
+        .querySelector('.bmb_chat-bar-attach button')
+        .click();
+
+      expect(
+        fixture.nativeElement.querySelector('.bmb_chat-bar-add'),
+      ).toBeNull();
+      expect(click).toHaveBeenCalledTimes(1);
+    });
+
+    it('should add the attach option first in the actions menu when there are actions', () => {
+      fixture.componentRef.setInput('allowAttachments', true);
+      fixture.componentRef.setInput('actionsList', [customAction]);
+      fixture.detectChanges();
+      const click = jest.spyOn(
+        fixture.nativeElement.querySelector('#inputFile'),
+        'click',
+      );
+
+      expect(
+        fixture.nativeElement.querySelector('.bmb_chat-bar-attach'),
+      ).toBeNull();
+      expect(
+        fixture.nativeElement.querySelector('.bmb_chat-bar-add'),
+      ).not.toBeNull();
+      expect(menuActions().map(({ icon }) => icon)).toEqual([
+        'upload_file',
+        'help',
+      ]);
+
+      (menuActions()[0] as unknown as { action: () => void }).action();
+      expect(click).toHaveBeenCalledTimes(1);
+    });
+
+    it('should keep the actions list unchanged when attachments are disabled', () => {
+      fixture.componentRef.setInput('actionsList', [customAction]);
+      fixture.detectChanges();
+
+      expect(menuActions()).toEqual([customAction]);
+    });
   });
 });
 
@@ -74,7 +179,9 @@ describe('BmbFileAttachment', () => {
 
   it('should append selected files, notify consumers and reset the input', () => {
     const firstFile = new File(['first'], 'first.txt', { type: 'text/plain' });
-    const secondFile = new File(['second'], 'second.txt', { type: 'text/plain' });
+    const secondFile = new File(['second'], 'second.txt', {
+      type: 'text/plain',
+    });
     const selected = jest.fn();
     component.filesSelected.subscribe(selected);
     component.files.set([firstFile]);
@@ -92,7 +199,9 @@ describe('BmbFileAttachment', () => {
 
   it('should remove only the selected attachment', () => {
     const firstFile = new File(['first'], 'first.txt', { type: 'text/plain' });
-    const secondFile = new File(['second'], 'second.txt', { type: 'text/plain' });
+    const secondFile = new File(['second'], 'second.txt', {
+      type: 'text/plain',
+    });
     component.files.set([firstFile, secondFile]);
 
     component.deleteFile(0);
@@ -127,6 +236,51 @@ describe('BmbFileAttachment', () => {
   });
 
   it('should not assign a shared input id to standalone instances', () => {
-    expect(fixture.nativeElement.querySelector('input').hasAttribute('id')).toBe(false);
+    expect(
+      fixture.nativeElement.querySelector('input').hasAttribute('id'),
+    ).toBe(false);
+  });
+
+  it('should reflect files and drag state as host classes', () => {
+    const host: HTMLElement = fixture.nativeElement;
+    component.files.set([new File(['a'], 'a.txt', { type: 'text/plain' })]);
+    host.dispatchEvent(new Event('dragover', { cancelable: true }));
+    fixture.detectChanges();
+
+    expect(
+      host.classList.contains('bmb_file-attachment-picker-has-files'),
+    ).toBe(true);
+    expect(host.classList.contains('bmb_file-attachment-picker-dragging')).toBe(
+      true,
+    );
+  });
+
+  it('should ignore picker, selection and drag events when disabled', () => {
+    fixture.componentRef.setInput('disabled', true);
+    fixture.detectChanges();
+    const host: HTMLElement = fixture.nativeElement;
+    const input = host.querySelector('input') as HTMLInputElement;
+    const click = jest.spyOn(input, 'click');
+    const selected = jest.fn();
+    component.filesSelected.subscribe(selected);
+    Object.defineProperty(input, 'files', {
+      value: [new File(['a'], 'a.txt', { type: 'text/plain' })],
+    });
+
+    component.openFilePicker();
+    input.dispatchEvent(new Event('change'));
+    const dragOver = new Event('dragover', { cancelable: true });
+    host.dispatchEvent(dragOver);
+    fixture.detectChanges();
+
+    expect(click).not.toHaveBeenCalled();
+    expect(selected).not.toHaveBeenCalled();
+    expect(component.files()).toEqual([]);
+    expect(component.onDragFiles()).toBe(false);
+    expect(dragOver.defaultPrevented).toBe(false);
+    expect(input.disabled).toBe(true);
+    expect(host.classList.contains('bmb_file-attachment-picker-disabled')).toBe(
+      true,
+    );
   });
 });

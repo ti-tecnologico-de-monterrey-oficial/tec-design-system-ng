@@ -81,6 +81,9 @@ ${getBasicExampleBlock('BmbChatBarComponent', importComments)}
         'chatBarTemplate',
         'mobileBotSelectorTemplate',
         'textareaRef',
+        'attachmentPicker',
+        'menuActions',
+        'openFilePicker',
       ],
     },
   },
@@ -216,6 +219,20 @@ ${getModelDescription('disabledInput')}
         defaultValue: { summary: 'false' },
       },
     },
+    allowAttachments: {
+      control: { type: 'boolean' },
+      description: `
+Enables the file attachment option.
+- If \`actionsList\` has items, an "Attach file" option is added as the first item of the actions menu.
+- Otherwise, an attach icon button is shown in the chat bar to open the file picker.
+- When \`false\`, drag and drop and the native file input are disabled.
+      `,
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     isBotSpeaking: {
       control: { type: 'boolean' },
       description: 'Shows when the bot is speaking',
@@ -223,7 +240,7 @@ ${getModelDescription('disabledInput')}
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
-      }
+      },
     },
     disabledBotSpeaking: {
       control: { type: 'boolean' },
@@ -232,7 +249,7 @@ ${getModelDescription('disabledInput')}
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
-      }
+      },
     },
   },
   args: {
@@ -242,15 +259,13 @@ ${getModelDescription('disabledInput')}
     isLoading: false,
     disabledInput: false,
     enableMicInput: false,
+    allowAttachments: false,
     actionsList: [
       {
-        name: 'Adjuntar Archivo',
-        icon: 'upload_file',
+        name: 'Test',
+        icon: 'home',
         action: () => {
-          const input = document.getElementById(
-            'inputFile',
-          ) as HTMLInputElement;
-          input?.click();
+          console.info('test ');
         },
       },
     ],

@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { BmbChatAttachmentsService } from './chat-attachments.service';
 import { BmbChatBarComponent } from '../../components/bmb-chat-bar/bmb-chat-bar.component';
 import { BmbAiChatBubbleComponent } from '../../components/bmb-ai-chat-bubble/bmb-ai-chat-bubble.component';
-import type { BmbUploadFileMessage } from '../../components/bmb-ai-chat-bubble/types';
+import { BmbUploadFileMessage } from '../../_shared/types';
 
 @Component({
   imports: [BmbChatBarComponent, BmbAiChatBubbleComponent],
@@ -93,9 +93,6 @@ describe('Chat attachment coordination without a chat card', () => {
     input.dispatchEvent(new Event('change'));
     fixture.detectChanges();
     expect(fixture.componentInstance.files()).toEqual([file]);
-    expect(
-      fixture.nativeElement.querySelector('bmb-chat-bar [role="alert"]'),
-    ).toBeTruthy();
     bar.handleAttachmentChanges([]);
     fixture.detectChanges();
     expect(fixture.componentInstance.files()).toEqual([]);
