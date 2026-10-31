@@ -14,8 +14,6 @@ export class BmbLayoutGridDirective {
   rows = input<number>(1);
   height = input<string | number>('auto');
 
-  constructor() {}
-
   @HostBinding('class') get elementClass(): string[] {
     return ['bmb_layout-grid'];
   }
@@ -62,8 +60,6 @@ export class BmbLayoutGridItemDirective {
   rowStart = input.required<number>();
   numberOfColumns = input<number>(1);
   numberOfRows = input<number>(1);
-
-  constructor() {}
 
   @HostBinding('class') get elementClass(): string[] {
     return ['bmb_layout-grid-item'];

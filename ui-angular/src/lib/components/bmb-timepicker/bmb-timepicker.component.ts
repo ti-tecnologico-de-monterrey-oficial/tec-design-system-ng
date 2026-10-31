@@ -158,6 +158,7 @@ export class BmbTimepickerComponent implements OnInit {
       fixSizeToRef: true,
       showBackdrop: false,
       focusOnOpen: true,
+      forceMobileCenter: true,
       inputContext: {
         displayHour: this.displayHour(),
         selectedMinute: this.selectedMinute(),

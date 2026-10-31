@@ -1,93 +1,182 @@
 <bmb-card margin="none">
-  <bmb-card-content>
-    <header bmbLayout [dynamicCols]="true" alignItems="center">
-      <h4 bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
+  <bmb-card-content class="bmb_timepicker-modal">
+    <div
+      bmbLayoutGrid
+      colGapSize="m"
+      rowGapSize="m"
+      columnSize="1fr, auto"
+      rowSize="auto, auto, auto, 1fr, auto, auto"
+      [columns]="2"
+      [rows]="5"
+    >
+      <!-- height="calc(100dvh - 2rem)" -->
+      <h4
+        bmbLayoutGridItem
+        [colStart]="1"
+        [rowStart]="1"
+        [numberOfColumns]="1"
+        [numberOfRows]="1"
+      >
         {{ 'time_picker.title' | translate }}
       </h4>
-      <bmb-action-icon
-        icon="close"
-        (buttonClick)="handleClose()"
-        testId="bmb_timepicker-close-icon"
-        [alt]="'time_picker.close' | translate"
-        [iconSize]="24"
-      />
-    </header>
-    <div>
-      <button (click)="currentPage.set('hour')">
-        @let hour = displayHour();
-        {{ hour !== null ? (hour > 9 ? hour : '0' + hour) : '--' }}
-      </button>
-      <span>:</span>
-      <button (click)="currentPage.set('minute')">
-        @let minute = selectedMinute();
-        {{ minute !== null ? (minute > 9 ? minute : '0' + minute) : '--' }}
-      </button>
-      @if (format() === '12h') {
-        <button (click)="currentPage.set('period')">
-          {{ period() }}
-        </button>
-      }
-    </div>
-    <section>
-      <ul class="bmb_timepicker-column" [attr.aria-label]="currentPage()">
+      <section
+        bmbLayoutGridItem
+        [colStart]="2"
+        [rowStart]="1"
+        [numberOfColumns]="1"
+        [numberOfRows]="1"
+      >
+        <bmb-action-icon
+          icon="close"
+          (buttonClick)="handleClose()"
+          testId="bmb_timepicker-close-icon"
+          [alt]="'time_picker.close' | translate"
+          [iconSize]="24"
+        />
+      </section>
+      <section
+        bmbLayoutGridItem
+        [colStart]="1"
+        [rowStart]="2"
+        [numberOfColumns]="2"
+        [numberOfRows]="1"
+      >
+        <div class="bmb_timepicker-modal-button-wrapper">
+          <button
+            class="bmb_timepicker-modal-button-selector"
+            [ngClass]="{
+              active: currentPage() === 'hour',
+            }"
+            (click)="currentPage.set('hour')"
+          >
+            @let hour = displayHour();
+            {{ hour !== null ? (hour > 9 ? hour : '0' + hour) : '--' }}
+          </button>
+          <span class="bmb_timepicker-modal-button-selector">:</span>
+          <button
+            class="bmb_timepicker-modal-button-selector"
+            (click)="currentPage.set('minute')"
+            [ngClass]="{
+              active: currentPage() === 'minute',
+            }"
+          >
+            @let minute = selectedMinute();
+            {{ minute !== null ? (minute > 9 ? minute : '0' + minute) : '--' }}
+          </button>
+          @if (format() === '12h') {
+            <button
+              class="bmb_timepicker-modal-button-selector"
+              (click)="currentPage.set('period')"
+              [ngClass]="{
+                active: currentPage() === 'period',
+              }"
+            >
+              {{ period() }}
+            </button>
+          }
+        </div>
+      </section>
+      <section
+        bmbLayoutGridItem
+        [colStart]="1"
+        [rowStart]="3"
+        [numberOfColumns]="2"
+        [numberOfRows]="1"
+      >
+        {{
+          currentPage() === 'hour'
+            ? ('time_picker.select_hour' | translate)
+            : currentPage() === 'minute'
+              ? ('time_picker.select_minute' | translate)
+              : ('time_picker.select_period' | translate)
+        }}
+      </section>
+      <ul
+        bmbLayoutGridItem
+        [colStart]="1"
+        [rowStart]="4"
+        [numberOfColumns]="2"
+        [numberOfRows]="1"
+        class="bmb_timepicker-modal-column"
+        [attr.aria-label]="currentPage()"
+      >
         @switch (currentPage()) {
           @case ('hour') {
             @for (h of hours(); track h) {
-              <li>
-                <button
-                  type="button"
-                  class="bmb_timepicker-option"
-                  [attr.aria-selected]="h"
-                  [class.active]="isOptionActive(displayHour(), h)"
-                  (click)="handleHourChange(h.toString())"
-                  (onKeyUp)="handleHourChange(h.toString())"
+              <li
+                class="bmb_timepicker-modal-option"
+                [attr.aria-selected]="h"
+                [class.bmb_timepicker-modal-option-selected]="
+                  isOptionActive(displayHour(), h)
+                "
+              >
+                <bmb-check-external-link-button
+                  (buttonClick)="handleHourChange(h.toString())"
                 >
                   {{ pad(h) }}
-                </button>
+                </bmb-check-external-link-button>
               </li>
             }
           }
           @case ('minute') {
             @for (m of minutes(); track m) {
-              <li>
-                <button
-                  type="button"
-                  class="bmb_timepicker-option"
-                  [class.active]="isOptionActive(selectedMinute(), m)"
-                  [attr.aria-selected]="isOptionActive(selectedMinute(), m)"
-                  (click)="handleMinuteChange(m.toString())"
-                  (onKeyUp)="handleMinuteChange(m.toString())"
+              <li
+                class="bmb_timepicker-modal-option"
+                [attr.aria-selected]="m"
+                [class.bmb_timepicker-modal-option-selected]="
+                  isOptionActive(selectedMinute(), m)
+                "
+              >
+                <bmb-check-external-link-button
+                  (buttonClick)="handleMinuteChange(m.toString())"
                 >
-                  {{ pad(m) }}
-                </button>
+                  {{ 'XX : ' + pad(m) }}
+                </bmb-check-external-link-button>
               </li>
             }
           }
           @case ('period') {
             @for (p of ['AM', 'PM']; track p) {
-              <li>
-                <button
-                  type="button"
-                  class="bmb_timepicker-option"
-                  [class.active]="period() === p"
-                  [attr.aria-selected]="period() === p"
-                  (click)="handlePeriodChange($any(p))"
+              <li
+                class="bmb_timepicker-modal-option"
+                [class.bmb_timepicker-modal-option-selected]="period() === p"
+                [attr.aria-selected]="period() === p"
+              >
+                <bmb-check-external-link-button
+                  (buttonClick)="handlePeriodChange($any(p))"
                 >
                   {{ p }}
-                </button>
+                </bmb-check-external-link-button>
               </li>
-              }
+            }
           }
         }
       </ul>
-    </section>
-    <footer>
-      <button (click)="submitValue()" bmbButton appearance="primary">
-        {{ 'time_picker.accept' | translate }}
-      </button>
-      <button (click)="handleClose()" bmbButton appearance="secondary-outlined">
-        {{ 'time_picker.close' | translate }}
-      </button>
-    </footer>
+      <footer
+        bmbLayoutGridItem
+        [colStart]="1"
+        [rowStart]="5"
+        [numberOfColumns]="2"
+        [numberOfRows]="1"
+      >
+        <button
+          style="margin: 0 0 1rem"
+          size="large"
+          (click)="handleClose()"
+          bmbButton
+          appearance="secondary-outlined"
+        >
+          {{ 'time_picker.close' | translate }}
+        </button>
+        <button
+          size="large"
+          (click)="submitValue()"
+          bmbButton
+          appearance="primary"
+        >
+          {{ 'time_picker.accept' | translate }}
+        </button>
+      </footer>
+    </div>
   </bmb-card-content>
 </bmb-card>

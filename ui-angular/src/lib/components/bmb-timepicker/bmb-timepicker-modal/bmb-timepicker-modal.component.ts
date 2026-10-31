@@ -1,10 +1,11 @@
-import { Component, computed, input, model, output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, computed, input, model, output, ViewEncapsulation } from "@angular/core";
 import { BmbCardComponent, BmbCardContentComponent } from "../../bmb-card/bmb-card.component";
 import { BmbActionIconComponent } from "../../bmb-action-icon/bmb-action-icon.component";
-import { BmbLayoutDirective } from "../../../directives/bmb-layout/bmb-layout.directive";
-import { BmbLayoutItemDirective } from "../../../directives/bmb-layout/bmb-layout-item.directive";
 import { TranslatePipe } from '../../../pipes/translations';
 import { BmbButtonDirective } from "../../../directives/bmb-button/button.directive";
+import { CommonModule } from "@angular/common";
+import { BmbLayoutGridDirective, BmbLayoutGridItemDirective } from "../../../directives/old/bmb-layout-grid/bmb-layout-grid.directive";
+import { BmbCheckExternalLinkButtonComponent } from "../../bmb-check-external-link-button/bmb-check-external-link-button.component";
 
 @Component({
   selector: 'bmb-timepicker-modal',
@@ -13,13 +14,18 @@ import { BmbButtonDirective } from "../../../directives/bmb-button/button.direct
     BmbCardComponent,
     BmbCardContentComponent,
     BmbActionIconComponent,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
     TranslatePipe,
     BmbButtonDirective,
-  ],
+    CommonModule,
+    BmbLayoutGridDirective,
+    BmbLayoutGridItemDirective,
+    BmbCheckExternalLinkButtonComponent,
+],
   templateUrl: './bmb-timepicker-modal.component.html',
-  styleUrls: ['./bmb-timepicker-modal.component.scss']
+  styleUrls: ['./bmb-timepicker-modal.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class BmbTimepickerModalComponent {
   displayHour = model<number | null>(null);

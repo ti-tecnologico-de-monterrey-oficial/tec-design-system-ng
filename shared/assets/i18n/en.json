@@ -554,7 +554,10 @@
   },
   "time_picker": {
     "title": "Select time",
-    "accept": "Accept",
-    "close": "Close"
+    "accept": "Confirm",
+    "close": "Cancel",
+    "select_hour": "Select hour",
+    "select_minute": "Select minute",
+    "select_period": "Select period"
   }
 }
