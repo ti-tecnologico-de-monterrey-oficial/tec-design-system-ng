@@ -9,6 +9,7 @@ import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.direc
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { getUUID } from '../../_shared/logic/utils';
 
 @Component({
   selector: 'bmb-action-container',
@@ -27,7 +28,8 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 export class BmbActionContainerComponent {
   avatarIcon = input<string>('');
   actionIcon = input<string>('');
-  actionIdElement = input<string>('action_container_action');
+  actionIdElement = input<string>(getUUID());
+  actionTooltipText = input<string>('');
   showStatusIcon = input<boolean>(false);
   isError = input<boolean>(false);
 

@@ -7,7 +7,9 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 @Component({
   standalone: true,
   imports: [BmbActionContainerComponent],
-  template: `<bmb-action-container><p class="projected">Content</p></bmb-action-container>`,
+  template: `<bmb-action-container
+    ><p class="projected">Content</p></bmb-action-container
+  >`,
 })
 class HostComponent {}
 

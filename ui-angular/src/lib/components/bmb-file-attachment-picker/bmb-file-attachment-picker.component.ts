@@ -7,15 +7,15 @@ import {
   output,
   viewChild,
 } from '@angular/core';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbActionContainerComponent } from '../bmb-action-container/bmb-action-container.component';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { TranslatePipe } from '../../pipes/translations';
 import { getDropzoneAcceptAttribute } from '../../_shared/logic/components/dropzone';
 
 @Component({
   selector: 'bmb-file-attachment-picker',
   standalone: true,
-  imports: [BmbIconComponent, BmbActionIconComponent, TranslatePipe],
+  imports: [BmbActionContainerComponent, BmbLayoutItemDirective, TranslatePipe],
   templateUrl: './bmb-file-attachment-picker.component.html',
   styleUrl: './bmb-file-attachment-picker.component.scss',
   host: {

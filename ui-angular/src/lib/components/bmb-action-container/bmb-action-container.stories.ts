@@ -47,7 +47,7 @@ ${getBasicExampleBlock('BmbActionContainerComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'action_container_action' },
+        defaultValue: { summary: 'UUID' },
       },
     },
     showStatusIcon: {
