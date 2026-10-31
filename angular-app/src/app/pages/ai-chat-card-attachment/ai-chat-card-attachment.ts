@@ -5,11 +5,7 @@ import {
   signal,
   type TemplateRef,
 } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   BmbActionIconComponent,
   BmbAIChatCardComponent,
@@ -24,7 +20,6 @@ import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
   BmbLayoutItemDirective,
-  defaultActionList,
   IBMB_AI_CHAT_CARD_MODE,
   type BmbChatMessage,
   type BmbChatAttachmentResult,
@@ -88,11 +83,6 @@ export class AIChatCardAttachment {
   readonly messages = signal<BmbChatMessage<TemplateRef<unknown>>[]>(
     this.createMessages(),
   );
-  readonly actionsList = defaultActionList.map((action) => ({
-    ...action,
-    name: 'Attach files',
-    label: 'Attach files',
-  }));
 
   private nextSubmissionId = 0;
   private loadingTimer?: ReturnType<typeof setTimeout>;

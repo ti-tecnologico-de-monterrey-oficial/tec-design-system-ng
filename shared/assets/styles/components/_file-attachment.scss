@@ -1,6 +1,11 @@
 @use '../base/rem' as rem;
 @use '../base/mixins' as mixins;
 
+// Zero specificity so consumers can turn the host into their own container.
+:where(bmb-file-attachment-picker) {
+  display: block;
+}
+
 .bmb_file-attachment-picker {
   display: none;
   gap: var(--bmb-spacing-m);

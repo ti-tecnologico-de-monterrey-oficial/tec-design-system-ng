@@ -90,6 +90,7 @@ export class BmbChatBarComponent implements OnInit {
   emojiIcon = input<string>('');
   enableMicInput = input<boolean>(false);
   disableChangeBot = input<boolean>(false);
+  allowAttachments = input<boolean>(false);
   acceptedExtensions = input<string[]>();
   maxFileSize = input<number>(2);
   disabledInput = model<boolean>(false);
@@ -129,6 +130,20 @@ export class BmbChatBarComponent implements OnInit {
   windowWidth = window.innerWidth;
   windowHeight = window.innerHeight;
 
+  protected readonly menuActions = computed<IChatBarActions[]>(() => {
+    const actions = this.actionsList();
+    if (!this.allowAttachments() || !actions.length) {
+      return actions;
+    }
+    const attachAction: IChatBarActions = {
+      name: this.translationsService.translate('chat_bar.attach_file'),
+      icon: 'upload_file',
+      action: () => this.openFilePicker(),
+    };
+    return [attachAction, ...actions];
+  });
+
+  @ViewChild('attachmentPicker') attachmentPicker?: BmbFileAttachmentPicker;
   @ViewChild('textareaRef') textareaRef!: ElementRef<HTMLTextAreaElement>;
   @ViewChild('chatBarTemplate') chatBarTemplate!: TemplateRef<unknown>;
   @ViewChild('mobileBotSelectorTemplate')
@@ -243,6 +258,10 @@ export class BmbChatBarComponent implements OnInit {
     };
 
     this.contentProjected.openContent(data);
+  }
+
+  openFilePicker(): void {
+    this.attachmentPicker?.openFilePicker();
   }
 
   handleFilesSelected(): void {

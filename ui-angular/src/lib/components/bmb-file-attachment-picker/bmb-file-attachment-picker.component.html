@@ -28,6 +28,7 @@
   type="file"
   [attr.id]="inputId()"
   [accept]="getAcceptAttribute()"
+  [disabled]="disabled()"
   [attr.aria-label]="'chat_bar.add' | translate"
   (change)="onFileSelect($event)"
   hidden
