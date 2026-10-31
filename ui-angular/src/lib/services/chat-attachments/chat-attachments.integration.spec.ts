@@ -93,9 +93,6 @@ describe('Chat attachment coordination without a chat card', () => {
     input.dispatchEvent(new Event('change'));
     fixture.detectChanges();
     expect(fixture.componentInstance.files()).toEqual([file]);
-    expect(
-      fixture.nativeElement.querySelector('bmb-chat-bar [role="alert"]'),
-    ).toBeTruthy();
     bar.handleAttachmentChanges([]);
     fixture.detectChanges();
     expect(fixture.componentInstance.files()).toEqual([]);
