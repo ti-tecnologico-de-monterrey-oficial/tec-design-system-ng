@@ -46,16 +46,6 @@
         "tsConfig": "ui-angular/tsconfig.spec.json"
       }
     },
-    "test-migrated": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/ui-angular-migration"],
-      "dependsOn": ["sync-shared", "check-shared-import-boundaries"],
-      "options": {
-        "jestConfig": "ui-angular/jest.migration.config.cts",
-        "codeCoverage": true,
-        "runInBand": true
-      }
-    },
     "lint": {
       "executor": "@nx/eslint:lint"
     },
