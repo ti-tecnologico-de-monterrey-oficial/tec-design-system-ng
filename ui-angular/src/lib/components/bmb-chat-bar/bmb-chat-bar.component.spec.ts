@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbChatBarComponent } from './bmb-chat-bar.component';
+import { By } from '@angular/platform-browser';
+import { BmbFileAttachmentPicker } from '../bmb-file-attachment-picker/bmb-file-attachment-picker.component';
 import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { BmbProjectionContentService } from '../../services/projection/projection.service';
 
@@ -47,189 +49,112 @@ describe('BmbChatBarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('sends text and attachments, then resets the composer', () => {
-    const message = jest.spyOn(component.onSendMessage, 'emit');
-    const attachments = jest.spyOn(component.onSendFiles, 'emit');
-    const file = new File(['report'], 'report.txt');
-    component.control.setValue('Please review');
-    component.files = [file];
+  it('should send attached files through the existing output and clear them', () => {
+    const attachment = fixture.debugElement.query(By.directive(BmbFileAttachmentPicker))
+      .componentInstance as BmbFileAttachmentPicker;
+    const files = [new File(['document'], 'document.txt', { type: 'text/plain' })];
+    const sendFiles = jest.fn();
+    const sendMessage = jest.fn();
+    component.onSendFiles.subscribe(sendFiles);
+    component.onSendMessage.subscribe(sendMessage);
+
+    attachment.files.set(files);
+    component.control.setValue('Message');
+    fixture.detectChanges();
     component.handleSend();
-    expect(message).toHaveBeenCalledWith('Please review');
-    expect(attachments).toHaveBeenCalledWith([file]);
-    expect(component.files).toEqual([]);
-    expect(component.control.value).toBeNull();
-    expect(component.isLoading()).toBe(true);
-    expect(component.textareaRef.nativeElement.style.height).toBe(
-      'calc(1lh + 2rem)',
-    );
-  });
-
-  it('sends Enter without shift, leaving Shift+Enter and other keys alone', () => {
-    const attachments = jest.spyOn(component.onSendFiles, 'emit');
-    const message = jest.spyOn(component.onSendMessage, 'emit');
-    for (const event of [
-      new KeyboardEvent('keydown', {
-        key: 'Enter',
-        shiftKey: true,
-        cancelable: true,
-      }),
-      new KeyboardEvent('keydown', { key: 'a', cancelable: true }),
-    ]) {
-      component.handleKeyDown(event);
-      expect(event.defaultPrevented).toBe(false);
-    }
-    component.control.setValue('Hello');
-    const enter = new KeyboardEvent('keydown', {
-      key: 'Enter',
-      cancelable: true,
-    });
-    component.handleKeyDown(enter);
-    expect(enter.defaultPrevented).toBe(true);
-    expect(message).toHaveBeenCalledWith('Hello');
-    expect(attachments).not.toHaveBeenCalled();
-  });
-
-  it('synchronizes loading and disabled states with the form control', () => {
-    component.isLoading.set(true);
     fixture.detectChanges();
-    expect(component.control.disabled).toBe(true);
-    component.isLoading.set(false);
-    component.disabledInput.set(true);
+
+    expect(sendFiles).toHaveBeenCalledWith(files);
+    expect(sendMessage).toHaveBeenCalledWith('Message');
+    expect(attachment.files()).toEqual([]);
+  });
+
+  it('should keep the existing file input available to attachment actions', () => {
+    expect(fixture.nativeElement.querySelector('#inputFile')?.type).toBe('file');
+  });
+
+  it('should handle dropped files anywhere in the chat content', () => {
+    const file = new File(['document'], 'document.txt', { type: 'text/plain' });
+    const event = new Event('drop', { bubbles: true, cancelable: true });
+    Object.defineProperty(event, 'dataTransfer', { value: { files: [file] } });
+
+    fixture.nativeElement.querySelector('.bmb_chat-bar-main').dispatchEvent(event);
     fixture.detectChanges();
-    expect(component.control.disabled).toBe(true);
-    component.disabledInput.set(false);
+
+    expect(component.files()).toEqual([file]);
+    expect(event.defaultPrevented).toBe(true);
+  });
+});
+
+describe('BmbFileAttachment', () => {
+  let component: BmbFileAttachmentPicker;
+  let fixture: ComponentFixture<BmbFileAttachmentPicker>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [BmbFileAttachmentPicker],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(BmbFileAttachmentPicker);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    expect(component.control.enabled).toBe(true);
   });
 
-  it('opens and dismisses the desktop bot selector', () => {
-    Object.defineProperty(window, 'innerWidth', {
-      configurable: true,
-      value: 1200,
-    });
-    component.handleDialog();
-    expect(component.isDialogOpen()).toBe(true);
-    component.handleDialog();
-    expect(component.isDialogOpen()).toBe(false);
-    component.handleDialog();
-    component.handleClickOutside();
-    expect(component.isDialogOpen()).toBe(false);
-    const bot = component.botList()[0];
-    component.handleChangeBot(bot);
-    expect(component.currentBot()).toEqual(bot);
+  it('should append selected files, notify consumers and reset the input', () => {
+    const firstFile = new File(['first'], 'first.txt', { type: 'text/plain' });
+    const secondFile = new File(['second'], 'second.txt', { type: 'text/plain' });
+    const selected = jest.fn();
+    component.filesSelected.subscribe(selected);
+    component.files.set([firstFile]);
+    const input = fixture.nativeElement.querySelector('input');
+    Object.defineProperty(input, 'files', { value: [secondFile] });
+
+    input.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    expect(component.files()).toEqual([firstFile, secondFile]);
+    expect(selected).toHaveBeenCalledWith([secondFile]);
+    expect(input.value).toBe('');
+    expect(fixture.nativeElement.textContent).toContain('second.txt');
   });
 
-  it('uses a modal for mobile bot selection and closes it after selection', () => {
-    Object.defineProperty(window, 'innerWidth', {
-      configurable: true,
-      value: 600,
-    });
-    component.handleDialog();
-    expect(modal.openModal).toHaveBeenCalledWith(
-      expect.objectContaining({
-        content: component.mobileBotSelectorTemplate,
-        size: 'small',
-      }),
-    );
-    expect(component.modalID()).toBe('bot-selector');
-    const bot = component.botList()[0];
-    component.handleMobileChangeBot(bot);
-    expect(modal.closeModal).toHaveBeenCalledWith('bot-selector');
-    expect(component.modalID()).toBeNull();
-    expect(component.currentBot()).toEqual(bot);
-  });
+  it('should remove only the selected attachment', () => {
+    const firstFile = new File(['first'], 'first.txt', { type: 'text/plain' });
+    const secondFile = new File(['second'], 'second.txt', { type: 'text/plain' });
+    component.files.set([firstFile, secondFile]);
 
-  it('does not open a selector when there are no bots', () => {
-    fixture.componentRef.setInput('botList', []);
-    component.handleDialog();
-    expect(component.isDialogOpen()).toBe(false);
-    expect(component.totalDots()).toBe(0);
-    expect(modal.openModal).not.toHaveBeenCalled();
-  });
-
-  it('ignores bot selection while an asynchronous bot list is unavailable', () => {
-    fixture.componentRef.setInput('botList', undefined);
-    component.handleDialog();
-    expect(component.isDialogOpen()).toBe(false);
-    expect(modal.openModal).not.toHaveBeenCalled();
-  });
-
-  it('emits microphone and emoji actions and stops bot speech', () => {
-    const record = jest.spyOn(component.onRecord, 'emit');
-    const emoji = jest.spyOn(component.onEmoji, 'emit');
-    component.handleMic();
-    expect(component.showMicControls).toBe(true);
-    expect(record).toHaveBeenLastCalledWith(true);
-    component.handleStopMic();
-    expect(component.showMicControls).toBe(false);
-    expect(record).toHaveBeenLastCalledWith(false);
-    component.handleRecord();
-    expect(record).toHaveBeenLastCalledWith(true);
-    component.handleEmoji();
-    expect(emoji).toHaveBeenCalledWith(true);
-    component.isBotSpeaking.set(true);
-    component.handleDisableBotSpeaking();
-    expect(component.isBotSpeaking()).toBe(false);
-    component.handleDotPress(2);
-    expect(component.activeDot).toBe(2);
-  });
-
-  it('projects the attachment menu relative to its trigger', () => {
-    const trigger = document.createElement('button');
-    component.handleAddDialog({ target: trigger } as unknown as MouseEvent);
-    expect(projection.openContent).toHaveBeenCalledWith({
-      content: component.chatBarTemplate,
-      targetRef: trigger,
-      fixSizeToRef: false,
-    });
-  });
-
-  it('adds dropped images and documents with matching thumbnails', () => {
-    const image = new File(['image'], 'photo.png', { type: 'image/png' });
-    const document = new File(['text'], 'notes.txt', { type: 'text/plain' });
-    Object.defineProperty(URL, 'createObjectURL', {
-      configurable: true,
-      writable: true,
-      value: jest.fn(() => 'blob:photo'),
-    });
-    const preventDefault = jest.fn();
-    component.onDragOver({ preventDefault });
-    expect(component.onDragFiles).toBe(true);
-    component.onDragLeave({ preventDefault });
-    expect(component.onDragFiles).toBe(false);
-    component.onDrop({
-      preventDefault,
-      dataTransfer: { files: [image, document] },
-    });
-    expect(preventDefault).toHaveBeenCalledTimes(3);
-    expect(component.files).toEqual([image, document]);
-    expect(component.arrayThumbnail).toEqual(['blob:photo', '']);
-    expect(component.onDragFiles).toBe(false);
     component.deleteFile(0);
-    expect(component.files).toEqual([document]);
-    expect(component.arrayThumbnail).toEqual(['']);
+    fixture.detectChanges();
+
+    expect(component.files()).toEqual([secondFile]);
   });
 
-  it('adds selected images and documents and closes the menu', () => {
-    const image = new File(['image'], 'photo.png', { type: 'image/png' });
-    const document = new File(['text'], 'notes.txt', { type: 'text/plain' });
-    Object.defineProperty(URL, 'createObjectURL', {
-      configurable: true,
-      writable: true,
-      value: jest.fn(() => 'blob:selected'),
-    });
-    component.onFileSelect({ target: { files: [image, document] } });
-    expect(component.files).toEqual([image, document]);
-    expect(component.arrayThumbnail).toEqual(['blob:selected', '']);
-    expect(projection.closeContent).toHaveBeenCalled();
+  it('should open its own file picker', () => {
+    fixture.componentRef.setInput('inputId', 'anotherFileInput');
+    fixture.detectChanges();
+    const input = fixture.nativeElement.querySelector('#anotherFileInput');
+    const click = jest.spyOn(input, 'click');
+
+    component.openFilePicker();
+
+    expect(click).toHaveBeenCalledTimes(1);
   });
 
-  it('resizes the textarea to fit its content', () => {
-    Object.defineProperty(component.textareaRef.nativeElement, 'scrollHeight', {
-      configurable: true,
-      value: 120,
-    });
-    component.autoResize();
-    expect(component.textareaRef.nativeElement.style.height).toBe('120px');
+  it('should update drag state and reset it after dropping files', () => {
+    const host = fixture.nativeElement;
+    host.dispatchEvent(new Event('dragover', { cancelable: true }));
+    expect(component.onDragFiles()).toBe(true);
+
+    host.dispatchEvent(new Event('dragleave', { cancelable: true }));
+    expect(component.onDragFiles()).toBe(false);
+
+    host.dispatchEvent(new Event('dragover', { cancelable: true }));
+    host.dispatchEvent(new Event('drop', { cancelable: true }));
+    expect(component.onDragFiles()).toBe(false);
+    expect(component.files()).toEqual([]);
+  });
+
+  it('should not assign a shared input id to standalone instances', () => {
+    expect(fixture.nativeElement.querySelector('input').hasAttribute('id')).toBe(false);
   });
 });

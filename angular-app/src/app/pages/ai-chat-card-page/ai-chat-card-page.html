@@ -19,6 +19,9 @@
       </button>
       <p class="event"><strong>Modo actual:</strong> {{ mode() }}</p>
       <p class="event"><strong>Bot actual:</strong> {{ currentBot().name }}</p>
+      <p class="event">
+        <strong>Expanded actual value:</strong> {{ isExpanded() }}
+      </p>
     </aside>
 
     <article class="preview">
@@ -29,6 +32,7 @@
           [subtitle]="'Asistente de inteligencia artificial'"
           [headerActions]="headerActions"
           [(currentBot)]="currentBot"
+          [(isExpanded)]="isExpanded"
         >
           @for (chatMessage of messages; track chatMessage.id) {
           <bmb-ai-chat-bubble

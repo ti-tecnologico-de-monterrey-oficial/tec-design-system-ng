@@ -108,6 +108,9 @@ export function createDemoConfiguration(name: string, preset?: string): DemoConf
       language: 'es',
     },
     'chat-bar': {
+      acceptedExtensions: undefined,
+      maxFileSize: 2,
+      files: [],
       placeholder: 'Escribe un mensaje...',
       botList: defaultBotList,
       actionsList: [

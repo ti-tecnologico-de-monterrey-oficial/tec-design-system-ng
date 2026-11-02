@@ -70,6 +70,7 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
     label: this.translationService.translate('chat_bar.default_bot_label'),
     icon: 'bot_tecStandar',
   });
+  isExpanded = model<boolean>(false);
 
   mode = model<IBmbAIChatCardMode>(IBMB_AI_CHAT_CARD_MODE.COMPACT);
 
@@ -87,19 +88,25 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
 
   private aiChatBar = contentChildren(BmbChatBarComponent);
   protected isOneChatBar = computed(() => this.aiChatBar().length === 1);
-  protected headerActionList = computed(() =>
-    isChatAIChatCardMode(this.mode())
-      ? [
-          {
-            icon: 'minimize',
-            tooltipText:
-              this.translationService.translate('home_card.collapse'),
-            action: () => this.handleMinimize(),
-          },
-          ...this.headerActions(),
-        ]
-      : [],
-  );
+  protected headerActionList = computed(() => {
+    const actionList: IBmbActionHeader[] =
+      isConversationEnabledAIChatCardMode(this.mode()) && this.headerActions()
+        ? this.headerActions()
+        : [];
+
+    if (isChatAIChatCardMode(this.mode())) {
+      return [
+        {
+          icon: 'minimize',
+          tooltipText: this.translationService.translate('home_card.collapse'),
+          action: () => this.handleMinimize(),
+        },
+        ...actionList,
+      ];
+    }
+
+    return actionList;
+  });
 
   private aiChatId = 'ai_chat_bar_actions_dialog';
   /**  Preserves the mode to return to when collapsing the chat.*/
@@ -202,10 +209,6 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
 
   protected openChat(): void {
     this.mode.set(IBMB_AI_CHAT_CARD_MODE.CHAT);
-  }
-
-  protected handleExpand(): void {
-    this.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
   }
 
   protected handleMinimize(): void {

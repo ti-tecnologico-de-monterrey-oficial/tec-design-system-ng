@@ -94,6 +94,11 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
+            label: 'AIChatCardAttachment',
+            url: '/pages/ai-chat-card-attachment',
+            icon: 'attach_file',
+          },
+          {
             label: 'Divider',
             url: '/pages/divider',
             icon: 'horizontal_rule',

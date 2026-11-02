@@ -504,7 +504,39 @@
   },
   "ai_chat_bubble": {
     "aria_label": "Chat",
-    "bot_alt": "bot"
+    "bot_alt": "bot",
+    "upload_file": {
+      "intro": "To upload your",
+      "chat_bar_instruction": "click the",
+      "disjunction_icon_bar_instruction": "or",
+      "button_instruction": "icon in the chat bar or the following button:",
+      "button": "Upload file",
+      "requirements": "Make sure your file meets the following requirements:",
+      "formats": "Accepted formats:",
+      "max_size": "Maximum size:",
+      "cancel_instruction": "If you do not want to upload your file, type",
+      "cancel": "Cancel",
+      "recommended_icon": "Add",
+      "error_title": "We could not upload your file",
+      "interrupted_title": "The upload was interrupted",
+      "format_prefix": "The format",
+      "error_format": "is not supported",
+      "error_size": "The file exceeds the maximum allowed size.",
+      "error_duplicate": "The file has already been added.",
+      "error_interrupted": "Process interrupted",
+      "error_unavailable": "Each conversation must contain exactly one chat bar.",
+      "solution_prefix": "How can you",
+      "solution": "fix it?",
+      "check_formats": "Check that the format is one of the supported types:",
+      "check_size": "Make sure the file does not exceed",
+      "choose_again_prefix": "Select the",
+      "choose_again": "button to choose another file.",
+      "interrupted_instruction": "We could not finish uploading your file. You can try again.",
+      "retry": "Retry upload",
+      "interrupted_cancel": "Prefer not to continue? Type",
+      "selected": "Files added. They have not been sent yet.",
+      "uploaded": "File uploaded successfully."
+    }
   },
   "alert_center_empty": {
     "icon_alt": "Alert center empty icon"
