@@ -13,6 +13,7 @@ import {
   IBmbSearchCardItemResult,
   BmbInputTagsComponent,
   BmbInputComponent,
+  BmbTimepickerComponent
 } from 'ui-angular';
 import persons from './persons.json';
 import services from './services.json';
@@ -28,6 +29,7 @@ import services from './services.json';
     BmbSearchInputComponent,
     BmbSearchCardComponent,
     BmbInputTagsComponent,
+    BmbTimepickerComponent,
     BmbInputComponent,
   ],
   templateUrl: './form-validator-test.component.html',
@@ -71,6 +73,7 @@ export class FormValidatorTestComponent {
       `<div contenteditable="true" class="bmb_text-editor-content"><h1>Test</h1><p>This is a test</p><p><br></p><p><a href="https://www.google.com" target="_blank" rel="noopener noreferrer">asd</a></p></div>`,
     ),
     text_field1: new FormControl({ value: '', disabled: false }),
+    time: new FormControl('09:30 AM'),
   });
 
   options: IBmbDropdownItem[] = [];

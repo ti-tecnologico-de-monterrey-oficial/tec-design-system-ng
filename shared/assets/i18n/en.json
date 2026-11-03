@@ -584,5 +584,13 @@
   },
   "push_notification_item": {
     "dont_ask_again": "Don't ask again"
+  },
+  "time_picker": {
+    "title": "Select time",
+    "accept": "Confirm",
+    "close": "Cancel",
+    "select_hour": "Select hour",
+    "select_minute": "Select minute",
+    "select_period": "Select period"
   }
 }
