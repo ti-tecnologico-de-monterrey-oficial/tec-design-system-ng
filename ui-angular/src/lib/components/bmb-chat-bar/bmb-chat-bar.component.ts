@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import type { OnInit } from '@angular/core';
+import type { AfterViewInit, OnInit } from '@angular/core';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -82,7 +82,7 @@ export type {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideBmbChatAttachments()],
 })
-export class BmbChatBarComponent implements OnInit {
+export class BmbChatBarComponent implements OnInit, AfterViewInit {
   placeholder = input<string>('');
   botList = input<IBotType[]>(defaultBotList);
   actionsList = input<IChatBarActions[]>([]);
@@ -200,6 +200,10 @@ export class BmbChatBarComponent implements OnInit {
         },
       ): IBotType => bot,
     );
+  }
+
+  ngAfterViewInit() {
+    this.textareaRef.nativeElement.focus();
   }
 
   handleSend(): void {
