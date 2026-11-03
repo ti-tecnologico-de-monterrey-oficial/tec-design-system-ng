@@ -32,14 +32,16 @@ bmb-projected-content {
   }
 
   @include mixins.media-query(1000, 'max') {
-    left: 1rem !important;
-    right: 1rem !important;
-    width: calc(100% - 2rem) !important;
+    &:not(.bmb_projected-content-anchor-mobile) {
+      left: 1rem !important;
+      right: 1rem !important;
+      width: calc(100% - 2rem) !important;
 
-    &[open] {
-      > * {
-        width: 100% !important;
-        height: auto;
+      &[open] {
+        > * {
+          width: 100% !important;
+          height: auto;
+        }
       }
     }
   }

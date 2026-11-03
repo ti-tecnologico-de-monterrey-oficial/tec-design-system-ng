@@ -5,6 +5,14 @@ import { BmbTimepickerComponent } from './bmb-timepicker.component';
 export default {
   title: 'Components/Inputs/Time picker',
   component: BmbTimepickerComponent,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Hasta 1000 px de ancho de pantalla, muestra un dropdown de hora:minutos y otro de AM/PM. En formato 24h solo muestra hora:minutos. Por encima de 1000 px conserva el selector completo. Las combinaciones respetan minuteStep.',
+      },
+    },
+  },
   argTypes: {
     format: { control: 'radio', options: ['12h', '24h'] },
     minuteStep: { control: 'number' },
@@ -30,4 +38,6 @@ type Story = StoryObj<BmbTimepickerComponent>;
 
 export const Default: Story = {};
 export const Format24h: Story = { args: { format: '24h' } };
-export const WithValue: Story = { args: { control: new FormControl('09:30 AM') } };
+export const WithValue: Story = {
+  args: { control: new FormControl('09:30 AM') },
+};

@@ -2,6 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  DestroyRef,
+  effect,
   ElementRef,
   inject,
   input,
@@ -9,9 +11,14 @@ import {
   OnInit,
   output,
   signal,
+  untracked,
+  viewChild,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { IBmbInputError } from '../../_shared/types/input';
 import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
@@ -25,6 +32,9 @@ import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-inp
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTimepickerModalComponent } from './bmb-timepicker-modal/bmb-timepicker-modal.component';
+import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { IDropdownItem } from '../../_shared/types';
 
 export type IBmbTimepickerFormat = '12h' | '24h';
 export type IBmbTimepickerPeriod = 'AM' | 'PM';
@@ -45,6 +55,7 @@ const pad = (n: number) => n.toString().padStart(2, '0');
     BmbInputContentComponent,
     BmbInputValidatorComponent,
     BmbIconComponent,
+    BmbActionIconComponent,
   ],
   templateUrl: './bmb-timepicker.component.html',
   styleUrl: './bmb-timepicker.component.scss',
@@ -73,10 +84,30 @@ export class BmbTimepickerComponent implements OnInit {
   isWindowOpen = signal(false);
   selectedHour = signal<number | null>(null); // 0-23
   selectedMinute = signal<number | null>(null);
+  activeDropdown = signal<'time' | 'period' | null>(null);
+  readonly isCompact = toSignal(
+    inject(BreakpointObserver)
+      .observe('(max-width: 1000px)')
+      .pipe(map(({ matches }) => matches)),
+    { initialValue: false },
+  );
+  readonly timeOptions = computed(() =>
+    this.hours().flatMap((hour) =>
+      this.minutes().map((minute) => `${pad(hour)}:${pad(minute)}`),
+    ),
+  );
+  readonly displayTime = computed(() => {
+    const hour = this.displayHour();
+    const minute = this.selectedMinute();
+    return hour === null || minute === null
+      ? ''
+      : `${pad(hour)}:${pad(minute)}`;
+  });
 
   resolvedPlaceholder = computed(
     () =>
-      this.placeholder() || (this.format() === '12h' ? '-- : -- AM' : '-- : --'),
+      this.placeholder() ||
+      (this.format() === '12h' ? '-- : -- AM' : '-- : --'),
   );
   hours = computed(() =>
     this.format() === '12h'
@@ -96,17 +127,32 @@ export class BmbTimepickerComponent implements OnInit {
     return this.format() === '12h' ? h % 12 || 12 : h;
   });
 
-  @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
+  @ViewChild('contentDiv') contentRef?: ElementRef<HTMLElement>;
+  readonly timeRef = viewChild<ElementRef<HTMLElement>>('timeButton');
+  readonly periodRef = viewChild<ElementRef<HTMLElement>>('periodButton');
 
   private readonly projectionService = inject(BmbProjectionContentService);
+  private readonly destroyRef = inject(DestroyRef);
   private readonly panelId = getUUID();
+
+  constructor() {
+    effect(() => {
+      this.isCompact();
+      untracked(() => this.projectionService.closeContent(this.panelId));
+    });
+    this.destroyRef.onDestroy(() =>
+      this.projectionService.closeContent(this.panelId),
+    );
+  }
 
   ngOnInit(): void {
     if (!this.control()) {
       this.control.set(assignNewFormControl(this.name(), this.control())!);
     }
     this.syncFromControl();
-    this.control().valueChanges.subscribe(() => this.syncFromControl());
+    this.control()
+      .valueChanges.pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.syncFromControl());
   }
 
   get shouldShowError(): boolean {
@@ -175,6 +221,62 @@ export class BmbTimepickerComponent implements OnInit {
     });
   }
 
+  openCompactList(kind: 'time' | 'period') {
+    if (this.disabled() || this.control().disabled) return;
+    if (this.activeDropdown() === kind) return;
+    this.projectionService.closeContent(this.panelId);
+    this.syncFromControl();
+    const values = kind === 'time' ? this.timeOptions() : ['AM', 'PM'];
+    const items: IDropdownItem[] = values.map((value) => ({
+      text: value,
+      value,
+      icon: '',
+      action: () => {
+        if (kind === 'time') {
+          const [hour, minute] = value.split(':').map(Number);
+          const offset =
+            this.format() === '12h' && this.period() === 'PM' ? 12 : 0;
+          this.selectedHour.set(
+            this.format() === '12h' ? (hour % 12) + offset : hour,
+          );
+          this.selectedMinute.set(minute);
+          this.commit();
+        } else {
+          this.selectPeriod(value === 'PM' ? 'PM' : 'AM');
+        }
+        this.handleClose();
+      },
+    }));
+    this.activeDropdown.set(kind);
+    this.isWindowOpen.set(true);
+    this.projectionService.openContent({
+      id: this.panelId,
+      content: BmbDropdownContentComponent,
+      targetRef: (kind === 'time' ? this.timeRef() : this.periodRef())
+        ?.nativeElement,
+      fixSizeToRef: true,
+      showBackdrop: false,
+      focusOnOpen: true,
+      forceMobileCenter: false,
+      dialogClass: 'bmb_projected-content-anchor-mobile',
+      inputContext: {
+        items,
+        selectedOption: kind === 'time' ? this.displayTime() : this.period(),
+      },
+      afterCloseContent: () => {
+        this.activeDropdown.set(null);
+        this.isWindowOpen.set(false);
+      },
+    });
+  }
+
+  clearValue() {
+    if (this.disabled() || this.control().disabled) return;
+    this.handleClose();
+    this.control().reset();
+    this.getChange.emit('');
+  }
+
   selectHour(hour: number) {
     const current = this.selectedHour();
     if (this.format() === '12h') {
@@ -206,7 +308,7 @@ export class BmbTimepickerComponent implements OnInit {
   }
 
   handleClose() {
-    this.projectionService.closeContent();
+    this.projectionService.closeContent(this.panelId);
   }
 
   private commit() {
