@@ -295,9 +295,7 @@ export class BmbTimepickerComponent implements OnInit {
 
   selectMinute(minute: number) {
     this.selectedMinute.set(minute);
-    if (this.selectedHour() === null) {
-      this.selectedHour.set(this.format() === '12h' ? 0 : 0);
-    }
+    this.selectedHour.update((hour) => hour ?? 0);
     this.commit();
   }
 

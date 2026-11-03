@@ -14,7 +14,35 @@
     [tooltip]="tooltip()"
     [customValidation]="customValidation()"
   >
-    @if (!isCompact()) {
+    @if (isCompact()) {
+      <div
+        #contentDiv
+        class="bmb_timepicker-field"
+        [class.bmb_timepicker-field-open]="isWindowOpen()"
+      >
+        <bmb-input-content
+          type="text"
+          [inputId]="inputId()"
+          [name]="name()"
+          [control]="control()"
+          [isReadOnly]="true"
+          [isClearable]="isClearable()"
+          [placeholder]="resolvedPlaceholder()"
+          [isError]="shouldShowError"
+          (onFocus)="handleFocus($event)"
+          (onKeyDown)="handleFocusedEvent($event)"
+        >
+          <ng-template #customContent>
+            <bmb-icon
+              class="bmb_timepicker-chevron"
+              icon="keyboard_arrow_down"
+              [size]="24"
+              alt=""
+            />
+          </ng-template>
+        </bmb-input-content>
+      </div>
+    } @else {
       <div class="bmb_timepicker-compact">
         <div class="bmb_timepicker-time">
           <button
@@ -61,34 +89,6 @@
             <bmb-icon icon="keyboard_arrow_down" [size]="24" alt="" />
           </button>
         }
-      </div>
-    } @else {
-      <div
-        #contentDiv
-        class="bmb_timepicker-field"
-        [class.bmb_timepicker-field-open]="isWindowOpen()"
-      >
-        <bmb-input-content
-          type="text"
-          [inputId]="inputId()"
-          [name]="name()"
-          [control]="control()"
-          [isReadOnly]="true"
-          [isClearable]="isClearable()"
-          [placeholder]="resolvedPlaceholder()"
-          [isError]="shouldShowError"
-          (onFocus)="handleFocus($event)"
-          (onKeyDown)="handleFocusedEvent($event)"
-        >
-          <ng-template #customContent>
-            <bmb-icon
-              class="bmb_timepicker-chevron"
-              icon="keyboard_arrow_down"
-              [size]="24"
-              alt=""
-            />
-          </ng-template>
-        </bmb-input-content>
       </div>
     }
   </bmb-input-validator>

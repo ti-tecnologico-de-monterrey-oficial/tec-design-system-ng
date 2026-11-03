@@ -9,7 +9,6 @@
       [columns]="2"
       [rows]="5"
     >
-      <!-- height="calc(100dvh - 2rem)" -->
       <h4
         bmbLayoutGridItem
         [colStart]="1"
@@ -105,7 +104,7 @@
             @for (h of hours(); track h) {
               <li
                 class="bmb_timepicker-modal-option"
-                [attr.aria-selected]="h"
+                [attr.aria-selected]="isOptionActive(displayHour(), h)"
                 [class.bmb_timepicker-modal-option-selected]="
                   isOptionActive(displayHour(), h)
                 "
@@ -122,7 +121,7 @@
             @for (m of minutes(); track m) {
               <li
                 class="bmb_timepicker-modal-option"
-                [attr.aria-selected]="m"
+                [attr.aria-selected]="isOptionActive(selectedMinute(), m)"
                 [class.bmb_timepicker-modal-option-selected]="
                   isOptionActive(selectedMinute(), m)
                 "

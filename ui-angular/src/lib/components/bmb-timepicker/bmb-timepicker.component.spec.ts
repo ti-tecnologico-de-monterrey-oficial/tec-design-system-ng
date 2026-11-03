@@ -41,7 +41,7 @@ describe('BmbTimepickerComponent', () => {
       }),
     };
     await TestBed.configureTestingModule({
-      imports: [BmbTimepickerComponent],
+      imports: [BmbTimepickerComponent, BmbTimepickerModalComponent],
       providers: [
         { provide: BreakpointObserver, useValue: { observe } },
         { provide: BmbProjectionContentService, useValue: projection },
@@ -74,6 +74,27 @@ describe('BmbTimepickerComponent', () => {
     expect(emitted.at(-1)).toBe('09:15 PM');
   });
 
+  it('should expose modal selection state as boolean aria-selected values', () => {
+    const modalFixture = TestBed.createComponent(BmbTimepickerModalComponent);
+    modalFixture.componentRef.setInput('hours', [9, 10]);
+    modalFixture.componentRef.setInput('minutes', [0, 15]);
+    modalFixture.componentInstance.displayHour.set(9);
+    modalFixture.componentInstance.currentPage.set('hour');
+    modalFixture.detectChanges();
+
+    let options: NodeListOf<HTMLLIElement> =
+      modalFixture.nativeElement.querySelectorAll('li');
+    expect(options[0].getAttribute('aria-selected')).toBe('true');
+    expect(options[1].getAttribute('aria-selected')).toBe('false');
+
+    modalFixture.componentInstance.currentPage.set('minute');
+    modalFixture.componentInstance.selectedMinute.set(15);
+    modalFixture.detectChanges();
+    options = modalFixture.nativeElement.querySelectorAll('li');
+    expect(options[0].getAttribute('aria-selected')).toBe('false');
+    expect(options[1].getAttribute('aria-selected')).toBe('true');
+  });
+
   function compact(): void {
     viewport.next({ matches: true, breakpoints: {} });
     fixture.detectChanges();
@@ -87,20 +108,21 @@ describe('BmbTimepickerComponent', () => {
     fixture.detectChanges();
   }
 
-  it('should use two compact dropdowns at widths up to 1000px', () => {
+  it('should use full time selectors above 1000px and an input at compact widths', () => {
     expect(observe).toHaveBeenCalledWith('(max-width: 1000px)');
-    expect(
-      fixture.nativeElement.querySelector('bmb-input-content'),
-    ).toBeTruthy();
-    compact();
     expect(
       fixture.nativeElement.querySelectorAll('.bmb_timepicker-select').length,
     ).toBe(2);
     expect(fixture.nativeElement.querySelector('bmb-input-content')).toBeNull();
-    const timeButton: HTMLButtonElement = fixture.nativeElement.querySelector(
-      '.bmb_timepicker-select',
+
+    compact();
+    expect(
+      fixture.nativeElement.querySelectorAll('.bmb_timepicker-select').length,
+    ).toBe(0);
+    const timeInput: HTMLInputElement = fixture.nativeElement.querySelector(
+      'bmb-input-content input',
     );
-    expect(timeButton.id).toBe(component.inputId());
+    expect(timeInput.id).toBe(component.inputId());
   });
 
   it('should select combined times respecting minuteStep and preserve the period', () => {
@@ -145,9 +167,9 @@ describe('BmbTimepickerComponent', () => {
     expect(component.control().value).toBe('09:45 AM');
   });
 
-  it('should show one dropdown with all 24 hours in 24h format', () => {
+  it('should show one time selector with all 24 hours in 24h format', () => {
     fixture.componentRef.setInput('format', '24h');
-    compact();
+    fixture.detectChanges();
     expect(
       fixture.nativeElement.querySelectorAll('.bmb_timepicker-select').length,
     ).toBe(1);
@@ -166,7 +188,7 @@ describe('BmbTimepickerComponent', () => {
     expect(component.displayTime()).toBe('08:17');
     expect(component.period()).toBe('PM');
     expect(
-      fixture.nativeElement.querySelector('.bmb_timepicker-clear'),
+      fixture.nativeElement.querySelector('bmb-input-content bmb-action-icon'),
     ).toBeTruthy();
     const emit = jest.spyOn(component.getChange, 'emit');
     component.clearValue();
@@ -175,8 +197,8 @@ describe('BmbTimepickerComponent', () => {
     expect(component.displayTime()).toBe('');
     expect(emit).toHaveBeenCalledWith('');
     expect(
-      fixture.nativeElement.querySelector('.bmb_timepicker-clear'),
-    ).toBeNull();
+      fixture.nativeElement.querySelector('bmb-input-content bmb-action-icon'),
+    ).toBeTruthy();
   });
 
   it.each(['input', 'control'])(
