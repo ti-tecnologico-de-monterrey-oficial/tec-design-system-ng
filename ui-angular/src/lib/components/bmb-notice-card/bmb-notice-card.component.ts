@@ -40,7 +40,7 @@ export class BmbNoticeCardComponent {
   src = input<string>('');
   icon = input<string>('');
   iconSize = input<number>(24);
-  description = input<IBmbCardNoticeDescription>();
+  description = input<IBmbCardNoticeDescription<SafeHtml>>();
   buttonText = input<string>();
   link = input<string>('');
   closeBtnColor = input<'white' | 'black'>('white');
@@ -80,7 +80,7 @@ export class BmbNoticeCardComponent {
     this.onClickBtn.emit();
   }
 
-  getPage(page: keyof IBmbCardNoticeDescription): SafeHtml | undefined {
+  getPage(page: keyof IBmbCardNoticeDescription<SafeHtml>): SafeHtml | undefined {
     const value = this.description()?.[page];
     return value
       ? this.sanitizer.bypassSecurityTrustHtml(sanitizeContent(value as string)) // NOSONAR Content is sanitized with DOMPurify - safe to bypass

@@ -4,7 +4,11 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-user-image />`,
+  example: figma.code`<bmb-user-image
+  image="https://picsum.photos/id/64/200/300"
+  size="desktop-small"
+  [bordered]="false"
+/>`,
   imports: [
     "import { BmbUserImageComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

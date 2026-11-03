@@ -1,0 +1,186 @@
+<section class="attachment-page">
+  <header>
+    <h1>AI Chat card - Attachment example</h1>
+
+    <div bmbLayout margin="none" gapSize="m" alignItems="center">
+      <bmb-dropdown
+        inputId="attachment-chat-mode"
+        name="attachment-chat-mode"
+        label="Mode"
+        [options]="modes"
+        [value]="mode()"
+        (onValueChange)="selectMode($event)"
+      />
+      <bmb-action-icon
+        icon="restart_alt"
+        tooltipText="Reset conversation"
+        [iconSize]="24"
+        (buttonClick)="reset()"
+      />
+    </div>
+  </header>
+  <bmb-divider />
+  <bmb-form-validator
+    [(formGroup)]="configurationForm"
+    (formGroupState)="applyConfiguration()"
+  >
+    <div bmbLayout margin="none" gapSize="m" alignItems="center">
+      <bmb-input
+        inputId="attachment-formats"
+        name="acceptedFormats"
+        label="Accepted formats (comma-separated)"
+        tooltip="Use extensions, MIME types, or wildcards. Leave empty to allow all formats."
+        [control]="getConfigurationControl('acceptedFormats')"
+      />
+      <bmb-input
+        inputId="attachment-max-size"
+        name="maxFileSize"
+        label="Maximum file size (MB)"
+        type="number"
+        [min]="0"
+        [isRequired]="true"
+        [control]="getConfigurationControl('maxFileSize')"
+      />
+      <button bmbButton type="submit">Apply limits</button>
+    </div>
+  </bmb-form-validator>
+  @if (configurationError()) {
+  <p role="alert">{{ configurationError() }}</p>
+  }
+
+  <div bmbLayout margin="none" gapSize="m" alignItems="center">
+    <button
+      type="button"
+      bmbButton
+      appearance="secondary-outlined"
+      [disabled]="!lastSentFiles().length"
+      (click)="simulateUpload(true)"
+    >
+      Simulate interrupted upload
+    </button>
+    <button
+      type="button"
+      bmbButton
+      appearance="secondary-outlined"
+      [disabled]="!lastSentFiles().length"
+      (click)="simulateUpload(false)"
+    >
+      Confirm simulated upload success
+    </button>
+    <span>Retry requests: {{ retryCount() }}</span>
+  </div>
+
+  <div bmbLayout margin="none" gapSize="xl" alignItems="start">
+    <section bmbLayoutItem [colSm]="4" [colLg]="9" aria-label="Conversation">
+      <bmb-ai-chat-card
+        [(mode)]="mode"
+        [(isExpanded)]="isExpanded"
+        componentTitle="Document assistant"
+        subtitle="Attachments"
+      >
+        @for (message of messages(); track message.id) {
+        <bmb-ai-chat-bubble
+          [message]="message"
+          [showActions]="false"
+          [testId]="message.id"
+          (attachmentResult)="handleAttachmentResult($event)"
+          (retryUploadRequested)="handleRetryUpload($event)"
+        />
+        }
+        <bmb-chat-bar
+          placeholder="Write a message"
+          [disableChangeBot]="true"
+          [actionsList]="actionsList"
+          [acceptedExtensions]="acceptedFormats()"
+          [maxFileSize]="maxFileSize()"
+          [(files)]="files"
+          [(isLoading)]="isLoading"
+          (onSendMessage)="handleSendMessage($event)"
+          (onSendFiles)="handleSendFiles($event)"
+          (attachmentResult)="handleAttachmentResult($event)"
+        />
+      </bmb-ai-chat-card>
+    </section>
+
+    <aside
+      bmbLayoutItem
+      [colSm]="4"
+      [colLg]="3"
+      bmbLayoutGrid
+      [rows]="4"
+      columnSize="minmax(0, 1fr)"
+      rowSize="auto"
+      rowGapSize="m"
+      aria-label="Attachment events"
+    >
+      <section bmbLayoutGridItem [colStart]="1" [rowStart]="1">
+        <h2>
+          Validation / upload results
+          <span>{{ attachmentResults().length }}</span>
+        </h2>
+        <ol aria-live="polite">
+          @for (result of attachmentResults(); track $index) {
+          <li>
+            <strong>{{ result.status }} — {{ result.sourceId }}</strong>
+            <span>{{ result.accepted.length }} accepted file(s)</span>
+            @for (error of result.errors; track $index) {
+            <span
+              >{{ error.code }}: {{ error.fileName ?? error.extension ??
+              'Conversation' }}</span
+            >
+            }
+          </li>
+          } @empty {
+          <li>No results yet</li>
+          }
+        </ol>
+      </section>
+      <section bmbLayoutGridItem [colStart]="1" [rowStart]="2">
+        <h2>Pending Files <span>{{ files().length }}</span></h2>
+        <ul aria-live="polite">
+          @for (file of files(); track $index) {
+          <li>
+            <strong>{{ file.name }}</strong><span>{{ file.size }} bytes</span>
+          </li>
+          } @empty {
+          <li>No pending files</li>
+          }
+        </ul>
+      </section>
+
+      <section bmbLayoutGridItem [colStart]="1" [rowStart]="3">
+        <h2>Last onSendFiles <span>{{ lastSentFiles().length }}</span></h2>
+        <ul aria-live="polite">
+          @for (file of lastSentFiles(); track $index) {
+          <li>
+            <strong>{{ file.name }}</strong
+            ><span>{{ file.type || 'Unknown type' }}</span>
+          </li>
+          } @empty {
+          <li>No files sent</li>
+          }
+        </ul>
+      </section>
+
+      <section bmbLayoutGridItem [colStart]="1" [rowStart]="4">
+        <h2>Submissions <span>{{ submissions().length }}</span></h2>
+        <ol aria-live="polite">
+          @for (submission of submissions(); track submission.id) {
+          <li>
+            <strong>Submission {{ submission.id }}</strong>
+            @if (submission.text) {
+            <p>{{ submission.text }}</p>
+            }
+            <span>{{ submission.files.length }} file(s)</span>
+            @for (file of submission.files; track $index) {
+            <span>{{ file.name }}</span>
+            }
+          </li>
+          } @empty {
+          <li>No submissions</li>
+          }
+        </ol>
+      </section>
+    </aside>
+  </div>
+</section>

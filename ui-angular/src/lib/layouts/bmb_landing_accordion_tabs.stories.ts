@@ -51,7 +51,7 @@ import * as tabsStory from '../components/bmb-tabs/bmb-tabs.component.stories';
 import * as accordionStory from '../components/bmb-accordion/bmb-accordion.stories';
 import * as cardHeaderStory from '../components/bmb-card/bmb-card.stories';
 import * as cardContentStory from '../components/bmb-card/bmb-card.stories';
-import * as accordionControlStory from '../directives/old/bmb-accordion/bmb-accordion-control.stories';
+import * as accordionControlStory from '../directives/bmb-accordion/bmb-accordion-control.stories';
 import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
 import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
 

@@ -1,0 +1,26 @@
+$_line_number: 3;
+
+.bmb_accordion-simple-text {
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--bmb-spacing-xs);
+
+    &-content {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: $_line_number;
+      line-clamp: $_line_number;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .bmb_accordion-basic-content.expanded {
+    .bmb_accordion-simple-text-wrapper-content {
+      max-height: max-content;
+      -webkit-line-clamp: inherit;
+      line-clamp: inherit;
+    }
+  }
+}

@@ -3,40 +3,18 @@
 // component=BmbTotpComponent
 import figma from 'figma'
 
-const instance = figma.selectedInstance
-const variation = instance.getEnum('Variation', {
-  Simple: 'simple',
-  'w/Button': 'button',
-  W/Button_ErrorState: 'button-error',
-})
-const componentTitleLayer = instance.findText('TOTP', { traverseInstances: true })
-const subtitleLayer = instance.findText('(Time-based one-time', {
-  traverseInstances: true,
-})
-const helpLayer = instance.findText('Help text', { traverseInstances: true })
-const buttonTextLayer = instance.findText('Text', {
-  traverseInstances: true,
-  path: ['Button'],
-})
-const componentTitle =
-  componentTitleLayer && componentTitleLayer.type === 'TEXT'
-    ? componentTitleLayer.textContent
-    : 'TOTP'
-const subtitle =
-  subtitleLayer && subtitleLayer.type === 'TEXT'
-    ? subtitleLayer.textContent
-    : '(Time-based One-time Password)'
-const helpText =
-  helpLayer && helpLayer.type === 'TEXT' ? helpLayer.textContent : ''
-const buttonText =
-  buttonTextLayer && buttonTextLayer.type === 'TEXT'
-    ? buttonTextLayer.textContent
-    : 'Verify'
-const showButton = variation !== 'simple'
-const codeError = variation === 'button-error'
-
 export default {
-  example: figma.code`<bmb-totp componentTitle="${componentTitle}" subtitle="${subtitle}" [showButton]="${showButton}" [codeError]="${codeError}" ${showButton ? figma.code`buttonText="${buttonText}"` : ''} ${helpText ? codeError ? figma.code`errorMessage="${helpText}"` : figma.code`helperText="${helpText}"` : ''} />`,
+  example: figma.code`<bmb-totp
+  componentTitle="TOTP"
+  subtitle="(Time-based One-time Password)"
+  instanceId="first"
+  [codeError]="false"
+  errorMessage="Invalid Code. Please try again."
+  helperText="Helper text"
+  [showButton]="false"
+  buttonText="Verify"
+  [disableButton]="false"
+/>`,
   imports: [
     "import { BmbTotpComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

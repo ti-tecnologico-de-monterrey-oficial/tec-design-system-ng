@@ -4,8 +4,24 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-dot-paginator [targets]="[{ target: '#item-1', index: 0 }, { target: '#item-2', index: 1 }, { target: '#item-3', index: 2 }, { target: '#item-4', index: 3 }]" />`,
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  targets: Target[] = [
+    { target: '#item1', index: 0 },
+    { target: '#item2', index: 1 },
+    { target: '#item3', index: 2 },
+    { target: '#item4', index: 3 },
+  ];
+}
+</script>
+
+<bmb-dot-paginator
+  [appearance]="appearance"
+  [activeDotIndex]="0"
+  [targets]="targets"
+/>`,
   imports: [
+    "import type { Target } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
     "import { BmbDotPaginatorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
   id: 'bmb-dot-paginator',

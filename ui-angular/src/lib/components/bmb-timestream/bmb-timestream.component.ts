@@ -22,7 +22,9 @@ import {
   timestreamGetBadgeText,
   timestreamGetDiffString,
 } from '../../_shared/logic/components/timestream';
-import type { IBmbNativeModal } from '../../_shared/types';
+import type { IBmbNativeModal as IBmbNativeModalGeneric } from '../../_shared/types';
+
+type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import type { IBbmBgAppearance } from '../../_shared/types/components/advertisement-card';
 import type {
   IBmbClamp,
@@ -34,7 +36,7 @@ import type {
 } from '../../_shared/types/components/timestream';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { TranslatePipe } from '../../pipes/translations';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';

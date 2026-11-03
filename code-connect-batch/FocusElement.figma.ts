@@ -2,17 +2,17 @@
 // source=ui-angular/src/lib/components/bmb-focus-element/bmb-focus-element.component.ts
 // component=BmbFocusElementComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const componentTitle = instance.getString('Title')
-const isNormal = instance.getEnum('State', {
-  Focused: false,
-  Normal: true,
-  Default: false,
-})
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-focus-element componentTitle="${componentTitle}" [number]="1" [isNormal]="${isNormal}" />`,
+  example: figma.code`<bmb-focus-element
+  [number]="0"
+  icon="${getIcon('close')}"
+  [isNonFocused]="false"
+  [isNormal]="false"
+  [isInheritedBg]="false"
+  [componentTitle]="componentTitle"
+/>`,
   imports: [
     "import { BmbFocusElementComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

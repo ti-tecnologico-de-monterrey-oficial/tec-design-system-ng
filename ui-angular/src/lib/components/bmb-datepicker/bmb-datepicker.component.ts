@@ -24,7 +24,7 @@ import {
   IBmbInputError,
   IBmbInputTooltipPosition,
 } from '../../_shared/types/input';
-import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
 import { getUUID } from '../../_shared/logic/utils';
 import {

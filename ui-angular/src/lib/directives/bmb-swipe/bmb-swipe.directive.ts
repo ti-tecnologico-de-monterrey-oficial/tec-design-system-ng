@@ -13,11 +13,15 @@ import {
   input,
   output,
 } from '@angular/core';
-
-export type IBmbSwipeSide = 'left' | 'right';
-
-const DEFAULT_SNAP_THRESHOLD = 0.4;
-const DRAG_AXIS_LOCK_DISTANCE = 6;
+import { IBmbSwipeSide } from '../../_shared/types';
+import {
+  SWIPE_DEFAULT_SNAP_THRESHOLD,
+  SWIPE_DRAG_AXIS_LOCK_DISTANCE,
+  clampSwipePosition,
+  resolveSwipeAxisLock,
+  resolveSwipeSideFromPosition,
+  resolveSwipeSnapTarget,
+} from '../../_shared/logic/components/swipe';
 
 @Directive({
   selector: 'ng-template[bmbSwipeLeftActions]',
@@ -40,7 +44,7 @@ export class BmbSwipeRightActionsDirective {
   standalone: true,
 })
 export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
-  readonly swipeThreshold = input<number>(DEFAULT_SNAP_THRESHOLD);
+  readonly swipeThreshold = input<number>(SWIPE_DEFAULT_SNAP_THRESHOLD);
   readonly swipeCloseOnAction = input<boolean>(true);
   readonly swipeDisabled = input<boolean>(false);
 
@@ -213,13 +217,13 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
     const deltaY = event.clientY - this.startY;
 
     if (!this.axisLocked) {
-      if (
-        Math.abs(deltaX) < DRAG_AXIS_LOCK_DISTANCE &&
-        Math.abs(deltaY) < DRAG_AXIS_LOCK_DISTANCE
-      ) {
-        return;
-      }
-      this.axisLocked = Math.abs(deltaX) > Math.abs(deltaY) ? 'x' : 'y';
+      const lock = resolveSwipeAxisLock(
+        deltaX,
+        deltaY,
+        SWIPE_DRAG_AXIS_LOCK_DISTANCE,
+      );
+      if (lock === undefined) return;
+      this.axisLocked = lock;
 
       if (this.axisLocked === 'y') {
         this.endDrag();
@@ -234,7 +238,7 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
     const maxLeft = this.getContainerWidth(this.leftContainer);
     const maxRight = this.getContainerWidth(this.rightContainer);
     const proposed = this.dragStartOffset + deltaX;
-    const clamped = Math.min(maxLeft, Math.max(-maxRight, proposed));
+    const clamped = clampSwipePosition(proposed, maxLeft, maxRight);
 
     this.setPosition(clamped);
   }
@@ -248,21 +252,12 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
     const maxLeft = this.getContainerWidth(this.leftContainer);
     const maxRight = this.getContainerWidth(this.rightContainer);
     const threshold = this.swipeThreshold();
-
-    let target = 0;
-    if (
-      this.currentX > 0 &&
-      maxLeft > 0 &&
-      this.currentX > maxLeft * threshold
-    ) {
-      target = maxLeft;
-    } else if (
-      this.currentX < 0 &&
-      maxRight > 0 &&
-      Math.abs(this.currentX) > maxRight * threshold
-    ) {
-      target = -maxRight;
-    }
+    const target = resolveSwipeSnapTarget(
+      this.currentX,
+      maxLeft,
+      maxRight,
+      threshold,
+    );
 
     this.endDrag();
     this.snapTo(target);
@@ -278,15 +273,7 @@ export class BmbSwipeDirective implements AfterContentInit, OnDestroy {
   private snapTo(x: number): void {
     this.setTransition(true);
     this.setPosition(x);
-
-    let side: IBmbSwipeSide | null = null;
-    if (x > 0) {
-      side = 'left';
-    } else if (x < 0) {
-      side = 'right';
-    }
-
-    this.updateOpenSide(side);
+    this.updateOpenSide(resolveSwipeSideFromPosition(x));
   }
 
   private setPosition(x: number): void {

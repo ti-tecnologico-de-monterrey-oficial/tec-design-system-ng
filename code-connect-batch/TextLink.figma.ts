@@ -2,18 +2,16 @@
 // source=ui-angular/src/lib/components/bmb-text-link/bmb-text-link.component.ts
 // component=BmbTextLinkComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const state = instance.getEnum('State', {
-  Hovered: 'hovered',
-  Enabled: 'enabled',
-  Disabled: 'disabled',
-})
-const textLayer = instance.findText('Text', { traverseInstances: true })
-const text = textLayer && textLayer.type === 'TEXT' ? textLayer.textContent : ''
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-text-link textLink="${text}" link="https://example.com" ${state === 'disabled' ? '[disabled]="true"' : ''} />`,
+  example: figma.code`<bmb-text-link
+  textLink="Test text"
+  textLinkStyle="icon"
+  icon="${getIcon('arrow_forward')}"
+  iconPosition="right"
+  [disabled]="false"
+/>`,
   imports: [
     "import { BmbTextLinkComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

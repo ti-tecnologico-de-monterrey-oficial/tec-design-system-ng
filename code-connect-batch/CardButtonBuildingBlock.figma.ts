@@ -2,78 +2,70 @@
 // source=ui-angular/src/lib/components/bmb-card-button/bmb-card-button.component.ts
 // component=BmbCardButtonComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const type = instance.getEnum('Type', {
-  'Add Content': 'add-content',
-  'Full Interactive': 'full-interactive',
-  Badge: 'badge',
-})
-const isDisabled = instance.getEnum('State', {
-  Default: false,
-  Hover: false,
-  Select: false,
-  Disabled: true,
-})
-const hasMenu = instance.getEnum('Menu', {
-  Inactive: false,
-  Active: true,
-})
-const showBadges = instance.getBoolean('Show Badges')
-const titleLayer = instance.findText('Title', { traverseInstances: true })
-const title =
-  titleLayer && titleLayer.type === 'TEXT' ? titleLayer.textContent : 'Title'
-const bodyLayer = instance.findText('Resumen de Texto', {
-  traverseInstances: true,
-})
-const body =
-  bodyLayer && bodyLayer.type === 'TEXT' ? bodyLayer.textContent : ''
-
-let example
-if (type === 'add-content') {
-  example = figma.code`<bmb-card-button
-  [isFullInteractive]="false"
-  componentTitle="${title}"
-  icon="add_circle"
-  [isDisabled]="${isDisabled}"
-/>`
-} else if (type === 'badge') {
-  example = figma.code`<bmb-card-button
-  componentTitle="${title}"
-  body="${body}"
-  [leftContent]="true"
-  [leftContentImage]="{ src: 'https://picsum.photos/id/25/200/300', alt: 'Left content image' }"
-  ${
-    showBadges
-      ? figma.code`[badge]="{ text: 'Badge 1', appearance: 'mitec_purple' }"`
-      : ''
-  }
-  [isDisabled]="${isDisabled}"
-/>`
-} else {
-  example = figma.code`<bmb-card-button
-  componentTitle="${title}"
-  body="${body}"
-  [leftContent]="true"
-  leftContentIcon="note_add"
-  icon="group"
-  ${
-    hasMenu
-      ? figma.code`[hasMenu]="true"
-  [menuItems]="[
-    { icon: 'link', text: 'Link', url: 'https://example.com', target: '_back' },
-    { icon: 'delete', text: 'Delete', url: 'https://example.com', target: '_back' },
-    { icon: 'settings', text: 'Settings', url: 'https://example.com', target: '_back' }
-  ]"`
-      : ''
-  }
-  [isDisabled]="${isDisabled}"
-/>`
-}
+import { getIcon } from './icon-image'
 
 export default {
-  example,
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  botImage: IBmbImageInfo = {
+    src: 'https://tecgpt0grl0prod0stg.blob.core.windows.net/gpt-portal-public/ICONOS/icon_modelo_CHAT_GPT.svg',
+    alt: 'Left content image',
+  };
+
+  badge: IBmbBadgeInfo = { text: 'Badge 1', appearance: 'mitec_purple' };
+
+  leftContentImage: IBmbImageInfo = {
+    src: 'https://picsum.photos/id/25/200/300',
+    alt: 'Left content image',
+  };
+
+  menuItems: IDropdownItem[] = [
+    {
+      icon: ${getIcon('link', 'typescript')},
+      text: 'Link',
+      url: 'https://example.com',
+    },
+    {
+      icon: ${getIcon('delete', 'typescript')},
+      text: 'Delete',
+      url: 'https://example.com',
+    },
+    {
+      icon: ${getIcon('settings', 'typescript')},
+      text: 'Settings',
+      url: 'https://example.com',
+    },
+  ];
+
+  textLink: IBmbLinkConfiguration = {
+    label: 'More',
+    link: 'https://example.com',
+  };
+}
+</script>
+
+<bmb-card-button
+  [isSmall]="false"
+  [isDisabled]="false"
+  [botImage]="botImage"
+  smallIcon="${getIcon('')}"
+  smallTitle=""
+  smallDescription=""
+  [isFullInteractive]="true"
+  body=""
+  [badge]="badge"
+  [leftContent]="leftContent"
+  leftContentIcon="${getIcon('')}"
+  [leftContentImage]="leftContentImage"
+  [hasMenu]="false"
+  [menuItems]="menuItems"
+  [isTemplate]="false"
+  [textLink]="textLink"
+  componentTitle=""
+  icon="${getIcon('')}"
+/>`,
   imports: [
+    "import type { IBmbBadgeInfo, IBmbImageInfo, IBmbLinkConfiguration, IDropdownItem } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
     "import { BmbCardButtonComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
   id: 'bmb-card-button-bb-1-6',

@@ -2,14 +2,15 @@ import {
   ChangeDetectionStrategy,
   Component,
   signal,
+  type TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
 import {
   BmbAIChatCardComponent,
   BmbAiChatBubbleComponent,
   BmbChatBarComponent,
-  type BmbChatActionEvent,
-  type BmbChatMessage,
+  type BmbChatActionEvent as BmbChatActionEventGeneric,
+  type BmbChatMessage as BmbChatMessageGeneric,
   type IBmbActionHeader,
   type IBmbChatOptionEvent,
   type IBotType,
@@ -17,6 +18,9 @@ import {
   type IBmbAIChatCardMode,
   IBMB_AI_CHAT_CARD_MODE,
 } from 'ui-angular';
+
+type BmbChatMessage = BmbChatMessageGeneric<TemplateRef<unknown>>;
+type BmbChatActionEvent = BmbChatActionEventGeneric<TemplateRef<unknown>>;
 
 @Component({
   selector: 'app-ai-chat-card-page',
@@ -45,6 +49,7 @@ export class AiChatCardPage {
     label: 'Tecbot Standard',
     icon: 'bot_tecStandar',
   });
+  readonly isExpanded = signal<boolean>(false);
 
   readonly botList: IBotType[] = [
     { name: 'TecBot', label: 'Tecbot Standard', icon: 'bot_tecStandar' },

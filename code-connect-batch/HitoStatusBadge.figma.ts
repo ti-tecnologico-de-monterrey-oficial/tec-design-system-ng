@@ -3,26 +3,12 @@
 // component=BmbBadgeComponent
 import figma from 'figma'
 
-const instance = figma.selectedInstance
-const appearance = instance.getEnum('Status', {
-  Pending: 'normal',
-  Started: 'strong',
-  Revision: 'warning',
-  Finished: 'success',
-  Canceled: 'error',
-  'Lorem Ipsum': 'strong',
-})
-const text = instance.getEnum('Status', {
-  Pending: 'Pendiente',
-  Started: 'Iniciado',
-  Revision: 'En revisión',
-  Finished: 'Finalizado',
-  Canceled: 'Cancelado',
-  'Lorem Ipsum': 'Lorem Ipsum',
-})
-
 export default {
-  example: figma.code`<bmb-badge appearance="${appearance}" text="${text}" [container]="false" />`,
+  example: figma.code`<bmb-badge
+  text="Badge text"
+  appearance="normal"
+  [container]="true"
+/>`,
   imports: [
     "import { BmbBadgeComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

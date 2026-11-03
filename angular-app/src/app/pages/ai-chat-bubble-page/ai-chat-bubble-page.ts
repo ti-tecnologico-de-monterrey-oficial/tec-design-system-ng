@@ -3,17 +3,21 @@ import {
   Component,
   computed,
   signal,
+  TemplateRef,
 } from '@angular/core';
 import {
   BmbAiChatBubbleComponent,
   BmbTabsComponent,
   type BmbChatAction,
-  type BmbChatActionEvent,
-  type BmbChatMessage,
+  type BmbChatActionEvent as BmbChatActionEventGeneric,
+  type BmbChatMessage as BmbChatMessageGeneric,
   type BmbChatMessageEditedEvent,
   type IBmbChatOptionEvent,
   type IBmbTab,
 } from 'ui-angular';
+
+type BmbChatMessage = BmbChatMessageGeneric<TemplateRef<unknown>>;
+type BmbChatActionEvent = BmbChatActionEventGeneric<TemplateRef<unknown>>;
 import { CHAT_USER_IMAGE_OPTIONS } from './chat-user-image-options';
 
 @Component({

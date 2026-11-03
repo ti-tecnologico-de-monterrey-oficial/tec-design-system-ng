@@ -2,14 +2,13 @@
 // source=ui-angular/src/lib/components/bmb-home-section/bmb-home-section.component.ts
 // component=BmbHomeSectionComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const componentTitle = instance.findText('Mi día de hoy', {
-  traverseInstances: true,
-}).textContent
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-home-section componentTitle="${componentTitle}" />`,
+  example: figma.code`<bmb-home-section
+  componentTitle="Section name"
+  icon="${getIcon('chevron_right')}"
+/>`,
   imports: [
     "import { BmbHomeSectionComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

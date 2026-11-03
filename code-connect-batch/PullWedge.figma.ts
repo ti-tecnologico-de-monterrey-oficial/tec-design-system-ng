@@ -4,7 +4,11 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-pull-wedge></bmb-pull-wedge>`,
+  example: figma.code`<bmb-pull-wedge
+  [initialHeight]="300"
+  [minContentHeight]="100"
+  [isOpen]="isOpen"
+/>`,
   imports: [
     "import { BmbPullWedgeComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

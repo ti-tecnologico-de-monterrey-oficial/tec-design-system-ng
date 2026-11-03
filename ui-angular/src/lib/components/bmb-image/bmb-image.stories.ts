@@ -13,10 +13,6 @@ import {
 import type { BmbImageItem } from '../../_shared/types/components/image';
 import { Component, signal } from '@angular/core';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'storybook-bmb-image-signal-host',
   standalone: true,

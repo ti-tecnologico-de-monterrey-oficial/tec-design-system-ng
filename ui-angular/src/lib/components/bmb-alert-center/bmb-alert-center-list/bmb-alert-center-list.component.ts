@@ -16,18 +16,18 @@ import {
   alertCenterGetTimeVariant,
 } from '../../../_shared/logic/components/alert-center-list';
 import type { IBmbDataAlertsParsed } from '../../../_shared/types/components/alert-center';
+import type { IBmbSwipeSide } from '../../../_shared/types';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 import {
   BmbSwipeDirective,
   BmbSwipeLeftActionsDirective,
   BmbSwipeRightActionsDirective,
-  IBmbSwipeSide,
 } from '../../../directives/bmb-swipe/bmb-swipe.directive';
 import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
-} from '../../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
+} from '../../../directives/bmb-layout-grid/bmb-layout-grid.directive';
 import { TranslatePipe } from '../../../pipes/translations';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';

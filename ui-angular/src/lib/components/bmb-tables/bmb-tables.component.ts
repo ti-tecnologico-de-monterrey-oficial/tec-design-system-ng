@@ -41,9 +41,11 @@ import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import {
   BmbTableLang,
   IBmbFiltersPosition,
-  TableColum,
+  TableColum as TableColumGeneric,
   TableConfig,
 } from '../../_shared/types';
+
+type TableColum = TableColumGeneric<TemplateRef<any>>;
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';

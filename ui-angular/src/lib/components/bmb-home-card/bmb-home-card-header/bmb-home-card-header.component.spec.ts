@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { BmbHomeCardHeaderComponent } from './bmb-home-card-header.component';
-import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
+import { BmbProjectionContentService } from '../../../services/projection/projection.service';
 import { IBmbActionHeader } from '../../../_shared/types/utils';
 
 type Internals = {

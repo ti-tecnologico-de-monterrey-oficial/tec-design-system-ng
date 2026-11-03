@@ -2,25 +2,23 @@
 // source=ui-angular/src/lib/components/bmb-list-items/bmb-list-items.component.ts
 // component=BmbListItemsComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const populated = instance.getEnum('State', {
-  Empty: false,
-  Populated: true,
-})
-const items = populated
-  ? "[{ title: 'Reunión de equipo', date: '2025-10-08', icon: 'group' }, { title: 'Entrega de reporte', date: '2025-10-01', icon: 'description' }, { title: 'Actualización de sistema', date: '2025-09-15', icon: 'update' }]"
-  : '[]'
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-list-items
-  componentTitle="Historial de actividades"
-  addButtonIcon="add_circle"
-  [showAddButton]="true"
-  [items]="${items}"
-  dateFormat="yyyy-MM-dd"
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  items: IBmbListItemsElement[] = [];
+}
+</script>
+
+<bmb-list-items
+  addButtonIcon="${getIcon('add_box')}"
+  [items]="items"
+  [dateFormat]="dateFormat"
+  [componentTitle]="componentTitle"
 />`,
   imports: [
+    "import type { IBmbListItemsElement } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
     "import { BmbListItemsComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
   id: 'bmb-list-items',

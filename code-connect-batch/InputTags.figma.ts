@@ -4,8 +4,48 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-input-tags helperMessage="Helper Message" [tagOptions]="['Tacos al pastor', 'Enchiladas', 'Tamales', 'Quesadillas']" />`,
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  tagOptions: string[] | IBmbDropdownItem[] = [
+    'Tacos al pastor',
+    'Enchiladas',
+    'Tamales',
+    'Quesadillas',
+    'Chiles en nogada',
+    'Mole poblano',
+    'Sopes',
+    'Gorditas',
+    'Pozole',
+    'Ceviche',
+    'Tortas',
+    'Guacamole',
+    'Tacos de pescado',
+    'Flautas',
+    'Chalupas',
+    'Huevos rancheros',
+    'Elote',
+    'Mole verde',
+    'Arroz a la mexicana',
+    'Burritos',
+  ];
+}
+</script>
+
+<bmb-input-tags
+  [control]="control"
+  errorMessage=""
+  helperMessage="Helper Message"
+  [isRequired]="false"
+  placeholder=""
+  [disabled]="false"
+  label=""
+  [tagOptions]="tagOptions"
+  tooltip=""
+  name=""
+  value=""
+/>`,
   imports: [
+    "import type { IBmbDropdownItem } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
     "import { BmbInputTagsComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
   id: 'bmb-input-tags',

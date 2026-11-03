@@ -94,6 +94,11 @@ export const navigationTest: ComponentGroupTest[] = [
             icon: 'widgets',
           },
           {
+            label: 'AIChatCardAttachment',
+            url: '/pages/ai-chat-card-attachment',
+            icon: 'attach_file',
+          },
+          {
             label: 'Divider',
             url: '/pages/divider',
             icon: 'horizontal_rule',
@@ -382,7 +387,7 @@ export const navigationTest: ComponentGroupTest[] = [
         icon: 'widgets',
       },
       {
-        label: 'Login content (*old)',
+        label: 'Login content',
         url: '/pages/internals/login-content',
         icon: 'widgets',
       },
@@ -468,7 +473,7 @@ export const navigationTest: ComponentGroupTest[] = [
     label: 'Templates',
     items: [
       {
-        label: 'Mobile (*old)',
+        label: 'Mobile',
         url: '/pages/templates/mobile',
         icon: 'widgets',
       },

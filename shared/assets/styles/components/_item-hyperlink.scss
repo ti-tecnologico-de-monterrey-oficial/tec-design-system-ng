@@ -1,0 +1,9 @@
+@use 'item-mixins' as mixins;
+
+.bmb_item-hyperlink {
+  @include mixins.item-wrapper();
+}
+
+:host {
+  display: flex;
+}

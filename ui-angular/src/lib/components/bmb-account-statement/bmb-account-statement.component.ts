@@ -26,14 +26,16 @@ import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.direc
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import {
   FormControl,
   FormGroup,
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { IBmbNativeModal } from '../../_shared/types';
+import { IBmbNativeModal as IBmbNativeModalGeneric } from '../../_shared/types';
+
+type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../pipes/translations';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';

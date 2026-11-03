@@ -1,12 +1,5 @@
-@use './../../bmb-item/mixins.scss' as mixins;
+@use '../../../../../../shared/assets/styles/components/interactive-item-text-button';
 
-.bmb_interactive-item-text-button {
-  @include mixins.action-item(false);
-
-  & > :first-child {
-    width: 100%;
-  }
-}
 bmb-interactive-item-text-button {
   display: flex;
 }

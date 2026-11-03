@@ -1,14 +1,1 @@
 @use '../../../../../shared/assets/styles/components/image';
-@use '../../../assets/styles/base/mixins' as mixins;
-
-bmb-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  min-height: var(--image-min-height-s);
-  height: 100%;
-
-  @include mixins.media-query(1000, 'min') {
-    min-height: var(--image-min-height-l);
-  }
-}

@@ -1,13 +1,13 @@
 import { ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BmbIframeComponent } from './bmb-iframe.component';
 import {
-  BmbIframeComponent,
   type BmbIframeAlign,
   type BmbIframeImportance,
   type BmbIframeLoading,
   type BmbIframeReferrerPolicy,
   type BmbIframeScrolling,
-} from './bmb-iframe.component';
+} from '../../_shared/types';
 
 const LOADING_OPTIONS: BmbIframeLoading[] = ['eager', 'lazy'];
 const IMPORTANCE_OPTIONS: BmbIframeImportance[] = ['auto', 'high', 'low'];

@@ -127,19 +127,19 @@ export class BmbChatBubblesComponent implements OnDestroy, OnInit {
     this.gptBot() ? 'bot_chatGPT' : this.iconBot(),
   );
 
-  /** @deprecated Use getAction instead */
+  //eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onRepeatRequest = output<Event>();
 
-  /** @deprecated Use getAction instead */
+  //eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onVoice = output<Event>();
 
-  /** @deprecated Use getAction instead */
+  //eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onCopy = output<Event>();
 
-  /** @deprecated Use getAction instead */
+  //eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onLike = output<Event>();
 
-  /** @deprecated Use getAction instead */
+  //eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onDislike = output<Event>();
 
   gptActiveIcons = input<{

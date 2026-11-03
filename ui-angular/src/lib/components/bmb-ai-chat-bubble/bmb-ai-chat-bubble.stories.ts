@@ -13,6 +13,7 @@ import {
   getOnEvent,
   getSpecialSpecifications,
   RELEVANT_TITLE,
+  getStoryTitle,
 } from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
@@ -43,7 +44,7 @@ Supported message types include:
 - mixed
 - links
 - selectable options
-- custom templates<br/><br/>`;
+- file upload requests **Upload file message** tab`;
 
 export default {
   title: 'Components/Containers/AI Chat bubble',
@@ -220,6 +221,15 @@ For user message use ['copy', 'edit'] to enable both. Copy is enabled by default
     getOptionClicked: getOnClickParam(
       getOnEvent('prompt option', 'getOptionClicked', 'IBmbChatOptionEvent'),
     ),
+    uploadFileRequested: {
+      control: false,
+      description:
+        'Emits { messageId, message, nativeEvent } when the upload button is activated. The consuming app opens the file picker and handles validation and upload.',
+      table: {
+        category: 'Events',
+        type: { summary: 'BmbUploadFileRequestEvent' },
+      },
+    },
   },
   args: {
     botIcon: 'bot_tecStandar',
@@ -244,6 +254,9 @@ For user message use ['copy', 'edit'] to enable both. Copy is enabled by default
     },
     messageEdited: ($event: undefined) => {
       console.info('messageEdited', $event);
+    },
+    uploadFileRequested: ($event: undefined) => {
+      console.info('uploadFileRequested', $event);
     },
   },
 } as Meta<typeof BmbAiChatBubbleComponent>;

@@ -3,20 +3,19 @@
 // component=BmbRadialComponent
 import figma from 'figma'
 
-const instance = figma.selectedInstance
-const checked = instance.getEnum('Mode', {
-  Inactive: false,
-  Active: true,
-})
-const disabled = instance.getEnum('State', {
-  Enabled: false,
-  Hovered: false,
-  Focused: false,
-  Disabled: true,
-})
-
 export default {
-  example: figma.code`<bmb-radial [checked]="${checked}" [disabled]="${disabled}" />`,
+  example: figma.code`<bmb-radial
+  [checked]="false"
+  [disabled]="false"
+  [required]="false"
+  value="radio1"
+  name="radio1"
+  label="Contract for teacher CCM.pdf"
+  labelPosition="after"
+  [control]="control"
+  errorMessage=""
+  helperMessage=""
+/>`,
   imports: [
     "import { BmbRadialComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

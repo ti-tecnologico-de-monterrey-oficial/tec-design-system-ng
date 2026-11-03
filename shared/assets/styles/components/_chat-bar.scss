@@ -181,61 +181,6 @@
     }
   }
 
-  &-files-list {
-    display: none;
-    gap: var(--bmb-spacing-m);
-
-    &-thumbnail {
-      aspect-ratio: 1/1;
-      border-radius: var(--bmb-radius-3);
-      object-fit: cover;
-      width: 100%;
-    }
-
-    &-active {
-      align-items: center;
-      display: flex;
-      flex-direction: column;
-      max-height: rem.rem_calc(200);
-      overflow: auto;
-      padding: rem.rem_calc(10 36 0);
-
-      @include mixins.check-for-desktop() {
-        flex-direction: row;
-      }
-    }
-
-    &-option {
-      align-items: center;
-      background-color: var(--containers-modal);
-      border: rem.rem_calc(1) solid var(--general-contrasts-25);
-      border-radius: var(--bmb-radius-1);
-      display: flex;
-      padding: rem.rem_calc(16);
-      width: 100%;
-
-      @include mixins.check-for-desktop() {
-        width: max-content;
-      }
-
-      &-text {
-        flex: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-
-        @include mixins.check-for-desktop() {
-          max-width: rem.rem_calc(200);
-        }
-      }
-
-      &-icon {
-        color: rgb(var(--blue-mariner-500));
-        padding-right: rem.rem_calc(5);
-      }
-    }
-  }
-
   &-mobile-bot-dialog {
     &-body {
       display: flex;

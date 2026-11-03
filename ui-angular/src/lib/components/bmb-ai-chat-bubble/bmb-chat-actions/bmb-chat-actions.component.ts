@@ -6,14 +6,15 @@ import {
   input,
   output,
   signal,
+  TemplateRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   BmbChatAction,
   BmbChatActionConfig,
-  BmbChatActionEvent,
+  BmbChatActionEvent as BmbChatActionEventGeneric,
   BmbChatCopyState,
-  BmbChatMessage,
+  BmbChatMessage as BmbChatMessageGeneric,
 } from '../../../_shared/types';
 import {
   AI_CHAT_ACTIONS_DEFAULT_CONFIG,
@@ -22,6 +23,9 @@ import {
   toggleChatActionState,
   updateChatActionsLikeState,
 } from '../../../_shared/logic/components/chat-actions';
+
+type BmbChatMessage = BmbChatMessageGeneric<TemplateRef<unknown>>;
+type BmbChatActionEvent = BmbChatActionEventGeneric<TemplateRef<unknown>>;
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../../pipes/translations';
 

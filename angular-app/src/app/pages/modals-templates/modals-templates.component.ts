@@ -4,9 +4,11 @@ import {
   BmbNativeModalService,
   BmbTablesComponent,
   IBmbActionButton,
-  IBmbNativeModal,
+  IBmbNativeModal as IBmbNativeModalGeneric,
   TableColum,
 } from 'ui-angular';
+
+type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 
 @Component({
   selector: 'app-modals-templates',
@@ -26,7 +28,7 @@ export class ModalsTemplatesComponent {
     showActions: true,
   };
 
-  tableColumns: TableColum[] = [
+  tableColumns: TableColum<TemplateRef<any>>[] = [
     {
       def: 'first_name',
       label: 'Nombre',

@@ -13,18 +13,16 @@ import {
   IBmbLinkConfiguration,
   IBmbUserImageSize,
   SizeNames,
-} from '../../../_shared/types/index';
+  IBmbContentLayoutSummary,
+} from '../../../_shared/types';
 import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
-import { IBmbContentLayoutSummary } from '../../../_shared/types/components/user-summary';
 import {
   getUserSummaryContentClass,
   getUserSummaryEmailAsLink,
   getUserSummaryName,
   getUserSummarySalutationClasses,
 } from '../../../_shared/logic/components/user-summary';
-
-export type { IBmbContentLayoutSummary };
 
 @Component({
   selector: 'bmb-user-summary-content',

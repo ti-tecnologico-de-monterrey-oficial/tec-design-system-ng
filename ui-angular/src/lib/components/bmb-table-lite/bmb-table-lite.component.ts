@@ -28,10 +28,12 @@ import { TranslatePipe } from '../../pipes/translations';
 
 import {
   IBmbTableLiteFiltersPosition as IBmbFiltersPosition,
-  ITableLiteColumn as TableColum,
+  ITableLiteColumn,
   ITableLiteConfig as TableConfig,
   IBmbTableLang,
 } from '../../_shared/types';
+
+type TableColum = ITableLiteColumn<TemplateRef<any>>;
 import {
   filterTableLiteRows,
   getTableLiteClasses,

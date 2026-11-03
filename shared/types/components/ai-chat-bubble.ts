@@ -1,4 +1,4 @@
-import { TemplateRef } from '@angular/core';
+import { BmbChatAttachmentError } from '../chat-attachment';
 
 export type BmbChatMessageType =
   | 'text'
@@ -6,6 +6,7 @@ export type BmbChatMessageType =
   | 'mixed'
   | 'link'
   | 'options'
+  | 'upload-file'
   | 'template';
 
 export type BmbChatStatus = 'sending' | 'sent' | 'error';
@@ -74,20 +75,43 @@ export interface BmbOptionsMessage extends BmbChatBaseMessage {
   };
 }
 
-export interface BmbTemplateMessage extends BmbChatBaseMessage {
+export interface BmbTemplateMessage<TTemplate = unknown>
+  extends BmbChatBaseMessage {
   type: 'template';
   content: {
-    template: TemplateRef<unknown>;
+    template: TTemplate;
   };
 }
 
-export type BmbChatMessage =
+export interface BmbUploadFileMessage extends BmbChatBaseMessage {
+  type: 'upload-file';
+  content: {
+    fileName: string;
+    text?: string;
+    buttonLabel?: string;
+    acceptedFormats?: string[];
+    /** Maximum size per file in MB (1024 * 1024 bytes). Defaults to 2. */
+    maxFileSize?: number;
+    error?: BmbChatAttachmentError;
+    additionalRequirements?: string[];
+    cancelKeyword?: string;
+  };
+}
+
+export interface BmbUploadFileRequestEvent {
+  messageId: string;
+  message: BmbUploadFileMessage;
+  nativeEvent: Event;
+}
+
+export type BmbChatMessage<TTemplate = unknown> =
   | BmbTextMessage
   | BmbImageMessage
   | BmbMixedMessage
   | BmbLinkMessage
   | BmbOptionsMessage
-  | BmbTemplateMessage;
+  | BmbUploadFileMessage
+  | BmbTemplateMessage<TTemplate>;
 
 export type BmbChatAction =
   | 'repeat'
@@ -99,7 +123,7 @@ export type BmbChatAction =
 
 export type BmbChatCopyState = 'idle' | 'pending' | 'success' | 'error';
 
-export interface BmbChatActionEvent {
+export interface BmbChatActionEvent<TTemplate = unknown> {
   /**
    * Triggered action.
    */
@@ -113,7 +137,7 @@ export interface BmbChatActionEvent {
   /**
    * Current message reference.
    */
-  message: BmbChatMessage;
+  message: BmbChatMessage<TTemplate>;
 
   /**
    * Native DOM event.

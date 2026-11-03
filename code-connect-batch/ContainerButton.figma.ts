@@ -2,42 +2,71 @@
 // source=ui-angular/src/lib/components/bmb-container-button/bmb-container-button.component.ts
 // component=BmbContainerButtonComponent
 import figma from 'figma'
+import { getIcon } from './icon-image'
+import { getBoxIconColor } from './box-icon-color'
 
-const instance = figma.selectedInstance
-const componentTitle = instance.getString('Title')
-const subtitle = instance.getString('Subtitle')
-const state = instance.getEnum('State', {
-  Enabled: '',
-  Hovered: '',
-  Focused: '',
-  Disabled: 'disabled',
-  Error: 'error',
-})
-const alternative = instance.getEnum('Variant', {
-  Default: false,
-  Alternative: true,
-})
-const small = instance.getEnum('Type', {
-  Main: false,
-  Grade: false,
-  Small: true,
-  Vertical: false,
-  Badge: false,
-  Complex: false,
-  'Vertical Small': true,
-  'User Profile': false,
-})
+const isAlternative = figma.selectedInstance.getPropertyValue('Type') === 'Alternative'
 
 export default {
-  example: figma.code`<bmb-container-button
-  componentTitle="${componentTitle}"
-  subtitle="${subtitle}"
-  [small]="${small}"
-  [alternative]="${alternative}"
-  ${state ? figma.code`state="${state}"` : ''}
+  example: isAlternative
+    ? figma.code`<bmb-container-button-complex-alternative
+  componentTitle="Title container button"
+  subtitle="sub title"
+  leftIconName="${getIcon('menu_open')}"
+  leftIconBoxColor="${getBoxIconColor('general-contrasts-main-selection', 'Box Icon')}"
+  [isBookmarkActive]="false"
+  [isDisabled]="false"
+  [isError]="false"
+/>`
+    : figma.code`<script lang="ts">
+export class ExampleComponent {
+  dropdownMenuItems: IDropdownItem[] = [
+    {
+      icon: ${getIcon('link', 'typescript')},
+      text: 'External Link External Link External Link',
+      url: 'https://example.com',
+    },
+    {
+      icon: ${getIcon('link', 'typescript')},
+      text: 'internal Link',
+      url: 'https://example.com',
+    },
+    {
+      icon: ${getIcon('delete', 'typescript')},
+      text: 'Delete',
+    },
+    {
+      icon: ${getIcon('settings', 'typescript')},
+      text: 'Settings',
+    },
+  ];
+}
+</script>
+
+<bmb-container-button
+  componentTitle="Tema de App"
+  subtitle=""
+  iconLeft="${getIcon('home')}"
+  [isUserImage]="false"
+  iconRight="${getIcon('chevron_right')}"
+  score=""
+  [square]="false"
+  [small]="false"
+  [state]="state"
+  [alternative]="false"
+  badgeText=""
+  [badgeAppearance]="badgeAppearance"
+  [enableSecondaryAction]="false"
+  [enableBookmark]="false"
+  [dropdownMenuItems]="dropdownMenuItems"
 />`,
-  imports: [
-    "import { BmbContainerButtonComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
-  ],
+  imports: isAlternative
+    ? [
+      "import { BmbContainerButtonComplexAlternativeComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
+    ]
+    : [
+      "import type { IDropdownItem } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
+      "import { BmbContainerButtonComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
+    ],
   id: 'bmb-container-button',
 }

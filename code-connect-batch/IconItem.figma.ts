@@ -2,17 +2,16 @@
 // source=ui-angular/src/lib/components/bmb-icon-item/bmb-icon-item.component.ts
 // component=BmbIconItemComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const labelLayer = instance.findText('label', { traverseInstances: true })
-const valueLayer = instance.findText('text', { traverseInstances: true })
-const label =
-  labelLayer && labelLayer.type === 'TEXT' ? labelLayer.textContent : ''
-const value =
-  valueLayer && valueLayer.type === 'TEXT' ? valueLayer.textContent : ''
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-icon-item label="${label}" value="${value}" />`,
+  example: figma.code`<bmb-icon-item
+  icon="${getIcon('calendar_month')}"
+  [iconSize]="24"
+  label="Semestre"
+  value="Additional Info"
+  [showDivider]="showDivider"
+/>`,
   imports: [
     "import { BmbIconItemComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

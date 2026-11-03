@@ -12,7 +12,9 @@ import {
   MAT_DIALOG_DATA,
   MatDialog,
 } from '@angular/material/dialog';
-import type { ModalDataConfig } from '../../_shared/types';
+import type { ModalDataConfig as ModalDataConfigGeneric } from '../../_shared/types';
+
+type ModalDataConfig = ModalDataConfigGeneric<TemplateRef<any>>;
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';

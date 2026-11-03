@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -9,11 +10,14 @@ import {
   BmbVerticalLayoutItemDirective,
   IChatBarActions,
   BmbAiChatBubbleComponent,
-  BmbChatMessage,
+  BmbChatMessage as BmbChatMessageGeneric,
   IBmbChatOptionEvent,
-  BmbChatActionEvent,
+  BmbChatActionEvent as BmbChatActionEventGeneric,
 } from 'ui-angular';
 import { CommonModule } from '@angular/common';
+
+type BmbChatMessage = BmbChatMessageGeneric<TemplateRef<unknown>>;
+type BmbChatActionEvent = BmbChatActionEventGeneric<TemplateRef<unknown>>;
 
 @Component({
   selector: 'bmb-ia',

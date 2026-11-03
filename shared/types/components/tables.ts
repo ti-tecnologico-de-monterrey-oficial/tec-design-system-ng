@@ -1,18 +1,16 @@
-import { TemplateRef } from '@angular/core';
-
-export interface TableColum {
+export interface TableColum<TTemplate = unknown> {
   label: string;
   labelEn?: string;
   def: string;
   dataKey: string;
-  htmlLabel?: TemplateRef<any>;
-  templateActions?: TemplateRef<any>;
+  htmlLabel?: TTemplate;
+  templateActions?: TTemplate;
   width?: number;
   type?: 'string' | 'number' | 'date';
   icon?: string;
   dateFormat?: string;
   isFilterable?: boolean;
-  cellTemplate?: TemplateRef<any>;
+  cellTemplate?: TTemplate;
 }
 
 export interface TableConfig {
