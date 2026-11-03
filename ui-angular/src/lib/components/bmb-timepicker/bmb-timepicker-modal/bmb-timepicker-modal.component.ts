@@ -4,7 +4,7 @@ import { BmbActionIconComponent } from "../../bmb-action-icon/bmb-action-icon.co
 import { TranslatePipe } from '../../../pipes/translations';
 import { BmbButtonDirective } from "../../../directives/bmb-button/button.directive";
 import { CommonModule } from "@angular/common";
-import { BmbLayoutGridDirective, BmbLayoutGridItemDirective } from "../../../directives/old/bmb-layout-grid/bmb-layout-grid.directive";
+import { BmbLayoutGridDirective, BmbLayoutGridItemDirective } from "../../../directives/bmb-layout-grid/bmb-layout-grid.directive";
 import { BmbCheckExternalLinkButtonComponent } from "../../bmb-check-external-link-button/bmb-check-external-link-button.component";
 
 @Component({

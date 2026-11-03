@@ -21,7 +21,7 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { IBmbInputError } from '../../_shared/types/input';
-import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { getUUID } from '../../_shared/logic/utils';
 import {
   assignNewFormControl,
