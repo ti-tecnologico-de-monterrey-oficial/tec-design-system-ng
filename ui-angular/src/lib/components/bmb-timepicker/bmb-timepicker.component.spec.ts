@@ -6,7 +6,7 @@ import { FormControl } from '@angular/forms';
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,
-} from '../../services/old/projection/projection.service';
+} from '../../services/projection/projection.service';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbTimepickerModalComponent } from './bmb-timepicker-modal/bmb-timepicker-modal.component';
 import { IDropdownItem } from '../../_shared/types';
@@ -62,6 +62,9 @@ describe('BmbTimepickerComponent', () => {
     expect(component.parseTime('23:59')).toEqual({ hour: 23, minute: 59 });
     expect(component.parseTime('25:00')).toBeNull();
     expect(component.parseTime('')).toBeNull();
+    expect(
+      component.parseTime(`02:30${' '.repeat(100_000)}PM`),
+    ).toEqual({ hour: 14, minute: 30 });
   });
 
   it('should write the formatted value to the control on selection', () => {

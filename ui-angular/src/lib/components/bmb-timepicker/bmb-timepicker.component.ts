@@ -161,11 +161,17 @@ export class BmbTimepickerComponent implements OnInit {
 
   parseTime(value: string | null | undefined): IParsedTime | null {
     if (!value) return null;
-    const match = /^\s*(\d{1,2}):(\d{2})\s*(AM|PM)?\s*$/i.exec(value);
+    let normalizedValue = value.trim();
+    const suffix = normalizedValue.slice(-2).toUpperCase();
+    const meridiem =
+      suffix === 'AM' || suffix === 'PM' ? suffix : undefined;
+    if (meridiem) {
+      normalizedValue = normalizedValue.slice(0, -2).trimEnd();
+    }
+    const match = /^(\d{1,2}):(\d{2})$/.exec(normalizedValue);
     if (!match) return null;
     let hour = Number(match[1]);
     const minute = Number(match[2]);
-    const meridiem = match[3]?.toUpperCase();
     if (minute > 59) return null;
     if (meridiem) {
       if (hour < 1 || hour > 12) return null;
