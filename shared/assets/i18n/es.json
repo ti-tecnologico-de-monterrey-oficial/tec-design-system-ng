@@ -583,5 +583,13 @@
   },
   "push_notification_item": {
     "dont_ask_again": "No volver a preguntar"
+  },
+  "time_picker": {
+    "title": "Seleccionar hora",
+    "accept": "Confirmar",
+    "close": "Cancelar",
+    "select_hour": "Selecciona la hora deseada:",
+    "select_minute": "Selecciona  los minutos deseados:",
+    "select_period": "Selecciona el periodo de tiempo deseado:"
   }
 }

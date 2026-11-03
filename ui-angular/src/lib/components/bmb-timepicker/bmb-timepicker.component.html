@@ -1,0 +1,95 @@
+<div class="bmb_timepicker">
+  <bmb-input-validator
+    class="bmb_timepicker_validator"
+    [inputId]="inputId()"
+    [name]="name()"
+    [value]="control().value"
+    [label]="label()"
+    [errorMessage]="errorMessage()"
+    [helperMessage]="helperMessage()"
+    [isRequired]="isRequired()"
+    [isDisabled]="disabled()"
+    [control]="control()"
+    [showError]="shouldShowError"
+    [tooltip]="tooltip()"
+    [customValidation]="customValidation()"
+  >
+    @if (isCompact()) {
+      <div
+        #contentDiv
+        class="bmb_timepicker-field"
+        [class.bmb_timepicker-field-open]="isWindowOpen()"
+      >
+        <bmb-input-content
+          type="text"
+          [inputId]="inputId()"
+          [name]="name()"
+          [control]="control()"
+          [isReadOnly]="true"
+          [isClearable]="isClearable()"
+          [placeholder]="resolvedPlaceholder()"
+          [isError]="shouldShowError"
+          (onFocus)="handleFocus($event)"
+          (onKeyDown)="handleFocusedEvent($event)"
+        >
+          <ng-template #customContent>
+            <bmb-icon
+              class="bmb_timepicker-chevron"
+              icon="keyboard_arrow_down"
+              [size]="24"
+              alt=""
+            />
+          </ng-template>
+        </bmb-input-content>
+      </div>
+    } @else {
+      <div class="bmb_timepicker-compact">
+        <div class="bmb_timepicker-time">
+          <button
+            #timeButton
+            type="button"
+            class="bmb_timepicker-select"
+            [class.bmb_timepicker-select-error]="shouldShowError"
+            [class.bmb_timepicker-select-placeholder]="!displayTime()"
+            [id]="inputId()"
+            [disabled]="disabled() || control().disabled"
+            [attr.aria-label]="label() || name()"
+            [attr.aria-expanded]="activeDropdown() === 'time'"
+            (click)="openCompactList('time')"
+            (focus)="getFocus.emit(true)"
+            (blur)="getFocus.emit(false)"
+          >
+            <span>{{ displayTime() || placeholder() || '-- : --' }}</span>
+            <bmb-icon icon="keyboard_arrow_down" [size]="24" alt="" />
+          </button>
+          @if (isClearable() && displayTime()) {
+            <bmb-action-icon
+              class="bmb_timepicker-clear"
+              icon="close"
+              [iconSize]="24"
+              [disabled]="disabled() || control().disabled"
+              (buttonClick)="clearValue()"
+            />
+          }
+        </div>
+        @if (format() === '12h') {
+          <button
+            #periodButton
+            type="button"
+            class="bmb_timepicker-select bmb_timepicker-period"
+            [class.bmb_timepicker-select-error]="shouldShowError"
+            [disabled]="disabled() || control().disabled"
+            [attr.aria-label]="(label() || name()) + ' AM/PM'"
+            [attr.aria-expanded]="activeDropdown() === 'period'"
+            (click)="openCompactList('period')"
+            (focus)="getFocus.emit(true)"
+            (blur)="getFocus.emit(false)"
+          >
+            <span>{{ period() }}</span>
+            <bmb-icon icon="keyboard_arrow_down" [size]="24" alt="" />
+          </button>
+        }
+      </div>
+    }
+  </bmb-input-validator>
+</div>

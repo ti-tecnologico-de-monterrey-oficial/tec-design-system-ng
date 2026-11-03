@@ -1,0 +1,27 @@
+<section class="bmb_date-time-picker">
+  <bmb-datepicker
+    [inputId]="inputId() + '_date'"
+    [name]="name() + '_date'"
+    [label]="labelDate()"
+    [dateFormat]="dateFormat()"
+    [placeholder]="dateFormat()"
+    [control]="dateControl"
+    [disabled]="disabled()"
+    [isRequired]="isRequired()"
+    [disableDatesBefore]="disableDatesBefore()"
+    [disableDatesAfter]="disableDatesAfter()"
+    helperMessage=""
+    (onChange)="timePicker.openList()"
+  />
+  <bmb-timepicker
+    #timePicker
+    [inputId]="inputId() + '_time'"
+    [name]="name() + '_time'"
+    [label]="labelTime()"
+    [format]="timeFormat()"
+    [minuteStep]="minuteStep()"
+    [control]="timeControl"
+    [disabled]="disabled()"
+    [isRequired]="isRequired()"
+  />
+</section>

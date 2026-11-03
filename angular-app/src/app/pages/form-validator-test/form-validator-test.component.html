@@ -67,6 +67,9 @@
   (onClearField)="onClearField($event)"
 ></bmb-search-input>
 <br />
+<bmb-timepicker label="test label" [isRequired]="true" [control]="getFormControl('time')" [minuteStep]="15" [isClearable]="true" />
+<p>{{ getFormControl('time').value }}</p>
+<br />
 <div style="margin-left: 200px; padding-right: 1rem">
   <bmb-text-editor [control]="getFormControl('htmlText')"></bmb-text-editor>
   <p>{{ getFormControl('htmlText').value }}</p>
