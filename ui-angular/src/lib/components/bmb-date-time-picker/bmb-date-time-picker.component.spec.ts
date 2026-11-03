@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
+import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
+import { BmbTimepickerComponent } from '../bmb-timepicker/bmb-timepicker.component';
 import { BmbDateTimePickerComponent } from './bmb-date-time-picker.component';
 
 describe('BmbDateTimePickerComponent', () => {
@@ -55,5 +58,19 @@ describe('BmbDateTimePickerComponent', () => {
     control.setValue('05/11/2026 - 11:00 AM');
     expect(component.dateControl.value).toBe('05/11/2026');
     expect(component.timeControl.value).toBe('11:00 AM');
+  });
+
+  it('should open the time modal when a date is selected', () => {
+    const datepicker = fixture.debugElement.query(
+      By.directive(BmbDatepickerComponent),
+    ).componentInstance as BmbDatepickerComponent;
+    const timepicker = fixture.debugElement.query(
+      By.directive(BmbTimepickerComponent),
+    ).componentInstance as BmbTimepickerComponent;
+    const openList = jest.spyOn(timepicker, 'openList');
+
+    datepicker.onChange.emit('04/11/2026');
+
+    expect(openList).toHaveBeenCalledTimes(1);
   });
 });

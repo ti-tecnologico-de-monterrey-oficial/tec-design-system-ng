@@ -11,8 +11,10 @@
     [disableDatesBefore]="disableDatesBefore()"
     [disableDatesAfter]="disableDatesAfter()"
     helperMessage=""
+    (onChange)="timePicker.openList()"
   />
   <bmb-timepicker
+    #timePicker
     [inputId]="inputId() + '_time'"
     [name]="name() + '_time'"
     [label]="labelTime()"
