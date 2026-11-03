@@ -2,6 +2,7 @@ import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbChatBarComponent } from './bmb-chat-bar.component';
 import { getBasicExampleBlock, getGeneralDescription } from '@docs/utils/utils';
 import {
+  DBmbDropzone,
   DBmbIconParamDesc,
   DBmbInputParamDesc,
   getModelDescription,
@@ -233,6 +234,7 @@ Enables the file attachment option.
         defaultValue: { summary: 'false' },
       },
     },
+    acceptedExtensions: DBmbDropzone.acceptedExtensions,
     isBotSpeaking: {
       control: { type: 'boolean' },
       description: 'Shows when the bot is speaking',

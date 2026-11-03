@@ -16,7 +16,10 @@ import {
   getSpecialSpecifications,
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
-import { getModelDescription } from '@docs/utils/parameterDescriptions';
+import {
+  DBmbDropzone,
+  getModelDescription,
+} from '@docs/utils/parameterDescriptions';
 
 type FileAttachmentArgs = {
   files: File[];
@@ -134,16 +137,7 @@ ${getModelDescription('onDragFiles')}
         defaultValue: { summary: '' },
       },
     },
-    acceptedExtensions: {
-      control: { type: 'text' },
-      description:
-        'Optional native file picker filter, such as ".pdf,image/*". This is a selection hint, not file validation; it does not restrict drag and drop.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
+    acceptedExtensions: DBmbDropzone.acceptedExtensions,
     filesSelected: {
       control: false,
       description:
