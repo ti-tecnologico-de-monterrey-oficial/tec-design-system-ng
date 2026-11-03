@@ -71,7 +71,9 @@ describe('BmbAIChatCardComponent with projected content', () => {
     const card = fixture.debugElement.query(
       By.directive(BmbAIChatCardComponent),
     ).componentInstance as BmbAIChatCardComponent;
-    const error = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const error = jest
+      .spyOn(console, 'error')
+      .mockImplementation(() => undefined);
 
     card.ngAfterViewInit();
 
@@ -80,7 +82,9 @@ describe('BmbAIChatCardComponent with projected content', () => {
   });
 
   it('should reject multiple projected chat bars', () => {
-    const error = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const error = jest
+      .spyOn(console, 'error')
+      .mockImplementation(() => undefined);
     const multipleBarsFixture = TestBed.createComponent(HostComponent);
     multipleBarsFixture.componentInstance.showSecondChatBar.set(true);
 
@@ -219,7 +223,9 @@ describe('BmbAIChatCardComponent', () => {
   });
 
   it('should log an error when there is not exactly one bmb-chat-bar', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const spy = jest
+      .spyOn(console, 'error')
+      .mockImplementation(() => undefined);
     component.ngAfterViewInit();
     expect(spy).toHaveBeenCalledWith(
       expect.stringContaining('exactly one bmb-chat-bar; 0 were found'),
@@ -412,7 +418,7 @@ describe('BmbAIChatCardComponent effects and lifecycle', () => {
         contentOpen = false;
       }),
     };
-    jest.spyOn(console, 'error').mockImplementation(() => {});
+    jest.spyOn(console, 'error').mockImplementation(() => undefined);
     jest.spyOn(globalThis, 'queueMicrotask').mockImplementation((callback) => {
       pendingMicrotasks.push(callback);
     });
