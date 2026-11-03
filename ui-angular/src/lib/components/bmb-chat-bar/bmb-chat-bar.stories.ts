@@ -262,15 +262,6 @@ Enables the file attachment option.
     disabledInput: false,
     enableMicInput: false,
     allowAttachments: false,
-    actionsList: [
-      {
-        name: 'Test',
-        icon: 'home',
-        action: () => {
-          console.info('test ');
-        },
-      },
-    ],
     botList: [
       {
         name: 'TecBot',
@@ -300,6 +291,7 @@ Enables the file attachment option.
     currentBot: { name: 'TecBot', icon: 'bot_tecStandar' },
     showEmoji: false,
     emojiIcon: 'mood',
+    acceptedExtensions: ['png', 'image/jpeg', 'jpg'],
   },
 } as Meta<typeof BmbChatBarComponent>;
 
