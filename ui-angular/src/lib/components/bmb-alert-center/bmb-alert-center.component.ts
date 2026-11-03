@@ -36,7 +36,7 @@ import type {
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { TranslatePipe } from '../../pipes/translations';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';

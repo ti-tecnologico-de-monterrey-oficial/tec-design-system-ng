@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   BmbAIChatCardComponent,
+  BmbDropdownComponent,
   BmbAiChatBubbleComponent,
   BmbChatBarComponent,
   BmbChatAttachmentsService,
@@ -63,7 +64,9 @@ describe('AIChatCardAttachment', () => {
       expect(component.maxFileSize()).toBe(2);
       expect(component.acceptedFormats()).toContain('.pdf');
       expect(
-        fixture.nativeElement.querySelector('form + p + p[role="alert"]'),
+        fixture.nativeElement.querySelector(
+          'bmb-form-validator + p[role="alert"]',
+        ),
       ).toBeTruthy();
       component.configurationForm.setValue({
         acceptedFormats: '.pdf',
@@ -122,8 +125,9 @@ describe('AIChatCardAttachment', () => {
           .textContent,
       ).toContain('evidence.pdf');
       expect(
-        fixture.nativeElement.querySelector('.attachment-page-inspector')
-          .textContent,
+        fixture.nativeElement.querySelector(
+          'aside[aria-label="Attachment events"]',
+        ).textContent,
       ).toContain('evidence.pdf');
       expect(component.attachmentResults()[0].status).toBe('selected');
     });
@@ -147,7 +151,7 @@ describe('AIChatCardAttachment', () => {
         ),
       ).toBeTruthy();
       const inspector = fixture.nativeElement.querySelector(
-        '.attachment-page-inspector',
+        'aside[aria-label="Attachment events"]',
       ).textContent;
       expect(inspector).toContain('invalid.xps');
       expect(inspector).toContain('large.pdf');
@@ -298,14 +302,10 @@ describe('AIChatCardAttachment', () => {
   });
 
   it('should update the selected mode', () => {
-    const select = document.createElement('select');
-    const option = document.createElement('option');
-    option.value = IBMB_AI_CHAT_CARD_MODE.INVISIBLE;
-    select.appendChild(option);
-    const event = new Event('change');
-    Object.defineProperty(event, 'target', { value: select });
-
-    component.selectMode(event);
+    fixture.debugElement
+      .query(By.directive(BmbDropdownComponent))
+      .componentInstance.onValueChange.emit(IBMB_AI_CHAT_CARD_MODE.INVISIBLE);
+    fixture.detectChanges();
 
     expect(component.mode()).toBe(IBMB_AI_CHAT_CARD_MODE.INVISIBLE);
   });

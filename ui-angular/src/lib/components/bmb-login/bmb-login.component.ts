@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { FormGroup } from '@angular/forms';
-import { BmbUserProfileService } from '../../services/old/user/profile.service';
+import { BmbUserProfileService } from '../../services/user/profile.service';
 import {
   BmbHeaderMitecComponent,
   IBmbActionHeaderLinks,

@@ -3,7 +3,7 @@ import { BmbExternalLinkComponent } from './bmb-external-link.component';
 import { ComponentRef, ElementRef } from '@angular/core';
 import { IBmbFooterEvent } from '../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
 import { IBmbMenuEvent } from '../../_shared/types';
-import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 
 describe('BmbExternalLinkComponent', () => {
   let component: BmbExternalLinkComponent;
