@@ -1776,7 +1776,7 @@ export const DBmbActionMenu = {
 
 export const DBmbDropzone = {
   acceptedExtensions: {
-    control: { type: 'text' as const },
+    control: { type: 'object' as const },
     description: `Sets the file extensions or MIME types accepted.<br/><br/>
 ${RELEVANT_TITLE.important} ***/**** is for all extensions or subtypes.<br/><br/>
 ${RELEVANT_TITLE.example} ***image/**** is for all image types:
@@ -1787,6 +1787,7 @@ This is a selection hint, not file validation; it does not restrict drag and dro
     table: {
       category: 'Properties',
       type: { summary: 'string[]' },
+      defaultValue: { summary: '[]' },
     },
   },
 };
