@@ -49,6 +49,23 @@ describe('BmbChatBarComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should show rejected attachment errors in a toast', () => {
+    fixture.componentRef.setInput('acceptedExtensions', ['.pdf']);
+    fixture.detectChanges();
+
+    component.handleAttachmentChanges([
+      new File(['document'], 'document.txt', { type: 'text/plain' }),
+    ]);
+    fixture.detectChanges();
+
+    const toast = fixture.nativeElement.querySelector('bmb-toast');
+    expect(toast).not.toBeNull();
+    expect(toast.querySelector('.bmb_toast-error')).not.toBeNull();
+    expect(toast.querySelector('.bmb_toast-description').textContent).toContain(
+      'document.txt',
+    );
+  });
+
   it('should send attached files through the existing output and clear them', () => {
     const attachment = fixture.debugElement.query(
       By.directive(BmbFileAttachmentPicker),
@@ -174,7 +191,7 @@ describe('BmbChatBarComponent', () => {
         fixture.nativeElement.querySelector('.bmb_chat-bar-add'),
       ).not.toBeNull();
       expect(menuActions().map(({ icon }) => icon)).toEqual([
-        'upload_file',
+        'attach_file',
         'help',
       ]);
 

@@ -42,7 +42,10 @@ import {
   BmbChatAttachmentsService,
   provideBmbChatAttachments,
 } from '../../services/chat-attachments/chat-attachments.service';
-import { BmbChatAttachmentResult } from '../../_shared/types';
+import type {
+  BmbChatAttachmentError,
+  BmbChatAttachmentResult,
+} from '../../_shared/types';
 import { getUUID } from '../../_shared/logic/utils';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
@@ -50,11 +53,9 @@ import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
+import { BmbToastComponent } from '../bmb-toast/bmb-toast.component';
 
-export {
-  defaultActionList,
-  defaultBotList,
-} from '../../_shared/logic/components/chat-bar-defaults';
+export { defaultBotList } from '../../_shared/logic/components/chat-bar-defaults';
 export type {
   IBotType,
   IChatBarActions,
@@ -75,6 +76,7 @@ export type {
     BmbItemComponent,
     TranslatePipe,
     BmbFileAttachmentPicker,
+    BmbToastComponent,
   ],
   templateUrl: './bmb-chat-bar.component.html',
   styleUrl: './bmb-chat-bar.component.scss',
@@ -137,7 +139,7 @@ export class BmbChatBarComponent implements OnInit, AfterViewInit {
     }
     const attachAction: IChatBarActions = {
       name: this.translationsService.translate('chat_bar.attach_file'),
-      icon: 'upload_file',
+      icon: 'attach_file',
       action: () => this.openFilePicker(),
     };
     return [attachAction, ...actions];
@@ -166,14 +168,6 @@ export class BmbChatBarComponent implements OnInit, AfterViewInit {
   protected readonly _disabledInput = computed<boolean>(
     () => this.isLoading() || this.disabledInput(),
   );
-
-  private readonly _syncDisabledState = effect(() => {
-    if (this._disabledInput()) {
-      this.control.disable({ emitEvent: false });
-    } else {
-      this.control.enable({ emitEvent: false });
-    }
-  });
 
   ngOnInit(): void {
     this.destroyRef.onDestroy(
@@ -283,6 +277,28 @@ export class BmbChatBarComponent implements OnInit, AfterViewInit {
       true,
     );
     this.attachmentResult.emit(result);
+  }
+
+  protected attachmentErrorDescription(error: BmbChatAttachmentError): string {
+    const key = 'ai_chat_bubble.upload_file.';
+    const description = this.translationsService.translate(
+      key + 'error_' + error.code,
+    );
+    if (error.code === 'format') {
+      return [
+        this.translationsService.translate(key + 'format_prefix'),
+        error.extension ?? error.fileName,
+        description,
+      ]
+        .filter(Boolean)
+        .join(' ');
+    }
+    const prefix = error.fileName ? `${error.fileName}: ` : '';
+    const size =
+      error.code === 'size'
+        ? ` ${error.maxFileSize ?? this.maxFileSize()} MB.`
+        : '';
+    return `${prefix}${description}${size}`;
   }
 
   handleDotPress(index: number): void {

@@ -114,8 +114,7 @@ Optionally you can customize the action list input. By default, the "Upload File
       `,
       table: {
         category: 'Properties',
-        type: { summary: 'IBotActions[]' },
-        defaultValue: { summary: 'defaultActionList<IActions[]>' },
+        defaultValue: { summary: '[]' },
       },
     },
     currentBot: {
@@ -262,6 +261,15 @@ Enables the file attachment option.
     disabledInput: false,
     enableMicInput: false,
     allowAttachments: false,
+    actionsList: [
+      {
+        name: 'Test',
+        icon: 'home',
+        action: () => {
+          console.info('test ');
+        },
+      },
+    ],
     botList: [
       {
         name: 'TecBot',
