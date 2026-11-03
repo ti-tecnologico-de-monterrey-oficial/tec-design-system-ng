@@ -31,11 +31,11 @@ import type {
 } from '../../_shared/types/components/chat-bar';
 import { ClickOutsideDirective } from '../../directives/click-outside/clickoutside.directive';
 import { TranslatePipe } from '../../pipes/translations';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,
-} from '../../services/old/projection/projection.service';
+} from '../../services/projection/projection.service';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { BmbFileAttachmentPicker } from '../bmb-file-attachment-picker/bmb-file-attachment-picker.component';
 import {

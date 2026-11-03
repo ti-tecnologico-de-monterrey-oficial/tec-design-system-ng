@@ -54,7 +54,7 @@
       "options": {
         "port": 4400,
         "configDir": "ui-angular/.storybook",
-        "browserTarget": "angular-app:storybook-browser:production",
+        "browserTarget": "angular-app:storybook-browser:development",
         "compodoc": false
       },
       "configurations": {

@@ -3,7 +3,7 @@ import { BmbDropdownMenuComponent } from './bmb-dropdown-menu.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ActivatedRoute } from '@angular/router';
-import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 
 describe('BmbDropdownMenuComponent', () => {
   const projectionService = {

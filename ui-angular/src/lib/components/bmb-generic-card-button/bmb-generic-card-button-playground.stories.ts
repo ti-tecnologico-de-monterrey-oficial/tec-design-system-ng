@@ -5,7 +5,7 @@ import { BmbGenericCardButtonComponent } from './bmb-generic-card-button.compone
 import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
-} from '../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
+} from '../../directives/bmb-layout-grid/bmb-layout-grid.directive';
 import { SizeNames } from '../../_shared/types';
 import { getSpecialSpecifications } from '@docs/utils/utils';
 

@@ -2,19 +2,47 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbChatBarComponent } from './bmb-chat-bar.component';
 import { By } from '@angular/platform-browser';
 import { BmbFileAttachmentPicker } from '../bmb-file-attachment-picker/bmb-file-attachment-picker.component';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 
 describe('BmbChatBarComponent', () => {
   let component: BmbChatBarComponent;
   let fixture: ComponentFixture<BmbChatBarComponent>;
+  const modal = {
+    openModal: jest.fn(() => 'bot-selector'),
+    closeModal: jest.fn(),
+  };
+  const projection = { openContent: jest.fn(), closeContent: jest.fn() };
+  const originalWidth = window.innerWidth;
+  const originalObjectURL = Object.getOwnPropertyDescriptor(
+    URL,
+    'createObjectURL',
+  );
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BmbChatBarComponent],
+      providers: [
+        { provide: BmbNativeModalService, useValue: modal },
+        { provide: BmbProjectionContentService, useValue: projection },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BmbChatBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    if (originalObjectURL)
+      Object.defineProperty(URL, 'createObjectURL', originalObjectURL);
+    else Reflect.deleteProperty(URL, 'createObjectURL');
+    Object.defineProperty(window, 'innerWidth', {
+      configurable: true,
+      value: originalWidth,
+    });
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should create', () => {

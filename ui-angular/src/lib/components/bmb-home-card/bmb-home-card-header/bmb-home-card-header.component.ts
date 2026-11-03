@@ -34,7 +34,7 @@ import { TranslatePipe } from '../../../pipes/translations';
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,
-} from '../../../services/old/projection/projection.service';
+} from '../../../services/projection/projection.service';
 
 @Component({
   selector: 'bmb-home-card-header',

@@ -9,7 +9,7 @@ import { BmbTitleComponent } from '../bmb-title/bmb-title.component';
 import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
-} from '../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
+} from '../../directives/bmb-layout-grid/bmb-layout-grid.directive';
 import {
   getSpecialSpecifications,
   getTechnicalDocReferences,
@@ -22,7 +22,7 @@ import * as iconStory from '../bmb-icon/bmb-icon.stories';
 import * as imageStory from '../bmb-image/bmb-image.stories';
 import * as textLinkStory from '../bmb-text-link/bmb-text-link.stories';
 import * as titleStory from '../bmb-title/bmp-title.stories';
-import * as layoutGridStory from '../../directives/old/bmb-layout-grid/bmb-layout-grid.stories';
+import * as layoutGridStory from '../../directives/bmb-layout-grid/bmb-layout-grid.stories';
 
 export const technicalReferences = getSpecialSpecifications(
   getTechnicalDocReferences({

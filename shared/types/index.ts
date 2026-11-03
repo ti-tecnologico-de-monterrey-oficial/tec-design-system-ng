@@ -72,7 +72,7 @@ export * from './components/web-templates';
 
 export * from './chat-attachment';
 export * from './input';
-export * from './utils';
+export * from './utils/utils';
 
 export * from './components/alert-center';
 export * from './components/calendar';

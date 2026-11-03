@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
-  BmbDropdownComponent,
-  BmbInputComponent,
+  BmbAiChatBubbleComponent,
+  BmbTabsComponent,
   BmbTranslationsService,
-  type BmbChatMessageType,
 } from 'ui-angular';
 import { AiChatBubblePage } from './ai-chat-bubble-page';
 
@@ -28,133 +27,79 @@ describe('AiChatBubblePage', () => {
     }).compileComponents();
     fixture = TestBed.createComponent(AiChatBubblePage);
     page = fixture.componentInstance;
-    page.showActions.set(false);
     fixture.detectChanges();
   });
 
-  it('should select message types from the BmbDropdown event', () => {
-    const dropdown = fixture.debugElement.query(
-      By.directive(BmbDropdownComponent),
-    );
-    dropdown.componentInstance.onValueChange.emit('upload-file');
+  it.each([
+    [1, ['text', 'text', 'text', 'text']],
+    [2, ['image', 'mixed']],
+    [3, ['link', 'options']],
+    [4, ['text', 'text', 'text']],
+    [5, ['text', 'text', 'text', 'text']],
+  ])('renders conversation tab %s', (id, types) => {
+    const tab = page.tabs.find((tab) => tab.id === id)!;
+    fixture.debugElement
+      .query(By.directive(BmbTabsComponent))
+      .componentInstance.selected.emit(tab);
     fixture.detectChanges();
-    expect(page.selectedMessageType()).toBe('upload-file');
+    expect(page.activeTabId()).toBe(id);
     expect(
-      fixture.nativeElement.querySelector('bmb-upload-file-message'),
-    ).toBeTruthy();
-    expect(fixture.nativeElement.querySelector('bmb-tabs')).toBeNull();
+      fixture.debugElement
+        .queryAll(By.directive(BmbAiChatBubbleComponent))
+        .map(({ componentInstance }) => componentInstance.message().type),
+    ).toEqual(types);
   });
 
-  it.each<BmbChatMessageType>([
-    'text',
-    'image',
-    'mixed',
-    'link',
-    'options',
-    'upload-file',
-    'template',
-  ])('should build and render a %s message', (type) => {
-    page.selectMessageType(type);
+  it('updates user avatars through the image selector', () => {
+    const select: HTMLSelectElement =
+      fixture.nativeElement.querySelector('select');
+    select.value = page.userImageOptions[1].value;
+    select.dispatchEvent(new Event('change'));
     fixture.detectChanges();
-    expect(page.message()?.type).toBe(type);
+    expect(page.selectedUserImage()).toBe(select.value);
     expect(
-      fixture.nativeElement.querySelector(
-        `[data-automation-id="preview-${type}"]`,
-      ),
-    ).toBeTruthy();
+      page
+        .conversation()
+        .filter((message) => message.isUser)
+        .every((message) => message.userProfile === select.value),
+    ).toBe(true);
   });
 
-  it('should only show controls relevant to the selected type', () => {
-    page.selectMessageType('image');
-    fixture.detectChanges();
-    expect(fixture.nativeElement.textContent).toContain('Texto alternativo');
-    expect(fixture.nativeElement.textContent).not.toContain(
-      'Nombre del archivo',
+  it('updates optional user actions through the controls', () => {
+    const controls = fixture.nativeElement.querySelectorAll(
+      'input[type="checkbox"]',
     );
-
-    page.selectMessageType('upload-file');
+    controls[0].click();
+    controls[1].click();
     fixture.detectChanges();
-    expect(fixture.nativeElement.textContent).toContain('Nombre del archivo');
-    expect(fixture.nativeElement.textContent).not.toContain(
-      'Texto alternativo',
-    );
-    expect(fixture.nativeElement.textContent).not.toContain('Mostrar editar');
+    expect(page.userActions()).toEqual([]);
   });
 
-  it('should update accepted formats from the BmbInput event', () => {
-    page.selectMessageType('upload-file');
+  it('applies message edits and removes the following conversation', () => {
+    const previousMessage = page.conversation()[1];
+    const editedMessage = {
+      ...previousMessage,
+      content: { text: 'Updated question' },
+    };
+    fixture.debugElement
+      .queryAll(By.directive(BmbAiChatBubbleComponent))[1]
+      .componentInstance.messageEdited.emit({ previousMessage, editedMessage });
     fixture.detectChanges();
-    const input = fixture.debugElement.query(By.directive(BmbInputComponent));
-    expect(input.componentInstance.label()).toBe('Formatos aceptados');
-    const nativeInput = document.createElement('input');
-    nativeInput.value = '.png,image/png';
-    input.componentInstance.onChange.emit(nativeInput);
-    fixture.detectChanges();
-    expect(page.message()).toMatchObject({
-      type: 'upload-file',
-      content: { acceptedFormats: ['.png', 'image/png'] },
+    expect(page.conversation()).toHaveLength(2);
+    expect(page.conversation()[1].content).toEqual({
+      text: 'Updated question',
     });
-    nativeInput.value = '';
-    input.componentInstance.onChange.emit(nativeInput);
-    fixture.detectChanges();
-    expect(page.message()).toMatchObject({
-      content: { acceptedFormats: [] },
-    });
+    expect(page.conversationEvent()).toContain(previousMessage.id);
   });
 
-  it('should preserve controls and update message content across selections', () => {
-    page.text.set('Texto de prueba');
-    page.selectMessageType('image');
-    page.selectMessageType('text');
-    expect(page.message()).toMatchObject({
-      type: 'text',
-      content: { text: 'Texto de prueba' },
-    });
-  });
-
-  it('should omit empty upload requirements and forward upload requests', () => {
-    page.selectMessageType('upload-file');
-    page.acceptedFormats.set('');
-    page.maxFileSize.set(undefined);
-    page.additionalRequirements.set('');
-    fixture.detectChanges();
-    expect(page.message()).toMatchObject({
-      type: 'upload-file',
-      content: { fileName: page.fileName() },
-    });
-    expect(
-      fixture.nativeElement.querySelector(
-        '.bmb_upload-file-message-requirements',
-      ),
-    ).toBeNull();
-    const button: HTMLButtonElement = fixture.nativeElement.querySelector(
-      'bmb-upload-file-message button',
-    );
-    button.click();
-    expect(page.conversationEvent()).toContain('uploadFileRequested');
-    expect(page.conversationEvent()).toContain('preview-upload-file');
-  });
-
-  it('should generate options and link targets from their controls', () => {
-    page.selectMessageType('options');
-    page.optionLabels.set('Primera\n\nSegunda');
-    expect(page.message()).toMatchObject({
-      content: {
-        options: [
-          { id: 'option-0', label: 'Primera' },
-          { id: 'option-1', label: 'Segunda' },
-        ],
-      },
-    });
-    page.selectMessageType('link');
-    page.openInNewTab.set(false);
-    expect(page.message()).toMatchObject({ content: { target: '_self' } });
-  });
-
-  it('should reject an unknown dropdown value', () => {
-    expect(() => page.selectMessageType('invalid')).toThrow(
-      'Unknown chat message type',
-    );
-    expect(page.selectedMessageType()).toBe('text');
+  it('records bubble actions and cancelled edits', () => {
+    const bubble = fixture.debugElement.query(
+      By.directive(BmbAiChatBubbleComponent),
+    ).componentInstance;
+    const message = page.conversation()[0];
+    bubble.getAction.emit({ action: 'copy', messageId: message.id, message });
+    expect(page.conversationEvent()).toContain('copy');
+    bubble.messageEditCancelled.emit(message);
+    expect(page.conversationEvent()).toContain(message.id);
   });
 });

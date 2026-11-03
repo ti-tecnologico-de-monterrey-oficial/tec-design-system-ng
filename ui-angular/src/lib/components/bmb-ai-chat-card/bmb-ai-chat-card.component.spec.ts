@@ -7,8 +7,8 @@ import {
   signal,
 } from '@angular/core';
 import { BmbChatBarComponent } from '../bmb-chat-bar/bmb-chat-bar.component';
-import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
-import type { IBmbProjectionContent } from '../../services/old/projection/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
+import type { IBmbProjectionContent } from '../../services/projection/projection.service';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { By } from '@angular/platform-browser';
 import {
