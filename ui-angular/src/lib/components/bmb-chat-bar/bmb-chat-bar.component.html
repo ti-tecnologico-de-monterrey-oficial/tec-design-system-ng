@@ -186,14 +186,17 @@
   @if (result.errors.length) {
     <div class="bmb_chat-bar-file-errors">
       @for (error of result.errors; track $index) {
-        <bmb-toast
-          appearance="error"
-          [isClosable]="true"
-          [description]="attachmentErrorDescription(error)"
-          [componentTitle]="
-            'ai_chat_bubble.upload_file.error_title' | translate
-          "
-        />
+        @if (!dismissedAttachmentErrors().has($index)) {
+          <bmb-toast
+            appearance="error"
+            [isClosable]="true"
+            [description]="attachmentErrorDescription(error)"
+            [componentTitle]="
+              'ai_chat_bubble.upload_file.error_title' | translate
+            "
+            (onClose)="dismissAttachmentError($index)"
+          />
+        }
       }
     </div>
   }

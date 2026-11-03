@@ -60,10 +60,16 @@ describe('BmbChatBarComponent', () => {
 
     const toast = fixture.nativeElement.querySelector('bmb-toast');
     expect(toast).not.toBeNull();
+    expect(component.files()).toEqual([]);
     expect(toast.querySelector('.bmb_toast-error')).not.toBeNull();
     expect(toast.querySelector('.bmb_toast-description').textContent).toContain(
       'document.txt',
     );
+
+    toast.querySelector('.bmb_toast-button').click();
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('bmb-toast')).toBeNull();
   });
 
   it('should send attached files through the existing output and clear them', () => {

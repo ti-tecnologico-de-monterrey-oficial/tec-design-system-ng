@@ -164,6 +164,9 @@ export class BmbChatBarComponent implements OnInit, AfterViewInit {
   protected readonly fileResult = computed(() =>
     this.attachments.result(this.attachmentSourceId),
   );
+  protected readonly dismissedAttachmentErrors = signal<Set<number>>(
+    new Set(),
+  );
 
   protected readonly _disabledInput = computed<boolean>(
     () => this.isLoading() || this.disabledInput(),
@@ -267,6 +270,7 @@ export class BmbChatBarComponent implements OnInit, AfterViewInit {
   }
 
   handleAttachmentChanges(files: File[]): void {
+    this.dismissedAttachmentErrors.set(new Set());
     const result = this.attachments.select(
       files,
       {
@@ -277,6 +281,12 @@ export class BmbChatBarComponent implements OnInit, AfterViewInit {
       true,
     );
     this.attachmentResult.emit(result);
+  }
+
+  protected dismissAttachmentError(index: number): void {
+    this.dismissedAttachmentErrors.update((dismissed) =>
+      new Set(dismissed).add(index),
+    );
   }
 
   protected attachmentErrorDescription(error: BmbChatAttachmentError): string {
