@@ -1,0 +1,63 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.bmb_upload-file-message {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bmb-spacing-l);
+  overflow-wrap: anywhere;
+
+  p {
+    margin: 0;
+    white-space: pre-line;
+  }
+
+  &-alert {
+    display: flex;
+    flex-direction: column;
+    gap: var(--bmb-spacing-m);
+
+    > bmb-toast {
+      display: block;
+      min-width: 0;
+    }
+  }
+
+  &-solutions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--bmb-spacing-m);
+    margin: var(--bmb-spacing-l) 0;
+  }
+
+  &-retry {
+    width: 100%;
+    border-radius: 999px;
+  }
+
+  &-choose {
+    background: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    padding: 0 var(--bmb-spacing-xs);
+
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+  }
+
+  &-requirements {
+    display: flex;
+    flex-direction: column;
+    gap: var(--bmb-spacing-s);
+    list-style: none;
+    margin: var(--bmb-spacing-l) 0;
+    padding: 0;
+  }
+}

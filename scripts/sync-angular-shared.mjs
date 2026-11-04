@@ -22,6 +22,17 @@ cpSync('shared/types', targets.types, { recursive: true });
 cpSync('shared/assets/styles', targets.styles, { recursive: true });
 cpSync('shared/assets', targets.assets, { recursive: true });
 
+// Preserve Angular template defaults after removing the compatibility overlay.
+const chatTypesFile = `${targets.types}/components/ai-chat-bubble.ts`;
+const chatTypes = readFileSync(chatTypesFile, 'utf8').replaceAll(
+  'TTemplate = unknown',
+  'TTemplate = TemplateRef<unknown>',
+);
+writeFileSync(
+  chatTypesFile,
+  `import type { TemplateRef } from '@angular/core';\n\n${chatTypes}`,
+);
+
 for (const file of [
   `${targets.types}/index.ts`,
   `${targets.logic}/utils.ts`,

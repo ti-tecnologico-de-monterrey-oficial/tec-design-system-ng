@@ -12,7 +12,7 @@ import {
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { IDropdownItem, IBmbDropdownMenuIcon } from '../../_shared/types';
-import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { TranslatePipe } from '../../pipes/translations';
 import { handleDropdownItemSelection } from '../../_shared/logic/components/dropdown-menu';
 

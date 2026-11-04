@@ -14,8 +14,7 @@ import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.direc
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbActionContainerComponent } from '../bmb-action-container/bmb-action-container.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import {
   IBmbProgressBarStatusColor,
@@ -37,10 +36,9 @@ import {
     BmbVerticalLayoutItemDirective,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-    BmbIconComponent,
     BmbValueCounterComponent,
     BmbTextLinkComponent,
-    BmbActionIconComponent,
+    BmbActionContainerComponent,
   ],
   templateUrl: './bmb-progress-bar.component.html',
   styleUrl: './bmb-progress-bar.component.scss',
@@ -79,12 +77,6 @@ export class BmbProgressBarComponent {
         { name: 'componentTitle', hasValue: !!newTitle },
       );
     });
-  }
-
-  handleClick(event: MouseEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.actionClick.emit(event);
   }
 
   progressValue = computed(() => {

@@ -3,6 +3,8 @@ import { BmbProgressBarComponent } from './bmb-progress-bar.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ComponentRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { BmbActionContainerComponent } from '../bmb-action-container/bmb-action-container.component';
 
 describe('BmbProgressBarComponent', () => {
   let component: BmbProgressBarComponent;
@@ -76,19 +78,38 @@ describe('BmbProgressBarComponent', () => {
     });
   });
 
-  describe('handleClick', () => {
-    it('should prevent default, stop propagation and emit actionClick', () => {
+  describe('container', () => {
+    it('should render bmb-action-container and re-emit actionClick', () => {
+      componentRef.setInput('isContainer', true);
+      componentRef.setInput('actionIcon', 'delete');
+      fixture.detectChanges();
+
+      const container = fixture.debugElement.query(
+        By.directive(BmbActionContainerComponent),
+      );
+      expect(container).toBeTruthy();
+
       const emitSpy = jest.spyOn(component.actionClick, 'emit');
-      const event = {
-        preventDefault: jest.fn(),
-        stopPropagation: jest.fn(),
-      } as unknown as MouseEvent;
-
-      component.handleClick(event);
-
-      expect(event.preventDefault).toHaveBeenCalled();
-      expect(event.stopPropagation).toHaveBeenCalled();
+      const event = new MouseEvent('click');
+      (container.componentInstance as BmbActionContainerComponent).actionClick.emit(
+        event,
+      );
       expect(emitSpy).toHaveBeenCalledWith(event);
+    });
+
+    it('should hide the avatar icon for the simple type', () => {
+      componentRef.setInput('isContainer', true);
+      componentRef.setInput('avatarIcon', 'description');
+      fixture.detectChanges();
+
+      const container = fixture.debugElement.query(
+        By.directive(BmbActionContainerComponent),
+      ).componentInstance as BmbActionContainerComponent;
+      expect(container.avatarIcon()).toBe('');
+
+      componentRef.setInput('type', 'counter');
+      fixture.detectChanges();
+      expect(container.avatarIcon()).toBe('description');
     });
   });
 });

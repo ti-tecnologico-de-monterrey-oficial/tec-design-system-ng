@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbLoginOnboardingStepperStepFourComponent } from './bmb-login-onboarding-stepper-step-four.component';
 import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
-import { BmbNativeModalService } from '../../../../services/old/modal/native-modal.service';
+import { BmbNativeModalService } from '../../../../services/modal/native-modal.service';
 
 describe('BmbLoginOnboardingStepperStepFourComponent', () => {
   let component: BmbLoginOnboardingStepperStepFourComponent;

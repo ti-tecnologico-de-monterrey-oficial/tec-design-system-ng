@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-stepper-step.component';
 import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
-import { BmbNativeModalService } from '../../../../services/old/modal/native-modal.service';
+import { BmbNativeModalService } from '../../../../services/modal/native-modal.service';
 import { IBmbNativeModal as IBmbNativeModalGeneric } from '../../../../_shared/types';
 
 type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
