@@ -1,4 +1,5 @@
 import { NgComponentOutlet } from '@angular/common';
+import { FormControl } from '@angular/forms';
 import { afterEveryRender,
   ChangeDetectionStrategy,
   Component,
@@ -11,6 +12,15 @@ import { afterEveryRender,
   signal,
   Type,
   viewChild } from '@angular/core';
+import {
+  BmbButtonDirective,
+  BmbCheckboxComponent,
+  BmbDividerComponent,
+  BmbDropdownComponent,
+  BmbInputComponent,
+  BmbLayoutDirective,
+  BmbLayoutItemDirective,
+} from 'ui-angular';
 import { demoDrafts,
   DemoConfiguration,
   DemoValue,
@@ -19,7 +29,16 @@ import { demoDrafts,
 
 @Component({
   selector: 'app-property-playground',
-  imports: [NgComponentOutlet],
+  imports: [
+    NgComponentOutlet,
+    BmbCheckboxComponent,
+    BmbDividerComponent,
+    BmbDropdownComponent,
+    BmbInputComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+    BmbButtonDirective,
+  ],
   templateUrl: './property-playground.html',
   styleUrl: './property-playground.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,6 +55,7 @@ export class PropertyPlayground implements OnInit {
   readonly events = signal<{ name: string; payload: string }[]>([]);
   readonly outputNames = signal<string[]>([]);
   readonly outlet = viewChild(NgComponentOutlet);
+  private readonly inputControls = new Map<string, FormControl<string>>();
   private instance: unknown;
   private subscriptions: { unsubscribe(): void }[] = [];
 
@@ -64,11 +84,31 @@ export class PropertyPlayground implements OnInit {
 
   setDraft(name: string, value: string | boolean, refresh = true): void {
     this.drafts.update((drafts) => ({ ...drafts, [name]: value }));
+    const control = this.inputControls.get(name);
+    const textValue = String(value ?? '');
+    if (control && control.value !== textValue)
+      control.setValue(textValue, { emitEvent: false });
     if (refresh) this.apply();
   }
 
+  getInputControl(name: string): FormControl<string> {
+    let control = this.inputControls.get(name);
+    if (!control) {
+      control = new FormControl(String(this.drafts()[name] ?? ''), {
+        nonNullable: true,
+      });
+      control.valueChanges.subscribe((value) => this.setDraft(name, value));
+      this.inputControls.set(name, control);
+    }
+    return control;
+  }
+
   reset(): void {
-    this.drafts.set(demoDrafts(this.configuration()));
+    const drafts = demoDrafts(this.configuration());
+    this.drafts.set(drafts);
+    this.inputControls.forEach((control, name) =>
+      control.setValue(String(drafts[name] ?? ''), { emitEvent: false }),
+    );
     this.events.set([]);
     this.apply();
   }

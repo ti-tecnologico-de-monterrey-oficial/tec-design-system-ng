@@ -26,15 +26,3 @@ export const defaultBotList = [
   { name: 'Xai', label: 'Xai', icon: 'xai' },
   { name: 'Google', label: 'Google', icon: 'google' },
 ];
-
-export const defaultActionList: IChatBarActions[] = [
-  {
-    name: 'Adjuntar Archivo',
-    label: 'Adjuntar Archivo',
-    icon: 'upload_file',
-    action: () => {
-      const input = document.getElementById('inputFile') as HTMLInputElement;
-      input?.click();
-    },
-  },
-];

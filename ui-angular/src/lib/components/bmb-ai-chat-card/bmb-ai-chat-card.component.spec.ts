@@ -71,7 +71,9 @@ describe('BmbAIChatCardComponent with projected content', () => {
     const card = fixture.debugElement.query(
       By.directive(BmbAIChatCardComponent),
     ).componentInstance as BmbAIChatCardComponent;
-    const error = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const error = jest
+      .spyOn(console, 'error')
+      .mockImplementation(() => undefined);
 
     card.ngAfterViewInit();
 
@@ -80,7 +82,9 @@ describe('BmbAIChatCardComponent with projected content', () => {
   });
 
   it('should reject multiple projected chat bars', () => {
-    const error = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const error = jest
+      .spyOn(console, 'error')
+      .mockImplementation(() => undefined);
     const multipleBarsFixture = TestBed.createComponent(HostComponent);
     multipleBarsFixture.componentInstance.showSecondChatBar.set(true);
 
@@ -219,7 +223,9 @@ describe('BmbAIChatCardComponent', () => {
   });
 
   it('should log an error when there is not exactly one bmb-chat-bar', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const spy = jest
+      .spyOn(console, 'error')
+      .mockImplementation(() => undefined);
     component.ngAfterViewInit();
     expect(spy).toHaveBeenCalledWith(
       expect.stringContaining('exactly one bmb-chat-bar; 0 were found'),
@@ -377,7 +383,6 @@ describe('BmbAIChatCardComponent effects and lifecycle', () => {
   let fixture: ComponentFixture<BmbAIChatCardComponent>;
   let component: BmbAIChatCardComponent;
   let contentOpen: boolean;
-  let pendingMicrotasks: VoidFunction[];
   let observers: {
     observer: MutationObserver;
     callback: MutationCallback;
@@ -400,7 +405,6 @@ describe('BmbAIChatCardComponent effects and lifecycle', () => {
 
   beforeEach(async () => {
     contentOpen = false;
-    pendingMicrotasks = [];
     observers = [];
     projection = {
       isContentOpen: jest.fn(() => contentOpen),
@@ -412,10 +416,7 @@ describe('BmbAIChatCardComponent effects and lifecycle', () => {
         contentOpen = false;
       }),
     };
-    jest.spyOn(console, 'error').mockImplementation(() => {});
-    jest.spyOn(globalThis, 'queueMicrotask').mockImplementation((callback) => {
-      pendingMicrotasks.push(callback);
-    });
+    jest.spyOn(console, 'error').mockImplementation(() => undefined);
     jest.spyOn(window, 'MutationObserver').mockImplementation((callback) => {
       const observer: MutationObserver = {
         observe: jest.fn(),
@@ -443,7 +444,9 @@ describe('BmbAIChatCardComponent effects and lifecycle', () => {
             @if (isExpanded()) {
               <ng-template #aiChatContent></ng-template>
               <div #aiChatBubblesContainer data-testid="bubbles"></div>
-              <div #aiChatBarContainer data-testid="bar"><textarea></textarea></div>
+              <div #aiChatBarContainer data-testid="bar">
+                <textarea class="bmb_chat-bar-input"></textarea>
+              </div>
             }
           `,
         },
@@ -557,6 +560,7 @@ describe('BmbAIChatCardComponent effects and lifecycle', () => {
 
   it('should observe bubble descendants and scroll when a mutation occurs', () => {
     component.isExpanded.set(true);
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
     fixture.detectChanges();
     const bubbles = fixture.nativeElement.querySelector(
       '[data-testid="bubbles"]',
@@ -576,6 +580,7 @@ describe('BmbAIChatCardComponent effects and lifecycle', () => {
   it('should scroll immediately when the bubbles container appears', () => {
     const scroll = jest.spyOn(internals(), 'scrollBubblesToBottom');
     component.isExpanded.set(true);
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
 
     fixture.detectChanges();
 
@@ -584,6 +589,7 @@ describe('BmbAIChatCardComponent effects and lifecycle', () => {
 
   it('should disconnect the previous observer when the container is removed and recreated', () => {
     component.isExpanded.set(true);
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
     fixture.detectChanges();
     const previousObserver = observers[observers.length - 1].observer;
     component.isExpanded.set(false);
@@ -599,6 +605,7 @@ describe('BmbAIChatCardComponent effects and lifecycle', () => {
 
   it('should disconnect an active observer on destroy', () => {
     component.isExpanded.set(true);
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
     fixture.detectChanges();
     const observer = observers[observers.length - 1].observer;
     const disconnectsBeforeDestroy = (observer.disconnect as jest.Mock).mock
@@ -619,41 +626,35 @@ describe('BmbAIChatCardComponent effects and lifecycle', () => {
   });
 
   it.each([IBMB_AI_CHAT_CARD_MODE.CHAT, IBMB_AI_CHAT_CARD_MODE.EXPANDED])(
-    'should defer focusing the input while in %s mode',
+    'should focus the input after rendering in %s mode',
     (mode) => {
+      const focus = jest.spyOn(HTMLTextAreaElement.prototype, 'focus');
       component.isExpanded.set(true);
       component.mode.set(mode);
       fixture.detectChanges();
-      const input = fixture.nativeElement.querySelector('textarea');
-      const focus = jest.spyOn(input, 'focus');
-      expect(pendingMicrotasks.length).toBeGreaterThan(0);
-      expect(focus).not.toHaveBeenCalled();
-
-      pendingMicrotasks.forEach((callback) => callback());
 
       expect(focus).toHaveBeenCalled();
     },
   );
 
-  it.each(['input', 'textarea', 'div'])(
-    'should focus a supported %s editor',
-    (tagName) => {
-      component.isExpanded.set(true);
-      fixture.detectChanges();
-      const bar = fixture.nativeElement.querySelector('[data-testid="bar"]');
-      const editor = document.createElement(tagName);
-      if (tagName === 'div') editor.setAttribute('contenteditable', 'true');
-      bar.replaceChildren(editor);
-      const focus = jest.spyOn(editor, 'focus');
+  it('should focus the chat bar textarea editor', () => {
+    component.isExpanded.set(true);
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
+    fixture.detectChanges();
+    const bar = fixture.nativeElement.querySelector('[data-testid="bar"]');
+    const editor = document.createElement('textarea');
+    editor.classList.add('bmb_chat-bar-input');
+    bar.replaceChildren(editor);
+    const focus = jest.spyOn(editor, 'focus');
 
-      internals().focusChatBarInput();
+    internals().focusChatBarInput();
 
-      expect(focus).toHaveBeenCalledTimes(1);
-    },
-  );
+    expect(focus).toHaveBeenCalledTimes(1);
+  });
 
   it('should tolerate a bar container without an editable element', () => {
     component.isExpanded.set(true);
+    component.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
     fixture.detectChanges();
     fixture.nativeElement
       .querySelector('[data-testid="bar"]')
@@ -663,6 +664,10 @@ describe('BmbAIChatCardComponent effects and lifecycle', () => {
   });
 
   it('should tolerate removed containers when a queued focus callback runs', () => {
+    const pendingMicrotasks: VoidFunction[] = [];
+    jest.spyOn(globalThis, 'queueMicrotask').mockImplementation((callback) => {
+      pendingMicrotasks.push(callback);
+    });
     component.isExpanded.set(true);
     component.mode.set(IBMB_AI_CHAT_CARD_MODE.EXPANDED);
     fixture.detectChanges();

@@ -16,6 +16,7 @@ import {
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
 import {
+  DBmbDropzone,
   DBmbGenericParamDesc,
   DBmbInputParamDesc,
   getAppearanceParam,
@@ -272,19 +273,7 @@ ${RELEVANT_TITLE.note} For the multi option, a record must be used.
         type: { summary: 'Record | number' },
       },
     },
-    acceptedExtensions: {
-      control: { type: 'object' },
-      description: `Sets the file extensions or MIME types accepted.<br/><br/>
-${RELEVANT_TITLE.important} ***/**** is for all extensions or subtypes.<br/><br/>
-${RELEVANT_TITLE.example} ***image/**** is for all image types:
-- type: images
-- *: all subtypes of image`,
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: '[]' },
-        type: { summary: 'string[]' },
-      },
-    },
+    acceptedExtensions: DBmbDropzone.acceptedExtensions,
     formatFilesLabel: {
       control: { type: 'text' },
       description: 'Sets the label that describes the accepted file formats.',

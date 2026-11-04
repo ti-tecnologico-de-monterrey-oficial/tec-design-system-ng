@@ -146,6 +146,11 @@ export const propertyInventory: Record<string, DemoProperty[]> = {
   ],
   'chat-bar': [
     {
+      name: 'allowAttachments',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
       name: 'acceptedExtensions',
       kind: 'json',
       type: 'string[]',

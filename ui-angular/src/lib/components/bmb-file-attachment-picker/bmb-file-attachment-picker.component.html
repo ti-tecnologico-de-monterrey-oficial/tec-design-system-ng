@@ -3,21 +3,23 @@
   [class.bmb_file-attachment-picker-active]="files().length > 0"
 >
   @for (file of files(); track $index) {
-    <div class="bmb_file-attachment-picker-option">
-      <bmb-icon
-        class="bmb_file-attachment-picker-option-icon"
-        icon="attach_file"
-        [size]="24"
-      />
-      <span class="bmb_file-attachment-picker-option-text">{{ file.name }}</span>
-      <bmb-action-icon
-        class="bmb_file-attachment-picker-option-delete"
-        icon="close"
-        [iconSize]="24"
-        (buttonClick)="deleteFile($index)"
-        [tooltipText]="'chat_bar.close' | translate"
-      />
-    </div>
+    <bmb-action-container
+      class="bmb_file-attachment-picker-option"
+      avatarIcon="attach_file"
+      actionIcon="close"
+      [actionIdElement]="'file_attachment_picker_delete_' + $index"
+      [actionTooltipText]="'chat_bar.close' | translate"
+      (actionClick)="deleteFile($index)"
+    >
+      <span
+        class="bmb_file-attachment-picker-option-text"
+        bmbLayoutItem
+        [isDynamicItem]="true"
+        [colGrow]="1"
+      >
+        {{ file.name }}
+      </span>
+    </bmb-action-container>
   }
 </div>
 <input
@@ -26,6 +28,7 @@
   type="file"
   [attr.id]="inputId()"
   [accept]="getAcceptAttribute()"
+  [disabled]="disabled()"
   [attr.aria-label]="'chat_bar.add' | translate"
   (change)="onFileSelect($event)"
   hidden

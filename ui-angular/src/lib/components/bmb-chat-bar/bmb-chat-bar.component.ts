@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
-import type { OnInit } from '@angular/core';
+import type { AfterViewInit, OnInit } from '@angular/core';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   DestroyRef,
-  effect,
   ElementRef,
   inject,
   input,
@@ -22,7 +21,11 @@ import {
   shouldSendChatBarMessage,
 } from '../../_shared/logic/components/chat-bar';
 import { defaultBotList } from '../../_shared/logic/components/chat-bar-defaults';
-import type { IBmbNativeModal as IBmbNativeModalGeneric } from '../../_shared/types';
+import type {
+  IBmbNativeModal as IBmbNativeModalGeneric,
+  BmbChatAttachmentError,
+  BmbChatAttachmentResult,
+} from '../../_shared/types';
 
 type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import type {
@@ -42,7 +45,6 @@ import {
   BmbChatAttachmentsService,
   provideBmbChatAttachments,
 } from '../../services/chat-attachments/chat-attachments.service';
-import { BmbChatAttachmentResult } from '../../_shared/types';
 import { getUUID } from '../../_shared/logic/utils';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
@@ -50,11 +52,9 @@ import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
+import { BmbToastComponent } from '../bmb-toast/bmb-toast.component';
 
-export {
-  defaultActionList,
-  defaultBotList,
-} from '../../_shared/logic/components/chat-bar-defaults';
+export { defaultBotList } from '../../_shared/logic/components/chat-bar-defaults';
 export type {
   IBotType,
   IChatBarActions,
@@ -75,6 +75,7 @@ export type {
     BmbItemComponent,
     TranslatePipe,
     BmbFileAttachmentPicker,
+    BmbToastComponent,
   ],
   templateUrl: './bmb-chat-bar.component.html',
   styleUrl: './bmb-chat-bar.component.scss',
@@ -82,7 +83,7 @@ export type {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideBmbChatAttachments()],
 })
-export class BmbChatBarComponent implements OnInit {
+export class BmbChatBarComponent implements OnInit, AfterViewInit {
   placeholder = input<string>('');
   botList = input<IBotType[]>(defaultBotList);
   actionsList = input<IChatBarActions[]>([]);
@@ -90,6 +91,7 @@ export class BmbChatBarComponent implements OnInit {
   emojiIcon = input<string>('');
   enableMicInput = input<boolean>(false);
   disableChangeBot = input<boolean>(false);
+  allowAttachments = input<boolean>(false);
   acceptedExtensions = input<string[]>();
   maxFileSize = input<number>(2);
   disabledInput = model<boolean>(false);
@@ -129,6 +131,20 @@ export class BmbChatBarComponent implements OnInit {
   windowWidth = window.innerWidth;
   windowHeight = window.innerHeight;
 
+  protected readonly menuActions = computed<IChatBarActions[]>(() => {
+    const actions = this.actionsList();
+    if (!this.allowAttachments() || !actions.length) {
+      return actions;
+    }
+    const attachAction: IChatBarActions = {
+      name: this.translationsService.translate('chat_bar.attach_file'),
+      icon: 'attach_file',
+      action: () => this.openFilePicker(),
+    };
+    return [attachAction, ...actions];
+  });
+
+  @ViewChild('attachmentPicker') attachmentPicker?: BmbFileAttachmentPicker;
   @ViewChild('textareaRef') textareaRef!: ElementRef<HTMLTextAreaElement>;
   @ViewChild('chatBarTemplate') chatBarTemplate!: TemplateRef<unknown>;
   @ViewChild('mobileBotSelectorTemplate')
@@ -147,18 +163,11 @@ export class BmbChatBarComponent implements OnInit {
   protected readonly fileResult = computed(() =>
     this.attachments.result(this.attachmentSourceId),
   );
+  protected readonly dismissedAttachmentErrors = signal<Set<number>>(new Set());
 
   protected readonly _disabledInput = computed<boolean>(
     () => this.isLoading() || this.disabledInput(),
   );
-
-  private readonly _syncDisabledState = effect(() => {
-    if (this._disabledInput()) {
-      this.control.disable({ emitEvent: false });
-    } else {
-      this.control.enable({ emitEvent: false });
-    }
-  });
 
   ngOnInit(): void {
     this.destroyRef.onDestroy(
@@ -185,6 +194,10 @@ export class BmbChatBarComponent implements OnInit {
         },
       ): IBotType => bot,
     );
+  }
+
+  ngAfterViewInit() {
+    this.textareaRef.nativeElement.focus();
   }
 
   handleSend(): void {
@@ -245,11 +258,16 @@ export class BmbChatBarComponent implements OnInit {
     this.contentProjected.openContent(data);
   }
 
+  openFilePicker(): void {
+    this.attachmentPicker?.openFilePicker();
+  }
+
   handleFilesSelected(): void {
     this.contentProjected.closeContent();
   }
 
   handleAttachmentChanges(files: File[]): void {
+    this.dismissedAttachmentErrors.set(new Set());
     const result = this.attachments.select(
       files,
       {
@@ -260,6 +278,34 @@ export class BmbChatBarComponent implements OnInit {
       true,
     );
     this.attachmentResult.emit(result);
+  }
+
+  protected dismissAttachmentError(index: number): void {
+    this.dismissedAttachmentErrors.update((dismissed) =>
+      new Set(dismissed).add(index),
+    );
+  }
+
+  protected attachmentErrorDescription(error: BmbChatAttachmentError): string {
+    const key = 'ai_chat_bubble.upload_file.';
+    const description = this.translationsService.translate(
+      key + 'error_' + error.code,
+    );
+    if (error.code === 'format') {
+      return [
+        this.translationsService.translate(key + 'format_prefix'),
+        error.fileName ?? error.extension,
+        description,
+      ]
+        .filter(Boolean)
+        .join(' ');
+    }
+    const prefix = error.fileName ? `${error.fileName}: ` : '';
+    const size =
+      error.code === 'size'
+        ? ` ${error.maxFileSize ?? this.maxFileSize()} MB.`
+        : '';
+    return `${prefix}${description}${size}`;
   }
 
   handleDotPress(index: number): void {
