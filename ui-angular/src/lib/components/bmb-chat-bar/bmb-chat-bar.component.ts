@@ -5,7 +5,6 @@ import {
   Component,
   computed,
   DestroyRef,
-  effect,
   ElementRef,
   inject,
   input,
@@ -22,7 +21,11 @@ import {
   shouldSendChatBarMessage,
 } from '../../_shared/logic/components/chat-bar';
 import { defaultBotList } from '../../_shared/logic/components/chat-bar-defaults';
-import type { IBmbNativeModal as IBmbNativeModalGeneric } from '../../_shared/types';
+import type {
+  IBmbNativeModal as IBmbNativeModalGeneric,
+  BmbChatAttachmentError,
+  BmbChatAttachmentResult,
+} from '../../_shared/types';
 
 type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import type {
@@ -42,10 +45,6 @@ import {
   BmbChatAttachmentsService,
   provideBmbChatAttachments,
 } from '../../services/chat-attachments/chat-attachments.service';
-import type {
-  BmbChatAttachmentError,
-  BmbChatAttachmentResult,
-} from '../../_shared/types';
 import { getUUID } from '../../_shared/logic/utils';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
