@@ -164,9 +164,7 @@ export class BmbChatBarComponent implements OnInit, AfterViewInit {
   protected readonly fileResult = computed(() =>
     this.attachments.result(this.attachmentSourceId),
   );
-  protected readonly dismissedAttachmentErrors = signal<Set<number>>(
-    new Set(),
-  );
+  protected readonly dismissedAttachmentErrors = signal<Set<number>>(new Set());
 
   protected readonly _disabledInput = computed<boolean>(
     () => this.isLoading() || this.disabledInput(),
@@ -297,7 +295,7 @@ export class BmbChatBarComponent implements OnInit, AfterViewInit {
     if (error.code === 'format') {
       return [
         this.translationsService.translate(key + 'format_prefix'),
-        error.extension ?? error.fileName,
+        error.fileName ?? error.extension,
         description,
       ]
         .filter(Boolean)

@@ -77,7 +77,7 @@ export class BmbUploadFileMessageComponent implements OnChanges {
     if (error.code === 'format') {
       return [
         this.translations.translate(key + 'format_prefix'),
-        error.extension ?? error.fileName,
+        error.fileName ?? error.extension,
         description,
       ]
         .filter(Boolean)
