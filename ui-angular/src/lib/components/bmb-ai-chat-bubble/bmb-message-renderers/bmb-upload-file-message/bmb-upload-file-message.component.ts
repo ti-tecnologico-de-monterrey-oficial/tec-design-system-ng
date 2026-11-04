@@ -109,7 +109,7 @@ export class BmbUploadFileMessageComponent implements OnChanges {
   }
 
   protected handleFilesSelected(files: File[]): void {
-    if (!files.length) return;
+    if (!files?.length) return;
     const result = this.attachments.select(
       files,
       this.message().content,
@@ -118,5 +118,9 @@ export class BmbUploadFileMessageComponent implements OnChanges {
     this.attachmentResult.emit(result);
     if (result.accepted.length) this.filesSelected.emit(result.accepted);
     this.fileAttachmentPicker().files.set([]);
+  }
+
+  protected get acceptedFormats(): string {
+    return this.message()?.content?.acceptedFormats?.join(', ') || '';
   }
 }

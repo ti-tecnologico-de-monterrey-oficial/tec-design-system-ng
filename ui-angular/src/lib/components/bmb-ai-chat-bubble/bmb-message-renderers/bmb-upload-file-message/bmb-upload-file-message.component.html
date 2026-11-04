@@ -1,4 +1,3 @@
-@let content = message().content;
 <section class="bmb_upload-file-message">
   @if (errors().length) {
     <div class="bmb_upload-file-message-alert" role="alert">
@@ -36,15 +35,15 @@
         <strong>{{ 'ai_chat_bubble.upload_file.solution' | translate }}</strong>
       </p>
       <div class="bmb_upload-file-message-solutions">
-        @if (content.acceptedFormats?.length) {
+        @if (message().content.acceptedFormats?.length) {
           <p>
             {{ 'ai_chat_bubble.upload_file.check_formats' | translate }}
-            <strong>{{ content.acceptedFormats.join(', ') }}</strong>
+            <strong>{{ acceptedFormats }}</strong>
           </p>
         }
         <p>
           {{ 'ai_chat_bubble.upload_file.check_size' | translate }}
-          {{ content.maxFileSize ?? 2 }} MB.
+          {{ message().content.maxFileSize ?? 2 }} MB.
         </p>
         <p>
           {{ 'ai_chat_bubble.upload_file.choose_again_prefix' | translate }}
@@ -62,11 +61,11 @@
     }
   } @else {
     <p>
-      @if (content.text) {
-        {{ content.text }}
+      @if (message().content.text) {
+        {{ message().content.text }}
       } @else {
         {{ 'ai_chat_bubble.upload_file.intro' | translate }}
-        “{{ content.fileName }}”,
+        “{{ message().content.fileName }}”,
         {{ 'ai_chat_bubble.upload_file.chat_bar_instruction' | translate }}
         <bmb-icon
           icon="add"
@@ -84,7 +83,7 @@
   }
 
   <bmb-file-attachment-picker
-    [acceptedExtensions]="content.acceptedFormats"
+    [acceptedExtensions]="message().content.acceptedFormats"
     (filesChange)="handleFilesSelected($event)"
   >
     @if (!errors().length) {
@@ -96,7 +95,7 @@
         (click)="requestUpload($event)"
       >
         {{
-          content.buttonLabel ??
+          message().content.buttonLabel ??
             ('ai_chat_bubble.upload_file.button' | translate)
         }}
       </button>
@@ -106,17 +105,20 @@
   @if (!errors().length) {
     <p>{{ 'ai_chat_bubble.upload_file.requirements' | translate }}</p>
     <ul class="bmb_upload-file-message-requirements">
-      @if (content.acceptedFormats?.length) {
+      @if (message().content.acceptedFormats?.length) {
         <li>
           {{ 'ai_chat_bubble.upload_file.formats' | translate }}
-          <strong>{{ content.acceptedFormats.join(', ') }}</strong>
+          <strong>{{ acceptedFormats }}</strong>
         </li>
       }
       <li>
         {{ 'ai_chat_bubble.upload_file.max_size' | translate }}
-        <strong>{{ content.maxFileSize ?? 2 }} MB</strong>
+        <strong>{{ message().content.maxFileSize ?? 2 }} MB</strong>
       </li>
-      @for (requirement of content.additionalRequirements; track $index) {
+      @for (
+        requirement of message().content.additionalRequirements;
+        track $index
+      ) {
         <li>{{ requirement }}</li>
       }
     </ul>
@@ -140,7 +142,8 @@
       ) | translate
     }}
     <strong>{{
-      content.cancelKeyword ?? ('ai_chat_bubble.upload_file.cancel' | translate)
+      message().content.cancelKeyword ??
+        ('ai_chat_bubble.upload_file.cancel' | translate)
     }}</strong
     >.
   </p>
