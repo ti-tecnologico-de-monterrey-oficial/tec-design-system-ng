@@ -4,6 +4,14 @@ import { TemplatesContainerBtn } from './pages/templates-container-btn/templates
 
 export const appRoutes: Route[] = [
   {
+    path: 'issue/full-text',
+    title: 'DS01-3901 | FullText',
+    loadComponent: () =>
+      import('./pages/issues/full-text/full-text').then(
+        ({ FullText }) => FullText,
+      ),
+  },
+  {
     path: 'issue/dropdown',
     title: 'DS01-3902 | BmbDropdown',
     loadComponent: () =>

@@ -1,0 +1,19 @@
+<h1>FullText</h1>
+<section aria-labelledby="full-text-tabs-heading">
+  <h2 id="full-text-tabs-heading">BmbTabs: etiquetas largas</h2>
+  <p>
+    Ancho máximo duplicado: texto de 12 a 24rem y elemento de 15 a 30rem.
+    Las etiquetas que exceden el límite conservan los puntos suspensivos.
+  </p>
+  <div class="tabs-preview">
+    <bmb-tabs
+      [tabs]="tabs"
+      [(selectedTabId)]="selectedTabId"
+      (selected)="handleSelected($event)"
+    >
+      <p class="selected-tab" aria-live="polite">
+        Pestaña seleccionada: {{ selectedTitle() }}
+      </p>
+    </bmb-tabs>
+  </div>
+</section>
