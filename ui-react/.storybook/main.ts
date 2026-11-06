@@ -31,7 +31,7 @@ const config: StorybookConfig = {
         const assets = [
           { from: '../../shared/assets', to: 'assets' },
           {
-            from: '../node_modules/@material-symbols/svg-400/rounded',
+            from: '../../node_modules/@material-symbols/svg-400/rounded',
             to: 'assets/icons/material-rounded',
           },
         ];
@@ -59,7 +59,7 @@ const config: StorybookConfig = {
   staticDirs: [
     { from: '../../shared/assets', to: '/assets' },
     {
-      from: '../node_modules/@material-symbols/svg-400/rounded',
+      from: '../../node_modules/@material-symbols/svg-400/rounded',
       to: '/assets/icons/material-rounded',
     },
   ],
