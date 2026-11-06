@@ -182,25 +182,24 @@
   </div>
 </section>
 
-@if (fileResult(); as result) {
-  @if (result.errors.length) {
-    <div class="bmb_chat-bar-file-errors">
-      @for (error of result.errors; track $index) {
-        @if (!dismissedAttachmentErrors().has($index)) {
-          <bmb-toast
-            appearance="error"
-            [isClosable]="true"
-            [description]="attachmentErrorDescription(error)"
-            [componentTitle]="
-              'ai_chat_bubble.upload_file.error_title' | translate
-            "
-            (onClose)="dismissAttachmentError($index)"
-          />
-        }
+@if (fileResult() && fileResult()?.errors.length) {
+  <div class="bmb_chat-bar-file-errors">
+    @for (error of fileResult()?.errors; track $index) {
+      @if (!dismissedAttachmentErrors().has($index)) {
+        <bmb-toast
+          appearance="error"
+          [isClosable]="true"
+          [description]="attachmentErrorDescription(error)"
+          [componentTitle]="
+            'ai_chat_bubble.upload_file.error_title' | translate
+          "
+          (onClose)="dismissAttachmentError($index)"
+        />
       }
-    </div>
-  }
+    }
+  </div>
 }
+
 <ng-template #chatBarTemplate>
   <section class="bmb_chat-bar-add-dialog">
     <bmb-action-menu
