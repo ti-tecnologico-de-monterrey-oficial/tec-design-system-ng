@@ -2,17 +2,27 @@
 <section aria-labelledby="full-text-tabs-heading">
   <h2 id="full-text-tabs-heading">BmbTabs: etiquetas largas</h2>
   <p>
-    Ancho máximo duplicado: texto de 12 a 24rem y elemento de 15 a 30rem.
-    Las etiquetas que exceden el límite conservan los puntos suspensivos.
+    Ancho máximo duplicado: texto de 12 a 24rem y elemento de 15 a 30rem. Las
+    etiquetas que exceden el límite conservan los puntos suspensivos.
   </p>
   <div class="tabs-preview">
+    <label>
+      <input
+        type="checkbox"
+        [checked]="showFullText()"
+        (change)="showFullText.set($any($event.target).checked)"
+      />
+      Consultar texto completo
+    </label>
     <bmb-tabs
+      [showFullText]="showFullText()"
       [tabs]="tabs"
       [(selectedTabId)]="selectedTabId"
       (selected)="handleSelected($event)"
     >
       <p class="selected-tab" aria-live="polite">
-        Pestaña seleccionada: {{ selectedTitle() }}
+        Pestaña seleccionada: {{ selectedTitle() }} — Eventos de selección: {{
+        selectionCount() }}
       </p>
     </bmb-tabs>
   </div>

@@ -1,0 +1,202 @@
+import { Component, signal } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BmbFullTextDirective } from './bmb-full-text.directive';
+
+@Component({
+  imports: [BmbFullTextDirective],
+  template: `
+    <div>
+      <button
+        [bmbFullText]="text()"
+        [bmbFullTextEnabled]="enabled()"
+        bmbFullTextTarget=".label"
+        (click)="clicks = clicks + 1"
+      >
+        <span class="label">{{ text() }}</span>
+      </button>
+    </div>
+  `,
+})
+class HostComponent {
+  text = signal('Complete label that exceeds the available width');
+  enabled = signal(true);
+  clicks = 0;
+  parentClicks = 0;
+}
+
+describe('BmbFullTextDirective', () => {
+  let fixture: ComponentFixture<HostComponent>;
+  let button: HTMLButtonElement;
+  let label: HTMLElement;
+  const tooltip = () => document.querySelector('.bmb_full-text-tooltip');
+
+  function pointer(
+    type: string,
+    target: EventTarget = button,
+    values = {},
+  ): void {
+    const event = new Event(type, { bubbles: true, cancelable: true });
+    Object.assign(event, {
+      pointerId: 1,
+      pointerType: 'touch',
+      button: 0,
+      isPrimary: true,
+      clientX: 0,
+      clientY: 0,
+      ...values,
+    });
+    target.dispatchEvent(event);
+  }
+
+  function click(detail = 1): MouseEvent {
+    const event = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      detail,
+    });
+    button.dispatchEvent(event);
+    return event;
+  }
+
+  beforeEach(() => {
+    jest.useFakeTimers();
+    fixture = TestBed.createComponent(HostComponent);
+    fixture.detectChanges();
+    button = fixture.nativeElement.querySelector('button');
+    button.parentElement?.addEventListener('click', () => {
+      fixture.componentInstance.parentClicks++;
+    });
+    label = button.querySelector('.label') as HTMLElement;
+    Object.defineProperties(label, {
+      clientWidth: { configurable: true, value: 100 },
+      scrollWidth: { configurable: true, value: 300 },
+    });
+  });
+
+  afterEach(() => {
+    fixture.destroy();
+    jest.clearAllTimers();
+    jest.useRealTimers();
+    expect(tooltip()).toBeNull();
+  });
+
+  it('preserves a brief tap and its bubbling click', () => {
+    pointer('pointerdown');
+    jest.advanceTimersByTime(499);
+    pointer('pointerup');
+    expect(click().defaultPrevented).toBe(false);
+    expect(fixture.componentInstance.clicks).toBe(1);
+    expect(fixture.componentInstance.parentClicks).toBe(1);
+    expect(tooltip()).toBeNull();
+  });
+
+  it('reveals the full label after 500 ms and consumes only that gesture click', () => {
+    pointer('pointerdown');
+    jest.advanceTimersByTime(500);
+    expect(tooltip()?.textContent).toBe(fixture.componentInstance.text());
+    pointer('pointerup');
+    // Touch pointerleave after release must not immediately close the tooltip.
+    pointer('pointerleave');
+    expect(click().defaultPrevented).toBe(true);
+    expect(fixture.componentInstance.clicks).toBe(0);
+    expect(fixture.componentInstance.parentClicks).toBe(0);
+    jest.advanceTimersByTime(200);
+    expect(tooltip()).not.toBeNull();
+    pointer('pointerdown');
+    pointer('pointerup');
+    expect(click().defaultPrevented).toBe(false);
+    expect(fixture.componentInstance.clicks).toBe(1);
+  });
+
+  it('does nothing when disabled or when the text fits', () => {
+    fixture.componentInstance.enabled.set(false);
+    fixture.detectChanges();
+    pointer('pointerdown');
+    jest.advanceTimersByTime(600);
+    pointer('pointerup');
+    expect(click().defaultPrevented).toBe(false);
+    expect(tooltip()).toBeNull();
+    fixture.componentInstance.enabled.set(true);
+    fixture.detectChanges();
+    Object.defineProperty(label, 'scrollWidth', { value: 100 });
+    pointer('pointerdown');
+    jest.advanceTimersByTime(600);
+    pointer('pointerup');
+    expect(click().defaultPrevented).toBe(false);
+    expect(tooltip()).toBeNull();
+  });
+
+  it.each(['pointercancel', 'scroll', 'pointermove'])(
+    'cancels the press on %s',
+    (type) => {
+      pointer('pointerdown');
+      jest.advanceTimersByTime(250);
+      pointer(type, document, { clientX: 20 });
+      jest.advanceTimersByTime(500);
+      expect(tooltip()).toBeNull();
+      expect(click().defaultPrevented).toBe(false);
+    },
+  );
+
+  it('cancels when a pressed mouse leaves the host', () => {
+    pointer('pointerdown', button, { pointerType: 'mouse' });
+    pointer('pointerleave', button, { pointerType: 'mouse' });
+    jest.advanceTimersByTime(600);
+    expect(tooltip()).toBeNull();
+  });
+
+  it('supports hover, moving onto the tooltip, and Escape', () => {
+    pointer('pointerenter', button, { pointerType: 'mouse' });
+    expect(tooltip()).not.toBeNull();
+    pointer('pointerleave', button, { pointerType: 'mouse' });
+    pointer('pointerenter', tooltip() as Element, { pointerType: 'mouse' });
+    jest.advanceTimersByTime(200);
+    expect(tooltip()).not.toBeNull();
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    expect(tooltip()).toBeNull();
+  });
+
+  it('supports visible keyboard focus without consuming keyboard activation', () => {
+    jest.spyOn(button, 'matches').mockReturnValue(true);
+    button.dispatchEvent(new FocusEvent('focusin'));
+    expect(tooltip()).not.toBeNull();
+    pointer('pointerdown');
+    jest.advanceTimersByTime(500);
+    pointer('pointerup');
+    expect(click(0).defaultPrevented).toBe(false);
+    expect(fixture.componentInstance.clicks).toBe(1);
+    expect(button.textContent?.trim()).toBe(fixture.componentInstance.text());
+  });
+
+  it.each(['resize', 'blur', 'scroll', 'pointerdown'])(
+    'dismisses an open tooltip on outside %s',
+    (type) => {
+      pointer('pointerdown');
+      jest.advanceTimersByTime(500);
+      pointer('pointerup');
+      const target = type === 'resize' || type === 'blur' ? window : document;
+      target.dispatchEvent(new Event(type));
+      expect(tooltip()).toBeNull();
+    },
+  );
+
+  it('dismisses when disabled or its text changes', () => {
+    pointer('pointerenter', button, { pointerType: 'mouse' });
+    fixture.componentInstance.text.set('Changed label');
+    fixture.detectChanges();
+    expect(tooltip()).toBeNull();
+    pointer('pointerenter', button, { pointerType: 'mouse' });
+    fixture.componentInstance.enabled.set(false);
+    fixture.detectChanges();
+    expect(tooltip()).toBeNull();
+  });
+
+  it('removes the tooltip and pending gesture listeners on destroy', () => {
+    pointer('pointerdown');
+    jest.advanceTimersByTime(500);
+    fixture.destroy();
+    expect(tooltip()).toBeNull();
+    jest.advanceTimersByTime(1000);
+    expect(click().defaultPrevented).toBe(false);
+  });
+});

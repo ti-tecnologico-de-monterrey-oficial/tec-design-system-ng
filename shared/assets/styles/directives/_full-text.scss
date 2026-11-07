@@ -1,0 +1,23 @@
+@use '../base/fonts' as fonts;
+
+.bmb_full-text-enabled {
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.bmb_full-text-tooltip {
+  position: fixed;
+  z-index: 9999;
+  box-sizing: border-box;
+  width: max-content;
+  max-width: min(24rem, calc(100vw - 1rem));
+  max-height: calc(100dvh - 1rem);
+  overflow: auto;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+  border-radius: var(--bmb-radius-s);
+  background-color: var(--general-contrasts-100);
+  color: var(--general-contrasts-5);
+  @include fonts.font(3, regular);
+}

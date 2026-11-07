@@ -22,6 +22,7 @@ import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb
 import { TranslatePipe } from '../../pipes/translations';
 import { IBmbTab } from '../../_shared/types/components/tabs';
 import { getBmbTabsClasses } from '../../_shared/logic/components/tabs';
+import { BmbFullTextDirective } from '../../directives/bmb-full-text/bmb-full-text.directive';
 
 export type { IBmbTab };
 
@@ -35,6 +36,7 @@ export type { IBmbTab };
     BmbActionIconComponent,
     BmbNotificationCounterComponent,
     TranslatePipe,
+    BmbFullTextDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -43,6 +45,7 @@ export type { IBmbTab };
 export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
   appearanceContrast = input<IBmbContrast>('default');
   format = input<string>('');
+  showFullText = input<boolean>(false);
   tabs = input<IBmbTab[]>([]);
   selectedTabId = model<number>(0);
 
@@ -176,5 +179,31 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   getTabsClasses(): string[] {
     return getBmbTabsClasses(this.appearanceContrast());
+  }
+
+  /** Allows keyboard users to inspect every label in full-text mode. */
+  focusTabLabel(event: KeyboardEvent): void {
+    if (!this.showFullText() || event.altKey || event.ctrlKey || event.metaKey)
+      return;
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    const list: HTMLElement = this.tabsItems.nativeElement;
+    const buttons = Array.from(
+      list.querySelectorAll<HTMLButtonElement>('[role="tab"]'),
+    ).filter((button) => {
+      const item = button.parentElement;
+      return !!item && getComputedStyle(item).display !== 'none';
+    });
+    const current = buttons.indexOf(event.currentTarget as HTMLButtonElement);
+    if (current < 0) return;
+    event.preventDefault();
+    const direction = getComputedStyle(list).direction === 'rtl' ? -1 : 1;
+    const offset = (event.key === 'ArrowRight' ? 1 : -1) * direction;
+    const next =
+      event.key === 'Home'
+        ? 0
+        : event.key === 'End'
+          ? buttons.length - 1
+          : (current + offset + buttons.length) % buttons.length;
+    buttons[next].focus();
   }
 }

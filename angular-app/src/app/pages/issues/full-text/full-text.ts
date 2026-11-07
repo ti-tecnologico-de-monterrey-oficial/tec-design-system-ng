@@ -10,6 +10,8 @@ import { BmbTabsComponent, type IBmbTab } from 'ui-angular';
 })
 export class FullText {
   readonly selectedTabId = signal(1);
+  readonly showFullText = signal(true);
+  readonly selectionCount = signal(0);
   readonly selectedTitle = signal('Inicio');
   readonly tabs: IBmbTab[] = [
     { id: 1, title: 'Inicio', isActive: true },
@@ -28,6 +30,7 @@ export class FullText {
   ];
 
   handleSelected(tab: IBmbTab): void {
+    this.selectionCount.update((count) => count + 1);
     this.selectedTitle.set(tab.title);
   }
 }
