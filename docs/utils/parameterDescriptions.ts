@@ -1790,4 +1790,13 @@ This is a selection hint, not file validation; it does not restrict drag and dro
       defaultValue: { summary: '[]' },
     },
   },
+  maxFileSize: {
+    control: { type: 'number' },
+    description: 'Sets the maximum allowed file size in MB.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'number' },
+      defaultValue: getDefaultValueControl(2),
+    },
+  },
 };

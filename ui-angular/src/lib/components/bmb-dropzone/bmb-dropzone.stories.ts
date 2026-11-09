@@ -364,15 +364,7 @@ ${RELEVANT_TITLE.note} For the multi option, a record must be used.
       },
     },
     name: DBmbInputParamDesc.name,
-    fileSize: {
-      control: { type: 'number' },
-      description: 'Sets the maximum allowed file size in MB.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'number' },
-        defaultValue: getDefaultValueControl(2),
-      },
-    },
+    fileSize: DBmbDropzone.maxFileSize,
     multiple: {
       control: { type: 'boolean' },
       description: 'Allows selecting multiple files when true.',
