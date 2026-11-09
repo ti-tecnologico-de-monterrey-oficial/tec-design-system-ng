@@ -26,11 +26,13 @@ import { BmbTranslationsService } from '../../../../services/translations/transl
 import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
 import { BmbToastComponent } from '../../../bmb-toast/bmb-toast.component';
 import { BmbFileAttachmentPicker } from '../../../bmb-file-attachment-picker/bmb-file-attachment-picker.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'bmb-upload-file-message',
   standalone: true,
   imports: [
+    CommonModule,
     BmbButtonDirective,
     BmbIconComponent,
     BmbToastComponent,
@@ -97,6 +99,7 @@ export class BmbUploadFileMessageComponent implements OnChanges {
       message: this.message(),
       nativeEvent,
     });
+    this.fileAttachmentPicker().openFilePicker();
   }
 
   protected requestUpload(nativeEvent: Event): void {
