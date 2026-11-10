@@ -1,15 +1,17 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
+  ComponentRef,
   Directive,
   ElementRef,
   OnChanges,
   OnDestroy,
   PLATFORM_ID,
-  Renderer2,
+  ViewContainerRef,
   inject,
   input,
 } from '@angular/core';
+import { BmbTooltipBaseComponent } from '../../components/bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
 
 /** Reveals truncated text without activating the host during a long press. */
 @Directive({
@@ -31,7 +33,7 @@ export class BmbFullTextDirective
   >();
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly document = inject(DOCUMENT);
-  private readonly renderer = inject(Renderer2);
+  private readonly viewContainer = inject(ViewContainerRef);
   private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly cleanup: (() => void)[] = [];
   private gestureCleanup: (() => void)[] = [];
@@ -42,8 +44,12 @@ export class BmbFullTextDirective
   private suppressPointerId: number | null = null;
   private startX = 0;
   private startY = 0;
-  private tooltip?: HTMLElement;
+  private tooltipRef?: ComponentRef<BmbTooltipBaseComponent>;
   private tooltipCleanup: (() => void)[] = [];
+
+  private get tooltip(): HTMLElement | null {
+    return this.tooltipRef?.instance.floatingElement ?? null;
+  }
 
   ngAfterViewInit(): void {
     if (!this.browser) return;
@@ -163,10 +169,7 @@ export class BmbFullTextDirective
   private canShow(): boolean {
     if (!this.browser || !this.bmbFullTextEnabled() || !this.bmbFullText())
       return false;
-    const host = this.element.nativeElement;
-    const target = this.bmbFullTextTarget()
-      ? host.querySelector<HTMLElement>(this.bmbFullTextTarget())
-      : host;
+    const target = this.getTextTarget();
     return (
       !!target &&
       target.clientWidth > 0 &&
@@ -175,46 +178,65 @@ export class BmbFullTextDirective
     );
   }
 
+  private getTextTarget(): HTMLElement {
+    const host = this.element.nativeElement;
+    return this.bmbFullTextTarget()
+      ? (host.querySelector<HTMLElement>(this.bmbFullTextTarget()) ?? host)
+      : host;
+  }
+
+  private getTooltipPosition(
+    anchor: HTMLElement,
+    tooltip: HTMLElement | null,
+  ): ReturnType<BmbTooltipBaseComponent['getPosition']> {
+    const view = this.document.defaultView;
+    if (!view) return { top: null, left: null, right: null, bottom: null };
+
+    const gap = 4;
+    const margin = 8;
+    const targetRect = anchor.getBoundingClientRect();
+    const tooltipRect = tooltip?.getBoundingClientRect();
+    const width = tooltipRect?.width ?? 0;
+    const height = tooltipRect?.height ?? 0;
+    const centeredLeft = targetRect.left + (targetRect.width - width) / 2;
+    const above = targetRect.top - height - gap;
+    const preferredTop = above >= margin ? above : targetRect.bottom + gap;
+    const left = Math.max(
+      margin,
+      Math.min(centeredLeft, view.innerWidth - width - margin),
+    );
+    const top = Math.max(
+      margin,
+      Math.min(preferredTop, view.innerHeight - height - margin),
+    );
+
+    return { top: `${top}px`, left: `${left}px`, right: null, bottom: null };
+  }
+
   private show(): void {
     clearTimeout(this.hideTimer);
-    if (!this.canShow() || this.tooltip) return;
+    if (!this.canShow() || this.tooltipRef) return;
     BmbFullTextDirective.active.get(this.document)?.dismiss();
-    const tooltip: HTMLElement = this.renderer.createElement('div');
-    this.renderer.addClass(tooltip, 'bmb_full-text-tooltip');
-    this.renderer.setAttribute(tooltip, 'role', 'tooltip');
-    // The complete text already supplies the host's accessible name.
-    this.renderer.setAttribute(tooltip, 'aria-hidden', 'true');
-    this.renderer.appendChild(
-      tooltip,
-      this.renderer.createText(this.bmbFullText()),
-    );
-    this.renderer.appendChild(this.document.body, tooltip);
-    this.tooltip = tooltip;
+    const ref = this.viewContainer.createComponent(BmbTooltipBaseComponent);
+    this.tooltipRef = ref;
+    const anchor = this.getTextTarget();
+    ref.setInput('manual', true);
+    ref.setInput('anchor', anchor);
+    ref.setInput('text', this.bmbFullText());
+    // Keep the placement local to this instance, including the base's later updates.
+    ref.instance.getPosition = () =>
+      this.getTooltipPosition(anchor, ref.instance.floatingElement);
+    ref.changeDetectorRef.detectChanges();
+    ref.instance.showTooltip();
     BmbFullTextDirective.active.set(this.document, this);
+    const tooltip = ref.instance.floatingElement;
+    if (!tooltip) return;
     this.tooltipCleanup = [
       this.addListener(tooltip, 'pointerenter', () =>
         clearTimeout(this.hideTimer),
       ),
       this.addListener(tooltip, 'pointerleave', () => this.scheduleHide()),
     ];
-    const rect = this.element.nativeElement.getBoundingClientRect();
-    const view = this.document.defaultView;
-    if (!view) return;
-    const width = tooltip.offsetWidth;
-    const height = tooltip.offsetHeight;
-    const left = Math.max(
-      8,
-      Math.min(
-        rect.left + (rect.width - width) / 2,
-        view.innerWidth - width - 8,
-      ),
-    );
-    const top =
-      rect.bottom + height + 8 <= view.innerHeight
-        ? rect.bottom + 8
-        : Math.max(8, rect.top - height - 8);
-    this.renderer.setStyle(tooltip, 'left', `${left}px`);
-    this.renderer.setStyle(tooltip, 'top', `${top}px`);
   }
 
   private scheduleHide(): void {
@@ -227,10 +249,8 @@ export class BmbFullTextDirective
     clearTimeout(this.hideTimer);
     this.tooltipCleanup.forEach((remove) => remove());
     this.tooltipCleanup = [];
-    if (this.tooltip) {
-      this.renderer.removeChild(this.document.body, this.tooltip);
-      this.tooltip = undefined;
-    }
+    this.tooltipRef?.destroy();
+    this.tooltipRef = undefined;
     if (BmbFullTextDirective.active.get(this.document) === this) {
       BmbFullTextDirective.active.delete(this.document);
     }

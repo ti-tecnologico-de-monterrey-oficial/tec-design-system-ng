@@ -28,7 +28,7 @@ describe('BmbFullTextDirective', () => {
   let fixture: ComponentFixture<HostComponent>;
   let button: HTMLButtonElement;
   let label: HTMLElement;
-  const tooltip = () => document.querySelector('.bmb_full-text-tooltip');
+  const tooltip = () => document.querySelector('.bmb_tooltip-dialog--manual');
 
   function pointer(
     type: string,
@@ -156,6 +156,21 @@ describe('BmbFullTextDirective', () => {
     expect(tooltip()).toBeNull();
   });
 
+  it('uses and disposes BmbTooltipBase without keeping empty component hosts', () => {
+    for (let i = 0; i < 3; i++) {
+      pointer('pointerenter', button, { pointerType: 'mouse' });
+      const host = fixture.nativeElement.querySelector('bmb-tooltip-base');
+      expect(host).not.toBeNull();
+      expect(host.style.display).toBe('none');
+      expect(tooltip()?.tagName).toBe('DIALOG');
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+      expect(tooltip()).toBeNull();
+      expect(
+        fixture.nativeElement.querySelector('bmb-tooltip-base'),
+      ).toBeNull();
+    }
+  });
+
   it('supports visible keyboard focus without consuming keyboard activation', () => {
     jest.spyOn(button, 'matches').mockReturnValue(true);
     button.dispatchEvent(new FocusEvent('focusin'));
@@ -198,5 +213,88 @@ describe('BmbFullTextDirective', () => {
     expect(tooltip()).toBeNull();
     jest.advanceTimersByTime(1000);
     expect(click().defaultPrevented).toBe(false);
+  });
+
+  describe('placement beside the truncated text', () => {
+    function rect(
+      left: number,
+      top: number,
+      width: number,
+      height: number,
+    ): DOMRect {
+      return {
+        left,
+        top,
+        width,
+        height,
+        right: left + width,
+        bottom: top + height,
+        x: left,
+        y: top,
+        toJSON: () => ({}),
+      };
+    }
+
+    beforeEach(() => {
+      jest
+        .spyOn(HTMLDialogElement.prototype, 'getBoundingClientRect')
+        .mockReturnValue(rect(0, 0, 200, 40));
+    });
+
+    afterEach(() => jest.restoreAllMocks());
+
+    it('centers above the label with a 4px gap, independently of the wider button', () => {
+      jest
+        .spyOn(button, 'getBoundingClientRect')
+        .mockReturnValue(rect(100, 190, 500, 40));
+      jest
+        .spyOn(label, 'getBoundingClientRect')
+        .mockReturnValue(rect(300, 200, 100, 20));
+      pointer('pointerenter', button, { pointerType: 'mouse' });
+      expect((tooltip() as HTMLElement).style.left).toBe('250px');
+      expect((tooltip() as HTMLElement).style.top).toBe('156px');
+      // Later base repositioning must preserve the directive's placement.
+      tooltip()?.dispatchEvent(new Event('scroll'));
+      fixture.detectChanges();
+      expect((tooltip() as HTMLElement).style.left).toBe('250px');
+      expect((tooltip() as HTMLElement).style.top).toBe('156px');
+    });
+
+    it('places below the label when there is no space above', () => {
+      jest
+        .spyOn(label, 'getBoundingClientRect')
+        .mockReturnValue(rect(300, 10, 100, 20));
+      pointer('pointerenter', button, { pointerType: 'mouse' });
+      expect((tooltip() as HTMLElement).style.top).toBe('34px');
+    });
+
+    it.each([
+      [0, 8],
+      [1000, 816],
+    ])(
+      'keeps the tooltip inside the horizontal viewport for a label at %s',
+      (left, expected) => {
+        jest.replaceProperty(window, 'innerWidth', 1024);
+        jest
+          .spyOn(label, 'getBoundingClientRect')
+          .mockReturnValue(rect(left, 200, 100, 20));
+        pointer('pointerenter', button, { pointerType: 'mouse' });
+        expect((tooltip() as HTMLElement).style.left).toBe(`${expected}px`);
+      },
+    );
+
+    it('uses the host as the anchor if the specified target does not exist', () => {
+      label.remove();
+      Object.defineProperties(button, {
+        clientWidth: { value: 100 },
+        scrollWidth: { value: 300 },
+      });
+      jest
+        .spyOn(button, 'getBoundingClientRect')
+        .mockReturnValue(rect(300, 200, 100, 20));
+      pointer('pointerenter', button, { pointerType: 'mouse' });
+      expect((tooltip() as HTMLElement).style.left).toBe('250px');
+      expect((tooltip() as HTMLElement).style.top).toBe('156px');
+    });
   });
 });

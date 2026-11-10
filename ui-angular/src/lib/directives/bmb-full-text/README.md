@@ -3,6 +3,14 @@
 `BmbFullTextDirective` permite consultar el texto completo de un control sin
 activarlo durante una pulsación prolongada. Está exportada desde `ui-angular`.
 
+La presentación y el posicionamiento reutilizan `BmbTooltipBaseComponent` en modo
+manual. La directiva crea una instancia solo al abrir y la destruye al cerrar;
+no mantiene un tooltip visual propio. El componente base usa `manual=false` por
+defecto, por lo que los tooltips existentes conservan sus eventos automáticos.
+Con `manual=true`, `anchor` indica el control de referencia y `showTooltip()` /
+`hideTooltip()` permiten controlar la visibilidad. `floatingElement` expone el
+diálogo para gestionar el paso del puntero desde el control hasta el tooltip.
+
 ```html
 <button
   [bmbFullText]="label"

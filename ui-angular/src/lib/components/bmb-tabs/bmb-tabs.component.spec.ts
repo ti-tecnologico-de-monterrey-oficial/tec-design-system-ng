@@ -92,7 +92,7 @@ describe('BmbTabs full-text interaction', () => {
     );
     expect(selected).toHaveBeenCalledTimes(1);
     expect(fixture.componentInstance.selectedTabId()).toBe(2);
-    expect(document.querySelector('.bmb_full-text-tooltip')).toBeNull();
+    expect(document.querySelector('.bmb_tooltip-dialog--manual')).toBeNull();
   });
 
   it('shows a badged label on long press without selection, then preserves a normal click', () => {
@@ -102,9 +102,9 @@ describe('BmbTabs full-text interaction', () => {
     fixture.componentInstance.selected.subscribe(selected);
     pointer('pointerdown', buttons[1]);
     jest.advanceTimersByTime(500);
-    expect(document.querySelector('.bmb_full-text-tooltip')?.textContent).toBe(
-      'Long label that needs more space',
-    );
+    expect(
+      document.querySelector('.bmb_tooltip-dialog--manual')?.textContent,
+    ).toBe('Long label that needs more space');
     pointer('pointerup', buttons[1]);
     buttons[1].dispatchEvent(
       new MouseEvent('click', { bubbles: true, detail: 1 }),
