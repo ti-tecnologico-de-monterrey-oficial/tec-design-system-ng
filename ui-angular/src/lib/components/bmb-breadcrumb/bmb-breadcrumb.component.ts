@@ -8,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbFullTextDirective } from '../../directives/bmb-full-text/bmb-full-text.directive';
 import {
   getBreadcrumbClasses,
   getBreadcrumbDropdownItems,
@@ -22,7 +23,7 @@ export type { IBmbDataTopBar } from '../../_shared/types/components/breadcrumb';
   standalone: true,
   templateUrl: './bmb-breadcrumb.component.html',
   styleUrl: './bmb-breadcrumb.component.scss',
-  imports: [CommonModule, RouterModule, BmbIconComponent],
+  imports: [CommonModule, RouterModule, BmbIconComponent, BmbFullTextDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -31,6 +32,7 @@ export class BmbBreadcrumbComponent {
   dataLocalNav = input<IBmbDataTopBar[]>([]);
   isTopBar = input<boolean>(false);
   isInactive = input<boolean>(false);
+  showFullText = input<boolean>(false);
   dropdownOpen = model<boolean>(false);
 
   getClasses(_item?: IBmbDataTopBar): Record<string, boolean> {

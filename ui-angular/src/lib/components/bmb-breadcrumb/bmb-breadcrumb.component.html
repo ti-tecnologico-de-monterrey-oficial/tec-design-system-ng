@@ -8,13 +8,22 @@
         @if ($index === 0) {
           <a
             class="bmb_breadcrumb-top-link"
+            [bmbFullText]="item.text"
+            [bmbFullTextEnabled]="showFullText()"
+            [attr.tabindex]="showFullText() ? 0 : null"
             [routerLink]="item.link"
             routerLinkActive="bmb_breadcrumb-active"
             [routerLinkActiveOptions]="{ exact: true }"
             >{{ item.text }}</a
           >
         } @else if ($index === 1) {
-          <span class="bmb_breadcrumb-top-current">{{ item.text }}</span>
+          <span
+            class="bmb_breadcrumb-top-current"
+            [bmbFullText]="item.text"
+            [bmbFullTextEnabled]="showFullText()"
+            [attr.tabindex]="showFullText() ? 0 : null"
+            >{{ item.text }}</span
+          >
         }
       }
     </div>
@@ -38,13 +47,19 @@
       ) {
         <span
           class="bmb_breadcrumb-text"
+          [bmbFullText]="item.text"
+          [bmbFullTextEnabled]="showFullText()"
+          [attr.tabindex]="showFullText() ? 0 : null"
           [ngClass]="{
-            'bmb_breadcrumb-text-active': isInactive()
+            'bmb_breadcrumb-text-active': isInactive(),
           }"
           >{{ item.text }}</span
         >
         <a
           class="bmb_breadcrumb-link"
+          [bmbFullText]="item.text"
+          [bmbFullTextEnabled]="showFullText()"
+          [attr.tabindex]="showFullText() ? 0 : null"
           [ngClass]="getClasses(item)"
           [routerLink]="item.link"
           routerLinkActive="bmb_breadcrumb-active"
@@ -66,7 +81,7 @@
             type="button"
             class="bmb_breadcrumb-dropdown-button"
             [ngClass]="{
-              'bmb_breadcrumb-dropdown-button-inactive': isInactive()
+              'bmb_breadcrumb-dropdown-button-inactive': isInactive(),
             }"
             (click)="toggleDropdown()"
           >
@@ -100,16 +115,22 @@
 
                   <span
                     class="bmb_breadcrumb-text"
+                    [bmbFullText]="dropdownItem.text"
+                    [bmbFullTextEnabled]="showFullText()"
+                    [attr.tabindex]="showFullText() ? 0 : null"
                     [ngClass]="{
-                      'bmb_breadcrumb-text-active': isInactive()
+                      'bmb_breadcrumb-text-active': isInactive(),
                     }"
                     >{{ dropdownItem.text }}</span
                   >
                   <a
                     [ngClass]="{
-                      'bmb_breadcrumb-link-inactive': isInactive()
+                      'bmb_breadcrumb-link-inactive': isInactive(),
                     }"
                     class="bmb_breadcrumb-link"
+                    [bmbFullText]="dropdownItem.text"
+                    [bmbFullTextEnabled]="showFullText()"
+                    [attr.tabindex]="showFullText() ? 0 : null"
                     [routerLink]="dropdownItem.link"
                     routerLinkActive="bmb_breadcrumb-active"
                     [routerLinkActiveOptions]="{ exact: true }"

@@ -4,11 +4,11 @@ import { TemplatesContainerBtn } from './pages/templates-container-btn/templates
 
 export const appRoutes: Route[] = [
   {
-    path: 'issue/full-text',
-    title: 'DS01-3901 | FullText',
+    path: 'direcrtives/full-text',
+    title: 'DS01-3901 | FullTextDirective',
     loadComponent: () =>
-      import('./pages/issues/full-text/full-text').then(
-        ({ FullText }) => FullText,
+      import('./pages/directives/full-text-directive/full-text-directive').then(
+        ({ FullTextDirective }) => FullTextDirective,
       ),
   },
   {

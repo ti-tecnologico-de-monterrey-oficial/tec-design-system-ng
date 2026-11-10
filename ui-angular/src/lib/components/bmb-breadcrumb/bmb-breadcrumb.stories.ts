@@ -73,6 +73,16 @@ ${getBasicExampleBlock('BmbBreadcrumbComponent')}
     },
   },
   argTypes: {
+    showFullText: {
+      control: { type: 'boolean' },
+      description:
+        'Shows truncated route names on hover, keyboard focus or a 500 ms long press. A long press reveals the text without navigating; a normal click preserves navigation.',
+      table: {
+        category: 'Properties',
+        defaultValue: getDefaultValueControl(false),
+        type: { summary: 'boolean' },
+      },
+    },
     dataTopBar: {
       control: { type: 'object' },
       description:
@@ -136,6 +146,7 @@ ${getBasicExampleBlock('BmbBreadcrumbComponent')}
     },
   },
   args: {
+    showFullText: false,
     dataTopBar: [
       { text: 'Tec. Sign', link: '/' },
       { text: 'Borem ipsum dolor sit amet 1 Borem ipsum dolor sit amet 1' },

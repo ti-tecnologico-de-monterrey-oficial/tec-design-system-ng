@@ -54,5 +54,18 @@ etiquetas, incluidas las que tienen badge:
 
 En este modo las flechas izquierda/derecha, Home y End permiten enfocar etiquetas
 sin seleccionar la pestaña. Enter o Espacio conservan la activación del botón.
-El ejemplo `/issue/full-text` permite activar/desactivar la opción y contar los
-eventos de selección. No se integra todavía en otros componentes.
+El ejemplo `/direcrtives/full-text` permite activar/desactivar la opción y contar los
+eventos de selección.
+
+## BmbBreadcrumb
+
+`showFullText` es `false` por defecto. Activarlo permite consultar los nombres
+truncados en navegación local, barra superior y opciones del menú de rutas.
+Los textos no navegables también pueden recibir foco de teclado en este modo.
+Una pulsación prolongada muestra el nombre completo sin navegar; el clic breve
+conserva el enlace. La página de ejemplo incluye estas variantes y una opción
+para probar la navegación inactiva.
+
+```html
+<bmb-breadcrumb [dataLocalNav]="path" [showFullText]="true" />
+```

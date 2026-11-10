@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.tabs-preview {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: min(20rem, 100%);
+  padding: 1rem;
+  border: 1px solid var(--general-contrasts-50);
+  overflow: auto;
+  resize: horizontal;
+}
+
+.selected-tab {
+  padding-block: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.breadcrumb-examples {
+  margin-top: 2rem;
+
+  label {
+    display: block;
+    margin-block: 0.5rem;
+  }
+}
+
+.breadcrumb-preview {
+  box-sizing: border-box;
+  width: min(100%, 36rem);
+  max-width: 100%;
+  min-width: min(18rem, 100%);
+  padding: 1rem;
+  border: 1px solid var(--general-contrasts-50);
+  resize: horizontal;
+  overflow: auto;
+}
+
+.breadcrumb-preview-top {
+  background-color: rgb(var(--black-primary));
+}
+
+.breadcrumb-preview-menu {
+  min-height: 16rem;
+}

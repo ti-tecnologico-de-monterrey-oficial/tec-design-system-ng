@@ -1,0 +1,86 @@
+<h1>FullTextDirective</h1>
+<section aria-labelledby="full-text-tabs-heading">
+  <h2 id="full-text-tabs-heading">BmbTabs: etiquetas largas</h2>
+  <div class="tabs-preview">
+    <label>
+      <input
+        type="checkbox"
+        [checked]="showFullText()"
+        (change)="showFullText.set($any($event.target).checked)"
+      />
+      Consultar texto completo
+    </label>
+    <bmb-tabs
+      [showFullText]="showFullText()"
+      [tabs]="tabs"
+      [(selectedTabId)]="selectedTabId"
+      (selected)="handleSelected($event)"
+    >
+      <p class="selected-tab" aria-live="polite">
+        Pestaña seleccionada: {{ selectedTitle() }} — Eventos de selección: {{
+        selectionCount() }}
+      </p>
+    </bmb-tabs>
+  </div>
+</section>
+
+<section
+  aria-labelledby="full-text-breadcrumb-heading"
+  class="breadcrumb-examples"
+>
+  <h2 id="full-text-breadcrumb-heading">BmbBreadcrumb: nombres completos</h2>
+  <label>
+    <input
+      type="checkbox"
+      [checked]="showBreadcrumbFullText()"
+      (change)="showBreadcrumbFullText.set($any($event.target).checked)"
+    />
+    Consultar texto completo en breadcrumbs
+  </label>
+  <label>
+    <input
+      type="checkbox"
+      [checked]="breadcrumbInactive()"
+      (change)="breadcrumbInactive.set($any($event.target).checked)"
+    />
+    Navegación inactiva
+  </label>
+  <p>
+    Mantén presionado un nombre cortado para leerlo sin navegar. También puedes
+    usar el mouse o el foco del teclado. Un clic breve en «Mis evidencias
+    académicas» abre la página de pruebas de Breadcrumb.
+  </p>
+
+  <h3>Navegación local</h3>
+  <div class="breadcrumb-preview" data-testid="breadcrumb-local-preview">
+    <bmb-breadcrumb
+      [dataLocalNav]="breadcrumbPath"
+      [isInactive]="breadcrumbInactive()"
+      [showFullText]="showBreadcrumbFullText()"
+    />
+  </div>
+
+  <h3>Rutas intermedias en el menú «…»</h3>
+  <div
+    class="breadcrumb-preview breadcrumb-preview-menu"
+    data-testid="breadcrumb-menu-preview"
+  >
+    <bmb-breadcrumb
+      [dataLocalNav]="extendedBreadcrumbPath"
+      [isInactive]="breadcrumbInactive()"
+      [showFullText]="showBreadcrumbFullText()"
+    />
+  </div>
+
+  <h3>Barra superior</h3>
+  <div
+    class="breadcrumb-preview breadcrumb-preview-top"
+    data-testid="breadcrumb-top-preview"
+  >
+    <bmb-breadcrumb
+      [isTopBar]="true"
+      [dataTopBar]="topBarBreadcrumb"
+      [showFullText]="showBreadcrumbFullText()"
+    />
+  </div>
+</section>
