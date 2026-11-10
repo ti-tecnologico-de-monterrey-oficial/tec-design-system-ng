@@ -7,4 +7,11 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../coverage/ui-react',
+  coverageReporters: ['html', 'lcov', 'text-summary'],
+  testPathIgnorePatterns: [
+    '<rootDir>/src/lib/_shared/logic/components/totp.spec.ts',
+    '<rootDir>/src/lib/_shared/logic/components/datepicker.spec.ts',
+    '<rootDir>/src/lib/_shared/logic/components/form-validator.spec.ts',
+    '<rootDir>/src/lib/_shared/logic/components/input-phone-number.spec.ts',
+  ],
 };

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { ThemeProvider, useTheme } from './index';
 
 function ThemeConsumer() {
@@ -47,12 +47,12 @@ describe('ThemeProvider', () => {
       </ThemeProvider>,
     );
 
-    screen.getByRole('button', { name: 'Dark' }).click();
+    fireEvent.click(screen.getByRole('button', { name: 'Dark' }));
 
     expect(screen.getByTestId('theme').textContent).toBe('dark');
     expect(document.documentElement.dataset.theme).toBe('dark');
 
-    screen.getByRole('button', { name: 'Light' }).click();
+    fireEvent.click(screen.getByRole('button', { name: 'Light' }));
 
     expect(screen.getByTestId('theme').textContent).toBe('light');
     expect(document.documentElement.dataset.theme).toBe('light');
