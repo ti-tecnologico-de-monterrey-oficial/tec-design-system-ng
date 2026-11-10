@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {
   BmbBreadcrumbComponent,
-  BmbFullTextDirective,
+  BmbContainerButtonComponent,
   BmbTabsComponent,
   BmbDividerComponent,
   BmbSimpleTextComponent,
@@ -11,7 +11,13 @@ import {
 
 @Component({
   selector: 'app-full-text-directive',
-  imports: [BmbTabsComponent, BmbBreadcrumbComponent, BmbFullTextDirective, BmbDividerComponent, BmbSimpleTextComponent],
+  imports: [
+    BmbTabsComponent,
+    BmbBreadcrumbComponent,
+    BmbContainerButtonComponent,
+    BmbDividerComponent,
+    BmbSimpleTextComponent,
+  ],
   templateUrl: './full-text-directive.html',
   styleUrl: './full-text-directive.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,6 +28,12 @@ export class FullTextDirective {
   readonly fullTextEnabled = signal(true);
   readonly fullTextExample =
     'Desarrollo e implementación de estrategias de innovación educativa para la formación de competencias profesionales';
+  readonly showContainerButtonFullText = signal(true);
+  readonly containerButtonClickCount = signal(0);
+  readonly containerButtonTitle =
+    'Desarrollo e implementación de estrategias de innovación educativa para la formación de competencias profesionales en programas académicos de educación superior';
+  readonly containerButtonSubtitle =
+    'Registro de prueba con un subtítulo extenso para comprobar el texto completo sin activar la navegación del botón';
   readonly showBreadcrumbFullText = signal(true);
   readonly breadcrumbInactive = signal(false);
   readonly breadcrumbPath: IBmbDataTopBar[] = [
@@ -73,5 +85,9 @@ export class FullTextDirective {
   handleSelected(tab: IBmbTab): void {
     this.selectionCount.update((count) => count + 1);
     this.selectedTitle.set(tab.title);
+  }
+
+  handleContainerButtonClick(): void {
+    this.containerButtonClickCount.update((count) => count + 1);
   }
 }

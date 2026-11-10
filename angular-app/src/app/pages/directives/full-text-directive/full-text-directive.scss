@@ -42,6 +42,15 @@ pre {
   overflow-wrap: anywhere;
 }
 
+.container-button-preview {
+  box-sizing: border-box;
+  width: min(100%, 32rem);
+  padding: 1rem;
+  border: 1px solid var(--general-contrasts-50);
+  resize: horizontal;
+  overflow: auto;
+}
+
 .breadcrumb-examples {
   margin-top: 2rem;
 

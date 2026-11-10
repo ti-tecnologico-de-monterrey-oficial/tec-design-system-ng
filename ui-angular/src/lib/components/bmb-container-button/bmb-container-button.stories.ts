@@ -77,6 +77,16 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
     },
   },
   argTypes: {
+    showFullText: {
+      control: { type: 'boolean' },
+      description:
+        'Allows users to inspect truncated title and subtitle text without activating the container button.',
+      table: {
+        category: 'Properties',
+        defaultValue: getDefaultValueControl(false),
+        type: { summary: 'boolean' },
+      },
+    },
     componentTitle: {
       control: {
         type: 'text',

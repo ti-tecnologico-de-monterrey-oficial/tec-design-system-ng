@@ -53,6 +53,37 @@
 
 <bmb-divider></bmb-divider>
 
+<section aria-labelledby="full-text-container-button-heading">
+  <bmb-simple-text
+    id="full-text-container-button-heading"
+    [text]="'BmbContainerButton'"
+    [size]="10"
+    weight="bold"
+  ></bmb-simple-text>
+  <label>
+    <input
+      type="checkbox"
+      [checked]="showContainerButtonFullText()"
+      (change)="showContainerButtonFullText.set($any($event.target).checked)"
+    />
+    Consultar texto completo en títulos y subtítulos
+  </label>
+  <div class="container-button-preview">
+    <bmb-container-button
+      [componentTitle]="containerButtonTitle"
+      [subtitle]="containerButtonSubtitle"
+      [showFullText]="showContainerButtonFullText()"
+      (onButton)="handleContainerButtonClick()"
+    />
+  </div>
+  <p aria-live="polite">
+    Eventos de clic: {{ containerButtonClickCount() }}. Mantén presionado el
+    título o subtítulo para consultar el texto sin activar el botón.
+  </p>
+</section>
+
+<bmb-divider></bmb-divider>
+
 <section aria-labelledby="full-text-breadcrumb-heading" class="breadcrumb-examples">
   <bmb-simple-text [text]="'BmbBreadcrumb'" [size]="10" weight="bold"></bmb-simple-text>
   <label>
