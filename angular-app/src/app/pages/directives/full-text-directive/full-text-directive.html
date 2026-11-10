@@ -1,6 +1,33 @@
 <h1>FullTextDirective</h1>
+<section aria-labelledby="full-text-directive-heading">
+  <h2 id="full-text-directive-heading">Uso de BmbFullTextDirective</h2>
+  <label>
+    <input
+      type="checkbox"
+      [checked]="fullTextEnabled()"
+      (change)="fullTextEnabled.set($any($event.target).checked)"
+    />
+    Habilitar consulta del texto completo
+  </label>
+  <ul>
+    <li>
+      <code>bmbFullText</code>: texto completo que mostrará el tooltip.
+    </li>
+    <li>
+      <code>bmbFullTextEnabled</code>: habilita la directiva; por defecto es
+      <code>true</code>.
+    </li>
+    <li>
+      <code>bmbFullTextTarget</code>: selector del texto truncado dentro del
+      control. Si se omite, se mide el elemento anfitrión.
+    </li>
+  </ul>
+</section>
+
+<bmb-divider></bmb-divider>
+
 <section aria-labelledby="full-text-tabs-heading">
-  <h2 id="full-text-tabs-heading">BmbTabs: etiquetas largas</h2>
+  <bmb-simple-text [text]="'BmbTabs'" [size]="10" weight="bold"></bmb-simple-text>
   <div class="tabs-preview">
     <label>
       <input
@@ -24,11 +51,10 @@
   </div>
 </section>
 
-<section
-  aria-labelledby="full-text-breadcrumb-heading"
-  class="breadcrumb-examples"
->
-  <h2 id="full-text-breadcrumb-heading">BmbBreadcrumb: nombres completos</h2>
+<bmb-divider></bmb-divider>
+
+<section aria-labelledby="full-text-breadcrumb-heading" class="breadcrumb-examples">
+  <bmb-simple-text [text]="'BmbBreadcrumb'" [size]="10" weight="bold"></bmb-simple-text>
   <label>
     <input
       type="checkbox"
@@ -45,11 +71,6 @@
     />
     Navegación inactiva
   </label>
-  <p>
-    Mantén presionado un nombre cortado para leerlo sin navegar. También puedes
-    usar el mouse o el foco del teclado. Un clic breve en «Mis evidencias
-    académicas» abre la página de pruebas de Breadcrumb.
-  </p>
 
   <h3>Navegación local</h3>
   <div class="breadcrumb-preview" data-testid="breadcrumb-local-preview">

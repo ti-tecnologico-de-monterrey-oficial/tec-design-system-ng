@@ -3,6 +3,29 @@
   min-width: 0;
 }
 
+.full-text-directive-preview {
+  width: min(100%, 24rem);
+  margin-block: 1rem;
+
+  button {
+    width: 100%;
+    padding: 0.75rem;
+    text-align: left;
+  }
+
+  .full-text-label {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+pre {
+  max-width: 100%;
+  overflow: auto;
+}
+
 .tabs-preview {
   box-sizing: border-box;
   width: 100%;
@@ -41,8 +64,4 @@
 
 .breadcrumb-preview-top {
   background-color: rgb(var(--black-primary));
-}
-
-.breadcrumb-preview-menu {
-  min-height: 16rem;
 }

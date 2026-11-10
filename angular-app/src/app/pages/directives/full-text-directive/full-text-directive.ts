@@ -1,14 +1,17 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {
   BmbBreadcrumbComponent,
+  BmbFullTextDirective,
   BmbTabsComponent,
+  BmbDividerComponent,
+  BmbSimpleTextComponent,
   type IBmbDataTopBar,
   type IBmbTab,
 } from 'ui-angular';
 
 @Component({
   selector: 'app-full-text-directive',
-  imports: [BmbTabsComponent, BmbBreadcrumbComponent],
+  imports: [BmbTabsComponent, BmbBreadcrumbComponent, BmbFullTextDirective, BmbDividerComponent, BmbSimpleTextComponent],
   templateUrl: './full-text-directive.html',
   styleUrl: './full-text-directive.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,6 +19,9 @@ import {
 export class FullTextDirective {
   readonly selectedTabId = signal(1);
   readonly showFullText = signal(true);
+  readonly fullTextEnabled = signal(true);
+  readonly fullTextExample =
+    'Desarrollo e implementación de estrategias de innovación educativa para la formación de competencias profesionales';
   readonly showBreadcrumbFullText = signal(true);
   readonly breadcrumbInactive = signal(false);
   readonly breadcrumbPath: IBmbDataTopBar[] = [

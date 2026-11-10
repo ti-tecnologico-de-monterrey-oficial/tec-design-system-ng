@@ -1,17 +1,32 @@
 @switch (elementType()) {
   @case ('span') {
-    <span class="bmb_simple-text" [ngStyle]="styles"><ng-content></ng-content></span>
+    <span class="bmb_simple-text" [ngStyle]="styles" [attr.aria-label]="showFullText() && text() ? text() : null">
+      <span [hidden]="!!text()"><ng-content></ng-content></span>
+      <span [hidden]="!text()">{{ text() }}</span>
+    </span>
   }
   @case ('div') {
-    <div class="bmb_simple-text" [ngStyle]="styles"><ng-content></ng-content></div>
+    <div class="bmb_simple-text" [ngStyle]="styles" [attr.aria-label]="showFullText() && text() ? text() : null">
+      <span [hidden]="!!text()"><ng-content></ng-content></span>
+      <span [hidden]="!text()">{{ text() }}</span>
+    </div>
   }
   @case ('section') {
-    <section class="bmb_simple-text" [ngStyle]="styles"><ng-content></ng-content></section>
+    <section class="bmb_simple-text" [ngStyle]="styles" [attr.aria-label]="showFullText() && text() ? text() : null">
+      <span [hidden]="!!text()"><ng-content></ng-content></span>
+      <span [hidden]="!text()">{{ text() }}</span>
+    </section>
   }
   @case ('small') {
-    <small class="bmb_simple-text" [ngStyle]="styles"><ng-content></ng-content></small>
+    <small class="bmb_simple-text" [ngStyle]="styles" [attr.aria-label]="showFullText() && text() ? text() : null">
+      <span [hidden]="!!text()"><ng-content></ng-content></span>
+      <span [hidden]="!text()">{{ text() }}</span>
+    </small>
   }
   @default {
-    <p class="bmb_simple-text" [ngStyle]="styles"><ng-content></ng-content></p>
+    <p class="bmb_simple-text" [ngStyle]="styles" [attr.aria-label]="showFullText() && text() ? text() : null">
+      <span [hidden]="!!text()"><ng-content></ng-content></span>
+      <span [hidden]="!text()">{{ text() }}</span>
+    </p>
   }
 }
