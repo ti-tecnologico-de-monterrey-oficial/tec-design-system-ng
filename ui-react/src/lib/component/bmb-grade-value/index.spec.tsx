@@ -42,6 +42,24 @@ describe('BmbGradeValue', () => {
     ).toBe('100.');
   });
 
+  it('gives the SVG an accessible name derived from the score by default', () => {
+    const { container } = render(<BmbGradeValue score={89} />);
+
+    expect(container.querySelector('svg')?.getAttribute('aria-label')).toBe(
+      'Grade: 89',
+    );
+  });
+
+  it('lets consumers override the SVG accessible name', () => {
+    const { container } = render(
+      <BmbGradeValue score={89} ariaLabel="Math grade: 89" />,
+    );
+
+    expect(container.querySelector('svg')?.getAttribute('aria-label')).toBe(
+      'Math grade: 89',
+    );
+  });
+
   it('applies the appearance class for primary and alternative contrasts', () => {
     const { container: primary } = render(
       <BmbGradeValue appearanceContrast="primary" />,

@@ -7,12 +7,14 @@ export interface BmbGradeValueProps {
   appearanceContrast?: IBmbContrast;
   type?: IBmbGradeType;
   score?: number | string;
+  ariaLabel?: string;
 }
 
 export const BmbGradeValue = ({
   appearanceContrast = 'default',
   type = 'main-grade',
   score = 0,
+  ariaLabel,
 }: BmbGradeValueProps) => {
   const classes = [
     'bmb_grade-value',
@@ -35,6 +37,8 @@ export const BmbGradeValue = ({
           width="50px"
           viewBox="0 0 485.688 485.688"
           xmlSpace="preserve"
+          role="img"
+          aria-label={ariaLabel ?? `Grade: ${truncateGradeValue(score)}`}
         >
           <g id="SVGRepo_bgCarrier" strokeWidth={0}></g>
           <g
