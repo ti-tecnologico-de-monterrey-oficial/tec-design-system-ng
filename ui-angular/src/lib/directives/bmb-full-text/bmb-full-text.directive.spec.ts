@@ -2,6 +2,10 @@ import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbFullTextDirective } from './bmb-full-text.directive';
 
+const FULL_TEXT_FIXTURE =
+  'A complete label that extends beyond the rendered container';
+const UPDATED_FULL_TEXT_FIXTURE = 'Updated full-text fixture value';
+
 @Component({
   imports: [BmbFullTextDirective],
   template: `
@@ -18,7 +22,7 @@ import { BmbFullTextDirective } from './bmb-full-text.directive';
   `,
 })
 class HostComponent {
-  text = signal('Complete label that exceeds the available width');
+  text = signal(FULL_TEXT_FIXTURE);
   enabled = signal(true);
   clicks = 0;
   parentClicks = 0;
@@ -126,6 +130,46 @@ describe('BmbFullTextDirective', () => {
     expect(tooltip()).toBeNull();
   });
 
+  it.each([
+    ['secondary button', { button: 1 }],
+    ['non-primary pointer', { isPrimary: false }],
+  ])('ignores a %s press', (_description, pointerValues) => {
+    pointer('pointerdown', button, pointerValues);
+    jest.advanceTimersByTime(600);
+    expect(tooltip()).toBeNull();
+  });
+
+  it('prevents the context menu during an eligible long press', () => {
+    pointer('pointerdown');
+    const event = new Event('contextmenu', {
+      bubbles: true,
+      cancelable: true,
+    });
+
+    button.dispatchEvent(event);
+
+    expect(event.defaultPrevented).toBe(true);
+    pointer('pointerup');
+  });
+
+  it('keeps the press active for movement within the drag threshold', () => {
+    pointer('pointerdown');
+    pointer('pointermove', document, { clientX: 10 });
+    jest.advanceTimersByTime(500);
+    expect(tooltip()).not.toBeNull();
+    pointer('pointerup');
+  });
+
+  it('ignores move and release events from a different pointer', () => {
+    pointer('pointerdown');
+    pointer('pointermove', document, { pointerId: 2, clientX: 30 });
+    pointer('pointerup', document, { pointerId: 2 });
+    jest.advanceTimersByTime(500);
+
+    expect(tooltip()).not.toBeNull();
+    pointer('pointerup');
+  });
+
   it.each(['pointercancel', 'scroll', 'pointermove'])(
     'cancels the press on %s',
     (type) => {
@@ -156,6 +200,17 @@ describe('BmbFullTextDirective', () => {
     expect(tooltip()).toBeNull();
   });
 
+  it('hides after the pointer leaves the tooltip', () => {
+    pointer('pointerenter', button, { pointerType: 'mouse' });
+    const openTooltip = tooltip() as HTMLElement;
+
+    pointer('pointerleave', openTooltip, { pointerType: 'mouse' });
+    jest.advanceTimersByTime(149);
+    expect(tooltip()).not.toBeNull();
+    jest.advanceTimersByTime(1);
+    expect(tooltip()).toBeNull();
+  });
+
   it('uses and disposes BmbTooltipBase without keeping empty component hosts', () => {
     for (let i = 0; i < 3; i++) {
       pointer('pointerenter', button, { pointerType: 'mouse' });
@@ -183,6 +238,13 @@ describe('BmbFullTextDirective', () => {
     expect(button.textContent?.trim()).toBe(fixture.componentInstance.text());
   });
 
+  it('does not open for focus that is not keyboard-visible', () => {
+    jest.spyOn(button, 'matches').mockReturnValue(false);
+    button.dispatchEvent(new FocusEvent('focusin'));
+
+    expect(tooltip()).toBeNull();
+  });
+
   it.each(['resize', 'blur', 'scroll', 'pointerdown'])(
     'dismisses an open tooltip on outside %s',
     (type) => {
@@ -197,7 +259,7 @@ describe('BmbFullTextDirective', () => {
 
   it('dismisses when disabled or its text changes', () => {
     pointer('pointerenter', button, { pointerType: 'mouse' });
-    fixture.componentInstance.text.set('Changed label');
+    fixture.componentInstance.text.set(UPDATED_FULL_TEXT_FIXTURE);
     fixture.detectChanges();
     expect(tooltip()).toBeNull();
     pointer('pointerenter', button, { pointerType: 'mouse' });

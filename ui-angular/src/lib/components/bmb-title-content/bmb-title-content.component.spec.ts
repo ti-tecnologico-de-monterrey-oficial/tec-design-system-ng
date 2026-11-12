@@ -6,6 +6,8 @@ import { By } from '@angular/platform-browser';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbFullTextDirective } from '../../directives/bmb-full-text/bmb-full-text.directive';
 
+const TITLE_FIXTURE = 'A title used to verify title-content behavior';
+
 describe('BmbTitleContentTemplateComponent', () => {
   let component: BmbTitleContentComponent;
   let fixture: ComponentFixture<BmbTitleContentComponent>;
@@ -19,7 +21,7 @@ describe('BmbTitleContentTemplateComponent', () => {
     fixture = TestBed.createComponent(BmbTitleContentComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
-    componentRef.setInput('componentTitle', 'Title');
+    componentRef.setInput('componentTitle', TITLE_FIXTURE);
     fixture.detectChanges();
   });
 
@@ -46,7 +48,7 @@ describe('BmbTitleContentTemplateComponent', () => {
   });
 
   it('should clamp the title and enable the full text when showFullText is true', () => {
-    componentRef.setInput('componentTitle', 'A very long title');
+    componentRef.setInput('componentTitle', TITLE_FIXTURE);
     componentRef.setInput('showFullText', true);
     fixture.detectChanges();
 
@@ -66,8 +68,8 @@ describe('BmbTitleContentTemplateComponent', () => {
         .classList.contains('bmb_title-content-container-wrapper--clamp'),
     ).toBe(true);
     expect(heading.getAttribute('tabindex')).toBe('0');
-    expect(heading.textContent?.trim()).toBe('A very long title');
-    expect(directive.bmbFullText()).toBe('A very long title');
+    expect(heading.textContent?.trim()).toBe(TITLE_FIXTURE);
+    expect(directive.bmbFullText()).toBe(TITLE_FIXTURE);
     expect(directive.bmbFullTextEnabled()).toBe(true);
   });
 
@@ -94,5 +96,31 @@ describe('BmbTitleContentTemplateComponent', () => {
         '.bmb_title-content-container-icon bmb-icon',
       ),
     ).toBeNull();
+  });
+
+  it('should report when no title is provided', () => {
+    const emptyFixture = TestBed.createComponent(BmbTitleContentComponent);
+
+    expect(() => emptyFixture.detectChanges()).toThrow(
+      'The "componentTitle" input is required. Please provide a value for it.',
+    );
+  });
+
+  it('should keep supporting the deprecated title input', () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const legacyFixture = TestBed.createComponent(BmbTitleContentComponent);
+    legacyFixture.componentRef.setInput('title', TITLE_FIXTURE);
+
+    expect(() => legacyFixture.detectChanges()).not.toThrow();
+    expect(legacyFixture.nativeElement.querySelector('h2').textContent).toContain(
+      TITLE_FIXTURE,
+    );
+
+    warn.mockRestore();
+  });
+
+  it('should identify image paths for icon rendering', () => {
+    expect(component.isImage('assets/icon.svg')).toBe(true);
+    expect(component.isImage('home')).toBe(false);
   });
 });
