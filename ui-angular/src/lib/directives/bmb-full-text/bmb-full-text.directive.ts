@@ -12,6 +12,9 @@ import {
   input,
 } from '@angular/core';
 import { BmbTooltipBaseComponent } from '../../components/bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
+import { isInsideClickOutsideContainer } from '../../_shared/logic/components/click-outside';
+import { calculateTooltipPosition } from '../../_shared/logic/components/tooltip';
+import { hasTextOverflow } from '../../_shared/logic/utils';
 
 /** Reveals truncated text without activating the host during a long press. */
 @Directive({
@@ -77,8 +80,13 @@ export class BmbFullTextDirective
       if ((event as KeyboardEvent).key === 'Escape') this.dismiss();
     });
     this.listen(this.document, 'pointerdown', (event) => {
-      const target = event.target as Node | null;
-      if (target && !host.contains(target) && !this.tooltip?.contains(target)) {
+      const target = event.target as HTMLElement | null;
+      const tooltip = this.tooltip;
+      if (
+        target &&
+        !isInsideClickOutsideContainer(target, host) &&
+        !(tooltip && isInsideClickOutsideContainer(target, tooltip))
+      ) {
         this.dismiss();
       }
     });
@@ -169,13 +177,7 @@ export class BmbFullTextDirective
   private canShow(): boolean {
     if (!this.browser || !this.bmbFullTextEnabled() || !this.bmbFullText())
       return false;
-    const target = this.getTextTarget();
-    return (
-      !!target &&
-      target.clientWidth > 0 &&
-      (target.scrollWidth > target.clientWidth ||
-        target.scrollHeight > target.clientHeight)
-    );
+    return hasTextOverflow(this.getTextTarget());
   }
 
   private getTextTarget(): HTMLElement {
@@ -192,25 +194,15 @@ export class BmbFullTextDirective
     const view = this.document.defaultView;
     if (!view) return { top: null, left: null, right: null, bottom: null };
 
-    const gap = 4;
-    const margin = 8;
-    const targetRect = anchor.getBoundingClientRect();
     const tooltipRect = tooltip?.getBoundingClientRect();
-    const width = tooltipRect?.width ?? 0;
-    const height = tooltipRect?.height ?? 0;
-    const centeredLeft = targetRect.left + (targetRect.width - width) / 2;
-    const above = targetRect.top - height - gap;
-    const preferredTop = above >= margin ? above : targetRect.bottom + gap;
-    const left = Math.max(
-      margin,
-      Math.min(centeredLeft, view.innerWidth - width - margin),
-    );
-    const top = Math.max(
-      margin,
-      Math.min(preferredTop, view.innerHeight - height - margin),
-    );
-
-    return { top: `${top}px`, left: `${left}px`, right: null, bottom: null };
+    return calculateTooltipPosition({
+      targetElement: anchor,
+      tooltipWidth: tooltipRect?.width ?? 0,
+      tooltipHeight: tooltipRect?.height ?? 0,
+      windowWidth: view.innerWidth,
+      windowHeight: view.innerHeight,
+      placement: 'vertical',
+    });
   }
 
   private show(): void {

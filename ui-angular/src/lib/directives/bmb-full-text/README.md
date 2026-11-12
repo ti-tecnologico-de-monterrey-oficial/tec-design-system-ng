@@ -54,7 +54,7 @@ etiquetas, incluidas las que tienen badge:
 
 En este modo las flechas izquierda/derecha, Home y End permiten enfocar etiquetas
 sin seleccionar la pestaña. Enter o Espacio conservan la activación del botón.
-El ejemplo `/direcrtives/full-text` permite activar/desactivar la opción y contar los
+El ejemplo `/directives/full-text` permite activar/desactivar la opción y contar los
 eventos de selección.
 
 ## BmbBreadcrumb

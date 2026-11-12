@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {
   BmbBreadcrumbComponent,
+  BmbCheckboxComponent,
   BmbContainerButtonComponent,
   BmbTabsComponent,
   BmbDividerComponent,
@@ -17,6 +18,7 @@ import {
   imports: [
     BmbTabsComponent,
     BmbBreadcrumbComponent,
+    BmbCheckboxComponent,
     BmbContainerButtonComponent,
     BmbDividerComponent,
     BmbHomeCardComponent,
@@ -42,7 +44,7 @@ export class FullTextDirective {
   readonly showBreadcrumbFullText = signal(true);
   readonly breadcrumbInactive = signal(false);
   readonly breadcrumbPath: IBmbDataTopBar[] = [
-    { text: 'Inicio', link: '/direcrtives/full-text' },
+    { text: 'Inicio', link: '/directives/full-text' },
     { text: 'Mis evidencias académicas', link: '/pages/breadcrumb' },
     {
       text: 'Vitalidad intelectual y desarrollo de estrategias de innovación educativa para la formación de competencias profesionales',
@@ -66,7 +68,7 @@ export class FullTextDirective {
     this.breadcrumbPath[2],
   ];
   readonly topBarBreadcrumb: IBmbDataTopBar[] = [
-    { text: 'MiTec', link: '/direcrtives/full-text' },
+    { text: 'MiTec', link: '/directives/full-text' },
     { text: this.breadcrumbPath[2].text },
   ];
   readonly selectionCount = signal(0);

@@ -2,6 +2,14 @@ import { FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { IBmbInputError } from '../types/input';
 export const BROKEN_IMAGE = 'assets/images/empty-state/broken-image.jpg';
 
+export const hasTextOverflow = (
+  element: HTMLElement | null | undefined,
+): boolean =>
+  !!element &&
+  element.clientWidth > 0 &&
+  (element.scrollWidth > element.clientWidth ||
+    element.scrollHeight > element.clientHeight);
+
 export const isExternalLink = (link: string): boolean => {
   return (
     link.startsWith('http://') ||

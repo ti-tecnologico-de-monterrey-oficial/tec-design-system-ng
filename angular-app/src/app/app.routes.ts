@@ -4,7 +4,7 @@ import { TemplatesContainerBtn } from './pages/templates-container-btn/templates
 
 export const appRoutes: Route[] = [
   {
-    path: 'direcrtives/full-text',
+    path: 'directives/full-text',
     title: 'DS01-3901 | FullTextDirective',
     loadComponent: () =>
       import('./pages/directives/full-text-directive/full-text-directive').then(

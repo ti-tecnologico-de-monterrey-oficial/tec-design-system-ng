@@ -16,6 +16,8 @@ export interface TooltipPositionOptions {
   tooltipWidth: number;
   windowWidth: number;
   windowHeight: number;
+  placement?: 'side' | 'vertical';
+  tooltipHeight?: number;
 }
 
 export interface TooltipStyle {
