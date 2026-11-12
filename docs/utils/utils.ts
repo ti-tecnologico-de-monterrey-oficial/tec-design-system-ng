@@ -191,16 +191,22 @@ export const getStoryLink = ({
   title,
   showFullLinkName = true,
   isPreURL = false,
+  urlId = '',
+  alias = '',
 }: {
   title: string;
   showFullLinkName?: boolean;
   isPreURL?: boolean;
+  urlId?: string;
+  alias?: string;
 }): string => {
-  const basisURL = `/docs/${getFormatName(title, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
-  const _title: string = showFullLinkName ? title : getStoryTitle(title);
+  const basisURL = `/docs/${getFormatName(title, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation`;
+  const _title: string =
+    alias || (showFullLinkName ? title : getStoryTitle(title));
   const preURL: string = isPreURL ? '/?path=' : '';
+  const _urlId: string = urlId ? `#${urlId}` : '';
 
-  return `[${_title}](${preURL}${basisURL}`;
+  return `[${_title}](${preURL}${basisURL}${_urlId})`;
 };
 
 export const getAccordionDetail = (title: string, content: string): string => `
@@ -266,11 +272,18 @@ export const getAuxiliaryDescription = (
 
 export const getArchitectureSection = (
   architectureBlock: string,
-  bmbNameLink = '',
-  documentationLink = '',
+  {
+    bmbNameLink = '',
+    documentationLink = '',
+    storyType = 'component',
+  }: {
+    bmbNameLink?: string;
+    documentationLink?: string;
+    storyType?: IBmbStoryType;
+  } = {},
 ): string => `
 ## DOM Architecture
-Represents the structure of the component.
+Represents the structure of the ${storyType}.
 \`\`\`html
 ${architectureBlock}
 \`\`\`${bmbNameLink ? getDOMArchitectureLink(bmbNameLink, documentationLink) : ''}
@@ -279,7 +292,8 @@ ${architectureBlock}
 
 export const getCheckboxOrRadialArchitecture = (type: string): string => `
 ${getArchitectureSection(`
-<section class="bmb_${type}" <!-- conditional class bmb_${type}-before bmb_${type}-after bmb_${type}-required --> >
+<section class="bmb_${type}">
+<!-- conditional class bmb_${type}-before bmb_${type}-after bmb_${type}-required -->
   <input { input config } />
   <div class="bmb_${type}-box">
     <span class="bmb_${type}-mark"></span>
@@ -590,7 +604,12 @@ export const getDOMArchitectureLink = (
   bmbNameLink = '',
   documentationLink = '',
 ): string => `
-[bmb-${bmbNameLink} - DOM Architecture](/docs/${documentationLink}--documentation&globals=#dom-architecture)
+${getStoryLink({
+  alias: `bmb-${bmbNameLink} - ${getStoryTitle(documentationLink)} - DOM Architecture`,
+  title: documentationLink,
+  showFullLinkName: false,
+  urlId: 'dom-architecture',
+})}
 <br/>
 `;
 

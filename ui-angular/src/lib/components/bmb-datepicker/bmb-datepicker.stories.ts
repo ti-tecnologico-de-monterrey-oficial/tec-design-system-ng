@@ -14,6 +14,7 @@ import {
   getOnEvent,
   IBmbOnEvent,
 } from '@docs/utils/utils';
+import * as inputStory from '../bmb-input/bmb-input.stories';
 
 const inputName = 'date_picker';
 const formatName: string = getFormatName(inputName, '_');
@@ -37,25 +38,6 @@ export default {
   component: BmbDatepickerComponent,
   tags: ['!autodocs'],
   parameters: {
-    controls: {
-      exclude: [
-        'defaultDate',
-        'isWindowOpen',
-        'now',
-        'stepYearPicker',
-        'clickOutside',
-        'convertToDate',
-        'customValidatorDate',
-        'handleFocusedEvent',
-        'handleValueChange',
-        'handleWindowOpen',
-        'customValidationMessage',
-        '',
-        '',
-        '',
-        '',
-      ],
-    },
     docs: {
       description: {
         component: `
@@ -67,20 +49,23 @@ ${getFieldDescription(
 ${getArchitectureSection(
   `
 <div class="bmb_datepicker">
-  <section class="bmb-datepicker-container">
-    <bmb-input>
-
+  <section class="bmb_datepicker-container">
+    <!-- bmb-input-validator is a reusable internal component for input error validation.-->
+    <bmb-input-validator>
+      <!-- ... -->
+      <!-- bmb-input-content is a reusable internal component for input general content.-->
+      <bmb-input-content>
       <!-- if window is open -->
-      <ng-template #customInputContent>
-        <bmb-datepicker-modal class="bmb_datepicker-modal" />
-      </ng-template>
-
-    </bmb-input>
+      <bmb-datepicker-modal class="bmb_datepicker-modal" />
+      <!-- ... -->
+    </bmb-input-validator>
   </section>
 </div>
 `,
-  'input',
-  'components-inputs-text-input',
+  {
+    bmbNameLink: 'input',
+    documentationLink: inputStory.default.title,
+  },
 )}
 ${getFormExampleBlock(
   'BmbDatepickerComponent',

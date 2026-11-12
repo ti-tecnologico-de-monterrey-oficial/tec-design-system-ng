@@ -12,6 +12,7 @@ import {
   DBmbInputParamDesc,
   getDefaultValueControl,
 } from '@docs/utils/parameterDescriptions';
+import * as calendarStory from '../bmb-datepicker/bmb-datepicker.stories';
 
 const inputName = 'date_range';
 const label = generateLabel(inputName);
@@ -37,16 +38,6 @@ export default {
     }),
   ],
   parameters: {
-    controls: {
-      exclude: [
-        'disableDatesAfter',
-        'disableDatesBefore',
-        'isControlEndNull',
-        'isControlStartNull',
-        'stepYearPicker',
-        'getClassList',
-      ],
-    },
     docs: {
       description: {
         component: `
@@ -57,13 +48,15 @@ ${getFieldDescription(
 )}
 ${getArchitectureSection(
   `
-<section class="bmb_date-range" <!-- conditional class bmb_date-range-column -->>
+<section class="bmb_date-range"><!-- conditional class bmb_date-range-column -->
   <bmb-datepicker/>
   <bmb-datepicker/>
 </section>
 `,
-  'datepicker',
-  'components-inputs-calendar-date-picker',
+  {
+    bmbNameLink: 'datepicker',
+    documentationLink: calendarStory.default.title,
+  },
 )}
 ${getFormExampleBlock(
   'BmbDateRangeComponent',
