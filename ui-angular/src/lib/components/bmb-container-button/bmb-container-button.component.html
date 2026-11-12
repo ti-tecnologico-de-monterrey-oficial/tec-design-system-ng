@@ -37,11 +37,21 @@
           <bmb-grade-value bmbLayoutItem type="main-grade" [score]="score()" />
         }
         <div class="bmb_container-button-header">
-          <h2 class="bmb_container-button-title">
+          <h2
+            class="bmb_container-button-title"
+            [bmbFullText]="componentTitle() || title() || ''"
+            [bmbFullTextEnabled]="showFullText()"
+            [attr.tabindex]="showFullText() ? 0 : null"
+          >
             {{ componentTitle() || title() }}
           </h2>
           @if (subtitle() && !square() && !small()) {
-            <h4 class="bmb_container-button-subtitle">
+            <h4
+              class="bmb_container-button-subtitle"
+              [bmbFullText]="subtitle()"
+              [bmbFullTextEnabled]="showFullText()"
+              [attr.tabindex]="showFullText() ? 0 : null"
+            >
               {{ subtitle() }}
             </h4>
           }

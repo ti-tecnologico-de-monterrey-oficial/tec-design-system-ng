@@ -25,6 +25,7 @@ import { BmbDropdownMenuComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import type { IBbmBgAppearance } from '../../_shared/types/components/advertisement-card';
 import { TranslatePipe } from '../../pipes/translations';
+import { BmbFullTextDirective } from '../../directives/bmb-full-text/bmb-full-text.directive';
 
 const MOBILE_TABLET_QUERY = '(max-width: 992px)';
 
@@ -44,6 +45,7 @@ const MOBILE_TABLET_QUERY = '(max-width: 992px)';
     BmbBookmarkComponent,
     BmbDropdownMenuComponent,
     TranslatePipe,
+    BmbFullTextDirective,
   ],
   styleUrl: './bmb-container-button.component.scss',
   templateUrl: './bmb-container-button.component.html',
@@ -71,6 +73,7 @@ export class BmbContainerButtonComponent {
   isBookmarkActive = model<boolean>(false);
   dropdownMenuItems = input<IDropdownItem[]>([]);
   alternativeTextRightIcon = input<string>('');
+  showFullText = input<boolean>(false);
 
   title = input<string>(); // deprecated
 

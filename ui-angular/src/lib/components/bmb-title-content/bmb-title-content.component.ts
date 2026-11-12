@@ -27,6 +27,7 @@ import { BmbBreadcrumbComponent } from '../bmb-breadcrumb/bmb-breadcrumb.compone
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
+import { BmbFullTextDirective } from '../../directives/bmb-full-text/bmb-full-text.directive';
 
 @Component({
   selector: 'bmb-title-content',
@@ -39,6 +40,7 @@ import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.componen
     BmbUserImageComponent,
     BmbBotIconComponent,
     BmbBoxIconComponent,
+    BmbFullTextDirective,
   ],
   templateUrl: './bmb-title-content.component.html',
   styleUrl: './bmb-title-content.component.scss',
@@ -62,6 +64,7 @@ export class BmbTitleContentComponent {
   isAvatarIcon = input<boolean>(false);
   avatarSize = input<IBmbUserImageSize>('desktop-small');
   forceSquareApp = input<boolean>(false);
+  showFullText = input<boolean>(false);
   componentTitle = input<string>(); // once title is removed, this should be required
 
   title = input<string>(); // deprecated

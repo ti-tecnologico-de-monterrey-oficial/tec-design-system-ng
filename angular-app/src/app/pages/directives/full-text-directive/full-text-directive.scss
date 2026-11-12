@@ -1,0 +1,104 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.full-text-directive-preview {
+  width: min(100%, 24rem);
+  margin-block: 1rem;
+
+  button {
+    width: 100%;
+    padding: 0.75rem;
+    text-align: left;
+  }
+
+  .full-text-label {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+pre {
+  max-width: 100%;
+  overflow: auto;
+}
+
+.tabs-preview {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: min(20rem, 100%);
+  padding: 1rem;
+  border: 1px solid var(--general-contrasts-50);
+  overflow: auto;
+  resize: horizontal;
+}
+
+.selected-tab {
+  padding-block: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.container-button-preview {
+  box-sizing: border-box;
+  width: min(100%, 32rem);
+  padding: 1rem;
+  border: 1px solid var(--general-contrasts-50);
+  resize: horizontal;
+  overflow: auto;
+}
+
+.breadcrumb-examples {
+  margin-top: 2rem;
+
+  bmb-checkbox {
+    display: block;
+    margin-block: 0.5rem;
+  }
+}
+
+.breadcrumb-preview {
+  box-sizing: border-box;
+  width: min(100%, 36rem);
+  max-width: 100%;
+  min-width: min(18rem, 100%);
+  padding: 1rem;
+  border: 1px solid var(--general-contrasts-50);
+  resize: horizontal;
+  overflow: auto;
+}
+
+.breadcrumb-preview-top {
+  background-color: rgb(var(--black-primary));
+}
+
+.title-examples {
+  margin-top: 2rem;
+
+  bmb-checkbox {
+    display: block;
+    margin-block: 0.5rem;
+  }
+}
+
+.title-preview,
+.home-card-preview {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: min(16rem, 100%);
+  padding: 1rem;
+  border: 1px solid var(--general-contrasts-50);
+  resize: horizontal;
+  overflow: auto;
+}
+
+.title-preview {
+  width: min(100%, 24rem);
+}
+
+.home-card-preview {
+  width: min(100%, 40rem);
+}

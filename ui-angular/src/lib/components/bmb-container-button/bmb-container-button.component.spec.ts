@@ -7,6 +7,14 @@ import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.compo
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { ComponentRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { BmbFullTextDirective } from '../../directives/bmb-full-text/bmb-full-text.directive';
+
+const FULL_TEXT_FIXTURE = {
+  title:
+    'Development strategies for professional competencies in higher education',
+  subtitle: 'A long subtitle used to verify the full-text behavior',
+} as const;
 
 describe('BmbContainerButtonComponent', () => {
   let component: BmbContainerButtonComponent;
@@ -31,8 +39,95 @@ describe('BmbContainerButtonComponent', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    fixture.destroy();
+    jest.clearAllTimers();
+    jest.useRealTimers();
+  });
+
   it('should create the component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('keeps full-text disabled by default and binds the full title and subtitle', () => {
+    componentRef.setInput('componentTitle', FULL_TEXT_FIXTURE.title);
+    componentRef.setInput('subtitle', FULL_TEXT_FIXTURE.subtitle);
+    fixture.detectChanges();
+
+    const title = fixture.debugElement.query(By.css('.bmb_container-button-title'));
+    const subtitle = fixture.debugElement.query(
+      By.css('.bmb_container-button-subtitle'),
+    );
+    const directives = fixture.debugElement.queryAll(
+      By.directive(BmbFullTextDirective),
+    );
+
+    expect(component.showFullText()).toBe(false);
+    expect(directives).toHaveLength(2);
+    expect(directives[0].injector.get(BmbFullTextDirective).bmbFullText()).toBe(
+      FULL_TEXT_FIXTURE.title,
+    );
+    expect(
+      directives[0].injector.get(BmbFullTextDirective).bmbFullTextEnabled(),
+    ).toBe(false);
+    expect(directives[1].injector.get(BmbFullTextDirective).bmbFullText()).toBe(
+      FULL_TEXT_FIXTURE.subtitle,
+    );
+    expect(title.nativeElement.hasAttribute('tabindex')).toBe(false);
+    expect(subtitle.nativeElement.hasAttribute('tabindex')).toBe(false);
+  });
+
+  it('shows full text on long press without triggering the container click', () => {
+    jest.useFakeTimers();
+    componentRef.setInput('componentTitle', FULL_TEXT_FIXTURE.title);
+    componentRef.setInput('subtitle', FULL_TEXT_FIXTURE.subtitle);
+    componentRef.setInput('showFullText', true);
+    fixture.detectChanges();
+
+    const title = fixture.nativeElement.querySelector(
+      '.bmb_container-button-title',
+    ) as HTMLElement;
+    Object.defineProperties(title, {
+      clientWidth: { configurable: true, value: 80 },
+      scrollWidth: { configurable: true, value: 240 },
+    });
+
+    const onButton = jest.fn();
+    component.onButton.subscribe(onButton);
+    const pointerDown = new Event('pointerdown', {
+      bubbles: true,
+      cancelable: true,
+    });
+    Object.assign(pointerDown, {
+      pointerId: 1,
+      pointerType: 'touch',
+      button: 0,
+      isPrimary: true,
+      clientX: 0,
+      clientY: 0,
+    });
+    title.dispatchEvent(pointerDown);
+    jest.advanceTimersByTime(500);
+
+    expect(
+      document.querySelector('.bmb_tooltip-dialog--manual')?.textContent,
+    ).toContain(FULL_TEXT_FIXTURE.title);
+
+    document.dispatchEvent(
+      Object.assign(
+        new Event('pointerup', { bubbles: true, cancelable: true }),
+        { pointerId: 1 },
+      ),
+    );
+    title.dispatchEvent(
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        detail: 1,
+      }),
+    );
+
+    expect(onButton).not.toHaveBeenCalled();
   });
 
   it('should return the correct score', () => {

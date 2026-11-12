@@ -10,6 +10,8 @@ Renders a simple text block with configurable size, weight, color and html tag.
 | `weight`      | `number`  | `400`       | Font weight.                                    |
 | `color`       | `string`  | `'inherit'` | Text color (any valid CSS color value).         |
 | `elementType` | `string`  | `'p'`       | Html tag used to render the text (`p`, `span`, `div`, `label`, `strong`, `small`, `h1`-`h6`). |
+| `text` | `string` | `''` | Text to render instead of projected content. |
+| `showFullText` | `boolean` | `false` | Exposes the full text as the rendered element's accessible name when enabled. |
 
 ## Usage
 

@@ -34,10 +34,16 @@
         </bmb-icon>
       </span>
     }
-    <section class="bmb_title-content-container-wrapper">
+    <section
+      class="bmb_title-content-container-wrapper"
+      [class.bmb_title-content-container-wrapper--clamp]="showFullText()"
+    >
       @if (!!componentTitle() || !!title()) {
         <h2
           class="bmb_title-content-container-wrapper-title"
+          [class.bmb_title-content-container-wrapper-title--clamp]="
+            showFullText()
+          "
           [ngClass]="
             getClassNames(
               'bmb_title-content-container-wrapper-title',
@@ -45,6 +51,9 @@
               titleFontWeight()
             )
           "
+          [bmbFullText]="componentTitle() || title() || ''"
+          [bmbFullTextEnabled]="showFullText()"
+          [attr.tabindex]="showFullText() ? 0 : null"
         >
           {{ componentTitle() || title() }}
         </h2>
