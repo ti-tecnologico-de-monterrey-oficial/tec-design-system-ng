@@ -55,11 +55,31 @@ $font-weights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
     &-wrapper {
       flex: 1;
 
+      &--clamp {
+        min-width: 0;
+      }
+
       &-title {
         color: var(--general-contrasts-100);
         @include font-sizes();
         @include font-weights();
         @include centered();
+
+        &--clamp {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          line-clamp: 2;
+          overflow: hidden;
+          overflow-wrap: anywhere;
+          text-overflow: ellipsis;
+
+          // The centered modifier uses flex, which would disable the clamp.
+          &.bmb_title-content-container-wrapper-title-centered {
+            display: -webkit-box;
+            text-align: center;
+          }
+        }
       }
 
       &-subtitle {

@@ -74,3 +74,31 @@ pre {
 .breadcrumb-preview-top {
   background-color: rgb(var(--black-primary));
 }
+
+.title-examples {
+  margin-top: 2rem;
+
+  label {
+    display: block;
+    margin-block: 0.5rem;
+  }
+}
+
+.title-preview,
+.home-card-preview {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: min(16rem, 100%);
+  padding: 1rem;
+  border: 1px solid var(--general-contrasts-50);
+  resize: horizontal;
+  overflow: auto;
+}
+
+.title-preview {
+  width: min(100%, 24rem);
+}
+
+.home-card-preview {
+  width: min(100%, 40rem);
+}

@@ -4,7 +4,10 @@ import {
   BmbContainerButtonComponent,
   BmbTabsComponent,
   BmbDividerComponent,
+  BmbHomeCardComponent,
   BmbSimpleTextComponent,
+  BmbTitleContentComponent,
+  type IBmbActionHeader,
   type IBmbDataTopBar,
   type IBmbTab,
 } from 'ui-angular';
@@ -16,7 +19,9 @@ import {
     BmbBreadcrumbComponent,
     BmbContainerButtonComponent,
     BmbDividerComponent,
+    BmbHomeCardComponent,
     BmbSimpleTextComponent,
+    BmbTitleContentComponent,
   ],
   templateUrl: './full-text-directive.html',
   styleUrl: './full-text-directive.scss',
@@ -66,6 +71,24 @@ export class FullTextDirective {
   ];
   readonly selectionCount = signal(0);
   readonly selectedTitle = signal('Inicio');
+  readonly showTitleFullText = signal(true);
+  readonly longTitle =
+    'Desarrollo e implementación de estrategias de innovación educativa para la formación de competencias profesionales en programas académicos de educación superior';
+  readonly unbrokenTitle =
+    'FormacionDeCapitalHumanoYHerramientasTecnologicasParaLaInnovacionEducativaEnProgramasAcademicos';
+  readonly homeCardActionCount = signal(0);
+  readonly homeCardActions: IBmbActionHeader[] = [
+    {
+      icon: 'edit',
+      tooltipText: 'Editar',
+      action: () => this.homeCardActionCount.update((count) => count + 1),
+    },
+    {
+      icon: 'info',
+      tooltipText: 'Información',
+      action: () => this.homeCardActionCount.update((count) => count + 1),
+    },
+  ];
   readonly tabs: IBmbTab[] = [
     { id: 1, title: 'Inicio', isActive: true },
     { id: 2, title: 'Formación de capital humano' },

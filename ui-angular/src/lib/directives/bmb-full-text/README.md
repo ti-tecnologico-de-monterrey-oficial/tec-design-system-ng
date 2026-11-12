@@ -69,3 +69,16 @@ para probar la navegación inactiva.
 ```html
 <bmb-breadcrumb [dataLocalNav]="path" [showFullText]="true" />
 ```
+
+## BmbTitleContent y BmbHomeCard
+
+`showFullText` es `false` por defecto, por lo que el título conserva su
+presentación actual. Activarlo limita el título a dos líneas con puntos
+suspensivos y aplica la directiva al encabezado. El título recibe foco de
+teclado en este modo y solo muestra el texto completo si realmente se recorta.
+`BmbHomeCard` y `BmbHomeCardHeader` reenvían la opción a `BmbTitleContent`.
+
+```html
+<bmb-title-content [componentTitle]="title" [showFullText]="true" />
+<bmb-home-card [componentTitle]="title" [showFullText]="true" />
+```

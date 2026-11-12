@@ -39,6 +39,7 @@ export class BmbHomeCardComponent {
   isMobile = input<boolean>();
   contentPadding = input<SizeNames>('l');
   showRightButton = input<boolean>(true);
+  showFullText = input<boolean>(false);
   isExpanded = model<boolean>(false);
   currentBot = model<IBotType>();
   componentTitle = input<string>(); // once title is removed, this should be required

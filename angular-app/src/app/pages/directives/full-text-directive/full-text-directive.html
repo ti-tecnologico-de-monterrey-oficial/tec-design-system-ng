@@ -136,3 +136,62 @@
     />
   </div>
 </section>
+
+<bmb-divider></bmb-divider>
+
+<section aria-labelledby="full-text-title-heading" class="title-examples">
+  <bmb-simple-text
+    id="full-text-title-heading"
+    [text]="'BmbTitleContent y BmbHomeCard'"
+    [size]="10"
+    weight="bold"
+  ></bmb-simple-text>
+  <label>
+    <input
+      type="checkbox"
+      [checked]="showTitleFullText()"
+      (change)="showTitleFullText.set($any($event.target).checked)"
+    />
+    Limitar títulos a dos líneas y consultar el texto completo
+  </label>
+  <p>
+    Redimensiona los contenedores para comprobar el recorte. El texto completo
+    solo aparece cuando el título realmente se recorta.
+  </p>
+
+  <h3>BmbTitleContent con icono</h3>
+  <div class="title-preview" data-testid="title-content-preview">
+    <bmb-title-content
+      [componentTitle]="longTitle"
+      subtitle="Subtítulo de ejemplo"
+      icon="account_balance_wallet"
+      bgIconAppearance="green-light"
+      [showFullText]="showTitleFullText()"
+    />
+  </div>
+
+  <h3>BmbTitleContent centrado con palabra sin espacios</h3>
+  <div class="title-preview" data-testid="title-content-centered-preview">
+    <bmb-title-content
+      [componentTitle]="unbrokenTitle"
+      [isCenterContent]="true"
+      [showFullText]="showTitleFullText()"
+    />
+  </div>
+
+  <h3>BmbHomeCard con acciones y breadcrumbs</h3>
+    <bmb-home-card
+      [componentTitle]="longTitle"
+      icon="account_balance_wallet"
+      bgIconAppearance="green-light"
+      leftIcon="chevron_left"
+      [dataLocalNav]="breadcrumbPath"
+      [actionHeaders]="homeCardActions"
+      [showFullText]="showTitleFullText()"
+    >
+      <p>Contenido de la tarjeta.</p>
+    </bmb-home-card>
+  <p aria-live="polite">
+    Eventos de acciones del encabezado: {{ homeCardActionCount() }}.
+  </p>
+</section>

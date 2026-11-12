@@ -62,6 +62,7 @@ ${getBasicExampleBlock('BmbHomeCardHeaderComponent')}
     dataLocalNav: DBmbHomeCardHeaderParamDesc.dataLocalNav,
     actionHeaders: DBmbGenericParamDesc.actionHeaders,
     showRightButton: DBmbHomeCardHeaderParamDesc.showRightButton,
+    showFullText: DBmbHomeCardHeaderParamDesc.showFullText,
     isMobile: DBmbHomeCardHeaderParamDesc.isMobile,
     isExpanded: DBmbHomeCardHeaderParamDesc.isExpanded,
     onClose: DBmbHomeCardHeaderParamDesc.onClose,
@@ -108,6 +109,7 @@ ${getBasicExampleBlock('BmbHomeCardHeaderComponent')}
       },
     ],
     showRightButton: true,
+    showFullText: false,
     isMobile: false,
     isExpanded: false,
     onExpandClick: () => console.log('Expand clicked'),
@@ -119,3 +121,11 @@ ${getBasicExampleBlock('BmbHomeCardHeaderComponent')}
 type Story = StoryObj<BmbHomeCardHeaderComponent>;
 
 export const Default: Story = {};
+
+export const LongTitleWithFullText: Story = {
+  args: {
+    componentTitle:
+      'Desarrollo e implementación de estrategias de innovación educativa para la formación de competencias profesionales en programas de posgrado',
+    showFullText: true,
+  },
+};

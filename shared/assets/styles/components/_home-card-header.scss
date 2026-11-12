@@ -12,6 +12,10 @@
     > *:empty {
       display: none;
     }
+
+    > .bmb_three-cols-child:has(.bmb_title-content-container-wrapper--clamp) {
+      min-width: 0;
+    }
   }
 
   &-wrapper {
