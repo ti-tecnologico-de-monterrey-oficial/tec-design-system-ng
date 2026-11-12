@@ -47,14 +47,7 @@
         </p>
         <p>
           {{ 'ai_chat_bubble.upload_file.choose_again_prefix' | translate }}
-          <button
-            type="button"
-            class="bmb_upload-file-message-choose"
-            [attr.aria-label]="'ai_chat_bubble.upload_file.button' | translate"
-            (click)="requestUpload($event)"
-          >
-            +
-          </button>
+          <ng-container *ngTemplateOutlet="attachmentIcon" />
           {{ 'ai_chat_bubble.upload_file.choose_again' | translate }}
         </p>
       </div>
@@ -67,20 +60,24 @@
         {{ 'ai_chat_bubble.upload_file.intro' | translate }}
         “{{ message().content.fileName }}”,
         {{ 'ai_chat_bubble.upload_file.chat_bar_instruction' | translate }}
-        <bmb-icon
-          icon="add"
-          [size]="24"
-          [alt]="'ai_chat_bubble.upload_file.recommended_icon' | translate"
-        />
-        {{
-          'ai_chat_bubble.upload_file.disjunction_icon_bar_instruction'
-            | translate
-        }}
-        <bmb-icon icon="attach_file" [size]="24" />
+        <ng-container *ngTemplateOutlet="attachmentIcon" />
         {{ 'ai_chat_bubble.upload_file.button_instruction' | translate }}
       }
     </p>
   }
+
+  <ng-template #attachmentIcon>
+    <bmb-icon
+      icon="add"
+      [size]="24"
+      [alt]="'ai_chat_bubble.upload_file.recommended_icon' | translate"
+    />
+    {{
+      'ai_chat_bubble.upload_file.disjunction_icon_bar_instruction' | translate
+    }}
+    <bmb-icon icon="attach_file" [size]="24" />
+    {{ 'ai_chat_bubble.upload_file.button_instruction' | translate }}
+  </ng-template>
 
   <bmb-file-attachment-picker
     [acceptedExtensions]="message().content.acceptedFormats"

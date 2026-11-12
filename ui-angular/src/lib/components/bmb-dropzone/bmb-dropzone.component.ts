@@ -34,6 +34,9 @@ import {
 } from '../../_shared/logic/formControl';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import {
+  FileData,
+  FileSizeDisplay,
+  IBmbFileValidation,
   getDropzoneAcceptAttribute,
   getDropzoneAvatarIcon,
   getDropzoneFileName,
@@ -51,26 +54,6 @@ import {
   isValidDropzoneFileSize,
   sortDropzoneFiles,
 } from '../../_shared/logic/components/dropzone';
-
-interface FileData {
-  id: string;
-  name: string;
-  size: number;
-  base64?: string;
-  error?: boolean;
-  errorType?: 'format' | 'size' | 'name' | null;
-}
-
-interface IBmbFileValidation {
-  isValidFormat: boolean;
-  isValidSize: boolean;
-  isValidName: boolean;
-}
-
-interface FileSizeDisplay {
-  value: number;
-  unit: 'KB' | 'MB';
-}
 
 @Component({
   selector: 'bmb-dropzone',
@@ -284,10 +267,7 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
           !fileValidation.isValidFormat ||
           !fileValidation.isValidSize ||
           !fileValidation.isValidName,
-        errorType:
-          !fileValidation.isValidFormat
-            ? 'format'
-            : 'size',
+        errorType: !fileValidation.isValidFormat ? 'format' : 'size',
       };
 
       this.fileDataList.push(fileData);

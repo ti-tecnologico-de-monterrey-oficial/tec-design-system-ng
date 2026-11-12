@@ -5,7 +5,7 @@
     "module": "commonjs",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
-    "types": ["jest", "node"]
+    "types": ["jest", "node", "@nx/react/typings/cssmodule.d.ts"]
   },
   "include": [
     "jest.config.ts",

@@ -234,6 +234,7 @@ Enables the file attachment option.
       },
     },
     acceptedExtensions: DBmbDropzone.acceptedExtensions,
+    maxFileSize: DBmbDropzone.maxFileSize,
     isBotSpeaking: {
       control: { type: 'boolean' },
       description: 'Shows when the bot is speaking',
