@@ -198,12 +198,14 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
     event.preventDefault();
     const direction = getComputedStyle(list).direction === 'rtl' ? -1 : 1;
     const offset = (event.key === 'ArrowRight' ? 1 : -1) * direction;
-    const next =
-      event.key === 'Home'
-        ? 0
-        : event.key === 'End'
-          ? buttons.length - 1
-          : (current + offset + buttons.length) % buttons.length;
+    let next: number;
+    if (event.key === 'Home') {
+      next = 0;
+    } else if (event.key === 'End') {
+      next = buttons.length - 1;
+    } else {
+      next = (current + offset + buttons.length) % buttons.length;
+    }
     buttons[next].focus();
   }
 }
