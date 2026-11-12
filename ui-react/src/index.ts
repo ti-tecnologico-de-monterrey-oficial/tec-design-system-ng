@@ -17,3 +17,12 @@ export type {
 	IBmbSimpleTextElementType,
 } from './lib/component/bmb-simple-text';
 
+export { BmbDivider } from './lib/component/bmb-divider';
+export type { BmbDividerProps } from './lib/component/bmb-divider';
+
+export { BmbNotificationCounter } from './lib/component/bmb-notification-counter';
+export type {
+	BmbNotificationCounterProps,
+	IBmbNotificationCounterType,
+} from './lib/component/bmb-notification-counter';
+
