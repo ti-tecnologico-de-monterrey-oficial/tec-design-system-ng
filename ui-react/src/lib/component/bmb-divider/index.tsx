@@ -1,4 +1,4 @@
-import '../../_shared/assets/styles/components/_divider.scss';
+import './index.scss';
 import { getDividerClasses } from '../../_shared/logic/components/divider';
 import type {
   BmbDividerOrientationType,

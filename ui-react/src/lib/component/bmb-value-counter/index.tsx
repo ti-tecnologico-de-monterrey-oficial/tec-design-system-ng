@@ -1,4 +1,4 @@
-import '../../_shared/assets/styles/components/_value-counter.scss';
+import './index.scss';
 import {
   defaultValueCounterFormatter,
   formatValueCounter,
