@@ -21,10 +21,12 @@ import {
   shouldSendChatBarMessage,
 } from '../../_shared/logic/components/chat-bar';
 import { defaultBotList } from '../../_shared/logic/components/chat-bar-defaults';
+import { getDropzoneAcceptAttribute } from '../../_shared/logic/components/dropzone';
 import type {
   IBmbNativeModal as IBmbNativeModalGeneric,
   BmbChatAttachmentError,
   BmbChatAttachmentResult,
+  BmbChatAttachmentRules,
 } from '../../_shared/types';
 
 type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
@@ -160,10 +162,18 @@ export class BmbChatBarComponent implements OnInit, AfterViewInit {
   private readonly attachments = inject(BmbChatAttachmentsService);
   private readonly destroyRef = inject(DestroyRef);
   private readonly attachmentSourceId = getUUID();
+  private syncingPicker = false;
   protected readonly fileResult = computed(() =>
     this.attachments.result(this.attachmentSourceId),
   );
   protected readonly dismissedAttachmentErrors = signal<Set<number>>(new Set());
+  // Bare extensions such as "png" are normalized to ".png", as the picker accept attribute does.
+  private readonly attachmentRules = computed<BmbChatAttachmentRules>(() => ({
+    acceptedFormats: getDropzoneAcceptAttribute(this.acceptedExtensions() ?? [])
+      .split(',')
+      .filter(Boolean),
+    maxFileSize: this.maxFileSize(),
+  }));
 
   protected readonly _disabledInput = computed<boolean>(
     () => this.isLoading() || this.disabledInput(),
@@ -175,10 +185,7 @@ export class BmbChatBarComponent implements OnInit, AfterViewInit {
         {
           read: () => this.files(),
           write: (files) => this.files.set(files),
-          rules: () => ({
-            acceptedFormats: this.acceptedExtensions(),
-            maxFileSize: this.maxFileSize(),
-          }),
+          rules: () => this.attachmentRules(),
         },
         this.attachmentSourceId,
       ),
@@ -267,17 +274,22 @@ export class BmbChatBarComponent implements OnInit, AfterViewInit {
   }
 
   handleAttachmentChanges(files: File[]): void {
+    if (this.syncingPicker) return;
     this.dismissedAttachmentErrors.set(new Set());
-    const result = this.attachments.select(
-      files,
-      {
-        acceptedFormats: this.acceptedExtensions(),
-        maxFileSize: this.maxFileSize(),
-      },
-      this.attachmentSourceId,
-      true,
-    );
-    this.attachmentResult.emit(result);
+    try {
+      const result = this.attachments.select(
+        files,
+        this.attachmentRules(),
+        this.attachmentSourceId,
+        true,
+      );
+      this.attachmentResult.emit(result);
+    } finally {
+      // The picker already appended every file; keep only the validated ones.
+      this.syncingPicker = true;
+      this.attachmentPicker?.files.set(this.files());
+      this.syncingPicker = false;
+    }
   }
 
   protected dismissAttachmentError(index: number): void {

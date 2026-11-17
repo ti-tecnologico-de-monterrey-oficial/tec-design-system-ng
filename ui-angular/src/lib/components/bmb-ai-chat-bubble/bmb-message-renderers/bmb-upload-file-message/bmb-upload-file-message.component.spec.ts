@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BmbUploadFileMessageComponent } from './bmb-upload-file-message.component';
-import type { BmbUploadFileMessage } from '../../types';
+import { BmbUploadFileMessage } from '../../../../_shared/types';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 import { BmbFileAttachmentPicker } from '../../../bmb-file-attachment-picker/bmb-file-attachment-picker.component';
 import { BmbToastComponent } from '../../../bmb-toast/bmb-toast.component';
@@ -174,7 +174,7 @@ describe('BmbUploadFileMessageComponent', () => {
     ).toBeNull();
   });
 
-  it('should render interrupted upload as a warning and emit retry without reopening the picker', () => {
+  it('should render interrupted upload as a warning, emit retry and reopen the picker', () => {
     fixture.componentRef.setInput('message', {
       ...message,
       content: { ...message.content, error: { code: 'interrupted' } },
@@ -209,7 +209,7 @@ describe('BmbUploadFileMessageComponent', () => {
       'ai_chat_bubble.upload_file.error_interrupted',
     );
     expect(toast.isClosable()).toBe(false);
-    expect(click).not.toHaveBeenCalled();
+    expect(click).toHaveBeenCalledTimes(1);
   });
 
   it('should retain valid files in a mixed selection and report size and duplicate errors', () => {
