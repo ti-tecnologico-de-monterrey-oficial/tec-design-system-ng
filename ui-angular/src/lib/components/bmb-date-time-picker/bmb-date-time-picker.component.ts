@@ -44,6 +44,7 @@ export class BmbDateTimePickerComponent implements OnChanges, OnInit {
   disableDatesBefore = input<string>('');
   disableDatesAfter = input<string>('');
   control = model<FormControl>(newFormControlByType());
+
   readonly dateControl = newFormControlByType();
   readonly timeControl = newFormControlByType();
 
