@@ -3,6 +3,7 @@ import {
   getBadgeClasses,
 } from '../../_shared/logic/components/badge';
 import { IBmbBadgeAppearance } from '../../_shared/types';
+import './styles.scss';
 
 export interface BmbBadgeProps {
   appearance?: IBmbBadgeAppearance;
@@ -20,13 +21,15 @@ export const BmbBadge = ({
   }
 
   const getBulletColor = (): string => {
-    return getBadgeBulletClass(appearance);
+    const color = getBadgeBulletClass(appearance);
+    console.log('Badge bullet color:', color);
+    return color;
   }
 
   return (
     <section className={getClasses()} >
       <span
-        className={getBulletColor()}
+        className={['bmb_badge-bullet', !container ? getBulletColor() : ''].join(' ')}
       ></span>
       <span className="bmb_badge-content"> { text } </span>
     </section>

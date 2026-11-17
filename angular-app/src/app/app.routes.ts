@@ -3,6 +3,14 @@ import { Route } from '@angular/router';
 import { TemplatesContainerBtn } from './pages/templates-container-btn/templates-container-btn';
 
 export const appRoutes: Route[] = [
+  {
+    path: 'reserva-salas',
+    title: 'Reserva de salas',
+    loadComponent: () =>
+      import('./pages/room-reservation/room-reservation').then(
+        (m) => m.RoomReservation,
+      ),
+  },
   ...componentTestRoutes,
   {
     path: 'template-container-btn',

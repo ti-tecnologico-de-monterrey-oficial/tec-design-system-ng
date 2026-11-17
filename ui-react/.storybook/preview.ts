@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react-vite';
-import '../../shared/assets/styles/storybook-theme.scss';
+import '../../shared/assets/styles/mainSB.scss';
+import '../../shared/assets/styles/components/_icon.scss';
 import {
   Controls,
   Description,
