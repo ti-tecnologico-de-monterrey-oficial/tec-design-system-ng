@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import '../../../../../shared/assets/styles/components/_skeleton.scss';
+import '../../_shared/assets/styles/components/_skeleton.scss';
 import type { BmbSkeletonType } from '../../_shared/types/components/skeleton';
 
 export interface BmbSkeletonProps {
