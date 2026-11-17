@@ -13,6 +13,13 @@ export type {
 
 export { BmbSimpleText } from './lib/component/bmb-simple-text';
 export type { BmbSimpleTextProps } from './lib/component/bmb-simple-text';
-
 export { BmbButton } from './lib/component/bmb-button';
 export type { BmbButtonProps } from './lib/component/bmb-button';
+export { BmbDivider } from './lib/component/bmb-divider';
+export type { BmbDividerProps } from './lib/component/bmb-divider';
+export { BmbNotificationCounter } from './lib/component/bmb-notification-counter';
+export type {
+	BmbNotificationCounterProps,
+	IBmbNotificationCounterType,
+} from './lib/component/bmb-notification-counter';
+

@@ -205,6 +205,12 @@
     }
   }
 
+  &-file-errors {
+    display: block;
+    position: absolute;
+    z-index: 3;
+  }
+
   .bmb_check-external-link-button:has(.bmb_icon-figure) {
     display: inline-flex;
   }

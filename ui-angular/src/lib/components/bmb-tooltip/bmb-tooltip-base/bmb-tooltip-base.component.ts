@@ -28,10 +28,13 @@ import { TooltipPosition } from '../../../_shared/types/components/tooltip';
   styleUrl: './bmb-tooltip-base.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: { '[style.display]': "manual() ? 'none' : null" },
 })
 export class BmbTooltipBaseComponent {
   text = input<string>('');
   componentTitle = input<string>();
+  manual = input<boolean>(false);
+  anchor = input<HTMLElement>();
   language = computed(() => this.bmbTranslationsService.getCurrentLanguage());
 
   @ViewChild('tooltipContainer', { static: true })
@@ -45,17 +48,28 @@ export class BmbTooltipBaseComponent {
   private readonly repositionHandler = () => this.updateTooltipPosition();
   private readonly windowBlurHandler = () => this.hideTooltip();
 
+  /** Rendered overlay, for consumers that manage pointer transitions in manual mode. */
+  get floatingElement(): HTMLDialogElement | null {
+    return this.tooltipElement;
+  }
+
   constructor() {
     effect(() => {
       this.componentTitle();
       this.text();
       this.language();
+      this.anchor();
+      this.manual();
 
       if (!this.tooltipElement || !this.isBrowserEnvironment()) {
         return;
       }
 
       this.updateTooltipContent();
+      this.tooltipElement.classList.toggle(
+        'bmb_tooltip-dialog--manual',
+        this.manual(),
+      );
       this.updateTooltipPosition();
     });
 
@@ -75,7 +89,7 @@ export class BmbTooltipBaseComponent {
     }
 
     return calculateTooltipPosition({
-      targetElement: this.tooltipContainer.nativeElement,
+      targetElement: this.anchor() ?? this.tooltipContainer.nativeElement,
       tooltipWidth: this.tooltipElement?.offsetWidth || 280,
       windowWidth: window.innerWidth,
       windowHeight: window.innerHeight,
@@ -103,7 +117,8 @@ export class BmbTooltipBaseComponent {
     this.tooltipElement = this.createTooltipElement();
     this.tooltipElement.style.visibility = 'hidden';
     this.document.body.appendChild(this.tooltipElement);
-    this.tooltipElement.offsetHeight;
+    // Measure after insertion so the floating content is laid out before positioning.
+    this.tooltipElement.getBoundingClientRect();
     this.updateTooltipPosition();
     this.tooltipElement.style.visibility = 'visible';
 
@@ -132,6 +147,7 @@ export class BmbTooltipBaseComponent {
   private createTooltipElement(): HTMLDialogElement {
     const dialog = this.document.createElement('dialog');
     dialog.className = 'bmb_tooltip-dialog bmb_tooltip-dialog--floating';
+    dialog.classList.toggle('bmb_tooltip-dialog--manual', this.manual());
     dialog.lang = this.language();
     dialog.setAttribute('open', 'true');
     dialog.setAttribute('aria-hidden', 'true');

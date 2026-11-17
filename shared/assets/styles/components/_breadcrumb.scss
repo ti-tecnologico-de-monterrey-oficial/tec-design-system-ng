@@ -96,7 +96,8 @@
     @include mixins.media-query(768, 'max') {
       display: none;
 
-      &:last-child {
+
+      &:last-of-type {
         display: block;
         max-width: 100%;
       }

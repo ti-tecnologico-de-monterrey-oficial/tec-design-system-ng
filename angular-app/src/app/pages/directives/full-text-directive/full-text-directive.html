@@ -1,0 +1,176 @@
+<h1>FullTextDirective</h1>
+<section aria-labelledby="full-text-directive-heading">
+  <h2 id="full-text-directive-heading">Uso de BmbFullTextDirective</h2>
+  <bmb-checkbox
+    label="Habilitar consulta del texto completo"
+    [(checked)]="fullTextEnabled"
+  />
+  <ul>
+    <li><code>bmbFullText</code>: texto completo que mostrará el tooltip.</li>
+    <li>
+      <code>bmbFullTextEnabled</code>: habilita la directiva; por defecto es
+      <code>true</code>.
+    </li>
+    <li>
+      <code>bmbFullTextTarget</code>: selector del texto truncado dentro del
+      control. Si se omite, se mide el elemento anfitrión.
+    </li>
+  </ul>
+</section>
+
+<bmb-divider></bmb-divider>
+
+<section aria-labelledby="full-text-tabs-heading">
+  <bmb-simple-text
+    [text]="'BmbTabs'"
+    [size]="10"
+    weight="bold"
+  ></bmb-simple-text>
+  <div class="tabs-preview">
+    <bmb-checkbox label="Consultar texto completo" [(checked)]="showFullText" />
+    <bmb-tabs
+      [showFullText]="showFullText()"
+      [tabs]="tabs"
+      [(selectedTabId)]="selectedTabId"
+      (selected)="handleSelected($event)"
+    >
+      <p class="selected-tab" aria-live="polite">
+        Pestaña seleccionada: {{ selectedTitle() }} — Eventos de selección: {{
+        selectionCount() }}
+      </p>
+    </bmb-tabs>
+  </div>
+</section>
+
+<bmb-divider></bmb-divider>
+
+<section aria-labelledby="full-text-container-button-heading">
+  <bmb-simple-text
+    id="full-text-container-button-heading"
+    [text]="'BmbContainerButton'"
+    [size]="10"
+    weight="bold"
+  ></bmb-simple-text>
+  <bmb-checkbox
+    label="Consultar texto completo en títulos y subtítulos"
+    [(checked)]="showContainerButtonFullText"
+  />
+  <div class="container-button-preview">
+    <bmb-container-button
+      [componentTitle]="containerButtonTitle"
+      [subtitle]="containerButtonSubtitle"
+      [showFullText]="showContainerButtonFullText()"
+      (onButton)="handleContainerButtonClick()"
+    />
+  </div>
+  <p aria-live="polite">
+    Eventos de clic: {{ containerButtonClickCount() }}. Mantén presionado el
+    título o subtítulo para consultar el texto sin activar el botón.
+  </p>
+</section>
+
+<bmb-divider></bmb-divider>
+
+<section
+  aria-labelledby="full-text-breadcrumb-heading"
+  class="breadcrumb-examples"
+>
+  <bmb-simple-text
+    [text]="'BmbBreadcrumb'"
+    [size]="10"
+    weight="bold"
+  ></bmb-simple-text>
+  <bmb-checkbox
+    label="Consultar texto completo en breadcrumbs"
+    [(checked)]="showBreadcrumbFullText"
+  />
+  <bmb-checkbox label="Navegación inactiva" [(checked)]="breadcrumbInactive" />
+
+  <h3>Navegación local</h3>
+  <div class="breadcrumb-preview" data-testid="breadcrumb-local-preview">
+    <bmb-breadcrumb
+      [dataLocalNav]="breadcrumbPath"
+      [isInactive]="breadcrumbInactive()"
+      [showFullText]="showBreadcrumbFullText()"
+    />
+  </div>
+
+  <h3>Rutas intermedias en el menú «…»</h3>
+  <div
+    class="breadcrumb-preview breadcrumb-preview-menu"
+    data-testid="breadcrumb-menu-preview"
+  >
+    <bmb-breadcrumb
+      [dataLocalNav]="extendedBreadcrumbPath"
+      [isInactive]="breadcrumbInactive()"
+      [showFullText]="showBreadcrumbFullText()"
+    />
+  </div>
+
+  <h3>Barra superior</h3>
+  <div
+    class="breadcrumb-preview breadcrumb-preview-top"
+    data-testid="breadcrumb-top-preview"
+  >
+    <bmb-breadcrumb
+      [isTopBar]="true"
+      [dataTopBar]="topBarBreadcrumb"
+      [showFullText]="showBreadcrumbFullText()"
+    />
+  </div>
+</section>
+
+<bmb-divider></bmb-divider>
+
+<section aria-labelledby="full-text-title-heading" class="title-examples">
+  <bmb-simple-text
+    id="full-text-title-heading"
+    [text]="'BmbTitleContent y BmbHomeCard'"
+    [size]="10"
+    weight="bold"
+  ></bmb-simple-text>
+  <bmb-checkbox
+    label="Limitar títulos a dos líneas y consultar el texto completo"
+    [(checked)]="showTitleFullText"
+  />
+  <p>
+    Redimensiona los contenedores para comprobar el recorte. El texto completo
+    solo aparece cuando el título realmente se recorta.
+  </p>
+
+  <h3>BmbTitleContent con icono</h3>
+  <div class="title-preview" data-testid="title-content-preview">
+    <bmb-title-content
+      [componentTitle]="longTitle"
+      subtitle="Subtítulo de ejemplo"
+      icon="account_balance_wallet"
+      bgIconAppearance="green-light"
+      [showFullText]="showTitleFullText()"
+    />
+  </div>
+
+  <h3>BmbTitleContent centrado con palabra sin espacios</h3>
+  <div class="title-preview" data-testid="title-content-centered-preview">
+    <bmb-title-content
+      [componentTitle]="unbrokenTitle"
+      [isCenterContent]="true"
+      [showFullText]="showTitleFullText()"
+    />
+  </div>
+
+  <h3>BmbHomeCard con acciones y breadcrumbs</h3>
+  <bmb-home-card
+    [componentTitle]="longTitle"
+    icon="account_balance_wallet"
+    bgIconAppearance="green-light"
+    leftIcon="chevron_left"
+    [dataLocalNav]="breadcrumbPath"
+    [actionHeaders]="homeCardActions"
+    [showFullText]="showTitleFullText()"
+  >
+    <p>Contenido de la tarjeta.</p>
+  </bmb-home-card>
+  <p aria-live="polite">
+    Eventos de acciones del encabezado: {{ homeCardActionCount() }}.
+  </p>
+</section>

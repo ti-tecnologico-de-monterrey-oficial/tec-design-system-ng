@@ -913,6 +913,16 @@ export const DBmbHomeCardHeaderParamDesc = {
       type: { summary: 'boolean' },
     },
   },
+  showFullText: {
+    control: { type: 'boolean' },
+    description:
+      'Limits the title to two lines with an ellipsis. When the title is truncated, its full text can be consulted with mouse hover, visible keyboard focus or a 500 ms long press.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'false' },
+      type: { summary: 'boolean' },
+    },
+  },
   isMobile: {
     control: { type: 'boolean' },
     description:
@@ -1788,6 +1798,15 @@ This is a selection hint, not file validation; it does not restrict drag and dro
       category: 'Properties',
       type: { summary: 'string[]' },
       defaultValue: { summary: '[]' },
+    },
+  },
+  maxFileSize: {
+    control: { type: 'number' },
+    description: 'Sets the maximum allowed file size in MB.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'number' },
+      defaultValue: getDefaultValueControl(2),
     },
   },
 };
