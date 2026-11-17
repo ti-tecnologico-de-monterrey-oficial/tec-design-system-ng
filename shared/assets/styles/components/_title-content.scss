@@ -1,5 +1,8 @@
 @use '../base/fonts' as fonts;
+@use '../base/mixins' as mixins;
 @use '../base/rem' as rem;
+
+$title-clamp-max-block-size: 144;
 
 $font-sizes: 1, 2, 3, 4, 4_5, 5, 6, 7, 8, 9, 10, 11, 12;
 $font-weights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
@@ -55,11 +58,26 @@ $font-weights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
     &-wrapper {
       flex: 1;
 
+      &--clamp {
+        min-width: 0;
+      }
+
       &-title {
         color: var(--general-contrasts-100);
         @include font-sizes();
         @include font-weights();
         @include centered();
+
+        &--clamp {
+          @include mixins.truncated-string($title-clamp-max-block-size, 2);
+          overflow-wrap: anywhere;
+
+          // The centered modifier uses flex, which would disable the clamp.
+          &.bmb_title-content-container-wrapper-title-centered {
+            display: -webkit-box;
+            text-align: center;
+          }
+        }
       }
 
       &-subtitle {

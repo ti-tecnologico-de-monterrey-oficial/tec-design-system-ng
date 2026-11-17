@@ -6,6 +6,35 @@ import {
 } from '../../types/components/tooltip';
 
 /**
+ * Centers the tooltip above the target, or below it when there is no room,
+ * keeping it inside the viewport.
+ */
+const calculateVerticalTooltipPosition = (
+  targetPosition: DOMRect,
+  tooltipWidth: number,
+  tooltipHeight: number,
+  windowWidth: number,
+  windowHeight: number,
+): TooltipPosition => {
+  const gap = 4;
+  const margin = 8;
+  const above = targetPosition.top - tooltipHeight - gap;
+  const preferredTop = above >= margin ? above : targetPosition.bottom + gap;
+  const centeredLeft =
+    targetPosition.left + (targetPosition.width - tooltipWidth) / 2;
+  const left = Math.max(
+    margin,
+    Math.min(centeredLeft, windowWidth - tooltipWidth - margin),
+  );
+  const top = Math.max(
+    margin,
+    Math.min(preferredTop, windowHeight - tooltipHeight - margin),
+  );
+
+  return { top: `${top}px`, left: `${left}px`, right: null, bottom: null };
+};
+
+/**
  * Calculates the best position for the tooltip.
  */
 export const calculateTooltipPosition = ({
@@ -13,11 +42,23 @@ export const calculateTooltipPosition = ({
   tooltipWidth,
   windowWidth,
   windowHeight,
+  placement = 'side',
+  tooltipHeight = 0,
 }: TooltipPositionOptions): TooltipPosition => {
   const spacing = 8;
   const minSpaceForSideTooltip = 300;
 
   const targetPosition = targetElement.getBoundingClientRect();
+
+  if (placement === 'vertical') {
+    return calculateVerticalTooltipPosition(
+      targetPosition,
+      tooltipWidth,
+      tooltipHeight,
+      windowWidth,
+      windowHeight,
+    );
+  }
 
   const spaceOnLeft = targetPosition.left;
   const spaceOnRight = windowWidth - targetPosition.right;
