@@ -4,7 +4,9 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-carousel></bmb-carousel>`,
+  example: figma.code`<bmb-carousel
+  [selectedIndex]="selectedIndex"
+/>`,
   imports: [
     "import { BmbCarouselComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

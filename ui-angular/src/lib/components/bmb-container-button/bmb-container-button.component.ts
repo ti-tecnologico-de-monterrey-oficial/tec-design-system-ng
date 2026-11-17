@@ -1,5 +1,6 @@
-import {
-  Component,
+import { getContainerButtonClassList } from '../../_shared/logic/components/container-button';
+import type { IBmbContainerButtonState } from '../../_shared/types/components/container-button';
+import { Component,
   ChangeDetectionStrategy,
   ViewEncapsulation,
   input,
@@ -8,8 +9,7 @@ import {
   signal,
   inject,
   DestroyRef,
-  effect,
-} from '@angular/core';
+  effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
@@ -27,10 +27,6 @@ import type { IBbmBgAppearance } from '../../_shared/types/components/advertisem
 import { TranslatePipe } from '../../pipes/translations';
 
 const MOBILE_TABLET_QUERY = '(max-width: 992px)';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-container-button',
@@ -68,7 +64,7 @@ export class BmbContainerButtonComponent {
   iconRight = input<string>('');
   badgeText = input<string>('');
   badgeAppearance = input<IBbmBgAppearance>('normal');
-  state = input<'disabled' | 'error'>();
+  state = input<IBmbContainerButtonState>();
   alternative = input<boolean>(false);
   enableSecondaryAction = input<boolean>(false);
   enableBookmark = input<boolean>(false);
@@ -109,31 +105,13 @@ export class BmbContainerButtonComponent {
   }
 
   getClassList(): string[] {
-    const classList = ['bmb_container-button'];
-    if (this.square()) {
-      classList.push('bmb_container-button-square');
-    }
-
-    if (this.square() && this.small() && !this.iconLeft()) {
-      classList.push('bmb_container-button-square-no-icon');
-    }
-
-    if (this.small()) {
-      classList.push('bmb_container-button-small');
-    }
-
-    if (this.state() === 'disabled') {
-      classList.push('bmb_container-button-disabled');
-    }
-
-    if (this.state() === 'error') {
-      classList.push('bmb_container-button-error');
-    }
-
-    if (this.alternative()) {
-      classList.push('bmb_container-button-alternative');
-    }
-    return classList;
+    return getContainerButtonClassList({
+      square: this.square(),
+      small: this.small(),
+      iconLeft: this.iconLeft(),
+      state: this.state(),
+      alternative: this.alternative(),
+    });
   }
 
   handleClick(event: any): void {

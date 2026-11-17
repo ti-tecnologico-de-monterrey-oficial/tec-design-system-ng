@@ -4,8 +4,20 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-login-onboarding />`,
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  loginOnBoardingCustomization: IBmbLoginOnBoardingCustomization = {
+    anotherAccount: { label: '', link: '' },
+    forgottenPassword: { label: '', link: '' },
+  };
+}
+</script>
+
+<bmb-login-onboarding
+  [loginOnBoardingCustomization]="loginOnBoardingCustomization"
+/>`,
   imports: [
+    "import type { IBmbLoginOnBoardingCustomization } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
     "import { BmbLoginOnboardingComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
   id: 'bmb-login-onboarding',

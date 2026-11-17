@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,13 +7,15 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBmbAlertEmptyState, IBmbDataAlert } from '../types';
-import { CommonModule } from '@angular/common';
-import { BmbCarouselComponent } from '../../bmb-carousel/bmb-carousel.component';
+import type {
+  IBmbAlertEmptyState,
+  IBmbDataAlert,
+} from '../../../_shared/types/components/alert-center';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbAlertCenterEmptyComponent } from '../bmb-alert-center-empty/bmb-alert-center-empty.component';
-import { BmbAlertCenterDetailComponent } from '../../utils/bmb-alert-center-detail/bmb-alert-center-detail.component';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
+import { BmbCarouselComponent } from '../../bmb-carousel/bmb-carousel.component';
+import { BmbAlertCenterDetailComponent } from '../../utils/bmb-alert-center-detail/bmb-alert-center-detail.component';
+import { BmbAlertCenterEmptyComponent } from '../bmb-alert-center-empty/bmb-alert-center-empty.component';
 
 @Component({
   selector: 'bmb-alert-center-ads',
@@ -34,7 +37,9 @@ export class BmbAlertCenterAdsComponent {
 
   advertisements = input.required<IBmbDataAlert[]>();
   emptyStateData = input<IBmbAlertEmptyState>({
-    primaryText: this.translationsService.translate('alert_center.empty_state.primary_text'),
+    primaryText: this.translationsService.translate(
+      'alert_center.empty_state.primary_text',
+    ),
     secondaryText: '',
     tertiaryText: '',
     buttonText: '',

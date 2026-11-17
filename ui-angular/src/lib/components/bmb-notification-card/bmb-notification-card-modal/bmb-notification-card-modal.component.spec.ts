@@ -1,7 +1,7 @@
 import { ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DateTime } from 'luxon';
-import type { IBmbDataAlertsParsed } from '../../bmb-alert-center/types';
+import type { IBmbDataAlertsParsed } from '../../../_shared/types/components/alert-center';
 import { BmbNotificationCardModalComponent } from './bmb-notification-card-modal.component';
 
 const alert: IBmbDataAlertsParsed = {

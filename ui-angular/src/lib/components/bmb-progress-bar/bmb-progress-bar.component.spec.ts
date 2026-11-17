@@ -3,6 +3,8 @@ import { BmbProgressBarComponent } from './bmb-progress-bar.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ComponentRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { BmbActionContainerComponent } from '../bmb-action-container/bmb-action-container.component';
 
 describe('BmbProgressBarComponent', () => {
   let component: BmbProgressBarComponent;
@@ -59,5 +61,55 @@ describe('BmbProgressBarComponent', () => {
     componentRef.setInput('totalCount', 100);
     componentRef.setInput('counter', 200);
     expect(component.progressValue()).toBe('100');
+  });
+
+  it('should clamp a negative progress value to 0', () => {
+    componentRef.setInput('totalCount', 100);
+    componentRef.setInput('counter', -10);
+    expect(component.progressValue()).toBe('0');
+  });
+
+  describe('progressBarColorClass', () => {
+    it('should build the class from the status color', () => {
+      componentRef.setInput('statusColor', 'success');
+      expect(component.progressBarColorClass()).toBe(
+        'bmb_progress-bar-active-success',
+      );
+    });
+  });
+
+  describe('container', () => {
+    it('should render bmb-action-container and re-emit actionClick', () => {
+      componentRef.setInput('isContainer', true);
+      componentRef.setInput('actionIcon', 'delete');
+      fixture.detectChanges();
+
+      const container = fixture.debugElement.query(
+        By.directive(BmbActionContainerComponent),
+      );
+      expect(container).toBeTruthy();
+
+      const emitSpy = jest.spyOn(component.actionClick, 'emit');
+      const event = new MouseEvent('click');
+      (container.componentInstance as BmbActionContainerComponent).actionClick.emit(
+        event,
+      );
+      expect(emitSpy).toHaveBeenCalledWith(event);
+    });
+
+    it('should hide the avatar icon for the simple type', () => {
+      componentRef.setInput('isContainer', true);
+      componentRef.setInput('avatarIcon', 'description');
+      fixture.detectChanges();
+
+      const container = fixture.debugElement.query(
+        By.directive(BmbActionContainerComponent),
+      ).componentInstance as BmbActionContainerComponent;
+      expect(container.avatarIcon()).toBe('');
+
+      componentRef.setInput('type', 'counter');
+      fixture.detectChanges();
+      expect(container.avatarIcon()).toBe('description');
+    });
   });
 });

@@ -11,6 +11,8 @@
     @if (!hideToggle()) {
       <section
         class="bmb_accordion-basic"
+        role="button"
+        [attr.aria-expanded]="_expanded()"
         tabindex="0"
         (click)="toggle($event)"
         (keyup)="handleToggleKeyboard($event)"
@@ -50,6 +52,8 @@
   } @else {
     <header
       [ngClass]="getClassesHeader()"
+      role="button"
+      [attr.aria-expanded]="_expanded()"
       (click)="toggle($event)"
       (keyup)="handleToggleKeyboard($event)"
       tabindex="0"

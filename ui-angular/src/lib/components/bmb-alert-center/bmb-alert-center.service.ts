@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { IBmbDataAlert } from './types';
+import type { IBmbDataAlert } from '../../_shared/types/components/alert-center';
 
 @Injectable({
   providedIn: 'root',

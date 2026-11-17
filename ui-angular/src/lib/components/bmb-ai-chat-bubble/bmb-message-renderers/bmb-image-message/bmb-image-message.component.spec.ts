@@ -3,7 +3,7 @@ import { ComponentRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { ImageMessageComponent } from './bmb-image-message.component';
-import { BmbImageMessage } from '../../types';
+import { BmbImageMessage } from '../../../../_shared/types';
 
 let componentRef: ComponentRef<ImageMessageComponent>;
 

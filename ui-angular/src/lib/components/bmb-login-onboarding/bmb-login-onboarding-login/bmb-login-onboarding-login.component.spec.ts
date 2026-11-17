@@ -18,4 +18,12 @@ describe('BmbLoginOnboardingLoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('_handleContinuePage', () => {
+    it('should emit handleContinuePage', () => {
+      const emitSpy = jest.spyOn(component.handleContinuePage, 'emit');
+      component._handleContinuePage();
+      expect(emitSpy).toHaveBeenCalled();
+    });
+  });
 });

@@ -1,12 +1,15 @@
+import { CommonModule } from '@angular/common';
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   ViewEncapsulation,
   input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { DateTime } from 'luxon';
-import { HOUR_HEIGHT } from '../../utils';
+import {
+  timeIndicatorGetFormattedTime,
+  timeIndicatorGetPosition,
+} from '../../../../_shared/logic/components/calendar-view';
 
 @Component({
   selector: 'bmb-calendar-time-indicator',
@@ -21,13 +24,10 @@ export class BmbCalendarTimeIndicatorComponent {
   currentTime = input<DateTime>(DateTime.now());
 
   getPosition(): string {
-    const startMin =
-      this.currentTime().hour * HOUR_HEIGHT + this.currentTime().minute * 2;
-
-    return `top: ${startMin + 52}px`;
+    return timeIndicatorGetPosition(this.currentTime());
   }
 
   getFormattedTime(): string {
-    return this.currentTime().toFormat('hh:mm a');
+    return timeIndicatorGetFormattedTime(this.currentTime());
   }
 }

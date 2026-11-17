@@ -2,20 +2,27 @@
 // source=ui-angular/src/lib/components/bmb-balance-overview/bmb-balance-overview.component.ts
 // component=BmbBalanceOverviewComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const status = instance.getEnum('Semantic status', {
-  Default: 'default',
-  Empty: 'empty',
-  Error: 'error',
-  Success: 'success',
-})
-const isFull = status === 'error' || status === 'success'
-const fillPathStatus = status === 'error' ? 'error' : status === 'empty' ? 'gray' : 'success'
-const indicatorAppearance = status === 'empty' ? 'empty' : status === 'error' ? 'error' : status === 'success' ? 'success' : 'normal'
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-balance-overview [progressCirclePercent]="${status === 'default' ? 75 : 0}" progressCircleValue="${status === 'empty' ? '---' : status === 'error' ? 'N/A' : status === 'success' ? '$10,000' : '$10,000'}" [progressCircleTitle]="['${status === 'empty' ? 'Sin movimientos' : status === 'error' ? 'Error' : status === 'success' ? 'Pagado' : 'Total a pagar este mes'}']" labelPrimary="Cuota Mensual" valuePrimary="$2,500.00" labelSecondary="Penalidad" valueSecondary="$2,500.00" icon="${status === 'error' ? 'error' : status === 'success' ? 'success' : 'home'}" progressCircleFillPathStatus="${fillPathStatus}" [progressCircleFullFillPathStatus]="${isFull}" [showProgressCircleOperationState]="${isFull}" indicatorAppearance="${indicatorAppearance}" [emptyState]="${status === 'empty'}" />`,
+  example: figma.code`<bmb-balance-overview
+  [progressCirclePercent]="progressCirclePercent"
+  [progressCircleValue]="progressCircleValue"
+  [showProgressCircleValue]="showProgressCircleValue"
+  [progressCircleTitle]="progressCircleTitle"
+  [showProgressCircleBackground]="showProgressCircleBackground"
+  [labelPrimary]="labelPrimary"
+  [valuePrimary]="valuePrimary"
+  [labelSecondary]="labelSecondary"
+  [valueSecondary]="valueSecondary"
+  [showProgressCircleTitle]="showProgressCircleTitle"
+  icon="${getIcon('')}"
+  progressCircleFillPathStatus="success"
+  [progressCircleFullFillPathStatus]="progressCircleFullFillPathStatus"
+  [showProgressCircleOperationState]="false"
+  [indicatorAppearance]="indicatorAppearance"
+  [emptyState]="false"
+/>`,
   imports: [
     "import { BmbBalanceOverviewComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

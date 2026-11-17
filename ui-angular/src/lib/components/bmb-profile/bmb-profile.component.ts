@@ -1,46 +1,38 @@
-import {
-  ChangeDetectionStrategy,
+import { ChangeDetectionStrategy,
   Component,
   input,
   model,
   OnInit,
   output,
-  ViewEncapsulation,
-} from '@angular/core';
+  ViewEncapsulation } from '@angular/core';
 import { BmbMobileTemplatesComponent } from '../bmb-mobile-templates/bmb-mobile-templates.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbThemeComponent } from '../bmb-theme/bmb-theme.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
-import {
-  IBmbCollaboratorProfileData,
+import { IBmbCollaboratorProfileData,
   IBmbProfileData,
   IBmbStudentProfileData,
   IBmbTargetLink,
-  IBmbUserData,
-} from '../../_shared/types';
+  IBmbUserData } from '../../_shared/types';
 import { BmbUserSummaryContentComponent } from '../bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 import { CommonModule } from '@angular/common';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
-import { buildErrorMessage } from '../../_shared/logic/utils';
+import { mapLegacyProfileData,
+  assertProfileInputs,
+  validateProfileOptions,
+  getProfileUserData } from '../../_shared/logic/components/profile';
 import { BmbIconItemComponent } from '../bmb-icon-item/bmb-icon-item.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { FormControl } from '@angular/forms';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
-import {
-  BmbCardComponent,
-  BmbCardContentComponent,
-} from '../bmb-card/bmb-card.component';
+import { BmbCardComponent, BmbCardContentComponent } from '../bmb-card/bmb-card.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-profile',
@@ -125,70 +117,42 @@ export class BmbProfileComponent implements OnInit {
   langFormControl = new FormControl('es');
 
   ngOnInit() {
-    let inputs: string[] = [];
-
-    //to avoid breaking code from previous versions
-    if (this.userData()) {
-      const _userData: IBmbUserData = {
-        name: this.userData()?.name!,
-        userImg: this.userData()?.userImg!,
-        email: this.userData()?.mail!,
-        registration: this.userData()?.matricula!,
-      };
-
-      this._studentData = {
-        userData: _userData,
-        period: this.userData()?.period!,
-        campus: this.userData()?.campus!,
-        program: this.userData()?.program!,
-        curp: this.userData()?.curp!,
-        linkedin: this.userData()?.linkedin!,
-        isExatec: this.userData()?.isExatec!,
-      };
-    } else {
-      this._studentData = this.studentData()!;
-    }
-
-    if (this.isStandAlone()) {
-      if (!this.standAloneData()) inputs.push('standAloneData');
-      this.throwErrors(inputs, 'isStandAlone', 'true');
-      return;
-    }
-
-    if (this.isStudent()) {
-      if (!this.studentData()) inputs.push('studentData');
-      this.throwErrors(inputs, 'isStudent', 'true');
-    } else {
-      if (!this.collaboratorData()) inputs.push('collaboratorData');
-      this.throwErrors(inputs, 'isStudent', 'false');
-    }
-
-    if (this.isMobile() && !this.isStandAlone()) {
-      if (!this.idDigitalLink()) inputs.push('idDigitalLink');
-      if (!this.campusAcessLink()) inputs.push('campusAcessLink');
-      if (!this.tecServicesLink()) inputs.push('tecServicesLink');
-      if (!this.versionLabel()) inputs.push('versionLabel');
-      this.throwErrors(inputs, 'isMobile', 'true');
-    }
+    const legacyData = this.userData();
+    this._studentData = legacyData
+      ? mapLegacyProfileData(legacyData)
+      : this.studentData()!;
+    validateProfileOptions({
+      isStandAlone: this.isStandAlone(),
+      isStudent: this.isStudent(),
+      isMobile: this.isMobile(),
+      standAloneData: this.standAloneData(),
+      studentData: this.studentData(),
+      collaboratorData: this.collaboratorData(),
+      idDigitalLink: this.idDigitalLink(),
+      campusAcessLink: this.campusAcessLink(),
+      tecServicesLink: this.tecServicesLink(),
+      versionLabel: this.versionLabel(),
+    });
   }
-
   throwErrors(inputs: string[], profileName: string, condition: string): void {
-    if (inputs.length) {
-      throw new Error(
-        `
-        The ${buildErrorMessage(inputs)} required when "${profileName}" is ${condition}.
-        `,
-      );
-    }
+    assertProfileInputs(inputs, profileName, condition);
   }
-
   getUserData(): IBmbUserData {
-    if (this.isStandAlone()) return this.standAloneData()!;
-    if (this.isStudent()) {
-      return this._studentData?.userData!;
-    } else {
-      return this.collaboratorData()?.userData!;
-    }
+    return getProfileUserData(
+      {
+        isStandAlone: this.isStandAlone(),
+        isStudent: this.isStudent(),
+        isMobile: this.isMobile(),
+        standAloneData: this.standAloneData(),
+        studentData: this.studentData(),
+        collaboratorData: this.collaboratorData(),
+        idDigitalLink: this.idDigitalLink(),
+        campusAcessLink: this.campusAcessLink(),
+        tecServicesLink: this.tecServicesLink(),
+        versionLabel: this.versionLabel(),
+      },
+      this._studentData,
+    );
   }
 
   closeSession(): void {

@@ -24,12 +24,15 @@ import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../../_shared/types/components/advertisement-card';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../pipes/translations';
+import {
+  formatHitoCardBadgeText,
+  getHitoCardAppearanceBadge,
+  getHitoCardClassList,
+  getHitoCardIconClass,
+  truncateHitoCardText,
+} from '../../_shared/logic/components/hito-card';
 
 const MOBILE_QUERY = '(max-width: 767px)';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-hito-card',
@@ -88,21 +91,17 @@ export class BmbHitoCardComponent {
     });
   }
 
-  private t = (s?: string, n = 90) =>
-    s ? (s.length > n ? s.slice(0, n).trimEnd() + '…' : s) : '';
-
   readonly titleDisplayed = computed(() => {
     const title = this.componentTitle() || this.title();
-    return this.isMobile() ? this.t(title, 30) : title;
+    return this.isMobile() ? truncateHitoCardText(title, 30) : title;
   });
 
   getClassList(): string[] {
-    const classList = ['bmb_hito-card'];
-    if (this.enable_bullet()) classList.push('bmb_hito-card-bullet');
-    if (this.is_active()) classList.push('bmb_hito-card-active');
-    if (this.isCompact()) classList.push('bmb_hito-card-compact');
-
-    return classList;
+    return getHitoCardClassList(
+      this.enable_bullet(),
+      this.is_active(),
+      this.isCompact(),
+    );
   }
 
   handleEventChange() {
@@ -110,32 +109,14 @@ export class BmbHitoCardComponent {
   }
 
   formatBadgeText(legend: string | IBmbTimelineCustomEvent): string {
-    if (typeof legend === 'string') return legend.replace(/_/g, ' ');
-    return legend.text.replace(/_/g, ' ');
+    return formatHitoCardBadgeText(legend);
   }
 
   getHitoIconClass(): string {
-    if (typeof this.type() === 'string') return this.type() as string;
-    return (this.type() as IBmbTimelineCustomEvent).type || 'custom';
+    return getHitoCardIconClass(this.type());
   }
 
   appearanceBadge(): IBbmBgAppearance {
-    if (typeof this.type() === 'string') {
-      switch (this.type()) {
-        case 'active':
-          return 'strong';
-        case 'done':
-          return 'success';
-        case 'pending':
-          return 'normal';
-        case 'under_review':
-          return 'warning';
-        case 'canceled':
-          return 'error';
-        default:
-          return 'strong';
-      }
-    }
-    return (this.type() as IBmbTimelineCustomEvent).type || 'normal';
+    return getHitoCardAppearanceBadge(this.type());
   }
 }

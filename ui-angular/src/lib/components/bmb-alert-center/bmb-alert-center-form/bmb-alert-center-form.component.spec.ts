@@ -1,12 +1,12 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DateTime } from 'luxon';
-import { BmbAlertCenterFormComponent } from './bmb-alert-center-form.component';
-import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import type {
   IBmbAlertCenterCategories,
   IBmbDataAlertsParsed,
-} from '../types';
+} from '../../../_shared/types/components/alert-center';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
+import { BmbAlertCenterFormComponent } from './bmb-alert-center-form.component';
 
 describe('BmbAlertCenterFormComponent', () => {
   let component: BmbAlertCenterFormComponent;
@@ -82,7 +82,11 @@ describe('BmbAlertCenterFormComponent', () => {
   });
 
   it('initializes selection state for all categorized alerts', () => {
-    expect(component.selectionState()).toEqual({ '1': false, '2': false, '3': false });
+    expect(component.selectionState()).toEqual({
+      '1': false,
+      '2': false,
+      '3': false,
+    });
     expect(component.filteredEvents()).toEqual(categories);
   });
 
@@ -120,7 +124,10 @@ describe('BmbAlertCenterFormComponent', () => {
   });
 
   it('summarizes none, partial, and complete alert selection', () => {
-    expect(component.isSomeAlertSelected()).toEqual({ some: false, all: false });
+    expect(component.isSomeAlertSelected()).toEqual({
+      some: false,
+      all: false,
+    });
 
     component.selectionState.set({ '1': true, '2': false });
     expect(component.isSomeAlertSelected()).toEqual({ some: true, all: false });
@@ -130,11 +137,23 @@ describe('BmbAlertCenterFormComponent', () => {
   });
 
   it('selects and clears every alert while preserving the selection keys', () => {
-    component.handleSelectAll({ target: { checked: true } } as unknown as Event);
-    expect(component.selectionState()).toEqual({ '1': true, '2': true, '3': true });
+    component.handleSelectAll({
+      target: { checked: true },
+    } as unknown as Event);
+    expect(component.selectionState()).toEqual({
+      '1': true,
+      '2': true,
+      '3': true,
+    });
 
-    component.handleSelectAll({ target: { checked: false } } as unknown as Event);
-    expect(component.selectionState()).toEqual({ '1': false, '2': false, '3': false });
+    component.handleSelectAll({
+      target: { checked: false },
+    } as unknown as Event);
+    expect(component.selectionState()).toEqual({
+      '1': false,
+      '2': false,
+      '3': false,
+    });
   });
 
   it('emits selected ids with the requested navigation action', () => {
@@ -143,7 +162,10 @@ describe('BmbAlertCenterFormComponent', () => {
 
     component.handleNavigationBarEvents('isFavorite');
 
-    expect(emit).toHaveBeenCalledWith({ alerts: ['1', '3'], event: 'isFavorite' });
+    expect(emit).toHaveBeenCalledWith({
+      alerts: ['1', '3'],
+      event: 'isFavorite',
+    });
   });
 
   it('emits alert selection and deletion events', () => {
@@ -188,7 +210,13 @@ describe('BmbAlertCenterFormComponent', () => {
     actions[3].action!();
 
     expect(emit).toHaveBeenNthCalledWith(1, { alerts: ['2'], event: 'tags' });
-    expect(emit).toHaveBeenNthCalledWith(2, { alerts: ['2'], event: 'isFavorite' });
-    expect(emit).toHaveBeenNthCalledWith(3, { alerts: ['2'], event: 'isArchived' });
+    expect(emit).toHaveBeenNthCalledWith(2, {
+      alerts: ['2'],
+      event: 'isFavorite',
+    });
+    expect(emit).toHaveBeenNthCalledWith(3, {
+      alerts: ['2'],
+      event: 'isArchived',
+    });
   });
 });

@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
-import { IBbmBgAppearance } from '../../_shared/types/components/advertisement-card';
 import { BmbDropdownMenuComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
 import { isABotIcon } from '../../_shared/logic/botIcon';
 
@@ -24,22 +23,11 @@ import {
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { TranslatePipe } from '../../pipes/translations';
+import {
+  shouldEmitCardButtonAddContent,
+  truncateCardButtonText,
+} from '../../_shared/logic/components/card-button';
 
-export interface ICardButton {
-  title: string;
-  body?: string;
-  badge?: { text: string; appearance: IBbmBgAppearance };
-  icon?: string;
-  leftContentIcon?: string;
-  leftContentImage?: IBmbImageInfo;
-  leftContent?: boolean;
-  hasMenu?: boolean;
-  menuItems?: IDropdownItem[];
-}
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-card-button',
@@ -93,10 +81,7 @@ export class BmbCardButtonComponent {
   customContent = contentChild<TemplateRef<any>>('customContent');
 
   truncateText(text: string, maxLength: number): string {
-    if (text.length > maxLength) {
-      return text.substring(0, maxLength) + '...';
-    }
-    return text;
+    return truncateCardButtonText(text, maxLength);
   }
 
   handleSmallClick(event: MouseEvent): void {
@@ -110,12 +95,13 @@ export class BmbCardButtonComponent {
 
   handleAddContent(event: MouseEvent | KeyboardEvent): void {
     if (
-      (this.isFullInteractive() &&
-        this.leftContent() &&
-        !this.leftContentIcon() &&
-        this.leftContentImage() &&
-        !this.textLink()) ||
-      !this.isFullInteractive()
+      shouldEmitCardButtonAddContent(
+        this.isFullInteractive(),
+        this.leftContent(),
+        this.leftContentIcon(),
+        this.leftContentImage(),
+        this.textLink(),
+      )
     )
       this.onAddContentClick.emit(event);
   }

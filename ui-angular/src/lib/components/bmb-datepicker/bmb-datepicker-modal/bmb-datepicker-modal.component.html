@@ -1,4 +1,9 @@
-<section class="bmb_datepicker-modal" (keydown)="onDayKeydown($event)" tabindex="0">
+<section
+  class="bmb_datepicker-modal"
+  (keydown)="onDayKeydown($event)"
+  tabindex="0"
+  role="button"
+>
   <nav
     class="bmb_datepicker-modal-nav"
     bmbLayout
@@ -109,7 +114,7 @@
               type="button"
               [ngClass]="{
                 'bmb_datepicker-modal-calendar-list-item-selected':
-                  selectedMonth - 1 === $index
+                  selectedMonth - 1 === $index,
               }"
               bmbButton
               appearance="transparent"
@@ -132,7 +137,7 @@
               type="button"
               [ngClass]="{
                 'bmb_datepicker-modal-calendar-list-item-selected':
-                  isSelectedYear(year)
+                  isSelectedYear(year),
               }"
               bmbButton
               appearance="transparent"

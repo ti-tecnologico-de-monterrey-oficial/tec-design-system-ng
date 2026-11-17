@@ -3,16 +3,38 @@
 // component=BmbInvoiceComponent
 import figma from 'figma'
 
-const instance = figma.selectedInstance
-const appearanceContrast = instance.getEnum('Container color', {
-  Default: 'default',
-  Primary: 'primary',
-  Alternative: 'alternative',
-})
-
 export default {
-  example: figma.code`<bmb-invoice appearanceContrast="${appearanceContrast}" [data]="{ concept: [], total: { label: 'Total', value: '$0.00', equivalence: [] } }" />`,
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  data: IBmbInvoice = {
+    concept: [
+      {
+        concept: 'Fecha de solicitud',
+        quantity: '$0,000 USD',
+        badge: { label: 'Discount', appearance: 'success', container: true },
+      },
+      { concept: 'Tipo de cambio al día de hoy *', quantity: '-$0,000 USD' },
+      {
+        concept: 'Fecha de solicitud',
+        quantity: '$0,000 USD',
+        badge: { label: 'Discount', appearance: 'success', container: false },
+      },
+    ],
+    total: {
+      label: 'Total',
+      value: '$0,000 USD',
+      equivalence: ['3,828 créditos • 12 meses', '319 créditos • al mes'],
+    },
+  };
+}
+</script>
+
+<bmb-invoice
+  appearanceContrast="default"
+  [data]="data"
+/>`,
   imports: [
+    "import type { IBmbInvoice } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
     "import { BmbInvoiceComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
   id: 'bmb-invoice',

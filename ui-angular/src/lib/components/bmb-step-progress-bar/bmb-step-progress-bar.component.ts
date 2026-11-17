@@ -19,7 +19,7 @@ import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.direc
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
-import { BmbSelectorDirective } from '../../directives/old/bmb-selector/bmb-selector.directive';
+import { BmbSelectorDirective } from '../../directives/bmb-selector/bmb-selector.directive';
 import {
   getActiveStepProgressNumber,
   getStepProgressIndexes,

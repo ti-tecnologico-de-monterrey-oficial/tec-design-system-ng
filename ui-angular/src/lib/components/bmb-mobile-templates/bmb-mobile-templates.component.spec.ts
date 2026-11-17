@@ -45,4 +45,73 @@ describe('BmbMobileTemplatesComponent', () => {
       fixture.debugElement.query(By.css('.bmb_external-link')),
     ).toBeTruthy();
   });
+
+  describe('handleLeftClick / handleRightClick', () => {
+    it('should emit onHeaderLeftClick', () => {
+      const emitSpy = jest.spyOn(component.onHeaderLeftClick, 'emit');
+      component.handleLeftClick('event-data');
+      expect(emitSpy).toHaveBeenCalledWith('event-data');
+    });
+
+    it('should emit onHeaderRightClick', () => {
+      const emitSpy = jest.spyOn(component.onHeaderRightClick, 'emit');
+      component.handleRightClick('event-data');
+      expect(emitSpy).toHaveBeenCalledWith('event-data');
+    });
+  });
+
+  describe('handleAction', () => {
+    it('should run the button action', () => {
+      const actionSpy = jest.fn();
+      component.handleAction({ action: actionSpy } as any);
+      expect(actionSpy).toHaveBeenCalled();
+    });
+  });
+
+  describe('handleLoginRequest', () => {
+    it('should emit loginHandleRequest', () => {
+      const emitSpy = jest.spyOn(component.loginHandleRequest, 'emit');
+      component.handleLoginRequest('event-data');
+      expect(emitSpy).toHaveBeenCalledWith('event-data');
+    });
+  });
+
+  describe('handleClose', () => {
+    it('should emit externalLinkOnClose', () => {
+      const emitSpy = jest.spyOn(component.externalLinkOnClose, 'emit');
+      component.handleClose('event-data');
+      expect(emitSpy).toHaveBeenCalledWith('event-data');
+    });
+  });
+
+  describe('handleMenuEvent', () => {
+    it('should emit externalLinkMenuEvent', () => {
+      const emitSpy = jest.spyOn(component.externalLinkMenuEvent, 'emit');
+      component.handleMenuEvent('link');
+      expect(emitSpy).toHaveBeenCalledWith('link');
+    });
+  });
+
+  describe('handleFooterEvent', () => {
+    it('should emit externalLinkFooterEvent', () => {
+      const emitSpy = jest.spyOn(component.externalLinkFooterEvent, 'emit');
+      component.handleFooterEvent('back');
+      expect(emitSpy).toHaveBeenCalledWith('back');
+    });
+  });
+
+  describe('getSectionClass', () => {
+    it('should default to single-header', () => {
+      expect(component.getSectionClass()).toEqual([
+        'bmb_mobile-template',
+        'bmb_mobile-template-single-header',
+      ]);
+    });
+  });
+
+  describe('ngOnInit', () => {
+    it('should capture the window height', () => {
+      expect(component.height).toBe(window.innerHeight);
+    });
+  });
 });

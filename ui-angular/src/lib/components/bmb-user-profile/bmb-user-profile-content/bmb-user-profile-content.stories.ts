@@ -84,7 +84,7 @@ Below is an example of how you can use this component in HTML:
       id: 'A00123456',
       fullName: 'Borrego Perez',
       profilePicture:
-        'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/assets/images/placeholders/user-icon-test.svg',
+        'assets/images/placeholders/user-icon-test.svg',
     },
     anotherAccountLabel: 'Ingresar con otra cuenta',
     anotherAccountLink:

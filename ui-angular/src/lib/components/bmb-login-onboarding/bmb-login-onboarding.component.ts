@@ -13,20 +13,9 @@ import { BmbLoginOnboardingService } from './bmb-login-onboarding.service';
 import { BmbLoginOnboardingLogoutComponent } from './bmb-login-onboarding-logout/bmb-login-onboarding-logout.component';
 import { BmbLoginOnboardingLoggedComponent } from './bmb-login-onboarding-logged/bmb-login-onboarding-logged.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { IBmbLinkConfiguration } from '../../_shared/types';
+import { IBmbLoginOnBoardingCustomization } from '../../_shared/types';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { TranslatePipe } from '../../pipes/translations';
-
-export * from './types';
-
-export interface IBmbLoginOnBoardingCustomization {
-  anotherAccount: IBmbLinkConfiguration;
-  forgottenPassword: IBmbLinkConfiguration;
-}
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-login-onboarding',

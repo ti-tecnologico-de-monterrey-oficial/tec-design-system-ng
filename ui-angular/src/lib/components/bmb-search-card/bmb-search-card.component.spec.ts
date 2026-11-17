@@ -1,10 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import {
-  BmbSearchCardComponent,
-  IBmbSearchCardItemResult,
-} from './bmb-search-card.component';
+import { BmbSearchCardComponent } from './bmb-search-card.component';
+import { IBmbSearchCardItemResult } from '../../_shared/types';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 
 describe('BmbSearchCardComponent', () => {

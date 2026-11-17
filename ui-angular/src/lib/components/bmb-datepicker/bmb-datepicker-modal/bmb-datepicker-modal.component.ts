@@ -8,17 +8,12 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { DateTime, Info } from 'luxon';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 
-import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
-import { orderDayNames } from '../../../_shared/logic/utils';
-import { weeksAndDays } from '../../bmb-calendar/utils';
-import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
-import { BmbTranslationsService } from '../../../services/translations/translations.service';
-import { TranslatePipe } from '../../../pipes/translations';
+import { weeksAndDays } from '../../../_shared/logic/components/calendar';
 import {
   getAdjustedMonth,
   getAdjustedYear,
@@ -28,6 +23,11 @@ import {
   isDatepickerYearSelected,
   resolveDatepickerInitialState,
 } from '../../../_shared/logic/components/datepicker-modal';
+import { orderDayNames } from '../../../_shared/logic/utils';
+import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
+import { TranslatePipe } from '../../../pipes/translations';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 
 @Component({
   selector: 'bmb-datepicker-modal',
@@ -72,7 +72,9 @@ export class BmbDatepickerModalComponent implements OnInit {
   view = 'calendar';
   selectedDate: DateTime | null = null;
 
-  private translateService: BmbTranslationsService = inject(BmbTranslationsService);
+  private translateService: BmbTranslationsService = inject(
+    BmbTranslationsService,
+  );
 
   ngOnInit() {
     const state = resolveDatepickerInitialState(

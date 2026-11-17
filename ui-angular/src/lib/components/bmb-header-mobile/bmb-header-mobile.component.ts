@@ -13,10 +13,6 @@ import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.componen
 import { IBmbTargetLink } from '../../_shared/types';
 import { TranslatePipe } from '../../pipes/translations';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-header-mobile',
   standalone: true,

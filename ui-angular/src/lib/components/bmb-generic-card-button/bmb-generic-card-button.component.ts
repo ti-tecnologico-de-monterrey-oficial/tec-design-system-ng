@@ -6,8 +6,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-export type IBmbGenericCardButtonAppearance = 'default' | 'alternative';
+import { IBmbGenericCardButtonAppearance } from '../../_shared/types';
 
 @Component({
   selector: 'bmb-generic-card-button',

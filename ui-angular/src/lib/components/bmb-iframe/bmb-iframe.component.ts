@@ -17,16 +17,7 @@ import type {
   BmbIframeLoading,
   BmbIframeReferrerPolicy,
   BmbIframeScrolling,
-} from '../../_shared/types/components/iframe';
-
-export type {
-  BmbIframeAttributes,
-  BmbIframeAlign,
-  BmbIframeImportance,
-  BmbIframeLoading,
-  BmbIframeReferrerPolicy,
-  BmbIframeScrolling,
-};
+} from '../../_shared/types';
 
 const MANAGED_ATTRIBUTES = new Set([
   'allow',

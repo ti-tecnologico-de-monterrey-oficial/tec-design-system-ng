@@ -18,24 +18,9 @@ import { Subscription } from 'rxjs';
 import { BmbSearchCardEmptyStateComponent } from './bmb-search-card-empty-state/bmb-search-card-empty-state.component';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { BmbSearchCardItemComponent } from './bmb-search-card-item/bmb-search-card-item.component';
-import { IBmbInteractiveIconAppearance } from '../../_shared/types/components/interactive-icon';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
-
-export interface IBmbSearchCardItemResult {
-  id: string;
-  name: string;
-  subtitle: string;
-  avatarOrIcon: string;
-  backgroundColorIcon?: IBmbInteractiveIconAppearance;
-  type: 'person' | 'service';
-  isBookmarkActive?: boolean;
-  showBookmark?: boolean;
-  [key: string]: any;
-}
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { IBmbSearchCardItemResult } from '../../_shared/types';
+import { groupSearchCardResults } from '../../_shared/logic/components/search-card';
 
 @Component({
   selector: 'bmb-search-card',
@@ -75,42 +60,13 @@ export class BmbSearchCardComponent {
   );
 
   inputSearchControl = new FormControl('');
-  computedResults = computed<{
-    services: IBmbSearchCardItemResult[];
-    persons: IBmbSearchCardItemResult[];
-    favorites: IBmbSearchCardItemResult[];
-  }>(() => {
-    const newResults = this.results();
-
-    if (this.inputSearchControl.value === '') {
-      return {
-        services: [],
-        persons: [],
-        favorites: this.favorites(),
-      };
-    }
-
-    return newResults.reduce(
-      (acc, item) => {
-        if (item.type === 'service') {
-          if (item.isBookmarkActive) {
-            acc.favorites.push(item);
-            acc.services.push(item);
-          } else {
-            acc.services.push(item);
-          }
-        } else if (item.type === 'person') {
-          acc.persons.push(item);
-        }
-        return acc;
-      },
-      { services: [], persons: [], favorites: [] } as {
-        services: IBmbSearchCardItemResult[];
-        persons: IBmbSearchCardItemResult[];
-        favorites: IBmbSearchCardItemResult[];
-      },
-    );
-  });
+  computedResults = computed(() =>
+    groupSearchCardResults(
+      this.results(),
+      this.favorites(),
+      this.inputSearchControl.value,
+    ),
+  );
   tabsData = computed<IBmbTab[]>(() => {
     const _disableFavoritesTab = this.disableFavoritesTab();
     const rowTabs = [

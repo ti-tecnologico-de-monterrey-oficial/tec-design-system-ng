@@ -1,5 +1,9 @@
 @use '../base/fonts' as fonts;
 
+:host {
+  display: flex;
+}
+
 .bmb_item {
   display: inline-block;
   width: 100%;

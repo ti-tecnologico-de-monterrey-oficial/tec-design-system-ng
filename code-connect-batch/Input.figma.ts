@@ -2,30 +2,49 @@
 // source=ui-angular/src/lib/components/bmb-input/bmb-input.component.ts
 // component=BmbInputComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const appearance = instance.getEnum('Variation', {
-  Simple: 'simple',
-  Full: 'normal',
-  'Text Area': 'normal',
-})
-const type = instance.getEnum('Variation', {
-  Simple: 'text',
-  Full: 'text',
-  'Text Area': 'text-area',
-})
-const disabled = instance.getEnum('State', {
-  Enabled: false,
-  Hovered: false,
-  Focused: false,
-  Error: false,
-  Disabled: true,
-})
-const value = instance.getString('Text')
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-input type="${type}" appearance="${appearance}" value="${value}" [disabled]="${disabled}" />`,
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  errorMessage: string | IBmbInputError = {
+    required: 'Please enter the required data',
+    jsonFormat: 'Please enter content in valid JSON format',
+    minLength: 'Please enter at least 4 characters',
+    pattern: 'Please enter only letters',
+  };
+}
+</script>
+
+<bmb-input
+  type="text"
+  name=""
+  value=""
+  appearance="normal"
+  label="Input Label"
+  tooltip="Tooltip example"
+  icon="${getIcon('apps')}"
+  placeholder="Placeholder"
+  [disabled]="false"
+  [isRequired]="true"
+  helperMessage="Helper Message"
+  [errorMessage]="errorMessage"
+  [spellcheck]="false"
+  [maxlength]="20"
+  [minlength]="4"
+  [max]="max"
+  [min]="min"
+  pattern="[A-Za-z]+"
+  [showMaxTextLength]="true"
+  [rows]="3"
+  [jsonFormat]="false"
+  [heightTextArea]="heightTextArea"
+  [isClearable]="false"
+  additionalAction="none"
+  [control]="control"
+/>`,
   imports: [
+    "import type { IBmbInputError } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
     "import { BmbInputComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
   id: 'bmb-input',

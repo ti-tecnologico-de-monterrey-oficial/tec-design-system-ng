@@ -1,0 +1,73 @@
+@use '../base/rem' as rem;
+@use '../base/fonts' as fonts;
+
+.bmb_timepicker-modal {
+  height: calc(100vh - 32px);
+  display: block;
+
+  &-button {
+    &-wrapper {
+      display: flex;
+      align-items: center;
+      gap: var(--bmb-margin-2);
+      justify-content: center;
+      margin: var(--bmb-margin-8) 0 var(--bmb-margin-4);
+    }
+
+    &-selector {
+      color: var(--general-contrasts-100);
+      font-size: rem.rem_calc(48);
+      border-radius: var(--bmb-border-radius);
+      padding: 0 var(--bmb-margin-s);
+      border: 1px solid transparent;
+
+      &.active {
+        background: var(--menu-select-on-surface-hovered-w-checkbox);
+        border-color: var(--menu-select-on-surface-hovered);
+      }
+    }
+  }
+
+  &-column {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    height: rem.rem_calc(152);
+    overflow-y: auto;
+    background-color: var(--general-contrasts-25);
+    border-radius: var(--bmb-margin-2);
+  }
+
+  &-option {
+    @include fonts.font(4, regular);
+    color: var(--menu-select-label-menu-inactive);
+
+    .bmb_check-external-link-button {
+      display: block;
+
+      &-element {
+        text-decoration: none;
+        width: 100%;
+        padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+
+        &:hover,
+        &:focus,
+        &:focus-visible {
+          background-color: var(--menu-select-on-surface-hovered);
+          outline: 0 none;
+        }
+      }
+    }
+
+    &-selected {
+      color: var(--menu-select-label-menu-active);
+      background-color: var(--menu-select-surface-activated);
+
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        color: var(--menu-select-label-menu-inactive);
+      }
+    }
+  }
+}

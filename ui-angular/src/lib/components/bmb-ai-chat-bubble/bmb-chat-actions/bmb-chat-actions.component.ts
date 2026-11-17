@@ -6,15 +6,26 @@ import {
   input,
   output,
   signal,
+  TemplateRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   BmbChatAction,
   BmbChatActionConfig,
-  BmbChatActionEvent,
+  BmbChatActionEvent as BmbChatActionEventGeneric,
   BmbChatCopyState,
-  BmbChatMessage,
-} from '../types';
+  BmbChatMessage as BmbChatMessageGeneric,
+} from '../../../_shared/types';
+import {
+  AI_CHAT_ACTIONS_DEFAULT_CONFIG,
+  filterVisibleChatActions,
+  getChatActionIcon,
+  toggleChatActionState,
+  updateChatActionsLikeState,
+} from '../../../_shared/logic/components/chat-actions';
+
+type BmbChatMessage = BmbChatMessageGeneric<TemplateRef<unknown>>;
+type BmbChatActionEvent = BmbChatActionEventGeneric<TemplateRef<unknown>>;
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../../pipes/translations';
 
@@ -36,74 +47,27 @@ export class ChatActionsComponent {
       const message = this.message();
 
       this.internalActions.update((actions) =>
-        actions.map((action) => {
-          if (action.action === 'like') {
-            return {
-              ...action,
-              active: message.like ?? false,
-            };
-          }
-
-          if (action.action === 'dislike') {
-            return {
-              ...action,
-              active: message.dislike ?? false,
-            };
-          }
-
-          return action;
-        }),
+        updateChatActionsLikeState(
+          actions,
+          message.like ?? false,
+          message.dislike ?? false,
+        ),
       );
     });
   }
   /**
    * Configurable actions.
    */
-  readonly internalActions = signal<BmbChatActionConfig[]>([
-    {
-      action: 'repeat',
-      icon: 'repeat',
-      label: 'chat_bubbles.repeat',
-    },
-    {
-      action: 'voice',
-      icon: 'record_voice_over',
-      label: 'chat_bubbles.voice',
-    },
-    {
-      action: 'copy',
-      icon: 'content_copy',
-      label: 'chat_bubbles.copy',
-    },
-    {
-      action: 'edit',
-      icon: 'edit',
-      label: 'chat_bubbles.edit',
-    },
-    {
-      action: 'like',
-      icon: 'thumb_up',
-      label: 'chat_bubbles.like',
-      active: false,
-    },
-    {
-      action: 'dislike',
-      icon: 'thumb_down',
-      label: 'chat_bubbles.dislike',
-      active: false,
-    },
-  ]);
+  readonly internalActions = signal<BmbChatActionConfig[]>(
+    AI_CHAT_ACTIONS_DEFAULT_CONFIG,
+  );
 
   /**
    * Visible actions.
    */
-  readonly visibleActions = computed(() => {
-    return this.internalActions().filter(
-      (internalAction) =>
-        this.actions() !== null &&
-        this.actions()!.includes(internalAction.action),
-    );
-  });
+  readonly visibleActions = computed(() =>
+    filterVisibleChatActions(this.internalActions(), this.actions()),
+  );
 
   /**
    * Emits selected action.
@@ -118,23 +82,7 @@ export class ChatActionsComponent {
 
     if (action === 'like' || action === 'dislike') {
       this.internalActions.update((actions) =>
-        actions.map((item) => {
-          if (item.action === 'like' || item.action === 'dislike') {
-            if (item.action === action) {
-              return {
-                ...item,
-                active: !item.active,
-              };
-            }
-
-            return {
-              ...item,
-              active: false,
-            };
-          }
-
-          return item;
-        }),
+        toggleChatActionState(actions, action),
       );
     }
 
@@ -147,9 +95,6 @@ export class ChatActionsComponent {
   }
 
   protected getActionIcon(action: BmbChatActionConfig): string {
-    if (action.action !== 'copy') return action.icon;
-    if (this.copyState() === 'success') return 'check';
-    if (this.copyState() === 'error') return 'close';
-    return action.icon;
+    return getChatActionIcon(action, this.copyState());
   }
 }

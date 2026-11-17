@@ -11,6 +11,14 @@ export const appRoutes: Route[] = [
         (m) => m.RoomReservation,
       ),
   },
+  {
+    path: 'issue/dropdown',
+    title: 'DS01-3902 | BmbDropdown',
+    loadComponent: () =>
+      import('./pages/issue-dropdown-page/issue-dropdown-page').then(
+        ({ IssueDropdownPage }) => IssueDropdownPage,
+      ),
+  },
   ...componentTestRoutes,
   {
     path: 'template-container-btn',
@@ -477,6 +485,14 @@ export const appRoutes: Route[] = [
     loadComponent: () =>
       import('./pages/bot-icon-page/bot-icon-page').then(
         ({ BotIconPage }) => BotIconPage,
+      ),
+  },
+  {
+    path: 'pages/ai-chat-card-attachment',
+    title: 'AIChatCardAttachment',
+    loadComponent: () =>
+      import('./pages/ai-chat-card-attachment/ai-chat-card-attachment').then(
+        (page) => page.AIChatCardAttachment,
       ),
   },
   {

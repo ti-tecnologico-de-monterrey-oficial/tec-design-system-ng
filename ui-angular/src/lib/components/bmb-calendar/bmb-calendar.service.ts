@@ -1,14 +1,17 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { DateTime, Interval } from 'luxon';
-import { IBmbCalendarEvent, IBmbParsedDates } from './types';
-import { IBmbColorSemantics } from '../../_shared/types';
-import { DEFAULT_DATE_FORMAT, getWeekDays } from './utils';
-
-const parseFromFormat = (dateString: string, format: string): DateTime => {
-  if (format.toLowerCase() === 'iso') return DateTime.fromISO(dateString);
-
-  return DateTime.fromFormat(dateString, format);
-};
+import { DateTime } from 'luxon';
+import {
+  DEFAULT_DATE_FORMAT,
+  getWeekDays,
+} from '../../_shared/logic/components/calendar';
+import {
+  filterCalendarEvents,
+  orderCalendarEvents,
+} from '../../_shared/logic/components/calendar-state';
+import type {
+  IBmbCalendarEvent,
+  IBmbParsedDates,
+} from '../../_shared/types/components/calendar';
 
 @Injectable()
 export class BmbCalendarComponentService {
@@ -52,26 +55,10 @@ export class BmbCalendarComponentService {
     orderedEvents: IBmbParsedDates;
     filters: Record<string, boolean>;
   }): IBmbParsedDates {
-    const newEvents = {} as IBmbParsedDates;
-    for (const week in orderedEvents) {
-      if (week !== 'calendars') {
-        newEvents[week] = {};
-        for (const date in orderedEvents[week]) {
-          newEvents[week][date] = orderedEvents[week][date].map(
-            (event) => ({
-              ...event,
-              isVisible:
-                Object.keys(filters).length === 0 ||
-                filters[event.calendar || 'Default'] !== false,
-            }),
-          );
-        }
-      }
-    }
-
-    newEvents.calendars = orderedEvents.calendars;
-
-    return newEvents;
+    return filterCalendarEvents({
+      orderedEvents,
+      filters,
+    });
   }
 
   getOrderedEvents() {
@@ -79,54 +66,7 @@ export class BmbCalendarComponentService {
   }
 
   setOrderedEvents(events: IBmbCalendarEvent[], dateFormat: string) {
-    const weeks = events.reduce(
-      (acc: IBmbParsedDates, event) => {
-        const startDate = parseFromFormat(event.start, dateFormat);
-        const endDate = parseFromFormat(event.end, dateFormat);
-        const interval = Interval.fromDateTimes(startDate, endDate);
-        const week = startDate.weekNumber;
-        const stringDate = startDate.toFormat('yyyy-MM-dd');
-        const bulletColor: IBmbColorSemantics =
-          event.bulletColor || 'success-primary';
-
-        if (!acc[week]) acc[week] = {};
-        if (!acc[week][stringDate]) acc[week][stringDate] = [];
-        acc[week][stringDate].push({
-          ...event,
-          startDate,
-          endDate,
-          interval,
-          bulletColor,
-        });
-
-        if (event.calendar && !acc.calendars?.includes(event.calendar)) {
-          acc.calendars?.push(event.calendar);
-        }
-
-        return acc;
-      },
-      { calendars: [] } as IBmbParsedDates,
-    );
-
-    const orderedDates = {} as IBmbParsedDates;
-
-    for (const week in weeks) {
-      if (week === 'calendars') {
-        orderedDates[week] = weeks[week];
-      } else {
-        orderedDates[week] = {};
-
-        for (const date in weeks[week]) {
-          orderedDates[week][date] = weeks[week][date].sort((a, b) => {
-            const aDate = a.startDate ?? DateTime.invalid('Invalid Date');
-            const bDate = b.startDate ?? DateTime.invalid('Invalid Date');
-            return aDate <= bDate ? -1 : 1;
-          });
-        }
-      }
-    }
-
-    this.orderedEvents.set(orderedDates);
+    this.orderedEvents.set(orderCalendarEvents(events, dateFormat));
   }
 
   getDayEvents(): IBmbCalendarEvent[] {

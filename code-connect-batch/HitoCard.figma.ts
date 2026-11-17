@@ -2,22 +2,20 @@
 // source=ui-angular/src/lib/components/bmb-hito-card/bmb-hito-card.component.ts
 // component=BmbHitoCardComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const enableBullet = instance.getBoolean('IndexMarker')
-const isActive = instance.getEnum('State', {
-  Default: 'false',
-  Selected: 'true',
-  Micro: 'false',
-})
-const isCompact = instance.getEnum('State', {
-  Default: 'false',
-  Selected: 'false',
-  Micro: 'true',
-})
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-hito-card id="example" type="active" [enable_bullet]="${enableBullet}" [is_active]="${isActive}" [isCompact]="${isCompact}" />`,
+  example: figma.code`<bmb-hito-card
+  icon="${getIcon('home')}"
+  componentTitle="Hito card title"
+  id="card"
+  short_description="Short description"
+  type="active"
+  sub_content="Sub content"
+  [enable_bullet]="false"
+  [is_active]="false"
+  [isCompact]="false"
+/>`,
   imports: [
     "import { BmbHitoCardComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

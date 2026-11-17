@@ -1,0 +1,17 @@
+<label class="preset-control"
+  >Storybook example
+  <select
+    [value]="selectedPreset()"
+    (change)="selectPreset($any($event.target).value)"
+  >
+    @for (preset of presets; track preset.id) {
+      <option [value]="preset.id">{{ preset.label }}</option>
+    }
+  </select>
+</label>
+@for (preset of [selectedPreset()]; track preset) {
+  <app-property-playground
+    [component]="component"
+    [configuration]="configuration"
+  />
+}

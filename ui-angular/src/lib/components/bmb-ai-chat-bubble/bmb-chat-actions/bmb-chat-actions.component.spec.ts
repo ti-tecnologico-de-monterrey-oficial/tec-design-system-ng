@@ -3,7 +3,7 @@ import { ComponentRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { ChatActionsComponent } from './bmb-chat-actions.component';
-import { BmbTextMessage } from '../types';
+import { BmbTextMessage } from '../../../_shared/types';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
 
 let componentRef: ComponentRef<ChatActionsComponent>;
@@ -75,6 +75,18 @@ describe('ChatActionsComponent', () => {
 
   it('should initialize internal actions', () => {
     expect(component.internalActions().length).toBe(6);
+  });
+
+  it('should reflect the message like/dislike state onto internal actions', () => {
+    componentRef.setInput('message', { ...mockMessage, like: true, dislike: false });
+    fixture.detectChanges();
+
+    expect(
+      component.internalActions().find((a) => a.action === 'like')?.active,
+    ).toBe(true);
+    expect(
+      component.internalActions().find((a) => a.action === 'dislike')?.active,
+    ).toBe(false);
   });
 
   it('should render all visible actions', () => {

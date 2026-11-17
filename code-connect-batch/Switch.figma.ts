@@ -3,14 +3,12 @@
 // component=BmbSwitchComponent
 import figma from 'figma'
 
-const instance = figma.selectedInstance
-const isChecked = instance.getEnum('Selected', {
-  Active: true,
-  Inactive: false,
-})
-
 export default {
-  example: figma.code`<bmb-switch [isChecked]="${isChecked}" />`,
+  example: figma.code`<bmb-switch
+  [isChecked]="false"
+  [disabled]="false"
+  name="testName"
+/>`,
   imports: [
     "import { BmbSwitchComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

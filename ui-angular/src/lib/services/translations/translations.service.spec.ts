@@ -46,6 +46,40 @@ describe('BmbTranslationsService', () => {
       expect(service).toBeTruthy();
     });
 
+    it('should load default dictionaries on first translation', async () => {
+      const originalFetch = globalThis.fetch;
+      const fetchMock = jest.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          account_statement: { title: 'Loaded translation' },
+        }),
+      } as Response);
+      globalThis.fetch = fetchMock;
+      const uninitializedService = new BmbTranslationsService();
+
+      try {
+        expect(fetchMock).not.toHaveBeenCalled();
+        expect(
+          uninitializedService.translate('account_statement.title'),
+        ).toBe('account_statement.title');
+        expect(fetchMock).toHaveBeenCalledTimes(2);
+        uninitializedService.setLanguage('es');
+        expect(fetchMock).toHaveBeenCalledTimes(2);
+
+        await new Promise((resolve) => setTimeout(resolve, 0));
+
+        expect(
+          uninitializedService.translate('account_statement.title'),
+        ).toBe('Loaded translation');
+      } finally {
+        if (originalFetch) {
+          globalThis.fetch = originalFetch;
+        } else {
+          Reflect.deleteProperty(globalThis, 'fetch');
+        }
+      }
+    });
+
     it('should initialize with Spanish as default language', () => {
       expect(service.getCurrentLanguage()).toBe('es');
     });

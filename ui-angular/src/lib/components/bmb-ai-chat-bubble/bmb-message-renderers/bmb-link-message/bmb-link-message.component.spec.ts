@@ -3,7 +3,7 @@ import { ComponentRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { LinkMessageComponent } from './bmb-link-message.component';
-import { BmbLinkMessage } from '../../types';
+import { BmbLinkMessage } from '../../../../_shared/types';
 
 let componentRef: ComponentRef<LinkMessageComponent>;
 

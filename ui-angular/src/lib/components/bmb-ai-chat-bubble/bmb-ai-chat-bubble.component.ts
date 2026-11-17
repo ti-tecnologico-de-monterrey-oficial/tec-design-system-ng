@@ -7,19 +7,29 @@ import {
   OnDestroy,
   output,
   signal,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import {
-  BmbChatActionEvent,
+  BmbChatActionEvent as BmbChatActionEventGeneric,
   BmbChatAction,
   BmbChatCopyState,
-  BmbChatMessage,
+  BmbChatMessage as BmbChatMessageGeneric,
   BmbChatMessageEditedEvent,
   BmbTextMessage,
+  BmbUploadFileRequestEvent,
   IBmbChatOptionEvent,
-} from './types';
+  BmbChatAttachmentResult,
+} from '../../_shared/types';
+import {
+  buildAiChatBubblePlainText,
+  getAiChatBubbleClasses,
+  resolveAiChatBubbleActions,
+} from '../../_shared/logic/components/ai-chat-bubble';
+type BmbChatMessage = BmbChatMessageGeneric<TemplateRef<unknown>>;
+type BmbChatActionEvent = BmbChatActionEventGeneric<TemplateRef<unknown>>;
 import { ChatActionsComponent } from './bmb-chat-actions/bmb-chat-actions.component';
 import { TextMessageComponent } from './bmb-message-renderers/bmb-text-message/bmb-text-message.component';
 import { ImageMessageComponent } from './bmb-message-renderers/bmb-image-message/bmb-image-message.component';
@@ -27,17 +37,13 @@ import { MixedMessageComponent } from './bmb-message-renderers/bmb-mixed-message
 import { LinkMessageComponent } from './bmb-message-renderers/bmb-link-message/bmb-link-message.component';
 import { OptionsMessageComponent } from './bmb-message-renderers/bmb-options-message/bmb-options-message.component';
 import { TemplateMessageComponent } from './bmb-message-renderers/bmb-template-message/bmb-template-message.component';
+import { BmbUploadFileMessageComponent } from './bmb-message-renderers/bmb-upload-file-message/bmb-upload-file-message.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbAiChatBubbleEditorComponent } from './bmb-ai-chat-bubble-editor/bmb-ai-chat-bubble-editor.component';
 import { TranslatePipe } from '../../pipes/translations';
-
-export * from './types';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { provideBmbChatAttachments } from '../../services/chat-attachments/chat-attachments.service';
 
 @Component({
   selector: 'bmb-ai-chat-bubble',
@@ -51,6 +57,7 @@ export * from './types';
     LinkMessageComponent,
     OptionsMessageComponent,
     TemplateMessageComponent,
+    BmbUploadFileMessageComponent,
     BmbUserImageComponent,
     BmbIconComponent,
     BmbBotIconComponent,
@@ -60,6 +67,7 @@ export * from './types';
   templateUrl: './bmb-ai-chat-bubble.component.html',
   styleUrl: './bmb-ai-chat-bubble.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideBmbChatAttachments()],
 })
 export class BmbAiChatBubbleComponent implements OnDestroy {
   /**
@@ -105,57 +113,34 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
   readonly messageEdited = output<BmbChatMessageEditedEvent>();
   readonly messageEditCancelled = output<BmbChatMessage>();
   getOptionClicked = output<IBmbChatOptionEvent>();
+  readonly uploadFileRequested = output<BmbUploadFileRequestEvent>();
+  readonly filesSelected = output<File[]>();
+  readonly attachmentResult = output<BmbChatAttachmentResult>();
+  readonly retryUploadRequested = output<BmbUploadFileRequestEvent>();
 
   /**
    * Emits image not found events.
    */
   readonly imageNotFoundError = output<void>();
-  private PROMPT_ACTIONS: BmbChatAction[] = [
-    'repeat',
-    'voice',
-    'copy',
-    'like',
-    'dislike',
-  ];
-  private USER_ACTIONS: BmbChatAction[] = ['copy', 'edit'];
 
   /**
    * Bubble dynamic classes.
    */
-  readonly bubbleClasses = computed(() => ({
-    'bmb_ai-chat-bubble-user': this.message().isUser,
-    'bmb_ai-chat-bubble-bot': !this.message().isUser,
-    'bmb_ai-chat-bubble-thinking': this.isThinking(),
-    'bmb_ai-chat-bubble-editing': this.message().isUser && this.isEditing(),
-  }));
+  readonly bubbleClasses = computed(() =>
+    getAiChatBubbleClasses(
+      this.message().isUser,
+      this.isThinking(),
+      this.isEditing(),
+    ),
+  );
 
-  protected _actions = computed<BmbChatAction[] | null>(() => {
-    if (this.message().isUser) {
-      if (this.showActions() && this.message().type === 'text') {
-        if (this.actions() === null || !this.actions()?.length) return ['copy'];
-        else
-          return (this.actions() ?? []).reduce(
-            (acc, action): BmbChatAction[] =>
-              this.USER_ACTIONS.includes(action) ? [...acc, action] : acc,
-            [] as BmbChatAction[],
-          );
-      }
-    } else {
-      if (this.showActions()) {
-        if (this.actions() === null) {
-          return this.PROMPT_ACTIONS;
-        } else {
-          return (this.actions() ?? []).reduce(
-            (acc, action): BmbChatAction[] =>
-              this.PROMPT_ACTIONS.includes(action) ? [...acc, action] : acc,
-            [] as BmbChatAction[],
-          );
-        }
-      }
-    }
-
-    return null;
-  });
+  protected _actions = computed<BmbChatAction[] | null>(() =>
+    resolveAiChatBubbleActions(
+      this.message(),
+      this.showActions(),
+      this.actions(),
+    ),
+  );
 
   protected async onAction(event: BmbChatActionEvent): Promise<void> {
     if (event.action === 'copy') {
@@ -218,33 +203,10 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
   }
 
   private buildPlainText(): string {
-    const message = this.message();
+    const plainText = buildAiChatBubblePlainText(this.message());
+    if (plainText !== null) return plainText;
 
-    switch (message.type) {
-      case 'text':
-      case 'mixed':
-        return message.content.text.trim();
-      case 'image':
-        return (message.content.alt ?? '').trim();
-      case 'link':
-        return [message.content.text, message.content.href]
-          .filter(Boolean)
-          .join('\n\n')
-          .trim();
-      case 'options': {
-        const options = message.content.options
-          .map((option) =>
-            [`- ${option.label}`, option.href].filter(Boolean).join('\n'),
-          )
-          .join('\n');
-        return [message.content.text, options]
-          .filter(Boolean)
-          .join('\n\n')
-          .trim();
-      }
-      case 'template':
-        return this.messageContent?.nativeElement.innerText.trim() ?? '';
-    }
+    return this.messageContent?.nativeElement.innerText.trim() ?? '';
   }
 
   private async writeToClipboard(

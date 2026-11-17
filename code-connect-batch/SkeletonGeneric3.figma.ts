@@ -4,7 +4,9 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-skeleton type="generic3" />`,
+  example: figma.code`<bmb-skeleton
+  type="generic3"
+/>`,
   imports: [
     "import { BmbSkeletonComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

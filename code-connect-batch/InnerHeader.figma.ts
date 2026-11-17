@@ -2,16 +2,18 @@
 // source=ui-angular/src/lib/components/bmb-inner-header/bmb-inner-header.component.ts
 // component=BmbInnerHeaderComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const titleLayer = instance.findText('Header', { traverseInstances: true })
-const componentTitle =
-  titleLayer && titleLayer.type === 'TEXT'
-    ? titleLayer.textContent
-    : 'Inner Header'
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-inner-header componentTitle="${componentTitle}" [showClose]="true" />`,
+  example: figma.code`<bmb-inner-header
+  componentTitle="Inner Header"
+  placeholderSearch="Search"
+  trailingIconPrimary="${getIcon('lock')}"
+  trailingIconSecondary="${getIcon('')}"
+  [showClose]="true"
+  [showReturn]="showReturn"
+  [showSearch]="showSearch"
+/>`,
   imports: [
     "import { BmbInnerHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

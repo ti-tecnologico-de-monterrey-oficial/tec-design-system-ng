@@ -2,31 +2,23 @@
 // source=ui-angular/src/lib/components/bmb-list-group/bmb-list-group-item/bmb-list-group-item.component.ts
 // component=BmbListGroupItemComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const headerLayer = instance.findText('Text')
-const headerText =
-  headerLayer && headerLayer.type === 'TEXT' ? headerLayer.textContent : ''
-const isDisabled = instance.getEnum('State', {
-  Selected: false,
-  Disabled: true,
-  Enabled: false,
-  Hover: false,
-})
-const isActive = instance.getEnum('State', {
-  Selected: true,
-  Disabled: false,
-  Enabled: false,
-  Hover: false,
-})
+import { getIcon } from './icon-image'
 
 export default {
   example: figma.code`<bmb-list-group-item
+  appearanceContrast="default"
   id="list-group-item-1"
-  headerText="${headerText}"
   [personalizedTemplate]="false"
-  [isDisabled]="${isDisabled}"
-  [isActive]="${isActive}"
+  [headerText]="headerText"
+  [descriptionText]="descriptionText"
+  [infoText]="infoText"
+  icon="${getIcon('add_box')}"
+  [imgSrc]="imgSrc"
+  [tooltipTitle]="tooltipTitle"
+  [badgeAppearance]="badgeAppearance"
+  [badgeText]="badgeText"
+  [isDisabled]="false"
+  [isActive]="false"
 />`,
   imports: [
     "import { BmbListGroupItemComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",

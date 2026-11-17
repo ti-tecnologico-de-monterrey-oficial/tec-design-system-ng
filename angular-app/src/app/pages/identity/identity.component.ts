@@ -19,13 +19,15 @@ import {
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
   IBmbActionHeader,
-  IBmbNativeModal,
+  IBmbNativeModal as IBmbNativeModalGeneric,
   BmbNativeModalService,
   BmbIconItemComponent,
   BmbSelectorDirective,
   BmbUserSummaryContentComponent,
 } from 'ui-angular';
 import { FormGroup } from '@angular/forms';
+
+type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 
 @Component({
   selector: 'app-identity',

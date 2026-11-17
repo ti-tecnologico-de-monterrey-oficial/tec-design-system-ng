@@ -4,7 +4,12 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-search-input />`,
+  example: figma.code`<bmb-search-input
+  name=""
+  [data]="['Carlee Bengochea', 'Reynard Howgate', 'Pearce Jore', 'Giacopo Mellings', 'Clyve Nerval', 'Pauletta Pavelka', 'Midge Girardot']"
+  [isServerSideFilter]="false"
+  placeholder=""
+/>`,
   imports: [
     "import { BmbSearchInputComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

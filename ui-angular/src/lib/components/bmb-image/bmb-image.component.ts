@@ -10,9 +10,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SizeNames } from '../../_shared/types';
+import { SizeNames, IBmbMediaCardLoading } from '../../_shared/types';
 import { handleImageNotFoundError } from '../../_shared/logic/utils';
-import type { IBmbMediaCardLoading } from '../../_shared/types';
 import type {
   BmbImageItem,
   IBmbImageHeight,
@@ -229,9 +228,10 @@ export class BmbImageComponent implements OnDestroy {
   getImageContainerStyle(): Record<string, string> {
     const borderRadius = this.borderRadius();
 
-    if (typeof borderRadius === 'string') return {
-      'border-radius': `var(--bmb-radius-${borderRadius})`,
-    };
+    if (typeof borderRadius === 'string')
+      return {
+        'border-radius': `var(--bmb-radius-${borderRadius})`,
+      };
 
     return {
       'border-top-left-radius': `var(--bmb-radius-${borderRadius.topLeft ?? 'm'})`,

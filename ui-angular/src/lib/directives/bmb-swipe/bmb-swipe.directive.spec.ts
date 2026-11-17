@@ -6,7 +6,7 @@ import {
   BmbSwipeLeftActionsDirective,
   BmbSwipeRightActionsDirective,
 } from './bmb-swipe.directive';
-import type { IBmbSwipeSide } from './bmb-swipe.directive';
+import type { IBmbSwipeSide } from '../../_shared/types';
 
 @Component({
   standalone: true,

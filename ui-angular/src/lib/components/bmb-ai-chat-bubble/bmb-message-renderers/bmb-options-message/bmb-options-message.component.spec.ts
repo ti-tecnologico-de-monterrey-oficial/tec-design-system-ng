@@ -3,7 +3,7 @@ import { ComponentRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { OptionsMessageComponent } from './bmb-options-message.component';
-import { BmbOptionsMessage } from '../../types';
+import { BmbOptionsMessage } from '../../../../_shared/types';
 import { provideRouter } from '@angular/router';
 import { BmbItemInformativeTextComponent } from '../../../bmb-item/bmb-item-informative-text/bmb-item-informative-text.component';
 import { BmbItemActionsComponent } from '../../../bmb-item/bmb-item-actions/bmb-item-actions.component';

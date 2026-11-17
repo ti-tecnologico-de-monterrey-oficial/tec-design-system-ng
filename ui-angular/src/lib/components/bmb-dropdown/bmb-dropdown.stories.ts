@@ -12,8 +12,6 @@ import {
   getOnEvent,
   IBmbOnEvent,
   RELEVANT_TITLE,
-  getAlertBlockquote,
-  BlockquoteType,
 } from '@docs/utils/utils';
 import { BmbFormValidatorComponent } from '../bmb-form-validator/bmb-form-validator.component';
 import {
@@ -100,14 +98,7 @@ ${getArchitectureSection(`
 `)}
 ${getSpecialSpecifications(
   `
-${getAlertBlockquote(
-  `The \`isFilterable\` feature is not compatible with the current version of Storybook, We are working on to fix this issue. You should be able to use it in your Angular application.`,
-  {
-    title: '###'.concat(RELEVANT_TITLE.warning),
-    blockquoteType: BlockquoteType.warning,
-  },
-)}
-<br/>
+Filtering can be combined with multiple selection. Selected values are preserved when the search changes or is cleared.
 ${getEmptyStateMessage()}
 `,
   { showAdditionalBlockquote: true },
@@ -170,9 +161,7 @@ Enables the functionality to filter data when true, the user can type in order t
 
 ${RELEVANT_TITLE.important}
 
-The \`isFilterable\` is not compatible with the \`isMultiSelect\`.
-
-If you set the \`isMultiSelect\` property to true, the \`isFilterable\` property will be ignored.`,
+Compatible with \`isMultiSelect\`. The search stays visible while selecting multiple options. Select-all selects or deselects only the filtered results, preserving selections outside the search.`,
       table: {
         category: 'Properties',
         defaultValue: getDefaultValueControl(false),
@@ -329,3 +318,34 @@ If the data is a list of  IBmbDropdownItem type, the preferred options should be
 type Story = StoryObj<BmbDropdownComponent>;
 
 export const Default: Story = {};
+
+export const FilterableMultiSelect: Story = {
+  name: 'Multiple selection with search',
+  args: {
+    inputId: 'filterable-multiselect-dropdown',
+    name: 'filterable-multiselect',
+    label: 'Opportunities',
+    placeholder: 'Select opportunities',
+    helperText:
+      'Search, select several options, then change or clear the search.',
+    isMultiSelect: true,
+    isFilterable: true,
+    showIcon: false,
+    value: ['opportunity-2', 'opportunity-8'],
+    options: Array.from({ length: 40 }, (_, index) => ({
+      name: `${['Scholarship', 'Internship', 'Exchange', 'Volunteering'][index % 4]} ${index + 1}`,
+      value: `opportunity-${index + 1}`,
+    })),
+    preferredOptions: [],
+    tooltipPosition: { align: 'above', justify: 'before' },
+    required: false,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Open the dropdown and search for "Internship". Select more options, change or clear the search, and verify that previous selections remain. Scroll the list to check that option checkboxes stay behind the sticky search field. Select-all affects only the filtered results. Selections outside the search are preserved; select-all is disabled when there are no results.',
+      },
+    },
+  },
+};

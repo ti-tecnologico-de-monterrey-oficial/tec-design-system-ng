@@ -2,33 +2,23 @@
 // source=ui-angular/src/lib/components/bmb-accordion/bmb-accordion.component.ts
 // component=BmbAccordionComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const appearanceContrast = instance.getEnum('Container color', {
-  Default: 'default',
-  Primary: 'primary',
-  Alternative: 'alternative',
-})
-const disabled = instance.getEnum('State:', {
-  Disabled: true,
-  Enabled: false,
-  Hovered: false,
-  Selected: false,
-})
-const expanded = instance.getEnum('State:', {
-  Disabled: false,
-  Enabled: false,
-  Hovered: false,
-  Selected: true,
-})
+import { getIcon } from './icon-image'
 
 export default {
   example: figma.code`<bmb-accordion
-  [accordionId]="1"
-  appearanceContrast="${appearanceContrast}"
-  [disabled]="${disabled}"
-  [expanded]="${expanded}"
-></bmb-accordion>`,
+  appearanceContrast="default"
+  borderRadius="m"
+  margin="m"
+  paddingHeader="m"
+  paddingContent="m"
+  icon="${getIcon('keyboard_arrow_down')}"
+  [accordionId]="accordionId"
+  [hideToggle]="false"
+  [active]="false"
+  [disabled]="false"
+  [expanded]="false"
+  [lockToggle]="false"
+/>`,
   imports: [
     "import { BmbAccordionComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

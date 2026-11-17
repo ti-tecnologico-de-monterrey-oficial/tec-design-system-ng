@@ -4,7 +4,11 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-paginator [totalItems]="20" [itemsPerPage]="5" [currentPage]="1" />`,
+  example: figma.code`<bmb-paginator
+  [totalItems]="20"
+  [itemsPerPage]="5"
+  [currentPage]="1"
+/>`,
   imports: [
     "import { BmbPaginatorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

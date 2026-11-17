@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,27 +7,26 @@ import {
   model,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbBreadcrumbComponent } from '../bmb-breadcrumb/bmb-breadcrumb.component';
-import type { IBmbDataTopBar } from '../../_shared/types';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { CommonModule } from '@angular/common';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { isImage } from '../../_shared/logic/utils';
-import { IBmbColor } from '../../_shared/types/colors';
-import { getRGBColorKeyValue } from '../../_shared/logic/utils';
-import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import {
-  IBmbUserImageSize,
-  IBmbFontWeightContent,
-} from '../../_shared/types';
+  getTitleContentClassNames,
+  getTitleContentStyles,
+  hasTitleContentBreadcrumbs,
+} from '../../_shared/logic/components/title-content';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
-import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
+import { isImage } from '../../_shared/logic/utils';
+import type {
+  IBmbDataTopBar,
+  IBmbFontWeightContent,
+  IBmbUserImageSize,
+} from '../../_shared/types';
+import type { IBmbColor } from '../../_shared/types/colors';
+import type { IBotType } from '../../_shared/types/components/chat-bar';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
-import { IBotType } from '../bmb-chat-bar/types';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
+import { BmbBreadcrumbComponent } from '../bmb-breadcrumb/bmb-breadcrumb.component';
+import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 
 @Component({
   selector: 'bmb-title-content',
@@ -89,28 +89,24 @@ export class BmbTitleContentComponent {
   }
 
   getStyles(): object {
-    if (
-      this.isImage(this.icon()) &&
-      this.transparentBgC() &&
-      !this.forceSquareApp()
-    ) {
-      return { 'background-color': 'transparent' };
-    }
-    if (this.bgIconAppearance()) {
-      return getRGBColorKeyValue(this.bgIconAppearance() as string);
-    }
-    return {};
+    return getTitleContentStyles(
+      this.icon(),
+      this.transparentBgC(),
+      this.forceSquareApp(),
+      this.bgIconAppearance(),
+    );
   }
 
   getClassNames(mainName: string, size: string, fontWeight: string): string[] {
-    const classes = [`${mainName}-${size}`, `${mainName}-${fontWeight}`];
-
-    if (this.isCenterContent()) classes.push(`${mainName}-centered`);
-
-    return classes;
+    return getTitleContentClassNames(
+      mainName,
+      size,
+      fontWeight,
+      this.isCenterContent(),
+    );
   }
 
   showBreadcrumbs(): boolean {
-    return !!this.dataLocalNav().length;
+    return hasTitleContentBreadcrumbs(this.dataLocalNav());
   }
 }

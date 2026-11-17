@@ -18,17 +18,13 @@ export interface BmbDictionaries {
   providedIn: 'root',
 })
 export class BmbTranslationsService {
-  private currentLanguage = signal<string>('es');
-  private dictionaries = signal<{ [key: string]: BmbDictionaries }>({});
-  private translationsVersion = signal<number>(0);
-  private selectedDictionary = computed<BmbDictionaries>(() => {
+  private readonly currentLanguage = signal<string>('es');
+  private readonly dictionaries = signal<{ [key: string]: BmbDictionaries }>({});
+  private readonly translationsVersion = signal<number>(0);
+  private defaultDictionariesLoadRequested = false;
+  private readonly selectedDictionary = computed<BmbDictionaries>(() => {
     return this.dictionaries()[this.currentLanguage()] ?? {};
   });
-
-  constructor() {
-    void this.loadDictionaryFromAssets('es');
-    void this.loadDictionaryFromAssets('en');
-  }
 
   getCurrentLanguage() {
     return this.currentLanguage();
@@ -39,8 +35,13 @@ export class BmbTranslationsService {
   }
 
   setLanguage(lang: string) {
+    this.ensureDefaultDictionariesLoaded();
+
     if (this.currentLanguage() === lang) {
-      if (!this.dictionaries()[lang]) {
+      if (
+        !this.dictionaries()[lang] &&
+        !(this.defaultDictionariesLoadRequested && ['es', 'en'].includes(lang))
+      ) {
         void this.loadDictionaryFromAssets(lang);
       }
       return;
@@ -112,12 +113,27 @@ export class BmbTranslationsService {
   }
 
   translate(keyList: string): string {
+    this.ensureDefaultDictionariesLoaded();
+
     const translatedValue = keyList
       ?.split('.')
-      .reduce((acc: any, key: string) => {
-        return acc && acc[key] !== undefined ? acc[key] : undefined;
-      }, this.selectedDictionary());
+      .reduce((acc: any, key: string) => acc?.[key], this.selectedDictionary());
 
     return typeof translatedValue === 'string' ? translatedValue : keyList;
+  }
+
+  private ensureDefaultDictionariesLoaded() {
+    const dictionaries = this.dictionaries();
+    if (dictionaries['es'] && dictionaries['en']) {
+      return;
+    }
+
+    if (this.defaultDictionariesLoadRequested) {
+      return;
+    }
+
+    this.defaultDictionariesLoadRequested = true;
+    void this.loadDictionaryFromAssets('es');
+    void this.loadDictionaryFromAssets('en');
   }
 }

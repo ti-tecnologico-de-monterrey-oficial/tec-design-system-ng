@@ -63,4 +63,86 @@ describe('BmbCardButtonComponent', () => {
     );
     expect(addContentElement).toBeTruthy();
   });
+
+  describe('truncateText', () => {
+    it('should truncate text longer than maxLength', () => {
+      expect(component.truncateText('abcdefgh', 4)).toBe('abcd...');
+    });
+
+    it('should return the text unchanged when within maxLength', () => {
+      expect(component.truncateText('abc', 4)).toBe('abc');
+    });
+  });
+
+  describe('handleAddContent', () => {
+    it('should emit when not fully interactive', () => {
+      componentRef.setInput('isFullInteractive', false);
+      fixture.detectChanges();
+      const emitSpy = jest.spyOn(component.onAddContentClick, 'emit');
+      const event = new MouseEvent('click');
+
+      component.handleAddContent(event);
+
+      expect(emitSpy).toHaveBeenCalledWith(event);
+    });
+
+    it('should emit when fully interactive with a left content image and no icon or textLink', () => {
+      componentRef.setInput('isFullInteractive', true);
+      componentRef.setInput('leftContent', true);
+      componentRef.setInput('leftContentIcon', '');
+      componentRef.setInput('leftContentImage', { src: 'img.png' });
+      componentRef.setInput('textLink', undefined);
+      fixture.detectChanges();
+      const emitSpy = jest.spyOn(component.onAddContentClick, 'emit');
+      const event = new MouseEvent('click');
+
+      component.handleAddContent(event);
+
+      expect(emitSpy).toHaveBeenCalledWith(event);
+    });
+
+    it('should not emit when fully interactive without a left content image', () => {
+      componentRef.setInput('isFullInteractive', true);
+      componentRef.setInput('leftContent', false);
+      fixture.detectChanges();
+      const emitSpy = jest.spyOn(component.onAddContentClick, 'emit');
+
+      component.handleAddContent(new MouseEvent('click'));
+
+      expect(emitSpy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('handleTitleClick', () => {
+    it('should emit onTitleClick', () => {
+      const emitSpy = jest.spyOn(component.onTitleClick, 'emit');
+      const event = new MouseEvent('click');
+
+      component.handleTitleClick(event);
+
+      expect(emitSpy).toHaveBeenCalledWith(event);
+    });
+  });
+
+  describe('handleSmallClick', () => {
+    it('should toggle isFlipped and emit onSmallClick', () => {
+      const emitSpy = jest.spyOn(component.onSmallClick, 'emit');
+      const event = new MouseEvent('click');
+
+      component.handleSmallClick(event);
+
+      expect(component.isFlipped).toBe(true);
+      expect(emitSpy).toHaveBeenCalledWith(event);
+
+      component.handleSmallClick(event);
+      expect(component.isFlipped).toBe(false);
+    });
+  });
+
+  describe('isABotTemplate', () => {
+    it('should delegate to the shared bot icon check', () => {
+      expect(component.isABotTemplate('bot_tecGPT')).toBe(true);
+      expect(component.isABotTemplate('home')).toBe(false);
+    });
+  });
 });

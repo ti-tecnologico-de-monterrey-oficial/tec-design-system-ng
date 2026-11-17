@@ -5,10 +5,10 @@ import {
   output,
   input,
   model,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
   assignNewFormControl,
   newFormControlByType,
@@ -16,10 +16,7 @@ import {
 import { getUUID } from '../../_shared/logic/utils';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { TranslatePipe } from '../../pipes/translations';
-import {
-  computeSwitchIcon,
-  shouldShowSwitchLabel,
-} from '../../_shared/logic/components/switch';
+import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-switch',
@@ -31,18 +28,12 @@ import {
     ReactiveFormsModule,
     BmbInputValidatorComponent,
     FormsModule,
-    BmbIconComponent,
     TranslatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbSwitchComponent {
-  private static nextId = 0;
-  leftText = input<string>('');
-  leftIcon = input<string>('');
-  rightText = input<string>('');
-  rightIcon = input<string>('');
+export class BmbSwitchComponent implements OnInit {
   isChecked = model<boolean>(false);
   ariaLabel = input<string>();
   disabled = input<boolean>(false);
@@ -53,35 +44,28 @@ export class BmbSwitchComponent {
 
   change = output<boolean>();
 
-  isControlNull: boolean = false;
+  leftText = input<string>(''); // deprecated
+  leftIcon = input<string>(''); // deprecated
+  rightText = input<string>(''); // deprecated
+  rightIcon = input<string>(''); // deprecated
+
+  isControlNull = false;
+
+  constructor() {
+    logDeprecatedInput({ name: 'leftText', hasValue: !!this.leftText() }, null);
+    logDeprecatedInput({ name: 'leftIcon', hasValue: !!this.leftIcon() }, null);
+    logDeprecatedInput({ name: 'rightText', hasValue: !!this.rightText() }, null);
+    logDeprecatedInput({ name: 'rightIcon', hasValue: !!this.rightIcon() }, null);
+  }
 
   ngOnInit(): void {
     if (!this.control()) {
       this.control.set(
-        assignNewFormControl(this.name(), this.control(), 'checkbox')!,
+        assignNewFormControl(this.name(), this.control(), 'checkbox') ??
+          newFormControlByType('checkbox'),
       );
       this.isControlNull = true;
     }
-  }
-
-  getSwitchIcon(): string {
-    return computeSwitchIcon({
-      rightIcon: this.rightIcon(),
-      leftIcon: this.leftIcon(),
-      rightText: this.rightText(),
-      leftText: this.leftText(),
-      isChecked: this.isChecked(),
-    });
-  }
-
-  showSwitchLabel(position: string): boolean {
-    return shouldShowSwitchLabel({
-      position,
-      rightIcon: this.rightIcon(),
-      leftIcon: this.leftIcon(),
-      rightText: this.rightText(),
-      leftText: this.leftText(),
-    });
   }
 
   handleChange(event: Event): void {

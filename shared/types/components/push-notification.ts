@@ -1,5 +1,5 @@
 import type { IBmbPushNotificationColors } from '../foundations/colors/color-type';
-import type { IButtonAppearance } from '../utils';
+import type { IButtonAppearance } from '../utils/utils';
 
 export type BmbPushNotificationAppearance =
   | 'neutral'

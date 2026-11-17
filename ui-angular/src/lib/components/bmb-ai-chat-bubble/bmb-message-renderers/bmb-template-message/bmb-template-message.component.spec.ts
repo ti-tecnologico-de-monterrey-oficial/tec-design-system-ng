@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { TemplateMessageComponent } from './bmb-template-message.component';
-import { BmbTemplateMessage } from '../../types';
+import { BmbTemplateMessage } from '../../../../_shared/types';
 
 let componentRef: ComponentRef<TemplateMessageComponent>;
 

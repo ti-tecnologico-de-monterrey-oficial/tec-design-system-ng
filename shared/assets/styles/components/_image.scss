@@ -3,6 +3,18 @@
 @use '../../../assets/styles/base/rem' as rem;
 @use '../../../assets/styles/base/mixins' as mixins;
 
+bmb-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  min-height: var(--image-min-height-s);
+  height: 100%;
+
+  @include mixins.media-query(1000, 'min') {
+    min-height: var(--image-min-height-l);
+  }
+}
+
 .bmb_image {
   position: relative;
   grid-area: 1/1/2/2;

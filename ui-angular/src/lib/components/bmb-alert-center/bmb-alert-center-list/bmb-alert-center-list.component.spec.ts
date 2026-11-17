@@ -1,10 +1,10 @@
+import { ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ComponentRef, DebugElement } from '@angular/core';
-import { DateTime } from 'luxon';
 import { By } from '@angular/platform-browser';
+import { DateTime } from 'luxon';
 
+import type { IBmbDataAlertsParsed } from '../../../_shared/types/components/alert-center';
 import { BmbAlertCenterListComponent } from './bmb-alert-center-list.component';
-import { IBmbDataAlertsParsed } from '../types';
 
 describe('BmbAlertCenterListComponent', () => {
   let component: BmbAlertCenterListComponent;

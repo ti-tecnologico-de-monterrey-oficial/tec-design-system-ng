@@ -2,44 +2,30 @@
 // source=ui-angular/src/lib/components/bmb-notice-card/bmb-notice-card.component.ts
 // component=BmbNoticeCardComponent
 import figma from 'figma'
-
-const instance = figma.selectedInstance
-const type = instance.getEnum('Type', {
-  Button: 'button',
-  Paginator: 'paginator',
-})
-const titleLayer = instance.findText('¡Ahora puedes hacer X función!', {
-  traverseInstances: true,
-})
-const paginatorDescriptionLayer = instance.findText(
-  'Descripción de función frame 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-  { traverseInstances: true },
-)
-const buttonDescriptionLayer = instance.findText(
-  'Descripción de función frame 2 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore. ¡Lorem Ipsum!',
-  { traverseInstances: true },
-)
-const buttonTextLayer = instance.findText('Button', { traverseInstances: true })
-const componentTitle =
-  titleLayer && titleLayer.type === 'TEXT' ? titleLayer.textContent : ''
-const paginatorDescription =
-  paginatorDescriptionLayer && paginatorDescriptionLayer.type === 'TEXT'
-    ? paginatorDescriptionLayer.textContent
-    : ''
-const buttonDescription =
-  buttonDescriptionLayer && buttonDescriptionLayer.type === 'TEXT'
-    ? buttonDescriptionLayer.textContent
-    : ''
-const buttonText =
-  buttonTextLayer && buttonTextLayer.type === 'TEXT'
-    ? buttonTextLayer.textContent
-    : ''
-const description =
-  type === 'button' ? buttonDescription : paginatorDescription
+import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-notice-card componentTitle="${componentTitle}" [description]="{ pageOne: '${description}' }" ${type === 'button' ? figma.code`buttonText="${buttonText}"` : ''} />`,
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  description: IBmbCardNoticeDescription = {
+    pageOne: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    pageTwo:
+      'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  };
+}
+</script>
+
+<bmb-notice-card
+  icon="${getIcon('chevron_left')}"
+  [iconSize]="iconSize"
+  componentTitle="Notification Title"
+  src="https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg"
+  [description]="description"
+  buttonText="Ir"
+  [closeBtnColor]="closeBtnColor"
+/>`,
   imports: [
+    "import type { IBmbCardNoticeDescription } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
     "import { BmbNoticeCardComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
   id: 'bmb-notice-card',

@@ -3,24 +3,16 @@
 // component=BmbTagComponent
 import figma from 'figma'
 
-const instance = figma.selectedInstance
-const text = instance.getString('Text')
-const appearance = instance.getEnum('Color', {
-  Default: 'normal',
-  'Creative/Violet': 'creative_violet',
-  'Creative/Indigo': 'creative_indigo',
-})
-const dismissible = instance.getBoolean('Dismissable')
-const state = instance.getEnum('State', {
-  Enabled: 'enabled',
-  Hovered: 'hovered',
-  Focused: 'focused',
-  Selected: 'selected',
-  Disabled: 'disabled',
-})
-
 export default {
-  example: figma.code`<bmb-tag text="${text}" appearance="${appearance}" [dismissible]="${dismissible}" [isActive]="${state === 'selected'}" [isDisabled]="${state === 'disabled'}" />`,
+  example: figma.code`<bmb-tag
+  appearance="normal"
+  text="Tag text"
+  [grouped]="false"
+  [dismissible]="false"
+  [isActive]="false"
+  [isDisabled]="false"
+  [enableClick]="false"
+/>`,
   imports: [
     "import { BmbTagComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

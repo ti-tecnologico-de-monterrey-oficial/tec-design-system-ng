@@ -1,0 +1,153 @@
+@use '../base/fonts' as fonts;
+@use '../base/rem' as rem;
+@use '../base/mixins' as mixins;
+
+.bmb_timepicker {
+  display: inline-flex;
+  width: 100%;
+  flex-flow: column;
+  position: relative;
+  @include fonts.font(3, regular);
+
+  &-compact {
+    display: flex;
+    gap: var(--bmb-spacing-s);
+    min-width: 0;
+  }
+
+  &-time {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    position: relative;
+  }
+
+  &-select {
+    @include mixins.normal-input();
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--bmb-spacing-s);
+    width: 100%;
+    min-width: 0;
+    padding: rem.rem_calc(12 16);
+    color: var(--general-contrasts-100);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+
+    > span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &:focus-visible,
+    &[aria-expanded='true'] {
+      @include mixins.input-focused();
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &-placeholder {
+      color: var(--general-contrasts-50);
+    }
+
+    &-error {
+      border-color: var(--semantic-error);
+    }
+  }
+
+  &-period {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  &-clear {
+    position: absolute;
+    right: rem.rem_calc(44);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &-time:has(&-clear) &-select {
+    padding-right: rem.rem_calc(72);
+  }
+
+  &-field {
+    position: relative;
+
+    .bmb_field-input {
+      cursor: pointer;
+    }
+  }
+
+  &-chevron {
+    flex-shrink: 0;
+    pointer-events: none;
+    transition: transform 0.2s ease;
+  }
+
+  &-field-open &-chevron {
+    transform: rotate(180deg);
+  }
+
+  &-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--bmb-spacing-xs);
+    padding: var(--bmb-spacing-s);
+    color: var(--general-contrasts-100);
+    background-color: var(--containers-main);
+    border-radius: var(--bmb-radius-m);
+    box-shadow: var(--bmb-box-shadow-1);
+  }
+
+  &-column {
+    flex: 1;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: rem.rem_calc(220);
+    overflow-y: auto;
+  }
+
+  &-option {
+    width: 100%;
+    padding: rem.rem_calc(8 12);
+    border: 0;
+    border-radius: var(--bmb-radius-s);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--general-contrasts-15);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--general-contrasts-100);
+      outline-offset: -2px;
+    }
+
+    &.active {
+      background-color: var(--general-contrasts-100);
+      color: var(--containers-main);
+    }
+  }
+
+  &-done {
+    flex-basis: 100%;
+    padding: rem.rem_calc(8 12);
+    border: 0;
+    border-radius: var(--bmb-radius-s);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: right;
+    cursor: pointer;
+  }
+}

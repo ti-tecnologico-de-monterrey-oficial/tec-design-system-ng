@@ -1,5 +1,5 @@
+import type { IBmbDataAlert } from '../../_shared/types/components/alert-center';
 import { BmbAlertCenterService } from './bmb-alert-center.service';
-import type { IBmbDataAlert } from './types';
 
 describe('BmbAlertCenterService', () => {
   let service: BmbAlertCenterService;

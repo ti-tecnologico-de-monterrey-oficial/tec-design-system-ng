@@ -37,16 +37,12 @@ import {
   showError,
 } from '../../_shared/logic/formControl';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
-import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../pipes/translations';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-dropdown',
@@ -255,10 +251,8 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
         selectedOption: this.control().value,
         items: this.parsedOptions(),
         isKeyboardEvent: this.isKeyboardEvent,
-        enableFilter: !this.isMultiSelect() && this.isFilterable(),
-        customFilterFunction: this.isMultiSelect()
-          ? null
-          : this.customFilterFunction(),
+        enableFilter: this.isFilterable(),
+        customFilterFunction: this.customFilterFunction(),
         isMultiSelect: this.isMultiSelect(),
       },
       focusOnOpen: true,

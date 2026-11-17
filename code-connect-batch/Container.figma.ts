@@ -3,18 +3,11 @@
 // component=BmbContainerComponent
 import figma from 'figma'
 
-const instance = figma.selectedInstance
-const appearance = instance.getEnum('Type', {
-  Primary: 'primary-container',
-  Header: 'primary-header',
-  Home: 'primary-home',
-  Secondary: 'secondary-container',
-  Button: 'button-container',
-  Contrast: 'contrast-box-container',
-})
-
 export default {
-  example: figma.code`<bmb-container appearance="${appearance}" />`,
+  example: figma.code`<bmb-container
+  appearance="primary-container"
+  [isHidden]="isHidden"
+/>`,
   imports: [
     "import { BmbContainerComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

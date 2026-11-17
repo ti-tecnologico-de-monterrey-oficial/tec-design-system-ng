@@ -1,14 +1,15 @@
 import {
-  Component,
+  AfterViewInit,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
+  Component,
   input,
   OnChanges,
-  AfterViewInit,
+  ViewEncapsulation,
 } from '@angular/core';
-import { IBmbCalendarEvent } from '../../types';
 import { DateTime } from 'luxon';
+import { hourViewCreateHoursRows } from '../../../../_shared/logic/components/calendar-view';
 import { getUUID } from '../../../../_shared/logic/utils';
+import type { IBmbCalendarEvent } from '../../../../_shared/types/components/calendar';
 
 @Component({
   selector: 'bmb-calendar-hour-view',
@@ -27,19 +28,7 @@ export class BmbCalendarHourViewComponent implements OnChanges, AfterViewInit {
   hours = this.createHoursRows();
 
   createHoursRows() {
-    const placeholderArray = new Array(24).fill(0);
-    let hour = 0;
-    return placeholderArray.map((_, index) => {
-      if (hour === 12) {
-        hour = 0;
-      }
-      if (!index) return '12 am';
-      if (!index) return 0;
-
-      hour++;
-
-      return `${hour} ${index < 12 ? 'am' : 'pm'}`;
-    });
+    return hourViewCreateHoursRows();
   }
 
   ngAfterViewInit() {

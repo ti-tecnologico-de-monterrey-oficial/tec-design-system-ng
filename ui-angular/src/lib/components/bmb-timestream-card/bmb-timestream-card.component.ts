@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,31 +9,28 @@ import {
   signal,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
-import { IBmbColor } from '../../_shared/types/colors';
-import type { IBmbDataTopBar } from '../../_shared/types';
 import {
-  BmbTimestreamComponent,
+  filterTimestreamCardEvents,
+  getTimestreamCardClasses,
+} from '../../_shared/logic/components/timestream-card';
+import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
+import type { IBmbActionHeader, IBmbDataTopBar } from '../../_shared/types';
+import type { IBmbColor } from '../../_shared/types/colors';
+import type { IBmbControlType } from '../../_shared/types/components/filter-card';
+import type {
   IBmbClamp,
-} from '../bmb-timestream/bmb-timestream.component';
-import { IBmbTimestreamFilters, ITimelineEvent } from '../../_shared/types/components/timestream';
-import { BmbFilterCardComponent } from '../bmb-filter-card/bmb-filter-card.component';
+  ITimelineEvent,
+} from '../../_shared/types/components/timestream';
+import { TranslatePipe } from '../../pipes/translations';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
 } from '../bmb-card/bmb-card.component';
+import { BmbFilterCardComponent } from '../bmb-filter-card/bmb-filter-card.component';
+import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { IBmbControlType } from '../bmb-filter-card/bmb-filter-card.interface';
-import { timestreamFilter } from '../../_shared/logic/timestreamFilters';
-import { CommonModule } from '@angular/common';
-import { IBmbActionHeader } from '../../_shared/types';
-import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
-import { TranslatePipe } from '../../pipes/translations';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { BmbTimestreamComponent } from '../bmb-timestream/bmb-timestream.component';
 
 @Component({
   selector: 'bmb-timestream-card',
@@ -104,48 +102,64 @@ export class BmbTimestreamCardComponent implements OnInit {
         {
           name: 'pending',
           type: 'checkbox',
-          label: this.translationsService.translate('timestream_card.filters.pending'),
+          label: this.translationsService.translate(
+            'timestream_card.filters.pending',
+          ),
           checked: false,
         },
         {
           name: 'done',
           type: 'checkbox',
-          label: this.translationsService.translate('timestream_card.filters.done'),
+          label: this.translationsService.translate(
+            'timestream_card.filters.done',
+          ),
           checked: false,
         },
         {
           name: 'active',
           type: 'checkbox',
-          label: this.translationsService.translate('timestream_card.filters.active'),
+          label: this.translationsService.translate(
+            'timestream_card.filters.active',
+          ),
           checked: false,
         },
         {
           name: 'under_review',
           type: 'checkbox',
-          label: this.translationsService.translate('timestream_card.filters.under_review'),
+          label: this.translationsService.translate(
+            'timestream_card.filters.under_review',
+          ),
           checked: false,
         },
       ],
     },
     {
-      title: this.translationsService.translate('timestream_card.filters.instances'),
+      title: this.translationsService.translate(
+        'timestream_card.filters.instances',
+      ),
       control: [
         {
           name: 'instances',
           type: 'radial',
-          label: this.translationsService.translate('timestream_card.filters.all'),
+          label: this.translationsService.translate(
+            'timestream_card.filters.all',
+          ),
           checked: true,
         },
         {
           name: 'instances',
           type: 'radial',
-          label: this.translationsService.translate('timestream_card.filters.multiple'),
+          label: this.translationsService.translate(
+            'timestream_card.filters.multiple',
+          ),
           checked: false,
         },
         {
           name: 'instances',
           type: 'radial',
-          label: this.translationsService.translate('timestream_card.filters.one'),
+          label: this.translationsService.translate(
+            'timestream_card.filters.one',
+          ),
           checked: false,
         },
       ],
@@ -162,34 +176,10 @@ export class BmbTimestreamCardComponent implements OnInit {
 
   handleFiltersChange(filters: any) {
     this.isFiltersEnabled = !this.isFiltersEnabled;
-    const activeFilters = Object.keys(filters);
-    const validFilters = activeFilters.filter((filter) => {
-      if (typeof filters[filter] === 'string') return filters[filter] !== '';
-      return filters[filter].checked;
-    });
-
-    if (!validFilters.length) {
-      this.filteredEvents.set(this.events());
-    } else {
-      const filtersValue = validFilters.reduce(
-        (obj: IBmbTimestreamFilters, filter) => {
-          if (filter === 'instances')
-            return { ...obj, instances: filters[filter].label };
-          if (filter === 'search') return { ...obj, text: filters[filter] };
-          const types = obj?.type || [];
-          return { ...obj, type: [...types, filter] };
-        },
-        {},
-      );
-
-      this.filteredEvents.set(timestreamFilter(this.events(), filtersValue));
-    }
+    this.filteredEvents.set(filterTimestreamCardEvents(filters, this.events()));
   }
 
   getClassList(): string[] {
-    const classList = ['bmb-timestream-card-filters'];
-    if (this.isFiltersEnabled)
-      classList.push('bmb-timestream-card-filters-active');
-    return classList;
+    return getTimestreamCardClasses(this.isFiltersEnabled);
   }
 }

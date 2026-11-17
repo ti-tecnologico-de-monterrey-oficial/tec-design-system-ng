@@ -9,6 +9,12 @@ export const sidebarOptions: SidebarElement[][] = [
       link: '/home',
     },
     {
+      id: 3902,
+      icon: 'bug_report',
+      title: 'DS01-3902 · Dropdown',
+      link: '/issue/dropdown',
+    },
+    {
       id: 8,
       icon: 'table_chart',
       title: 'Tables',

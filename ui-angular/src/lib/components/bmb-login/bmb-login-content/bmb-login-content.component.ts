@@ -15,10 +15,6 @@ import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component'
 import { TranslatePipe } from '../../../pipes/translations';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-login-content',
   standalone: true,

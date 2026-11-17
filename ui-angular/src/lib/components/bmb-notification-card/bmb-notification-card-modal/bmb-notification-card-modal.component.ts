@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,11 +6,10 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import {
+import type {
   IBmbDataAlert,
   IBmbDataAlertsParsed,
-} from '../../bmb-alert-center/types';
-import { CommonModule } from '@angular/common';
+} from '../../../_shared/types/components/alert-center';
 import { BmbAlertCenterDetailComponent } from '../../utils/bmb-alert-center-detail/bmb-alert-center-detail.component';
 
 @Component({
