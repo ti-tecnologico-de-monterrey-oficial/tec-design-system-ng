@@ -23,13 +23,12 @@ import {
 import { defaultBotList } from '../../_shared/logic/components/chat-bar-defaults';
 import { getDropzoneAcceptAttribute } from '../../_shared/logic/components/dropzone';
 import type {
-  IBmbNativeModal as IBmbNativeModalGeneric,
+  IBmbNativeModal,
   BmbChatAttachmentError,
   BmbChatAttachmentResult,
   BmbChatAttachmentRules,
 } from '../../_shared/types';
 
-type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import type {
   IBotType,
   IChatBarActions,
