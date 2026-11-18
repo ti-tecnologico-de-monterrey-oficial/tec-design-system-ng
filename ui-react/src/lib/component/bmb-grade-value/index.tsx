@@ -1,4 +1,4 @@
-import './index.scss';
+import './grade-value.scss';
 import { truncateGradeValue } from '../../_shared/logic/components/grade-value';
 import type { IBmbGradeType } from '../../_shared/types/components/grade-value';
 import type { IBmbContrast } from '../../_shared/types/colors';

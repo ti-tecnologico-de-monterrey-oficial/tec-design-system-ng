@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import './index.scss';
+import './notification-counter.scss';
 import { getCounter } from '../../_shared/logic/components/notification-counter';
 import type { IBmbNotificationCounterType } from '../../_shared/types/components/notification-counter';
 
