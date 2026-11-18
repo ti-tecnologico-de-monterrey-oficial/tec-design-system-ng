@@ -9,8 +9,6 @@
 
 <section class="playground" aria-labelledby="modal-demo-heading">
   <div class="controls">
-    <h2 id="modal-demo-heading">Prueba DS01-3722</h2>
-    <label for="modal-icon">Icono del modal</label>
     <select
       id="modal-icon"
       [value]="selectedIcon()"
@@ -34,3 +32,21 @@
     </ul>
   </div>
 </section>
+
+<section class="playground" aria-labelledby="reservation-demo-heading">
+  <div class="controls">
+    <h2 id="reservation-demo-heading">Confirmación de reservación</h2>
+    <label>
+      <input type="checkbox" [checked]="reservaDelegada()"
+        (change)="reservaDelegada.set($any($event.target).checked)" />
+      Requiere confirmación
+    </label>
+    <button type="button" (click)="reserveCompletedModal()">Abrir confirmación de reservación</button>
+    <p><strong>ID del modal:</strong> {{ activeDialogId() || 'Cerrado' }}</p>
+  </div>
+</section>
+
+<ng-template #confirmacionReservaTemplate>
+  <p>{{ confirmDialogParams().user }}, recibimos tu reservación para {{ confirmDialogParams().sala }}.</p>
+  <button type="button" (click)="closeReservationModal()">Cerrar confirmación</button>
+</ng-template>

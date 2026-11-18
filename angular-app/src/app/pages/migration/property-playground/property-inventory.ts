@@ -297,6 +297,11 @@ export const propertyInventory: Record<string, DemoProperty[]> = {
   ],
   'title-content': [
     {
+      name: 'showFullText',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
       name: 'titleSize',
       kind: 'text',
       type: 'string',

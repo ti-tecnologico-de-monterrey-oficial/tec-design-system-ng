@@ -3,11 +3,14 @@ import {
   Component,
   inject,
   signal,
+  TemplateRef,
+  viewChild,
 } from '@angular/core';
 import {
   BmbNativeModalService,
   type IBmbActionButton,
   type IBmbModalAlertStyle,
+  type IBmbNativeModal,
 } from 'ui-angular';
 
 interface ModalIconOption {
@@ -24,6 +27,27 @@ interface ModalIconOption {
 })
 export class ModalPage {
   private readonly modalService = inject(BmbNativeModalService);
+  readonly confirmacionReservaTemplate =
+    viewChild.required<TemplateRef<unknown>>('confirmacionReservaTemplate');
+  readonly reservaDelegada = signal(false);
+  readonly activeDialogId = signal('');
+  readonly confirmDialogParams = signal({ sala: 'Sala de reuniones', user: 'Usuario de prueba' });
+
+  reserveCompletedModal(): void {
+    const modal_data: IBmbNativeModal = {
+      title: this.reservaDelegada()
+        ? 'Reservación pendiente de confirmar'
+        : '¡Reservación exitosa!',
+      content: this.confirmacionReservaTemplate(),
+    };
+    const dialogId = this.modalService.openModal(modal_data);
+    this.activeDialogId.set(dialogId);
+  }
+
+  closeReservationModal(): void {
+    this.modalService.closeModal(this.activeDialogId());
+    this.activeDialogId.set('');
+  }
 
   readonly status = signal('Cerrado');
   readonly selectedIcon = signal<IBmbModalAlertStyle>('warning');
