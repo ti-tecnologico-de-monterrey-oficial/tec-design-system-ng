@@ -58,7 +58,8 @@ This date must have the same format as \`dateFormat\`.
     dateHelperMessage: DBmbInputParamDesc.helperMessage,
     timeHelperMessage: DBmbInputParamDesc.helperMessage,
     customValidation: DBmbInputParamDesc.customValidation,
-    errorMessage: DBmbInputParamDesc.errorMessage,
+    dateErrorMessage: DBmbInputParamDesc.errorMessage,
+    timeErrorMessage: DBmbInputParamDesc.errorMessage,
     control: DBmbInputParamDesc.control,
   },
   args: {
@@ -77,7 +78,8 @@ This date must have the same format as \`dateFormat\`.
     customValidation: null,
     dateHelperMessage: 'This is a helper message',
     timeHelperMessage: 'This is a helper message',
-    errorMessage: 'Select a valid date and time',
+    dateErrorMessage: 'Select a valid date',
+    timeErrorMessage: 'Select a valid time',
   },
 } as Meta<typeof BmbDateTimePickerComponent>;
 
@@ -93,6 +95,7 @@ export const WithCustomValidation: Story = {
       typeof control.value === 'string' && control.value.endsWith('PM')
         ? null
         : { customValidation: true },
-    errorMessage: { customValidation: 'Select an afternoon time' },
+    dateErrorMessage: { customValidation: 'Select an afternoon time' },
+    timeErrorMessage: { customValidation: 'Select an afternoon time' },
   },
 };

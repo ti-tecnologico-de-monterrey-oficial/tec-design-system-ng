@@ -54,7 +54,8 @@ export class BmbDateTimePickerComponent implements OnChanges, OnInit {
   disableDatesBefore = input<string>('');
   disableDatesAfter = input<string>('');
   customValidation = input<ValidatorFn>();
-  errorMessage = input<string | IBmbInputError>('');
+  dateErrorMessage = input<string | IBmbInputError>('');
+  timeErrorMessage = input<string | IBmbInputError>('');
   control = model<FormControl>(newFormControlByType());
   isClearable = input<boolean>(false);
   dateHelperMessage = input<string>('');

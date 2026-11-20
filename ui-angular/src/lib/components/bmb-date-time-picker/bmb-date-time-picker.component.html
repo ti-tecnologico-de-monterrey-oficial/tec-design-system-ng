@@ -11,7 +11,7 @@
       [isRequired]="isRequired()"
       [disableDatesBefore]="disableDatesBefore()"
       [disableDatesAfter]="disableDatesAfter()"
-      [errorMessage]="errorMessage()"
+      [errorMessage]="dateErrorMessage()"
       [helperMessage]="dateHelperMessage()"
       [isClearable]="isClearable()"
     />
@@ -24,7 +24,7 @@
       [(control)]="timeControl"
       [disabled]="disabled()"
       [isRequired]="isRequired()"
-      [errorMessage]="errorMessage()"
+      [errorMessage]="timeErrorMessage()"
       [isClearable]="isClearable()"
       (getChange)="handleTimeChange()"
       [helperMessage]="timeHelperMessage()"
