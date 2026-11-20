@@ -16,19 +16,13 @@ export const BmbBadge = ({
   text = '',
   container = true,
 }: BmbBadgeProps) => {
-  const getClasses = (): string => {
-    return getBadgeClasses(appearance, container).join(' ');
-  }
-
-  const getBulletColor = (): string => {
-    return container ? '' : getBadgeBulletClass(appearance);
-  }
+  const classes = getBadgeClasses(appearance, container).join(' ');
+  const bulletAppearance = container ? '' : getBadgeBulletClass(appearance);
+  const bulletClasses = `bmb_badge-bullet ${bulletAppearance}`.trim();
 
   return (
-    <section className={getClasses()} >
-      <span
-        className={`bmb_badge-bullet ${getBulletColor()}`.trim()}
-      ></span>
+    <section className={classes}>
+      <span className={bulletClasses}></span>
       <span className="bmb_badge-content"> { text } </span>
     </section>
   )
