@@ -1,3 +1,4 @@
+import './badge.scss';
 import {
   getBadgeBulletClass,
   getBadgeClasses,
@@ -7,30 +8,22 @@ import './styles.scss';
 
 export interface BmbBadgeProps {
   appearance?: IBmbBadgeAppearance;
-  text: string;
-  container: boolean;
+  text?: string;
+  container?: boolean;
 }
 
 export const BmbBadge = ({
   appearance = 'normal',
   text = '',
   container = true,
-}) => {
-  const getClasses = (): string => {
-    return getBadgeClasses(appearance, container).join(' ');
-  }
-
-  const getBulletColor = (): string => {
-    const color = getBadgeBulletClass(appearance);
-    console.log('Badge bullet color:', color);
-    return color;
-  }
+}: BmbBadgeProps) => {
+  const classes = getBadgeClasses(appearance, container).join(' ');
+  const bulletAppearance = container ? '' : getBadgeBulletClass(appearance);
+  const bulletClasses = `bmb_badge-bullet ${bulletAppearance}`.trim();
 
   return (
-    <section className={getClasses()} >
-      <span
-        className={['bmb_badge-bullet', !container ? getBulletColor() : ''].join(' ')}
-      ></span>
+    <section className={classes}>
+      <span className={bulletClasses}></span>
       <span className="bmb_badge-content"> { text } </span>
     </section>
   )

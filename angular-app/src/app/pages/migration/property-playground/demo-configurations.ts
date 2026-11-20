@@ -142,6 +142,7 @@ export function createDemoConfiguration(
       events: createTimestreamDemoEvents(),
     },
     'title-content': {
+      showFullText: false,
       titleSize: '5',
       titleFontWeight: '600',
       subtitle: 'Subtitle',

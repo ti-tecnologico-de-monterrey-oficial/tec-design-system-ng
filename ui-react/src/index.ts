@@ -23,3 +23,15 @@ export type {
 	IBmbNotificationCounterType,
 } from './lib/component/bmb-notification-counter';
 
+export { BmbGradeValue } from './lib/component/bmb-grade-value';
+export type { BmbGradeValueProps } from './lib/component/bmb-grade-value';
+
+export { BmbValueCounter } from './lib/component/bmb-value-counter';
+export type { BmbValueCounterProps } from './lib/component/bmb-value-counter';
+
+export { BmbSkeleton } from './lib/component/bmb-skeleton';
+export type { BmbSkeletonProps } from './lib/component/bmb-skeleton';
+
+export { BmbLegend } from './lib/component/bmb-legend';
+export type { BmbLegendProps } from './lib/component/bmb-legend';
+
