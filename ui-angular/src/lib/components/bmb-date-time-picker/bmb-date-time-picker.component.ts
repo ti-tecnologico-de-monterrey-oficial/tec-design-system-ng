@@ -20,11 +20,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subscription } from 'rxjs';
 import { getUUID } from '../../_shared/logic/utils';
-import {
-  newFormControlByType,
-  showError,
-} from '../../_shared/logic/formControl';
-import { getInputValidatorErrorMessage } from '../../_shared/logic/components/input-validator';
+import { newFormControlByType } from '../../_shared/logic/formControl';
 import { IBmbInputError } from '../../_shared/types/input';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { BmbTimepickerComponent } from '../bmb-timepicker/bmb-timepicker.component';
@@ -57,11 +53,12 @@ export class BmbDateTimePickerComponent implements OnChanges, OnInit {
   isRequired = input<boolean>(false);
   disableDatesBefore = input<string>('');
   disableDatesAfter = input<string>('');
-  helperMessage = input<string>('');
   customValidation = input<ValidatorFn>();
   errorMessage = input<string | IBmbInputError>('');
   control = model<FormControl>(newFormControlByType());
   isClearable = input<boolean>(false);
+  dateHelperMessage = input<string>('');
+  timeHelperMessage = input<string>('');
 
   readonly dateControl = newFormControlByType();
   readonly timeControl = newFormControlByType();
@@ -105,28 +102,6 @@ export class BmbDateTimePickerComponent implements OnChanges, OnInit {
       this.markFieldAsTouched(this.dateControl);
       this.cdr.markForCheck();
     }
-  }
-
-  /** Shows combined-value errors only when no field is already showing its own error. */
-  get shouldShowError(): boolean {
-    return (
-      showError(this.control()) &&
-      !showError(this.dateControl) &&
-      !showError(this.timeControl)
-    );
-  }
-
-  getErrorMessage(): string {
-    return getInputValidatorErrorMessage({
-      control: this.control(),
-      errorMessage: this.errorMessage(),
-      pattern: undefined,
-      min: undefined,
-      max: undefined,
-      minLength: undefined,
-      maxLength: undefined,
-      label: [this.labelDate(), this.labelTime()].filter(Boolean).join(' - '),
-    });
   }
 
   private connectCombinedControl(): void {

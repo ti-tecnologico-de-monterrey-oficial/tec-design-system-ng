@@ -12,12 +12,10 @@
       [disableDatesBefore]="disableDatesBefore()"
       [disableDatesAfter]="disableDatesAfter()"
       [errorMessage]="errorMessage()"
-      helperMessage=""
-      (onChange)="timePicker.openList()"
+      [helperMessage]="dateHelperMessage()"
       [isClearable]="isClearable()"
     />
     <bmb-timepicker
-      #timePicker
       [inputId]="inputId() + '_time'"
       [name]="name() + '_time'"
       [label]="labelTime()"
@@ -29,6 +27,7 @@
       [errorMessage]="errorMessage()"
       [isClearable]="isClearable()"
       (getChange)="handleTimeChange()"
+      [helperMessage]="timeHelperMessage()"
     />
   </div>
 </section>

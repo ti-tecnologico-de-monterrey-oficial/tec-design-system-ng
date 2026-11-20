@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AbstractControl, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
@@ -60,7 +60,7 @@ describe('BmbDateTimePickerComponent', () => {
     expect(component.timeControl.value).toBe('11:00 AM');
   });
 
-  it('should open the time modal when a date is selected', () => {
+  it('should not open the time picker when a date is selected', () => {
     const datepicker = fixture.debugElement.query(
       By.directive(BmbDatepickerComponent),
     ).componentInstance as BmbDatepickerComponent;
@@ -71,7 +71,7 @@ describe('BmbDateTimePickerComponent', () => {
 
     datepicker.onChange.emit('04/11/2026');
 
-    expect(openList).toHaveBeenCalledTimes(1);
+    expect(openList).not.toHaveBeenCalled();
   });
 
   it('should require the combined value and propagate touched state to both fields', () => {
@@ -97,36 +97,6 @@ describe('BmbDateTimePickerComponent', () => {
       fixture.nativeElement.querySelectorAll('.bmb_input-validator-support-error')
         .length,
     ).toBe(2);
-  });
-
-  it('should show the custom validation error below both fields', () => {
-    const control = new FormControl('03/11/2026 - 09:30 AM');
-    fixture.componentRef.setInput('control', control);
-    fixture.componentRef.setInput(
-      'customValidation',
-      ({ value }: AbstractControl) =>
-        value?.endsWith('PM') ? null : { customValidation: true },
-    );
-    fixture.componentRef.setInput('errorMessage', {
-      customValidation: 'Select an afternoon time',
-    });
-    fixture.componentRef.setInput('helperMessage', 'Helper');
-    fixture.detectChanges();
-
-    const support = () =>
-      fixture.nativeElement.querySelector(
-        '.bmb_date-time-picker > .bmb_input-validator-support',
-      ) as HTMLElement;
-    expect(support().textContent?.trim()).toBe('Helper');
-
-    control.markAsTouched();
-    fixture.detectChanges();
-    expect(support().textContent?.trim()).toBe('Select an afternoon time');
-
-    component.timeControl.setValue('02:00 PM');
-    fixture.detectChanges();
-    expect(control.valid).toBe(true);
-    expect(support().textContent?.trim()).toBe('Helper');
   });
 
   it('should mark the empty date field as touched when a time is selected', () => {
