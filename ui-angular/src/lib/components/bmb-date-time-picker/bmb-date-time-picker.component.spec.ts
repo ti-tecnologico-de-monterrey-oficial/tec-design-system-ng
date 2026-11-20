@@ -60,7 +60,7 @@ describe('BmbDateTimePickerComponent', () => {
     expect(component.timeControl.value).toBe('11:00 AM');
   });
 
-  it('should open the time modal when a date is selected', () => {
+  it('should not open the time picker when a date is selected', () => {
     const datepicker = fixture.debugElement.query(
       By.directive(BmbDatepickerComponent),
     ).componentInstance as BmbDatepickerComponent;
@@ -71,6 +71,60 @@ describe('BmbDateTimePickerComponent', () => {
 
     datepicker.onChange.emit('04/11/2026');
 
-    expect(openList).toHaveBeenCalledTimes(1);
+    expect(openList).not.toHaveBeenCalled();
+  });
+
+  it('should require the combined value and propagate touched state to both fields', () => {
+    fixture = TestBed.createComponent(BmbDateTimePickerComponent);
+    component = fixture.componentInstance;
+    const control = new FormControl('');
+    fixture.componentRef.setInput('control', control);
+    fixture.componentRef.setInput('isRequired', true);
+    fixture.detectChanges();
+
+    expect(control.hasError('required')).toBe(true);
+    expect(component.dateControl.touched).toBe(false);
+    expect(
+      fixture.nativeElement.querySelector('.bmb_input-validator-support-error'),
+    ).toBeNull();
+
+    control.markAsTouched();
+    fixture.detectChanges();
+
+    expect(component.dateControl.touched).toBe(true);
+    expect(component.timeControl.touched).toBe(true);
+    expect(
+      fixture.nativeElement.querySelectorAll('.bmb_input-validator-support-error')
+        .length,
+    ).toBe(2);
+  });
+
+  it('should mark the empty date field as touched when a time is selected', () => {
+    fixture = TestBed.createComponent(BmbDateTimePickerComponent);
+    component = fixture.componentInstance;
+    fixture.componentRef.setInput('isRequired', true);
+    fixture.detectChanges();
+    const timepicker = fixture.debugElement.query(
+      By.directive(BmbTimepickerComponent),
+    ).componentInstance as BmbTimepickerComponent;
+
+    timepicker.selectHour(9);
+    fixture.detectChanges();
+
+    expect(component.timeControl.value).toBe('09:00 AM');
+    expect(component.dateControl.touched).toBe(true);
+    expect(
+      fixture.nativeElement.querySelector(
+        'bmb-datepicker .bmb_input-validator-support-error',
+      ),
+    ).toBeTruthy();
+  });
+
+  it('should not touch the date field when it already has a value', () => {
+    component.dateControl.setValue('04/11/2026', { emitEvent: false });
+
+    component.timeControl.setValue('10:15 AM');
+
+    expect(component.dateControl.touched).toBe(false);
   });
 });

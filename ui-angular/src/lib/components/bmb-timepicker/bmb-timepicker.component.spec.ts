@@ -241,4 +241,26 @@ describe('BmbTimepickerComponent', () => {
     fixture.destroy();
     expect(projectedContent).toBeUndefined();
   });
+
+  it('should show the required error after closing the list without selecting a value', () => {
+    fixture = TestBed.createComponent(BmbTimepickerComponent);
+    component = fixture.componentInstance;
+    const control = new FormControl('');
+    fixture.componentRef.setInput('control', control);
+    fixture.componentRef.setInput('isRequired', true);
+    fixture.componentRef.setInput('errorMessage', 'Time is required');
+    fixture.detectChanges();
+    const getError = () =>
+      fixture.nativeElement.querySelector('.bmb_input-validator-support-error');
+
+    component.openCompactList('time');
+    fixture.detectChanges();
+    expect(getError()).toBeNull();
+
+    component.handleClose();
+    fixture.detectChanges();
+
+    expect(control.touched).toBe(true);
+    expect(getError()?.textContent?.trim()).toBe('Time is required');
+  });
 });

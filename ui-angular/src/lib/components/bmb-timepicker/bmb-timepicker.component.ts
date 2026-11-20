@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   computed,
   DestroyRef,
@@ -35,15 +36,13 @@ import { BmbTimepickerModalComponent } from './bmb-timepicker-modal/bmb-timepick
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { IDropdownItem } from '../../_shared/types';
-
-export type IBmbTimepickerFormat = '12h' | '24h';
-export type IBmbTimepickerPeriod = 'AM' | 'PM';
-export type IBmbMinuteStep = 1 | 2 | 5 | 10 | 15 | 30;
-
-interface IParsedTime {
-  hour: number; // 0-23
-  minute: number;
-}
+import type {
+  IBmbTimepickerFormat,
+  IBmbMinuteStep,
+  IBmbTimepickerPeriod,
+  IParsedTime,
+} from '../../_shared/types/components/timepicker';
+import { TranslatePipe } from '../../pipes/translations';
 
 const pad = (n: number) => n.toString().padStart(2, '0');
 
@@ -56,6 +55,7 @@ const pad = (n: number) => n.toString().padStart(2, '0');
     BmbInputValidatorComponent,
     BmbIconComponent,
     BmbActionIconComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-timepicker.component.html',
   styleUrl: './bmb-timepicker.component.scss',
@@ -118,9 +118,11 @@ export class BmbTimepickerComponent implements OnInit {
     const step = Math.max(1, Math.min(59, Math.floor(this.minuteStep())));
     return Array.from({ length: Math.ceil(60 / step) }, (_, i) => i * step);
   });
-  period = computed<IBmbTimepickerPeriod>(() =>
-    (this.selectedHour() ?? 0) >= 12 ? 'PM' : 'AM',
-  );
+  period = computed<IBmbTimepickerPeriod | null>(() => {
+    const hour = this.selectedHour();
+    if (hour === null) return null;
+    return hour >= 12 ? 'PM' : 'AM';
+  });
   displayHour = computed(() => {
     const h = this.selectedHour();
     if (h === null) return null;
@@ -133,6 +135,7 @@ export class BmbTimepickerComponent implements OnInit {
 
   private readonly projectionService = inject(BmbProjectionContentService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly cdr = inject(ChangeDetectorRef);
   private readonly panelId = getUUID();
 
   constructor() {
@@ -163,8 +166,7 @@ export class BmbTimepickerComponent implements OnInit {
     if (!value) return null;
     let normalizedValue = value.trim();
     const suffix = normalizedValue.slice(-2).toUpperCase();
-    const meridiem =
-      suffix === 'AM' || suffix === 'PM' ? suffix : undefined;
+    const meridiem = suffix === 'AM' || suffix === 'PM' ? suffix : undefined;
     if (meridiem) {
       normalizedValue = normalizedValue.slice(0, -2).trimEnd();
     }
@@ -223,7 +225,10 @@ export class BmbTimepickerComponent implements OnInit {
         getValue: (value) => this.control().setValue(value),
         getClose: () => this.handleClose(),
       },
-      afterCloseContent: () => this.isWindowOpen.set(false),
+      afterCloseContent: () => {
+        this.isWindowOpen.set(false);
+        this.markAsTouched();
+      },
     });
   }
 
@@ -272,6 +277,7 @@ export class BmbTimepickerComponent implements OnInit {
       afterCloseContent: () => {
         this.activeDropdown.set(null);
         this.isWindowOpen.set(false);
+        this.markAsTouched();
       },
     });
   }
@@ -325,6 +331,11 @@ export class BmbTimepickerComponent implements OnInit {
     this.control().markAsDirty();
     this.control().markAsTouched();
     this.getChange.emit(value);
+  }
+
+  private markAsTouched() {
+    this.control().markAsTouched();
+    this.cdr.markForCheck();
   }
 
   private syncFromControl() {

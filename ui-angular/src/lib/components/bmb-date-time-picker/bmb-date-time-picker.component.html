@@ -1,27 +1,33 @@
 <section class="bmb_date-time-picker">
-  <bmb-datepicker
-    [inputId]="inputId() + '_date'"
-    [name]="name() + '_date'"
-    [label]="labelDate()"
-    [dateFormat]="dateFormat()"
-    [placeholder]="dateFormat()"
-    [control]="dateControl"
-    [disabled]="disabled()"
-    [isRequired]="isRequired()"
-    [disableDatesBefore]="disableDatesBefore()"
-    [disableDatesAfter]="disableDatesAfter()"
-    helperMessage=""
-    (onChange)="timePicker.openList()"
-  />
-  <bmb-timepicker
-    #timePicker
-    [inputId]="inputId() + '_time'"
-    [name]="name() + '_time'"
-    [label]="labelTime()"
-    [format]="timeFormat()"
-    [minuteStep]="minuteStep()"
-    [control]="timeControl"
-    [disabled]="disabled()"
-    [isRequired]="isRequired()"
-  />
+  <div class="bmb_date-time-picker-fields">
+    <bmb-datepicker
+      [inputId]="inputId() + '_date'"
+      [name]="name() + '_date'"
+      [label]="labelDate()"
+      [dateFormat]="dateFormat()"
+      [placeholder]="dateFormat()"
+      [(control)]="dateControl"
+      [disabled]="disabled()"
+      [isRequired]="isRequired()"
+      [disableDatesBefore]="disableDatesBefore()"
+      [disableDatesAfter]="disableDatesAfter()"
+      [errorMessage]="dateErrorMessage()"
+      [helperMessage]="dateHelperMessage()"
+      [isClearable]="isClearable()"
+    />
+    <bmb-timepicker
+      [inputId]="inputId() + '_time'"
+      [name]="name() + '_time'"
+      [label]="labelTime()"
+      [format]="timeFormat()"
+      [minuteStep]="minuteStep()"
+      [(control)]="timeControl"
+      [disabled]="disabled()"
+      [isRequired]="isRequired()"
+      [errorMessage]="timeErrorMessage()"
+      [isClearable]="isClearable()"
+      (getChange)="handleTimeChange()"
+      [helperMessage]="timeHelperMessage()"
+    />
+  </div>
 </section>

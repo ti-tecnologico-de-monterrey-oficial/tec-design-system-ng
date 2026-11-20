@@ -78,7 +78,7 @@ export class BmbInputValidatorComponent implements OnInit {
       throw new Error(
         `
           [${this.name()}]: Please enter a value greater or equal than min.
-          The values ​​entered are:
+          The values entered are:
           -min: ${this.min()}
           -max: ${this.max()}
           `,

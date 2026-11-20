@@ -37,7 +37,7 @@
               class="bmb_timepicker-chevron"
               icon="keyboard_arrow_down"
               [size]="24"
-              alt=""
+              [alt]="'time_picker.open' | translate"
             />
           </ng-template>
         </bmb-input-content>
@@ -60,15 +60,18 @@
             (blur)="getFocus.emit(false)"
           >
             <span>{{ displayTime() || placeholder() || '-- : --' }}</span>
-            <bmb-icon icon="keyboard_arrow_down" [size]="24" alt="" />
+            <span class="bmb_timepicker-select-arrow">
+              <bmb-icon icon="keyboard_arrow_down" [size]="24" [alt]="'time_picker.open' | translate" />
+            </span>
           </button>
-          @if (isClearable() && displayTime()) {
+          @if (isClearable()) {
             <bmb-action-icon
               class="bmb_timepicker-clear"
               icon="close"
               [iconSize]="24"
               [disabled]="disabled() || control().disabled"
               (buttonClick)="clearValue()"
+              [tooltipText]="'time_picker.clear' | translate"
             />
           }
         </div>
@@ -86,7 +89,7 @@
             (blur)="getFocus.emit(false)"
           >
             <span>{{ period() }}</span>
-            <bmb-icon icon="keyboard_arrow_down" [size]="24" alt="" />
+            <bmb-icon icon="keyboard_arrow_down" [size]="24" [alt]="'time_picker.open' | translate" />
           </button>
         }
       </div>
