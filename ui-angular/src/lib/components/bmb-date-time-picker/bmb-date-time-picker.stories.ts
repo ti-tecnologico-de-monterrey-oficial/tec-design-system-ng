@@ -62,8 +62,8 @@ This date must have the same format as \`dateFormat\`.
   },
   args: {
     name: 'date_time',
-    labelDate: 'Fecha',
-    labelTime: 'Hora',
+    labelDate: 'Date',
+    labelTime: 'Time',
     inputId: 'date_time_id',
     dateFormat: 'dd/MM/yyyy',
     timeFormat: '12h',

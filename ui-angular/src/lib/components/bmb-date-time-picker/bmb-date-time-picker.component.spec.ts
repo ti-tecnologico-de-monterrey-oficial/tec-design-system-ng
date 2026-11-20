@@ -128,4 +128,33 @@ describe('BmbDateTimePickerComponent', () => {
     expect(control.valid).toBe(true);
     expect(support().textContent?.trim()).toBe('Helper');
   });
+
+  it('should mark the empty date field as touched when a time is selected', () => {
+    fixture = TestBed.createComponent(BmbDateTimePickerComponent);
+    component = fixture.componentInstance;
+    fixture.componentRef.setInput('isRequired', true);
+    fixture.detectChanges();
+    const timepicker = fixture.debugElement.query(
+      By.directive(BmbTimepickerComponent),
+    ).componentInstance as BmbTimepickerComponent;
+
+    timepicker.selectHour(9);
+    fixture.detectChanges();
+
+    expect(component.timeControl.value).toBe('09:00 AM');
+    expect(component.dateControl.touched).toBe(true);
+    expect(
+      fixture.nativeElement.querySelector(
+        'bmb-datepicker .bmb_input-validator-support-error',
+      ),
+    ).toBeTruthy();
+  });
+
+  it('should not touch the date field when it already has a value', () => {
+    component.dateControl.setValue('04/11/2026', { emitEvent: false });
+
+    component.timeControl.setValue('10:15 AM');
+
+    expect(component.dateControl.touched).toBe(false);
+  });
 });

@@ -32,7 +32,6 @@ import type {
   IBmbTimepickerFormat,
   IBmbMinuteStep,
 } from '../../_shared/types/components/timepicker';
-import { BmbInputErrorMessageComponent } from '../bmb-input/bmb-input-error-message/bmb-input-error-message.component';
 
 @Component({
   selector: 'bmb-date-time-picker',
@@ -40,7 +39,6 @@ import { BmbInputErrorMessageComponent } from '../bmb-input/bmb-input-error-mess
   imports: [
     BmbDatepickerComponent,
     BmbTimepickerComponent,
-    BmbInputErrorMessageComponent,
   ],
   templateUrl: './bmb-date-time-picker.component.html',
   styleUrl: './bmb-date-time-picker.component.scss',
@@ -97,7 +95,16 @@ export class BmbDateTimePickerComponent implements OnChanges, OnInit {
       .subscribe(() => this.updateCombinedControl());
     this.timeControl.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => this.updateCombinedControl());
+      .subscribe(() => this.handleTimeChange());
+  }
+
+  /** Also bound to the timepicker's getChange, since its list selection doesn't emit valueChanges. */
+  handleTimeChange(): void {
+    this.updateCombinedControl();
+    if (this.timeControl.value && !this.dateControl.value) {
+      this.markFieldAsTouched(this.dateControl);
+      this.cdr.markForCheck();
+    }
   }
 
   /** Shows combined-value errors only when no field is already showing its own error. */
@@ -168,12 +175,16 @@ export class BmbDateTimePickerComponent implements OnChanges, OnInit {
   }
 
   private markFieldsAsTouched(): void {
-    [this.dateControl, this.timeControl].forEach((field) => {
-      if (field.touched) return;
-      field.markAsTouched();
-      // Emits valueChanges so the OnPush child validators refresh their error state.
-      field.updateValueAndValidity();
-    });
+    [this.dateControl, this.timeControl].forEach((field) =>
+      this.markFieldAsTouched(field),
+    );
+  }
+
+  private markFieldAsTouched(field: FormControl): void {
+    if (field.touched) return;
+    field.markAsTouched();
+    // Emits valueChanges so the OnPush child validators refresh their error state.
+    field.updateValueAndValidity();
   }
 
   private syncFromCombinedControl(value: unknown): void {

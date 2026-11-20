@@ -6,7 +6,7 @@
       [label]="labelDate()"
       [dateFormat]="dateFormat()"
       [placeholder]="dateFormat()"
-      [control]="dateControl"
+      [(control)]="dateControl"
       [disabled]="disabled()"
       [isRequired]="isRequired()"
       [disableDatesBefore]="disableDatesBefore()"
@@ -23,31 +23,12 @@
       [label]="labelTime()"
       [format]="timeFormat()"
       [minuteStep]="minuteStep()"
-      [control]="timeControl"
+      [(control)]="timeControl"
       [disabled]="disabled()"
       [isRequired]="isRequired()"
       [errorMessage]="errorMessage()"
       [isClearable]="isClearable()"
+      (getChange)="handleTimeChange()"
     />
   </div>
-  @if (shouldShowError || !!helperMessage()) {
-    <div class="bmb_input-validator-support" aria-live="polite">
-      @if (shouldShowError) {
-        <p class="bmb_input-validator-support-error">
-          {{ getErrorMessage() }}
-        </p>
-      } @else {
-        <p class="bmb_input-validator-support-helper-normal">
-          {{ helperMessage() }}
-        </p>
-      }
-    </div>
-  }
-  <bmb-input-error-message
-    [inputId]="inputId()"
-    [control]="control()"
-    [showError]="shouldShowError"
-    [errorMessage]="errorMessage()"
-    [helperMessage]="helperMessage()"
-  />
 </section>
