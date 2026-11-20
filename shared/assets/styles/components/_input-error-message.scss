@@ -1,0 +1,21 @@
+@use '../base/mixins' as mixins;
+
+.bmb_input-validator-support {
+    display: flex;
+    padding: var(--bmb-spacing-s);
+
+    &-helper {
+      &-normal {
+        @include mixins.normal-helper-text();
+      }
+
+      &-simple {
+        @include mixins.helper-text();
+        color: var(--general-contrasts-50);
+      }
+    }
+
+    &-error {
+      @include mixins.error-helper-text();
+    }
+  }

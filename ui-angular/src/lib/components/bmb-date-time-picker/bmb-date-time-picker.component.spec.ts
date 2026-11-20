@@ -85,7 +85,7 @@ describe('BmbDateTimePickerComponent', () => {
     expect(control.hasError('required')).toBe(true);
     expect(component.dateControl.touched).toBe(false);
     expect(
-      fixture.nativeElement.querySelector('.bmb_input-validator-support-error'),
+      fixture.nativeElement.querySelector('.bmb_input-error-message-text'),
     ).toBeNull();
 
     control.markAsTouched();
@@ -94,7 +94,7 @@ describe('BmbDateTimePickerComponent', () => {
     expect(component.dateControl.touched).toBe(true);
     expect(component.timeControl.touched).toBe(true);
     expect(
-      fixture.nativeElement.querySelectorAll('.bmb_input-validator-support-error')
+      fixture.nativeElement.querySelectorAll('.bmb_input-error-message-text')
         .length,
     ).toBe(2);
   });

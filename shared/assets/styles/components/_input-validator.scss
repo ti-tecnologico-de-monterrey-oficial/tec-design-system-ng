@@ -50,26 +50,6 @@
     }
   }
 
-  &-support {
-    display: flex;
-    padding: var(--bmb-spacing-s);
-
-    &-helper {
-      &-normal {
-        @include mixins.normal-helper-text();
-      }
-
-      &-simple {
-        @include mixins.helper-text();
-        color: var(--general-contrasts-50);
-      }
-    }
-
-    &-error {
-      @include mixins.error-helper-text();
-    }
-  }
-
   &.disabled {
     pointer-events: none;
     opacity: 0.5;

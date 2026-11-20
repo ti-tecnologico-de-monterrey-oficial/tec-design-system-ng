@@ -1,0 +1,13 @@
+@if (!!helperMessage() || showError()) {
+  <div class="bmb_input-validator-support">
+    @if (showError()) {
+      <p class="bmb_input-validator-support-error">
+        {{ getErrorMessage() }}
+      </p>
+    } @else if (!!helperMessage()) {
+      <p [class]="'bmb_input-validator-support-helper-' + appearance()">
+        {{ helperMessage() }}
+      </p>
+    }
+  </div>
+}

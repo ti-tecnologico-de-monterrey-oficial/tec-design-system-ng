@@ -20,6 +20,7 @@ import {
 } from '../../../_shared/types/input';
 import { CommonModule } from '@angular/common';
 import { BmbTooltipComponent } from '../../bmb-tooltip/bmb-tooltip.component';
+import { BmbInputErrorMessageComponent } from '../bmb-input-error-message/bmb-input-error-message.component';
 import {
   addInputValidatorValue,
   configureInputValidatorControl,
@@ -36,6 +37,7 @@ import {
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    BmbInputErrorMessageComponent,
     forwardRef(() => BmbTooltipComponent), // avoid circular dependency on Storybook
   ],
   templateUrl: './bmb-input-validator.component.html',
@@ -78,7 +80,7 @@ export class BmbInputValidatorComponent implements OnInit {
       throw new Error(
         `
           [${this.name()}]: Please enter a value greater or equal than min.
-          The values ​​entered are:
+          The values entered are:
           -min: ${this.min()}
           -max: ${this.max()}
           `,
@@ -164,19 +166,6 @@ export class BmbInputValidatorComponent implements OnInit {
     return getInputValidatorIsFieldRequired({
       control: this.control(),
       isRequired: this.isRequired(),
-    });
-  }
-
-  getErrorMessage(): string {
-    return getInputValidatorErrorMessage({
-      control: this.control(),
-      errorMessage: this.errorMessage(),
-      pattern: this.pattern(),
-      min: this.min(),
-      max: this.max(),
-      minLength: this.minLength(),
-      maxLength: this.maxLength(),
-      label: this.label(),
     });
   }
 }

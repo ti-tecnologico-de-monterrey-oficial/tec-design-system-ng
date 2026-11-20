@@ -20,7 +20,10 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subscription } from 'rxjs';
 import { getUUID } from '../../_shared/logic/utils';
-import { newFormControlByType, showError } from '../../_shared/logic/formControl';
+import {
+  newFormControlByType,
+  showError,
+} from '../../_shared/logic/formControl';
 import { getInputValidatorErrorMessage } from '../../_shared/logic/components/input-validator';
 import { IBmbInputError } from '../../_shared/types/input';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
@@ -29,11 +32,16 @@ import type {
   IBmbTimepickerFormat,
   IBmbMinuteStep,
 } from '../../_shared/types/components/timepicker';
+import { BmbInputErrorMessageComponent } from '../bmb-input/bmb-input-error-message/bmb-input-error-message.component';
 
 @Component({
   selector: 'bmb-date-time-picker',
   standalone: true,
-  imports: [BmbDatepickerComponent, BmbTimepickerComponent],
+  imports: [
+    BmbDatepickerComponent,
+    BmbTimepickerComponent,
+    BmbInputErrorMessageComponent,
+  ],
   templateUrl: './bmb-date-time-picker.component.html',
   styleUrl: './bmb-date-time-picker.component.scss',
   encapsulation: ViewEncapsulation.None,

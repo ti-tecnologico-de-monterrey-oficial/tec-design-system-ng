@@ -43,4 +43,11 @@
       }
     </div>
   }
+  <bmb-input-error-message
+    [inputId]="inputId()"
+    [control]="control()"
+    [showError]="shouldShowError"
+    [errorMessage]="errorMessage()"
+    [helperMessage]="helperMessage()"
+  />
 </section>
