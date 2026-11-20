@@ -1,4 +1,5 @@
 import { CSSProperties, ReactNode } from 'react';
+import './simple-text.scss';
 import { BmbSimpleTextSizes } from '../../_shared/types/components/simple-text';
 import type { IBmbSimpleTextElementType, IBmbSimpleTextSize, IBmbSimpleTextWeight } from '../../_shared/types/components/simple-text';
 import type { IBmbBaseGeneralContrastColors, IBmbSemanticBaseColors } from '../../_shared/types/foundations/colors/color-type';

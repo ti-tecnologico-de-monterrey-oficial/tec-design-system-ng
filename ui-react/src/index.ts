@@ -35,3 +35,6 @@ export type { BmbValueCounterProps } from './lib/component/bmb-value-counter';
 export { BmbSkeleton } from './lib/component/bmb-skeleton';
 export type { BmbSkeletonProps } from './lib/component/bmb-skeleton';
 
+export { BmbLegend } from './lib/component/bmb-legend';
+export type { BmbLegendProps } from './lib/component/bmb-legend';
+
