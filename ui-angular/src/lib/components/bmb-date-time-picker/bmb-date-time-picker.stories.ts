@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/angular';
+import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
 import { BmbDateTimePickerComponent } from './bmb-date-time-picker.component';
 import { DBmbInputParamDesc, getDefaultValueControl } from '@docs/utils/parameterDescriptions';
 
@@ -19,27 +20,11 @@ export default {
     labelDate: DBmbInputParamDesc.label,
     labelTime: DBmbInputParamDesc.label,
     dateFormat: DBmbInputParamDesc.dateFormat,
-    timeFormat: {
-      control: 'radio',
-      options: ['12h', '24h'],
-      description: 'Select the time format (12h or 24h).',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '12h' },
-      },
-   },
-   minuteStep: {
-      control: 'select',
-      options: [1, 2, 5, 10, 15, 30],
-      table: {
-        category: 'Properties',
-        type: { summary: 'number' },
-        defaultValue: { summary: 15 },
-      },
-    },
+    timeFormat: DBmbInputParamDesc.timeFormat,
+    minuteStep: DBmbInputParamDesc.minuteStep,
     isRequired: DBmbInputParamDesc.isRequired,
     disabled: DBmbInputParamDesc.disabled,
+    isClearable: DBmbInputParamDesc.isClearable,
     disableDatesBefore: {
       control: {
         type: 'text',
@@ -70,6 +55,9 @@ This date must have the same format as \`dateFormat\`.
         defaultValue: getDefaultValueControl(),
       },
     },
+    helperMessage: DBmbInputParamDesc.helperMessage,
+    customValidation: DBmbInputParamDesc.customValidation,
+    errorMessage: DBmbInputParamDesc.errorMessage,
     control: DBmbInputParamDesc.control,
   },
   args: {
@@ -82,8 +70,12 @@ This date must have the same format as \`dateFormat\`.
     minuteStep: 15,
     disabled: false,
     isRequired: false,
+    isClearable: false,
     disableDatesBefore: '',
     disableDatesAfter: '',
+    helperMessage: 'This is a helper message',
+    customValidation: null,
+    errorMessage: 'Select a valid date and time',
   },
 } as Meta<typeof BmbDateTimePickerComponent>;
 
@@ -91,3 +83,14 @@ type Story = StoryObj<BmbDateTimePickerComponent>;
 
 export const Default: Story = {};
 export const Format24h: Story = { args: { timeFormat: '24h' } };
+export const Required: Story = { args: { isRequired: true } };
+export const WithCustomValidation: Story = {
+  args: {
+    control: new FormControl('03/11/2026 - 09:30 AM'),
+    customValidation: (control: AbstractControl): ValidationErrors | null =>
+      typeof control.value === 'string' && control.value.endsWith('PM')
+        ? null
+        : { customValidation: true },
+    errorMessage: { customValidation: 'Select an afternoon time' },
+  },
+};

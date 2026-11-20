@@ -1,27 +1,46 @@
 <section class="bmb_date-time-picker">
-  <bmb-datepicker
-    [inputId]="inputId() + '_date'"
-    [name]="name() + '_date'"
-    [label]="labelDate()"
-    [dateFormat]="dateFormat()"
-    [placeholder]="dateFormat()"
-    [control]="dateControl"
-    [disabled]="disabled()"
-    [isRequired]="isRequired()"
-    [disableDatesBefore]="disableDatesBefore()"
-    [disableDatesAfter]="disableDatesAfter()"
-    helperMessage=""
-    (onChange)="timePicker.openList()"
-  />
-  <bmb-timepicker
-    #timePicker
-    [inputId]="inputId() + '_time'"
-    [name]="name() + '_time'"
-    [label]="labelTime()"
-    [format]="timeFormat()"
-    [minuteStep]="minuteStep()"
-    [control]="timeControl"
-    [disabled]="disabled()"
-    [isRequired]="isRequired()"
-  />
+  <div class="bmb_date-time-picker-fields">
+    <bmb-datepicker
+      [inputId]="inputId() + '_date'"
+      [name]="name() + '_date'"
+      [label]="labelDate()"
+      [dateFormat]="dateFormat()"
+      [placeholder]="dateFormat()"
+      [control]="dateControl"
+      [disabled]="disabled()"
+      [isRequired]="isRequired()"
+      [disableDatesBefore]="disableDatesBefore()"
+      [disableDatesAfter]="disableDatesAfter()"
+      [errorMessage]="errorMessage()"
+      helperMessage=""
+      (onChange)="timePicker.openList()"
+      [isClearable]="isClearable()"
+    />
+    <bmb-timepicker
+      #timePicker
+      [inputId]="inputId() + '_time'"
+      [name]="name() + '_time'"
+      [label]="labelTime()"
+      [format]="timeFormat()"
+      [minuteStep]="minuteStep()"
+      [control]="timeControl"
+      [disabled]="disabled()"
+      [isRequired]="isRequired()"
+      [errorMessage]="errorMessage()"
+      [isClearable]="isClearable()"
+    />
+  </div>
+  @if (shouldShowError || !!helperMessage()) {
+    <div class="bmb_input-validator-support" aria-live="polite">
+      @if (shouldShowError) {
+        <p class="bmb_input-validator-support-error">
+          {{ getErrorMessage() }}
+        </p>
+      } @else {
+        <p class="bmb_input-validator-support-helper-normal">
+          {{ helperMessage() }}
+        </p>
+      }
+    </div>
+  }
 </section>

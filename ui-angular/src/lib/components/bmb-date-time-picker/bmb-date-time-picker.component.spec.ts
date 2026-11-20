@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
@@ -72,5 +72,60 @@ describe('BmbDateTimePickerComponent', () => {
     datepicker.onChange.emit('04/11/2026');
 
     expect(openList).toHaveBeenCalledTimes(1);
+  });
+
+  it('should require the combined value and propagate touched state to both fields', () => {
+    fixture = TestBed.createComponent(BmbDateTimePickerComponent);
+    component = fixture.componentInstance;
+    const control = new FormControl('');
+    fixture.componentRef.setInput('control', control);
+    fixture.componentRef.setInput('isRequired', true);
+    fixture.detectChanges();
+
+    expect(control.hasError('required')).toBe(true);
+    expect(component.dateControl.touched).toBe(false);
+    expect(
+      fixture.nativeElement.querySelector('.bmb_input-validator-support-error'),
+    ).toBeNull();
+
+    control.markAsTouched();
+    fixture.detectChanges();
+
+    expect(component.dateControl.touched).toBe(true);
+    expect(component.timeControl.touched).toBe(true);
+    expect(
+      fixture.nativeElement.querySelectorAll('.bmb_input-validator-support-error')
+        .length,
+    ).toBe(2);
+  });
+
+  it('should show the custom validation error below both fields', () => {
+    const control = new FormControl('03/11/2026 - 09:30 AM');
+    fixture.componentRef.setInput('control', control);
+    fixture.componentRef.setInput(
+      'customValidation',
+      ({ value }: AbstractControl) =>
+        value?.endsWith('PM') ? null : { customValidation: true },
+    );
+    fixture.componentRef.setInput('errorMessage', {
+      customValidation: 'Select an afternoon time',
+    });
+    fixture.componentRef.setInput('helperMessage', 'Helper');
+    fixture.detectChanges();
+
+    const support = () =>
+      fixture.nativeElement.querySelector(
+        '.bmb_date-time-picker > .bmb_input-validator-support',
+      ) as HTMLElement;
+    expect(support().textContent?.trim()).toBe('Helper');
+
+    control.markAsTouched();
+    fixture.detectChanges();
+    expect(support().textContent?.trim()).toBe('Select an afternoon time');
+
+    component.timeControl.setValue('02:00 PM');
+    fixture.detectChanges();
+    expect(control.valid).toBe(true);
+    expect(support().textContent?.trim()).toBe('Helper');
   });
 });

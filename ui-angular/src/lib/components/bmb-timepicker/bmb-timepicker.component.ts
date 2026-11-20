@@ -35,15 +35,13 @@ import { BmbTimepickerModalComponent } from './bmb-timepicker-modal/bmb-timepick
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { IDropdownItem } from '../../_shared/types';
-
-export type IBmbTimepickerFormat = '12h' | '24h';
-export type IBmbTimepickerPeriod = 'AM' | 'PM';
-export type IBmbMinuteStep = 1 | 2 | 5 | 10 | 15 | 30;
-
-interface IParsedTime {
-  hour: number; // 0-23
-  minute: number;
-}
+import type {
+  IBmbTimepickerFormat,
+  IBmbMinuteStep,
+  IBmbTimepickerPeriod,
+  IParsedTime,
+} from '../../_shared/types/components/timepicker';
+import { TranslatePipe } from '../../pipes/translations';
 
 const pad = (n: number) => n.toString().padStart(2, '0');
 
@@ -56,6 +54,7 @@ const pad = (n: number) => n.toString().padStart(2, '0');
     BmbInputValidatorComponent,
     BmbIconComponent,
     BmbActionIconComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-timepicker.component.html',
   styleUrl: './bmb-timepicker.component.scss',
@@ -163,8 +162,7 @@ export class BmbTimepickerComponent implements OnInit {
     if (!value) return null;
     let normalizedValue = value.trim();
     const suffix = normalizedValue.slice(-2).toUpperCase();
-    const meridiem =
-      suffix === 'AM' || suffix === 'PM' ? suffix : undefined;
+    const meridiem = suffix === 'AM' || suffix === 'PM' ? suffix : undefined;
     if (meridiem) {
       normalizedValue = normalizedValue.slice(0, -2).trimEnd();
     }

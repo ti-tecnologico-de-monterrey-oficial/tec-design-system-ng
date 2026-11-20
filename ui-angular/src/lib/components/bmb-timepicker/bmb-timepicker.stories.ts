@@ -73,25 +73,8 @@ ${getBasicExampleBlock('BmbTimepickerComponent', '', handleChange.handleExample)
     },
   },
   argTypes: {
-    format: {
-      control: 'radio',
-      options: ['12h', '24h'],
-      description: 'Select the time format (12h or 24h).',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '12h' },
-      },
-   },
-    minuteStep: {
-      control: 'select',
-      options: [1, 2, 5, 10, 15, 30],
-      table: {
-        category: 'Properties',
-        type: { summary: 'number' },
-        defaultValue: { summary: 15 },
-      },
-    },
+    format:DBmbInputParamDesc.timeFormat,
+    minuteStep: DBmbInputParamDesc.minuteStep,
     label: DBmbInputParamDesc.label,
     placeholder: DBmbInputParamDesc.placeholder,
     isRequired: DBmbInputParamDesc.isRequired,

@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   inject,
@@ -10,17 +11,24 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {
+  FormControl,
+  TouchedChangeEvent,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subscription } from 'rxjs';
 import { getUUID } from '../../_shared/logic/utils';
-import { newFormControlByType } from '../../_shared/logic/formControl';
+import { newFormControlByType, showError } from '../../_shared/logic/formControl';
+import { getInputValidatorErrorMessage } from '../../_shared/logic/components/input-validator';
+import { IBmbInputError } from '../../_shared/types/input';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { BmbTimepickerComponent } from '../bmb-timepicker/bmb-timepicker.component';
 import type {
-  IBmbMinuteStep,
   IBmbTimepickerFormat,
-} from '../bmb-timepicker/bmb-timepicker.component';
+  IBmbMinuteStep,
+} from '../../_shared/types/components/timepicker';
 
 @Component({
   selector: 'bmb-date-time-picker',
@@ -43,37 +51,121 @@ export class BmbDateTimePickerComponent implements OnChanges, OnInit {
   isRequired = input<boolean>(false);
   disableDatesBefore = input<string>('');
   disableDatesAfter = input<string>('');
+  helperMessage = input<string>('');
+  customValidation = input<ValidatorFn>();
+  errorMessage = input<string | IBmbInputError>('');
   control = model<FormControl>(newFormControlByType());
+  isClearable = input<boolean>(false);
 
   readonly dateControl = newFormControlByType();
   readonly timeControl = newFormControlByType();
 
   private readonly destroyRef = inject(DestroyRef);
+  private readonly cdr = inject(ChangeDetectorRef);
   private updatingCombinedControl = false;
   private controlSubscription?: Subscription;
+  private appliedValidators: ValidatorFn[] = [];
+  private validatorsControl?: FormControl;
+  private initialized = false;
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes['control']) return;
-
-    this.controlSubscription?.unsubscribe();
-    const control = this.control();
-    this.syncFromCombinedControl(control.value);
-    this.controlSubscription = control
-      .valueChanges.pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((value) => {
-        if (!this.updatingCombinedControl) {
-          this.syncFromCombinedControl(value);
-        }
-      });
+    if (!this.initialized) return;
+    if (changes['control']) this.connectCombinedControl();
+    if (
+      changes['control'] ||
+      changes['isRequired'] ||
+      changes['customValidation']
+    ) {
+      this.applyValidators();
+    }
   }
 
   ngOnInit(): void {
+    this.initialized = true;
+    this.connectCombinedControl();
+    this.applyValidators();
     this.dateControl.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => this.updateCombinedControl());
     this.timeControl.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => this.updateCombinedControl());
+  }
+
+  /** Shows combined-value errors only when no field is already showing its own error. */
+  get shouldShowError(): boolean {
+    return (
+      showError(this.control()) &&
+      !showError(this.dateControl) &&
+      !showError(this.timeControl)
+    );
+  }
+
+  getErrorMessage(): string {
+    return getInputValidatorErrorMessage({
+      control: this.control(),
+      errorMessage: this.errorMessage(),
+      pattern: undefined,
+      min: undefined,
+      max: undefined,
+      minLength: undefined,
+      maxLength: undefined,
+      label: [this.labelDate(), this.labelTime()].filter(Boolean).join(' - '),
+    });
+  }
+
+  private connectCombinedControl(): void {
+    this.controlSubscription?.unsubscribe();
+    const control = this.control();
+    this.syncFromCombinedControl(control.value);
+    if (control.touched) this.markFieldsAsTouched();
+    this.controlSubscription = control.events
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((event) => {
+        if (
+          event instanceof TouchedChangeEvent &&
+          event.touched &&
+          !this.updatingCombinedControl
+        ) {
+          this.markFieldsAsTouched();
+        }
+        this.cdr.markForCheck();
+      });
+    this.controlSubscription.add(
+      control.valueChanges
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe((value) => {
+          if (!this.updatingCombinedControl) {
+            this.syncFromCombinedControl(value);
+          }
+        }),
+    );
+  }
+
+  private applyValidators(): void {
+    this.validatorsControl?.removeValidators(this.appliedValidators);
+    this.validatorsControl?.updateValueAndValidity({ emitEvent: false });
+
+    const control = this.control();
+    const customValidation = this.customValidation();
+    this.appliedValidators = [
+      ...(this.isRequired() && !control.hasValidator(Validators.required)
+        ? [Validators.required]
+        : []),
+      ...(customValidation ? [customValidation] : []),
+    ];
+    control.addValidators(this.appliedValidators);
+    control.updateValueAndValidity({ emitEvent: false });
+    this.validatorsControl = control;
+  }
+
+  private markFieldsAsTouched(): void {
+    [this.dateControl, this.timeControl].forEach((field) => {
+      if (field.touched) return;
+      field.markAsTouched();
+      // Emits valueChanges so the OnPush child validators refresh their error state.
+      field.updateValueAndValidity();
+    });
   }
 
   private syncFromCombinedControl(value: unknown): void {
@@ -89,12 +181,12 @@ export class BmbDateTimePickerComponent implements OnChanges, OnInit {
     const value = date && time ? `${date} - ${time}` : '';
     const control = this.control();
 
-    if (control.value !== value) {
-      this.updatingCombinedControl = true;
-      control.setValue(value);
-      this.updatingCombinedControl = false;
-    }
+    if (control.value === value) return;
+
+    this.updatingCombinedControl = true;
+    control.setValue(value);
     control.markAsDirty();
     control.markAsTouched();
+    this.updatingCombinedControl = false;
   }
 }

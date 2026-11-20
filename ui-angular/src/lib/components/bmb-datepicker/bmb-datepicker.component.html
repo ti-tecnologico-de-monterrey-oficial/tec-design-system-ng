@@ -24,7 +24,7 @@
           [icon]="icon()"
           [control]="control()"
           [isReadOnly]="true"
-          [isClearable]="true"
+          [isClearable]="isClearable()"
           [placeholder]="placeholder()"
           [isError]="shouldShowError"
           (click)="handleFocusedEvent($event)"
