@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { getInputValidatorErrorMessage } from '../../../_shared/logic/components/input-validator';
 import { FormControl } from '@angular/forms';
-import { IBmbInputError } from '@shared/types';
+import type { IBmbInputError } from '../../../_shared/types/input';
 
 @Component({
   selector: 'bmb-input-error-message',
