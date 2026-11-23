@@ -55,6 +55,7 @@ ${getBasicExampleBlock(
     dataLocalNav: DBmbHomeCardHeaderParamDesc.dataLocalNav,
     actionHeaders: DBmbGenericParamDesc.actionHeaders,
     showRightButton: DBmbHomeCardHeaderParamDesc.showRightButton,
+    showFullText: DBmbHomeCardHeaderParamDesc.showFullText,
     isMobile: DBmbHomeCardHeaderParamDesc.isMobile,
     contentPadding: DBmbHomeCardHeaderParamDesc.contentPadding,
     onClose: DBmbHomeCardHeaderParamDesc.onClose,
@@ -79,6 +80,7 @@ ${getBasicExampleBlock(
     dataLocalNav: [],
     actionHeaders: [],
     showRightButton: true,
+    showFullText: false,
     isMobile: false,
     test_text: 'hello world',
     isExpanded: false,
@@ -106,4 +108,13 @@ export const Default: Story = {
     </bmb-home-card>
     `,
   }),
+};
+
+export const LongTitleWithFullText: Story = {
+  ...Default,
+  args: {
+    title:
+      'Desarrollo e implementación de estrategias de innovación educativa para la formación de competencias profesionales en programas de posgrado',
+    showFullText: true,
+  },
 };

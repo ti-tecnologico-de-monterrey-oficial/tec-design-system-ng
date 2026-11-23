@@ -1,14 +1,14 @@
 <span
   #tooltipContainer
   class="bmb_tooltip-container"
-  (mouseenter)="showTooltip()"
-  (mouseleave)="hideTooltip()"
-  (focusin)="showTooltip($event)"
-  (focusout)="hideTooltip()"
-  (mousedown)="showTooltip()"
-  (mouseup)="hideTooltip()"
-  (touchstart)="showTooltip()"
-  (touchend)="hideTooltip()"
+  (mouseenter)="!manual() && showTooltip()"
+  (mouseleave)="!manual() && hideTooltip()"
+  (focusin)="!manual() && showTooltip($event)"
+  (focusout)="!manual() && hideTooltip()"
+  (mousedown)="!manual() && showTooltip()"
+  (mouseup)="!manual() && hideTooltip()"
+  (touchstart)="!manual() && showTooltip()"
+  (touchend)="!manual() && hideTooltip()"
 >
   <ng-content />
 </span>

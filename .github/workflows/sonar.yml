@@ -31,8 +31,17 @@ jobs:
       - name: Generate Angular coverage
         run: ./node_modules/.bin/nx test ui-angular --coverage --runInBand
 
-      - name: Verify LCOV report
+      - name: Verify Angular LCOV report
         run: test -s coverage/ui-angular/lcov.info
+
+      - name: Sync React shared sources
+        run: ./node_modules/.bin/nx run ui-react:sync-shared
+
+      - name: Generate React coverage
+        run: ./node_modules/.bin/nx test ui-react --coverage --runInBand
+
+      - name: Verify React LCOV report
+        run: test -s coverage/ui-react/lcov.info
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@master
@@ -44,7 +53,7 @@ jobs:
             -Dsonar.sourceEncoding=UTF-8
             -Dsonar.exclusions=**/node_modules/**,**/*.stories.ts,**/*.stories.tsx,**/*.mdx,**/*.spec.ts,**/*.spec.tsx
             -Dsonar.test.exclusions=**/*.spec.ts,**/*.spec.tsx
-            -Dsonar.javascript.lcov.reportPaths=coverage/ui-angular/lcov.info
+            -Dsonar.javascript.lcov.reportPaths=coverage/ui-angular/lcov.info,coverage/ui-react/lcov.info
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Info de PR
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Token Sonar

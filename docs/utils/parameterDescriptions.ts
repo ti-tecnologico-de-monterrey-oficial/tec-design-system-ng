@@ -913,6 +913,16 @@ export const DBmbHomeCardHeaderParamDesc = {
       type: { summary: 'boolean' },
     },
   },
+  showFullText: {
+    control: { type: 'boolean' },
+    description:
+      'Limits the title to two lines with an ellipsis. When the title is truncated, its full text can be consulted with mouse hover, visible keyboard focus or a 500 ms long press.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'false' },
+      type: { summary: 'boolean' },
+    },
+  },
   isMobile: {
     control: { type: 'boolean' },
     description:
@@ -1797,6 +1807,28 @@ This is a selection hint, not file validation; it does not restrict drag and dro
       category: 'Properties',
       type: { summary: 'number' },
       defaultValue: getDefaultValueControl(2),
+    },
+  },
+};
+
+export const DBmbTimePicker = {
+  timeFormat: {
+    control: 'radio',
+    options: ['12h', '24h'],
+    description: 'Select the time format (12h or 24h).',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '12h' },
+    },
+  },
+  minuteStep: {
+    control: 'select',
+    options: [1, 2, 5, 10, 15, 30],
+    table: {
+      category: 'Properties',
+      type: { summary: 'number' },
+      defaultValue: { summary: 15 },
     },
   },
 };

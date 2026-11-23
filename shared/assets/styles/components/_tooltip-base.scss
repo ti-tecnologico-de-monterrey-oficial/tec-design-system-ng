@@ -40,5 +40,15 @@ bmb-tooltip-base {
       inset: auto;
       position: fixed;
     }
+
+    &--manual {
+      pointer-events: auto;
+      box-sizing: border-box;
+      max-width: min(17.5rem, calc(100vw - 1rem));
+      max-height: calc(100dvh - 1rem);
+      overflow: auto;
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
   }
 }
