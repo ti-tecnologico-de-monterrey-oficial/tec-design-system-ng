@@ -103,7 +103,6 @@ export class BmbTooltipBaseComponent {
     this.tooltipElement = this.createTooltipElement();
     this.tooltipElement.style.visibility = 'hidden';
     this.document.body.appendChild(this.tooltipElement);
-    this.tooltipElement.offsetHeight;
     this.updateTooltipPosition();
     this.tooltipElement.style.visibility = 'visible';
 
