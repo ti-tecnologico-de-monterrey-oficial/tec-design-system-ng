@@ -158,17 +158,13 @@ Other related utilities:
 
 ## DOM architecture sections
 
-### `getArchitectureSection(architectureBlock, bmbNameLink?, documentationLink?): string`
+### `getArchitectureSection(architectureBlock, options?): string`
 
-Generates the **"DOM Architecture"** section with an HTML code block and, optionally, a link to the DOM architecture of another related component (`getDOMArchitectureLink`).
+Generates the **"DOM Architecture"** section with an HTML code block. The optional `options` argument accepts `storyType` (defaults to `'component'`) and `parentArchitecture`, an array of related components with `bmbNameLink` and `documentationLink` properties. Each related component is linked to its DOM architecture section.
 
 ### `getCheckboxOrRadialArchitecture(type): string`
 
 Shortcut for `getArchitectureSection` with the predefined DOM structure for `checkbox` or `radial` type components (container, `input`, check box, and optional label).
-
-### `getDOMArchitectureLink(bmbNameLink?, documentationLink?): string`
-
-Generates the Markdown link to the DOM architecture section of another Bamboo component.
 
 ---
 

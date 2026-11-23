@@ -54,8 +54,12 @@ ${getArchitectureSection(
 </section>
 `,
   {
-    bmbNameLink: 'datepicker',
-    documentationLink: calendarStory.default.title,
+    parentArchitecture: [
+      {
+        bmbNameLink: 'datepicker',
+        documentationLink: calendarStory.default.title!,
+      },
+    ],
   },
 )}
 ${getFormExampleBlock(

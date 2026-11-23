@@ -61,6 +61,11 @@ export const BlockquoteType = {
   important: '> [!CALLOUT]',
 };
 
+interface IBmbParentArchitectureType {
+  bmbNameLink: string;
+  documentationLink: string;
+}
+
 export const DESIGN_SYSTEM_TITLE = '***Bamboo***';
 const TECHNICAL_DOC_TITLE = `${DESIGN_SYSTEM_TITLE} ***- Technical documentation***`;
 const TECHNICAL_DOC_REFERENCES = `Please remember to refer to the ${TECHNICAL_DOC_TITLE} for more details:`;
@@ -273,20 +278,37 @@ export const getAuxiliaryDescription = (
 export const getArchitectureSection = (
   architectureBlock: string,
   {
-    bmbNameLink = '',
-    documentationLink = '',
     storyType = 'component',
+    parentArchitecture = [
+      {
+        bmbNameLink: '',
+        documentationLink: '',
+      },
+    ],
   }: {
-    bmbNameLink?: string;
-    documentationLink?: string;
     storyType?: IBmbStoryType;
+    parentArchitecture?: IBmbParentArchitectureType[];
   } = {},
 ): string => `
 ## DOM Architecture
 Represents the structure of the ${storyType}.
 \`\`\`html
 ${architectureBlock}
-\`\`\`${bmbNameLink ? getDOMArchitectureLink(bmbNameLink, documentationLink) : ''}
+\`\`\`
+${
+  parentArchitecture.length
+    ? `${parentArchitecture
+        .map((element) =>
+          getStoryLink({
+            alias: `bmb-${element.bmbNameLink} - ${getStoryTitle(element.documentationLink)} - DOM Architecture`,
+            title: element.documentationLink,
+            showFullLinkName: false,
+            urlId: 'dom-architecture',
+          }),
+        )
+        .join(' ')}`
+    : ''
+}
 <br/>
 `;
 
@@ -597,19 +619,6 @@ ${
 >
 ${generalDocLink ? `>${getGeneralDocDescription(generalDocLink)}` : ''}
 
-<br/>
-`;
-
-export const getDOMArchitectureLink = (
-  bmbNameLink = '',
-  documentationLink = '',
-): string => `
-${getStoryLink({
-  alias: `bmb-${bmbNameLink} - ${getStoryTitle(documentationLink)} - DOM Architecture`,
-  title: documentationLink,
-  showFullLinkName: false,
-  urlId: 'dom-architecture',
-})}
 <br/>
 `;
 

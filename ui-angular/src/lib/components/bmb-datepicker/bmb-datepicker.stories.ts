@@ -63,8 +63,12 @@ ${getArchitectureSection(
 </div>
 `,
   {
-    bmbNameLink: 'input',
-    documentationLink: inputStory.default.title,
+    parentArchitecture: [
+      {
+        bmbNameLink: 'input',
+        documentationLink: inputStory.default.title!,
+      },
+    ],
   },
 )}
 ${getFormExampleBlock(
