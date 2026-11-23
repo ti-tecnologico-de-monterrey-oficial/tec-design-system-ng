@@ -58,6 +58,14 @@
     &-error {
       border-color: var(--semantic-error);
     }
+
+    &-arrow {
+      color: var(--general-contrasts-100);
+      position: absolute;
+      right: rem.rem_calc(16);
+      top: rem.rem_calc(12);
+      display: flex;
+    }
   }
 
   &-period {

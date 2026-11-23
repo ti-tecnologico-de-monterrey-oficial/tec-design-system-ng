@@ -69,6 +69,7 @@ export * from './components/top-bar';
 export * from './components/user-summary';
 export * from './components/value-counter';
 export * from './components/web-templates';
+export * from './components/timepicker';
 
 export * from './chat-attachment';
 export * from './input';

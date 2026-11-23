@@ -4,6 +4,7 @@ import {
   getBadgeClasses,
 } from '../../_shared/logic/components/badge';
 import { IBmbBadgeAppearance } from '../../_shared/types';
+import './styles.scss';
 
 export interface BmbBadgeProps {
   appearance?: IBmbBadgeAppearance;

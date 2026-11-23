@@ -1810,3 +1810,25 @@ This is a selection hint, not file validation; it does not restrict drag and dro
     },
   },
 };
+
+export const DBmbTimePicker = {
+  timeFormat: {
+    control: 'radio',
+    options: ['12h', '24h'],
+    description: 'Select the time format (12h or 24h).',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '12h' },
+    },
+  },
+  minuteStep: {
+    control: 'select',
+    options: [1, 2, 5, 10, 15, 30],
+    table: {
+      category: 'Properties',
+      type: { summary: 'number' },
+      defaultValue: { summary: 15 },
+    },
+  },
+};

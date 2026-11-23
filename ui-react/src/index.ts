@@ -1,25 +1,22 @@
 export const BAMBOO_VERSION = '0.0.1';
 
 export {
-	BmbTranslateProvider,
-	useBmbTranslate,
+  BmbTranslateProvider,
+  useBmbTranslate,
 } from './lib/context/bmb-translate';
 export type {
-	BmbDictionaries,
-	BmbTranslateContextValue,
-	BmbTranslateProviderProps,
-	BmbTranslationValue,
+  BmbDictionaries,
+  BmbTranslateContextValue,
+  BmbTranslateProviderProps,
+  BmbTranslationValue,
 } from './lib/context/bmb-translate';
 
 export { BmbSimpleText } from './lib/component/bmb-simple-text';
-export type {
-	BmbSimpleTextProps,
-	IBmbSimpleTextElementType,
-} from './lib/component/bmb-simple-text';
-
+export type { BmbSimpleTextProps } from './lib/component/bmb-simple-text';
+export { BmbButton } from './lib/component/bmb-button';
+export type { BmbButtonProps } from './lib/component/bmb-button';
 export { BmbDivider } from './lib/component/bmb-divider';
 export type { BmbDividerProps } from './lib/component/bmb-divider';
-
 export { BmbNotificationCounter } from './lib/component/bmb-notification-counter';
 export type {
 	BmbNotificationCounterProps,

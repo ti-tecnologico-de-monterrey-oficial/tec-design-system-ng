@@ -1,6 +1,34 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { FormControl } from '@angular/forms';
 import { BmbTimepickerComponent } from './bmb-timepicker.component';
+import { getArchitectureSection, getBasicExampleBlock, getFieldDescription, getFormatName, getFormExampleBlock, getOnEvent, IBmbOnEvent } from '@docs/utils/utils';
+import { DBmbInputParamDesc, DBmbTimePicker, getOnEventParam } from '@docs/utils/parameterDescriptions';
+
+const inputName = 'time_picker';
+const formatName: string = getFormatName(inputName, '_');
+const handleChange: IBmbOnEvent = getOnEvent(
+  '',
+  `${formatName}Change`,
+  'string',
+  true,
+);
+const inputExample = `  <bmb-timepicker
+  inputId="${inputName}_id"
+  name="${inputName}"
+  label="Time"
+  [control]="getFormControl('${inputName}')"
+  (onChange)="${handleChange.propertyValue}"
+/>`;
+const getChange: IBmbOnEvent = getOnEvent(
+  'field',
+  'getChange',
+  handleChange.type,
+);
+const getFocus: IBmbOnEvent = getOnEvent(
+  'field',
+  'getFocus',
+  'boolean',
+);
 
 export default {
   title: 'Components/Inputs/Time picker',
@@ -8,29 +36,74 @@ export default {
   parameters: {
     docs: {
       description: {
-        component:
-          'Hasta 1000 px de ancho de pantalla, muestra un dropdown de hora:minutos y otro de AM/PM. En formato 24h solo muestra hora:minutos. Por encima de 1000 px conserva el selector completo. Las combinaciones respetan minuteStep.',
+        component:`
+${getFieldDescription(
+  'timepicker',
+  'select a time from a time picker interface.',
+  'https://bamboo.tec.mx/latest/components/time-picker/descripcion-general-NLVjT8sT',
+)}
+${getArchitectureSection(
+  `
+<div class="bmb_timepicker">
+  <section class="bmb-timepicker-container">
+    <bmb-input>
+
+      <!-- if window is open -->
+      <ng-template #customInputContent>
+        <bmb-timepicker-modal class="bmb_timepicker-modal" />
+      </ng-template>
+
+    </bmb-input>
+  </section>
+</div>
+`,
+  'input',
+  'components-inputs-text-input',
+)}
+${getFormExampleBlock(
+  'BmbTimepickerComponent',
+  inputName,
+  `${handleChange.handleExample}
+  `,
+  inputExample,
+)}
+${getBasicExampleBlock('BmbTimepickerComponent', '', handleChange.handleExample)}
+        `
       },
     },
   },
   argTypes: {
-    format: { control: 'radio', options: ['12h', '24h'] },
-    minuteStep: { control: 'number' },
-    label: { control: 'text' },
-    placeholder: { control: 'text' },
-    isRequired: { control: 'boolean' },
-    isClearable: { control: 'boolean' },
-    disabled: { control: 'boolean' },
+    format: DBmbTimePicker.timeFormat,
+    minuteStep: DBmbTimePicker.minuteStep,
+    label: DBmbInputParamDesc.label,
+    placeholder: DBmbInputParamDesc.placeholder,
+    isRequired: DBmbInputParamDesc.isRequired,
+    isClearable: DBmbInputParamDesc.isClearable,
+    disabled: DBmbInputParamDesc.disabled,
+    name: DBmbInputParamDesc.name,
+    inputId: DBmbInputParamDesc.inputId,
+    helperMessage: DBmbInputParamDesc.helperMessage,
+    customValidation: DBmbInputParamDesc.customValidation,
+    errorMessage: DBmbInputParamDesc.errorMessage,
+    tooltip: DBmbInputParamDesc.tooltip,
+    control: DBmbInputParamDesc.control,
+    getChange: getOnEventParam(getChange),
+    getFocus: getOnEventParam(getFocus),
   },
   args: {
-    label: 'Hora inicio',
-    name: 'time_picker',
     format: '12h',
     minuteStep: 15,
-    isRequired: true,
-    isClearable: false,
+    placeholder: 'Select time',
     disabled: false,
-    control: new FormControl(''),
+    isRequired: false,
+    isClearable: false,
+    name: 'time_picker',
+    inputId: 'time_picker_id',
+    helperMessage: 'This is a helper message',
+    customValidation: null,
+    errorMessage: 'Select a valid time',
+    tooltip: 'Tooltip message',
+    label: 'Hora inicio',
   },
 } as Meta<typeof BmbTimepickerComponent>;
 
