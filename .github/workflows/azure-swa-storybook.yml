@@ -8,6 +8,8 @@ on:
     types: [opened, synchronize, reopened, closed]
     branches:
       - develop
+  release:
+    types: [published]
   workflow_dispatch:
 
 concurrency:
@@ -38,6 +40,9 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+
+      - name: Sync Angular shared files
+        run: node scripts/sync-angular-shared.mjs
 
       - name: Build Angular Storybook
         run: npm run storybook:build:angular
