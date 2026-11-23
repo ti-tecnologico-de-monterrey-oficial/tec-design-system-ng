@@ -1446,25 +1446,6 @@ Adding the id using a property with the same name affects the operation of the f
     getOnEvent('', 'onKeyDown', 'KeyboardEvent'),
     'keyDown',
   ),
-  timeFormat: {
-      control: 'radio',
-      options: ['12h', '24h'],
-      description: 'Select the time format (12h or 24h).',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '12h' },
-      },
-   },
-   minuteStep: {
-      control: 'select',
-      options: [1, 2, 5, 10, 15, 30],
-      table: {
-        category: 'Properties',
-        type: { summary: 'number' },
-        defaultValue: { summary: 15 },
-      },
-    },
 };
 
 export const DBmbLayoutParamDesc = {
@@ -1826,6 +1807,28 @@ This is a selection hint, not file validation; it does not restrict drag and dro
       category: 'Properties',
       type: { summary: 'number' },
       defaultValue: getDefaultValueControl(2),
+    },
+  },
+};
+
+export const DBmbTimePicker = {
+  timeFormat: {
+    control: 'radio',
+    options: ['12h', '24h'],
+    description: 'Select the time format (12h or 24h).',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '12h' },
+    },
+  },
+  minuteStep: {
+    control: 'select',
+    options: [1, 2, 5, 10, 15, 30],
+    table: {
+      category: 'Properties',
+      type: { summary: 'number' },
+      defaultValue: { summary: 15 },
     },
   },
 };

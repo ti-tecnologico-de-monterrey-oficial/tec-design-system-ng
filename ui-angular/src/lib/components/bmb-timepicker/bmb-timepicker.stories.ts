@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { FormControl } from '@angular/forms';
 import { BmbTimepickerComponent } from './bmb-timepicker.component';
 import { getArchitectureSection, getBasicExampleBlock, getFieldDescription, getFormatName, getFormExampleBlock, getOnEvent, IBmbOnEvent } from '@docs/utils/utils';
-import { DBmbInputParamDesc, getOnEventParam } from '@docs/utils/parameterDescriptions';
+import { DBmbInputParamDesc, DBmbTimePicker, getOnEventParam } from '@docs/utils/parameterDescriptions';
 
 const inputName = 'time_picker';
 const formatName: string = getFormatName(inputName, '_');
@@ -73,8 +73,8 @@ ${getBasicExampleBlock('BmbTimepickerComponent', '', handleChange.handleExample)
     },
   },
   argTypes: {
-    format:DBmbInputParamDesc.timeFormat,
-    minuteStep: DBmbInputParamDesc.minuteStep,
+    format: DBmbTimePicker.timeFormat,
+    minuteStep: DBmbTimePicker.minuteStep,
     label: DBmbInputParamDesc.label,
     placeholder: DBmbInputParamDesc.placeholder,
     isRequired: DBmbInputParamDesc.isRequired,

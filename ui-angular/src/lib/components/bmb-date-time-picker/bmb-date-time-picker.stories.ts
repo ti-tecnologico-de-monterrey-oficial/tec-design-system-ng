@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
 import { BmbDateTimePickerComponent } from './bmb-date-time-picker.component';
-import { DBmbInputParamDesc, getDefaultValueControl } from '@docs/utils/parameterDescriptions';
+import { DBmbInputParamDesc, DBmbTimePicker, getDefaultValueControl } from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Inputs/Date time picker',
@@ -20,8 +20,8 @@ export default {
     labelDate: DBmbInputParamDesc.label,
     labelTime: DBmbInputParamDesc.label,
     dateFormat: DBmbInputParamDesc.dateFormat,
-    timeFormat: DBmbInputParamDesc.timeFormat,
-    minuteStep: DBmbInputParamDesc.minuteStep,
+    timeFormat: DBmbTimePicker.timeFormat,
+    minuteStep: DBmbTimePicker.minuteStep,
     isRequired: DBmbInputParamDesc.isRequired,
     disabled: DBmbInputParamDesc.disabled,
     isClearable: DBmbInputParamDesc.isClearable,
