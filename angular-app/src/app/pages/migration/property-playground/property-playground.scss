@@ -23,26 +23,16 @@
     font-size: 0.75rem;
   }
 
-  input:not([type='checkbox']),
-  textarea,
+  bmb-input,
   select {
     width: 100%;
     min-width: 0;
-    padding: 0.5rem;
-    border: 1px solid var(--general-contrasts-50);
-    border-radius: 0.375rem;
-    color: inherit;
-    background: var(--containers-background);
+    display: block;
   }
 
-  textarea {
+  .property-json-input textarea {
     resize: vertical;
     font-family: monospace;
-  }
-  input[type='checkbox'] {
-    justify-self: start;
-    width: 1.25rem;
-    height: 1.25rem;
   }
   pre {
     white-space: pre-wrap;
@@ -50,16 +40,7 @@
     font-size: 0.75rem;
   }
   .property-error {
-    color: var(--bmb-color-error-primary, #ff8585);
-  }
-  .property-actions {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-  button {
-    padding: 0.5rem 0.75rem;
-    cursor: pointer;
+    color: var(--semantic-error);
   }
 }
 

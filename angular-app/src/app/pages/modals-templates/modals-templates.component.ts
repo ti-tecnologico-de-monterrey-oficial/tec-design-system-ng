@@ -4,11 +4,10 @@ import {
   BmbNativeModalService,
   BmbTablesComponent,
   IBmbActionButton,
-  IBmbNativeModal as IBmbNativeModalGeneric,
+  IBmbNativeModal,
   TableColum,
 } from 'ui-angular';
 
-type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 
 @Component({
   selector: 'app-modals-templates',

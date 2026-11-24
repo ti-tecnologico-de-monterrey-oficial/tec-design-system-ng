@@ -913,6 +913,16 @@ export const DBmbHomeCardHeaderParamDesc = {
       type: { summary: 'boolean' },
     },
   },
+  showFullText: {
+    control: { type: 'boolean' },
+    description:
+      'Limits the title to two lines with an ellipsis. When the title is truncated, its full text can be consulted with mouse hover, visible keyboard focus or a 500 ms long press.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'false' },
+      type: { summary: 'boolean' },
+    },
+  },
   isMobile: {
     control: { type: 'boolean' },
     description:
@@ -1772,4 +1782,53 @@ export const DBmbActionMenu = {
     },
   },
   title: DBmbGenericParamDesc.deprecatedTitle,
+};
+
+export const DBmbDropzone = {
+  acceptedExtensions: {
+    control: { type: 'object' as const },
+    description: `Sets the file extensions or MIME types accepted.<br/><br/>
+${RELEVANT_TITLE.important} ***/**** is for all extensions or subtypes.<br/><br/>
+${RELEVANT_TITLE.example} ***image/**** is for all image types:
+- type: images
+- *: all subtypes of image
+
+This is a selection hint, not file validation; it does not restrict drag and drop.`,
+    table: {
+      category: 'Properties',
+      type: { summary: 'string[]' },
+      defaultValue: { summary: '[]' },
+    },
+  },
+  maxFileSize: {
+    control: { type: 'number' },
+    description: 'Sets the maximum allowed file size in MB.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'number' },
+      defaultValue: getDefaultValueControl(2),
+    },
+  },
+};
+
+export const DBmbTimePicker = {
+  timeFormat: {
+    control: 'radio',
+    options: ['12h', '24h'],
+    description: 'Select the time format (12h or 24h).',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '12h' },
+    },
+  },
+  minuteStep: {
+    control: 'select',
+    options: [1, 2, 5, 10, 15, 30],
+    table: {
+      category: 'Properties',
+      type: { summary: 'number' },
+      defaultValue: { summary: 15 },
+    },
+  },
 };

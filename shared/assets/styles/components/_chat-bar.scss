@@ -87,7 +87,7 @@
     }
   }
 
-  &-drag {
+  &-container.bmb_file-attachment-picker-dragging {
     border: rem.rem_calc(2) dashed;
     border-color: var(--buttons-primary-select);
   }
@@ -155,6 +155,10 @@
     }
   }
 
+  &-attach {
+    color: var(--general-contrasts-80);
+  }
+
   &-mic {
     color: var(--general-contrasts-80);
     @media screen and (max-width: 560px) {
@@ -199,6 +203,12 @@
       justify-content: center;
       width: calc(50% - var(--bmb-spacing-s));
     }
+  }
+
+  &-file-errors {
+    display: block;
+    position: absolute;
+    z-index: 3;
   }
 
   .bmb_check-external-link-button:has(.bmb_icon-figure) {

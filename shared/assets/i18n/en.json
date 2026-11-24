@@ -89,6 +89,7 @@
     "record": "Start recording",
     "emoji": "Emoji",
     "add": "Add",
+    "attach_file": "Attach file",
     "mic": "Microphone",
     "send_message": "Send message",
     "loading": "Loading...",
@@ -590,6 +591,8 @@
     "close": "Cancel",
     "select_hour": "Select hour",
     "select_minute": "Select minute",
-    "select_period": "Select period"
+    "select_period": "Select period",
+    "clear": "Clear",
+    "open": "Open"
   }
 }

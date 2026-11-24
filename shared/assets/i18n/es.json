@@ -89,6 +89,7 @@
     "record": "Iniciar grabación",
     "emoji": "Emoji",
     "add": "Agregar",
+    "attach_file": "Adjuntar archivo",
     "mic": "Micrófono",
     "send_message": "Enviar mensaje",
     "loading": "Cargando...",
@@ -590,6 +591,8 @@
     "close": "Cancelar",
     "select_hour": "Selecciona la hora deseada:",
     "select_minute": "Selecciona  los minutos deseados:",
-    "select_period": "Selecciona el periodo de tiempo deseado:"
+    "select_period": "Selecciona el periodo de tiempo deseado:",
+    "clear": "Limpiar",
+    "open": "Abrir"
   }
 }

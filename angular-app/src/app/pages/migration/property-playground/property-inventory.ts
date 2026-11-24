@@ -146,6 +146,11 @@ export const propertyInventory: Record<string, DemoProperty[]> = {
   ],
   'chat-bar': [
     {
+      name: 'allowAttachments',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
       name: 'acceptedExtensions',
       kind: 'json',
       type: 'string[]',
@@ -291,6 +296,11 @@ export const propertyInventory: Record<string, DemoProperty[]> = {
     },
   ],
   'title-content': [
+    {
+      name: 'showFullText',
+      kind: 'boolean',
+      type: 'boolean',
+    },
     {
       name: 'titleSize',
       kind: 'text',

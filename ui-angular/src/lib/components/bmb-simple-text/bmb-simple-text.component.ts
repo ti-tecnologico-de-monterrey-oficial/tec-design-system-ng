@@ -19,6 +19,8 @@ import type { IBmbBaseGeneralContrastColors, IBmbSemanticBaseColors } from '../.
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbSimpleTextComponent {
+  text = input<string>('');
+  showFullText = input<boolean>(false);
   size = input<IBmbSimpleTextSize>(4);
   weight = input<IBmbSimpleTextWeight>('regular');
   color = input<IBmbBaseGeneralContrastColors | IBmbSemanticBaseColors | 'inherit'>('inherit');

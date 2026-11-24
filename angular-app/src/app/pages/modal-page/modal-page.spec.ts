@@ -22,6 +22,28 @@ describe('ModalPage', () => {
     expect(component).toBeTruthy();
   });
 
+  it.each([
+    [false, '¡Reservación exitosa!'],
+    [true, 'Reservación pendiente de confirmar'],
+  ])('opens the reservation template (delegated: %s)', (delegated, title) => {
+    const openModal = jest.spyOn(modalService, 'openModal');
+    component.reservaDelegada.set(delegated as boolean);
+
+    component.reserveCompletedModal();
+    fixture.detectChanges();
+
+    expect(openModal).toHaveBeenCalledWith({
+      title,
+      content: component.confirmacionReservaTemplate(),
+    });
+    expect(component.activeDialogId()).toBeTruthy();
+    expect(document.body.textContent).toContain('recibimos tu reservación');
+
+    component.closeReservationModal();
+    expect(modalService.getModalList()).toHaveLength(0);
+    expect(component.activeDialogId()).toBe('');
+  });
+
   it('should open the selected modal variant used by DS01-3722', () => {
     const openModal = jest.spyOn(modalService, 'openModal');
     component.selectedIcon.set('success');

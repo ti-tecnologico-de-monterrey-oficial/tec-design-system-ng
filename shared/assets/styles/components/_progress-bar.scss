@@ -10,34 +10,8 @@ $colorType: (
 );
 
 .bmb_progress-bar {
-  padding: var(--bmb-spacing-m);
-  border: rem.rem_calc(1) solid var(--general-contrasts-25);
-  border-radius: rem.rem_calc(8);
-  background-color: var(--containers-modal);
-  color: var(--general-contrasts-100);
-
   &-wrapper {
     overflow: hidden;
-  }
-
-  &-container {
-    margin: var(--bmb-spacing-s) 0;
-  }
-
-  &-icon {
-    color: var(--general-contrasts-main-selection);
-
-    &-successful {
-      color: var(--alert-successful);
-    }
-
-    &-action {
-      color: var(--general-contrasts-60);
-    }
-
-    .bmb_icon-svg {
-      color: var(--general-contrasts-main-selection);
-    }
   }
 
   &-counter-text {
@@ -71,7 +45,6 @@ $colorType: (
   &-error {
     color: var(--buttons-destructive);
 
-    .bmb_icon-svg,
     .bmb_value-counter-value {
       color: var(--buttons-destructive);
     }

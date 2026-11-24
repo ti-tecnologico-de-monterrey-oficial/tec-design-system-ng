@@ -204,7 +204,6 @@ export const Default: Story = {
       content: {text: 'I need help with Angular signals.'}
     }" [isThinking]="false"
     [showActions]="true"
-    [userActions]="['copy']"
     (getAction)="getAction($event)"
     (getOptionClicked)="getOptionClicked($event)"
   />
@@ -233,7 +232,6 @@ export const Default: Story = {
       content: {text: 'I need help with Angular signals.'}
     }" [isThinking]="false"
     [showActions]="true"
-    [userActions]="['copy']"
     (getAction)="getAction($event)"
     (getOptionClicked)="getOptionClicked($event)"
   />

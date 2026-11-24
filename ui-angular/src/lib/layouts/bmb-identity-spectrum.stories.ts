@@ -14,9 +14,8 @@ import {
 import { BmbFormValidatorComponent } from '../components/bmb-form-validator/bmb-form-validator.component';
 import { BmbInputComponent } from '../components/bmb-input/bmb-input.component';
 
-import { IBmbNativeModal as IBmbNativeModalGeneric } from '../_shared/types';
+import { IBmbNativeModal } from '../_shared/types';
 
-type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import { BmbNativeModalService } from '../services/modal/native-modal.service';
 import { IBmbActionHeader } from '@shared/types';
 

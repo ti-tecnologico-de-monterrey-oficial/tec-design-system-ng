@@ -22,9 +22,8 @@ import {
   timestreamGetBadgeText,
   timestreamGetDiffString,
 } from '../../_shared/logic/components/timestream';
-import type { IBmbNativeModal as IBmbNativeModalGeneric } from '../../_shared/types';
+import type { IBmbNativeModal } from '../../_shared/types';
 
-type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import type { IBbmBgAppearance } from '../../_shared/types/components/advertisement-card';
 import type {
   IBmbClamp,

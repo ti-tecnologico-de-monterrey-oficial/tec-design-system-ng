@@ -1,0 +1,175 @@
+<section
+  class="reservation"
+  [class.reservation--expanded]="expanded()"
+  aria-label="Reserva de salas"
+>
+  <bmb-home-card
+    componentTitle="Reserva de salas"
+    subtitle="Reserva de salas"
+    icon="groups"
+    bgIconAppearance="green-primary"
+    contentPadding="none"
+    [isExpanded]="expanded()"
+    (onExpandClick)="expanded.set(!expanded())"
+  >
+    <header class="reservation__step">
+      <h1>Selecciona el espacio que buscas</h1>
+      <div
+        class="reservation__progress"
+        role="group"
+        aria-label="Paso 2 de 4: selecciona el espacio"
+      >
+        <bmb-step-progress-bar
+          type="horizontal"
+          size="normal"
+          [activeStep]="1"
+          [totalSteps]="4"
+          [freeze]="true"
+        />
+      </div>
+    </header>
+
+    <form
+      class="reservation__form"
+      aria-label="Ubicación y horario"
+      aria-describedby="reservation-demo"
+      (submit)="$event.preventDefault()"
+    >
+      <div class="reservation__fields">
+        <div class="reservation__field">
+          <label for="reservation-city">Ciudad</label>
+          <div class="reservation__select">
+            <select id="reservation-city" [formControl]="controls.city">
+              <option value="" disabled>Selecciona</option>
+              @for (city of cities; track city) {
+              <option [value]="city">{{ city }}</option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="reservation__field">
+          <label for="reservation-campus">Campus/sede</label>
+          <div class="reservation__select">
+            <select id="reservation-campus" [formControl]="controls.campus">
+              <option value="" disabled>Selecciona</option>
+              @for (campus of campuses(); track campus) {
+              <option [value]="campus">{{ campus }}</option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="reservation__field">
+          <label for="reservation-building">Edificio</label>
+          <div class="reservation__select">
+            <select id="reservation-building" [formControl]="controls.building">
+              <option value="" disabled>Selecciona</option>
+              @for (building of buildings(); track building) {
+              <option [value]="building">{{ building }}</option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="reservation__field">
+          <label for="reservation-floor">Piso</label>
+          <div class="reservation__select">
+            <select id="reservation-floor" [formControl]="controls.floor">
+              <option value="" disabled>Selecciona</option>
+              @for (floor of floors(); track floor) {
+              <option [value]="floor">{{ floor }}</option>
+              }
+            </select>
+          </div>
+        </div>
+        <bmb-datepicker
+          inputId="reservation-date"
+          name="reservation-date"
+          label="Fecha"
+          placeholder="Selecciona"
+          dateFormat="dd/MM/yyyy"
+          helperMessage=""
+          [control]="controls.date"
+        />
+        <div class="reservation__times">
+          <div class="reservation__time" role="group" aria-label="Hora inicio">
+            <div class="reservation__field">
+              <label for="reservation-start"
+                >Hora inicio <span aria-hidden="true">*</span></label
+              >
+              <div class="reservation__select">
+                <select
+                  id="reservation-start"
+                  required
+                  [formControl]="controls.startTime"
+                >
+                  <option value="" disabled>00 : 00</option>
+                  @for (time of times; track time) {
+                  <option [value]="time">{{ time }}</option>
+                  }
+                </select>
+              </div>
+            </div>
+            <div class="reservation__field reservation__period">
+              <label for="reservation-start-period">AM/PM inicio</label>
+              <div class="reservation__select">
+                <select
+                  id="reservation-start-period"
+                  [formControl]="controls.startPeriod"
+                >
+                  @for (period of periods; track period) {
+                  <option [value]="period">{{ period }}</option>
+                  }
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="reservation__time" role="group" aria-label="Hora fin">
+            <div class="reservation__field">
+              <label for="reservation-end"
+                >Hora fin <span aria-hidden="true">*</span></label
+              >
+              <div class="reservation__select">
+                <select
+                  id="reservation-end"
+                  required
+                  [formControl]="controls.endTime"
+                  aria-describedby="reservation-time-error"
+                >
+                  <option value="" disabled>00 : 00</option>
+                  @for (time of times; track time) {
+                  <option [value]="time">{{ time }}</option>
+                  }
+                </select>
+              </div>
+            </div>
+            <div class="reservation__field reservation__period">
+              <label for="reservation-end-period">AM/PM fin</label>
+              <div class="reservation__select">
+                <select
+                  id="reservation-end-period"
+                  [formControl]="controls.endPeriod"
+                  aria-describedby="reservation-time-error"
+                >
+                  @for (period of periods; track period) {
+                  <option [value]="period">{{ period }}</option>
+                  }
+                </select>
+              </div>
+            </div>
+          </div>
+          <p
+            id="reservation-time-error"
+            class="reservation__error"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            {{ timeError() }}
+          </p>
+        </div>
+      </div>
+    </form>
+  </bmb-home-card>
+  <p id="reservation-demo" class="reservation__demo">
+    Demostración con ubicaciones de ejemplo. No consulta disponibilidad ni
+    registra reservas.
+  </p>
+</section>

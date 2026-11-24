@@ -1,4 +1,5 @@
 import {
+  afterNextRender,
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
@@ -7,6 +8,7 @@ import {
   effect,
   ElementRef,
   inject,
+  Injector,
   input,
   model,
   OnDestroy,
@@ -59,6 +61,7 @@ import {
 })
 export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
   private readonly translationService = inject(BmbTranslationsService);
+  private readonly injector = inject(Injector);
 
   bgIconAppearance = input<IBmbColor>('gray-charade-500');
   componentTitle = input<string>('');
@@ -114,11 +117,9 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
     IBMB_AI_CHAT_CARD_MODE.COMPACT;
 
   ngAfterViewInit(): void {
-    const _length = this.aiChatBar().length;
-
-    if (_length !== 1) {
+    if (!this.isOneChatBar()) {
       console.error(
-        `Remember that there must be exactly one bmb-chat-bar; ${_length} were found. The component will not render.`,
+        `Remember that there must be exactly one bmb-chat-bar; ${this.aiChatBar().length} were found. The component will not render.`,
       );
     }
   }
@@ -146,10 +147,11 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
 
   private focusChatBarInput(): void {
     const container = this.aiChatBarContainer()?.nativeElement;
-    const input = container?.querySelector<HTMLElement>(
-      'input, textarea, [contenteditable="true"]',
+    // Target the textarea explicitly: the attachment picker renders a hidden file input before it.
+    const textarea = container?.querySelector<HTMLTextAreaElement>(
+      'textarea.bmb_chat-bar-input',
     );
-    input?.focus();
+    textarea?.focus();
   }
 
   constructor() {
@@ -157,27 +159,6 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
       /**Handle - Track last mode when is invisible or compact to restore it */
       if (isConversationDisabledAIChatCardMode(this.mode())) {
         this.lastConversationDisabledMode = this.mode();
-      }
-    });
-
-    effect(() => {
-      /**Handle - Auto-scroll "AI chat bubbles" to bottom on new content */
-      const container = this.aiChatBubblesContainer()?.nativeElement;
-
-      if (container) {
-        this.observeBubblesContainer(container);
-        this.scrollBubblesToBottom();
-      } else {
-        this.aiChatBubblesObserver?.disconnect();
-      }
-    });
-
-    effect(() => {
-      /**Handle - Focus "AI chat bar" input when the bar container becomes available */
-      const container = this.aiChatBarContainer()?.nativeElement;
-
-      if (container && isConversationEnabledAIChatCardMode(this.mode())) {
-        queueMicrotask(() => this.focusChatBarInput());
       }
     });
 
@@ -204,6 +185,36 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
       } else if (this.contentProjected.isContentOpen(this.aiChatId)) {
         this.contentProjected.closeContent(this.aiChatId);
       }
+    });
+
+    effect(() => {
+      if (isConversationEnabledAIChatCardMode(this.mode())) {
+        /**Handle - Auto-scroll "AI chat bubbles" to bottom on new content */
+        const aiChatBubblesContainer =
+          this.aiChatBubblesContainer()?.nativeElement;
+
+        if (aiChatBubblesContainer) {
+          this.observeBubblesContainer(aiChatBubblesContainer);
+          this.scrollBubblesToBottom();
+        } else {
+          this.aiChatBubblesObserver?.disconnect();
+        }
+      }
+    });
+
+    effect(() => {
+      /**Handle - Focus "AI chat bar" input when the bar container becomes available */
+      const isConversationEnabled = isConversationEnabledAIChatCardMode(
+        this.mode(),
+      );
+      const container = this.aiChatBarContainer();
+
+      if (!isConversationEnabled || !container) return;
+
+      // Runs after the render cycle so the projected dialog's own focus() doesn't override it.
+      afterNextRender(() => this.focusChatBarInput(), {
+        injector: this.injector,
+      });
     });
   }
 

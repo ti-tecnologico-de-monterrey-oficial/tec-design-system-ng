@@ -1,7 +1,29 @@
-export interface IDropzoneFileLike {
+interface IBmbFileErrorType {
+  errorType?: 'format' | 'size' | 'name' | null;
+}
+
+export interface FileData extends IBmbFileErrorType {
+  id: string;
+  name: string;
+  size: number;
+  base64?: string;
+  error?: boolean;
+}
+
+export interface IBmbFileValidation {
+  isValidFormat: boolean;
+  isValidSize: boolean;
+  isValidName: boolean;
+}
+
+export interface FileSizeDisplay {
+  value: number;
+  unit: 'KB' | 'MB';
+}
+
+export interface IDropzoneFileLike extends IBmbFileErrorType {
   name: string;
   error?: boolean;
-  errorType?: 'format' | 'size' | 'name' | null;
 }
 
 export function getDropzoneFileSizeInMB(fileSize: number): number {
@@ -12,9 +34,10 @@ export function getDropzoneFileSizeInKB(fileSize: number): number {
   return fileSize / 1024;
 }
 
-export function getDropzoneFileSize(
-  fileSize: number,
-): { value: number; unit: 'KB' | 'MB' } {
+export function getDropzoneFileSize(fileSize: number): {
+  value: number;
+  unit: 'KB' | 'MB';
+} {
   const sizeInMB = getDropzoneFileSizeInMB(fileSize);
 
   if (Math.floor(sizeInMB) === 0) {
@@ -55,14 +78,18 @@ export function isValidDropzoneFileFormat(
   }
 
   if (
-    acceptedExtensions.includes(fileName.substring(fileName.lastIndexOf('.') + 1))
+    acceptedExtensions.includes(
+      fileName.substring(fileName.lastIndexOf('.') + 1),
+    )
   )
     return true;
 
   return false;
 }
 
-export function getDropzoneAcceptAttribute(acceptedExtensions: string[]): string {
+export function getDropzoneAcceptAttribute(
+  acceptedExtensions: string[],
+): string {
   return acceptedExtensions
     .map((ext) => {
       const cleanExt = ext.trim().toLowerCase();
@@ -96,7 +123,10 @@ export function getDropzoneFileName(name: string, hasError: boolean): string {
   return hasError ? name.concat('*') : name;
 }
 
-export function getDropzoneFormatProgress(value: string, total: string): string {
+export function getDropzoneFormatProgress(
+  value: string,
+  total: string,
+): string {
   return `${value}%/${total}%`;
 }
 
@@ -147,9 +177,7 @@ export function hasDropzoneSizeErrorFiles(
 export function hasDropzoneNameErrorFiles(
   fileDataList: IDropzoneFileLike[],
 ): boolean {
-  return fileDataList.some(
-    (file) => file.error && file.errorType === 'name',
-  );
+  return fileDataList.some((file) => file.error && file.errorType === 'name');
 }
 
 export function isDropzoneUploadInProgress(

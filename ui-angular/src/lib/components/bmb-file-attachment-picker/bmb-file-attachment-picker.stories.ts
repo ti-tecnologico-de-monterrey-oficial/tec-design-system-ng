@@ -16,7 +16,10 @@ import {
   getSpecialSpecifications,
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
-import { getModelDescription } from '@docs/utils/parameterDescriptions';
+import {
+  DBmbDropzone,
+  getModelDescription,
+} from '@docs/utils/parameterDescriptions';
 
 type FileAttachmentArgs = {
   files: File[];
@@ -60,6 +63,9 @@ ${getSpecialSpecifications(
 - \`filesSelected\` only notifies selections made through the native file picker,
   emitting the files from that selection rather than the accumulated list.
 - \`inputId\` is optional. If provided, use a unique value for each instance.
+- \`disabled\` ignores drag and drop, disables the native input and makes \`openFilePicker()\` a no-op.
+- The host exposes the \`bmb_file-attachment-picker-has-files\`, \`bmb_file-attachment-picker-dragging\`
+  and \`bmb_file-attachment-picker-disabled\` classes.
 `,
     {
       title: RELEVANT_TITLE.configuration,
@@ -69,8 +75,8 @@ ${getSpecialSpecifications(
     },
   )}
 >
-The host uses \`display: contents\`: project a container with dimensions and styles
-to define the visible drop area, as shown in these examples.
+The host is a block element with no styles of its own: add a class to the host or wrap it in a
+container with dimensions and styles to define the visible drop area, as shown in these examples.
 The consuming component is responsible for uploading or processing the files.
 `,
   { showAdditionalBlockquote: true },
@@ -131,16 +137,7 @@ ${getModelDescription('onDragFiles')}
         defaultValue: { summary: '' },
       },
     },
-    acceptedExtensions: {
-      control: { type: 'text' },
-      description:
-        'Optional native file picker filter, such as ".pdf,image/*". This is a selection hint, not file validation; it does not restrict drag and drop.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
+    acceptedExtensions: DBmbDropzone.acceptedExtensions,
     filesSelected: {
       control: false,
       description:
