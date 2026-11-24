@@ -4,29 +4,20 @@ on:
   push:
     branches:
       - develop
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
-    branches:
-      - develop
   release:
     types: [published]
   workflow_dispatch:
 
 concurrency:
-  group: azure-swa-storybook-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  group: azure-swa-storybook
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
     name: Build & Deploy Storybook
-    if: >-
-      github.event_name != 'pull_request' ||
-      (github.event.action != 'closed' &&
-      github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: write
     env:
       STORYBOOK_OUTPUT_DIR: dist/storybook/ui-angular
     steps:
@@ -51,25 +42,7 @@ jobs:
         uses: Azure/static-web-apps-deploy@1a947af9992250f3bc2e68ad0754c0b0c11566c9 # v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.WEB_APP_DEPLOYMENT }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: upload
           skip_app_build: true
           skip_api_build: true
           app_location: ${{ env.STORYBOOK_OUTPUT_DIR }}
-
-  close-pull-request:
-    name: Close PR Preview Environment
-    if: >-
-      github.event_name == 'pull_request' &&
-      github.event.action == 'closed' &&
-      github.event.pull_request.head.repo.full_name == github.repository
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-    steps:
-      - name: Close Azure Static Web Apps preview
-        uses: Azure/static-web-apps-deploy@1a947af9992250f3bc2e68ad0754c0b0c11566c9 # v1
-        with:
-          azure_static_web_apps_api_token: ${{ secrets.WEB_APP_DEPLOYMENT }}
-          action: close
