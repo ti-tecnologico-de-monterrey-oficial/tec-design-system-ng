@@ -4,9 +4,9 @@
       "type": "http",
       "url": "https://mcp.supernova.io/mcp/c/349505"
     },
-    "supernova-default": {
+    "bamboo": {
       "type": "http",
-      "url": "https://mcp.supernova.io/mcp/c/46326-supernova-default"
+      "url": "https://mcp.supernova.io/mcp/c/262945-bamboo"
     }
   }
 }
