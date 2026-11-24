@@ -591,6 +591,8 @@
     "close": "Cancel",
     "select_hour": "Select hour",
     "select_minute": "Select minute",
-    "select_period": "Select period"
+    "select_period": "Select period",
+    "clear": "Clear",
+    "open": "Open"
   }
 }

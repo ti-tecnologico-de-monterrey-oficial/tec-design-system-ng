@@ -22,6 +22,16 @@ cpSync('shared/types', targets.types, { recursive: true });
 cpSync('shared/assets/styles', targets.styles, { recursive: true });
 cpSync('shared/assets', targets.assets, { recursive: true });
 
+const modalTypesFile = `${targets.types}/components/modal.ts`;
+const modalTypes = readFileSync(modalTypesFile, 'utf8').replace(
+  'content?: unknown;',
+  'content?: string | TemplateRef<any> | Type<any> | null;',
+);
+writeFileSync(
+  modalTypesFile,
+  `import type { TemplateRef, Type } from '@angular/core';\n${modalTypes}`,
+);
+
 // Preserve Angular template defaults after removing the compatibility overlay.
 const chatTypesFile = `${targets.types}/components/ai-chat-bubble.ts`;
 const chatTypes = readFileSync(chatTypesFile, 'utf8').replaceAll(

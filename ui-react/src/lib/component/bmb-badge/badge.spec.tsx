@@ -15,10 +15,10 @@ describe('BmbBadge', () => {
     expect(badge?.querySelector('.bmb_badge-content')?.textContent?.trim()).toBe(
       'New',
     );
-    expect(bullet?.className).toBe('bmb_badge-normal');
+    expect(bullet?.className).toBe('bmb_badge-bullet');
   });
 
-  it('applies the selected appearance to the container and bullet', () => {
+  it('applies the selected appearance to the container, leaving the bullet unmodified', () => {
     render(<BmbBadge appearance="success-primary" text="Success" container />);
 
     const badge = screen.getByText('Success').closest('section');
@@ -27,10 +27,10 @@ describe('BmbBadge', () => {
     expect(badge?.className).toContain('bmb_badge');
     expect(badge?.className).toContain('bmb_badge-container');
     expect(badge?.className).toContain('bmb_badge-success-primary');
-    expect(bullet?.className).toBe('bmb_badge-success-primary');
+    expect(bullet?.className).toBe('bmb_badge-bullet');
   });
 
-  it('only applies the disabled appearance class when the container is disabled', () => {
+  it('keeps the base bullet class when the container is disabled', () => {
     render(<BmbBadge appearance="disabled" text="Disabled" container />);
 
     const badge = screen.getByText('Disabled').closest('section');
@@ -39,7 +39,7 @@ describe('BmbBadge', () => {
     expect(badge?.className).toContain('bmb_badge');
     expect(badge?.className).toContain('bmb_badge-container');
     expect(badge?.className).toContain('bmb_badge-disabled');
-    expect(bullet?.className).toBe('');
+    expect(bullet?.className).toBe('bmb_badge-bullet');
   });
 
   it('omits the container and appearance classes for a non-disabled badge without a container', () => {
@@ -51,7 +51,7 @@ describe('BmbBadge', () => {
     expect(badge?.className).toContain('bmb_badge');
     expect(badge?.className).not.toContain('bmb_badge-container');
     expect(badge?.className).not.toContain('bmb_badge-success-primary');
-    expect(bullet?.className).toBe('bmb_badge-success-primary');
+    expect(bullet?.className).toBe('bmb_badge-bullet bmb_badge-success-primary');
   });
 
   it('keeps the disabled class without a container', () => {

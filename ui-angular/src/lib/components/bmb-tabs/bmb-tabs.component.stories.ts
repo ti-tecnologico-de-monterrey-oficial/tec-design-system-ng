@@ -196,6 +196,15 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     },
   },
   argTypes: {
+    showFullText: {
+      control: 'boolean',
+      description:
+        'Reveals truncated labels on mouse hover, keyboard focus or a 500 ms long press. A long press consumes its following click; a normal click still selects the tab. Close with Escape, pointer leave, outside press or scrolling.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+      },
+    },
     appearanceContrast: getAppearanceParam(
       'tabs',
       ['default', 'primary', 'alternative'],
@@ -243,6 +252,7 @@ Data:
     format: DBmbGenericParamDesc.deprecated,
   },
   args: {
+    showFullText: false,
     appearanceContrast: 'default',
     tabs: [
       { id: 1, title: 'Tec de Monterrey', badge: 13, isActive: true },

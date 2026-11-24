@@ -117,6 +117,71 @@ describe('BmbChatBarComponent', () => {
     expect(event.defaultPrevented).toBe(true);
   });
 
+  it('should not attach dropped files with errors and show them in a toast', () => {
+    fixture.componentRef.setInput('allowAttachments', true);
+    fixture.componentRef.setInput('acceptedExtensions', ['.pdf']);
+    fixture.componentRef.setInput('maxFileSize', 0.000001);
+    fixture.detectChanges();
+    const valid = new File([''], 'valid.pdf', { type: 'application/pdf' });
+    const invalidFormat = new File(['a'], 'notes.txt', { type: 'text/plain' });
+    const tooLarge = new File(['large'], 'large.pdf', {
+      type: 'application/pdf',
+    });
+    const event = new Event('drop', { bubbles: true, cancelable: true });
+    Object.defineProperty(event, 'dataTransfer', {
+      value: { files: [valid, invalidFormat, tooLarge] },
+    });
+
+    fixture.nativeElement
+      .querySelector('.bmb_chat-bar-main')
+      .dispatchEvent(event);
+    fixture.detectChanges();
+
+    const picker = fixture.debugElement.query(
+      By.directive(BmbFileAttachmentPicker),
+    ).componentInstance as BmbFileAttachmentPicker;
+    expect(component.files()).toEqual([valid]);
+    expect(picker.files()).toEqual([valid]);
+    expect(
+      fixture.nativeElement.querySelectorAll(
+        '.bmb_file-attachment-picker-option',
+      ).length,
+    ).toBe(1);
+    expect(fixture.nativeElement.querySelectorAll('bmb-toast').length).toBe(2);
+  });
+
+  it('should accept bare extensions and keep files with errors out of the picker', () => {
+    fixture.componentRef.setInput('allowAttachments', true);
+    fixture.componentRef.setInput('acceptedExtensions', [
+      'png',
+      'image/jpeg',
+      'jpg',
+    ]);
+    fixture.detectChanges();
+    const image = new File(['a'], 'photo.png', { type: 'image/png' });
+    const event = new Event('drop', { bubbles: true, cancelable: true });
+    Object.defineProperty(event, 'dataTransfer', {
+      value: {
+        files: [image, new File(['a'], 'notes.txt', { type: 'text/plain' })],
+      },
+    });
+
+    fixture.nativeElement
+      .querySelector('.bmb_chat-bar-main')
+      .dispatchEvent(event);
+    fixture.detectChanges();
+
+    expect(component.files()).toEqual([image]);
+    expect(
+      fixture.nativeElement.querySelectorAll(
+        '.bmb_file-attachment-picker-option',
+      ).length,
+    ).toBe(1);
+    const toasts = fixture.nativeElement.querySelectorAll('bmb-toast');
+    expect(toasts.length).toBe(1);
+    expect(toasts[0].textContent).toContain('notes.txt');
+  });
+
   it('should use the attachment picker as the chat bar container', () => {
     const container = fixture.nativeElement.querySelector(
       '.bmb_chat-bar-container',

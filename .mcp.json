@@ -3,6 +3,10 @@
     "supernova": {
       "type": "http",
       "url": "https://mcp.supernova.io/mcp/c/349505"
+    },
+    "bamboo": {
+      "type": "http",
+      "url": "https://mcp.supernova.io/mcp/c/262945-bamboo"
     }
   }
 }
