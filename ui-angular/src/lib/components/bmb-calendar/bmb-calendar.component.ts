@@ -24,7 +24,7 @@ import type {
   IBmbCalendarEventClick,
   IBmbCalendarView,
 } from '../../_shared/types/components/calendar';
-import { BmbCalendarService } from '../../services/old/calendar/calendar.service';
+import { BmbCalendarService } from '../../services/calendar/calendar.service';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import { BmbCalendarComponentService } from './bmb-calendar.service';
 import { BmbCalendarHeaderComponent } from './common/bmb-calendar-header/bmb-calendar-header.component';

@@ -1,9 +1,12 @@
+import { BmbChatAttachmentError } from '../chat-attachment';
+
 export type BmbChatMessageType =
   | 'text'
   | 'image'
   | 'mixed'
   | 'link'
   | 'options'
+  | 'upload-file'
   | 'template';
 
 export type BmbChatStatus = 'sending' | 'sent' | 'error';
@@ -80,12 +83,34 @@ export interface BmbTemplateMessage<TTemplate = unknown>
   };
 }
 
+export interface BmbUploadFileMessage extends BmbChatBaseMessage {
+  type: 'upload-file';
+  content: {
+    fileName: string;
+    text?: string;
+    buttonLabel?: string;
+    acceptedFormats?: string[];
+    /** Maximum size per file in MB (1024 * 1024 bytes). Defaults to 2. */
+    maxFileSize?: number;
+    error?: BmbChatAttachmentError;
+    additionalRequirements?: string[];
+    cancelKeyword?: string;
+  };
+}
+
+export interface BmbUploadFileRequestEvent {
+  messageId: string;
+  message: BmbUploadFileMessage;
+  nativeEvent: Event;
+}
+
 export type BmbChatMessage<TTemplate = unknown> =
   | BmbTextMessage
   | BmbImageMessage
   | BmbMixedMessage
   | BmbLinkMessage
   | BmbOptionsMessage
+  | BmbUploadFileMessage
   | BmbTemplateMessage<TTemplate>;
 
 export type BmbChatAction =

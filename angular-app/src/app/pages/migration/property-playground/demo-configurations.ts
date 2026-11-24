@@ -9,10 +9,15 @@ import type { DemoConfiguration, DemoValue } from './demo-properties';
 import { filterCardDemoControls } from './filter-card-demo-controls';
 import { propertyInventory } from './property-inventory';
 
-export function createDemoConfiguration(name: string, preset?: string): DemoConfiguration {
-  if (name === 'container-button') return createContainerButtonDemoConfiguration(preset);
+export function createDemoConfiguration(
+  name: string,
+  preset?: string,
+): DemoConfiguration {
+  if (name === 'container-button')
+    return createContainerButtonDemoConfiguration(preset);
   if (name === 'grades') return createGradesDemoConfiguration(preset);
-  if (name === 'evaluation-rubric') return createEvaluationRubricDemoConfiguration(preset);
+  if (name === 'evaluation-rubric')
+    return createEvaluationRubricDemoConfiguration(preset);
   if (name === 'profile') return createProfileDemoConfiguration(preset);
 
   const now = DateTime.now();
@@ -108,16 +113,13 @@ export function createDemoConfiguration(name: string, preset?: string): DemoConf
       language: 'es',
     },
     'chat-bar': {
+      allowAttachments: false,
+      acceptedExtensions: undefined,
+      maxFileSize: 2,
+      files: [],
       placeholder: 'Escribe un mensaje...',
       botList: defaultBotList,
-      actionsList: [
-        {
-          name: 'Demo action',
-          label: 'Demo action',
-          icon: 'attach_file',
-          action: '[callback]',
-        },
-      ],
+      actionsList: [],
       showEmoji: false,
       emojiIcon: 'sentiment_satisfied',
       enableMicInput: false,

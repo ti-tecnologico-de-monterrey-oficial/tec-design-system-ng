@@ -13,7 +13,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'BmbSimpleTextComponent' })} render a text block with a configurable size, weight, color and html tag.`)}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'simple-text' })} render a text block with a configurable size, weight, color and html tag.`)}
 ${getBasicExampleBlock('BmbSimpleTextComponent')}
         `,
       },
@@ -55,7 +55,40 @@ ${getBasicExampleBlock('BmbSimpleTextComponent')}
     },
     color: {
       control: { type: 'select' },
-      options: ['inherit', 'general-contrasts-100', 'general-contrasts-90', 'general-contrasts-80', 'general-contrasts-70', 'general-contrasts-60', 'general-contrasts-50', 'general-contrasts-40', 'general-contrasts-30', 'general-contrasts-20', 'general-contrasts-10', 'success-primary', 'success-light', 'success-thin', 'success-primary-alternative', 'success-tint-alternative', 'warning-primary', 'warning-light', 'warning-tint', 'warning-primary-alternative', 'error-primary', 'error-light', 'error-tint', 'info-primary', 'info-light', 'info-tint', 'branding-primary', 'branding-light', 'branding-tint', 'alert-primary', 'alert-light', 'alert-tint'],
+      options: [
+        'inherit',
+        'general-contrasts-100',
+        'general-contrasts-90',
+        'general-contrasts-80',
+        'general-contrasts-70',
+        'general-contrasts-60',
+        'general-contrasts-50',
+        'general-contrasts-40',
+        'general-contrasts-30',
+        'general-contrasts-20',
+        'general-contrasts-10',
+        'success-primary',
+        'success-light',
+        'success-thin',
+        'success-primary-alternative',
+        'success-tint-alternative',
+        'warning-primary',
+        'warning-light',
+        'warning-tint',
+        'warning-primary-alternative',
+        'error-primary',
+        'error-light',
+        'error-tint',
+        'info-primary',
+        'info-light',
+        'info-tint',
+        'branding-primary',
+        'branding-light',
+        'branding-tint',
+        'alert-primary',
+        'alert-light',
+        'alert-tint',
+      ],
       description: 'Sets the text color.',
       table: {
         category: 'Properties',
@@ -64,7 +97,7 @@ ${getBasicExampleBlock('BmbSimpleTextComponent')}
       },
     },
     elementType: {
-     control: null,
+      control: null,
       description: 'Sets the html tag used to render the component.',
       table: {
         category: 'Properties',

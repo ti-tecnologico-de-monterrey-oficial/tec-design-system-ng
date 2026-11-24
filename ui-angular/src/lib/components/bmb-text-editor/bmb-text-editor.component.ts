@@ -18,7 +18,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,
-} from '../../services/old/projection/projection.service';
+} from '../../services/projection/projection.service';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import { IActions, IBmbTextEditorPromptType } from '../../_shared/types';

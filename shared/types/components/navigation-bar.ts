@@ -1,5 +1,5 @@
 import type { IAlignItemsOptions, IJustifyOptions } from './layout';
-import type { IBmbTargetLink } from '../utils';
+import type { IBmbTargetLink } from '../utils/utils';
 
 export type BmbNavigationBarGapSize =
   | 'xs'

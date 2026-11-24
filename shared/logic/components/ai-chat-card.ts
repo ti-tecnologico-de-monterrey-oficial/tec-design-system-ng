@@ -6,10 +6,8 @@ import {
 export function getNextAIChatCardMode(
   currentMode: IBmbAIChatCardMode,
 ): IBmbAIChatCardMode {
-  if (isConversationDisabledAIChatCardMode(currentMode))
-    return IBMB_AI_CHAT_CARD_MODE.CHAT;
-
-  if (isExpandedAIChatCardMode(currentMode)) return IBMB_AI_CHAT_CARD_MODE.CHAT;
+  if (isChatAIChatCardMode(currentMode))
+    return IBMB_AI_CHAT_CARD_MODE.INVISIBLE;
 
   return IBMB_AI_CHAT_CARD_MODE.EXPANDED;
 }

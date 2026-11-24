@@ -36,7 +36,7 @@ import type {
 } from '../../_shared/types/components/timestream';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { TranslatePipe } from '../../pipes/translations';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';

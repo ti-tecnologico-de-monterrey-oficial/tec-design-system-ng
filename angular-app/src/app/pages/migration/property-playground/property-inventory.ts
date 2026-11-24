@@ -146,6 +146,31 @@ export const propertyInventory: Record<string, DemoProperty[]> = {
   ],
   'chat-bar': [
     {
+      name: 'allowAttachments',
+      kind: 'boolean',
+      type: 'boolean',
+    },
+    {
+      name: 'acceptedExtensions',
+      kind: 'json',
+      type: 'string[]',
+      shape: 'array',
+      optional: true,
+    },
+    {
+      name: 'maxFileSize',
+      kind: 'number',
+      type: 'number',
+    },
+    {
+      name: 'files',
+      kind: 'json',
+      type: 'File[]',
+      shape: 'array',
+      model: true,
+      hint: 'Select files using the attachment picker; use [] to clear them.',
+    },
+    {
       name: 'placeholder',
       kind: 'text',
       type: 'string',

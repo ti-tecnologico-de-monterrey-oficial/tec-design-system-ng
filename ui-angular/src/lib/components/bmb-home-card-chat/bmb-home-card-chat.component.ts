@@ -31,7 +31,7 @@ import {
 } from '../bmb-chat-bubbles/bmb-chat-bubbles.component';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { CommonModule } from '@angular/common';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { IBmbActionHeader } from '../../_shared/types';

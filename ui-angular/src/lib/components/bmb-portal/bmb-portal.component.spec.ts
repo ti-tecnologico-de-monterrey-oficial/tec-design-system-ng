@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BmbPortalComponent } from './bmb-portal.component';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
-import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
-import { BmbNotificationService } from '../../services/old/notification/notification.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
+import { BmbNotificationService } from '../../services/notification/notification.service';
 
 describe('BmbPortalComponent', () => {
   describe('sin modales ni contenido proyectado', () => {

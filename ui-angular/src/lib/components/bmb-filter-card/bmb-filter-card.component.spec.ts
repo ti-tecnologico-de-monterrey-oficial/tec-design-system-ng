@@ -6,7 +6,7 @@ import type {
   IBmbOptionRule,
   IBmbVisibilityRule,
 } from '../../_shared/types/components/filter-card';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbFilterCardComponent } from './bmb-filter-card.component';
 
@@ -30,6 +30,64 @@ describe('BmbFilterCardComponent', () => {
     const fixture = TestBed.createComponent(BmbFilterCardComponent);
     const component = fixture.componentInstance;
     expect(component).toBeTruthy();
+  });
+
+  it('runs the modal apply and reset actions', () => {
+    const fixture = TestBed.createComponent(BmbFilterCardComponent);
+    const component = fixture.componentInstance;
+    const modal = TestBed.inject(BmbNativeModalService);
+    const open = jest.spyOn(modal, 'openModal').mockReturnValue('filters');
+    const close = jest.spyOn(modal, 'closeModal');
+    const apply = jest.spyOn(component.applyFilters, 'emit');
+    const reset = jest.spyOn(component.resetFilters, 'emit');
+    component.openModalComponent();
+    const options = open.mock.calls[0][0];
+    options.actions![0].action();
+    expect(apply).toHaveBeenCalled();
+    expect(close).toHaveBeenCalledWith('filters');
+    options.actions![1].action();
+    expect(reset).toHaveBeenCalled();
+    component.modalId.set(null);
+    close.mockClear();
+    component.handleSubmit();
+    expect(close).not.toHaveBeenCalled();
+  });
+
+  it('avoids emitting a new filter state for equivalent multi-select arrays', () => {
+    const fixture = TestBed.createComponent(BmbFilterCardComponent);
+    const component = fixture.componentInstance;
+    fixture.componentRef.setInput('controlTypes', [
+      {
+        title: 'Campus',
+        control: [
+          {
+            name: 'campus',
+            type: 'dropdown',
+            label: 'Campus',
+            isMultiSelect: true,
+          },
+        ],
+      },
+    ]);
+    fixture.detectChanges();
+    component.onValueChange(['MTY', 'GDL'], 'campus');
+    const first = component['filterValues']();
+    component.onValueChange(['MTY', 'GDL'], 'campus');
+    expect(component['filterValues']()).toBe(first);
+    component.onValueChange(['MTY'], 'campus');
+    expect(component['filterValues']()).not.toBe(first);
+    component.onValueChange(['GDL'], 'campus');
+    expect(component['filterValues']()['campus']).toEqual(['GDL']);
+    expect(
+      component.getControlOptions({
+        name: 'empty',
+        type: 'dropdown',
+        label: 'Empty',
+      }),
+    ).toEqual([]);
+    expect(component.isSectionVisible({ title: 'Other', control: [] })).toBe(
+      true,
+    );
   });
 
   it('should render filter card', () => {

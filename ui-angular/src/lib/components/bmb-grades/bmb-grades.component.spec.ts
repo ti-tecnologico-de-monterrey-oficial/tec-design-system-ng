@@ -1,11 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
 import { BmbGradesComponent } from './bmb-grades.component';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 
 describe('BmbGradesComponent', () => {
   let component: BmbGradesComponent;
   let fixture: ComponentFixture<BmbGradesComponent>;
   let componentRef: ComponentRef<BmbGradesComponent>;
+
+  afterEach(() => jest.restoreAllMocks());
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -179,6 +182,70 @@ describe('BmbGradesComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('validates required inputs for the micro view', () => {
+    componentRef.setInput('isMicro', true);
+    expect(() => component.ngOnInit()).not.toThrow();
+    componentRef.setInput('gradeTitle', undefined);
+    expect(() => component.ngOnInit()).toThrow(/gradeTitle/);
+  });
+
+  it('keeps modal content empty when the detail template is unavailable', () => {
+    component.detailContent = undefined;
+    component.modalContent = null;
+    component.ngAfterViewInit();
+    expect(component.modalContent).toBeNull();
+  });
+  it('shows period summaries and drills into their classes', () => {
+    const period = component.grades()[0].periods[0];
+    component.showPrincipalDetail = false;
+    expect(component.getGradesTitle()).toBe('Calificaciones 2022');
+    expect(component.getTitle()).toBe('Semestrales 2022');
+    expect(component.getCalendarIcon()).toBe('calendar_today');
+    expect(component.getAccreditedClasses()).toBe(0);
+    expect(component.getPeriodAverage()).toBe(0);
+    expect(component.getServiceHours()).toBe(0);
+    expect(component.getElements()).toEqual(component.grades()[0].periods);
+    expect(component.getDetailTitle(period)).toBe(period.detail.title);
+    expect(component.getDetailSubtitle(period)).toBe(period.detail.subtitle);
+    expect(component.getDetailScore(period)).toBe(period.detail.score);
+    component.handleDetails(period);
+    expect(component.showPrincipalDetail).toBe(true);
+    expect(component.periodIndex()).toBe(0);
+    expect(component.getTitle()).toBe(period.detail.title);
+    expect(component.getCalendarIcon()).toBe('calendar_month');
+    expect(component.getAccreditedClasses()).toBe(7);
+    expect(component.getPeriodAverage()).toBe(99);
+    expect(component.getServiceHours()).toBe(46);
+    expect(component.getElements()).toEqual(period.classes);
+    component.handleRightGradesClick();
+    expect(component.showPrincipalDetail).toBe(false);
+  });
+
+  it('opens the selected class partials in the modal', () => {
+    const open = jest
+      .spyOn(TestBed.inject(BmbNativeModalService), 'openModal')
+      .mockReturnValue('grade-detail');
+    const selectedClass = component.grades()[0].periods[0].classes[0];
+    component.showPrincipalDetail = true;
+    component.handleDetails(selectedClass);
+    expect(component.partials).toEqual(selectedClass.partials);
+    expect(open).toHaveBeenCalledWith(
+      expect.objectContaining({
+        title: selectedClass.detail.title,
+        subtitle: selectedClass.detail.subtitle,
+        content: component.modalContent,
+        size: 'small',
+      }),
+    );
+  });
+
+  it('emits the close event to the host', () => {
+    const close = jest.spyOn(component.closeGrades, 'emit');
+    const event = new MouseEvent('click');
+    component.handleLeftGradesClick(event);
+    expect(close).toHaveBeenCalledWith(event);
   });
   it('preserves period and grade navigation boundaries after extraction', () => {
     component.handleLeftPeriodClick();

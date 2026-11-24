@@ -27,7 +27,7 @@ import {
 import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
-} from '../../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
+} from '../../../directives/bmb-layout-grid/bmb-layout-grid.directive';
 import { TranslatePipe } from '../../../pipes/translations';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';

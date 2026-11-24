@@ -2,6 +2,7 @@ import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbChatBarComponent } from './bmb-chat-bar.component';
 import { getBasicExampleBlock, getGeneralDescription } from '@docs/utils/utils';
 import {
+  DBmbDropzone,
   DBmbIconParamDesc,
   DBmbInputParamDesc,
   getModelDescription,
@@ -56,7 +57,6 @@ ${getBasicExampleBlock('BmbChatBarComponent', importComments)}
         'createImageThumbnail',
         'actionListPagination',
         'activeDot',
-        'arrayThumbnail',
         'deleteFile',
         'handleAddDialog',
         'handleChangeBot',
@@ -82,6 +82,9 @@ ${getBasicExampleBlock('BmbChatBarComponent', importComments)}
         'chatBarTemplate',
         'mobileBotSelectorTemplate',
         'textareaRef',
+        'attachmentPicker',
+        'menuActions',
+        'openFilePicker',
       ],
     },
   },
@@ -111,8 +114,7 @@ Optionally you can customize the action list input. By default, the "Upload File
       `,
       table: {
         category: 'Properties',
-        type: { summary: 'IBotActions[]' },
-        defaultValue: { summary: 'defaultActionList<IActions[]>' },
+        defaultValue: { summary: '[]' },
       },
     },
     currentBot: {
@@ -217,6 +219,21 @@ ${getModelDescription('disabledInput')}
         defaultValue: { summary: 'false' },
       },
     },
+    allowAttachments: {
+      control: { type: 'boolean' },
+      description: `
+Enables the file attachment option.
+- If \`actionsList\` has items, an "Attach file" option is added as the first item of the actions menu.
+- Otherwise, an attach icon button is shown in the chat bar to open the file picker.
+- When \`false\`, drag and drop and the native file input are disabled.
+      `,
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    acceptedExtensions: DBmbDropzone.acceptedExtensions,
     isBotSpeaking: {
       control: { type: 'boolean' },
       description: 'Shows when the bot is speaking',
@@ -224,7 +241,7 @@ ${getModelDescription('disabledInput')}
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
-      }
+      },
     },
     disabledBotSpeaking: {
       control: { type: 'boolean' },
@@ -233,7 +250,7 @@ ${getModelDescription('disabledInput')}
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
-      }
+      },
     },
   },
   args: {
@@ -243,15 +260,13 @@ ${getModelDescription('disabledInput')}
     isLoading: false,
     disabledInput: false,
     enableMicInput: false,
+    allowAttachments: false,
     actionsList: [
       {
-        name: 'Adjuntar Archivo',
-        icon: 'upload_file',
+        name: 'Test',
+        icon: 'home',
         action: () => {
-          const input = document.getElementById(
-            'inputFile',
-          ) as HTMLInputElement;
-          input?.click();
+          console.info('test ');
         },
       },
     ],
@@ -284,6 +299,7 @@ ${getModelDescription('disabledInput')}
     currentBot: { name: 'TecBot', icon: 'bot_tecStandar' },
     showEmoji: false,
     emojiIcon: 'mood',
+    acceptedExtensions: ['png', 'image/jpeg', 'jpg'],
   },
 } as Meta<typeof BmbChatBarComponent>;
 

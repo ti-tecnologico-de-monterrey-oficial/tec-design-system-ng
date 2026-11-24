@@ -33,7 +33,7 @@ import type {
 } from '../../_shared/types/components/filter-card';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { TranslatePipe } from '../../pipes/translations';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';

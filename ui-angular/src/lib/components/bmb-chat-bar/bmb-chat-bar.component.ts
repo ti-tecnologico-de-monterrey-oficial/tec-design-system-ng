@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
-import type { OnInit } from '@angular/core';
+import type { AfterViewInit, OnInit } from '@angular/core';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
+  DestroyRef,
   ElementRef,
   inject,
   input,
@@ -17,13 +17,15 @@ import {
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import {
-  getChatBarBotChunks,
   getChatBarTextareaHeight,
-  isChatBarImage,
   shouldSendChatBarMessage,
 } from '../../_shared/logic/components/chat-bar';
 import { defaultBotList } from '../../_shared/logic/components/chat-bar-defaults';
-import type { IBmbNativeModal as IBmbNativeModalGeneric } from '../../_shared/types';
+import type {
+  IBmbNativeModal as IBmbNativeModalGeneric,
+  BmbChatAttachmentError,
+  BmbChatAttachmentResult,
+} from '../../_shared/types';
 
 type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import type {
@@ -32,21 +34,31 @@ import type {
 } from '../../_shared/types/components/chat-bar';
 import { ClickOutsideDirective } from '../../directives/click-outside/clickoutside.directive';
 import { TranslatePipe } from '../../pipes/translations';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,
-} from '../../services/old/projection/projection.service';
+} from '../../services/projection/projection.service';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { BmbFileAttachmentPicker } from '../bmb-file-attachment-picker/bmb-file-attachment-picker.component';
+import {
+  BmbChatAttachmentsService,
+  provideBmbChatAttachments,
+} from '../../services/chat-attachments/chat-attachments.service';
+import { getUUID } from '../../_shared/logic/utils';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
+import { BmbToastComponent } from '../bmb-toast/bmb-toast.component';
 
-export { defaultActionList, defaultBotList } from './bot_list';
-export type { IBotType, IChatBarActions } from './types';
+export { defaultBotList } from '../../_shared/logic/components/chat-bar-defaults';
+export type {
+  IBotType,
+  IChatBarActions,
+} from '../../_shared/types/components/chat-bar';
 
 @Component({
   selector: 'bmb-chat-bar',
@@ -62,13 +74,16 @@ export type { IBotType, IChatBarActions } from './types';
     BmbActionMenuComponent,
     BmbItemComponent,
     TranslatePipe,
+    BmbFileAttachmentPicker,
+    BmbToastComponent,
   ],
   templateUrl: './bmb-chat-bar.component.html',
   styleUrl: './bmb-chat-bar.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideBmbChatAttachments()],
 })
-export class BmbChatBarComponent implements OnInit {
+export class BmbChatBarComponent implements OnInit, AfterViewInit {
   placeholder = input<string>('');
   botList = input<IBotType[]>(defaultBotList);
   actionsList = input<IChatBarActions[]>([]);
@@ -76,7 +91,11 @@ export class BmbChatBarComponent implements OnInit {
   emojiIcon = input<string>('');
   enableMicInput = input<boolean>(false);
   disableChangeBot = input<boolean>(false);
+  allowAttachments = input<boolean>(false);
+  acceptedExtensions = input<string[]>();
+  maxFileSize = input<number>(2);
   disabledInput = model<boolean>(false);
+  files = model<File[]>([]);
 
   currentBot = model<IBotType>();
   isLoading = model<boolean>(false);
@@ -87,18 +106,23 @@ export class BmbChatBarComponent implements OnInit {
   onSendMessage = output<string>();
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onSendFiles = output<File[]>();
+  readonly attachmentResult = output<BmbChatAttachmentResult>();
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onRecord = output<boolean>();
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onEmoji = output<boolean>();
 
-  files: File[] = [];
   control = new FormControl();
   isDialogOpen = signal<boolean>(false);
   showMicControls = false;
   onDragFiles = false;
-  arrayThumbnail: string[] = [];
-  botChunks = computed(() => getChatBarBotChunks(this.botList()));
+  botChunks = computed(() => {
+    const chunks: IBotType[][] = [];
+    for (let i = 0; i < (this.botList()?.length ?? 0); i += 6) {
+      chunks.push(this.botList()?.slice(i, i + 6) ?? []);
+    }
+    return chunks;
+  });
   totalDots = computed(() => this.botChunks()?.length ?? 0);
   activeDot = 0;
   actionListPagination: any[] = [];
@@ -107,6 +131,20 @@ export class BmbChatBarComponent implements OnInit {
   windowWidth = window.innerWidth;
   windowHeight = window.innerHeight;
 
+  protected readonly menuActions = computed<IChatBarActions[]>(() => {
+    const actions = this.actionsList();
+    if (!this.allowAttachments() || !actions.length) {
+      return actions;
+    }
+    const attachAction: IChatBarActions = {
+      name: this.translationsService.translate('chat_bar.attach_file'),
+      icon: 'attach_file',
+      action: () => this.openFilePicker(),
+    };
+    return [attachAction, ...actions];
+  });
+
+  @ViewChild('attachmentPicker') attachmentPicker?: BmbFileAttachmentPicker;
   @ViewChild('textareaRef') textareaRef!: ElementRef<HTMLTextAreaElement>;
   @ViewChild('chatBarTemplate') chatBarTemplate!: TemplateRef<unknown>;
   @ViewChild('mobileBotSelectorTemplate')
@@ -119,20 +157,32 @@ export class BmbChatBarComponent implements OnInit {
     BmbNativeModalService,
   );
   private readonly translationsService = inject(BmbTranslationsService);
+  private readonly attachments = inject(BmbChatAttachmentsService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly attachmentSourceId = getUUID();
+  protected readonly fileResult = computed(() =>
+    this.attachments.result(this.attachmentSourceId),
+  );
+  protected readonly dismissedAttachmentErrors = signal<Set<number>>(new Set());
 
   protected readonly _disabledInput = computed<boolean>(
     () => this.isLoading() || this.disabledInput(),
   );
 
-  private readonly _syncDisabledState = effect(() => {
-    if (this._disabledInput()) {
-      this.control.disable({ emitEvent: false });
-    } else {
-      this.control.enable({ emitEvent: false });
-    }
-  });
-
   ngOnInit(): void {
+    this.destroyRef.onDestroy(
+      this.attachments.registerDraft(
+        {
+          read: () => this.files(),
+          write: (files) => this.files.set(files),
+          rules: () => ({
+            acceptedFormats: this.acceptedExtensions(),
+            maxFileSize: this.maxFileSize(),
+          }),
+        },
+        this.attachmentSourceId,
+      ),
+    );
     this.currentBot.update(
       (
         bot: IBotType = {
@@ -146,14 +196,18 @@ export class BmbChatBarComponent implements OnInit {
     );
   }
 
+  ngAfterViewInit() {
+    this.textareaRef.nativeElement.focus();
+  }
+
   handleSend(): void {
     this.onSendMessage.emit(this.control.value);
-    if (this.files.length > 0) {
-      this.onSendFiles.emit(this.files);
+    if (this.files().length > 0) {
+      this.onSendFiles.emit(this.files());
     }
     this.isLoading.update((value) => !value);
     this.control.reset();
-    this.files = [];
+    this.attachments.clear(this.attachmentSourceId);
     this.textareaRef.nativeElement.style.height = 'calc(1lh + 2rem)';
   }
 
@@ -204,53 +258,54 @@ export class BmbChatBarComponent implements OnInit {
     this.contentProjected.openContent(data);
   }
 
-  onDrop(event: any): void {
-    event.preventDefault();
-    const droppedFiles = event.dataTransfer.files;
-
-    for (let i = 0; i < droppedFiles.length; i++) {
-      if (isChatBarImage(droppedFiles[i].type)) {
-        this.createImageThumbnail(droppedFiles[i]);
-      } else {
-        this.arrayThumbnail?.push('');
-      }
-      this.files.push(droppedFiles[i]);
-    }
-    this.onDragFiles = false;
+  openFilePicker(): void {
+    this.attachmentPicker?.openFilePicker();
   }
 
-  onFileSelect(event: any): void {
-    const selectedFiles = event.target.files;
-    for (let i = 0; i < selectedFiles.length; i++) {
-      if (isChatBarImage(selectedFiles[i].type)) {
-        this.createImageThumbnail(selectedFiles[i]);
-      } else {
-        this.arrayThumbnail?.push('');
-      }
-      this.files.push(selectedFiles[i]);
-    }
+  handleFilesSelected(): void {
     this.contentProjected.closeContent();
   }
 
-  onDragOver(event: any): void {
-    event.preventDefault();
-    this.onDragFiles = true;
+  handleAttachmentChanges(files: File[]): void {
+    this.dismissedAttachmentErrors.set(new Set());
+    const result = this.attachments.select(
+      files,
+      {
+        acceptedFormats: this.acceptedExtensions(),
+        maxFileSize: this.maxFileSize(),
+      },
+      this.attachmentSourceId,
+      true,
+    );
+    this.attachmentResult.emit(result);
   }
 
-  onDragLeave(event: any): void {
-    event.preventDefault();
-    this.onDragFiles = false;
+  protected dismissAttachmentError(index: number): void {
+    this.dismissedAttachmentErrors.update((dismissed) =>
+      new Set(dismissed).add(index),
+    );
   }
 
-  createImageThumbnail(file: File): void {
-    const reader = new FileReader();
-    this.arrayThumbnail?.push(URL.createObjectURL(file));
-    reader.readAsDataURL(file);
-  }
-
-  deleteFile(index: number): void {
-    this.files.splice(index, 1);
-    this.arrayThumbnail.splice(index, 1);
+  protected attachmentErrorDescription(error: BmbChatAttachmentError): string {
+    const key = 'ai_chat_bubble.upload_file.';
+    const description = this.translationsService.translate(
+      key + 'error_' + error.code,
+    );
+    if (error.code === 'format') {
+      return [
+        this.translationsService.translate(key + 'format_prefix'),
+        error.fileName ?? error.extension,
+        description,
+      ]
+        .filter(Boolean)
+        .join(' ');
+    }
+    const prefix = error.fileName ? `${error.fileName}: ` : '';
+    const size =
+      error.code === 'size'
+        ? ` ${error.maxFileSize ?? this.maxFileSize()} MB.`
+        : '';
+    return `${prefix}${description}${size}`;
   }
 
   handleDotPress(index: number): void {

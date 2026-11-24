@@ -42,7 +42,7 @@ type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { buildErrorMessage } from '../../_shared/logic/utils';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 
 @Component({

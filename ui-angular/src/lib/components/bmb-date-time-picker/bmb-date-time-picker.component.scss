@@ -1,0 +1,11 @@
+.bmb_date-time-picker {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .bmb_date-time-picker {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

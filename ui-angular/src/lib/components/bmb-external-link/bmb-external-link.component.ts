@@ -20,7 +20,7 @@ import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IBmbMenuEvent, IDropdownItem } from '../../_shared/types';
-import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbTranslationsService } from '../../services/translations/translations.service';

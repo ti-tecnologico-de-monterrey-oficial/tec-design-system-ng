@@ -46,9 +46,7 @@ export function resolveAiChatBubbleActions(
     }
     return actions.reduce(
       (acc, action): BmbChatAction[] =>
-        AI_CHAT_BUBBLE_PROMPT_ACTIONS.includes(action)
-          ? [...acc, action]
-          : acc,
+        AI_CHAT_BUBBLE_PROMPT_ACTIONS.includes(action) ? [...acc, action] : acc,
       [] as BmbChatAction[],
     );
   }
@@ -76,8 +74,12 @@ export function buildAiChatBubblePlainText(
           [`- ${option.label}`, option.href].filter(Boolean).join('\n'),
         )
         .join('\n');
-      return [message.content.text, options].filter(Boolean).join('\n\n').trim();
+      return [message.content.text, options]
+        .filter(Boolean)
+        .join('\n\n')
+        .trim();
     }
+    case 'upload-file':
     case 'template':
       return null;
   }

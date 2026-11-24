@@ -16,7 +16,7 @@ import {
 } from '@docs/utils/utils';
 import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
 import { BmbAccordionComponent } from '../components/bmb-accordion/bmb-accordion.component';
-import { BmbSelectorDirective } from '../directives/old/bmb-selector/bmb-selector.directive';
+import { BmbSelectorDirective } from '../directives/bmb-selector/bmb-selector.directive';
 import { BmbLayoutDirective } from '../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbVerticalLayoutDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';

@@ -24,11 +24,6 @@ import {
   normalizeMediaCardText,
 } from '../../_shared/logic/components/media-card';
 
-export type {
-  IBmbMediaCardLoading,
-  IBmbMediaCardType,
-} from '../../_shared/types';
-
 @Component({
   selector: 'bmb-media-card',
   standalone: true,

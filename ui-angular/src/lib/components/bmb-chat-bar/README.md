@@ -16,12 +16,13 @@ The `BmbChatBarComponent` is a standalone Angular component designed to provide 
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input         | Type                | Default                        | Description                                       |
-| ------------- | ------------------- | ------------------------------ | ------------------------------------------------- |
-| `placeholder` | `string`            | `'¿Qué deseas encontrar hoy?'` | Placeholder text for the input field.             |
-| `botList`     | `IBotType[]`        | `defaultBotList`               | List of available bots for selection.             |
-| `actionsList` | `IChatBarActions[]` | `defaultActionList`            | List of available actions for the chat bar.       |
-| `showEmoji`   | `boolean`           | `false`                        | Determines whether the emoji picker is displayed. |
+| Input              | Type                | Default                        | Description                                                                                                                       |
+| ------------------ | ------------------- | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| `placeholder`      | `string`            | `'¿Qué deseas encontrar hoy?'` | Placeholder text for the input field.                                                                                             |
+| `botList`          | `IBotType[]`        | `defaultBotList`               | List of available bots for selection.                                                                                             |
+| `actionsList`      | `IChatBarActions[]` | `defaultActionList`            | List of available actions for the chat bar.                                                                                       |
+| `showEmoji`        | `boolean`           | `false`                        | Determines whether the emoji picker is displayed.                                                                                 |
+| `allowAttachments` | `boolean`           | `false`                        | Enables file attachments: added as the first `actionsList` option, or shown as an attach icon button when `actionsList` is empty. |
 
 ---
 

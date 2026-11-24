@@ -16,7 +16,7 @@ import {
   DBmbIconParamDesc,
   getDefaultValueControl,
 } from '@docs/utils/parameterDescriptions';
-import { IButtonAppearance } from '@shared/types/utils';
+import { IButtonAppearance } from '@shared/types/utils/utils';
 
 const appearanceOptions: IButtonAppearance[] = [
   'primary',

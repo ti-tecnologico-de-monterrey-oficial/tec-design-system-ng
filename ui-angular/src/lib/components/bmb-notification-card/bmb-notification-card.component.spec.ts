@@ -5,8 +5,8 @@ import type {
   IBmbDataAlert,
   IBmbDataAlertsParsed,
 } from '../../_shared/types/components/alert-center';
-import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
-import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { BmbNotificationCardModalComponent } from './bmb-notification-card-modal/bmb-notification-card-modal.component';
 import { BmbNotificationCardComponent } from './bmb-notification-card.component';

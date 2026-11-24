@@ -1,4 +1,4 @@
-import type { IBmbLinkInfo } from '../utils';
+import type { IBmbLinkInfo } from '../utils/utils';
 
 export interface IBmbActionHeaderLinks {
   apple: IBmbLinkInfo;
