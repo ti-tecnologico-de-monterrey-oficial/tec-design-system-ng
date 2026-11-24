@@ -6,6 +6,10 @@ import figma from 'figma'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleHandleRequest(event: Parameters<BmbLoginOnboardingComponent['handleRequest']['emit']>[0]): void {
+    console.info('handleRequest', event);
+  }
+
   loginOnBoardingCustomization: IBmbLoginOnBoardingCustomization = {
     anotherAccount: { label: '', link: '' },
     forgottenPassword: { label: '', link: '' },
@@ -14,6 +18,7 @@ export class ExampleComponent {
 </script>
 
 <bmb-login-onboarding
+  (handleRequest)="handleHandleRequest($event)"
   [loginOnBoardingCustomization]="loginOnBoardingCustomization"
 />`,
   imports: [

@@ -4,13 +4,32 @@
 import figma from 'figma'
 import { getIcon } from './icon-image'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const componentTitle = instance.getString('componentTitle')
+
 export default {
-  example: figma.code`<bmb-chevron-title-selector
-  componentTitle="Title"
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleOnLeadingClick(): void {
+    console.info('onLeadingClick');
+  }
+
+  handleOnTrailingClick(): void {
+    console.info('onTrailingClick');
+  }
+}
+</script>
+
+<bmb-chevron-title-selector
+  (onLeadingClick)="handleOnLeadingClick()"
+  (onTrailingClick)="handleOnTrailingClick()"
+  componentTitle="${escapeAttribute(componentTitle)}"
   leadingIcon="${getIcon('chevron_left')}"
   trailingIcon="${getIcon('chevron_right')}"
-  [isDisabledLeadingIcon]="false"
-  [isDisabledTrailingIcon]="false"
+  [isDisabledLeadingIcon]="${instance.getEnum('[isDisabledLeadingIcon]', { false: false, true: true }) ?? false}"
+  [isDisabledTrailingIcon]="${instance.getEnum('[isDisabledTrailingIcon]', { false: false, true: true }) ?? false}"
 />`,
   imports: [
     "import { BmbChevronTitleSelectorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",

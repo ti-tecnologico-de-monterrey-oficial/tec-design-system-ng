@@ -7,6 +7,14 @@ import { getIcon } from './icon-image'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleOnValueChange(event: Parameters<BmbDrawerOverlayComponent['onValueChange']['emit']>[0]): void {
+    console.info('onValueChange', event);
+  }
+
+  handleButtonClick(event: Parameters<BmbDrawerOverlayComponent['buttonClick']['emit']>[0]): void {
+    console.info('buttonClick', event);
+  }
+
   tabs: IBmbTab[] = [
     { title: 'Tab 1', id: 0 },
     { title: 'Tab 2', id: 1 },
@@ -67,6 +75,8 @@ export class ExampleComponent {
 </script>
 
 <bmb-drawer-overlay
+  (onValueChange)="handleOnValueChange($event)"
+  (buttonClick)="handleButtonClick($event)"
   [menu]="menu"
   componentTitle="Inner Header"
   [tabs]="tabs"

@@ -2,7 +2,7 @@
 
 Actualizada: **2026-10-27**.
 
-Esta convención define cómo mantener los `.figma.ts` del lote actual: ejemplos estáticos con las propiedades y los valores documentados en **Storybook**. Sustituye las instrucciones anteriores de extracción dinámica del diseño y publicación automática. [README.md](README.md) describe el flujo local y el estado de validación.
+Los `.figma.ts` usan **Storybook** como referencia para el contrato Angular y los valores de ejemplo. En los componentes con mapeo dinámico, las propiedades o capas documentadas de Figma alimentan el snippet. Los inputs que dependen de la aplicación conservan sus ejemplos de Storybook. [README.md](README.md) describe el flujo local y el estado de validación.
 
 ## Fuentes y alcance
 
@@ -106,8 +106,7 @@ Escribir objetos con claves legibles y comillas simples para sus textos. No usar
 
 No agregar automáticamente:
 
-- Outputs y bindings de eventos, incluidos los eventos `Change` de los modelos.
-- Métodos, callbacks, validadores de función y campos dedicados a manejadores de eventos.
+- Validadores y callbacks de configuración que dependan de la aplicación.
 - Props de accesibilidad: `aria*`, textos alternativos, `inputId` y otros identificadores cuyo propósito sea asociar etiquetas accesibles.
 - Identificadores de pruebas y miembros marcados como internos.
 - Propiedades deprecadas o sin uso en la implementación.
@@ -116,6 +115,8 @@ No agregar automáticamente:
 No extender esa exclusión por coincidencia parcial a otros nombres: `textLink`, `valueLink`, `valueTarget` y otros campos distintos se revisan por su propio contrato. No agregar estados de hover, focus o transiciones visuales como si fueran inputs Angular.
 
 No eliminar una propiedad solicitada expresamente por el usuario basándose en el filtro general de una revisión anterior.
+
+Los outputs públicos vigentes se muestran como bindings Angular con handlers de ejemplo en TypeScript. Los eventos `Change` de modelos se incluyen cuando Storybook documenta su uso. Los handlers se presentan en el bloque de preparación de la clase consumidora. Los eventos no se leen de propiedades de Figma.
 
 ## Excepciones solicitadas en esta revisión
 

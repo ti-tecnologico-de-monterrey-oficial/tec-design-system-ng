@@ -7,6 +7,10 @@ import { getIcon } from './icon-image'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleNavigationBarEvents(event: Parameters<BmbBottomNavigationBarComponent['navigationBarEvents']['emit']>[0]): void {
+    console.info('navigationBarEvents', event);
+  }
+
   navigationBarIcons: IBmbNavigationBarIcons = {
     one: { name: ${getIcon('home', 'typescript')}, label: 'home' },
     two: { name: ${getIcon('share', 'typescript')}, label: 'share' },
@@ -17,6 +21,7 @@ export class ExampleComponent {
 </script>
 
 <bmb-bottom-navigation-bar
+  (navigationBarEvents)="handleNavigationBarEvents($event)"
   [navigationBarIcons]="navigationBarIcons"
 />`,
   imports: [

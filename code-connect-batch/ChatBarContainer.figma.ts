@@ -7,6 +7,38 @@ import { getIcon } from './icon-image'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleDisabledInputChange(event: ReturnType<BmbChatBarComponent['disabledInput']>): void {
+    console.info('disabledInputChange', event);
+  }
+
+  handleCurrentBotChange(event: ReturnType<BmbChatBarComponent['currentBot']>): void {
+    console.info('currentBotChange', event);
+  }
+
+  handleIsLoadingChange(event: ReturnType<BmbChatBarComponent['isLoading']>): void {
+    console.info('isLoadingChange', event);
+  }
+
+  handleOnSendMessage(event: Parameters<BmbChatBarComponent['onSendMessage']['emit']>[0]): void {
+    console.info('onSendMessage', event);
+  }
+
+  handleOnSendFiles(event: Parameters<BmbChatBarComponent['onSendFiles']['emit']>[0]): void {
+    console.info('onSendFiles', event);
+  }
+
+  handleAttachmentResult(event: Parameters<BmbChatBarComponent['attachmentResult']['emit']>[0]): void {
+    console.info('attachmentResult', event);
+  }
+
+  handleOnRecord(event: Parameters<BmbChatBarComponent['onRecord']['emit']>[0]): void {
+    console.info('onRecord', event);
+  }
+
+  handleOnEmoji(event: Parameters<BmbChatBarComponent['onEmoji']['emit']>[0]): void {
+    console.info('onEmoji', event);
+  }
+
   botList: IBotType[] = [
     { name: 'TecBot', label: 'Tecbot Standard', icon: ${getIcon('bot_tecStandar', 'typescript')} },
     { name: 'ChatGPT', label: 'ChatGPT', icon: ${getIcon('bot_chatGPT', 'typescript')} },
@@ -33,6 +65,14 @@ export class ExampleComponent {
 </script>
 
 <bmb-chat-bar
+  (disabledInputChange)="handleDisabledInputChange($event)"
+  (currentBotChange)="handleCurrentBotChange($event)"
+  (isLoadingChange)="handleIsLoadingChange($event)"
+  (onSendMessage)="handleOnSendMessage($event)"
+  (onSendFiles)="handleOnSendFiles($event)"
+  (attachmentResult)="handleAttachmentResult($event)"
+  (onRecord)="handleOnRecord($event)"
+  (onEmoji)="handleOnEmoji($event)"
   placeholder="Custom placeholder"
   [botList]="botList"
   [actionsList]="actionsList"

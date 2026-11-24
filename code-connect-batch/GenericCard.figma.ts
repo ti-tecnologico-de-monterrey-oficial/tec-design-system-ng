@@ -3,11 +3,31 @@
 // component=BmbCardComponent
 import figma from 'figma'
 
+const instance = figma.selectedInstance
+const type = instance.getEnum('Style', {
+  Default: 'normal',
+  Primary: 'primary',
+  Secondary: 'secondary',
+  'Home Card': 'normal',
+  Contrast: 'normal',
+  'Container Button': 'normal',
+  'Container Button (Alternative)': 'normal',
+  'Home Card (Alternative)': 'normal',
+  'Home Card (Inner Slot)': 'normal',
+  'Default (Inner Slot)': 'normal',
+  'Mobile (Inner Slot)': 'normal',
+  'Primary Inner Slot': 'primary',
+  'Container button (Inner slot)': 'normal',
+  'Container Button (Alternative) - Inner slot': 'normal',
+  'Secondary (Inner slot)': 'secondary',
+  'Contrast (Inner slot)': 'normal',
+})
+
 export default {
   example: figma.code`<bmb-card
   borderRadius="m"
   margin="m"
-  type="normal"
+  type="${type ?? 'normal'}"
   boxShadowStyle="none"
   borderColor="default"
 />`,

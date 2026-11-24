@@ -4,19 +4,35 @@
 import figma from 'figma'
 import { getIcon } from './icon-image'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const text = instance.getString('Text')
+const appearance = instance.getEnum('appearance', { 'secondary-filled':'secondary-filled', primary: 'primary', 'secondary-outlined':'secondary-outlined', destructive: 'destructive', transparent: 'transparent' })
+
+const state = instance.getEnum('State', {
+  Enabled: 'enabled',
+  Disabled: 'disabled',
+  Hovered: 'hovered',
+  Selected: 'selected',
+})
+const position = instance.getEnum('position', { None: '', left: 'left', right: 'right' })
+
+const icon = position === '' ? '' : getIcon('')
+
 export default {
   example: figma.code`<button
   bmbButton
-  appearance="primary"
-  icon="${getIcon('')}"
-  [iconSize]="iconSize"
-  size="small"
-  position="left"
+  appearance="${appearance ?? 'primary'}"
+  [disabled]="${state === 'disabled'}"
+  icon="${icon}"
+  size="${instance.getEnum('size', { small: 'small', large: 'large' }) ?? "small"}"
+  position="${position || 'left'}"
   [case]="false"
-  [isToggleActive]="false"
-  [enableButtonToggle]="false"
+  [isToggleActive]="${state === 'selected'}"
+  [enableButtonToggle]="${state === 'selected'}"
   [isMobile]="false"
->Button text</button>`,
+>${escapeAttribute(text ?? "Button text")}</button>`,
   imports: [
     "import { BmbButtonDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

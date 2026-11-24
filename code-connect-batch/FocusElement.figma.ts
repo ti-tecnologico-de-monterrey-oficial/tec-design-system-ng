@@ -4,12 +4,19 @@
 import figma from 'figma'
 import { getIcon } from './icon-image'
 
+const instance = figma.selectedInstance
+const isNormal = instance.getEnum('State', {
+  Focused: false,
+  Normal: true,
+  Default: false,
+})
+
 export default {
   example: figma.code`<bmb-focus-element
   [number]="0"
   icon="${getIcon('close')}"
   [isNonFocused]="false"
-  [isNormal]="false"
+  [isNormal]="${isNormal ?? false}"
   [isInheritedBg]="false"
   [componentTitle]="componentTitle"
 />`,

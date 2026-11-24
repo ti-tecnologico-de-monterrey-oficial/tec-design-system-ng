@@ -5,12 +5,25 @@ import figma from 'figma'
 import { getIcon } from './icon-image'
 import { getBoxIconColor } from './box-icon-color'
 
+const instance = figma.selectedInstance
+const boxSize = instance.getEnum('boxSize', { small: 'small', regular: 'regular', min: 'small' })
+const boxShape = instance.getEnum('boxShape', { square: 'square', circle: 'circle' })
+
 export default {
-  example: figma.code`<bmb-box-icon
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleImageNotFoundError(): void {
+    console.info('imageNotFoundError');
+  }
+}
+</script>
+
+<bmb-box-icon
+  (imageNotFoundError)="handleImageNotFoundError()"
   iconName="${getIcon('face')}"
   boxColor="${getBoxIconColor('semantic-success')}"
-  boxShape="square"
-  boxSize="small"
+  boxShape="${boxShape ?? 'square'}"
+  boxSize="${boxSize ?? 'small'}"
 />`,
   imports: [
     "import { BmbBoxIconComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",

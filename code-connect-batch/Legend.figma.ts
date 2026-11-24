@@ -3,9 +3,14 @@
 // component=BmbLegendComponent
 import figma from 'figma'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const label = instance.getString('Title')
+
 export default {
   example: figma.code`<bmb-legend
-  label="Title"
+  label="${escapeAttribute(String(label ?? "Title"))}"
   value="$0.00"
   indicatorAppearance="normal"
 />`,

@@ -7,6 +7,14 @@ import { getIcon } from './icon-image'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleTopBarLogOut(event: Parameters<BmbWebTemplatesComponent['topBarLogOut']['emit']>[0]): void {
+    console.info('topBarLogOut', event);
+  }
+
+  handleTopBarOnLangChange(event: Parameters<BmbWebTemplatesComponent['topBarOnLangChange']['emit']>[0]): void {
+    console.info('topBarOnLangChange', event);
+  }
+
   topBarUserInformation: IUserInformation | null = null;
 
   topBarAlertNotification: IBmbDataAlert[] = [
@@ -253,6 +261,8 @@ export class ExampleComponent {
 </script>
 
 <bmb-web-templates
+  (topBarLogOut)="handleTopBarLogOut($event)"
+  (topBarOnLangChange)="handleTopBarOnLangChange($event)"
   [isFullScreen]="false"
   titleScreen=""
   subTitleScreen=""

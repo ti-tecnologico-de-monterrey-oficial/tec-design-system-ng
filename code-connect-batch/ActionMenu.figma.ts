@@ -2,14 +2,22 @@
 // source=ui-angular/src/lib/components/bmb-action-menu/bmb-action-menu.component.ts
 // component=BmbActionMenuComponent
 import figma from 'figma';
+import { getIcon } from './icon-image';
+import { escapeAttribute } from './escape-attribute';
+
+const instance = figma.selectedInstance;
+const showHeader = instance.getBoolean('showHeader');
+const header = instance.findInstance('BB_2_12_4', { traverseInstances: true });
+const headerTitle = header?.type === 'INSTANCE' ? header.getPropertyValue('componentTitle') : undefined;
+const componentTitle = typeof headerTitle === 'string' ? headerTitle : 'Title';
 
 export default {
   example: figma.code`<bmb-action-menu
   icon="${getIcon("account_balance_wallet")}"
-  [iconSize]="iconSize"
+  [iconSize]="24"
   bgIconAppearance="green-light"
-  componentTitle="Title"
-  [showHeader]="true"
+  componentTitle="${escapeAttribute(componentTitle)}"
+  [showHeader]="${showHeader ?? true}"
 >
   <ng-template #actionMenuItem>
     <bmb-item-hyperlink

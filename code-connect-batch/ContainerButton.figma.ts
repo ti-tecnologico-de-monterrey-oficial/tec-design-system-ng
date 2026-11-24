@@ -9,7 +9,21 @@ const isAlternative = figma.selectedInstance.getPropertyValue('Type') === 'Alter
 
 export default {
   example: isAlternative
-    ? figma.code`<bmb-container-button-complex-alternative
+    ? figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleGetClickButton(event: MouseEvent): void {
+    console.info('getClickButton', event);
+  }
+
+  handleGetClickBookmark(event: MouseEvent): void {
+    console.info('getClickBookmark', event);
+  }
+}
+</script>
+
+<bmb-container-button-complex-alternative
+  (getClickButton)="handleGetClickButton($event)"
+  (getClickBookmark)="handleGetClickBookmark($event)"
   componentTitle="Title container button"
   subtitle="sub title"
   leftIconName="${getIcon('menu_open')}"
@@ -20,6 +34,14 @@ export default {
 />`
     : figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleOnButton(event: MouseEvent): void {
+    console.info('onButton', event);
+  }
+
+  handleSecondaryAction(event: MouseEvent): void {
+    console.info('secondaryAction', event);
+  }
+
   dropdownMenuItems: IDropdownItem[] = [
     {
       icon: ${getIcon('link', 'typescript')},
@@ -44,6 +66,8 @@ export class ExampleComponent {
 </script>
 
 <bmb-container-button
+  (onButton)="handleOnButton($event)"
+  (secondaryAction)="handleSecondaryAction($event)"
   componentTitle="Tema de App"
   subtitle=""
   iconLeft="${getIcon('home')}"

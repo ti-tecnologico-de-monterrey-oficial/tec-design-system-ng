@@ -4,13 +4,28 @@
 import figma from 'figma'
 import { getIcon } from './icon-image'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const mitec = instance.getEnum('mitec', { false: false, true: true })
+const text = instance.getString('text')
+
 export default {
-  example: figma.code`<bmb-fab
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleFabClick(event: Parameters<BmbFabComponent['fabClick']['emit']>[0]): void {
+    console.info('fabClick', event);
+  }
+}
+</script>
+
+<bmb-fab
+  (fabClick)="handleFabClick($event)"
   icon="${getIcon('')}"
-  text=""
+  text="${escapeAttribute(text)}"
   size="large"
-  type="normal"
-  [mitec]="false"
+  type="${instance.getEnum('type', { normal: 'normal', extended: 'extended' }) ?? "normal"}"
+  [mitec]="${mitec ?? false}"
 />`,
   imports: [
     "import { BmbFabComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
