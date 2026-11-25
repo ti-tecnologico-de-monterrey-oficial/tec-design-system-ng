@@ -22,6 +22,8 @@ import {
   ON_CLICK_DESCRIPTION,
 } from '@docs/utils/parameterDescriptions';
 import * as iconStory from '../bmb-icon/bmb-icon.stories';
+import * as tooltipBaseStory from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.stories';
+import * as checkStory from '../bmb-check-external-link-button/bmb-check-external-link-button.stories';
 
 const configDetail = `${getAlertBlockquote(
   `Please remember to get the event name using the IBmbActionIconEventType type.
@@ -76,14 +78,7 @@ ${getArchitectureSection(
 <bmb-tooltip-base>
   <span class="bmb_action-icon">
     <bmb-check-external-link-button>
-      <bmb-icon
-        [icon]="getIcon()"
-        [size]="iconSize()"
-        [isFill]="true"
-        [dotNotification]="dotNotification()"
-        [alt]="alt()"
-        (imageNotFoundError)="handleImageNotFoundError()"
-      />
+      <bmb-icon />
     </bmb-check-external-link-button>
   </span>
 </bmb-tooltip-base>
@@ -93,6 +88,14 @@ ${getArchitectureSection(
       {
         bmbNameLink: 'icon',
         documentationLink: iconStory.default.title!,
+      },
+      {
+        bmbNameLink: 'tooltip-base',
+        documentationLink: tooltipBaseStory.default.title!,
+      },
+      {
+        bmbNameLink: 'check-external-link-button',
+        documentationLink: checkStory.default.title!,
       },
     ],
   },

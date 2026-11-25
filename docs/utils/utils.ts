@@ -139,27 +139,17 @@ export const getLandingGeneralDesc = (name: string): string =>
 export const getStandaloneGeneralDesc = (name: string): string =>
   `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to implement the structure of the **Stand alone sites - ${name}**.`, { generalDocLink: 'https://bamboo.tec.mx/latest/templates/sitios-stand-alone/descripcion-general-lwpZfyMh' })}`;
 
-const getProperName = (name: string): string =>
-  name.replace(name.slice(0, 1), name.slice(0, 1).toLocaleUpperCase());
-
 export const getFormatName = (
   name: string,
   separator: string | RegExp = '',
   replace = '',
 ): string => {
-  const _name: string = getProperName(name);
-
-  if (!!separator && replace === '') {
+  if (typeof separator === 'string')
     return name
-      ?.split(separator)
-      .map((element) => getProperName(element))
-      .toString()
-      .replaceAll(',', '');
-  }
+      .replace(name.slice(0, 1), name.slice(0, 1).toLocaleUpperCase())
+      .replaceAll(separator, replace);
 
-  return !!separator && !!replace
-    ? _name.replaceAll(separator, replace)
-    : _name;
+  return name.replace(separator, replace);
 };
 
 export const getOnEvent = (
@@ -205,7 +195,7 @@ export const getStoryLink = ({
   urlId?: string;
   alias?: string;
 }): string => {
-  const basisURL = `/docs/${getFormatName(title, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation`;
+  const basisURL = `/docs/${getFormatName(title, /(\/)|(\ *)((,)|\(|\))(\ *)|\(|\)|(\ )/g, '-').toLocaleLowerCase()}--documentation`;
   const _title: string =
     alias || (showFullLinkName ? title : getStoryTitle(title));
   const preURL: string = isPreURL ? '/?path=' : '';
@@ -279,38 +269,41 @@ export const getArchitectureSection = (
   architectureBlock: string,
   {
     storyType = 'component',
-    parentArchitecture = [
-      {
-        bmbNameLink: '',
-        documentationLink: '',
-      },
-    ],
+    parentArchitecture = [],
   }: {
     storyType?: IBmbStoryType;
     parentArchitecture?: IBmbParentArchitectureType[];
   } = {},
 ): string => `
 ## DOM Architecture
+>
 Represents the structure of the ${storyType}.
-\`\`\`html
-${architectureBlock}
-\`\`\`
+>\`\`\`html
+>${architectureBlock.replaceAll(
+  `
+`,
+  `
+>`,
+)}
+>\`\`\`
 ${
   parentArchitecture.length
     ? `${parentArchitecture
-        .map((element) =>
-          getStoryLink({
-            alias: `bmb-${element.bmbNameLink} - ${getStoryTitle(element.documentationLink)} - DOM Architecture`,
-            title: element.documentationLink,
-            showFullLinkName: false,
-            urlId: 'dom-architecture',
-          }),
+        .map(
+          (element) =>
+            `> ${parentArchitecture.length >= 2 ? '-' : ''} ${getStoryLink({
+              alias: `bmb-${element.bmbNameLink} - ${getStoryTitle(element.documentationLink)} - DOM Architecture`,
+              title: element.documentationLink,
+              showFullLinkName: false,
+              urlId: 'dom-architecture',
+            })}
+`,
         )
-        .join(' ')}`
+        .join('')}
+`
     : ''
 }
-<br/>
-`;
+<br/>`;
 
 export const getCheckboxOrRadialArchitecture = (type: string): string => `
 ${getArchitectureSection(`
