@@ -4,7 +4,16 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-iframe
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleIframeLoad(event: Parameters<BmbIframeComponent['iframeLoad']['emit']>[0]): void {
+    console.info('iframeLoad', event);
+  }
+}
+</script>
+
+<bmb-iframe
+  (iframeLoad)="handleIframeLoad($event)"
   height="100%"
   width="100%"
   src="https://www.openstreetmap.org/export/embed.html?bbox=-118.5%2C14.3%2C-86.5%2C32.8&amp;layer=mapnik"

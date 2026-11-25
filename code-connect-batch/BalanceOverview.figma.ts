@@ -4,9 +4,21 @@
 import figma from 'figma'
 import { getIcon } from './icon-image'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const status = instance.getEnum('Semantic status', {
+  Default: 'default',
+  Empty: 'empty',
+  Error: 'error',
+  Success: 'success',
+})
+const isFull = status === 'error' || status === 'success'
+const fillPathStatus = status === 'error' ? 'error' : status === 'empty' ? 'gray' : 'success'
+
 export default {
   example: figma.code`<bmb-balance-overview
-  [progressCirclePercent]="progressCirclePercent"
+  [progressCirclePercent]="75"
   [progressCircleValue]="progressCircleValue"
   [showProgressCircleValue]="showProgressCircleValue"
   [progressCircleTitle]="progressCircleTitle"
@@ -17,11 +29,11 @@ export default {
   [valueSecondary]="valueSecondary"
   [showProgressCircleTitle]="showProgressCircleTitle"
   icon="${getIcon('')}"
-  progressCircleFillPathStatus="success"
-  [progressCircleFullFillPathStatus]="progressCircleFullFillPathStatus"
-  [showProgressCircleOperationState]="false"
+  progressCircleFillPathStatus="${escapeAttribute(String(fillPathStatus ?? "success"))}"
+  [progressCircleFullFillPathStatus]="true"
+  [showProgressCircleOperationState]="${isFull ?? false}"
   [indicatorAppearance]="indicatorAppearance"
-  [emptyState]="false"
+  [emptyState]="${status === 'empty'}"
 />`,
   imports: [
     "import { BmbBalanceOverviewComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",

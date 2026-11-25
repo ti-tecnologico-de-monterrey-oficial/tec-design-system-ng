@@ -5,7 +5,26 @@ import figma from 'figma'
 import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-digital-id
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleClose(event: Parameters<BmbDigitalIdComponent['close']['emit']>[0]): void {
+    console.info('close', event);
+  }
+
+  handleAccess(event: Parameters<BmbDigitalIdComponent['access']['emit']>[0]): void {
+    console.info('access', event);
+  }
+
+  handleOnSecondaryClick(event: Parameters<BmbDigitalIdComponent['onSecondaryClick']['emit']>[0]): void {
+    console.info('onSecondaryClick', event);
+  }
+}
+</script>
+
+<bmb-digital-id
+  (close)="handleClose($event)"
+  (access)="handleAccess($event)"
+  (onSecondaryClick)="handleOnSecondaryClick($event)"
   name="Paola"
   surname="Montes Perez"
   registration="L0353882"

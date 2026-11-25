@@ -4,9 +4,23 @@
 import figma from 'figma'
 import { getIcon } from './icon-image'
 
+const instance = figma.selectedInstance
+const showGlobalSearch = instance.getEnum('Search-Menu', {
+  off: 'false',
+  on: 'true',
+})
+
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleApplyFilters(event: Parameters<BmbFilterCardComponent['applyFilters']['emit']>[0]): void {
+    console.info('applyFilters', event);
+  }
+
+  handleResetFilters(): void {
+    console.info('resetFilters');
+  }
+
   visibilityRules: IBmbVisibilityRule[] = [];
 
   optionRules: IBmbOptionRule[] = [];
@@ -91,6 +105,8 @@ export class ExampleComponent {
 </script>
 
 <bmb-filter-card
+  (applyFilters)="handleApplyFilters($event)"
+  (resetFilters)="handleResetFilters()"
   modalTitle="Opciones Filtrado"
   primaryBtnLabel="Aplicar Filtros"
   secondaryBtnLabel="Limpiar Filtros"
@@ -100,7 +116,7 @@ export class ExampleComponent {
   placeholderSearch="Search"
   [controlTypes]="controlTypes"
   [inLine]="false"
-  [showGlobalSearch]="true"
+  [showGlobalSearch]="${showGlobalSearch ?? true}"
 />`,
   imports: [
     "import type { IBmbControlType, IBmbOptionRule, IBmbVisibilityRule } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",

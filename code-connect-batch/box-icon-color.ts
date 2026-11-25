@@ -9,7 +9,9 @@ export function getBoxIconColor(
     ? figma.selectedInstance.findInstance(layerName, { traverseInstances: true, path })
     : figma.selectedInstance
 
-  return boxIcon.type === 'INSTANCE'
-    ? boxIcon.getPropertyValue('boxColor') as string
-    : fallback
+  const color = boxIcon?.type === 'INSTANCE'
+    ? boxIcon.getPropertyValue('boxColor')
+    : undefined
+
+  return typeof color === 'string' && color ? color : fallback
 }

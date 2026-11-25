@@ -3,16 +3,59 @@
 // component=BmbTotpComponent
 import figma from 'figma'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const variation = instance.getEnum('Variation', {
+  Simple: 'simple',
+  'w/Button': 'button',
+  'W/Button_ErrorState': 'button-error',
+})
+const componentTitleLayer = instance.findText('TOTP', { traverseInstances: true })
+const subtitleLayer = instance.findText('(Time-based one-time', {
+  traverseInstances: true,
+})
+const helpLayer = instance.findText('Help text', { traverseInstances: true })
+const buttonTextLayer = instance.findText('Text', {
+  traverseInstances: true,
+  path: ['Button'],
+})
+const componentTitle =
+  componentTitleLayer && componentTitleLayer.type === 'TEXT'
+    ? componentTitleLayer.textContent
+    : 'TOTP'
+const subtitle =
+  subtitleLayer && subtitleLayer.type === 'TEXT'
+    ? subtitleLayer.textContent
+    : '(Time-based One-time Password)'
+const helpText =
+  helpLayer && helpLayer.type === 'TEXT' ? helpLayer.textContent : ''
+const buttonText =
+  buttonTextLayer && buttonTextLayer.type === 'TEXT'
+    ? buttonTextLayer.textContent
+    : 'Verify'
+const showButton = variation === 'button' || variation === 'button-error'
+const codeError = variation === 'button-error'
+
 export default {
-  example: figma.code`<bmb-totp
-  componentTitle="TOTP"
-  subtitle="(Time-based One-time Password)"
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleHandleSubmit(event: Parameters<BmbTotpComponent['handleSubmit']['emit']>[0]): void {
+    console.info('handleSubmit', event);
+  }
+}
+</script>
+
+<bmb-totp
+  (handleSubmit)="handleHandleSubmit($event)"
+  componentTitle="${escapeAttribute(String(componentTitle ?? "TOTP"))}"
+  subtitle="${escapeAttribute(String(subtitle ?? "(Time-based One-time Password)"))}"
   instanceId="first"
-  [codeError]="false"
-  errorMessage="Invalid Code. Please try again."
-  helperText="Helper text"
-  [showButton]="false"
-  buttonText="Verify"
+  [codeError]="${codeError}"
+  errorMessage="${escapeAttribute(String(helpText ?? "Invalid Code. Please try again."))}"
+  helperText="${escapeAttribute(String(helpText ?? "Helper text"))}"
+  [showButton]="${showButton}"
+  buttonText="${escapeAttribute(String(buttonText ?? "Verify"))}"
   [disableButton]="false"
 />`,
   imports: [

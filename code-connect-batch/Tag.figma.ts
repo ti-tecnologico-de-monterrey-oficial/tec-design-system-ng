@@ -3,14 +3,46 @@
 // component=BmbTagComponent
 import figma from 'figma'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const text = instance.getString('Text')
+const appearance = instance.getEnum('Color', {
+  Default: 'normal',
+  'Creative/Violet': 'creative_violet',
+  'Creative/Indigo': 'creative_indigo',
+})
+const dismissible = instance.getBoolean('Dismissable')
+const state = instance.getEnum('State', {
+  Enabled: 'enabled',
+  Hovered: 'hovered',
+  Focused: 'focused',
+  Selected: 'selected',
+  Disabled: 'disabled',
+})
+
 export default {
-  example: figma.code`<bmb-tag
-  appearance="normal"
-  text="Tag text"
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleClosedTag(event: Parameters<BmbTagComponent['closedTag']['emit']>[0]): void {
+    console.info('closedTag', event);
+  }
+
+  handleClickedTag(event: Parameters<BmbTagComponent['clickedTag']['emit']>[0]): void {
+    console.info('clickedTag', event);
+  }
+}
+</script>
+
+<bmb-tag
+  (closedTag)="handleClosedTag($event)"
+  (clickedTag)="handleClickedTag($event)"
+  appearance="${escapeAttribute(String(appearance ?? "normal"))}"
+  text="${escapeAttribute(String(text ?? "Tag text"))}"
   [grouped]="false"
-  [dismissible]="false"
-  [isActive]="false"
-  [isDisabled]="false"
+  [dismissible]="${dismissible ?? false}"
+  [isActive]="${state === 'selected'}"
+  [isDisabled]="${state === 'disabled'}"
   [enableClick]="false"
 />`,
   imports: [

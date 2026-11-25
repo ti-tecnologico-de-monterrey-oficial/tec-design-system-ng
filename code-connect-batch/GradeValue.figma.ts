@@ -3,11 +3,26 @@
 // component=BmbGradeValueComponent
 import figma from 'figma'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const type = instance.getEnum('Type', {
+  Partial: 'partial-grade',
+  Score: 'main-grade',
+})
+const appearanceContrast = instance.getEnum('Container color', {
+  Default: 'default',
+  Primary: 'primary',
+  Alternative: 'alternative',
+})
+const scoreLayer = instance.findText('Score_Label', { traverseInstances: true })
+const score = scoreLayer && scoreLayer.type === 'TEXT' ? scoreLayer.textContent : ''
+
 export default {
   example: figma.code`<bmb-grade-value
-  appearanceContrast="default"
-  type="main-grade"
-  score="89"
+  appearanceContrast="${escapeAttribute(String(appearanceContrast ?? "default"))}"
+  type="${escapeAttribute(String(type ?? "main-grade"))}"
+  score="${escapeAttribute(String(score ?? "89"))}"
 />`,
   imports: [
     "import { BmbGradeValueComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",

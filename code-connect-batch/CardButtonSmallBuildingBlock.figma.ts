@@ -7,6 +7,18 @@ import { getIcon } from './icon-image'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleOnAddContentClick(event: Parameters<BmbCardButtonComponent['onAddContentClick']['emit']>[0]): void {
+    console.info('onAddContentClick', event);
+  }
+
+  handleOnTitleClick(event: Parameters<BmbCardButtonComponent['onTitleClick']['emit']>[0]): void {
+    console.info('onTitleClick', event);
+  }
+
+  handleOnSmallClick(event: Parameters<BmbCardButtonComponent['onSmallClick']['emit']>[0]): void {
+    console.info('onSmallClick', event);
+  }
+
   botImage: IBmbImageInfo = {
     src: 'https://tecgpt0grl0prod0stg.blob.core.windows.net/gpt-portal-public/ICONOS/icon_modelo_CHAT_GPT.svg',
     alt: 'Left content image',
@@ -45,6 +57,9 @@ export class ExampleComponent {
 </script>
 
 <bmb-card-button
+  (onAddContentClick)="handleOnAddContentClick($event)"
+  (onTitleClick)="handleOnTitleClick($event)"
+  (onSmallClick)="handleOnSmallClick($event)"
   [isSmall]="true"
   [isDisabled]="false"
   [botImage]="botImage"
@@ -54,7 +69,7 @@ export class ExampleComponent {
   [isFullInteractive]="true"
   body=""
   [badge]="badge"
-  [leftContent]="leftContent"
+  [leftContent]="true"
   leftContentIcon="${getIcon('')}"
   [leftContentImage]="leftContentImage"
   [hasMenu]="false"

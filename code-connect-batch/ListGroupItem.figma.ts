@@ -4,21 +4,43 @@
 import figma from 'figma'
 import { getIcon } from './icon-image'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const appearanceContrast = instance.getEnum('Container color', {
+  None: 'default',
+  Default: 'default',
+  Primary: 'primary',
+  Alternative: 'alternative',
+})
+const isDisabled = instance.getEnum('List group state:', {
+  Disabled: true,
+  Enabled: false,
+  Hovered: false,
+  Selected: false,
+})
+const isActive = instance.getEnum('List group state:', {
+  Disabled: false,
+  Enabled: false,
+  Hovered: false,
+  Selected: true,
+})
+
 export default {
   example: figma.code`<bmb-list-group-item
-  appearanceContrast="default"
+  appearanceContrast="${escapeAttribute(String(appearanceContrast ?? "default"))}"
   id="list-group-item-1"
   [personalizedTemplate]="false"
-  [headerText]="headerText"
-  [descriptionText]="descriptionText"
-  [infoText]="infoText"
+  headerText="Header text"
+  descriptionText="Description text"
+  infoText="Info text"
   icon="${getIcon('add_box')}"
   [imgSrc]="imgSrc"
-  [tooltipTitle]="tooltipTitle"
+  tooltipTitle="Tooltip title"
   [badgeAppearance]="badgeAppearance"
-  [badgeText]="badgeText"
-  [isDisabled]="false"
-  [isActive]="false"
+  badgeText="Badge Text"
+  [isDisabled]="${isDisabled ?? false}"
+  [isActive]="${isActive ?? false}"
 />`,
   imports: [
     "import { BmbListGroupItemComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",

@@ -4,15 +4,52 @@
 import figma from 'figma'
 import { getIcon } from './icon-image'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const titleLayer = instance.findInstance('BB_9_1', { traverseInstances: true })
+const title = titleLayer?.type === 'INSTANCE' ? titleLayer.getPropertyValue('componentTitle') : undefined
+const componentTitle = typeof title === 'string' ? title : 'Inner Header'
+const leadingControl = instance.findInstance('Header Close/Return', { traverseInstances: true })
+const leadingAction = leadingControl?.type === 'INSTANCE' ? leadingControl.getPropertyValue('leadingAction') : undefined
+
 export default {
-  example: figma.code`<bmb-inner-header
-  componentTitle="Inner Header"
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleOnHandleTrailingPrimary(event: Parameters<BmbInnerHeaderComponent['onHandleTrailingPrimary']['emit']>[0]): void {
+    console.info('onHandleTrailingPrimary', event);
+  }
+
+  handleOnHandleTrailingSecondary(event: Parameters<BmbInnerHeaderComponent['onHandleTrailingSecondary']['emit']>[0]): void {
+    console.info('onHandleTrailingSecondary', event);
+  }
+
+  handleOnHandleBack(event: Parameters<BmbInnerHeaderComponent['onHandleBack']['emit']>[0]): void {
+    console.info('onHandleBack', event);
+  }
+
+  handleOnHandleClose(event: Parameters<BmbInnerHeaderComponent['onHandleClose']['emit']>[0]): void {
+    console.info('onHandleClose', event);
+  }
+
+  handleSearchData(event: Parameters<BmbInnerHeaderComponent['searchData']['emit']>[0]): void {
+    console.info('searchData', event);
+  }
+}
+</script>
+
+<bmb-inner-header
+  (onHandleTrailingPrimary)="handleOnHandleTrailingPrimary($event)"
+  (onHandleTrailingSecondary)="handleOnHandleTrailingSecondary($event)"
+  (onHandleBack)="handleOnHandleBack($event)"
+  (onHandleClose)="handleOnHandleClose($event)"
+  (searchData)="handleSearchData($event)"
+  componentTitle="${escapeAttribute(componentTitle)}"
   placeholderSearch="Search"
   trailingIconPrimary="${getIcon('lock')}"
   trailingIconSecondary="${getIcon('')}"
-  [showClose]="true"
-  [showReturn]="showReturn"
-  [showSearch]="showSearch"
+  [showClose]="${leadingAction === undefined || leadingAction === 'close'}"
+  [showReturn]="${leadingAction === 'return'}"
 />`,
   imports: [
     "import { BmbInnerHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",

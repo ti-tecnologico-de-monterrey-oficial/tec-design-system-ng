@@ -7,6 +7,30 @@ import { getIcon } from './icon-image'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleSelect(event: Parameters<BmbTableLiteComponent['select']['emit']>[0]): void {
+    console.info('select', event);
+  }
+
+  handleClickedRow(event: Parameters<BmbTableLiteComponent['clickedRow']['emit']>[0]): void {
+    console.info('clickedRow', event);
+  }
+
+  handleSearchChange(event: Parameters<BmbTableLiteComponent['searchChange']['emit']>[0]): void {
+    console.info('searchChange', event);
+  }
+
+  handleFiltersChange(event: Parameters<BmbTableLiteComponent['filtersChange']['emit']>[0]): void {
+    console.info('filtersChange', event);
+  }
+
+  handleSearchModeChange(event: Parameters<BmbTableLiteComponent['searchModeChange']['emit']>[0]): void {
+    console.info('searchModeChange', event);
+  }
+
+  handlePageChange(event: Parameters<BmbTableLiteComponent['pageChange']['emit']>[0]): void {
+    console.info('pageChange', event);
+  }
+
   columns: ReturnType<BmbTableLiteComponent['columns']> = [
     {
       def: 'first_name',
@@ -61,6 +85,12 @@ export class ExampleComponent {
 </script>
 
 <bmb-table-lite
+  (select)="handleSelect($event)"
+  (clickedRow)="handleClickedRow($event)"
+  (searchChange)="handleSearchChange($event)"
+  (filtersChange)="handleFiltersChange($event)"
+  (searchModeChange)="handleSearchModeChange($event)"
+  (pageChange)="handlePageChange($event)"
   [data]="[{ id: 1, first_name: 'Mindy', last_name: 'Dengel', email: 'mdengel0@examiner.com', country: 'Latvia', birthday: '17/10/2001', balance: 9424 }, { id: 2, first_name: 'Fey', last_name: 'Burder', email: 'fburder1@nyu.edu', country: 'Japan', birthday: '06/02/1982', balance: 6427 }, { id: 3, first_name: 'Julienne', last_name: 'Gemlbett', email: 'jgemlbett2@about.com', country: 'Philippines', birthday: '14/07/1981', balance: 9064 }]"
   [columns]="columns"
   [config]="config"

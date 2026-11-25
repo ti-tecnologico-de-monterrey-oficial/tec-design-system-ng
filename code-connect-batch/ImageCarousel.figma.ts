@@ -3,10 +3,30 @@
 // component=BmbCarouselComponent
 import figma from 'figma'
 
+const instance = figma.selectedInstance
+const selectedIndex = instance.getEnum('Slide', {
+  Default: 0,
+  '2': 1,
+  '3': 2,
+})
+
 export default {
-  example: figma.code`<bmb-carousel
-  [selectedIndex]="selectedIndex"
-/>`,
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleSelectedIndexChange(event: ReturnType<BmbCarouselComponent['selectedIndex']>): void {
+    console.info('selectedIndexChange', event);
+  }
+}
+</script>
+
+<bmb-carousel
+  (selectedIndexChange)="handleSelectedIndexChange($event)"
+  [selectedIndex]="${selectedIndex ?? 0}"
+>
+  <h1 #carouselItem>Slide 1</h1>
+  <h1 #carouselItem>Slide 2</h1>
+  <h1 #carouselItem>Slide 3</h1>
+</bmb-carousel>`,
   imports: [
     "import { BmbCarouselComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

@@ -3,17 +3,38 @@
 // component=BmbCheckboxComponent
 import figma from 'figma'
 
+const instance = figma.selectedInstance
+const mode = instance.getEnum('Mode', {
+  Active: 'active',
+  Inactive: 'inactive',
+  Indeterminate: 'indeterminate',
+})
+const disabled = instance.getEnum('State', {
+  Hovered: false,
+  Enabled: false,
+  Focused: false,
+  Disabled: true,
+})
+
 export default {
-  example: figma.code`<bmb-checkbox
-  [checked]="false"
-  [disabled]="false"
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleChange(event: Parameters<BmbCheckboxComponent['change']['emit']>[0]): void {
+    console.info('change', event);
+  }
+}
+</script>
+
+<bmb-checkbox
+  (change)="handleChange($event)"
+  [checked]="${mode === 'active'}"
+  [disabled]="${disabled ?? false}"
   [required]="false"
-  [indeterminate]="false"
+  [indeterminate]="${mode === 'indeterminate'}"
   value=""
   name=""
   label="Contrato profesor cátedra Biología marina CCM.pdf"
   labelPosition="after"
-  [control]="control"
   errorMessage=""
   helperMessage=""
 />`,

@@ -4,9 +4,23 @@
 import figma from 'figma'
 import { getIcon } from './icon-image'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const componentTitle = instance.getString('Title Home')
+
 export default {
-  example: figma.code`<bmb-simple-header
-  componentTitle="Mis apps"
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleOnIconClick(event: Parameters<BmbSimpleHeaderComponent['onIconClick']['emit']>[0]): void {
+    console.info('onIconClick', event);
+  }
+}
+</script>
+
+<bmb-simple-header
+  (onIconClick)="handleOnIconClick($event)"
+  componentTitle="${escapeAttribute(String(componentTitle ?? "Mis apps"))}"
   icon="${getIcon('apps')}"
   [iconAlternativeColor]="false"
 />`,

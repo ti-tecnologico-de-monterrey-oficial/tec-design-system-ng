@@ -3,9 +3,24 @@
 // component=BmbImageComponent
 import figma from 'figma'
 
+const instance = figma.selectedInstance
+const isBlurredBackdrop = instance.getEnum('Style', {
+  Default: 'false',
+  'Blurred backdrop': 'true',
+  Straight: 'false',
+})
+
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleImageClick(event: Parameters<BmbImageComponent['imageClick']['emit']>[0]): void {
+    console.info('imageClick', event);
+  }
+
+  handleImageNotFoundError(): void {
+    console.info('imageNotFoundError');
+  }
+
   images: BmbImageItem[] | null = [
     {
       src: './assets/doc/bmb-image/photo-fruits.svg',
@@ -26,6 +41,8 @@ export class ExampleComponent {
 </script>
 
 <bmb-image
+  (imageClick)="handleImageClick($event)"
+  (imageNotFoundError)="handleImageNotFoundError()"
   [autoplay]="false"
   [autoplayInterval]="5000"
   src="./assets/doc/bmb-image/photo-fruits.svg"
@@ -35,7 +52,7 @@ export class ExampleComponent {
   borderRadius="m"
   loading="lazy"
   [enableZoom]="false"
-  [isBlurredBackdrop]="false"
+  [isBlurredBackdrop]="${isBlurredBackdrop ?? false}"
   [images]="images"
   [animation]="animation"
   objectFit="cover"

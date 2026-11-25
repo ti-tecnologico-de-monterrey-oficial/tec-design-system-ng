@@ -7,11 +7,16 @@ import { getIcon } from './icon-image'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleAddButtonAction(event: Parameters<BmbListItemsComponent['addButtonAction']['emit']>[0]): void {
+    console.info('addButtonAction', event);
+  }
+
   items: IBmbListItemsElement[] = [];
 }
 </script>
 
 <bmb-list-items
+  (addButtonAction)="handleAddButtonAction($event)"
   addButtonIcon="${getIcon('add_box')}"
   [items]="items"
   [dateFormat]="dateFormat"

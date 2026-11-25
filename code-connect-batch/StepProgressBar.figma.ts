@@ -3,13 +3,41 @@
 // component=BmbStepProgressBarComponent
 import figma from 'figma'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const type = instance.getEnum('Variante', {
+  Horizontal: 'horizontal',
+  'Vertical Small': 'vertical',
+  Wizard: 'step-panel',
+})
+const size = instance.getEnum('Variante', {
+  Horizontal: 'normal',
+  'Vertical Small': 'small',
+  Wizard: 'normal',
+})
+
 export default {
-  example: figma.code`<bmb-step-progress-bar
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleOnStepPress(event: Parameters<BmbStepProgressBarComponent['onStepPress']['emit']>[0]): void {
+    console.info('onStepPress', event);
+  }
+
+  handleOnStepPanelPress(event: Parameters<BmbStepProgressBarComponent['onStepPanelPress']['emit']>[0]): void {
+    console.info('onStepPanelPress', event);
+  }
+}
+</script>
+
+<bmb-step-progress-bar
+  (onStepPress)="handleOnStepPress($event)"
+  (onStepPanelPress)="handleOnStepPanelPress($event)"
   [activeStep]="3"
   [totalSteps]="5"
-  size="default"
+  size="${escapeAttribute(String(size ?? "default"))}"
   [freeze]="false"
-  type="vertical"
+  type="${escapeAttribute(String(type ?? "vertical"))}"
   [labelSteps]="['¡Orden de compra aprobada!', '¡Orden de compra aprobada!', '¡Orden de compra aprobada!', '¡Orden de compra aprobada!', '¡Orden de compra aprobada!']"
   labelComplete="Completo"
   labelIncomplete="Pendiente"

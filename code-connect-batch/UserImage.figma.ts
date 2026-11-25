@@ -4,7 +4,31 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-user-image
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleButtonPress(event: Parameters<BmbUserImageComponent['buttonPress']['emit']>[0]): void {
+    console.info('buttonPress', event);
+  }
+
+  handleButtonClick(event: Parameters<BmbUserImageComponent['buttonClick']['emit']>[0]): void {
+    console.info('buttonClick', event);
+  }
+
+  handleButtonKeyPress(event: Parameters<BmbUserImageComponent['buttonKeyPress']['emit']>[0]): void {
+    console.info('buttonKeyPress', event);
+  }
+
+  handleImageNotFoundError(): void {
+    console.info('imageNotFoundError');
+  }
+}
+</script>
+
+<bmb-user-image
+  (buttonPress)="handleButtonPress($event)"
+  (buttonClick)="handleButtonClick($event)"
+  (buttonKeyPress)="handleButtonKeyPress($event)"
+  (imageNotFoundError)="handleImageNotFoundError()"
   image="https://picsum.photos/id/64/200/300"
   size="desktop-small"
   [bordered]="false"

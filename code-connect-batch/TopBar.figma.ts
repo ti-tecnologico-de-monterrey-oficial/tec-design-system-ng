@@ -6,6 +6,30 @@ import figma from 'figma'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleHelpButtonClick(event: Parameters<BmbTopBarComponent['helpButtonClick']['emit']>[0]): void {
+    console.info('helpButtonClick', event);
+  }
+
+  handleUserProfileClick(event: Parameters<BmbTopBarComponent['userProfileClick']['emit']>[0]): void {
+    console.info('userProfileClick', event);
+  }
+
+  handleAlertButtonClick(event: Parameters<BmbTopBarComponent['alertButtonClick']['emit']>[0]): void {
+    console.info('alertButtonClick', event);
+  }
+
+  handleGetLogoClick(): void {
+    console.info('getLogoClick');
+  }
+
+  handleSearchButtonClick(event: Parameters<BmbTopBarComponent['searchButtonClick']['emit']>[0]): void {
+    console.info('searchButtonClick', event);
+  }
+
+  handleGetFavoritesClick(event: Parameters<BmbTopBarComponent['getFavoritesClick']['emit']>[0]): void {
+    console.info('getFavoritesClick', event);
+  }
+
   userInformation: IUserInformation | null = null;
 
   alertNotification: IBmbDataAlert[] = [
@@ -171,6 +195,12 @@ export class ExampleComponent {
 </script>
 
 <bmb-top-bar
+  (helpButtonClick)="handleHelpButtonClick($event)"
+  (userProfileClick)="handleUserProfileClick($event)"
+  (alertButtonClick)="handleAlertButtonClick($event)"
+  (getLogoClick)="handleGetLogoClick()"
+  (searchButtonClick)="handleSearchButtonClick($event)"
+  (getFavoritesClick)="handleGetFavoritesClick($event)"
   [userInformation]="userInformation"
   image=""
   mobileImage=""

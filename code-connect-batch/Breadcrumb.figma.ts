@@ -3,6 +3,13 @@
 // component=BmbBreadcrumbComponent
 import figma from 'figma'
 
+const instance = figma.selectedInstance
+const isTopBar = instance.getEnum('Variation', {
+  'Local Navigation': false,
+  topBar: true,
+  Mobile: false,
+})
+
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
@@ -25,7 +32,7 @@ export class ExampleComponent {
 <bmb-breadcrumb
   [dataTopBar]="dataTopBar"
   [dataLocalNav]="dataLocalNav"
-  [isTopBar]="false"
+  [isTopBar]="${isTopBar ?? false}"
   [isInactive]="false"
   [dropdownOpen]="false"
 />`,

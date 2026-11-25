@@ -7,6 +7,10 @@ import { getIcon } from './icon-image'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleOnClose(): void {
+    console.info('onClose');
+  }
+
   evaluationRubricList: IBmbEvaluationRubric[] = [
     { criterion: 'Criterio Primero', tooltip: 'Criterio Primero tooltip' },
     { criterion: 'Criterio Segundo', tooltip: 'Criterio Segundo tooltip' },
@@ -31,6 +35,7 @@ export class ExampleComponent {
 </script>
 
 <bmb-evaluation-rubric
+  (onClose)="handleOnClose()"
   componentTitle="Rúbrica de evaluación"
   icon="${getIcon('checklist_rtl')}"
   rightIcon="${getIcon('close')}"
