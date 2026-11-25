@@ -24,23 +24,6 @@ export default {
   ],
   tags: ['!autodocs'],
   parameters: {
-    controls: {
-      exclude: [
-        'styleIconGoogle',
-        'getFontVariationSettings',
-        'iconSvg',
-        'isImage',
-        'getImageStyles',
-        'customIcon',
-        'isSVGTemplate',
-        'loadIcon',
-        'customIconName',
-        'isCustomIcon',
-        'testId',
-        'sanitizedHtml',
-        'handleImageNotFoundError',
-      ],
-    },
     docs: {
       description: {
         component: `
@@ -53,9 +36,18 @@ ${getGeneralComponentDescription({ name: 'icon', type: 'element', additional: 'v
   },
 )}
 ${getArchitectureSection(
-  `<i class="bmb_icon-container-i material-symbols-rounded">
-  < icon />
-</i>`,
+  `
+<!-- If the icon input is an image -->
+<figure class="bmb_icon-figure">
+  <img
+    class="bmb_icon-figure-image"
+    onerror="this.onerror=null;this.src='broken-image'"
+    (error)="handleImageNotFoundError"
+  />
+</figure>
+
+<!-- Material Symbols - Icons -->
+ <span class="bmb_icon-svg"></span>`,
 )}
 ${getSpecialSpecifications(
   `${GOOGLE_FONTS_LINK}
@@ -64,16 +56,6 @@ ${ICON_IMAGE_DETAIL}
 >
 - Use the icons as a visual guide.
 - Check out the icon library in the documentation [here](https://bamboo.tec.mx/latest/foundations/icon/iconos-wukxE19q#section-buenas-practicas-de-uso-14)
-- Custom icons list:
-  - bmb_android
-  - bmb_apple
-  - bmb_drive
-  - bmb_facebook
-  - bmb_instagram
-  - bmb_teams
-  - bmb_twitter
-  - bmb_whatsapp
-  - bmb_youtube
 `,
   { showAdditionalBlockquote: true },
 )}

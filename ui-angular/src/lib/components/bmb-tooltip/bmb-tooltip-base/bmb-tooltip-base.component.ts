@@ -117,8 +117,6 @@ export class BmbTooltipBaseComponent {
     this.tooltipElement = this.createTooltipElement();
     this.tooltipElement.style.visibility = 'hidden';
     this.document.body.appendChild(this.tooltipElement);
-    // Measure after insertion so the floating content is laid out before positioning.
-    this.tooltipElement.getBoundingClientRect();
     this.updateTooltipPosition();
     this.tooltipElement.style.visibility = 'visible';
 

@@ -1,8 +1,21 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { FormControl } from '@angular/forms';
 import { BmbTimepickerComponent } from './bmb-timepicker.component';
-import { getArchitectureSection, getBasicExampleBlock, getFieldDescription, getFormatName, getFormExampleBlock, getOnEvent, IBmbOnEvent } from '@docs/utils/utils';
-import { DBmbInputParamDesc, DBmbTimePicker, getOnEventParam } from '@docs/utils/parameterDescriptions';
+import {
+  getArchitectureSection,
+  getBasicExampleBlock,
+  getFieldDescription,
+  getFormatName,
+  getFormExampleBlock,
+  getOnEvent,
+  IBmbOnEvent,
+} from '@docs/utils/utils';
+import {
+  DBmbInputParamDesc,
+  DBmbTimePicker,
+  getOnEventParam,
+} from '@docs/utils/parameterDescriptions';
+import * as inputStory from '../bmb-input/bmb-input.stories';
 
 const inputName = 'time_picker';
 const formatName: string = getFormatName(inputName, '_');
@@ -24,11 +37,7 @@ const getChange: IBmbOnEvent = getOnEvent(
   'getChange',
   handleChange.type,
 );
-const getFocus: IBmbOnEvent = getOnEvent(
-  'field',
-  'getFocus',
-  'boolean',
-);
+const getFocus: IBmbOnEvent = getOnEvent('field', 'getFocus', 'boolean');
 
 export default {
   title: 'Components/Inputs/Time picker',
@@ -36,7 +45,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component:`
+        component: `
 ${getFieldDescription(
   'timepicker',
   'select a time from a time picker interface.',
@@ -57,8 +66,14 @@ ${getArchitectureSection(
   </section>
 </div>
 `,
-  'input',
-  'components-inputs-text-input',
+  {
+    parentArchitecture: [
+      {
+        bmbNameLink: 'input',
+        documentationLink: inputStory.default.title!,
+      },
+    ],
+  },
 )}
 ${getFormExampleBlock(
   'BmbTimepickerComponent',
@@ -68,7 +83,7 @@ ${getFormExampleBlock(
   inputExample,
 )}
 ${getBasicExampleBlock('BmbTimepickerComponent', '', handleChange.handleExample)}
-        `
+        `,
       },
     },
   },
