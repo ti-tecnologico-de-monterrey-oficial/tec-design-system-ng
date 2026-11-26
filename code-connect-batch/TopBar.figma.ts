@@ -3,6 +3,14 @@
 // component=BmbTopBarComponent
 import figma from 'figma'
 
+const instance = figma.selectedInstance
+const mitec = instance.getEnum('mitec', { false: false, true: true })
+const showAppName = instance.getBoolean('showAppName')
+const allowSidebarForMobile = instance.getBoolean('allowSidebarForMobile')
+const showHelpButton = instance.getBoolean('showHelpButton')
+const showSearchButton = instance.getBoolean('showSearchButton')
+const showFavoritesButton = instance.getBoolean('showFavoritesButton')
+
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
@@ -204,15 +212,16 @@ export class ExampleComponent {
   [userInformation]="userInformation"
   image=""
   mobileImage=""
-  appName=""
+  appName="${showAppName === false ? '' : 'TecTest'}"
   appPowered="Powered x Bamboo Design"
-  [mitec]="false"
+  [mitec]="${mitec ?? false}"
   [alertNotification]="alertNotification"
-  [allowSidebarForMobile]="true"
-  [showHelpButton]="false"
+  [allowSidebarForMobile]="${allowSidebarForMobile ?? true}"
+  [showHelpButton]="${showHelpButton ?? false}"
+  [showFavoritesButton]="${showFavoritesButton ?? false}"
   getLogoLink=""
   getLogoTarget="_blank"
-  [showSearchButton]="false"
+  [showSearchButton]="${showSearchButton ?? false}"
 />`,
   imports: [
     "import type { IBmbDataAlert, IUserInformation } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",

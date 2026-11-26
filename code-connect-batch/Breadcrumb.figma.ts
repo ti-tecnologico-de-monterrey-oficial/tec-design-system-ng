@@ -4,10 +4,13 @@
 import figma from 'figma'
 
 const instance = figma.selectedInstance
-const isTopBar = instance.getEnum('Variation', {
-  'Local Navigation': false,
-  topBar: true,
-  Mobile: false,
+const isTopBar = instance.getEnum('isTopBar', {
+  false: false,
+  true: true,
+})
+const isInactive = instance.getEnum('isInactive', {
+  false: false,
+  true: true,
 })
 
 export default {
@@ -33,7 +36,7 @@ export class ExampleComponent {
   [dataTopBar]="dataTopBar"
   [dataLocalNav]="dataLocalNav"
   [isTopBar]="${isTopBar ?? false}"
-  [isInactive]="false"
+  [isInactive]="${isInactive ?? false}"
   [dropdownOpen]="false"
 />`,
   imports: [
