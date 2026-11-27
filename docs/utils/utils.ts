@@ -61,6 +61,11 @@ export const BlockquoteType = {
   important: '> [!CALLOUT]',
 };
 
+interface IBmbParentArchitectureType {
+  bmbNameLink: string;
+  documentationLink: string;
+}
+
 export const DESIGN_SYSTEM_TITLE = '***Bamboo***';
 const TECHNICAL_DOC_TITLE = `${DESIGN_SYSTEM_TITLE} ***- Technical documentation***`;
 const TECHNICAL_DOC_REFERENCES = `Please remember to refer to the ${TECHNICAL_DOC_TITLE} for more details:`;
@@ -134,27 +139,17 @@ export const getLandingGeneralDesc = (name: string): string =>
 export const getStandaloneGeneralDesc = (name: string): string =>
   `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to implement the structure of the **Stand alone sites - ${name}**.`, { generalDocLink: 'https://bamboo.tec.mx/latest/templates/sitios-stand-alone/descripcion-general-lwpZfyMh' })}`;
 
-const getProperName = (name: string): string =>
-  name.replace(name.slice(0, 1), name.slice(0, 1).toLocaleUpperCase());
-
 export const getFormatName = (
   name: string,
   separator: string | RegExp = '',
   replace = '',
 ): string => {
-  const _name: string = getProperName(name);
-
-  if (!!separator && replace === '') {
+  if (typeof separator === 'string')
     return name
-      ?.split(separator)
-      .map((element) => getProperName(element))
-      .toString()
-      .replaceAll(',', '');
-  }
+      .replace(name.slice(0, 1), name.slice(0, 1).toLocaleUpperCase())
+      .replaceAll(separator, replace);
 
-  return !!separator && !!replace
-    ? _name.replaceAll(separator, replace)
-    : _name;
+  return name.replace(separator, replace);
 };
 
 export const getOnEvent = (
@@ -191,16 +186,22 @@ export const getStoryLink = ({
   title,
   showFullLinkName = true,
   isPreURL = false,
+  urlId = '',
+  alias = '',
 }: {
   title: string;
   showFullLinkName?: boolean;
   isPreURL?: boolean;
+  urlId?: string;
+  alias?: string;
 }): string => {
-  const basisURL = `/docs/${getFormatName(title, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
-  const _title: string = showFullLinkName ? title : getStoryTitle(title);
+  const basisURL = `/docs/${getFormatName(title, /(\/)|(\ *)((,)|\(|\))(\ *)|\(|\)|(\ )/g, '-').toLocaleLowerCase()}--documentation`;
+  const _title: string =
+    alias || (showFullLinkName ? title : getStoryTitle(title));
   const preURL: string = isPreURL ? '/?path=' : '';
+  const _urlId: string = urlId ? `#${urlId}` : '';
 
-  return `[${_title}](${preURL}${basisURL}`;
+  return `[${_title}](${preURL}${basisURL}${_urlId})`;
 };
 
 export const getAccordionDetail = (title: string, content: string): string => `
@@ -266,20 +267,48 @@ export const getAuxiliaryDescription = (
 
 export const getArchitectureSection = (
   architectureBlock: string,
-  bmbNameLink = '',
-  documentationLink = '',
+  {
+    storyType = 'component',
+    parentArchitecture = [],
+  }: {
+    storyType?: IBmbStoryType;
+    parentArchitecture?: IBmbParentArchitectureType[];
+  } = {},
 ): string => `
 ## DOM Architecture
-Represents the structure of the component.
-\`\`\`html
-${architectureBlock}
-\`\`\`${bmbNameLink ? getDOMArchitectureLink(bmbNameLink, documentationLink) : ''}
-<br/>
-`;
+>
+Represents the structure of the ${storyType}.
+>\`\`\`html
+>${architectureBlock.replaceAll(
+  `
+`,
+  `
+>`,
+)}
+>\`\`\`
+${
+  parentArchitecture.length
+    ? `${parentArchitecture
+        .map(
+          (element) =>
+            `> ${parentArchitecture.length >= 2 ? '-' : ''} ${getStoryLink({
+              alias: `bmb-${element.bmbNameLink} - ${getStoryTitle(element.documentationLink)} - DOM Architecture`,
+              title: element.documentationLink,
+              showFullLinkName: false,
+              urlId: 'dom-architecture',
+            })}
+`,
+        )
+        .join('')}
+`
+    : ''
+}
+<br/>`;
 
 export const getCheckboxOrRadialArchitecture = (type: string): string => `
 ${getArchitectureSection(`
-<section class="bmb_${type}" <!-- conditional class bmb_${type}-before bmb_${type}-after bmb_${type}-required --> >
+<section class="bmb_${type}">
+<!-- conditional class bmb_${type}-before bmb_${type}-after bmb_${type}-required -->
   <input { input config } />
   <div class="bmb_${type}-box">
     <span class="bmb_${type}-mark"></span>
@@ -583,14 +612,6 @@ ${
 >
 ${generalDocLink ? `>${getGeneralDocDescription(generalDocLink)}` : ''}
 
-<br/>
-`;
-
-export const getDOMArchitectureLink = (
-  bmbNameLink = '',
-  documentationLink = '',
-): string => `
-[bmb-${bmbNameLink} - DOM Architecture](/docs/${documentationLink}--documentation&globals=#dom-architecture)
 <br/>
 `;
 

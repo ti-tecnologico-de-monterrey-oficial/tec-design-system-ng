@@ -6,6 +6,34 @@ import figma from 'figma'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleHandleCloseSession(): void {
+    console.info('handleCloseSession');
+  }
+
+  handleHandleCloseProfile(): void {
+    console.info('handleCloseProfile');
+  }
+
+  handleOnRightClick(event: Parameters<BmbProfileComponent['onRightClick']['emit']>[0]): void {
+    console.info('onRightClick', event);
+  }
+
+  handleHandleVersionBack(event: Parameters<BmbProfileComponent['handleVersionBack']['emit']>[0]): void {
+    console.info('handleVersionBack', event);
+  }
+
+  handleGetRoleChange(): void {
+    console.info('getRoleChange');
+  }
+
+  handleOnBack(event: Parameters<BmbProfileComponent['onBack']['emit']>[0]): void {
+    console.info('onBack', event);
+  }
+
+  handleOnExpandClick(event: Parameters<BmbProfileComponent['onExpandClick']['emit']>[0]): void {
+    console.info('onExpandClick', event);
+  }
+
   standAloneData: IBmbUserData = {
     name: 'Paloma Araujo',
     userImg: 'https://picsum.photos/id/64/200/300',
@@ -56,22 +84,29 @@ export class ExampleComponent {
 </script>
 
 <bmb-profile
-  [isStandAlone]="isStandAlone"
+  (handleCloseSession)="handleHandleCloseSession()"
+  (handleCloseProfile)="handleHandleCloseProfile()"
+  (onRightClick)="handleOnRightClick($event)"
+  (handleVersionBack)="handleHandleVersionBack($event)"
+  (getRoleChange)="handleGetRoleChange()"
+  (onBack)="handleOnBack($event)"
+  (onExpandClick)="handleOnExpandClick($event)"
+  [isStandAlone]="true"
   [standAloneData]="standAloneData"
-  [isStudent]="isStudent"
+  [isStudent]="false"
   [studentData]="studentData"
   [collaboratorData]="collaboratorData"
-  [versionLabel]="versionLabel"
-  [isMobile]="isMobile"
+  versionLabel="Versión 1.5.10"
+  [isMobile]="false"
   [enableLangChange]="enableLangChange"
-  [idDigitalLink]="idDigitalLink"
-  [campusAcessLink]="campusAcessLink"
-  [tecServicesLink]="tecServicesLink"
+  idDigitalLink="https://www.example.com"
+  campusAcessLink="https://www.example.com"
+  tecServicesLink="https://www.example.com"
   [targetLinks]="targetLinks"
-  [versionBackText]="versionBackText"
-  [enableVersionBack]="enableVersionBack"
+  versionBackText="Regresar a versión anterior mitec"
+  [enableVersionBack]="true"
   [enableExpandButton]="true"
-  [currentRole]="currentRole"
+  currentRole="Colaborador"
   [isLoading]="false"
 />`,
   imports: [

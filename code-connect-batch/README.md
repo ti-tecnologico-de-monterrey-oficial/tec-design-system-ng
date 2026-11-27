@@ -2,7 +2,7 @@
 
 Actualizado: **2026-10-27**.
 
-Esta carpeta contiene los ejemplos Angular asociados con componentes de Figma. Sus datos de ejemplo proceden de **Storybook**. El mapeo de la propiedad Figma `image` a valores de icono está centralizado en [icon-image.ts](icon-image.ts).
+Esta carpeta contiene los ejemplos Angular asociados con componentes de Figma. Los snippets dinámicos leen propiedades y capas con una correspondencia documentada. Los datos de ejemplo proceden de **Storybook**. El mapeo de la propiedad Figma `image` a valores de icono está centralizado en [icon-image.ts](icon-image.ts).
 
 Las reglas vigentes están en [CODE_CONNECT_CONVENTION.md](CODE_CONNECT_CONVENTION.md). Las instrucciones anteriores de extracción dinámica, ejecución autónoma y publicación continua quedaron sustituidas por este flujo local. Los registros históricos conservan la evidencia de trabajos anteriores; no describen necesariamente el contenido actual de los ejemplos.
 
@@ -15,7 +15,7 @@ Las reglas vigentes están en [CODE_CONNECT_CONVENTION.md](CODE_CONNECT_CONVENTI
 - Se agregó preparación TypeScript para los inputs con interfaces o tipos estructurados, reutilizando los tipos públicos de la librería. Los ejemplos muestran los imports de tipos, los datos tipados y sus bindings sin exigir propiedades nuevas en Figma.
 - En los ejemplos HTML, `<script lang="ts">` presenta los campos que se deben integrar en la clase del componente consumidor; no se debe pegar ese bloque en un template Angular. Modal conserva una receta TypeScript para `MatDialog`.
 - Todavía deben revisarse referencias previas de props escalares, controles y templates sin preparación. La validación de interfaces no equivale a compilar una aplicación consumidora completa.
-- El CLI de Code Connect no está instalado en este checkout. **No se ha ejecutado `figma connect parse` ni se han publicado los cambios de esta revisión.**
+- El parser oficial de Code Connect se ejecutó sobre las 24 plantillas de la revisión de propiedades. El índice publicado de Chromatic contiene sus 24 páginas de documentación. La revisión todavía requiere validar el comportamiento en Dev Mode.
 
 Los estados y conteos de publicación de [INVENTORY.md](INVENTORY.md), [component-index.json](component-index.json) y los reportes anteriores son registros de sus respectivas fechas. No deben presentarse como verificación de los archivos modificados ahora.
 
@@ -33,7 +33,7 @@ Un objeto documentado como texto en una tabla de Storybook sigue siendo un objet
 
 - Usar ejemplos de Storybook y reutilizar `getIcon` de `./icon-image` en los campos de icono. Mantener la lectura de `image` en ese único helper.
 - Conservar los encabezados existentes `url`, `source` y `component`, además del identificador de conexión. No agregar comentarios explicativos ni encabezados `storybook` dentro de los templates.
-- No agregar eventos, callbacks, métodos de interacción, propiedades de accesibilidad, miembros internos ni propiedades deprecadas o sin uso, salvo las excepciones expresamente solicitadas.
+- Incluir bindings y handlers TypeScript para los outputs públicos vigentes. Los eventos son parte del ejemplo Angular. Mantener fuera las propiedades de accesibilidad, los miembros internos y las propiedades deprecadas o sin uso, salvo excepciones expresas.
 - No agregar `link`, `target` ni `tooltipText` como inputs nuevos. Dentro de datos estructurados se conservan los campos requeridos por la interfaz, según la convención. Filtrar los callbacks y campos opcionales excluidos al copiar fixtures.
 - Mostrar ejemplos de objetos y arrays, no únicamente referencias como `[emptyStateData]="emptyStateData"` sin datos.
 - Usar `[]` para objetos, arrays, números, booleanos y expresiones. Los textos literales pueden ir sin corchetes.

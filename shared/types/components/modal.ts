@@ -35,9 +35,9 @@ export interface ModalDataConfig<TContent = unknown> {
   secondaryAction?: () => void;
   closeAction?: () => void;
 }
-export interface IBmbNativeModal<TContent = unknown>
+export interface IBmbNativeModal
   extends Omit<
-    ModalDataConfig<TContent>,
+    ModalDataConfig,
     | 'primaryAction'
     | 'secondaryAction'
     | 'closeAction'
@@ -66,5 +66,5 @@ export interface IBmbNativeModal<TContent = unknown>
   }) => void;
   inputContext?: { [key: string]: any };
   outputContext?: { [key: string]: (value: any) => void };
-  content?: string | TContent | null;
+  content?: unknown;
 }

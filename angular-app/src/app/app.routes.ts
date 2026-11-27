@@ -4,6 +4,22 @@ import { TemplatesContainerBtn } from './pages/templates-container-btn/templates
 
 export const appRoutes: Route[] = [
   {
+    path: 'reserva-salas',
+    title: 'Reserva de salas',
+    loadComponent: () =>
+      import('./pages/room-reservation/room-reservation').then(
+        (m) => m.RoomReservation,
+      ),
+  },
+  {
+    path: 'directives/full-text',
+    title: 'DS01-3901 | FullTextDirective',
+    loadComponent: () =>
+      import('./pages/directives/full-text-directive/full-text-directive').then(
+        ({ FullTextDirective }) => FullTextDirective,
+      ),
+  },
+  {
     path: 'issue/dropdown',
     title: 'DS01-3902 | BmbDropdown',
     loadComponent: () =>

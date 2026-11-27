@@ -3,9 +3,19 @@
 // component=BmbDividerComponent
 import figma from 'figma'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const type = instance.getEnum('Type', {
+  Default: 'simple',
+  Dotted: 'dotted',
+  Dash: 'dashed',
+  Vertical_S: 'simple',
+})
+
 export default {
   example: figma.code`<bmb-divider
-  type="simple"
+  type="${escapeAttribute(String(type ?? "simple"))}"
   orientation="horizontal"
   [removeMargin]="false"
 />`,

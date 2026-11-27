@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
 import { BmbHomeCardComponent } from './bmb-home-card.component';
+import { By } from '@angular/platform-browser';
+import { BmbHomeCardHeaderComponent } from './bmb-home-card-header/bmb-home-card-header.component';
 
 describe('BmbHomeCardComponent', () => {
   let component: BmbHomeCardComponent;
@@ -30,6 +32,19 @@ describe('BmbHomeCardComponent', () => {
     fixture.detectChanges();
 
     expect(component.getContentClass()).toBe('bmb_padding-s');
+  });
+
+  it('should forward showFullText to the header', () => {
+    const header = () =>
+      fixture.debugElement.query(By.directive(BmbHomeCardHeaderComponent))
+        .componentInstance as BmbHomeCardHeaderComponent;
+
+    expect(header().showFullText()).toBe(false);
+
+    componentRef.setInput('showFullText', true);
+    fixture.detectChanges();
+
+    expect(header().showFullText()).toBe(true);
   });
 
   it('should emit onClose, onBack and onExpandClick', () => {

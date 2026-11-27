@@ -1,5 +1,5 @@
 <div class="bmb_datepicker">
-  <section class="bmb-datepicker-container">
+  <section class="bmb_datepicker-container">
     <bmb-input-validator
       class="bmb_datepicker_validator"
       [inputId]="inputId()"
@@ -24,7 +24,7 @@
           [icon]="icon()"
           [control]="control()"
           [isReadOnly]="true"
-          [isClearable]="true"
+          [isClearable]="isClearable()"
           [placeholder]="placeholder()"
           [isError]="shouldShowError"
           (click)="handleFocusedEvent($event)"

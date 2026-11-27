@@ -3,11 +3,18 @@
 // component=BmbValueCounterComponent
 import figma from 'figma'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const label = instance.getString('Title')
+const progress = instance.getString('Current')
+const value = instance.getString('Maxium')
+
 export default {
   example: figma.code`<bmb-value-counter
-  label="Title"
-  value="1000"
-  progress="560"
+  label="${escapeAttribute(String(label ?? "Title"))}"
+  value="${escapeAttribute(String(value ?? "1000"))}"
+  progress="${escapeAttribute(String(progress ?? "560"))}"
 />`,
   imports: [
     "import { BmbValueCounterComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",

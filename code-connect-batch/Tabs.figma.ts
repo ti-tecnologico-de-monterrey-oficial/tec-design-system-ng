@@ -3,9 +3,22 @@
 // component=BmbTabsComponent
 import figma from 'figma'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const appearanceContrast = instance.getEnum('Container color', {
+  Default: 'default',
+  Primary: 'primary',
+  Alternative: 'alternative',
+})
+
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleSelected(event: Parameters<BmbTabsComponent['selected']['emit']>[0]): void {
+    console.info('selected', event);
+  }
+
   tabs: IBmbTab[] = [
     { id: 1, title: 'Tec de Monterrey', badge: 13, isActive: true },
     { id: 2, title: 'Label demasiado grande para una tab', badge: 113 },
@@ -18,7 +31,8 @@ export class ExampleComponent {
 </script>
 
 <bmb-tabs
-  appearanceContrast="default"
+  (selected)="handleSelected($event)"
+  appearanceContrast="${escapeAttribute(String(appearanceContrast ?? "default"))}"
   [tabs]="tabs"
   [selectedTabId]="selectedTabId"
 />`,

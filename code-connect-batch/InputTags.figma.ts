@@ -6,6 +6,14 @@ import figma from 'figma'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleOnKeyDown(event: Parameters<BmbInputTagsComponent['onKeyDown']['emit']>[0]): void {
+    console.info('onKeyDown', event);
+  }
+
+  handleOnChange(event: Parameters<BmbInputTagsComponent['onChange']['emit']>[0]): void {
+    console.info('onChange', event);
+  }
+
   tagOptions: string[] | IBmbDropdownItem[] = [
     'Tacos al pastor',
     'Enchiladas',
@@ -32,7 +40,8 @@ export class ExampleComponent {
 </script>
 
 <bmb-input-tags
-  [control]="control"
+  (onKeyDown)="handleOnKeyDown($event)"
+  (onChange)="handleOnChange($event)"
   errorMessage=""
   helperMessage="Helper Message"
   [isRequired]="false"

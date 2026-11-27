@@ -4,9 +4,17 @@
 import figma from 'figma'
 import { getIcon } from './icon-image'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const type = instance.getBoolean('Show ValueCounter_Numbers', {
+  true: 'counter',
+  false: 'simple',
+})
+
 export default {
   example: figma.code`<bmb-progress-bar
-  type="container"
+  type="${escapeAttribute(String(type ?? "container"))}"
   statusColor="info"
   [totalCount]="1000"
   [counter]="560"

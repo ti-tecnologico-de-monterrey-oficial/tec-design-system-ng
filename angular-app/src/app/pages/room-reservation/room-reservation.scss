@@ -1,0 +1,214 @@
+app-room-reservation {
+  display: block;
+  width: 100%;
+}
+
+.reservation {
+  max-width: 1128px;
+  margin: 28px auto 0;
+  color: var(--general-contrasts-100);
+
+  &--expanded {
+    max-width: none;
+  }
+
+  &__step {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--bmb-spacing-xl);
+    padding: 16px 48px;
+    min-height: 96px;
+    background: var(--general-contrasts-15);
+    border-bottom: 1px solid var(--general-contrasts-container-outline);
+
+    h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+
+  &__progress {
+    width: 300px;
+    flex-shrink: 0;
+  }
+
+  &__form {
+    min-height: 540px;
+    padding: 48px clamp(24px, 9.9vw, 142px) 80px;
+  }
+
+  &__fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px clamp(24px, 7.5vw, 108px);
+  }
+
+  &__field {
+    min-width: 0;
+
+    > label {
+      display: block;
+      margin: 8px 8px 10px;
+      font-size: 14px;
+      white-space: nowrap;
+
+      span {
+        margin-left: 6px;
+        color: var(--semantic-error);
+      }
+    }
+  }
+
+  &__select {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      right: 16px;
+      top: 18px;
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid var(--general-contrasts-100);
+      border-bottom: 2px solid var(--general-contrasts-100);
+      transform: rotate(45deg);
+      pointer-events: none;
+      content: '';
+    }
+
+    select {
+      appearance: none;
+      width: 100%;
+      min-width: 0;
+      height: 48px;
+      padding: 0 32px 0 8px;
+      border: 1px solid rgb(var(--gray-charade-500));
+      border-radius: var(--bmb-radius-s);
+      background: var(--general-contrasts-5);
+      color: var(--general-contrasts-100);
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+
+      &:has(option[value='']:checked) {
+        color: rgb(var(--gray-charade-500));
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--general-contrasts-primary);
+        outline-offset: 2px;
+      }
+    }
+  }
+
+  &__times {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
+  }
+
+  &__time {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  &__error {
+    grid-column: 1 / -1;
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: var(--semantic-error);
+  }
+
+  &__demo {
+    margin: 20px 0;
+    color: var(--general-contrasts-75);
+    font-size: 12px;
+  }
+
+  .bmb_home-card-header-wrapper > .bmb_container {
+    min-height: 96px;
+  }
+
+  .bmb_home-card-header-wrapper .bmb_title-content-title {
+    font-size: 18px;
+  }
+
+  .bmb_home-card-wrapper-container {
+    overflow: visible;
+  }
+
+  .bmb_field {
+    min-width: 0;
+    width: 100%;
+    height: 48px;
+    border: 1px solid rgb(var(--gray-charade-500));
+    border-radius: var(--bmb-radius-s);
+    background: var(--general-contrasts-5);
+  }
+
+  .bmb_field-input {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .bmb_step-progress-bar-step-normal.active {
+    width: 48px;
+    height: 48px;
+  }
+
+  .bmb_field:focus-within {
+    outline: 2px solid var(--general-contrasts-primary);
+    outline-offset: 2px;
+  }
+
+  &__period > label {
+    width: 1px;
+    clip-path: inset(50%);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1024px) {
+  .reservation__form {
+    padding-inline: 32px;
+  }
+
+  .reservation__fields {
+    column-gap: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .reservation {
+    &__step {
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 24px;
+      gap: 24px;
+    }
+
+    &__progress {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    &__form {
+      min-height: 0;
+      padding: 24px;
+    }
+
+    &__fields {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .reservation__times {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 16px;
+  }
+}

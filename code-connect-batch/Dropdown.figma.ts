@@ -2,11 +2,35 @@
 // source=ui-angular/src/lib/components/bmb-dropdown/bmb-dropdown.component.ts
 // component=BmbDropdownComponent
 import figma from 'figma'
+import { escapeAttribute } from './escape-attribute'
 import { getIcon } from './icon-image'
+
+const instance = figma.selectedInstance
+const isFilterable = instance.getBoolean('isFilterable')
+const isMultiSelect = instance.getBoolean('isMultiSelect')
+
+const disabled = instance.getEnum('State', {
+  'Focused - Active': false,
+  Disabled: true,
+  Hover: false,
+  Enabled: false,
+  Error: false,
+  'Enabled - Filled': false,
+})
 
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleOnValueChange(event: Parameters<BmbDropdownComponent['onValueChange']['emit']>[0]): void {
+    console.info('onValueChange', event);
+  }
+
+  handleOnFocus(event: Parameters<BmbDropdownComponent['onFocus']['emit']>[0]): void {
+    console.info('onFocus', event);
+  }
+
+  control = new FormControl('');
+
   options: string[] | IBmbDropdownItem[] = [
     { name: 'Apple name', value: '_apple', icon: ${getIcon('home', 'typescript')}, id: 'apple_' },
     { name: 'Banana name', value: '_banana', icon: ${getIcon('bolt', 'typescript')}, id: 'banana_' },
@@ -58,24 +82,27 @@ export class ExampleComponent {
 </script>
 
 <bmb-dropdown
+  (onValueChange)="handleOnValueChange($event)"
+  (onFocus)="handleOnFocus($event)"
   icon="${getIcon('bolt')}"
-  [required]="true"
-  [showIcon]="true"
-  placeholder="Set Fruit"
+  [required]="${instance.getBoolean('required') ?? true}"
+  [showIcon]="${instance.getBoolean('showIcon') ?? true}"
+  placeholder="${escapeAttribute(instance.getString('placeholder') ?? "Set Fruit")}"
   [options]="options"
-  helperText="Select a fruit"
-  [disabled]="false"
-  label="Fruit"
+  helperText="${escapeAttribute(instance.getString('helperText') ?? "Select a fruit")}"
+  [disabled]="${disabled ?? false}"
+  label="${escapeAttribute(instance.getString('label') ?? "Fruit")}"
   [control]="control"
-  [isFilterable]="false"
+  [isFilterable]="${isFilterable ?? false}"
   [preferredOptions]="['_pear']"
-  [isMultiSelect]="false"
+  [isMultiSelect]="${isMultiSelect ?? false}"
   tooltip="Tool tip"
-  errorMessage="Error input dropdown"
+  errorMessage="${escapeAttribute(instance.getString("errorMessage") ?? "Error input dropdown")}"
   name="dropdown"
   value=""
 />`,
   imports: [
+    "import { FormControl } from '@angular/forms'",
     "import type { IBmbDropdownItem } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
     "import { BmbDropdownComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],

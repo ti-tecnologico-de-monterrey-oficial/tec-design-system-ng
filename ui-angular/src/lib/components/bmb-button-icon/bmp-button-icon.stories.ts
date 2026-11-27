@@ -27,7 +27,6 @@ export default {
   parameters: {
     actions: { argTypesRegex: '^on.*' },
     docs: {
-      controls: { exclude: ['handleClick', 'handlePress'] },
       description: {
         component: `
 ${getGeneralDescription(

@@ -7,6 +7,34 @@ import { getIcon } from './icon-image'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleOnHeaderLeftClick(event: Parameters<BmbMobileTemplatesComponent['onHeaderLeftClick']['emit']>[0]): void {
+    console.info('onHeaderLeftClick', event);
+  }
+
+  handleOnHeaderRightClick(event: Parameters<BmbMobileTemplatesComponent['onHeaderRightClick']['emit']>[0]): void {
+    console.info('onHeaderRightClick', event);
+  }
+
+  handleLoginHandleRequest(event: Parameters<BmbMobileTemplatesComponent['loginHandleRequest']['emit']>[0]): void {
+    console.info('loginHandleRequest', event);
+  }
+
+  handleOnDateChange(event: Parameters<BmbMobileTemplatesComponent['onDateChange']['emit']>[0]): void {
+    console.info('onDateChange', event);
+  }
+
+  handleExternalLinkOnClose(event: Parameters<BmbMobileTemplatesComponent['externalLinkOnClose']['emit']>[0]): void {
+    console.info('externalLinkOnClose', event);
+  }
+
+  handleExternalLinkMenuEvent(event: Parameters<BmbMobileTemplatesComponent['externalLinkMenuEvent']['emit']>[0]): void {
+    console.info('externalLinkMenuEvent', event);
+  }
+
+  handleExternalLinkFooterEvent(event: Parameters<BmbMobileTemplatesComponent['externalLinkFooterEvent']['emit']>[0]): void {
+    console.info('externalLinkFooterEvent', event);
+  }
+
   footerActions: IBmbButtonAction[] = [];
 
   buttonList: IBmbMobileTemplateButton[] = [
@@ -23,6 +51,13 @@ export class ExampleComponent {
 </script>
 
 <bmb-mobile-templates
+  (onHeaderLeftClick)="handleOnHeaderLeftClick($event)"
+  (onHeaderRightClick)="handleOnHeaderRightClick($event)"
+  (loginHandleRequest)="handleLoginHandleRequest($event)"
+  (onDateChange)="handleOnDateChange($event)"
+  (externalLinkOnClose)="handleExternalLinkOnClose($event)"
+  (externalLinkMenuEvent)="handleExternalLinkMenuEvent($event)"
+  (externalLinkFooterEvent)="handleExternalLinkFooterEvent($event)"
   template="external-link"
   [footerActions]="footerActions"
   [buttonList]="buttonList"

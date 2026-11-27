@@ -6,6 +6,10 @@ import figma from 'figma'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleCloseGrades(): void {
+    console.info('closeGrades');
+  }
+
   grades: IBmbGrades[] = [
     {
       title: 'Calificaciones 2022',
@@ -132,6 +136,7 @@ export class ExampleComponent {
 </script>
 
 <bmb-grades
+  (closeGrades)="handleCloseGrades()"
   [grades]="grades"
   [isMicro]="false"
   gradeTitle="Período actual"

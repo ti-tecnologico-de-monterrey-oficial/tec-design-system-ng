@@ -4,13 +4,20 @@
 import figma from 'figma'
 import { getIcon } from './icon-image'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const disabled = instance.getEnum('disabled', { false: false, true: true })
+const text = instance.getString('textLink')
+
 export default {
   example: figma.code`<bmb-text-link
-  textLink="Test text"
-  textLinkStyle="icon"
+  textLink="${escapeAttribute(text)}"
+  link="https://www.youtube.com"
+  textLinkStyle="${instance.getEnum('textLinkStyle', { icon: 'icon', underlined: 'underlined' }) ?? "icon"}"
   icon="${getIcon('arrow_forward')}"
-  iconPosition="right"
-  [disabled]="false"
+  iconPosition="${instance.getEnum('iconPosition', { right: 'right', left: 'left' }) ?? "right"}"
+  [disabled]="${disabled ?? false}"
 />`,
   imports: [
     "import { BmbTextLinkComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",

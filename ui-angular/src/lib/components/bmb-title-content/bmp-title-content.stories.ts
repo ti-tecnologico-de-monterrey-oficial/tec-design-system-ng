@@ -1,4 +1,8 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import {
+  componentWrapperDecorator,
+  Meta,
+  StoryObj,
+} from '@storybook/angular';
 import { BmbTitleContentComponent } from './bmb-title-content.component';
 import { RELEVANT_TITLE } from '@docs/utils/utils';
 import { DBmbIconParamDesc } from '@docs/utils/parameterDescriptions';
@@ -37,6 +41,17 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    showFullText: {
+      name: 'Show full text',
+      control: { type: 'boolean' },
+      description:
+        'Limits the title to two lines with an ellipsis. When the title is truncated, its full text can be consulted with mouse hover, visible keyboard focus or a 500 ms long press.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean (optional)' },
+      },
+    },
     title: {
       name: 'Title',
       control: { type: 'text' },
@@ -355,9 +370,23 @@ ${RELEVANT_TITLE.note}<= 0 will be inherited.`,
     isAvatarIcon: false,
     avatarSize: 'desktop-small',
     forceSquareApp: false,
+    showFullText: false,
   },
 } as Meta<typeof BmbTitleContentComponent>;
 
 type Story = StoryObj<BmbTitleContentComponent>;
 
 export const Default: Story = {};
+
+export const LongTitleWithFullText: Story = {
+  args: {
+    title:
+      'Desarrollo e implementación de estrategias de innovación educativa para la formación de competencias profesionales en programas de posgrado',
+    showFullText: true,
+  },
+  decorators: [
+    componentWrapperDecorator(
+      (story) => `<div style="max-width: 360px">${story}</div>`,
+    ),
+  ],
+};

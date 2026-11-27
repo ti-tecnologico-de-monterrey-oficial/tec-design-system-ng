@@ -21,15 +21,15 @@ describe('BmbSimpleText', () => {
 
   it('applies size, weight and color as inline styles', () => {
     render(
-      <BmbSimpleText size={20} weight={700} color="#ff0000">
+      <BmbSimpleText size={9} weight="bold" color="general-contrasts-100">
         Styled text
       </BmbSimpleText>,
     );
 
     const text = screen.getByText('Styled text');
 
-    expect(text.style.fontSize).toBe('20px');
+    expect(text.style.fontSize).toBe('1.5rem');
     expect(text.style.fontWeight).toBe('700');
-    expect(text.style.color).toBe('rgb(255, 0, 0)');
+    expect(text.style.color).toBe('var(--general-contrasts-100)');
   });
 });

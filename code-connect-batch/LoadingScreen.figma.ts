@@ -5,7 +5,21 @@ import figma from 'figma'
 import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-loader
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleOnButtonPrimary(event: Parameters<BmbLoaderComponent['onButtonPrimary']['emit']>[0]): void {
+    console.info('onButtonPrimary', event);
+  }
+
+  handleOnButtonSecondary(event: Parameters<BmbLoaderComponent['onButtonSecondary']['emit']>[0]): void {
+    console.info('onButtonSecondary', event);
+  }
+}
+</script>
+
+<bmb-loader
+  (onButtonPrimary)="handleOnButtonPrimary($event)"
+  (onButtonSecondary)="handleOnButtonSecondary($event)"
   componentTitle="Cargando..."
   subtitle=""
   [overlay]="false"

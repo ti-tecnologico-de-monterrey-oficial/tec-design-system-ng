@@ -4,18 +4,37 @@
 import figma from 'figma'
 import { getIcon } from './icon-image'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const appearanceContrast = instance.getEnum('appearanceContrast', { Default: 'default', Primary: 'primary', Alternative: 'alternative' })
+
 export default {
-  example: figma.code`<bmb-dropzone
-  appearanceContrast="default"
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleNewFile(event: Parameters<BmbDropzoneComponent['newFile']['emit']>[0]): void {
+    console.info('newFile', event);
+  }
+
+  handleFileRemoved(event: Parameters<BmbDropzoneComponent['fileRemoved']['emit']>[0]): void {
+    console.info('fileRemoved', event);
+  }
+}
+</script>
+
+<bmb-dropzone
+  (newFile)="handleNewFile($event)"
+  (fileRemoved)="handleFileRemoved($event)"
+  appearanceContrast="${appearanceContrast ?? 'default'}"
   [progress]="0"
   [acceptedExtensions]="['png', 'image/jpeg', 'jpg']"
-  formatFilesLabel="Formats: png, jpeg, and jpg."
+  formatFilesLabel="${escapeAttribute(instance.getString("formatFilesLabel") ?? "Formats: png, jpeg, and jpg.")}"
   linkFilesSupported="https://www.youtube.com/"
-  linkLabel="Images only"
-  dropInstruction="Drag and drop your files or"
-  dropLabel="Attach your files"
+  linkLabel="${escapeAttribute(instance.getString("linkLabel") ?? "Images only")}"
+  dropInstruction="${escapeAttribute(instance.getString("dropInstruction") ?? "Drag and drop your files or")}"
+  dropLabel="${escapeAttribute(instance.getString("dropLabel") ?? "Attach your files")}"
   mainIcon="${getIcon('image')}"
-  errorMessageFormat="Format not compatible"
+  errorMessageFormat="${escapeAttribute(instance.getString("errorMessageFormat") ?? "Format not compatible")}"
   errorMessageSize="File exceeds the maximum allowed size."
   name="dropzoneInput"
   [fileSize]="2"

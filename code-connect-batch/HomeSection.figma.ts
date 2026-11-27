@@ -4,9 +4,16 @@
 import figma from 'figma'
 import { getIcon } from './icon-image'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const header = instance.findInstance('Simple header', { traverseInstances: true })
+const title = header?.type === 'INSTANCE' ? header.getPropertyValue('componentTitle') : undefined
+const componentTitle = typeof title === 'string' ? title : 'Section name'
+
 export default {
   example: figma.code`<bmb-home-section
-  componentTitle="Section name"
+  componentTitle="${escapeAttribute(componentTitle)}"
   icon="${getIcon('chevron_right')}"
 />`,
   imports: [

@@ -4,7 +4,26 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-account-statement
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleCloseEvent(event: Parameters<BmbAccountStatementComponent['closeEvent']['emit']>[0]): void {
+    console.info('closeEvent', event);
+  }
+
+  handleBackEvent(event: Parameters<BmbAccountStatementComponent['backEvent']['emit']>[0]): void {
+    console.info('backEvent', event);
+  }
+
+  handlePayEvent(event: Parameters<BmbAccountStatementComponent['payEvent']['emit']>[0]): void {
+    console.info('payEvent', event);
+  }
+}
+</script>
+
+<bmb-account-statement
+  (closeEvent)="handleCloseEvent($event)"
+  (backEvent)="handleBackEvent($event)"
+  (payEvent)="handlePayEvent($event)"
   componentTitle="Estado de cuenta"
   labelPrimary="Cuota Mensual"
   labelSecondary="Pendiente"

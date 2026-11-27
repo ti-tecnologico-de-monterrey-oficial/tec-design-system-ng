@@ -7,6 +7,22 @@ import { getIcon } from './icon-image'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleAlertEvent(event: Parameters<BmbNotificationCardComponent['alertEvent']['emit']>[0]): void {
+    console.info('alertEvent', event);
+  }
+
+  handleShowAlertDetail(event: Parameters<BmbNotificationCardComponent['showAlertDetail']['emit']>[0]): void {
+    console.info('showAlertDetail', event);
+  }
+
+  handleOnExpandClick(): void {
+    console.info('onExpandClick');
+  }
+
+  handleGetDeleteClick(event: Parameters<BmbNotificationCardComponent['getDeleteClick']['emit']>[0]): void {
+    console.info('getDeleteClick', event);
+  }
+
   data: IBmbDataAlert[] = [
     {
       id: 10,
@@ -273,6 +289,10 @@ export class ExampleComponent {
 </script>
 
 <bmb-notification-card
+  (alertEvent)="handleAlertEvent($event)"
+  (showAlertDetail)="handleShowAlertDetail($event)"
+  (onExpandClick)="handleOnExpandClick()"
+  (getDeleteClick)="handleGetDeleteClick($event)"
   leftIcon="${getIcon('')}"
   [data]="data"
   [advertisements]="advertisements"
