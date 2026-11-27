@@ -1,4 +1,4 @@
-@if (fileResult() && fileResult()?.errors.length) {
+@if (fileResult() && fileResult()?.errors?.length) {
   <div class="bmb_chat-bar-file-errors">
     @for (error of fileResult()?.errors; track $index) {
       @if (!dismissedAttachmentErrors().has($index)) {
