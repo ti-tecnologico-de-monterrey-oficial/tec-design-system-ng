@@ -4,6 +4,8 @@ import { provideRouter } from '@angular/router';
 import { BmbHomeCardHeaderComponent } from './bmb-home-card-header.component';
 import { BmbProjectionContentService } from '../../../services/projection/projection.service';
 import { IBmbActionHeader } from '../../../_shared/types/utils';
+import { By } from '@angular/platform-browser';
+import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-content.component';
 
 type Internals = {
   getHeaderAction: (i: number) => IBmbActionHeader;
@@ -53,6 +55,20 @@ describe('BmbHomeCardHeaderComponent', () => {
     expect(component).toBeTruthy();
     expect(fixture.nativeElement.querySelector('header')).toBeTruthy();
     expect(component.isGreaterThanLimit).toBe(false);
+  });
+
+  it('should forward showFullText to the title content', () => {
+    create();
+    const titleContent = () =>
+      fixture.debugElement.query(By.directive(BmbTitleContentComponent))
+        .componentInstance as BmbTitleContentComponent;
+
+    expect(titleContent().showFullText()).toBe(false);
+
+    ref.setInput('showFullText', true);
+    fixture.detectChanges();
+
+    expect(titleContent().showFullText()).toBe(true);
   });
 
   it('should throw when no title is provided', () => {

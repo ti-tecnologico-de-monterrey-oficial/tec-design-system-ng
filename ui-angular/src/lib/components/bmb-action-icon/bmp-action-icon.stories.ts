@@ -3,6 +3,7 @@ import { BmbActionIconComponent } from './bmb-action-icon.component';
 import {
   BlockquoteType,
   getAlertBlockquote,
+  getArchitectureSection,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
@@ -20,6 +21,9 @@ import {
   getOnClickParam,
   ON_CLICK_DESCRIPTION,
 } from '@docs/utils/parameterDescriptions';
+import * as iconStory from '../bmb-icon/bmb-icon.stories';
+import * as tooltipBaseStory from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.stories';
+import * as checkStory from '../bmb-check-external-link-button/bmb-check-external-link-button.stories';
 
 const configDetail = `${getAlertBlockquote(
   `Please remember to get the event name using the IBmbActionIconEventType type.
@@ -55,17 +59,6 @@ export default {
   title: 'Components/Buttons/Action icon',
   component: BmbActionIconComponent,
   parameters: {
-    controls: {
-      exclude: [
-        'getIcon',
-        'handleClick',
-        'handlePress',
-        'isSVGTemplate',
-        'handleImageNotFoundError',
-        'customActionIcon',
-        'isImage',
-      ],
-    },
     docs: {
       description: {
         component: `
@@ -78,6 +71,33 @@ ${getGeneralDescription(
   {
     generalDocLink:
       'https://bamboo.tec.mx/latest/componentes/action-icon/descripcion-general-FzB28S1H',
+  },
+)}
+${getArchitectureSection(
+  `
+<bmb-tooltip-base>
+  <span class="bmb_action-icon">
+    <bmb-check-external-link-button>
+      <bmb-icon />
+    </bmb-check-external-link-button>
+  </span>
+</bmb-tooltip-base>
+`,
+  {
+    parentArchitecture: [
+      {
+        bmbNameLink: 'icon',
+        documentationLink: iconStory.default.title!,
+      },
+      {
+        bmbNameLink: 'tooltip-base',
+        documentationLink: tooltipBaseStory.default.title!,
+      },
+      {
+        bmbNameLink: 'check-external-link-button',
+        documentationLink: checkStory.default.title!,
+      },
+    ],
   },
 )}
 ${getSpecialSpecifications(

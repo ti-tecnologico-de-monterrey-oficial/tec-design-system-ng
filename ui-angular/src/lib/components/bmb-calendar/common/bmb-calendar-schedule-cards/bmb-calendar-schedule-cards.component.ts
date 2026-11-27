@@ -20,9 +20,8 @@ import {
   scheduleGetMicroPosition,
   scheduleGetPosition,
 } from '../../../../_shared/logic/components/calendar-view';
-import type { IBmbNativeModal as IBmbNativeModalGeneric } from '../../../../_shared/types';
+import type { IBmbNativeModal } from '../../../../_shared/types';
 
-type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import type {
   IBmbCalendarEvent,
   IBmbCalendarMicroProgram,

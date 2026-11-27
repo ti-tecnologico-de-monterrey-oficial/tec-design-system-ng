@@ -3,6 +3,8 @@ import { rmSync, mkdirSync, cpSync } from 'node:fs';
 const sharedTarget = 'ui-react/src/lib/_shared';
 const sharedLogicTarget = `${sharedTarget}/logic`;
 const sharedTypesTarget = `${sharedTarget}/types`;
+
+const sharedStylesTarget = `${sharedTarget}/assets/styles`;
 const sharedAssetsTarget = 'dist/ui-react/assets/shared';
 
 try {
@@ -16,5 +18,6 @@ mkdirSync(sharedTarget, { recursive: true });
 mkdirSync('dist/ui-react/assets', { recursive: true });
 cpSync('shared/logic', sharedLogicTarget, { recursive: true });
 cpSync('shared/types', sharedTypesTarget, { recursive: true });
+cpSync('shared/assets/styles', sharedStylesTarget, { recursive: true });
 cpSync('shared/assets', sharedAssetsTarget, { recursive: true });
-console.log('Successfully synchronized shared logic, types, and assets to ui-react.');
+console.log('Successfully synchronized shared logic, types, styles, and assets to ui-react.');

@@ -15,6 +15,15 @@
       "options": {
         "command": "node scripts/sync-react-shared.mjs"
       }
+    },
+    "build": {
+      "dependsOn": ["^build", "sync-shared"]
+    },
+    "test": {
+      "dependsOn": [
+        { "projects": ["ui-angular"], "target": "check-shared-import-boundaries" },
+        "sync-shared"
+      ]
     }
   }
 }

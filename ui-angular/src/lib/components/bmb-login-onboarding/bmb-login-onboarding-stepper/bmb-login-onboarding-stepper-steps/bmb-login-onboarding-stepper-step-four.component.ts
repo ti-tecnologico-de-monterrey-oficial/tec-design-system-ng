@@ -10,9 +10,8 @@ import {
 import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-stepper-step.component';
 import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
 import { BmbNativeModalService } from '../../../../services/modal/native-modal.service';
-import { IBmbNativeModal as IBmbNativeModalGeneric } from '../../../../_shared/types';
+import { IBmbNativeModal } from '../../../../_shared/types';
 
-type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 import { TranslatePipe } from '../../../../pipes/translations';
 

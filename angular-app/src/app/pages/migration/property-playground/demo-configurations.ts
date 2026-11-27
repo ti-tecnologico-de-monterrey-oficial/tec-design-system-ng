@@ -113,8 +113,8 @@ export function createDemoConfiguration(
       language: 'es',
     },
     'chat-bar': {
-      allowAttachments: false,
-      acceptedExtensions: undefined,
+      allowAttachments: true,
+      acceptedExtensions: ['png', 'jpg', 'jpeg'],
       maxFileSize: 2,
       files: [],
       placeholder: 'Escribe un mensaje...',
@@ -142,6 +142,7 @@ export function createDemoConfiguration(
       events: createTimestreamDemoEvents(),
     },
     'title-content': {
+      showFullText: false,
       titleSize: '5',
       titleFontWeight: '600',
       subtitle: 'Subtitle',

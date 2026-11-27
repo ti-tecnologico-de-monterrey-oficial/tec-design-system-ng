@@ -7,6 +7,10 @@ import { getIcon } from './icon-image'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleClickedItem(event: Parameters<BmbDropdownMenuComponent['clickedItem']['emit']>[0]): void {
+    console.info('clickedItem', event);
+  }
+
   items: IDropdownItem[] = [
     {
       icon: ${getIcon('link', 'typescript')},
@@ -31,6 +35,7 @@ export class ExampleComponent {
 </script>
 
 <bmb-dropdown-menu
+  (clickedItem)="handleClickedItem($event)"
   [items]="items"
   icon="${getIcon('more_vert')}"
 />`,

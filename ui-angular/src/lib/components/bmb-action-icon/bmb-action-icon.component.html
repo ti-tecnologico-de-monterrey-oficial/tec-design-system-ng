@@ -1,10 +1,10 @@
 <bmb-tooltip-base
   [text]="tooltipText() || (isImage(getIcon()) && alt()) || getIcon()"
 >
-  <span class="bmb_action_icon">
+  <span class="bmb_action-icon">
     <bmb-check-external-link-button
       [attr.data-testid]="testId()"
-      class="bmb_action_icon-button-link"
+      class="bmb_action-icon-button-link"
       [idElement]="idElement()"
       [link]="link()!"
       [target]="target()!"
@@ -14,9 +14,9 @@
       [buttonName]="getIcon()"
     >
       <span
-        class="bmb_action_icon-icon"
+        class="bmb_action-icon-icon"
         [ngClass]="{
-          'bmb_action_icon-icon-toggle_icon':
+          'bmb_action-icon-icon-toggle_icon':
             toggleIconActive() && isAccentColor(),
         }"
       >

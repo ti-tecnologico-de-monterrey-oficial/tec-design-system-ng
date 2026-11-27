@@ -4,7 +4,16 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-overlay
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleOnClick(event: Parameters<BmbOverlayComponent['onClick']['emit']>[0]): void {
+    console.info('onClick', event);
+  }
+}
+</script>
+
+<bmb-overlay
+  (onClick)="handleOnClick($event)"
   [active]="false"
 />`,
   imports: [

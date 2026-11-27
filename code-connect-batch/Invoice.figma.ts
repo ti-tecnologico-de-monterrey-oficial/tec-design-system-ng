@@ -3,6 +3,15 @@
 // component=BmbInvoiceComponent
 import figma from 'figma'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const appearanceContrast = instance.getEnum('Container color', {
+  Default: 'default',
+  Primary: 'primary',
+  Alternative: 'alternative',
+})
+
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
@@ -30,7 +39,7 @@ export class ExampleComponent {
 </script>
 
 <bmb-invoice
-  appearanceContrast="default"
+  appearanceContrast="${escapeAttribute(String(appearanceContrast ?? "default"))}"
   [data]="data"
 />`,
   imports: [

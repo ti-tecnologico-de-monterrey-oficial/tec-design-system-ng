@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { useBmbTranslate, BmbTranslateProvider } from './index';
 
 const spanishDictionary = {
@@ -112,7 +112,7 @@ describe('BmbTranslateProvider', () => {
   it('changes the active language when its dictionary exists', async () => {
     renderProvider();
 
-    screen.getByRole('button', { name: 'English' }).click();
+    fireEvent.click(screen.getByRole('button', { name: 'English' }));
 
     expect(screen.getByTestId('language').textContent).toBe('en');
     expect(screen.getByTestId('save').textContent).toBe('Save');
@@ -124,8 +124,8 @@ describe('BmbTranslateProvider', () => {
   it('adds a dictionary and allows switching to it', () => {
     renderProvider();
 
-    screen.getByRole('button', { name: 'Add French' }).click();
-    screen.getByRole('button', { name: 'French' }).click();
+    fireEvent.click(screen.getByRole('button', { name: 'Add French' }));
+    fireEvent.click(screen.getByRole('button', { name: 'French' }));
 
     expect(screen.getByTestId('language').textContent).toBe('fr');
     expect(screen.getByTestId('save').textContent).toBe('Sauvegarder');
@@ -134,10 +134,10 @@ describe('BmbTranslateProvider', () => {
   it('updates an existing dictionary without removing other languages', () => {
     renderProvider();
 
-    screen.getByRole('button', { name: 'Update Spanish' }).click();
+    fireEvent.click(screen.getByRole('button', { name: 'Update Spanish' }));
 
     expect(screen.getByTestId('save').textContent).toBe('Guardar cambios');
-    screen.getByRole('button', { name: 'English' }).click();
+    fireEvent.click(screen.getByRole('button', { name: 'English' }));
     expect(screen.getByTestId('save').textContent).toBe('Save');
   });
 

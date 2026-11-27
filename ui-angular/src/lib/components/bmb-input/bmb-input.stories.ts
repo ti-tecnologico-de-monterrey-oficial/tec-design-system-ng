@@ -340,7 +340,7 @@ IBmbAdditionalAction = 'copy' | 'showHide' | 'none'
     icon: 'apps',
     placeholder: 'Placeholder',
     disabled: false,
-    isRequired: true,
+    isRequired: false,
     spellcheck: false,
     autocomplete: '',
     minlength: '4',

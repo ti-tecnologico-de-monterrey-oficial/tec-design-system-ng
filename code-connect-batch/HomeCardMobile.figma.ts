@@ -7,6 +7,18 @@ import { getIcon } from './icon-image'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleOnClose(): void {
+    console.info('onClose');
+  }
+
+  handleOnBack(): void {
+    console.info('onBack');
+  }
+
+  handleOnExpandClick(): void {
+    console.info('onExpandClick');
+  }
+
   dataLocalNav: IBmbDataTopBar[] = [];
 
   actionHeaders: IBmbActionHeader[] = [];
@@ -14,6 +26,9 @@ export class ExampleComponent {
 </script>
 
 <bmb-home-card
+  (onClose)="handleOnClose()"
+  (onBack)="handleOnBack()"
+  (onExpandClick)="handleOnExpandClick()"
   leftIcon="${getIcon('chevron_left')}"
   icon="${getIcon('account_balance_wallet')}"
   [iconSize]="iconSize"

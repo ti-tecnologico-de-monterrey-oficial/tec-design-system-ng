@@ -3,9 +3,25 @@
 // component=BmbBookmarkComponent
 import figma from 'figma'
 
+const instance = figma.selectedInstance
+const isActive = instance.getEnum('Bookmark', {
+  Inactive: false,
+  Focused: false,
+  Active: true,
+})
+
 export default {
-  example: figma.code`<bmb-bookmark
-  [isActive]="false"
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleIsActiveChange(event: ReturnType<BmbBookmarkComponent['isActive']>): void {
+    console.info('isActiveChange', event);
+  }
+}
+</script>
+
+<bmb-bookmark
+  (isActiveChange)="handleIsActiveChange($event)"
+  [isActive]="${isActive ?? false}"
 />`,
   imports: [
     "import { BmbBookmarkComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",

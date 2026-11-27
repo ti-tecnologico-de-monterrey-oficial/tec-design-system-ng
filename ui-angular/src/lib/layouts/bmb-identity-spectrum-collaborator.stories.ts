@@ -21,11 +21,10 @@ import { BmbFormValidatorComponent } from '../components/bmb-form-validator/bmb-
 import { BmbInputComponent } from '../components/bmb-input/bmb-input.component';
 
 import {
-  IBmbNativeModal as IBmbNativeModalGeneric,
+  IBmbNativeModal,
   IBmbActionHeader,
 } from '../_shared/types';
 
-type IBmbNativeModal = IBmbNativeModalGeneric<TemplateRef<any>>;
 import { BmbNativeModalService } from '../services/modal/native-modal.service';
 
 import { BmbButtonDirective } from '../directives/bmb-button/button.directive';

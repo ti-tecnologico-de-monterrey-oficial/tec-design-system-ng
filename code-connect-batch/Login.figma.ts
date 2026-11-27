@@ -6,6 +6,18 @@ import figma from 'figma'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleOnRequest(event: Parameters<BmbLoginComponent['onRequest']['emit']>[0]): void {
+    console.info('onRequest', event);
+  }
+
+  handleOnContinue(): void {
+    console.info('onContinue');
+  }
+
+  handleOnRememberMeChecked(event: Parameters<BmbLoginComponent['onRememberMeChecked']['emit']>[0]): void {
+    console.info('onRememberMeChecked', event);
+  }
+
   actionHeaderLinks: IBmbActionHeaderLinks = {
     apple: { link: '' },
     android: { link: '' },
@@ -18,6 +30,9 @@ export class ExampleComponent {
 </script>
 
 <bmb-login
+  (onRequest)="handleOnRequest($event)"
+  (onContinue)="handleOnContinue()"
+  (onRememberMeChecked)="handleOnRememberMeChecked($event)"
   headerLabel=""
   forgottenPasswordLabel="¿Olvidaste tu contraseña?"
   forgottenPasswordLink=""

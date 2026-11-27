@@ -2,6 +2,11 @@ import type { DemoConfiguration, DemoProperty } from '../property-playground/dem
 
 export const containerButtonProperties: DemoProperty[] = [
   {
+    name: 'showFullText',
+    kind: 'boolean',
+    type: 'boolean',
+  },
+  {
     name: 'testId',
     kind: 'text',
     type: 'string',
@@ -652,7 +657,7 @@ export function createContainerButtonDemoConfiguration(
   return {
     title: 'Container button',
     properties: containerButtonProperties,
-    initial: JSON.parse(JSON.stringify(selected.initial)),
+    initial: { showFullText: false, ...JSON.parse(JSON.stringify(selected.initial)) },
     tall: false,
   };
 }

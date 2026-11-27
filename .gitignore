@@ -8,8 +8,10 @@
 
 # Node
 /node_modules
+/ui-react/node_modules/
 npm-debug.log
 yarn-error.log
+ui-react/node_modules
 
 # IDEs and editors
 .idea/

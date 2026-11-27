@@ -4,7 +4,26 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-sounds-card
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleHandlevolume(event: Parameters<BmbSoundsCardComponent['handlevolume']['emit']>[0]): void {
+    console.info('handlevolume', event);
+  }
+
+  handleHandlePlay(event: Parameters<BmbSoundsCardComponent['handlePlay']['emit']>[0]): void {
+    console.info('handlePlay', event);
+  }
+
+  handleHandleMute(event: Parameters<BmbSoundsCardComponent['handleMute']['emit']>[0]): void {
+    console.info('handleMute', event);
+  }
+}
+</script>
+
+<bmb-sounds-card
+  (handlevolume)="handleHandlevolume($event)"
+  (handlePlay)="handleHandlePlay($event)"
+  (handleMute)="handleHandleMute($event)"
   componentTitle="Tec Sounds Radio"
   subtitle="98.76 FM"
   width="500px"

@@ -4,9 +4,33 @@
 import figma from 'figma'
 import { getIcon } from './icon-image'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const size = instance.getEnum('Size', {
+  Default: 'default',
+  Small: 'small',
+})
+const titleLayer = instance.findText('Title', { traverseInstances: true })
+const title =
+  titleLayer && titleLayer.type === 'TEXT' ? titleLayer.textContent : 'Title'
+const isSmall = size === 'small'
+
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleOnAddContentClick(event: Parameters<BmbCardButtonComponent['onAddContentClick']['emit']>[0]): void {
+    console.info('onAddContentClick', event);
+  }
+
+  handleOnTitleClick(event: Parameters<BmbCardButtonComponent['onTitleClick']['emit']>[0]): void {
+    console.info('onTitleClick', event);
+  }
+
+  handleOnSmallClick(event: Parameters<BmbCardButtonComponent['onSmallClick']['emit']>[0]): void {
+    console.info('onSmallClick', event);
+  }
+
   botImage: IBmbImageInfo = {
     src: 'https://tecgpt0grl0prod0stg.blob.core.windows.net/gpt-portal-public/ICONOS/icon_modelo_CHAT_GPT.svg',
     alt: 'Left content image',
@@ -45,23 +69,26 @@ export class ExampleComponent {
 </script>
 
 <bmb-card-button
-  [isSmall]="false"
+  (onAddContentClick)="handleOnAddContentClick($event)"
+  (onTitleClick)="handleOnTitleClick($event)"
+  (onSmallClick)="handleOnSmallClick($event)"
+  [isSmall]="${isSmall ?? false}"
   [isDisabled]="false"
   [botImage]="botImage"
   smallIcon="${getIcon('')}"
-  smallTitle=""
+  smallTitle="${escapeAttribute(String(title ?? ""))}"
   smallDescription=""
   [isFullInteractive]="true"
   body=""
   [badge]="badge"
-  [leftContent]="leftContent"
+  [leftContent]="true"
   leftContentIcon="${getIcon('')}"
   [leftContentImage]="leftContentImage"
   [hasMenu]="false"
   [menuItems]="menuItems"
   [isTemplate]="false"
   [textLink]="textLink"
-  componentTitle=""
+  componentTitle="${escapeAttribute(String(title ?? ""))}"
   icon="${getIcon('')}"
 />`,
   imports: [

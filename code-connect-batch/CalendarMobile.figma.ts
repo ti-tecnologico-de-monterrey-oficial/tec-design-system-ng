@@ -4,7 +4,21 @@
 import figma from 'figma'
 
 export default {
-  example: figma.code`<bmb-calendar
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleOnDateChange(event: Parameters<BmbCalendarComponent['onDateChange']['emit']>[0]): void {
+    console.info('onDateChange', event);
+  }
+
+  handleOnClose(event: Parameters<BmbCalendarComponent['onClose']['emit']>[0]): void {
+    console.info('onClose', event);
+  }
+}
+</script>
+
+<bmb-calendar
+  (onDateChange)="handleOnDateChange($event)"
+  (onClose)="handleOnClose($event)"
   height="100%"
   [showFilterButton]="false"
   [calendarTitle]="calendarTitle"

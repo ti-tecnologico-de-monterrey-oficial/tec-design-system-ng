@@ -7,6 +7,10 @@ import { getIcon } from './icon-image'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleAppClick(event: Parameters<BmbFrequentAppsSelectorComponent['appClick']['emit']>[0]): void {
+    console.info('appClick', event);
+  }
+
   apps: IBmbApp[] = [
     {
       icon: ${getIcon('home', 'typescript')},
@@ -66,6 +70,7 @@ export class ExampleComponent {
 </script>
 
 <bmb-frequent-apps-selector
+  (appClick)="handleAppClick($event)"
   [apps]="apps"
   componentTitle="Services"
   layout="regular"

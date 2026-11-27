@@ -8,6 +8,10 @@ import { getBoxIconColor } from './box-icon-color'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleIsExpandedChange(event: ReturnType<BmbAIChatCardComponent['isExpanded']>): void {
+    console.info('isExpandedChange', event);
+  }
+
   currentBot: IBotType = { name: 'TecBot', icon: ${getIcon('bot_tecStandar', 'typescript')} };
 
   headerActions: IBmbActionHeader[] = [{ icon: ${getIcon('chat_add_on', 'typescript')} }];
@@ -15,6 +19,7 @@ export class ExampleComponent {
 </script>
 
 <bmb-ai-chat-card
+  (isExpandedChange)="handleIsExpandedChange($event)"
   mode="compact"
   bgIconAppearance="${getBoxIconColor('gray-charade-500', 'InteractiveIcon_Base', ['BB_2_12_3', 'BB_2_12_2'])}"
   componentTitle=""

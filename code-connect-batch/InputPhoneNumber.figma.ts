@@ -3,23 +3,54 @@
 // component=BmbInputPhoneNumberComponent
 import figma from 'figma'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const disabled = instance.getEnum('State', {
+  Enabled: false,
+  Hovered: false,
+  Focused: false,
+  Error: false,
+  Disabled: true,
+})
+const hasLabel = instance.getBoolean('showLabel')
+const helperMessage = instance.getBoolean('show helperMessage', {
+  true: 'Helper message',
+  false: '',
+})
+const labelLayer = instance.findText('Label', { traverseInstances: true })
+const inputLayer = instance.findText('INPUT', { traverseInstances: true })
+const label =
+  hasLabel && labelLayer && labelLayer.type === 'TEXT'
+    ? labelLayer.textContent
+    : ''
+const value =
+  inputLayer && inputLayer.type === 'TEXT' ? inputLayer.textContent : ''
+
 export default {
-  example: figma.code`<bmb-input-phone-number
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  control = new FormControl('');
+}
+</script>
+
+<bmb-input-phone-number
   [control]="control"
-  [disabled]="false"
+  [disabled]="${disabled ?? false}"
   errorMessage=""
-  [isRequired]="false"
+  [isRequired]="${instance.getBoolean('isRequired') ?? false}"
   [preferredCountries]="['mx']"
   [onlyCountries]="['mx', 'us', 'ca']"
-  label="Phone"
+  label="${escapeAttribute(hasLabel === false ? '' : instance.getString('label') ?? label)}"
   tooltip=""
   name="phone"
-  value=""
-  helperMessage=""
-  placeholder=""
+  value="${escapeAttribute(instance.getString('value') ?? value)}"
+  helperMessage="${escapeAttribute(helperMessage ? instance.getString('helperMessage') ?? helperMessage : '')}"
+  placeholder="${escapeAttribute(instance.getString('placeholder') ?? "")}"
   defaultCountryCode="mx"
 />`,
   imports: [
+    "import { FormControl } from '@angular/forms'",
     "import { BmbInputPhoneNumberComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
   id: 'bmb-input-phone-number',

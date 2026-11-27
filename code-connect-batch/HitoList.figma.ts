@@ -6,6 +6,10 @@ import figma from 'figma'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handleChangeSelectedDate(event: Parameters<BmbHitoListComponent['changeSelectedDate']['emit']>[0]): void {
+    console.info('changeSelectedDate', event);
+  }
+
   now: DateTime = DateTime.now();
 
   events: IBmbHitoListEvents = {
@@ -55,6 +59,7 @@ export class ExampleComponent {
 </script>
 
 <bmb-hito-list
+  (changeSelectedDate)="handleChangeSelectedDate($event)"
   dateFormat="dd/MM/yyyy"
   lang="es"
   [events]="events"

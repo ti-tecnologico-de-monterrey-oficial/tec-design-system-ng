@@ -5,7 +5,26 @@ import figma from 'figma'
 import { getIcon } from './icon-image'
 
 export default {
-  example: figma.code`<bmb-header-mobile
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleOnTrailingIconClick(event: Parameters<BmbHeaderMobileComponent['onTrailingIconClick']['emit']>[0]): void {
+    console.info('onTrailingIconClick', event);
+  }
+
+  handleOnLogoClick(event: Parameters<BmbHeaderMobileComponent['onLogoClick']['emit']>[0]): void {
+    console.info('onLogoClick', event);
+  }
+
+  handleOnUserImageClick(event: Parameters<BmbHeaderMobileComponent['onUserImageClick']['emit']>[0]): void {
+    console.info('onUserImageClick', event);
+  }
+}
+</script>
+
+<bmb-header-mobile
+  (onTrailingIconClick)="handleOnTrailingIconClick($event)"
+  (onLogoClick)="handleOnLogoClick($event)"
+  (onUserImageClick)="handleOnUserImageClick($event)"
   text="Title"
   trailingIcon="${getIcon('notifications')}"
   userImage="https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1"

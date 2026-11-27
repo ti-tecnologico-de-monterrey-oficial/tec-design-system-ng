@@ -3,12 +3,75 @@
 // component=BmbToastComponent
 import figma from 'figma'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const appearance = instance.getEnum('Type', {
+  Neutral: 'neutral',
+  Warning: 'warning',
+  Error: 'error',
+  Successful: 'successful',
+  Event: 'event',
+  Primary: 'primary',
+  Reminder: 'reminder',
+  'Neutral/w/description': 'neutral',
+  'Warning/w/description': 'warning',
+  'Error/w/description': 'error',
+  'Successful/w/description': 'successful',
+  'Event_w/description': 'event',
+  'Primary/w/description': 'primary',
+  mitec_blue: 'mitec_blue',
+  mitec_red: 'mitec_red',
+  mitec_green: 'mitec_green',
+  mitec_orange: 'mitec_orange',
+  mitec_purple: 'mitec_purple',
+  Creative_violet: 'creative_violet',
+  Creative_indigo: 'creative_indigo',
+  Creative_Emerald: 'creative_emerald',
+  Creative_Licorice: 'creative_licorice',
+  Creative_DarkTeal: 'creative_darkteal',
+  Creative_Peach: 'creative_peach',
+  Creative_Sepia: 'creative_sepia',
+  Creative_SoftRed: 'creative_softred',
+  Creative_Wattle: 'creative_wattle',
+  Creative_ShipCove: 'creative_shipcove',
+  Creative_Plantation: 'creative_plantation',
+  Creative_Rum: 'creative_rum',
+  Creative_RipeLemon: 'creative_ripelemon',
+  Creative_Hibiscus: 'creative_hibiscus',
+  Creative_Violet: 'creative_violet',
+  Creative_Indigo: 'creative_indigo',
+})
+const isClosable = instance.getBoolean('Show close')
+const simpleTitle = instance.findText('Toast', { traverseInstances: true })
+const detailedTitle = instance.findText('Title', { traverseInstances: true })
+const descriptionLayer = instance.findText('description', { traverseInstances: true })
+const componentTitle =
+  simpleTitle && simpleTitle.type === 'TEXT'
+    ? simpleTitle.textContent
+    : detailedTitle && detailedTitle.type === 'TEXT'
+      ? detailedTitle.textContent
+      : ''
+const description =
+  descriptionLayer && descriptionLayer.type === 'TEXT'
+    ? descriptionLayer.textContent
+    : ''
+
 export default {
-  example: figma.code`<bmb-toast
-  componentTitle="Your toast title here"
-  description="Your toast description here (optional)"
-  appearance="neutral"
-  [isClosable]="false"
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
+  handleOnClose(event: Parameters<BmbToastComponent['onClose']['emit']>[0]): void {
+    console.info('onClose', event);
+  }
+}
+</script>
+
+<bmb-toast
+  (onClose)="handleOnClose($event)"
+  componentTitle="${escapeAttribute(String(componentTitle ?? "Your toast title here"))}"
+  description="${escapeAttribute(String(description ?? "Your toast description here (optional)"))}"
+  appearance="${escapeAttribute(String(appearance ?? "neutral"))}"
+  [isClosable]="${isClosable ?? false}"
 />`,
   imports: [
     "import { BmbToastComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",

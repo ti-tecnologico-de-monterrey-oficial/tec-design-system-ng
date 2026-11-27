@@ -3,6 +3,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from './bmb-check-external-link-button.component';
 import {
   attributes,
+  getArchitectureSection,
   getBasicExampleBlock,
   getGeneralDescription,
 } from '@docs/utils/utils';
@@ -21,6 +22,33 @@ export default {
       description: {
         component: `
 ${getGeneralDescription('Internal component for rendering a button or link, it checks if it is internal or external link or handle the button events.')}
+${getArchitectureSection(
+  `
+<!-- If it is external link -->
+<a
+  class="bmb_check-external-link-button-element"
+  [href]="link"
+  rel="noopener noreferrer"
+>
+  <ng-content />
+</a>
+
+<!-- If it is internal link -->
+<a
+  class="bmb_check-external-link-button-element"
+  [routerLink]="link"
+  routerLinkActive="bmb-active-link"
+  [routerLinkActiveOptions]="{ exact: true }"
+>
+  <ng-content />
+</a>
+
+<!-- For button -->
+<button type="button" (click)="handleClick($event)">
+  <ng-content />
+</button>
+`,
+)}
 ${getBasicExampleBlock('BmbCheckExternalLinkButtonComponent')}
         `,
       },

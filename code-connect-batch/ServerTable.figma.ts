@@ -6,6 +6,18 @@ import figma from 'figma'
 export default {
   example: figma.code`<script lang="ts">
 export class ExampleComponent {
+  handlePageChange(event: Parameters<BmbServerTableComponent['pageChange']['emit']>[0]): void {
+    console.info('pageChange', event);
+  }
+
+  handleDataChange(event: Parameters<BmbServerTableComponent['dataChange']['emit']>[0]): void {
+    console.info('dataChange', event);
+  }
+
+  handleOnClickRow(event: Parameters<BmbServerTableComponent['onClickRow']['emit']>[0]): void {
+    console.info('onClickRow', event);
+  }
+
   columns: IBmbServerTableColumn[] = [
     { key: 'name', label: 'Name' },
     { key: 'lastName', label: 'Last Name' },
@@ -16,6 +28,9 @@ export class ExampleComponent {
 </script>
 
 <bmb-server-table
+  (pageChange)="handlePageChange($event)"
+  (dataChange)="handleDataChange($event)"
+  (onClickRow)="handleOnClickRow($event)"
   [data]="[{ lastName: 'Lorem Ipsum Lorem Ipsum Lorem Ipsum', name: 'Lorem Ipsum Lorem Ipsum Lorem Ipsum', birthday: '02/02/2000', country: 'Mexico' }, { lastName: 'Nava', name: 'Jesus', birthday: '03/04/1998', country: 'Mexico', detail: 'Detail text' }]"
   [columns]="columns"
   [totalRecords]="2"

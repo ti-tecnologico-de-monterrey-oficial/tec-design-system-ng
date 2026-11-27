@@ -4,10 +4,19 @@
 import figma from 'figma'
 import { getIcon } from './icon-image'
 
+import { escapeAttribute } from './escape-attribute'
+
+const instance = figma.selectedInstance
+const showTitle = instance.getBoolean('Show Title')
+const titleLayer = instance.findText('Title', { traverseInstances: true })
+const textLayer = instance.findText('Description', { traverseInstances: true })
+const title = titleLayer && titleLayer.type === 'TEXT' ? titleLayer.textContent : ''
+const text = textLayer && textLayer.type === 'TEXT' ? textLayer.textContent : ''
+
 export default {
   example: figma.code`<bmb-tooltip
-  componentTitle="Tooltip title"
-  text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis."
+  componentTitle="${escapeAttribute(String((showTitle ? title : '') ?? "Tooltip title"))}"
+  text="${escapeAttribute(String(text ?? "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis."))}"
   icon="${getIcon('help')}"
   [size]="40"
 />`,
