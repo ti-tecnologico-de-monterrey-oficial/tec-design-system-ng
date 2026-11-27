@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600" font-family="Segoe UI, Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Flujo de ramas y Pull Requests</title>
+  <desc id="d">La rama del ticket DS-XXXX sale de develop, se integra primero a feature-prod mediante un PR para pruebas y QA, y después a develop mediante un segundo PR para el despliegue.</desc>
+  <defs>
+    <marker id="flecha" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="context-stroke" />
+    </marker>
+  </defs>
+
+  <rect width="1000" height="600" fill="#ffffff" />
+
+  <!-- Carriles -->
+  <g>
+    <rect x="20" y="50" width="960" height="120" rx="12" fill="#eaf6ee" />
+    <rect x="20" y="180" width="960" height="120" rx="12" fill="#eef1fb" />
+    <rect x="20" y="310" width="960" height="120" rx="12" fill="#fff4e0" />
+    <rect x="20" y="440" width="960" height="120" rx="12" fill="#f3f4f8" />
+  </g>
+
+  <!-- Etiquetas de carril -->
+  <g font-size="18" font-weight="700">
+    <text x="40" y="115" fill="#1b7a3d">develop</text>
+    <text x="40" y="245" fill="#2f3a8f">DS-XXXX</text>
+    <text x="40" y="375" fill="#b86e00">feature-prod</text>
+    <text x="40" y="505" fill="#4a4f63">Release</text>
+  </g>
+  <g font-size="13" fill="#5b6075">
+    <text x="40" y="136">Rama de despliegue</text>
+    <text x="40" y="266">Rama del ticket (Jira)</text>
+    <text x="40" y="396">Pruebas y QA</text>
+    <text x="40" y="526">Versión publicada</text>
+  </g>
+
+  <!-- develop -->
+  <line x1="230" y1="110" x2="880" y2="110" stroke="#1b7a3d" stroke-width="4" marker-end="url(#flecha)" />
+  <circle cx="230" cy="110" r="9" fill="#1b7a3d" />
+  <circle cx="720" cy="110" r="9" fill="#1b7a3d" />
+
+  <!-- 1. Creación de la rama -->
+  <path d="M230 110 C230 170 300 170 300 240" fill="none" stroke="#1b7a3d" stroke-width="4" marker-end="url(#flecha)" />
+
+  <!-- DS-XXXX -->
+  <line x1="300" y1="240" x2="640" y2="240" stroke="#2f3a8f" stroke-width="4" />
+  <g fill="#2f3a8f">
+    <circle cx="300" cy="240" r="9" />
+    <circle cx="370" cy="240" r="7" />
+    <circle cx="440" cy="240" r="9" />
+    <circle cx="510" cy="240" r="7" />
+    <circle cx="580" cy="240" r="7" />
+    <circle cx="640" cy="240" r="9" />
+  </g>
+  <text x="335" y="222" font-size="13" fill="#2f3a8f" text-anchor="middle">commits</text>
+
+  <!-- 2. PR 1: DS-XXXX a feature-prod -->
+  <path d="M440 240 L440 370" fill="none" stroke="#e08a00" stroke-width="4" marker-end="url(#flecha)" />
+  <rect x="452" y="288" width="112" height="28" rx="14" fill="#e08a00" />
+  <text x="508" y="307" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">PR 1 · revisión</text>
+
+  <!-- feature-prod: pruebas y QA -->
+  <rect x="420" y="355" width="300" height="50" rx="10" fill="#ffffff" stroke="#e08a00" stroke-width="3" />
+  <circle cx="440" cy="380" r="9" fill="#e08a00" />
+  <text x="580" y="386" font-size="15" font-weight="700" fill="#b86e00" text-anchor="middle">Pruebas + visto bueno de QA</text>
+
+  <!-- 3. PR 2: DS-XXXX a develop -->
+  <path d="M640 240 C700 240 720 200 720 120" fill="none" stroke="#e08a00" stroke-width="4" marker-end="url(#flecha)" />
+  <rect x="728" y="165" width="112" height="28" rx="14" fill="#e08a00" />
+  <text x="784" y="184" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">PR 2 · revisión</text>
+
+  <!-- Release -->
+  <path d="M720 110 C830 110 880 200 880 340 L880 500" fill="none" stroke="#1b7a3d" stroke-width="4" stroke-dasharray="8 6" marker-end="url(#flecha)" />
+  <rect x="820" y="490" width="120" height="40" rx="20" fill="#1b7a3d" />
+  <text x="880" y="516" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">Release R1</text>
+
+  <!-- Pasos numerados -->
+  <g font-size="14" font-weight="700" fill="#fff" text-anchor="middle">
+    <circle cx="190" cy="165" r="14" fill="#2f3a8f" /><text x="190" y="170">1</text>
+    <circle cx="400" cy="320" r="14" fill="#e08a00" /><text x="400" y="325">2</text>
+    <circle cx="684" cy="165" r="14" fill="#e08a00" /><text x="684" y="170">3</text>
+  </g>
+
+  <!-- Nota -->
+  <rect x="270" y="455" width="460" height="90" rx="10" fill="#ffffff" stroke="#c9cddd" />
+  <g font-size="14" fill="#2b2f40">
+    <text x="288" y="480" font-weight="700">Resumen</text>
+    <text x="288" y="502">1. Rama DS-XXXX desde develop y commits en ella.</text>
+    <text x="288" y="520">2. PR 1 a feature-prod: revisión, pruebas y QA.</text>
+    <text x="288" y="538">3. PR 2 a develop: revisión y despliegue. Conserva la rama hasta aquí.</text>
+  </g>
+</svg>

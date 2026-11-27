@@ -1,0 +1,18 @@
+---
+title: Flujo de ramas y Pull Requests
+description: Pasos para integrar un ticket a develop pasando por feature-prod y QA.
+---
+
+import { Image } from 'astro:assets';
+import { FlujoRamasComponent } from '../../../components/flujo-ramas.component';
+import diagrama from '../../../assets/flujo-de-ramas.svg';
+import '../../../../../shared/assets/styles/mainTEC.scss';
+
+Cada ticket sigue este flujo: la rama sale de `develop`, pasa primero por `feature-prod` (pruebas y QA) y regresa a `develop` para el despliegue.
+
+<Image
+  src={diagrama}
+  alt="Diagrama del flujo: la rama DS-XXXX sale de develop, un primer PR la integra a feature-prod para pruebas y QA, y un segundo PR la integra a develop para el despliegue."
+/>
+
+<FlujoRamasComponent client:only="angular" />
