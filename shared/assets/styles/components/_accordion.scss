@@ -12,12 +12,18 @@ $_max-height: calc(
 
 @mixin base {
   @include fonts.font(4, regular);
-  border-radius: var(--bmb-radius-4);
+  border-radius: var(--bmb-accordion-inner-radius);
   color: var(--general-contrasts-75);
   cursor: pointer;
 }
 
 .bmb_accordion {
+  --bmb-accordion-inner-radius: var(--bmb-radius-4);
+
+  &.bmb_radius-none {
+    --bmb-accordion-inner-radius: 0;
+  }
+
   user-select: none;
   border: rem.rem_calc(1) solid var(--general-contrasts-container-outline);
   position: relative;
@@ -46,7 +52,8 @@ $_max-height: calc(
 
     &-open {
       background-color: var(--menu-select-on-surface-hovered-w-checkbox);
-      border-radius: var(--bmb-radius-4) var(--bmb-radius-4) 0 0;
+      border-radius: var(--bmb-accordion-inner-radius)
+        var(--bmb-accordion-inner-radius) 0 0;
     }
   }
 
@@ -69,7 +76,8 @@ $_max-height: calc(
       display: block;
       max-height: 100%;
       opacity: 1;
-      border-radius: 0 0 var(--bmb-radius-4) var(--bmb-radius-4);
+      border-radius: 0 0 var(--bmb-accordion-inner-radius)
+        var(--bmb-accordion-inner-radius);
     }
 
     &-init-open {

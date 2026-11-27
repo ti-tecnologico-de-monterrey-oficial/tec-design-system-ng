@@ -264,6 +264,11 @@ export const Default: Story = {
   }),
 };
 
+export const NoBorderRadius: Story = {
+  ...Default,
+  args: { borderRadius: 'none' },
+};
+
 export const SelectedItem = {
   args: {
     active: true,
