@@ -1,0 +1,11 @@
+{
+  "name": "bamboo-standards",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@astrojs/starlight": "^0.43.1",
+    "astro": "^7.3.6",
+    "@astrojs/check": "^0.9.12"
+  }
+}

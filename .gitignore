@@ -75,3 +75,27 @@ ui-react/src/lib/_shared/*
 # Next.js
 .next
 out
+
+# Astro - bamboo-standards
+
+# build output
+bamboo-standards/dist/
+# generated types
+bamboo-standards/.astro/
+
+# dependencies
+bamboo-standards/node_modules/
+
+# logs
+bamboo-standards/npm-debug.log*
+bamboo-standards/yarn-debug.log*
+bamboo-standards/yarn-error.log*
+bamboo-standards/pnpm-debug.log*
+
+
+# environment variables
+bamboo-standards/.env
+bamboo-standards/.env.production
+
+# macOS-specific files
+bamboo-standards/.DS_Store

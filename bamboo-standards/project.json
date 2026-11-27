@@ -1,0 +1,68 @@
+{
+  "name": "bamboo-standards",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "bamboo-standards/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "astro dev --port 4321",
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^sync-shared"],
+      "cache": false
+    },
+    "build": {
+      "executor": "@geekvetica/nx-astro:build",
+      "options": {},
+      "inputs": [
+        "default",
+        "^default",
+        "{projectRoot}/package.json",
+        {
+          "externalDependencies": ["astro", "cookie", "sharp"]
+        }
+      ],
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "cache": true,
+      "dependsOn": ["^build"]
+    },
+    "preview": {
+      "executor": "@geekvetica/nx-astro:preview",
+      "options": {},
+      "cache": false,
+      "dependsOn": ["build"]
+    },
+    "check": {
+      "executor": "@geekvetica/nx-astro:check",
+      "options": {},
+      "inputs": [
+        "default",
+        "^default",
+        {
+          "externalDependencies": ["astro", "@astrojs/check", "typescript"]
+        }
+      ],
+      "cache": true,
+      "dependsOn": ["sync"]
+    },
+    "sync": {
+      "executor": "@geekvetica/nx-astro:sync",
+      "options": {},
+      "inputs": [
+        "{projectRoot}/src/content/**/*",
+        {
+          "externalDependencies": ["astro"]
+        }
+      ],
+      "outputs": [],
+      "cache": true,
+      "metadata": {
+        "technologies": ["astro"],
+        "description": "Generate TypeScript types for Astro Content Collections and modules (via astro sync)"
+      }
+    }
+  }
+}

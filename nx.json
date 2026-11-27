@@ -57,6 +57,17 @@
         "buildDepsTargetName": "build-deps",
         "watchDepsTargetName": "watch-deps"
       }
+    },
+    {
+      "plugin": "@geekvetica/nx-astro",
+      "options": {
+        "devTargetName": "dev",
+        "buildTargetName": "build",
+        "previewTargetName": "preview",
+        "checkTargetName": "check",
+        "testTargetName": "test",
+        "syncTargetName": "sync"
+      }
     }
   ],
   "generators": {

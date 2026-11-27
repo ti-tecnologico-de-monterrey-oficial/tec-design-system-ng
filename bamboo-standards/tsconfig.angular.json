@@ -1,0 +1,18 @@
+{
+  "extends": "../ui-angular/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/out-tsc/bamboo-standards",
+    "types": [],
+    "skipLibCheck": true
+  },
+  "angularCompilerOptions": {
+    "strictTemplates": false
+  },
+  "files": [],
+  "include": ["src/**/*.ts", "../ui-angular/src/lib/**/*.ts"],
+  "exclude": [
+    "../ui-angular/src/**/*.spec.ts",
+    "../ui-angular/src/**/*.stories.ts",
+    "../ui-angular/src/**/*.figma.ts"
+  ]
+}
