@@ -24,7 +24,8 @@ const iconStyle = instance.getEnum('iconStyle', {
 })
 
 export default {
-  example: figma.code`export class ExampleComponent {
+  example: figma.code`<script lang="ts">
+export class ExampleComponent {
   private readonly modalService = inject(BmbNativeModalService);
 
   openModal() {
@@ -36,10 +37,13 @@ export default {
       ${iconStyle ? `iconStyle: '${iconStyle}',` : ''}
     });
   }
-}`,
+}
+</script>
+
+<button bmbButton type="button" (click)="openModal()">Abrir modal</button>`,
   imports: [
     "import { inject } from '@angular/core'",
-    "import { BmbNativeModalService } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
+    "import { BmbButtonDirective, BmbNativeModalService } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
   id: 'bmb-native-modal',
 }
